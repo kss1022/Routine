@@ -31,11 +31,11 @@ public struct KeychainAccess {
     var queryResult: AnyObject?
     let readStatus = SecItemCopyMatching(query, &queryResult)
     if readStatus != errSecSuccess {
-    debugPrint("Failed to retrieve data for key: \(account). Reason: \(securityErrorMeesage(fromStatus: readStatus))")
+        Log.e("Failed to retrieve data for key: \(account). Reason: \(securityErrorMeesage(fromStatus: readStatus))")
       return nil
     }
     guard let passwordData = queryResult as? Data else {
-        debugPrint("Failed to convert query result to data")
+        Log.e("Failed to convert query result to data")
       return nil
     }
     return String(data: passwordData, encoding: .utf8)
@@ -64,7 +64,7 @@ public struct KeychainAccess {
       return true
     }
     if readStatus != errSecItemNotFound {
-        debugPrint("Failed to query existence of key: \(account). Reason: \(securityErrorMeesage(fromStatus: readStatus))")
+        Log.e("Failed to query existence of key: \(account). Reason: \(securityErrorMeesage(fromStatus: readStatus))")
     }
     return false
   }

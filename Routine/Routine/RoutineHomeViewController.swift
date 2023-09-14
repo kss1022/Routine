@@ -7,6 +7,7 @@
 
 import ModernRIBs
 import UIKit
+import CocoaLumberjackSwift
 
 protocol RoutineHomePresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -39,6 +40,7 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
             selectedImage: UIImage(systemName: "checkmark.seal.fill")
         )
         view.backgroundColor = .white
+
     }
 }
 

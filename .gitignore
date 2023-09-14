@@ -91,9 +91,9 @@ iOSInjectionProject/
 
 
 
-
-
-
+##APIKEY 
+GoogleService-Info.plist
+ApiKeys.plist
 
 
 # General

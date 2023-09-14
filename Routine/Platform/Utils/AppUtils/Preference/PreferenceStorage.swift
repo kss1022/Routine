@@ -74,13 +74,13 @@ public final class PreferenceStorage {
                 do {
                     try keychainAccess.set(newValue, forAccountKey: key.name)
                 } catch {
-                    debugPrint(error.localizedDescription)
+                    Log.e(error.localizedDescription)
                     return
                 }
             } else {
                 userDefaults.set(newValue, forKey: key.name)
             }
-            debugPrint("Saved to PreferenceStorage: \(key.name) <- \(newValue)")
+            Log.v("Saved to PreferenceStorage: \(key.name) <- \(newValue)")
         }
     }
     
@@ -92,7 +92,7 @@ public final class PreferenceStorage {
         set {
             let key = prefKeys[keyPath: keyPath]
             userDefaults.set(newValue, forKey: key.name)
-            debugPrint("Saved to PreferenceStorage: \(key.name) <- \(newValue)")
+            Log.v("Saved to PreferenceStorage: \(key.name) <- \(newValue)")
         }
     }
     
@@ -104,7 +104,7 @@ public final class PreferenceStorage {
         set {
             let key = prefKeys[keyPath: keyPath]
             userDefaults.set(newValue, forKey: key.name)
-            debugPrint("Saved to PreferenceStorage: \(key.name) <- \(newValue)")
+            Log.v("Saved to PreferenceStorage: \(key.name) <- \(newValue)")
         }
     }
     
@@ -119,7 +119,7 @@ public final class PreferenceStorage {
             if let encoded = try? JSONEncoder().encode(newValue) {
                 let key = prefKeys[keyPath: keyPath]
                 userDefaults.set(encoded, forKey: key.name)
-                debugPrint("Saved to PreferenceStorage: \(key.name) <- \(newValue)")
+                Log.v("Saved to PreferenceStorage: \(key.name) <- \(newValue)")
             }
         }
     }
@@ -130,7 +130,7 @@ public final class PreferenceStorage {
             do {
                 try keychainAccess.removeValue(forAccountKey: key.name)
             } catch {
-                debugPrint(error.localizedDescription)
+                Log.e(error.localizedDescription)
             }
         } else {
             userDefaults.removeObject(forKey: key.name)
@@ -143,7 +143,7 @@ public final class PreferenceStorage {
         do {
             try keychainAccess.removeAll()
         } catch {
-            debugPrint(error.localizedDescription)
+            Log.e(error.localizedDescription)
         }
     }
 }

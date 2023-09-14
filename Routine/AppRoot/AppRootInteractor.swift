@@ -35,8 +35,7 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        
-        
+                
         router?.attachTabs()
     }
 
@@ -47,7 +46,7 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
     
     func handle(_ url: URL) {
         //Handle Url
-        print("Need To URL Hadle \(url)")
+        Log.v("Need To URL Hadle \(url)")
     }
     
 }

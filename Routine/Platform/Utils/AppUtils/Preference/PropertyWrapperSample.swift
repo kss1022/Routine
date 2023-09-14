@@ -56,7 +56,7 @@ struct Keychain {
       do {
         try KeychainAccess.shared.set(newValue, forAccountKey: key)
       } catch {
-        debugPrint(error.localizedDescription)
+          Log.e(error.localizedDescription)
       }
     }
   }
