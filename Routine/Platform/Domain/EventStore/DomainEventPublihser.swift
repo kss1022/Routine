@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-public class DomainEventPublihser{
+public final class DomainEventPublihser{
 
     private static let eventPublisher = ThreadLocal {
         DomainEventPublihser(listenersRegistry: EventListenersRegistry())

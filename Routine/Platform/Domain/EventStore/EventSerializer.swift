@@ -8,12 +8,11 @@
 import Foundation
 
 
-enum EventSerializerError : Error{
-    
+enum SerializeError : Error{    
     case CastingError
 }
 
-class EventSerializer{
+final class EventSerializer{
     
     static func archiveData(_ event: DomainEvent) throws -> Data?{
         try NSKeyedArchiver.archivedData(withRootObject: event, requiringSecureCoding: true)
@@ -24,6 +23,22 @@ class EventSerializer{
         if let event = object as? DomainEvent{
             return event
         }
-        throw  EventSerializerError.CastingError
+        throw  SerializeError.CastingError
     }
 }
+
+final class EntitySerializer{
+    
+    static func archiveData(_ event: Entity) throws -> Data?{
+        try NSKeyedArchiver.archivedData(withRootObject: event, requiringSecureCoding: true)
+    }
+ 
+    static func unarchivedEvent(_ data: Data) throws -> Entity{
+        let object = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [Entity.self], from: data)
+        if let event = object as? Entity{
+            return event
+        }
+        throw  SerializeError.CastingError
+    }
+}
+

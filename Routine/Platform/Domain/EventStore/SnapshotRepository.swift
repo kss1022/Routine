@@ -6,9 +6,48 @@
 //
 
 import Foundation
+import CoreData
 
 
 public protocol SnapshotRepository{
-    func tryGetSnapshotById<T : Entity>(id: UUID, entity : inout T?, version: inout Int) -> Bool
-    func saveSanpshot(id: UUID , entity: Entity, version: Int)
+    func tryGetSnapshotById<T : Entity>(id: UUID, entity : inout T?, version: inout Int) throws -> Bool
+    func saveSanpshot(id: UUID , entity: Entity, version: Int) throws
+}
+
+
+public class SnapshotRepositoryImp : SnapshotRepository{
+    
+    public func tryGetSnapshotById<T>(id: UUID, entity: inout T?, version: inout Int) throws -> Bool where T : Entity {
+        let context = try NSManagedObjectContext.mainContext()
+        let name = IdentityToString(id)
+        
+        let request = NSFetchRequest<Snapshot>(entityName: Snapshot.entityName)
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Snapshot.name), name)
+        request.fetchLimit = 1
+        if let snapshot = context.query(request).first{
+            let decode = try EntitySerializer.unarchivedEvent(snapshot.data!) as? T
+            if decode != nil{
+                entity = decode
+                version = Int(snapshot.version)
+                return true
+            }
+        }
+        return false
+    }
+    
+    public func saveSanpshot(id: UUID, entity: Entity, version: Int) throws{
+        let context = try Transaction.context()
+        let name = IdentityToString(id)
+        
+        let data = try EntitySerializer.archiveData(entity)
+        
+        let snapshot = Snapshot(context: context)
+        snapshot.data = data
+        snapshot.version = Int64(version)
+        snapshot.name = name
+    }
+    
+    private func IdentityToString(_ id : UUID) -> String{
+        id.uuidString
+    }
 }

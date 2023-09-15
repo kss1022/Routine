@@ -25,7 +25,7 @@ protocol EventStore{
     func appendToStream(id : UUID, expectedVersion: Int , events : [DomainEvent]) throws
 }
 
-public class EventStoreImp : EventStore{
+public final class EventStoreImp : EventStore{
     
     private let appendOnlyStore : AppendOnlyStore
     
@@ -34,7 +34,7 @@ public class EventStoreImp : EventStore{
     }
     
     func loadEventStrem(id: UUID) throws -> EventStream {
-        let name = IdentityToString(id: id)
+        let name = IdentityToString(id)
         let records =  try appendOnlyStore.readRecord(
             name: name,
             afterVersion: nil,
@@ -57,7 +57,7 @@ public class EventStoreImp : EventStore{
     }
     
     func loadEventStrem(id: UUID, version: Int) throws -> EventStream {
-        let name = IdentityToString(id: id)
+        let name = IdentityToString(id)
         let records = try appendOnlyStore.readRecord(
             name: name,
             afterVersion: version,
@@ -78,7 +78,7 @@ public class EventStoreImp : EventStore{
     }
     
     func loadEventStrem(id: UUID, skipCount: Int, maxCount: Int) throws -> EventStream {
-        let name = IdentityToString(id: id)
+        let name = IdentityToString(id)
         let records = try appendOnlyStore.readRecord(
             name: name,
             afterVersion: skipCount,
@@ -97,7 +97,7 @@ public class EventStoreImp : EventStore{
     
     func appendToStream(id: UUID, expectedVersion: Int, events: [DomainEvent]) throws {
         if events.count == 0{ return }
-        let name = IdentityToString(id: id)
+        let name = IdentityToString(id)
         
         let datas = try events.compactMap{ try EventSerializer.archiveData($0)}
         
@@ -112,7 +112,7 @@ public class EventStoreImp : EventStore{
         }
     }
     
-    private func IdentityToString(id : UUID) -> String{
+    private func IdentityToString(_ id : UUID) -> String{
         id.uuidString
     }
 }

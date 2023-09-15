@@ -17,7 +17,7 @@ protocol AppendOnlyStore{
     func close()
 }
 
-final class AppendOnlyStoreImp : AppendOnlyStore{
+public final class AppendOnlyStoreImp : AppendOnlyStore{
     func append(name: String, data: Data, expectedVersion: Int) throws {
         let context = try Transaction.context()
         

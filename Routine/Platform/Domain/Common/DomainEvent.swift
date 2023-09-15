@@ -31,4 +31,4 @@ public class DomainEvent: NSObject{
     }
 }
 
-typealias AbtractDomainEvent = DomainEvent & NSCoding & NSSecureCoding
+typealias AbstracDomainEvent = DomainEvent & NSCoding & NSSecureCoding

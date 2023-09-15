@@ -8,7 +8,7 @@
 import Foundation
 
 
-public class Entity : NSObject, NSCoding{
+public class Entity : NSObject{
 
     public var concurrencyVersion : Int!
     
@@ -17,19 +17,26 @@ public class Entity : NSObject, NSCoding{
         setConcurrencyVersion(concurrencyVersion: 0)
     }
     
-    public func setConcurrencyVersion(concurrencyVersion: Int){
+    public func setConcurrencyVersion(concurrencyVersion: Int) {
+        failWhenConcurrencyViolation(version: concurrencyVersion)
         self.concurrencyVersion = concurrencyVersion
     }
     
-    public func encode(with coder: NSCoder) {
-        coder.encode(concurrencyVersion , forKey: "concurrencyVersion")
-        
+    public func failWhenConcurrencyViolation(version: Int){
+        if version == self.concurrencyVersion{
+            fatalError("Concurrency Violation: Stale data detected. Entity was already modified.")
+        }
     }
     
-    public required init?(coder: NSCoder) {
+    public func encode(with coder: NSCoder) {
+        coder.encode(concurrencyVersion, forKey: "concurrencyVersion")
+    }
+    
+    public init?(coder: NSCoder) {
         self.concurrencyVersion = coder.decodeInteger(forKey: "concurrencyVersion")
     }
     
-    
 }
 
+
+typealias AbstractEntity = Entity & NSCoding & NSSecureCoding
