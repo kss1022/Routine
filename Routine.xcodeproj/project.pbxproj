@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8745900D2AB43E780043214E /* EventSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745900C2AB43E780043214E /* EventSerializer.swift */; };
 		876E94AE2AB2CE3D00046809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94AD2AB2CE3D00046809 /* AppDelegate.swift */; };
 		876E94B02AB2CE3D00046809 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94AF2AB2CE3D00046809 /* SceneDelegate.swift */; };
 		876E94B82AB2CE3D00046809 /* Routine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 876E94B62AB2CE3D00046809 /* Routine.xcdatamodeld */; };
@@ -98,6 +99,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8745900C2AB43E780043214E /* EventSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSerializer.swift; sourceTree = "<group>"; };
 		876E94AA2AB2CE3D00046809 /* Routine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Routine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876E94AD2AB2CE3D00046809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		876E94AF2AB2CE3D00046809 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				87F3A37F2AB3009600A2102D /* SnapshotRepository.swift */,
 				87F3A3832AB300FA00A2102D /* DomainEventPublihser.swift */,
 				87F3A38F2AB312AE00A2102D /* EventListener.swift */,
+				8745900C2AB43E780043214E /* EventSerializer.swift */,
 			);
 			path = EventStore;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				876E955D2AB2D00F00046809 /* UILabel+Utils.swift in Sources */,
 				876E95122AB2CFDB00046809 /* TimerHomeViewController.swift in Sources */,
 				87F3A3762AB3000500A2102D /* Event+CoreDataProperties.swift in Sources */,
+				8745900D2AB43E780043214E /* EventSerializer.swift in Sources */,
 				876E95522AB2D00F00046809 /* PushModalPresentationController.swift in Sources */,
 				876E95562AB2D00F00046809 /* UIIMageView+Utils.swift in Sources */,
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,

@@ -19,9 +19,9 @@ import Foundation
 
 
 protocol EventStore{
-    func loadEventStrem(id : UUID) -> EventStream
-    func loadEventStrem(id : UUID, version: Int) -> EventStream
-    func loadEventStrem(id : UUID, skipCount: Int, maxCount: Int) -> EventStream
+    func loadEventStrem(id : UUID) throws -> EventStream
+    func loadEventStrem(id : UUID, version: Int) throws -> EventStream
+    func loadEventStrem(id : UUID, skipCount: Int, maxCount: Int) throws -> EventStream
     func appendToStream(id : UUID, expectedVersion: Int , events : [DomainEvent]) throws
 }
 
@@ -33,19 +33,19 @@ public class EventStoreImp : EventStore{
         self.appendOnlyStore = appendOnlyStore
     }
     
-    func loadEventStrem(id: UUID) -> EventStream {
+    func loadEventStrem(id: UUID) throws -> EventStream {
         let name = IdentityToString(id: id)
-        let records =  appendOnlyStore.readRecord(
+        let records =  try appendOnlyStore.readRecord(
             name: name,
             afterVersion: nil,
             maxCounut: nil
         )
         
         let stream = EventStream()
-        records.forEach { record in
-            if let event = deserializeEvent(record.data){
-                stream.events.append(event)
-            }
+        
+        try records.forEach { record in
+            let event = try EventSerializer.unarchivedEvent(record.data)
+            stream.events.append(event)
         }
         
         
@@ -56,19 +56,18 @@ public class EventStoreImp : EventStore{
         return stream
     }
     
-    func loadEventStrem(id: UUID, version: Int) -> EventStream {
+    func loadEventStrem(id: UUID, version: Int) throws -> EventStream {
         let name = IdentityToString(id: id)
-        let records =  appendOnlyStore.readRecord(
+        let records = try appendOnlyStore.readRecord(
             name: name,
             afterVersion: version,
             maxCounut: nil
         )
         
         let stream = EventStream()
-        records.forEach { record in
-            if let event = deserializeEvent(record.data){
-                stream.events.append(event)
-            }
+        try records.forEach { record in
+            let event = try EventSerializer.unarchivedEvent(record.data)
+            stream.events.append(event)
         }
         
         if let lastVersion = records.last?.version{
@@ -78,20 +77,19 @@ public class EventStoreImp : EventStore{
         return stream
     }
     
-    func loadEventStrem(id: UUID, skipCount: Int, maxCount: Int) -> EventStream {
+    func loadEventStrem(id: UUID, skipCount: Int, maxCount: Int) throws -> EventStream {
         let name = IdentityToString(id: id)
-        let records = appendOnlyStore.readRecord(
+        let records = try appendOnlyStore.readRecord(
             name: name,
             afterVersion: skipCount,
             maxCounut: maxCount
         )
         let stream = EventStream()
         
-        records.forEach { record in
-            if let event = deserializeEvent(record.data){
-                stream.events.append(event)
-                stream.version = record.version
-            }
+        try records.forEach { record in
+            let event = try EventSerializer.unarchivedEvent(record.data)
+            stream.events.append(event)
+            stream.version = record.version
         }
         
         return stream
@@ -101,7 +99,7 @@ public class EventStoreImp : EventStore{
         if events.count == 0{ return }
         let name = IdentityToString(id: id)
         
-        let datas = events.compactMap{ serializeEvent($0) }
+        let datas = try events.compactMap{ try EventSerializer.archiveData($0)}
         
         do{
             try appendOnlyStore.append(name: name, datas: datas, expectedVersion: expectedVersion)
@@ -114,22 +112,7 @@ public class EventStoreImp : EventStore{
         }
     }
     
-}
-
-
-extension EventStore{
-    
-    fileprivate func IdentityToString(id : UUID) -> String{
+    private func IdentityToString(id : UUID) -> String{
         id.uuidString
-    }
-    
-    fileprivate func serializeEvent(_ event: DomainEvent) -> Data?{ //-> Data?
-        try! NSKeyedArchiver.archivedData(withRootObject: event, requiringSecureCoding: true)
-    }
-    
-    
-    fileprivate func deserializeEvent(_ data: Data) -> DomainEvent?{
-        try! NSKeyedUnarchiver.unarchivedObject(ofClass: DomainEvent.self, from: data)
-        //try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? DomainEvent
     }
 }

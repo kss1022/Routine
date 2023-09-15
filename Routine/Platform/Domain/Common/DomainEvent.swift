@@ -8,30 +8,27 @@
 import Foundation
 
 
-public class DomainEvent : NSObject, NSCoding{
-            
-    var eventVersion: Int
-    var occuredOn: Date
+public class DomainEvent: NSObject{
     
-    init(eventVersion: Int) {
-        self.eventVersion = eventVersion
-        self.occuredOn = Date()
-    }
-    
-    override init() {
+    public var eventVersion: Int
+    public var occurredOn: Date
+
+    public override init(){
         self.eventVersion = -1
-        self.occuredOn = Date()
+        self.occurredOn = Date()
+        super.init()
     }
-    
+        
+
     public func encode(with coder: NSCoder) {
         coder.encode(eventVersion, forKey: "eventVersion")
-        coder.encode(occuredOn as NSDate, forKey: "occuredOn")
+        coder.encode(occurredOn as NSDate, forKey: "occuredOn")
     }
     
-    public required init?(coder: NSCoder) {
+    public init?(coder: NSCoder) {
         self.eventVersion = coder.decodeInteger(forKey: "eventVersion")
-        self.occuredOn = coder.decodeObject(of: NSDate.self, forKey: "occuredOn")! as Date
+        self.occurredOn = coder.decodeObject(of: NSDate.self, forKey: "occuredOn")! as Date
     }
-    
-
 }
+
+typealias AbtractDomainEvent = DomainEvent & NSCoding & NSSecureCoding

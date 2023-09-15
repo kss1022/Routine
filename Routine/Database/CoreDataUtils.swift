@@ -12,7 +12,7 @@ import CoreData
 
 
 
-extension NSManagedObjectContext{
+extension NSManagedObjectContext{    
     static func mainContext() throws -> NSManagedObjectContext{
         var mainContext: NSManagedObjectContext?
         
@@ -26,5 +26,24 @@ extension NSManagedObjectContext{
         }
 
         return mainContext!
+    }
+    
+    
+    func query<T>(_ query: NSFetchRequest<T>) -> [T]{
+        let object: [T]
+        do{
+            object =  try self.fetch(query)
+        }catch let err{
+            object = []
+            print(err)
+        }
+        
+        return object
+    }
+}
+
+extension NSManagedObject{
+    static var entityName: String {
+      return String(describing: self)
     }
 }
