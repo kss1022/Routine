@@ -25,6 +25,7 @@ protocol EventStore{
     func appendToStream(id : UUID, expectedVersion: Int , events : [Event]) throws
 }
 
+
 public final class EventStoreImp : EventStore{
     
     private let appendOnlyStore : AppendOnlyStore
@@ -103,15 +104,21 @@ public final class EventStoreImp : EventStore{
         
         do{
             try appendOnlyStore.append(name: name, datas: datas, expectedVersion: expectedVersion)
-            events.forEach {_ in
-                //DomainEventPublihser.share.publish($0)
+            events.forEach { event in
+                Task{
+                    await DomainEventPublihser.share.publish(event)
+                }
             }
-        }catch DBError.AppendOnlyStoreConcurrency(let lastVersion,let expectedVersion,let name){
+        }catch ConcurrencyError.AppendOnlyStoreConcurrency(let lastVersion,let expectedVersion,let name){
             Log.e("AppendOnlyStoreConcurrncy\nLastVersion:\(lastVersion)\nexpectedVersion:\(expectedVersion)\name:\(name)")
-            throw DBError.ConcurrencyError(storeEvents: events, storeVersion: expectedVersion)
+            throw ConcurrencyError.ConcurrencyError(storeEvents: events, storeVersion: expectedVersion)
         }
     }
-    
+
+}
+
+
+private extension EventStoreImp{
     private func IdentityToString(_ id : UUID) -> String{
         id.uuidString
     }

@@ -10,14 +10,25 @@ import UIKit
 import CocoaLumberjackSwift
 
 protocol RoutineHomePresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func createRoutineDidTap()
 }
 
 final class RoutineHomeViewController: UIViewController, RoutineHomePresentable, RoutineHomeViewControllable {
 
     weak var listener: RoutineHomePresentableListener?
+    
+    
+    private lazy var createRoutineBarButtonItem : UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: UIImage(systemName: "plus.circle"),
+            style: .plain,
+            target: self,
+            action: #selector(createRoutineBarButtonTap)
+        )
+        return button
+    }()
+    
+
     
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -34,13 +45,22 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     
     private func setLayout(){
         title = "Routine"
+        
+        navigationItem.rightBarButtonItems = [ createRoutineBarButtonItem]
+
+        
         tabBarItem = UITabBarItem(
             title: "Routine",
             image: UIImage(systemName: "checkmark.seal"),
             selectedImage: UIImage(systemName: "checkmark.seal.fill")
         )
         view.backgroundColor = .white
+    }
+    
 
+    @objc
+    private func createRoutineBarButtonTap(){
+        listener?.createRoutineDidTap()
     }
 }
 

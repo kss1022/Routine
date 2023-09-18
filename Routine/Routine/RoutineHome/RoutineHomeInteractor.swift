@@ -22,22 +22,29 @@ protocol RoutineHomeListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol RoutineHomeInteractorDependency{
+    var routineApplicationService: RoutineApplicationService{ get }
+}
+
 final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>, RoutineHomeInteractable, RoutineHomePresentableListener {
 
     weak var router: RoutineHomeRouting?
     weak var listener: RoutineHomeListener?
 
+    private let dependency : RoutineHomeInteractorDependency
     private var cancellables: Set<AnyCancellable>
 
+
     
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init(presenter: RoutineHomePresentable) {
+    init(
+        presenter: RoutineHomePresentable,
+        dependency: RoutineHomeInteractorDependency
+    ) {
+        self.dependency = dependency
         self.cancellables = .init()
 
         super.init(presenter: presenter)
         presenter.listener = self
-        
     }
 
     override func didBecomeActive() {
@@ -45,20 +52,6 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         // TODO: Implement business logic here.
         
         
-        
-       
-        
-        DomainEventPublihser.share.onReceive(MyDomainEvent.self, performOn: DispatchQueue.global()) { event in
-            Log.v("\(event)")
-        }
-        .store(in: &cancellables)
-        
-
-        
-        Task{
-            await DomainEventPublihser.share.publish(MyDomainEvent() as Event)
-            await publish(MyDomainEvent())
-        }
     }
 
     override func willResignActive() {
@@ -66,8 +59,21 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         // TODO: Pause any business logic.
     }
     
-    func publish(_ event: Event) async{
-        await DomainEventPublihser.share.publish(event)
+    
+    
+    func createRoutineDidTap() {
+        Task{
+            do{
+                try await dependency.routineApplicationService.when(CreateRoutine(name: "생성이 되주세요 제발 ㅜㅜㅜㅜ"))
+            }catch{
+                if let error = error as? ArgumentException{
+                    print(error.msg)
+                }else{
+                    print("UnkownError\n\(error)" )
+                }
+            }
+        }
+        
     }
 }
 

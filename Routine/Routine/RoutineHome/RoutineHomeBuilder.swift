@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol RoutineHomeDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var routineApplicationService: RoutineApplicationService{ get }
 }
 
-final class RoutineHomeComponent: Component<RoutineHomeDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class RoutineHomeComponent: Component<RoutineHomeDependency> , RoutineHomeInteractorDependency{
+    var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
 }
 
 // MARK: - Builder
@@ -32,7 +30,7 @@ final class RoutineHomeBuilder: Builder<RoutineHomeDependency>, RoutineHomeBuild
     func build(withListener listener: RoutineHomeListener) -> RoutineHomeRouting {
         let component = RoutineHomeComponent(dependency: dependency)
         let viewController = RoutineHomeViewController()
-        let interactor = RoutineHomeInteractor(presenter: viewController)
+        let interactor = RoutineHomeInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return RoutineHomeRouter(interactor: interactor, viewController: viewController)
     }

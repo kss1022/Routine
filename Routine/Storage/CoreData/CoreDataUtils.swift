@@ -11,18 +11,18 @@ import CoreData
 
 
 
-
-extension NSManagedObjectContext{    
+extension NSManagedObjectContext{
+    
     static func mainContext() throws -> NSManagedObjectContext{
         var mainContext: NSManagedObjectContext?
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             let delegate = UIApplication.shared.delegate as? AppDelegate
             mainContext = delegate?.persistentContainer.viewContext
         }
         
         if mainContext == nil{
-            throw DBError.CoreDataError(reason: "Main Context nil")
+            throw ArgumentException("Main Context nil")
         }
 
         return mainContext!

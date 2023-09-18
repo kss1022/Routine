@@ -8,6 +8,8 @@
 import Foundation
 import CoreData
 
+
+
 class Transaction{
         
     private static let threadLocalContext = ThreadLocal<NSManagedObjectContext>{

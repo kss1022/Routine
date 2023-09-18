@@ -1,21 +1,16 @@
 //
-//  SnapshotRepository.swift
+//  CDSnapshotRepository.swift
 //  Routine
 //
-//  Created by 한현규 on 2023/09/14.
+//  Created by 한현규 on 2023/09/18.
 //
 
 import Foundation
 import CoreData
 
 
-public protocol SnapshotRepository{
-    func tryGetSnapshotById<T : Entity>(id: UUID, entity : inout T?, version: inout Int) throws -> Bool
-    func saveSanpshot(id: UUID , entity: Entity, version: Int) throws
-}
 
-
-public class SnapshotRepositoryImp : SnapshotRepository{
+public class CDSnapshotRepository : SnapshotRepository{
     
     public func tryGetSnapshotById<T>(id: UUID, entity: inout T?, version: inout Int) throws -> Bool where T : Entity {
         let context = try NSManagedObjectContext.mainContext()
@@ -46,6 +41,11 @@ public class SnapshotRepositoryImp : SnapshotRepository{
         snapshot.version = Int64(version)
         snapshot.name = name
     }
+
+}
+
+
+private extension CDSnapshotRepository{
     
     private func IdentityToString(_ id : UUID) -> String{
         id.uuidString

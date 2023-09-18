@@ -1,30 +1,24 @@
 //
-//  AppendOnlyStore.swift
+//  CDAppendOnlyStore.swift
 //  Routine
 //
-//  Created by 한현규 on 2023/09/14.
+//  Created by 한현규 on 2023/09/18.
 //
 
 import Foundation
 import CoreData
 
 
-protocol AppendOnlyStore{
-    func append(name:String, data : Data, expectedVersion: Int)  throws
-    func append(name:String, datas : [Data], expectedVersion: Int)  throws
-    func readRecord(name : String , afterVersion: Int?, maxCounut: Int?) throws -> [DataWithVersion]
-    func readRecord(afterVersion: Int?, maxCount: Int?) throws -> [DataWithName]
-    func close()
-}
 
-public final class AppendOnlyStoreImp : AppendOnlyStore{
+public final class CDAppendOnlyStore : AppendOnlyStore{
+    
     func append(name: String, data: Data, expectedVersion: Int) throws {
         let context = try Transaction.context()
         
         let lastVersion = try lastVersion(name: name)
         if expectedVersion != -1{
             if lastVersion != expectedVersion{
-                throw DBError.AppendOnlyStoreConcurrency(version: lastVersion, expectedVersion: expectedVersion, name: name)
+                throw ConcurrencyError.AppendOnlyStoreConcurrency(version: lastVersion, expectedVersion: expectedVersion, name: name)
             }
         }
 
@@ -40,7 +34,7 @@ public final class AppendOnlyStoreImp : AppendOnlyStore{
         let lastVersion = try lastVersion(name: name)
         if expectedVersion != -1{
             if lastVersion != expectedVersion{
-                throw DBError.AppendOnlyStoreConcurrency(version: lastVersion, expectedVersion: expectedVersion, name: name)
+                throw ConcurrencyError.AppendOnlyStoreConcurrency(version: lastVersion, expectedVersion: expectedVersion, name: name)
             }
         }
         
@@ -67,7 +61,11 @@ public final class AppendOnlyStoreImp : AppendOnlyStore{
     func close() {
         
     }
-    
+      
+}
+
+
+private extension CDAppendOnlyStore{
     private func findEvents(name: String? = nil, afterVersion: Int? = nil, maxCount: Int? = nil)  throws -> [EventModel]{
         let context = try NSManagedObjectContext.mainContext()
                         
@@ -113,33 +111,4 @@ public final class AppendOnlyStoreImp : AppendOnlyStore{
         return context.query(request).first?["version"] as? Int ?? -1
     }
     
-}
-
-
-
-final class DataWithVersion{
-    let version: Int
-    let data : Data
-    
-    init(version: Int, data: Data) {
-        self.version = version
-        self.data = data
-    }
-    
-    
-    init(_ event : EventModel){
-        self.version = Int(event.version)
-        self.data = event.data!
-    }
-}
-
-final class DataWithName{
-    let name: String
-    let data: [Data]
-
-    init(name: String, data: [Data]) {
-        self.name = name
-        self.data = data
-    }
-
 }

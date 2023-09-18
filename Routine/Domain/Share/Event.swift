@@ -31,4 +31,4 @@ public class Event: NSObject{
     }
 }
 
-typealias DomainEvent = Event & NSCoding & NSSecureCoding
+public typealias DomainEvent = Event & NSCoding & NSSecureCoding

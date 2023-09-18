@@ -20,7 +20,7 @@
 		876E94D32AB2CED800046809 /* AppRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94CF2AB2CED800046809 /* AppRootViewController.swift */; };
 		876E94D42AB2CED800046809 /* AppRootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94D02AB2CED800046809 /* AppRootBuilder.swift */; };
 		876E94D52AB2CED800046809 /* AppRootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94D12AB2CED800046809 /* AppRootInteractor.swift */; };
-		876E94D72AB2CEE600046809 /* AppRootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94D62AB2CEE600046809 /* AppRootComponent.swift */; };
+		876E94D72AB2CEE600046809 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94D62AB2CEE600046809 /* AppComponent.swift */; };
 		876E95012AB2CFC100046809 /* RoutineHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94FD2AB2CFC100046809 /* RoutineHomeRouter.swift */; };
 		876E95022AB2CFC100046809 /* RoutineHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94FE2AB2CFC100046809 /* RoutineHomeViewController.swift */; };
 		876E95032AB2CFC100046809 /* RoutineHomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94FF2AB2CFC100046809 /* RoutineHomeBuilder.swift */; };
@@ -88,11 +88,26 @@
 		876E95982AB2FA6F00046809 /* Specification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95972AB2FA6F00046809 /* Specification.swift */; };
 		876E959B2AB2FB9400046809 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959A2AB2FB9400046809 /* Transaction.swift */; };
 		876E959D2AB2FBE100046809 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959C2AB2FBE100046809 /* CoreDataUtils.swift */; };
-		876E959F2AB2FC6800046809 /* DBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959E2AB2FC6800046809 /* DBError.swift */; };
+		876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959E2AB2FC6800046809 /* EventSourcingError.swift */; };
 		879A318B2AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879A31872AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift */; };
 		879A318C2AB7DF5F007AF637 /* SnapshotModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879A31882AB7DF5F007AF637 /* SnapshotModel+CoreDataProperties.swift */; };
 		879A318D2AB7DF5F007AF637 /* EventModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879A31892AB7DF5F007AF637 /* EventModel+CoreDataClass.swift */; };
 		879A318E2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879A318A2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift */; };
+		87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD42AB8372800FE712C /* RoutineService.swift */; };
+		87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD62AB8373400FE712C /* RoutineFactory.swift */; };
+		87D5AADA2AB8377100FE712C /* RoutineApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD92AB8377100FE712C /* RoutineApplicationService.swift */; };
+		87D5AAE52AB83A2200FE712C /* CDAppendOnlyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAE42AB83A2200FE712C /* CDAppendOnlyStore.swift */; };
+		87D5AAE72AB83A4A00FE712C /* CDSnapshotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAE62AB83A4A00FE712C /* CDSnapshotRepository.swift */; };
+		87D5AAEE2AB83CD100FE712C /* RoutineCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAED2AB83CD100FE712C /* RoutineCreated.swift */; };
+		87D5AAF02AB83D1500FE712C /* CreateRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAEF2AB83D1500FE712C /* CreateRoutine.swift */; };
+		87D5AAF42AB83D9D00FE712C /* CDRoutineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAF32AB83D9D00FE712C /* CDRoutineFactory.swift */; };
+		87D5AAFF2AB8415D00FE712C /* AppRootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAFE2AB8415D00FE712C /* AppRootComponent.swift */; };
+		87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB002AB84FCA00FE712C /* RoutineName.swift */; };
+		87D5AB032AB84FEE00FE712C /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB022AB84FEE00FE712C /* AppError.swift */; };
+		87D5AB052AB8621A00FE712C /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB042AB8621A00FE712C /* ApplicationService.swift */; };
+		87D5AB092AB867CE00FE712C /* RoutineProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB082AB867CE00FE712C /* RoutineProjection.swift */; };
+		87D5AB0C2AB8736500FE712C /* RoutineNameChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB0B2AB8736500FE712C /* RoutineNameChanged.swift */; };
+		87D5AB102AB873CF00FE712C /* ChangeRoutineName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB0F2AB873CF00FE712C /* ChangeRoutineName.swift */; };
 		87F3A37A2AB3006500A2102D /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A3792AB3006500A2102D /* EventStore.swift */; };
 		87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37B2AB3007100A2102D /* EventStream.swift */; };
 		87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */; };
@@ -116,7 +131,7 @@
 		876E94CF2AB2CED800046809 /* AppRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewController.swift; sourceTree = "<group>"; };
 		876E94D02AB2CED800046809 /* AppRootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootBuilder.swift; sourceTree = "<group>"; };
 		876E94D12AB2CED800046809 /* AppRootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootInteractor.swift; sourceTree = "<group>"; };
-		876E94D62AB2CEE600046809 /* AppRootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootComponent.swift; sourceTree = "<group>"; };
+		876E94D62AB2CEE600046809 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		876E94FD2AB2CFC100046809 /* RoutineHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeRouter.swift; sourceTree = "<group>"; };
 		876E94FE2AB2CFC100046809 /* RoutineHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeViewController.swift; sourceTree = "<group>"; };
 		876E94FF2AB2CFC100046809 /* RoutineHomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeBuilder.swift; sourceTree = "<group>"; };
@@ -177,11 +192,26 @@
 		876E95972AB2FA6F00046809 /* Specification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specification.swift; sourceTree = "<group>"; };
 		876E959A2AB2FB9400046809 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		876E959C2AB2FBE100046809 /* CoreDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
-		876E959E2AB2FC6800046809 /* DBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBError.swift; sourceTree = "<group>"; };
+		876E959E2AB2FC6800046809 /* EventSourcingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSourcingError.swift; sourceTree = "<group>"; };
 		879A31872AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnapshotModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		879A31882AB7DF5F007AF637 /* SnapshotModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnapshotModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		879A31892AB7DF5F007AF637 /* EventModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		879A318A2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		87D5AAD42AB8372800FE712C /* RoutineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineService.swift; sourceTree = "<group>"; };
+		87D5AAD62AB8373400FE712C /* RoutineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFactory.swift; sourceTree = "<group>"; };
+		87D5AAD92AB8377100FE712C /* RoutineApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineApplicationService.swift; sourceTree = "<group>"; };
+		87D5AAE42AB83A2200FE712C /* CDAppendOnlyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDAppendOnlyStore.swift; sourceTree = "<group>"; };
+		87D5AAE62AB83A4A00FE712C /* CDSnapshotRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDSnapshotRepository.swift; sourceTree = "<group>"; };
+		87D5AAED2AB83CD100FE712C /* RoutineCreated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCreated.swift; sourceTree = "<group>"; };
+		87D5AAEF2AB83D1500FE712C /* CreateRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutine.swift; sourceTree = "<group>"; };
+		87D5AAF32AB83D9D00FE712C /* CDRoutineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDRoutineFactory.swift; sourceTree = "<group>"; };
+		87D5AAFE2AB8415D00FE712C /* AppRootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootComponent.swift; sourceTree = "<group>"; };
+		87D5AB002AB84FCA00FE712C /* RoutineName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineName.swift; sourceTree = "<group>"; };
+		87D5AB022AB84FEE00FE712C /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		87D5AB042AB8621A00FE712C /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
+		87D5AB082AB867CE00FE712C /* RoutineProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProjection.swift; sourceTree = "<group>"; };
+		87D5AB0B2AB8736500FE712C /* RoutineNameChanged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineNameChanged.swift; sourceTree = "<group>"; };
+		87D5AB0F2AB873CF00FE712C /* ChangeRoutineName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoutineName.swift; sourceTree = "<group>"; };
 		87F3A3792AB3006500A2102D /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		87F3A37B2AB3007100A2102D /* EventStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
 		87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendOnlyStore.swift; sourceTree = "<group>"; };
@@ -209,15 +239,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		874CAF2D2AB45A510053E021 /* Routine */ = {
-			isa = PBXGroup;
-			children = (
-				874CAF2E2AB45A580053E021 /* Routine.swift */,
-				874CAF302AB45B4B0053E021 /* RoutineId.swift */,
-			);
-			path = Routine;
-			sourceTree = "<group>";
-		};
 		876E94A12AB2CE3D00046809 = {
 			isa = PBXGroup;
 			children = (
@@ -238,10 +259,12 @@
 			isa = PBXGroup;
 			children = (
 				876E95892AB2F9C400046809 /* Platform */,
-				876E95992AB2FB8300046809 /* Database */,
+				87D5AAF92AB83E9F00FE712C /* Domain */,
+				87D5AB062AB867BF00FE712C /* Projection */,
+				876E95992AB2FB8300046809 /* Storage */,
+				876E94D82AB2CF8000046809 /* Routine */,
 				876E94CC2AB2CE9F00046809 /* AppDelegate */,
 				876E94CD2AB2CEC600046809 /* AppRoot */,
-				876E94D82AB2CF8000046809 /* Routine */,
 				876E94D92AB2CF8400046809 /* Record */,
 				876E94DA2AB2CF8700046809 /* Timer */,
 				876E94DB2AB2CF8A00046809 /* Profile */,
@@ -257,7 +280,7 @@
 		876E94CC2AB2CE9F00046809 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				876E94D62AB2CEE600046809 /* AppRootComponent.swift */,
+				876E94D62AB2CEE600046809 /* AppComponent.swift */,
 				876E94AD2AB2CE3D00046809 /* AppDelegate.swift */,
 				876E94AF2AB2CE3D00046809 /* SceneDelegate.swift */,
 			);
@@ -271,6 +294,7 @@
 				876E94CE2AB2CED800046809 /* AppRootRouter.swift */,
 				876E94D12AB2CED800046809 /* AppRootInteractor.swift */,
 				876E94CF2AB2CED800046809 /* AppRootViewController.swift */,
+				87D5AAFE2AB8415D00FE712C /* AppRootComponent.swift */,
 			);
 			path = AppRoot;
 			sourceTree = "<group>";
@@ -278,11 +302,7 @@
 		876E94D82AB2CF8000046809 /* Routine */ = {
 			isa = PBXGroup;
 			children = (
-				874CAF2D2AB45A510053E021 /* Routine */,
-				876E94FD2AB2CFC100046809 /* RoutineHomeRouter.swift */,
-				876E94FE2AB2CFC100046809 /* RoutineHomeViewController.swift */,
-				876E94FF2AB2CFC100046809 /* RoutineHomeBuilder.swift */,
-				876E95002AB2CFC100046809 /* RoutineHomeInteractor.swift */,
+				87D5AAEA2AB83BA500FE712C /* RoutineHome */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -430,19 +450,24 @@
 		876E95892AB2F9C400046809 /* Platform */ = {
 			isa = PBXGroup;
 			children = (
-				876E958A2AB2F9CF00046809 /* Domain */,
 				876E94DC2AB2CF8D00046809 /* Utils */,
+				87D5AB022AB84FEE00FE712C /* AppError.swift */,
 			);
 			path = Platform;
 			sourceTree = "<group>";
 		};
-		876E958A2AB2F9CF00046809 /* Domain */ = {
+		876E958A2AB2F9CF00046809 /* Share */ = {
 			isa = PBXGroup;
 			children = (
-				87F3A3782AB3001F00A2102D /* EventStore */,
-				87F3A3772AB3001800A2102D /* Common */,
+				87D5AB042AB8621A00FE712C /* ApplicationService.swift */,
+				876E958F2AB2FA1A00046809 /* Entity.swift */,
+				876E95912AB2FA1F00046809 /* Event.swift */,
+				876E95932AB2FA2300046809 /* Command.swift */,
+				876E95952AB2FA5B00046809 /* ValueObject.swift */,
+				876E95972AB2FA6F00046809 /* Specification.swift */,
+				87F3A3782AB3001F00A2102D /* EventSourcing */,
 			);
-			path = Domain;
+			path = Share;
 			sourceTree = "<group>";
 		};
 		876E958E2AB2FA0900046809 /* DomainUtils */ = {
@@ -453,18 +478,61 @@
 			path = DomainUtils;
 			sourceTree = "<group>";
 		};
-		876E95992AB2FB8300046809 /* Database */ = {
+		876E95992AB2FB8300046809 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				876E95A02AB2FEE800046809 /* Entitys */,
-				876E959A2AB2FB9400046809 /* Transaction.swift */,
-				876E959C2AB2FBE100046809 /* CoreDataUtils.swift */,
-				876E959E2AB2FC6800046809 /* DBError.swift */,
+				87D5AAFA2AB83EE800FE712C /* CoreData */,
 			);
-			path = Database;
+			path = Storage;
 			sourceTree = "<group>";
 		};
-		876E95A02AB2FEE800046809 /* Entitys */ = {
+		87D5AACD2AB836B200FE712C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAD82AB8376900FE712C /* Routine */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		87D5AACE2AB836B900FE712C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAD32AB8371E00FE712C /* Routine */,
+				87D5AAD22AB8371900FE712C /* Service */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		87D5AAD22AB8371900FE712C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAD42AB8372800FE712C /* RoutineService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		87D5AAD32AB8371E00FE712C /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAD62AB8373400FE712C /* RoutineFactory.swift */,
+				874CAF2E2AB45A580053E021 /* Routine.swift */,
+				874CAF302AB45B4B0053E021 /* RoutineId.swift */,
+				87D5AB002AB84FCA00FE712C /* RoutineName.swift */,
+				87D5AB0A2AB8734900FE712C /* Events */,
+			);
+			path = Routine;
+			sourceTree = "<group>";
+		};
+		87D5AAD82AB8376900FE712C /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAD92AB8377100FE712C /* RoutineApplicationService.swift */,
+				87D5AB0E2AB8739600FE712C /* Commands */,
+			);
+			path = Routine;
+			sourceTree = "<group>";
+		};
+		87D5AAE82AB83A4F00FE712C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				879A31872AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift */,
@@ -472,33 +540,122 @@
 				879A31892AB7DF5F007AF637 /* EventModel+CoreDataClass.swift */,
 				879A318A2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift */,
 			);
-			path = Entitys;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		87F3A3772AB3001800A2102D /* Common */ = {
+		87D5AAE92AB83A7B00FE712C /* EventPublisher */ = {
 			isa = PBXGroup;
 			children = (
-				876E958F2AB2FA1A00046809 /* Entity.swift */,
-				876E95912AB2FA1F00046809 /* Event.swift */,
-				876E95932AB2FA2300046809 /* Command.swift */,
-				876E95952AB2FA5B00046809 /* ValueObject.swift */,
-				876E95972AB2FA6F00046809 /* Specification.swift */,
+				87F3A3832AB300FA00A2102D /* DomainEventPublihser.swift */,
+				87F3A38F2AB312AE00A2102D /* EventListener.swift */,
+				8745900C2AB43E780043214E /* EventSerializer.swift */,
 			);
-			path = Common;
+			path = EventPublisher;
 			sourceTree = "<group>";
 		};
-		87F3A3782AB3001F00A2102D /* EventStore */ = {
+		87D5AAEA2AB83BA500FE712C /* RoutineHome */ = {
+			isa = PBXGroup;
+			children = (
+				876E94FF2AB2CFC100046809 /* RoutineHomeBuilder.swift */,
+				876E94FD2AB2CFC100046809 /* RoutineHomeRouter.swift */,
+				876E95002AB2CFC100046809 /* RoutineHomeInteractor.swift */,
+				876E94FE2AB2CFC100046809 /* RoutineHomeViewController.swift */,
+			);
+			path = RoutineHome;
+			sourceTree = "<group>";
+		};
+		87D5AAF92AB83E9F00FE712C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAFB2AB83F5A00FE712C /* RoutineAggregate */,
+				876E958A2AB2F9CF00046809 /* Share */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		87D5AAFA2AB83EE800FE712C /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAFD2AB8401300FE712C /* Routine */,
+				87D5AAFC2AB83FF800FE712C /* EventSourcing */,
+				876E959C2AB2FBE100046809 /* CoreDataUtils.swift */,
+				876E959A2AB2FB9400046809 /* Transaction.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		87D5AAFB2AB83F5A00FE712C /* RoutineAggregate */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AACD2AB836B200FE712C /* Application */,
+				87D5AACE2AB836B900FE712C /* Domain */,
+			);
+			path = RoutineAggregate;
+			sourceTree = "<group>";
+		};
+		87D5AAFC2AB83FF800FE712C /* EventSourcing */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAE82AB83A4F00FE712C /* Model */,
+				87D5AAE42AB83A2200FE712C /* CDAppendOnlyStore.swift */,
+				87D5AAE62AB83A4A00FE712C /* CDSnapshotRepository.swift */,
+			);
+			path = EventSourcing;
+			sourceTree = "<group>";
+		};
+		87D5AAFD2AB8401300FE712C /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAF32AB83D9D00FE712C /* CDRoutineFactory.swift */,
+			);
+			path = Routine;
+			sourceTree = "<group>";
+		};
+		87D5AB062AB867BF00FE712C /* Projection */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AB072AB867C700FE712C /* Routine */,
+			);
+			path = Projection;
+			sourceTree = "<group>";
+		};
+		87D5AB072AB867C700FE712C /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AB082AB867CE00FE712C /* RoutineProjection.swift */,
+			);
+			path = Routine;
+			sourceTree = "<group>";
+		};
+		87D5AB0A2AB8734900FE712C /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAED2AB83CD100FE712C /* RoutineCreated.swift */,
+				87D5AB0B2AB8736500FE712C /* RoutineNameChanged.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		87D5AB0E2AB8739600FE712C /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				87D5AAEF2AB83D1500FE712C /* CreateRoutine.swift */,
+				87D5AB0F2AB873CF00FE712C /* ChangeRoutineName.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		87F3A3782AB3001F00A2102D /* EventSourcing */ = {
 			isa = PBXGroup;
 			children = (
 				87F3A3792AB3006500A2102D /* EventStore.swift */,
 				87F3A37B2AB3007100A2102D /* EventStream.swift */,
 				87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */,
 				87F3A37F2AB3009600A2102D /* SnapshotRepository.swift */,
-				87F3A3832AB300FA00A2102D /* DomainEventPublihser.swift */,
-				87F3A38F2AB312AE00A2102D /* EventListener.swift */,
-				8745900C2AB43E780043214E /* EventSerializer.swift */,
+				876E959E2AB2FC6800046809 /* EventSourcingError.swift */,
+				87D5AAE92AB83A7B00FE712C /* EventPublisher */,
 			);
-			path = EventStore;
+			path = EventSourcing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -613,21 +770,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				879A318C2AB7DF5F007AF637 /* SnapshotModel+CoreDataProperties.swift in Sources */,
-				876E959F2AB2FC6800046809 /* DBError.swift in Sources */,
+				876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */,
 				876E95962AB2FA5B00046809 /* ValueObject.swift in Sources */,
+				87D5AADA2AB8377100FE712C /* RoutineApplicationService.swift in Sources */,
 				876E95602AB2D00F00046809 /* Result.swift in Sources */,
 				879A318B2AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift in Sources */,
 				876E95452AB2D00F00046809 /* AlertAction.swift in Sources */,
+				87D5AAF02AB83D1500FE712C /* CreateRoutine.swift in Sources */,
 				876E95572AB2D00F00046809 /* UIFont+Utils.swift in Sources */,
+				87D5AAE72AB83A4A00FE712C /* CDSnapshotRepository.swift in Sources */,
 				876E94D32AB2CED800046809 /* AppRootViewController.swift in Sources */,
 				876E95032AB2CFC100046809 /* RoutineHomeBuilder.swift in Sources */,
 				874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */,
-				876E94D72AB2CEE600046809 /* AppRootComponent.swift in Sources */,
+				87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */,
+				876E94D72AB2CEE600046809 /* AppComponent.swift in Sources */,
+				87D5AAF42AB83D9D00FE712C /* CDRoutineFactory.swift in Sources */,
 				876E955D2AB2D00F00046809 /* UILabel+Utils.swift in Sources */,
 				876E95122AB2CFDB00046809 /* TimerHomeViewController.swift in Sources */,
 				8745900D2AB43E780043214E /* EventSerializer.swift in Sources */,
 				876E95522AB2D00F00046809 /* PushModalPresentationController.swift in Sources */,
 				876E95562AB2D00F00046809 /* UIIMageView+Utils.swift in Sources */,
+				87D5AB0C2AB8736500FE712C /* RoutineNameChanged.swift in Sources */,
 				879A318E2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift in Sources */,
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
 				876E95482AB2D00F00046809 /* Alert+Rx.swift in Sources */,
@@ -642,6 +805,7 @@
 				87F3A37A2AB3006500A2102D /* EventStore.swift in Sources */,
 				876E959D2AB2FBE100046809 /* CoreDataUtils.swift in Sources */,
 				876E95132AB2CFDB00046809 /* TimerHomeBuilder.swift in Sources */,
+				87D5AAE52AB83A2200FE712C /* CDAppendOnlyStore.swift in Sources */,
 				87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */,
 				876E956C2AB2D84100046809 /* RoutineLogFormatter.swift in Sources */,
 				874CAF2F2AB45A580053E021 /* Routine.swift in Sources */,
@@ -652,14 +816,19 @@
 				876E950C2AB2CFD000046809 /* RecordHomeInteractor.swift in Sources */,
 				876E950A2AB2CFD000046809 /* RecordHomeViewController.swift in Sources */,
 				876E95542AB2D00F00046809 /* UIView+Utils.swift in Sources */,
+				87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */,
 				876E955F2AB2D00F00046809 /* UIScrollView+Rx.swift in Sources */,
+				87D5AB032AB84FEE00FE712C /* AppError.swift in Sources */,
 				876E958C2AB2F9D600046809 /* ThreadLocal.swift in Sources */,
 				87F3A3842AB300FA00A2102D /* DomainEventPublihser.swift in Sources */,
+				87D5AB092AB867CE00FE712C /* RoutineProjection.swift in Sources */,
 				876E95762AB2D9B700046809 /* DDLog+Utils.swift in Sources */,
 				876E95592AB2D00F00046809 /* UIScroll+Utils.swift in Sources */,
 				876E94AE2AB2CE3D00046809 /* AppDelegate.swift in Sources */,
 				876E95442AB2D00F00046809 /* OutputAction.swift in Sources */,
 				876E95942AB2FA2300046809 /* Command.swift in Sources */,
+				87D5AAFF2AB8415D00FE712C /* AppRootComponent.swift in Sources */,
+				87D5AAEE2AB83CD100FE712C /* RoutineCreated.swift in Sources */,
 				876E94D52AB2CED800046809 /* AppRootInteractor.swift in Sources */,
 				879A318D2AB7DF5F007AF637 /* EventModel+CoreDataClass.swift in Sources */,
 				876E954B2AB2D00F00046809 /* KeychainAccess.swift in Sources */,
@@ -675,6 +844,8 @@
 				876E95472AB2D00F00046809 /* Alert+Utils.swift in Sources */,
 				876E955A2AB2D00F00046809 /* UIViewController+Utils.swift in Sources */,
 				876E95672AB2D3F700046809 /* Combine+Utils.swift in Sources */,
+				87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */,
+				87D5AB102AB873CF00FE712C /* ChangeRoutineName.swift in Sources */,
 				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
 				876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */,
 				876E95142AB2CFDB00046809 /* TimerHomeInteractor.swift in Sources */,
@@ -690,6 +861,7 @@
 				876E95022AB2CFC100046809 /* RoutineHomeViewController.swift in Sources */,
 				876E954A2AB2D00F00046809 /* PropertyWrapperSample.swift in Sources */,
 				876E95902AB2FA1A00046809 /* Entity.swift in Sources */,
+				87D5AB052AB8621A00FE712C /* ApplicationService.swift in Sources */,
 				876E95852AB2E55C00046809 /* Analytics+Events.swift in Sources */,
 				876E94D42AB2CED800046809 /* AppRootBuilder.swift in Sources */,
 				876E95582AB2D00F00046809 /* UITableView+Utils.swift in Sources */,
