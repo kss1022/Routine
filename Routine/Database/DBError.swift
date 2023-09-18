@@ -11,7 +11,7 @@ import Foundation
 
 indirect enum DBError : Error{
     
-    case ConcurrencyError(storeEvents: [DomainEvent], storeVersion : Int)
+    case ConcurrencyError(storeEvents: [Event], storeVersion : Int)
     case RealConcurrencyException( msg : String, concurrencyError : DBError)
     case AppendOnlyStoreConcurrency( version: Int, expectedVersion: Int, name: String)
         

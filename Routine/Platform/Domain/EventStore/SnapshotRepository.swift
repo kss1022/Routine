@@ -21,8 +21,8 @@ public class SnapshotRepositoryImp : SnapshotRepository{
         let context = try NSManagedObjectContext.mainContext()
         let name = IdentityToString(id)
         
-        let request = NSFetchRequest<Snapshot>(entityName: Snapshot.entityName)
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Snapshot.name), name)
+        let request = NSFetchRequest<SnapshotModel>(entityName: SnapshotModel.entityName)
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(SnapshotModel.name), name)
         request.fetchLimit = 1
         if let snapshot = context.query(request).first{
             let decode = try EntitySerializer.unarchivedEvent(snapshot.data!) as? T
@@ -41,7 +41,7 @@ public class SnapshotRepositoryImp : SnapshotRepository{
         
         let data = try EntitySerializer.archiveData(entity)
         
-        let snapshot = Snapshot(context: context)
+        let snapshot = SnapshotModel(context: context)
         snapshot.data = data
         snapshot.version = Int64(version)
         snapshot.name = name

@@ -39,4 +39,4 @@ public class Entity : NSObject{
 }
 
 
-typealias AbstractEntity = Entity & NSCoding & NSSecureCoding
+typealias DomainEntity = Entity & NSCoding & NSSecureCoding

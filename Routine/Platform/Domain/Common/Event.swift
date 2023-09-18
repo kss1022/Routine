@@ -8,7 +8,7 @@
 import Foundation
 
 
-public class DomainEvent: NSObject{
+public class Event: NSObject{
     
     public var eventVersion: Int
     public var occurredOn: Date
@@ -31,4 +31,4 @@ public class DomainEvent: NSObject{
     }
 }
 
-typealias AbstracDomainEvent = DomainEvent & NSCoding & NSSecureCoding
+typealias DomainEvent = Event & NSCoding & NSSecureCoding

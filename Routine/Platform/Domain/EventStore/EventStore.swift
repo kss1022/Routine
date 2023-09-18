@@ -22,7 +22,7 @@ protocol EventStore{
     func loadEventStrem(id : UUID) throws -> EventStream
     func loadEventStrem(id : UUID, version: Int) throws -> EventStream
     func loadEventStrem(id : UUID, skipCount: Int, maxCount: Int) throws -> EventStream
-    func appendToStream(id : UUID, expectedVersion: Int , events : [DomainEvent]) throws
+    func appendToStream(id : UUID, expectedVersion: Int , events : [Event]) throws
 }
 
 public final class EventStoreImp : EventStore{
@@ -95,7 +95,7 @@ public final class EventStoreImp : EventStore{
         return stream
     }
     
-    func appendToStream(id: UUID, expectedVersion: Int, events: [DomainEvent]) throws {
+    func appendToStream(id: UUID, expectedVersion: Int, events: [Event]) throws {
         if events.count == 0{ return }
         let name = IdentityToString(id)
         

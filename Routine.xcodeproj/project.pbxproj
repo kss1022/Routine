@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8745900D2AB43E780043214E /* EventSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745900C2AB43E780043214E /* EventSerializer.swift */; };
-		874CAF2B2AB4569E0053E021 /* Snapshot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF292AB4569E0053E021 /* Snapshot+CoreDataClass.swift */; };
-		874CAF2C2AB4569E0053E021 /* Snapshot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF2A2AB4569E0053E021 /* Snapshot+CoreDataProperties.swift */; };
 		874CAF2F2AB45A580053E021 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF2E2AB45A580053E021 /* Routine.swift */; };
 		874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF302AB45B4B0053E021 /* RoutineId.swift */; };
 		876E94AE2AB2CE3D00046809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94AD2AB2CE3D00046809 /* AppDelegate.swift */; };
@@ -84,15 +82,17 @@
 		876E95852AB2E55C00046809 /* Analytics+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95842AB2E55C00046809 /* Analytics+Events.swift */; };
 		876E958C2AB2F9D600046809 /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E958B2AB2F9D600046809 /* ThreadLocal.swift */; };
 		876E95902AB2FA1A00046809 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E958F2AB2FA1A00046809 /* Entity.swift */; };
-		876E95922AB2FA1F00046809 /* DomainEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95912AB2FA1F00046809 /* DomainEvent.swift */; };
+		876E95922AB2FA1F00046809 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95912AB2FA1F00046809 /* Event.swift */; };
 		876E95942AB2FA2300046809 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95932AB2FA2300046809 /* Command.swift */; };
 		876E95962AB2FA5B00046809 /* ValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95952AB2FA5B00046809 /* ValueObject.swift */; };
 		876E95982AB2FA6F00046809 /* Specification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95972AB2FA6F00046809 /* Specification.swift */; };
 		876E959B2AB2FB9400046809 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959A2AB2FB9400046809 /* Transaction.swift */; };
 		876E959D2AB2FBE100046809 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959C2AB2FBE100046809 /* CoreDataUtils.swift */; };
 		876E959F2AB2FC6800046809 /* DBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959E2AB2FC6800046809 /* DBError.swift */; };
-		87F3A3752AB3000500A2102D /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A3732AB3000500A2102D /* Event+CoreDataClass.swift */; };
-		87F3A3762AB3000500A2102D /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A3742AB3000500A2102D /* Event+CoreDataProperties.swift */; };
+		879A318B2AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879A31872AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift */; };
+		879A318C2AB7DF5F007AF637 /* SnapshotModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879A31882AB7DF5F007AF637 /* SnapshotModel+CoreDataProperties.swift */; };
+		879A318D2AB7DF5F007AF637 /* EventModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879A31892AB7DF5F007AF637 /* EventModel+CoreDataClass.swift */; };
+		879A318E2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879A318A2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift */; };
 		87F3A37A2AB3006500A2102D /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A3792AB3006500A2102D /* EventStore.swift */; };
 		87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37B2AB3007100A2102D /* EventStream.swift */; };
 		87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */; };
@@ -103,8 +103,6 @@
 
 /* Begin PBXFileReference section */
 		8745900C2AB43E780043214E /* EventSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSerializer.swift; sourceTree = "<group>"; };
-		874CAF292AB4569E0053E021 /* Snapshot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Snapshot+CoreDataClass.swift"; sourceTree = "<group>"; };
-		874CAF2A2AB4569E0053E021 /* Snapshot+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Snapshot+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		874CAF2E2AB45A580053E021 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		874CAF302AB45B4B0053E021 /* RoutineId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineId.swift; sourceTree = "<group>"; };
 		876E94AA2AB2CE3D00046809 /* Routine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Routine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,15 +171,17 @@
 		876E95842AB2E55C00046809 /* Analytics+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analytics+Events.swift"; sourceTree = "<group>"; };
 		876E958B2AB2F9D600046809 /* ThreadLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadLocal.swift; sourceTree = "<group>"; };
 		876E958F2AB2FA1A00046809 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
-		876E95912AB2FA1F00046809 /* DomainEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainEvent.swift; sourceTree = "<group>"; };
+		876E95912AB2FA1F00046809 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		876E95932AB2FA2300046809 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		876E95952AB2FA5B00046809 /* ValueObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueObject.swift; sourceTree = "<group>"; };
 		876E95972AB2FA6F00046809 /* Specification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specification.swift; sourceTree = "<group>"; };
 		876E959A2AB2FB9400046809 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		876E959C2AB2FBE100046809 /* CoreDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
 		876E959E2AB2FC6800046809 /* DBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBError.swift; sourceTree = "<group>"; };
-		87F3A3732AB3000500A2102D /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
-		87F3A3742AB3000500A2102D /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		879A31872AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnapshotModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		879A31882AB7DF5F007AF637 /* SnapshotModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnapshotModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		879A31892AB7DF5F007AF637 /* EventModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		879A318A2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		87F3A3792AB3006500A2102D /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		87F3A37B2AB3007100A2102D /* EventStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
 		87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendOnlyStore.swift; sourceTree = "<group>"; };
@@ -467,10 +467,10 @@
 		876E95A02AB2FEE800046809 /* Entitys */ = {
 			isa = PBXGroup;
 			children = (
-				874CAF292AB4569E0053E021 /* Snapshot+CoreDataClass.swift */,
-				874CAF2A2AB4569E0053E021 /* Snapshot+CoreDataProperties.swift */,
-				87F3A3732AB3000500A2102D /* Event+CoreDataClass.swift */,
-				87F3A3742AB3000500A2102D /* Event+CoreDataProperties.swift */,
+				879A31872AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift */,
+				879A31882AB7DF5F007AF637 /* SnapshotModel+CoreDataProperties.swift */,
+				879A31892AB7DF5F007AF637 /* EventModel+CoreDataClass.swift */,
+				879A318A2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift */,
 			);
 			path = Entitys;
 			sourceTree = "<group>";
@@ -479,7 +479,7 @@
 			isa = PBXGroup;
 			children = (
 				876E958F2AB2FA1A00046809 /* Entity.swift */,
-				876E95912AB2FA1F00046809 /* DomainEvent.swift */,
+				876E95912AB2FA1F00046809 /* Event.swift */,
 				876E95932AB2FA2300046809 /* Command.swift */,
 				876E95952AB2FA5B00046809 /* ValueObject.swift */,
 				876E95972AB2FA6F00046809 /* Specification.swift */,
@@ -612,9 +612,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				879A318C2AB7DF5F007AF637 /* SnapshotModel+CoreDataProperties.swift in Sources */,
 				876E959F2AB2FC6800046809 /* DBError.swift in Sources */,
 				876E95962AB2FA5B00046809 /* ValueObject.swift in Sources */,
 				876E95602AB2D00F00046809 /* Result.swift in Sources */,
+				879A318B2AB7DF5F007AF637 /* SnapshotModel+CoreDataClass.swift in Sources */,
 				876E95452AB2D00F00046809 /* AlertAction.swift in Sources */,
 				876E95572AB2D00F00046809 /* UIFont+Utils.swift in Sources */,
 				876E94D32AB2CED800046809 /* AppRootViewController.swift in Sources */,
@@ -623,10 +625,10 @@
 				876E94D72AB2CEE600046809 /* AppRootComponent.swift in Sources */,
 				876E955D2AB2D00F00046809 /* UILabel+Utils.swift in Sources */,
 				876E95122AB2CFDB00046809 /* TimerHomeViewController.swift in Sources */,
-				87F3A3762AB3000500A2102D /* Event+CoreDataProperties.swift in Sources */,
 				8745900D2AB43E780043214E /* EventSerializer.swift in Sources */,
 				876E95522AB2D00F00046809 /* PushModalPresentationController.swift in Sources */,
 				876E95562AB2D00F00046809 /* UIIMageView+Utils.swift in Sources */,
+				879A318E2AB7DF5F007AF637 /* EventModel+CoreDataProperties.swift in Sources */,
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
 				876E95482AB2D00F00046809 /* Alert+Rx.swift in Sources */,
 				87F3A3802AB3009600A2102D /* SnapshotRepository.swift in Sources */,
@@ -636,7 +638,6 @@
 				87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */,
 				876E95492AB2D00F00046809 /* URLSchemeHelper.swift in Sources */,
 				876E955C2AB2D00F00046809 /* UIImage+Utils.swift in Sources */,
-				87F3A3752AB3000500A2102D /* Event+CoreDataClass.swift in Sources */,
 				876E95462AB2D00F00046809 /* Alert.swift in Sources */,
 				87F3A37A2AB3006500A2102D /* EventStore.swift in Sources */,
 				876E959D2AB2FBE100046809 /* CoreDataUtils.swift in Sources */,
@@ -645,10 +646,8 @@
 				876E956C2AB2D84100046809 /* RoutineLogFormatter.swift in Sources */,
 				874CAF2F2AB45A580053E021 /* Routine.swift in Sources */,
 				876E95192AB2CFE900046809 /* ProfileHomeRouter.swift in Sources */,
-				874CAF2B2AB4569E0053E021 /* Snapshot+CoreDataClass.swift in Sources */,
 				876E95532AB2D00F00046809 /* UIButton+Utils.swift in Sources */,
 				87F3A3902AB312AE00A2102D /* EventListener.swift in Sources */,
-				874CAF2C2AB4569E0053E021 /* Snapshot+CoreDataProperties.swift in Sources */,
 				876E95782AB2E06200046809 /* DDCrashlyticsLogger.swift in Sources */,
 				876E950C2AB2CFD000046809 /* RecordHomeInteractor.swift in Sources */,
 				876E950A2AB2CFD000046809 /* RecordHomeViewController.swift in Sources */,
@@ -662,6 +661,7 @@
 				876E95442AB2D00F00046809 /* OutputAction.swift in Sources */,
 				876E95942AB2FA2300046809 /* Command.swift in Sources */,
 				876E94D52AB2CED800046809 /* AppRootInteractor.swift in Sources */,
+				879A318D2AB7DF5F007AF637 /* EventModel+CoreDataClass.swift in Sources */,
 				876E954B2AB2D00F00046809 /* KeychainAccess.swift in Sources */,
 				876E95552AB2D00F00046809 /* UIColor+Utils.swift in Sources */,
 				876E951C2AB2CFE900046809 /* ProfileHomeInteractor.swift in Sources */,
@@ -675,7 +675,7 @@
 				876E95472AB2D00F00046809 /* Alert+Utils.swift in Sources */,
 				876E955A2AB2D00F00046809 /* UIViewController+Utils.swift in Sources */,
 				876E95672AB2D3F700046809 /* Combine+Utils.swift in Sources */,
-				876E95922AB2FA1F00046809 /* DomainEvent.swift in Sources */,
+				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
 				876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */,
 				876E95142AB2CFDB00046809 /* TimerHomeInteractor.swift in Sources */,
 				876E954C2AB2D00F00046809 /* PreferenceStorage.swift in Sources */,

@@ -56,7 +56,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
 
         
         Task{
-            await DomainEventPublihser.share.publish(MyDomainEvent() as DomainEvent)
+            await DomainEventPublihser.share.publish(MyDomainEvent() as Event)
             await publish(MyDomainEvent())
         }
     }
@@ -66,13 +66,13 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         // TODO: Pause any business logic.
     }
     
-    func publish(_ event: DomainEvent) async{
+    func publish(_ event: Event) async{
         await DomainEventPublihser.share.publish(event)
     }
 }
 
 
 
-class MyDomainEvent : DomainEvent{
+class MyDomainEvent : Event{
     let id = 10
 }

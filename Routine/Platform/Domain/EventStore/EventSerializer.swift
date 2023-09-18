@@ -14,13 +14,13 @@ enum SerializeError : Error{
 
 final class EventSerializer{
     
-    static func archiveData(_ event: DomainEvent) throws -> Data?{
+    static func archiveData(_ event: Event) throws -> Data?{
         try NSKeyedArchiver.archivedData(withRootObject: event, requiringSecureCoding: true)
     }
  
-    static func unarchivedEvent(_ data: Data) throws -> DomainEvent{
-        let object = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [DomainEvent.self], from: data)
-        if let event = object as? DomainEvent{
+    static func unarchivedEvent(_ data: Data) throws -> Event{
+        let object = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [Event.self], from: data)
+        if let event = object as? Event{
             return event
         }
         throw  SerializeError.CastingError
