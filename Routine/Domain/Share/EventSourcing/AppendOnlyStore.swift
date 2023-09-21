@@ -29,7 +29,7 @@ final class DataWithVersion{
     }
     
     
-    init(_ event : EventModel){
+    init(_ event : EventEntity){
         self.version = Int(event.version)
         self.data = event.data!
     }

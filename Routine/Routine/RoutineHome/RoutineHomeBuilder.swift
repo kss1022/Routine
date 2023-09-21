@@ -9,10 +9,12 @@ import ModernRIBs
 
 protocol RoutineHomeDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
+    var routineReadModel: RoutineReadModelFacade{ get }
 }
 
 final class RoutineHomeComponent: Component<RoutineHomeDependency> , RoutineHomeInteractorDependency{
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
+    var routineReadModel: RoutineReadModelFacade{ dependency.routineReadModel }
 }
 
 // MARK: - Builder

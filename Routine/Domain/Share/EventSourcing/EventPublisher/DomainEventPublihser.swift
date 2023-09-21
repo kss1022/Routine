@@ -23,14 +23,14 @@ public final class DomainEventPublihser{
     }
 
     
-    func publish<T: Event>(_ domainEvent: T) async{        
+    func publish<T: Event>(_ domainEvent: T){        
         let listener = listenersRegistry.getListener(domainEvent)
         listener?.send(domainEvent)
     }
     
     
     @discardableResult
-    public func onReceive<E>(_ eventType: E.Type, perform action: @escaping (E) -> Void) -> AnyCancellable where E: Event {
+    public func onReceive<E>(_ eventType: E.Type, action: @escaping (E) -> Void) -> AnyCancellable where E: Event {
         let listener: EventListener = getOrCreateEventListener(for: E.self)
         return listener.registerSubscription(action: action)
     }

@@ -35,7 +35,7 @@ extension ApplicationService{
                     for succeedEvent in events{
                         if conflictWith(event1: failedEvent, event2: succeedEvent){
                             let msg = "Conflit Betewwn \(failedEvent) \(succeedEvent)"
-                            print(msg)
+                            Log.e(msg)
                             throw ConcurrencyError.RealConcurrencyException(
                                 msg: msg,
                                 concurrencyError: ConcurrencyError.ConcurrencyError(storeEvents: events, storeVersion: version)

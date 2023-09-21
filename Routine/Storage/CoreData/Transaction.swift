@@ -27,6 +27,7 @@ class Transaction{
         let context = try Transaction.context()
         if context.hasChanges{
             try context.save()
+            try NSManagedObjectContext.mainContext().save()
             Log.v("Commit!")
         }
 
@@ -45,6 +46,6 @@ class Transaction{
 extension Transaction{
     private static func remove(){
         Transaction.threadLocalContext.remove()
-        Log.v("Remove context Of ThraedLocal : \(Thread.current)")
+        //Log.v("Remove context Of ThraedLocal : \(Thread.current)")
     }
 }

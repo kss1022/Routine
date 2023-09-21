@@ -35,7 +35,7 @@ extension NSManagedObjectContext{
             object =  try self.fetch(query)
         }catch let err{
             object = []
-            print(err)
+            Log.e("\(err)")
         }
         
         return object

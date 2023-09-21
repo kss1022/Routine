@@ -16,16 +16,18 @@ public class CDSnapshotRepository : SnapshotRepository{
         let context = try NSManagedObjectContext.mainContext()
         let name = IdentityToString(id)
         
-        let request = NSFetchRequest<SnapshotModel>(entityName: SnapshotModel.entityName)
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(SnapshotModel.name), name)
+        let request = NSFetchRequest<SnapshotEntity>(entityName: SnapshotEntity.entityName)
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(SnapshotEntity.version), ascending: false)]
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(SnapshotEntity.name), name)
+        
         request.fetchLimit = 1
+        
+        
         if let snapshot = context.query(request).first{
-            let decode = try EntitySerializer.unarchivedEvent(snapshot.data!) as? T
-            if decode != nil{
-                entity = decode
-                version = Int(snapshot.version)
-                return true
-            }
+            let decode = try EntitySerializer.unarchivedEvent(snapshot.data!) as! T
+            entity = decode
+            version = Int(snapshot.version)
+            return true
         }
         return false
     }
@@ -36,7 +38,7 @@ public class CDSnapshotRepository : SnapshotRepository{
         
         let data = try EntitySerializer.archiveData(entity)
         
-        let snapshot = SnapshotModel(context: context)
+        let snapshot = SnapshotEntity(context: context)
         snapshot.data = data
         snapshot.version = Int64(version)
         snapshot.name = name

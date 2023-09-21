@@ -57,12 +57,14 @@ public class Entity : NSObject{
     }
     
     public func encode(with coder: NSCoder) {
-        coder.encode(concurrencyVersion, forKey: "concurrencyVersion")
+        coder.encodeCInt(Int32(concurrencyVersion), forKey: "concurrencyVersion")
+        //coder.encode(concurrencyVersion, forKey: "concurrencyVersion")
     }
     
     public init?(coder: NSCoder) {
         self.changes = []
         self.concurrencyVersion = coder.decodeInteger(forKey: "concurrencyVersion")
+        super.init()
     }
     
 }

@@ -11,8 +11,8 @@ import Foundation
 
 final class RoutineApplicationService : ApplicationService{
     
-    internal var eventStore: EventStore
-    internal var snapshotRepository: SnapshotRepository
+    internal let eventStore: EventStore
+    internal let snapshotRepository: SnapshotRepository
     
     private let routineFactory: RoutineFactory
     private let routineService: RoutineService
@@ -48,7 +48,7 @@ final class RoutineApplicationService : ApplicationService{
     
     
     
-    private func when(_ command: ChangeRoutineName) async throws{
+    func when(_ command: ChangeRoutineName) async throws{
         do{
             let routineName = try RoutineName(command.routineName)
             

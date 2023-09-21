@@ -22,7 +22,7 @@ public final class CDAppendOnlyStore : AppendOnlyStore{
             }
         }
 
-        let event = EventModel(context: context)
+        let event = EventEntity(context: context)
         event.data = data
         event.name = name
         event.version = Int64(expectedVersion + 1)
@@ -39,10 +39,10 @@ public final class CDAppendOnlyStore : AppendOnlyStore{
         }
         
         for i in 0..<datas.count{
-            let event = EventModel(context: context)
+            let event = EventEntity(context: context)
             event.data = datas[i]
             event.name = name
-            event.version = Int64(expectedVersion + i)
+            event.version = Int64(expectedVersion + i + 1)
         }
     }
     
@@ -66,25 +66,25 @@ public final class CDAppendOnlyStore : AppendOnlyStore{
 
 
 private extension CDAppendOnlyStore{
-    private func findEvents(name: String? = nil, afterVersion: Int? = nil, maxCount: Int? = nil)  throws -> [EventModel]{
+    private func findEvents(name: String? = nil, afterVersion: Int? = nil, maxCount: Int? = nil)  throws -> [EventEntity]{
         let context = try NSManagedObjectContext.mainContext()
-                        
-        let request = NSFetchRequest<EventModel>(entityName: EventModel.entityName)
-        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(EventModel.version), ascending: true)]
+        
+        let request = NSFetchRequest<EventEntity>(entityName: EventEntity.entityName)
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(EventEntity.version), ascending: true)]
         
         var predicates = [NSPredicate]()
         
         //set filterBy Name
         if name != nil{
             predicates.append(
-                NSPredicate(format: "%K == %@",#keyPath(EventModel.name), name!)
+                NSPredicate(format: "%K == %@",#keyPath(EventEntity.name), name!)
             )
         }
         
         //set filterBy after Version
         if afterVersion != nil{
             predicates.append(
-                NSPredicate(format: "%K > %@",#keyPath(EventModel.version), NSNumber(integerLiteral: afterVersion!))
+                NSPredicate(format: "%K > %@",#keyPath(EventEntity.version), NSNumber(integerLiteral: afterVersion!))
             )
         }
             
@@ -102,9 +102,9 @@ private extension CDAppendOnlyStore{
     private func lastVersion(name: String) throws -> Int{
         let context = try NSManagedObjectContext.mainContext()
         
-        let request = NSFetchRequest<NSDictionary>(entityName: EventModel.entityName)
-        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(EventModel.version), ascending: false)]
-        request.predicate =  NSPredicate(format: "%K == %@",#keyPath(EventModel.name), name)
+        let request = NSFetchRequest<NSDictionary>(entityName: EventEntity.entityName)
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(EventEntity.version), ascending: false)]
+        request.predicate =  NSPredicate(format: "%K == %@",#keyPath(EventEntity.name), name)
         request.propertiesToFetch = ["version"]
         request.resultType = .dictionaryResultType
         request.fetchLimit = 1

@@ -12,21 +12,22 @@ import ModernRIBs
 final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependency, RecordHomeDependency, TimerHomeDependency, ProfileHomeDependency{
 
     
-    var routineApplicationService: RoutineApplicationService
-    var routineProjection: RoutineProjection
+    let routineApplicationService: RoutineApplicationService
+    let routineProjection: RoutineProjection
+    let routineReadModel: RoutineReadModelFacade
     
     override init(
         dependency: AppRootDependency
     ) {
-        
-        
         let appendOnlyStore = CDAppendOnlyStore()
         let eventStore = EventStoreImp(appendOnlyStore: appendOnlyStore)
         let snapshotRepository = CDSnapshotRepository()
                 
         let routineFactory = CDRoutineFactory()
         let routineService = RoutineService()
-
+        
+        routineProjection = try! RoutineProjection()
+        routineReadModel = try! RoutineReadModelFacade()
         
         self.routineApplicationService = RoutineApplicationService(
             eventStore: eventStore,
@@ -34,12 +35,10 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
             routineFactory: routineFactory,
             routineService: routineService
         )
-        
-        self.routineProjection = RoutineProjection()
-
-        
+                        
         super.init(dependency: dependency)
     }
     
     
+
 }
