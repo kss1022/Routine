@@ -8,6 +8,8 @@
 import Foundation
 
 
-protocol ValueObject : Equatable{
-    
+protocol ValueObject : Equatable{    
+    func encode(with coder: NSCoder)
+    init?(coder: NSCoder)
 }
+

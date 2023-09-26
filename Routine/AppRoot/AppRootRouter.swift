@@ -20,24 +20,24 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
     
     
     private let routineHomeBuildable : RoutineHomeBuildable
-    private var routineHomeRouter : RoutineHomeRouting?
+    private var routineHomeRouter : ViewableRouting?
     
     private let recordHomeBuildable : RecordHomeBuildable
-    private var recordHomeRouter : RecordHomeRouting?
+    private var recordHomeRouter : ViewableRouting?
     
     private let timerHomeBuildable : TimerHomeBuildable
-    private var timerHomeRouter : TimerHomeRouting?
+    private var timerHomeRouter : ViewableRouting?
     
     private let profileHomeBuildable : ProfileHomeBuildable
-    private var profileHomeRouter : ProfileHomeRouting?
+    private var profileHomeRouter : ViewableRouting?
     
     init(
         interactor: AppRootInteractable,
         viewController: AppRootViewControllable,
-        routineHomeBuildable : RoutineHomeBuilder,
-        recordHomeBuildable : RecordHomeBuilder,
-        timerHomeBuildable : TimerHomeBuilder,
-        profileHomeBuildable : ProfileHomeBuilder
+        routineHomeBuildable : RoutineHomeBuildable,
+        recordHomeBuildable : RecordHomeBuildable,
+        timerHomeBuildable : TimerHomeBuildable,
+        profileHomeBuildable : ProfileHomeBuildable
     ) {
         self.routineHomeBuildable = routineHomeBuildable
         self.recordHomeBuildable = recordHomeBuildable

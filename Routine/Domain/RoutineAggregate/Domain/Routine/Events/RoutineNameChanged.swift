@@ -12,27 +12,27 @@ import Foundation
 
 final class RoutineNameChanged : DomainEvent{
     
-    let routinId: RoutineId
+    let routineId: RoutineId
     let routineName: RoutineName
     
-    init(routinId: RoutineId, routineName: RoutineName) {
-        self.routinId = routinId
+    init(routineId: RoutineId, routineName: RoutineName) {
+        self.routineId = routineId
         self.routineName = routineName
         super.init()
     }
         
     override func encode(with coder: NSCoder) {
-        coder.encode(routinId.id.uuidString, forKey: "routineId")
-        coder.encode(routineName.name, forKey: "routineName")
+        routineId.encode(with: coder)
+        routineName.encode(with: coder)
         super.encode(with: coder)
     }
 
     required override init?(coder: NSCoder) {
-        guard let routineId = coder.decodeObject(of: NSString.self, forKey: "routineId") as? String,
-              let name = coder.decodeObject(of: NSString.self, forKey: "routineName")  as? String else { return nil }
+        guard let routineId = RoutineId(coder: coder),
+            let routineName = RoutineName(coder: coder) else { return nil }
         
-        self.routinId =  RoutineId(id: UUID(uuidString: routineId as String)!)
-        self.routineName = try! RoutineName(name)
+        self.routineId =  routineId
+        self.routineName = routineName
         
         super.init(coder: coder)
     }

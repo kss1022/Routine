@@ -10,11 +10,15 @@ import ModernRIBs
 protocol RoutineHomeDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
     var routineReadModel: RoutineReadModelFacade{ get }
+    
+    var createRoutineBuildable: CreateRoutineBuildable{ get }
 }
 
-final class RoutineHomeComponent: Component<RoutineHomeDependency> , RoutineHomeInteractorDependency{
+final class RoutineHomeComponent: Component<RoutineHomeDependency> , RoutineHomeInteractorDependency, CreateRoutineDependency{
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
     var routineReadModel: RoutineReadModelFacade{ dependency.routineReadModel }
+    
+    var createRoutineBuildable: CreateRoutineBuildable{ dependency.createRoutineBuildable }
 }
 
 // MARK: - Builder
@@ -34,6 +38,11 @@ final class RoutineHomeBuilder: Builder<RoutineHomeDependency>, RoutineHomeBuild
         let viewController = RoutineHomeViewController()
         let interactor = RoutineHomeInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
-        return RoutineHomeRouter(interactor: interactor, viewController: viewController)
+                        
+        return RoutineHomeRouter(
+            interactor: interactor,
+            viewController: viewController,
+            createRoutineBuildable: component.createRoutineBuildable
+        )
     }
 }

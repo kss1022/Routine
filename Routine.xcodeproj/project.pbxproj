@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */; };
+		8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */; };
+		8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */; };
+		8712F6502AC2DF68008A02C4 /* AddYourRoutineInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64C2AC2DF68008A02C4 /* AddYourRoutineInteractor.swift */; };
+		8712F6562AC2E09A008A02C4 /* RoutineTintRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6522AC2E09A008A02C4 /* RoutineTintRouter.swift */; };
+		8712F6572AC2E09A008A02C4 /* RoutineTintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6532AC2E09A008A02C4 /* RoutineTintViewController.swift */; };
+		8712F6582AC2E09A008A02C4 /* RoutineTintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6542AC2E09A008A02C4 /* RoutineTintBuilder.swift */; };
+		8712F6592AC2E09A008A02C4 /* RoutineTintInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6552AC2E09A008A02C4 /* RoutineTintInteractor.swift */; };
+		8712F65F2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F65B2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift */; };
+		8712F6602AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F65C2AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift */; };
+		8712F6612AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F65D2AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift */; };
+		8712F6622AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F65E2AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift */; };
+		8712F6682AC2E838008A02C4 /* RoutineTitleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6642AC2E838008A02C4 /* RoutineTitleRouter.swift */; };
+		8712F6692AC2E838008A02C4 /* RoutineTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6652AC2E838008A02C4 /* RoutineTitleViewController.swift */; };
+		8712F66A2AC2E838008A02C4 /* RoutineTitleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6662AC2E838008A02C4 /* RoutineTitleBuilder.swift */; };
+		8712F66B2AC2E838008A02C4 /* RoutineTitleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6672AC2E838008A02C4 /* RoutineTitleInteractor.swift */; };
+		8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8735AB532AC18D220092BDF3 /* RoutineDescription.swift */; };
 		8745900D2AB43E780043214E /* EventSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745900C2AB43E780043214E /* EventSerializer.swift */; };
 		874CAF2F2AB45A580053E021 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF2E2AB45A580053E021 /* Routine.swift */; };
 		874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF302AB45B4B0053E021 /* RoutineId.swift */; };
@@ -14,6 +31,23 @@
 		87504A1B2ABB4EA30046EFD5 /* RoutineListDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87504A1A2ABB4EA30046EFD5 /* RoutineListDto.swift */; };
 		87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87504A1C2ABB4EAC0046EFD5 /* RoutineDetailDto.swift */; };
 		87504A232ABB702E0046EFD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87504A222ABB702E0046EFD5 /* GoogleService-Info.plist */; };
+		8754D2AB2AC2F6EF00440385 /* BottomLiseTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */; };
+		8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5E72ABC35AE00CB35EC /* CheckList.swift */; };
+		8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5E92ABC37DD00CB35EC /* CheckListId.swift */; };
+		8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5EB2ABC37E300CB35EC /* CheckListName.swift */; };
+		8768E5EE2ABC386500CB35EC /* ImojiIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5ED2ABC386500CB35EC /* ImojiIcon.swift */; };
+		8768E5F02ABC388B00CB35EC /* Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5EF2ABC388B00CB35EC /* Tint.swift */; };
+		8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5F32ABC39C200CB35EC /* Goal.swift */; };
+		8768E5F82ABC3A6600CB35EC /* CreateCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5F72ABC3A6600CB35EC /* CreateCheckList.swift */; };
+		8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5F92ABC3CFC00CB35EC /* Repetition.swift */; };
+		8768E5FC2ABC3D2300CB35EC /* SetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5FB2ABC3D2300CB35EC /* SetCount.swift */; };
+		8768E5FE2ABC3D3C00CB35EC /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5FD2ABC3D3C00CB35EC /* Weight.swift */; };
+		8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6002ABC3FF000CB35EC /* CheckListCreated.swift */; };
+		8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6022ABC536900CB35EC /* CheckListFactory.swift */; };
+		8768E6052ABC541000CB35EC /* CDCheckListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */; };
+		8768E6082ABC563700CB35EC /* CheckListProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6072ABC563700CB35EC /* CheckListProjection.swift */; };
+		8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */; };
+		8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */; };
 		876E94AE2AB2CE3D00046809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94AD2AB2CE3D00046809 /* AppDelegate.swift */; };
 		876E94B02AB2CE3D00046809 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94AF2AB2CE3D00046809 /* SceneDelegate.swift */; };
 		876E94B82AB2CE3D00046809 /* EventStream.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 876E94B62AB2CE3D00046809 /* EventStream.xcdatamodeld */; };
@@ -109,6 +143,12 @@
 		87D5AB092AB867CE00FE712C /* RoutineProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB082AB867CE00FE712C /* RoutineProjection.swift */; };
 		87D5AB0C2AB8736500FE712C /* RoutineNameChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB0B2AB8736500FE712C /* RoutineNameChanged.swift */; };
 		87D5AB102AB873CF00FE712C /* ChangeRoutineName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB0F2AB873CF00FE712C /* ChangeRoutineName.swift */; };
+		87DFEC5E2AC19E2800531EE3 /* CreateRoutineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC5A2AC19E2800531EE3 /* CreateRoutineRouter.swift */; };
+		87DFEC5F2AC19E2800531EE3 /* CreateRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC5B2AC19E2800531EE3 /* CreateRoutineViewController.swift */; };
+		87DFEC602AC19E2800531EE3 /* CreateRoutineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC5C2AC19E2800531EE3 /* CreateRoutineBuilder.swift */; };
+		87DFEC612AC19E2800531EE3 /* CreateRoutineInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC5D2AC19E2800531EE3 /* CreateRoutineInteractor.swift */; };
+		87DFEC642AC1A9A200531EE3 /* TouchesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC632AC1A9A200531EE3 /* TouchesButton.swift */; };
+		87DFEC712AC1B43C00531EE3 /* Keyboard+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC702AC1B43C00531EE3 /* Keyboard+Utils.swift */; };
 		87F3A37A2AB3006500A2102D /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A3792AB3006500A2102D /* EventStore.swift */; };
 		87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37B2AB3007100A2102D /* EventStream.swift */; };
 		87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */; };
@@ -118,6 +158,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineRouter.swift; sourceTree = "<group>"; };
+		8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineViewController.swift; sourceTree = "<group>"; };
+		8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineBuilder.swift; sourceTree = "<group>"; };
+		8712F64C2AC2DF68008A02C4 /* AddYourRoutineInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineInteractor.swift; sourceTree = "<group>"; };
+		8712F6522AC2E09A008A02C4 /* RoutineTintRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintRouter.swift; sourceTree = "<group>"; };
+		8712F6532AC2E09A008A02C4 /* RoutineTintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintViewController.swift; sourceTree = "<group>"; };
+		8712F6542AC2E09A008A02C4 /* RoutineTintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintBuilder.swift; sourceTree = "<group>"; };
+		8712F6552AC2E09A008A02C4 /* RoutineTintInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintInteractor.swift; sourceTree = "<group>"; };
+		8712F65B2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineImojiIconRouter.swift; sourceTree = "<group>"; };
+		8712F65C2AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineImojiIconViewController.swift; sourceTree = "<group>"; };
+		8712F65D2AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineImojiIconBuilder.swift; sourceTree = "<group>"; };
+		8712F65E2AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineImojiIconInteractor.swift; sourceTree = "<group>"; };
+		8712F6642AC2E838008A02C4 /* RoutineTitleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleRouter.swift; sourceTree = "<group>"; };
+		8712F6652AC2E838008A02C4 /* RoutineTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleViewController.swift; sourceTree = "<group>"; };
+		8712F6662AC2E838008A02C4 /* RoutineTitleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleBuilder.swift; sourceTree = "<group>"; };
+		8712F6672AC2E838008A02C4 /* RoutineTitleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleInteractor.swift; sourceTree = "<group>"; };
+		8735AB532AC18D220092BDF3 /* RoutineDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDescription.swift; sourceTree = "<group>"; };
 		8745900C2AB43E780043214E /* EventSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSerializer.swift; sourceTree = "<group>"; };
 		874CAF2E2AB45A580053E021 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		874CAF302AB45B4B0053E021 /* RoutineId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineId.swift; sourceTree = "<group>"; };
@@ -125,6 +182,23 @@
 		87504A1A2ABB4EA30046EFD5 /* RoutineListDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListDto.swift; sourceTree = "<group>"; };
 		87504A1C2ABB4EAC0046EFD5 /* RoutineDetailDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailDto.swift; sourceTree = "<group>"; };
 		87504A222ABB702E0046EFD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLiseTextFeild.swift; sourceTree = "<group>"; };
+		8768E5E72ABC35AE00CB35EC /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
+		8768E5E92ABC37DD00CB35EC /* CheckListId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListId.swift; sourceTree = "<group>"; };
+		8768E5EB2ABC37E300CB35EC /* CheckListName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListName.swift; sourceTree = "<group>"; };
+		8768E5ED2ABC386500CB35EC /* ImojiIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImojiIcon.swift; sourceTree = "<group>"; };
+		8768E5EF2ABC388B00CB35EC /* Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tint.swift; sourceTree = "<group>"; };
+		8768E5F32ABC39C200CB35EC /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		8768E5F72ABC3A6600CB35EC /* CreateCheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckList.swift; sourceTree = "<group>"; };
+		8768E5F92ABC3CFC00CB35EC /* Repetition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repetition.swift; sourceTree = "<group>"; };
+		8768E5FB2ABC3D2300CB35EC /* SetCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCount.swift; sourceTree = "<group>"; };
+		8768E5FD2ABC3D3C00CB35EC /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
+		8768E6002ABC3FF000CB35EC /* CheckListCreated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListCreated.swift; sourceTree = "<group>"; };
+		8768E6022ABC536900CB35EC /* CheckListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListFactory.swift; sourceTree = "<group>"; };
+		8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCheckListFactory.swift; sourceTree = "<group>"; };
+		8768E6072ABC563700CB35EC /* CheckListProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListProjection.swift; sourceTree = "<group>"; };
+		8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListApplicationService.swift; sourceTree = "<group>"; };
+		8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCoder+Utils.swift"; sourceTree = "<group>"; };
 		876E94AA2AB2CE3D00046809 /* Routine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Routine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876E94AD2AB2CE3D00046809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		876E94AF2AB2CE3D00046809 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +287,12 @@
 		87D5AB082AB867CE00FE712C /* RoutineProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProjection.swift; sourceTree = "<group>"; };
 		87D5AB0B2AB8736500FE712C /* RoutineNameChanged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineNameChanged.swift; sourceTree = "<group>"; };
 		87D5AB0F2AB873CF00FE712C /* ChangeRoutineName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoutineName.swift; sourceTree = "<group>"; };
+		87DFEC5A2AC19E2800531EE3 /* CreateRoutineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineRouter.swift; sourceTree = "<group>"; };
+		87DFEC5B2AC19E2800531EE3 /* CreateRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineViewController.swift; sourceTree = "<group>"; };
+		87DFEC5C2AC19E2800531EE3 /* CreateRoutineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineBuilder.swift; sourceTree = "<group>"; };
+		87DFEC5D2AC19E2800531EE3 /* CreateRoutineInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineInteractor.swift; sourceTree = "<group>"; };
+		87DFEC632AC1A9A200531EE3 /* TouchesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchesButton.swift; sourceTree = "<group>"; };
+		87DFEC702AC1B43C00531EE3 /* Keyboard+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keyboard+Utils.swift"; sourceTree = "<group>"; };
 		87F3A3792AB3006500A2102D /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		87F3A37B2AB3007100A2102D /* EventStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
 		87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendOnlyStore.swift; sourceTree = "<group>"; };
@@ -241,6 +321,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8712F63C2AC2DC04008A02C4 /* AddYourRoutine */ = {
+			isa = PBXGroup;
+			children = (
+				8712F6632AC2E825008A02C4 /* RoutineTitle */,
+				8712F65A2AC2E38E008A02C4 /* RoutineImojiIcon */,
+				8712F6512AC2E092008A02C4 /* RoutineTint */,
+				8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */,
+				8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */,
+				8712F64C2AC2DF68008A02C4 /* AddYourRoutineInteractor.swift */,
+				8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */,
+			);
+			path = AddYourRoutine;
+			sourceTree = "<group>";
+		};
+		8712F6512AC2E092008A02C4 /* RoutineTint */ = {
+			isa = PBXGroup;
+			children = (
+				8712F6522AC2E09A008A02C4 /* RoutineTintRouter.swift */,
+				8712F6542AC2E09A008A02C4 /* RoutineTintBuilder.swift */,
+				8712F6552AC2E09A008A02C4 /* RoutineTintInteractor.swift */,
+				8712F6532AC2E09A008A02C4 /* RoutineTintViewController.swift */,
+			);
+			path = RoutineTint;
+			sourceTree = "<group>";
+		};
+		8712F65A2AC2E38E008A02C4 /* RoutineImojiIcon */ = {
+			isa = PBXGroup;
+			children = (
+				8712F65B2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift */,
+				8712F65D2AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift */,
+				8712F65E2AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift */,
+				8712F65C2AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift */,
+			);
+			path = RoutineImojiIcon;
+			sourceTree = "<group>";
+		};
+		8712F6632AC2E825008A02C4 /* RoutineTitle */ = {
+			isa = PBXGroup;
+			children = (
+				8712F6642AC2E838008A02C4 /* RoutineTitleRouter.swift */,
+				8712F6662AC2E838008A02C4 /* RoutineTitleBuilder.swift */,
+				8712F6672AC2E838008A02C4 /* RoutineTitleInteractor.swift */,
+				8712F6652AC2E838008A02C4 /* RoutineTitleViewController.swift */,
+			);
+			path = RoutineTitle;
+			sourceTree = "<group>";
+		};
 		87504A192ABB4E880046EFD5 /* Dto */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +384,46 @@
 				87901E9C2ABAF7B3002CA93F /* RoutineListDao.swift */,
 			);
 			path = Dao;
+			sourceTree = "<group>";
+		};
+		8768E5E62ABC35A200CB35EC /* CheckList */ = {
+			isa = PBXGroup;
+			children = (
+				8768E6022ABC536900CB35EC /* CheckListFactory.swift */,
+				8768E5E72ABC35AE00CB35EC /* CheckList.swift */,
+				8768E5E92ABC37DD00CB35EC /* CheckListId.swift */,
+				8768E5EB2ABC37E300CB35EC /* CheckListName.swift */,
+				8768E5F32ABC39C200CB35EC /* Goal.swift */,
+				8768E5FB2ABC3D2300CB35EC /* SetCount.swift */,
+				8768E5F92ABC3CFC00CB35EC /* Repetition.swift */,
+				8768E5FD2ABC3D3C00CB35EC /* Weight.swift */,
+				8768E5FF2ABC3FE400CB35EC /* Events */,
+			);
+			path = CheckList;
+			sourceTree = "<group>";
+		};
+		8768E5F62ABC3A5400CB35EC /* CheckList */ = {
+			isa = PBXGroup;
+			children = (
+				8768E5F72ABC3A6600CB35EC /* CreateCheckList.swift */,
+			);
+			path = CheckList;
+			sourceTree = "<group>";
+		};
+		8768E5FF2ABC3FE400CB35EC /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				8768E6002ABC3FF000CB35EC /* CheckListCreated.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		8768E6062ABC562800CB35EC /* CheckList */ = {
+			isa = PBXGroup;
+			children = (
+				8768E6072ABC563700CB35EC /* CheckListProjection.swift */,
+			);
+			path = CheckList;
 			sourceTree = "<group>";
 		};
 		876E94A12AB2CE3D00046809 = {
@@ -288,6 +455,7 @@
 				876E94D92AB2CF8400046809 /* Record */,
 				876E94DA2AB2CF8700046809 /* Timer */,
 				876E94DB2AB2CF8A00046809 /* Profile */,
+				87DFEC622AC1A98D00531EE3 /* Views */,
 				876E94B92AB2CE3E00046809 /* Assets.xcassets */,
 				876E94BB2AB2CE3E00046809 /* LaunchScreen.storyboard */,
 				876E94BE2AB2CE3E00046809 /* Info.plist */,
@@ -310,11 +478,11 @@
 		876E94CD2AB2CEC600046809 /* AppRoot */ = {
 			isa = PBXGroup;
 			children = (
+				87D5AAFE2AB8415D00FE712C /* AppRootComponent.swift */,
 				876E94D02AB2CED800046809 /* AppRootBuilder.swift */,
 				876E94CE2AB2CED800046809 /* AppRootRouter.swift */,
 				876E94D12AB2CED800046809 /* AppRootInteractor.swift */,
 				876E94CF2AB2CED800046809 /* AppRootViewController.swift */,
-				87D5AAFE2AB8415D00FE712C /* AppRootComponent.swift */,
 			);
 			path = AppRoot;
 			sourceTree = "<group>";
@@ -323,6 +491,8 @@
 			isa = PBXGroup;
 			children = (
 				87D5AAEA2AB83BA500FE712C /* RoutineHome */,
+				87DFEC592AC19E1C00531EE3 /* CreateRoutine */,
+				8712F63C2AC2DC04008A02C4 /* AddYourRoutine */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -389,6 +559,7 @@
 				876E952C2AB2D00F00046809 /* Formatter.swift */,
 				876E952D2AB2D00F00046809 /* AttributedString+Utils.swift */,
 				876E95302AB2D00F00046809 /* String+Utils.swift */,
+				8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */,
 			);
 			path = AppUtils;
 			sourceTree = "<group>";
@@ -419,6 +590,7 @@
 				876E953C2AB2D00F00046809 /* UIImage+Utils.swift */,
 				876E953D2AB2D00F00046809 /* UILabel+Utils.swift */,
 				876E953E2AB2D00F00046809 /* UIColor+Routine.swift */,
+				87DFEC702AC1B43C00531EE3 /* Keyboard+Utils.swift */,
 			);
 			path = UIUtil;
 			sourceTree = "<group>";
@@ -488,6 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				87D5AAF32AB83D9D00FE712C /* CDRoutineFactory.swift */,
+				8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -495,7 +668,10 @@
 		87D5AACD2AB836B200FE712C /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				87D5AAD92AB8377100FE712C /* RoutineApplicationService.swift */,
+				8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */,
 				87D5AAD82AB8376900FE712C /* Routine */,
+				8768E5F62ABC3A5400CB35EC /* CheckList */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -504,6 +680,7 @@
 			isa = PBXGroup;
 			children = (
 				87D5AAD32AB8371E00FE712C /* Routine */,
+				8768E5E62ABC35A200CB35EC /* CheckList */,
 				87D5AAD22AB8371900FE712C /* Service */,
 			);
 			path = Domain;
@@ -524,6 +701,9 @@
 				874CAF2E2AB45A580053E021 /* Routine.swift */,
 				874CAF302AB45B4B0053E021 /* RoutineId.swift */,
 				87D5AB002AB84FCA00FE712C /* RoutineName.swift */,
+				8735AB532AC18D220092BDF3 /* RoutineDescription.swift */,
+				8768E5ED2ABC386500CB35EC /* ImojiIcon.swift */,
+				8768E5EF2ABC388B00CB35EC /* Tint.swift */,
 				87D5AB0A2AB8734900FE712C /* Events */,
 			);
 			path = Routine;
@@ -532,8 +712,8 @@
 		87D5AAD82AB8376900FE712C /* Routine */ = {
 			isa = PBXGroup;
 			children = (
-				87D5AB0E2AB8739600FE712C /* Commands */,
-				87D5AAD92AB8377100FE712C /* RoutineApplicationService.swift */,
+				87D5AAEF2AB83D1500FE712C /* CreateRoutine.swift */,
+				87D5AB0F2AB873CF00FE712C /* ChangeRoutineName.swift */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -622,6 +802,7 @@
 			isa = PBXGroup;
 			children = (
 				87D5AB072AB867C700FE712C /* Routine */,
+				8768E6062ABC562800CB35EC /* CheckList */,
 			);
 			path = Projection;
 			sourceTree = "<group>";
@@ -646,13 +827,24 @@
 			path = Events;
 			sourceTree = "<group>";
 		};
-		87D5AB0E2AB8739600FE712C /* Commands */ = {
+		87DFEC592AC19E1C00531EE3 /* CreateRoutine */ = {
 			isa = PBXGroup;
 			children = (
-				87D5AAEF2AB83D1500FE712C /* CreateRoutine.swift */,
-				87D5AB0F2AB873CF00FE712C /* ChangeRoutineName.swift */,
+				87DFEC5C2AC19E2800531EE3 /* CreateRoutineBuilder.swift */,
+				87DFEC5A2AC19E2800531EE3 /* CreateRoutineRouter.swift */,
+				87DFEC5D2AC19E2800531EE3 /* CreateRoutineInteractor.swift */,
+				87DFEC5B2AC19E2800531EE3 /* CreateRoutineViewController.swift */,
 			);
-			path = Commands;
+			path = CreateRoutine;
+			sourceTree = "<group>";
+		};
+		87DFEC622AC1A98D00531EE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87DFEC632AC1A9A200531EE3 /* TouchesButton.swift */,
+				8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		87F3A3782AB3001F00A2102D /* EventSourcing */ = {
@@ -802,34 +994,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */,
 				876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */,
 				876E95962AB2FA5B00046809 /* ValueObject.swift in Sources */,
 				87D5AADA2AB8377100FE712C /* RoutineApplicationService.swift in Sources */,
 				87D5AAF02AB83D1500FE712C /* CreateRoutine.swift in Sources */,
 				876E95572AB2D00F00046809 /* UIFont+Utils.swift in Sources */,
+				8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */,
+				8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */,
 				87D5AAE72AB83A4A00FE712C /* CDSnapshotRepository.swift in Sources */,
+				8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */,
+				8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */,
 				876E94D32AB2CED800046809 /* AppRootViewController.swift in Sources */,
 				876E95032AB2CFC100046809 /* RoutineHomeBuilder.swift in Sources */,
 				874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */,
 				87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */,
 				876E94D72AB2CEE600046809 /* AppComponent.swift in Sources */,
 				87D5AAF42AB83D9D00FE712C /* CDRoutineFactory.swift in Sources */,
+				8712F6592AC2E09A008A02C4 /* RoutineTintInteractor.swift in Sources */,
 				876E955D2AB2D00F00046809 /* UILabel+Utils.swift in Sources */,
 				876E95122AB2CFDB00046809 /* TimerHomeViewController.swift in Sources */,
+				8712F6682AC2E838008A02C4 /* RoutineTitleRouter.swift in Sources */,
 				8745900D2AB43E780043214E /* EventSerializer.swift in Sources */,
 				876E95522AB2D00F00046809 /* PushModalPresentationController.swift in Sources */,
+				8754D2AB2AC2F6EF00440385 /* BottomLiseTextFeild.swift in Sources */,
 				87504A1B2ABB4EA30046EFD5 /* RoutineListDto.swift in Sources */,
+				8768E5F82ABC3A6600CB35EC /* CreateCheckList.swift in Sources */,
 				87AF756E2AB99DD1001CF7F2 /* EventEntity+CoreDataClass.swift in Sources */,
 				876E95562AB2D00F00046809 /* UIIMageView+Utils.swift in Sources */,
 				87D5AB0C2AB8736500FE712C /* RoutineNameChanged.swift in Sources */,
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
+				8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */,
 				87F3A3802AB3009600A2102D /* SnapshotRepository.swift in Sources */,
 				876E955B2AB2D00F00046809 /* AdaptivePresentationControllerDelegate.swift in Sources */,
 				876E954F2AB2D00F00046809 /* AttributedString+Utils.swift in Sources */,
+				8712F66B2AC2E838008A02C4 /* RoutineTitleInteractor.swift in Sources */,
 				87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */,
 				876E95492AB2D00F00046809 /* URLSchemeHelper.swift in Sources */,
 				876E955C2AB2D00F00046809 /* UIImage+Utils.swift in Sources */,
 				87AF75732AB99DD1001CF7F2 /* SnapshotEntity+CoreDataProperties.swift in Sources */,
+				87DFEC642AC1A9A200531EE3 /* TouchesButton.swift in Sources */,
 				87F3A37A2AB3006500A2102D /* EventStore.swift in Sources */,
 				876E959D2AB2FBE100046809 /* CoreDataUtils.swift in Sources */,
 				876E95132AB2CFDB00046809 /* TimerHomeBuilder.swift in Sources */,
@@ -837,6 +1041,10 @@
 				87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */,
 				876E956C2AB2D84100046809 /* RoutineLogFormatter.swift in Sources */,
 				874CAF2F2AB45A580053E021 /* Routine.swift in Sources */,
+				8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */,
+				87DFEC5E2AC19E2800531EE3 /* CreateRoutineRouter.swift in Sources */,
+				8712F6572AC2E09A008A02C4 /* RoutineTintViewController.swift in Sources */,
+				8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */,
 				876E95192AB2CFE900046809 /* ProfileHomeRouter.swift in Sources */,
 				878EAD5F2ABB717E00593700 /* RoutineReadModel.swift in Sources */,
 				876E95532AB2D00F00046809 /* UIButton+Utils.swift in Sources */,
@@ -845,6 +1053,8 @@
 				876E950C2AB2CFD000046809 /* RecordHomeInteractor.swift in Sources */,
 				876E950A2AB2CFD000046809 /* RecordHomeViewController.swift in Sources */,
 				876E95542AB2D00F00046809 /* UIView+Utils.swift in Sources */,
+				8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */,
+				8712F6622AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift in Sources */,
 				87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */,
 				87D5AB032AB84FEE00FE712C /* AppError.swift in Sources */,
 				876E958C2AB2F9D600046809 /* ThreadLocal.swift in Sources */,
@@ -859,37 +1069,59 @@
 				87D5AAEE2AB83CD100FE712C /* RoutineCreated.swift in Sources */,
 				876E94D52AB2CED800046809 /* AppRootInteractor.swift in Sources */,
 				87AF756F2AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift in Sources */,
+				87DFEC612AC19E2800531EE3 /* CreateRoutineInteractor.swift in Sources */,
 				876E954B2AB2D00F00046809 /* KeychainAccess.swift in Sources */,
+				8712F66A2AC2E838008A02C4 /* RoutineTitleBuilder.swift in Sources */,
 				876E95552AB2D00F00046809 /* UIColor+Utils.swift in Sources */,
+				8768E6052ABC541000CB35EC /* CDCheckListFactory.swift in Sources */,
+				8712F6502AC2DF68008A02C4 /* AddYourRoutineInteractor.swift in Sources */,
+				8712F6692AC2E838008A02C4 /* RoutineTitleViewController.swift in Sources */,
 				876E951C2AB2CFE900046809 /* ProfileHomeInteractor.swift in Sources */,
 				876E94B82AB2CE3D00046809 /* EventStream.xcdatamodeld in Sources */,
 				876E954D2AB2D00F00046809 /* Array+Utils.swift in Sources */,
+				8712F6602AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift in Sources */,
 				876E95012AB2CFC100046809 /* RoutineHomeRouter.swift in Sources */,
+				8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */,
 				876E95982AB2FA6F00046809 /* Specification.swift in Sources */,
 				87901E9D2ABAF7B3002CA93F /* RoutineListDao.swift in Sources */,
 				876E95112AB2CFDB00046809 /* TimerHomeRouter.swift in Sources */,
 				87504A182ABB4E7B0046EFD5 /* DatabaseManager.swift in Sources */,
 				876E95042AB2CFC100046809 /* RoutineHomeInteractor.swift in Sources */,
 				876E959B2AB2FB9400046809 /* Transaction.swift in Sources */,
+				8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */,
 				876E955A2AB2D00F00046809 /* UIViewController+Utils.swift in Sources */,
 				876E95672AB2D3F700046809 /* Combine+Utils.swift in Sources */,
+				87DFEC602AC19E2800531EE3 /* CreateRoutineBuilder.swift in Sources */,
 				87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */,
+				8768E6082ABC563700CB35EC /* CheckListProjection.swift in Sources */,
 				87D5AB102AB873CF00FE712C /* ChangeRoutineName.swift in Sources */,
 				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
+				8712F65F2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift in Sources */,
 				876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */,
 				876E95142AB2CFDB00046809 /* TimerHomeInteractor.swift in Sources */,
+				8768E5FC2ABC3D2300CB35EC /* SetCount.swift in Sources */,
+				8712F6562AC2E09A008A02C4 /* RoutineTintRouter.swift in Sources */,
 				876E954C2AB2D00F00046809 /* PreferenceStorage.swift in Sources */,
+				8768E5EE2ABC386500CB35EC /* ImojiIcon.swift in Sources */,
 				876E94B02AB2CE3D00046809 /* SceneDelegate.swift in Sources */,
 				876E951A2AB2CFE900046809 /* ProfileHomeViewController.swift in Sources */,
+				8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */,
 				876E95512AB2D00F00046809 /* String+Utils.swift in Sources */,
+				8768E5FE2ABC3D3C00CB35EC /* Weight.swift in Sources */,
 				87901EA32ABAFDCC002CA93F /* RoutineDetailSQLDao.swift in Sources */,
 				876E95092AB2CFD000046809 /* RecordHomeRouter.swift in Sources */,
+				8768E5F02ABC388B00CB35EC /* Tint.swift in Sources */,
+				8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */,
 				876E95432AB2D00F00046809 /* RIBs+Utils.swift in Sources */,
 				876E954E2AB2D00F00046809 /* Formatter.swift in Sources */,
+				87DFEC5F2AC19E2800531EE3 /* CreateRoutineViewController.swift in Sources */,
+				87DFEC712AC1B43C00531EE3 /* Keyboard+Utils.swift in Sources */,
+				8712F6612AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift in Sources */,
 				876E950B2AB2CFD000046809 /* RecordHomeBuilder.swift in Sources */,
 				876E951B2AB2CFE900046809 /* ProfileHomeBuilder.swift in Sources */,
 				876E95022AB2CFC100046809 /* RoutineHomeViewController.swift in Sources */,
 				87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */,
+				8712F6582AC2E09A008A02C4 /* RoutineTintBuilder.swift in Sources */,
 				87AF75722AB99DD1001CF7F2 /* SnapshotEntity+CoreDataClass.swift in Sources */,
 				876E954A2AB2D00F00046809 /* PropertyWrapperSample.swift in Sources */,
 				876E95902AB2FA1A00046809 /* Entity.swift in Sources */,

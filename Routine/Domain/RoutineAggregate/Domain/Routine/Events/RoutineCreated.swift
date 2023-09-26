@@ -12,27 +12,44 @@ import Foundation
 
 final class RoutineCreated : DomainEvent{
     
-    let routinId: RoutineId
+    let routineId: RoutineId
     let routineName: RoutineName
+    let routineDescription: RoutineDescription
+    let icon: ImojiIcon
+    let tint: Tint
     
-    init(routinId: RoutineId, routineName: RoutineName) {
-        self.routinId = routinId
+    
+    init(routineId: RoutineId, routineName: RoutineName, routineDescription: RoutineDescription,icon: ImojiIcon, tint: Tint) {
+        self.routineId = routineId
+        self.routineDescription = routineDescription
         self.routineName = routineName
+        self.icon = icon
+        self.tint = tint
         super.init()
     }
         
     override func encode(with coder: NSCoder) {
-        coder.encode(routinId.id.uuidString, forKey: "routineId")
-        coder.encode(routineName.name, forKey: "routineName")
+        routineId.encode(with: coder)
+        routineName.encode(with: coder)
+        routineDescription.encode(with: coder)
+        icon.encode(with: coder)
+        tint.encode(with: coder)
         super.encode(with: coder)
     }
 
     required override init?(coder: NSCoder) {
-        guard let routineId = coder.decodeObject(of: NSString.self, forKey: "routineId") as? String,
-              let name = coder.decodeObject(of: NSString.self, forKey: "routineName")  as? String else { return nil }
-        
-        self.routinId =  RoutineId(id: UUID(uuidString: routineId as String)!)
-        self.routineName = try! RoutineName(name)
+        guard let routineId = RoutineId(coder: coder),
+              let routineName = RoutineName(coder: coder),
+              let routineDescription = RoutineDescription(coder: coder),
+              let icon = ImojiIcon(coder: coder),
+              let tint = Tint(coder: coder)
+        else { return nil }
+                    
+        self.routineId =  routineId
+        self.routineName = routineName
+        self.routineDescription = routineDescription
+        self.icon = icon
+        self.tint = tint
         
         super.init(coder: coder)
     }

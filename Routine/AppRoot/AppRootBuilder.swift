@@ -25,9 +25,13 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
     }
 
     func build() -> (launchRouter: LaunchRouting, urlHandler: URLHandler) {
-                
-        let component = AppRootComponent(dependency: dependency)
         let viewController = AppRootViewController()
+        
+        let component = AppRootComponent(
+            dependency: dependency,
+            viewController: viewController
+        )
+        
                         
         let interactor = AppRootInteractor(presenter: viewController)
         

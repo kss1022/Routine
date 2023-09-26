@@ -10,7 +10,8 @@ import Combine
 import Foundation
 
 protocol RoutineHomeRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func attachCreateRoutine()
+    func detachCreateRoutine()
 }
 
 protocol RoutineHomePresentable: Presentable {
@@ -26,7 +27,10 @@ protocol RoutineHomeInteractorDependency{
     var routineReadModel: RoutineReadModelFacade{ get }
 }
 
-final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>, RoutineHomeInteractable, RoutineHomePresentableListener {
+final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>, RoutineHomeInteractable, RoutineHomePresentableListener, AdaptivePresentationControllerDelegate {
+
+    let presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
+    
     
     weak var router: RoutineHomeRouting?
     weak var listener: RoutineHomeListener?
@@ -43,8 +47,11 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         self.dependency = dependency
         self.cancellables = .init()
         
+        self.presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
         super.init(presenter: presenter)
+        
         presenter.listener = self
+        self.presentationDelegateProxy.delegate = self
     }
     
     override func didBecomeActive() {
@@ -66,58 +73,38 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         // TODO: Pause any business logic.
     }
     
-    
+            
     
     func createRoutineDidTap() {
-        Task{
-            do{
-                try await dependency.routineApplicationService.when(CreateRoutine(name: "create New Routine"))
-                let list = try dependency.routineReadModel.routineList()
-                Log.v("Read SavedList: \(list)")
-            }catch{
-                if let error = error as? ArgumentException{
-                    Log.e(error.msg)
-                }else{
-                    Log.e("UnkownError\n\(error)" )
-                }
-            }
-        }
-        
+        router?.attachCreateRoutine()
+//        Task{
+//            do{
+//                try await dependency.routineApplicationService.when(CreateRoutine(
+//                    name: "NewRoutine",
+//                    description: "Description",
+//                    icon: "💪",
+//                    tint: "0xff000000",
+//                    createCheckLists: [
+//                        CreateCheckList(name: "NewCheckList", reps: 3, set: 3, weight: 5.0, sequence: 0)
+//                    ]
+//                ))
+//                let list = try dependency.routineReadModel.routineList()
+//                Log.v("Read SavedList: \(list)")
+//            }catch{
+//                if let error = error as? ArgumentException{
+//                    Log.e(error.msg)
+//                }else{
+//                    Log.e("UnkownError\n\(error)" )
+//                }
+//            }
+//        }
+//        
     }
     
-    func updateButtonDidTap(text: String) {
-        Task{
-            do{
-                guard let routine = try dependency.routineReadModel.routineList().first else {
-                    Log.e("Update RoutineName Fail: Can not find Routine")
-                    return
-                }
-                
-                try await dependency.routineApplicationService.when(ChangeRoutineName(
-                    routineId: routine.routineId,
-                    routineName: text
-                ))
-                
-                if let detail = try dependency.routineReadModel.routineDetail(id: routine.routineId){
-                    Log.v("Chanage RoutineName: \(detail)")
-                }
-            }catch{
-                if let error = error as? ArgumentException{
-                    Log.e(error.msg)
-                }else{
-                    Log.e("UnkownError\n\(error)" )
-                }
-            }
-            
-        }
+    func presentationControllerDidDismiss() {
+        router?.detachCreateRoutine()
     }
     
-    func readButtonDidTap() {
-        do{
-            let list = try dependency.routineReadModel.routineList()
-            Log.v("Read SavedList: \(list)")
-        }catch{
-            Log.e("Read RoutineList Error : \(error)")
-        }
-    }
+    
+    
 }

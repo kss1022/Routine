@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol RoutineFactory{
-    func create( routineId: RoutineId, routineName: RoutineName) -> Routine
+    func create( routineId: RoutineId, routineName: RoutineName, routineDescription: RoutineDescription, icon: ImojiIcon , tint: Tint) -> Routine
 }

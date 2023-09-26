@@ -20,18 +20,18 @@ extension ApplicationService{
     func update<T>(id: UUID, excute : (T) -> ()) throws where T : Entity{
         while true{
             let snapshot : (T, EventStream) = try loadEntityById(id)
-            let user = snapshot.0
+            let entity = snapshot.0
             let eventStream = snapshot.1
-            excute(user)
+            excute(entity)
             do{
-                try eventStore.appendToStream(id: id, expectedVersion: eventStream.version, events: user.changes)
+                try eventStore.appendToStream(id: id, expectedVersion: eventStream.version, events: entity.changes)
                 
                 if eventStream.events.count > 3{
-                    try snapshotRepository.saveSanpshot(id: id, entity: user, version: eventStream.version)
+                    try snapshotRepository.saveSanpshot(id: id, entity: entity, version: eventStream.version)
                 }
                 return
             }catch ConcurrencyError.ConcurrencyError(let events , let version){
-                for failedEvent in user.changes{
+                for failedEvent in entity.changes{
                     for succeedEvent in events{
                         if conflictWith(event1: failedEvent, event2: succeedEvent){
                             let msg = "Conflit Betewwn \(failedEvent) \(succeedEvent)"
@@ -43,7 +43,7 @@ extension ApplicationService{
                         }
                     }
                 }
-                try? eventStore.appendToStream(id: id, expectedVersion: version, events: user.changes)
+                try? eventStore.appendToStream(id: id, expectedVersion: version, events: entity.changes)
             }
         }
     }

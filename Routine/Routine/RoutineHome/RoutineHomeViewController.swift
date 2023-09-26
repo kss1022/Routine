@@ -10,9 +10,7 @@ import UIKit
 import CocoaLumberjackSwift
 
 protocol RoutineHomePresentableListener: AnyObject {
-    func createRoutineDidTap()
-    func updateButtonDidTap(text: String)
-    func readButtonDidTap()
+    func createRoutineDidTap()    
 }
 
 final class RoutineHomeViewController: UIViewController, RoutineHomePresentable, RoutineHomeViewControllable {
@@ -32,38 +30,22 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
         return button
     }()
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
 
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         stackView.spacing = 16.0
         return stackView
     }()
     
-    private let textFeild: UITextField = {
-        let textFeild = UITextField()
-        textFeild.textColor = .label
-        textFeild.borderStyle = .roundedRect
-        return textFeild
-    }()
-    
-    private lazy var updateButton : UIButton = {
-        let button = UIButton()
-        button.setTitle("Update", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.addTarget(self, action: #selector(updateButtonTap), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var readButton : UIButton = {
-        let button = UIButton()
-        button.setTitle("Read", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.addTarget(self, action: #selector(readButtonTap), for: .touchUpInside)
-        return button
-    }()
     
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -91,34 +73,26 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
         )
         view.backgroundColor = .systemBackground
         
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
         
-        view.addSubview(stackView)
-        stackView.addArrangedSubview(textFeild)
-        stackView.addArrangedSubview(updateButton)
-        stackView.addArrangedSubview(readButton)
         
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])        
     }
     
 
     @objc
     private func createRoutineBarButtonTap(){
         listener?.createRoutineDidTap()
-    }
-    
-    @objc
-    private func updateButtonTap(){
-        if let text = textFeild.text{
-            listener?.updateButtonDidTap(text: text)
-        }
-    }
-    
-    @objc
-    private func readButtonTap(){
-        listener?.readButtonDidTap()
     }
 }
 

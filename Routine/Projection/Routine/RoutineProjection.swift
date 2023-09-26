@@ -47,13 +47,13 @@ final class RoutineProjection{
     func when(event: RoutineCreated){
         do{
             let routineList = RoutineListDto(
-                routineId: event.routinId.id,
+                routineId: event.routineId.id,
                 routineName: event.routineName.name,
                 sequence: 0
             )
             
             let routineDetail = RoutineDetailDto(
-                routineId: event.routinId.id,
+                routineId: event.routineId.id,
                 routineName: event.routineName.name,
                 updatedAt: event.occurredOn
             )
@@ -68,7 +68,7 @@ final class RoutineProjection{
     
     func when(event: RoutineNameChanged){
         do{
-            let routineId = event.routinId.id
+            let routineId = event.routineId.id
             let changedName = event.routineName.name
             
             try routineListDao.updateName(routineId, name: changedName)
