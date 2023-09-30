@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol AddYourRoutineInteractable: Interactable ,RoutineTitleListener, RoutineTintListener , RoutineImojiIconListener{
+protocol AddYourRoutineInteractable: Interactable ,RoutineEditTitleListener, RoutineTintListener , RoutineEmojiIconListener{
     var router: AddYourRoutineRouting? { get set }
     var listener: AddYourRoutineListener? { get set }
 }
@@ -16,46 +16,46 @@ protocol AddYourRoutineViewControllable: ViewControllable {
     // TODO: Declare methods the router invokes to manipulate the view hierarchy.
     func addTitle(_ view : ViewControllable)
     func addTint(_ view: ViewControllable)
-    func addImojiIcon(_ view: ViewControllable)
+    func addEmojiIcon(_ view: ViewControllable)
 }
 
 final class AddYourRoutineRouter: ViewableRouter<AddYourRoutineInteractable, AddYourRoutineViewControllable>, AddYourRoutineRouting {
 
-    private let routineTitleBuildable: RoutineTitleBuildable
-    private var routineTitleRouting: Routing?
+    private let routineEditTitleBuildable: RoutineEditTitleBuildable
+    private var routineEditTitleRouting: Routing?
     
     private let routineTintBuildable: RoutineTintBuildable
     private var routineTintRouting: Routing?
     
-    private let routineImojiIconBuildable: RoutineImojiIconBuildable
-    private var routineImojiIconRouting : Routing?
+    private let routineEmojiIconBuildable: RoutineEmojiIconBuildable
+    private var routineEmojiIconRouting : Routing?
     
     
     init(
         interactor: AddYourRoutineInteractable,
         viewController: AddYourRoutineViewControllable,
-        routineTitleBuildable: RoutineTitleBuildable,
+        routineEditTitleBuildable: RoutineEditTitleBuildable,
         routineTintBuildable: RoutineTintBuildable,
-        routineImojiIconBuildable: RoutineImojiIconBuildable
+        routineEmojiIconBuildable: RoutineEmojiIconBuildable
     ) {
-        self.routineTitleBuildable = routineTitleBuildable
+        self.routineEditTitleBuildable = routineEditTitleBuildable
         self.routineTintBuildable = routineTintBuildable
-        self.routineImojiIconBuildable = routineImojiIconBuildable
+        self.routineEmojiIconBuildable = routineEmojiIconBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
     
     
     func attachRoutineTitle() {
-        if routineTitleRouting != nil{
+        if routineEditTitleRouting != nil{
             return
         }
         
-        let router = routineTitleBuildable.build(withListener: interactor)
+        let router = routineEditTitleBuildable.build(withListener: interactor)
         viewController.addTitle(router.viewControllable)
         
-        self.routineTitleRouting = router
-        attachChild(router)        
+        self.routineEditTitleRouting = router
+        attachChild(router)
     }
     
     func attachRoutineTint() {
@@ -70,15 +70,15 @@ final class AddYourRoutineRouter: ViewableRouter<AddYourRoutineInteractable, Add
         attachChild(router)
     }
     
-    func attachRoutineImojiIcon() {
-        if routineImojiIconRouting != nil{
+    func attachRoutineEmojiIcon() {
+        if routineEmojiIconRouting != nil{
             return
         }
         
-        let router = routineImojiIconBuildable.build(withListener: interactor)
-        viewController.addImojiIcon(router.viewControllable)
+        let router = routineEmojiIconBuildable.build(withListener: interactor)
+        viewController.addEmojiIcon(router.viewControllable)
         
-        self.routineImojiIconRouting = router
+        self.routineEmojiIconRouting = router
         attachChild(router)
     }
 }

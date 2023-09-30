@@ -12,5 +12,8 @@ import Foundation
 public struct RoutineDetailDto{
     public let routineId: UUID
     public let routineName: String
+    public let routineDescription: String
+    public let emojiIcon: String
+    public let tint: String
     public let updatedAt: Date
 }

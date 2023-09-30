@@ -6,15 +6,16 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol CreateRoutineDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var routineApplicationService: RoutineApplicationService{ get }
+    var routineReadModel: RoutineReadModelFacade{ get }
 }
 
-final class CreateRoutineComponent: Component<CreateRoutineDependency> , AddYourRoutineDependency{
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class CreateRoutineComponent: Component<CreateRoutineDependency> ,AddYourRoutineDependency, CreateRoutineInteractorDependency{
+    var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService}
+    var routineReadModel: RoutineReadModelFacade{ dependency.routineReadModel}
 }
 
 // MARK: - Builder
@@ -32,7 +33,7 @@ final class CreateRoutineBuilder: Builder<CreateRoutineDependency>, CreateRoutin
     func build(withListener listener: CreateRoutineListener) -> ViewableRouting {
         let component = CreateRoutineComponent(dependency: dependency)
         let viewController = CreateRoutineViewController()
-        let interactor = CreateRoutineInteractor(presenter: viewController)
+        let interactor = CreateRoutineInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
         let addYourRoutineBuilder = AddYourRoutineBuilder(dependency: component)

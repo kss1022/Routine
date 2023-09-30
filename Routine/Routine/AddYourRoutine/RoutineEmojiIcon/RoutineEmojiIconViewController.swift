@@ -1,24 +1,23 @@
 //
-//  RoutineTintViewController.swift
+//  RoutineEmojiIconViewController.swift
 //  Routine
 //
-//  Created by 한현규 on 2023/09/26.
+//  Created by 한현규 on 9/30/23.
 //
 
 import ModernRIBs
 import UIKit
 
-protocol RoutineTintPresentableListener: AnyObject {
-    func tintButtonDidTap(color: String)
+protocol RoutineEmojiIconPresentableListener: AnyObject {
+    func emojiButtonDidTap(emoji: String)
 }
 
-final class RoutineTintViewController: UIViewController, RoutineTintPresentable, RoutineTintViewControllable {
+final class RoutineEmojiIconViewController: UIViewController, RoutineEmojiIconPresentable, RoutineEmojiIconViewControllable {
+
+    weak var listener: RoutineEmojiIconPresentableListener?
     
-    
-    weak var listener: RoutineTintPresentableListener?
     
     private var selectedButton: UIButton?
-
     
     private let verticalStackView: UIStackView = {
         let stackView = UIStackView()
@@ -29,6 +28,7 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
         stackView.spacing = 8.0
         return stackView
     }()
+   
     
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -42,14 +42,13 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
         setLayout()
     }
     
-    
-    
+        
     private func setLayout(){
         view.backgroundColor = .secondarySystemBackground
         
         view.addSubview(verticalStackView)
         
-        let inset: CGFloat = 16.0
+        let inset : CGFloat = 16.0
         
         NSLayoutConstraint.activate([
             verticalStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
@@ -57,22 +56,21 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
             verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             verticalStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset)
         ])
-        
     }
     
-    func setTints(tints: [String]) {
+    
+    func setEmojis(_ emojis: [String]) {
         let n = 5
         
-        let tints = tints.compactMap { UIColor(hex: $0) }
-        
-        for startIndex in stride(from: 0, to: tints.count, by: n) {
-            let endIndex = min(startIndex + n, tints.count)
-            let sublist = Array(tints[startIndex..<endIndex])
+        for startIndex in stride(from: 0, to: emojis.count, by: n) {
+            let endIndex = min(startIndex + n, emojis.count)
+            let sublist = Array(emojis[startIndex..<endIndex])
             
             let horizointalStackView = horizontalStaciView()
             verticalStackView.addArrangedSubview(horizointalStackView)
-            sublist.map { color in
-                tintButton(color)
+            
+            sublist.map { emoji in
+              emojiButton(emoji)
             }.forEach { view in
                 horizointalStackView.addArrangedSubview(view)
             }
@@ -81,22 +79,34 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
         setSelectedButton()
     }
     
+    
     private func horizontalStaciView() -> UIStackView{
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.spacing = 8.0
-        
         return stackView
     }
     
-    private func tintButton(_ color: UIColor) -> UIButton{
+    
+    private func emojiButton(_ emoji: String ) -> UIButton{
         let button = TouchesButton()
-        button.backgroundColor = color
+        button.backgroundColor = .lightGray
+        button.setTitle(emoji, for: .normal)
+        
+        button.setFont(style: .largeTitle)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        
         button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
+        button.contentEdgeInsets.top = 8.0
+        button.contentEdgeInsets.left = 8.0
+        button.contentEdgeInsets.right = 8.0
+        button.contentEdgeInsets.bottom = 8.0
         button.roundCorners()
-        button.addTarget(self, action: #selector(tintButtonTap), for: .touchUpInside)
+        
+        button.addTarget(self, action: #selector(emojiButtonTap), for: .touchUpInside)
+        
         return button
     }
     
@@ -118,11 +128,10 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
         button.layer.borderWidth = 0.0
     }
     
-
     @objc
-    private func tintButtonTap(button: UIButton){
-        if let color = button.backgroundColor?.toHex(){
-            listener?.tintButtonDidTap(color: color)
+    private func emojiButtonTap(button: UIButton){
+        if let emoji = button.titleLabel?.text{
+            listener?.emojiButtonDidTap(emoji: emoji)
             
             if let selectedButton = selectedButton{
                 setUnSelectedBorder(selectedButton)
@@ -131,6 +140,6 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
             setSelectedBorder(button)
         }
     }
-
+    
 
 }

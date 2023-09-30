@@ -5,21 +5,33 @@
 //  Created by 한현규 on 2023/09/26.
 //
 
+import Foundation
 import ModernRIBs
+import Combine
 
 protocol AddYourRoutineRouting: ViewableRouting {
     func attachRoutineTitle()
     func attachRoutineTint()
-    func attachRoutineImojiIcon()
+    func attachRoutineEmojiIcon()
 }
 
 protocol AddYourRoutinePresentable: Presentable {
     var listener: AddYourRoutinePresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setTint(_ color: String)
 }
 
 protocol AddYourRoutineListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+}
+
+protocol AddYourRoutineInteractorDependency{
+    var routineApplicationService: RoutineApplicationService{ get }
+
+    var title: ReadOnlyCurrentValuePublisher<String>{ get }
+    var description: ReadOnlyCurrentValuePublisher<String>{ get }
+    var tint: ReadOnlyCurrentValuePublisher<String>{ get }
+    var emoji: ReadOnlyCurrentValuePublisher<String>{ get }
 }
 
 final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresentable>, AddYourRoutineInteractable, AddYourRoutinePresentableListener {
@@ -27,9 +39,16 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     weak var router: AddYourRoutineRouting?
     weak var listener: AddYourRoutineListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private var cancelablse: Set<AnyCancellable>
+    private let dependendency: AddYourRoutineInteractorDependency
+    
     // in constructor.
-    override init(presenter: AddYourRoutinePresentable) {
+    init(
+        presenter: AddYourRoutinePresentable,
+        dependency: AddYourRoutineInteractorDependency
+    ) {
+        self.cancelablse = .init()
+        self.dependendency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -38,11 +57,44 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         super.didBecomeActive()
         router?.attachRoutineTitle()
         router?.attachRoutineTint()
-        router?.attachRoutineImojiIcon()
+        router?.attachRoutineEmojiIcon()
+        
+        
+        dependendency.tint.subscribe(on: DispatchQueue.main)
+            .sink {  [weak self] tint in
+                self?.presenter.setTint(tint)
+            }
+            .store(in: &cancelablse)
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func nextBarButtonDidTap() {
+        let createRoutine = CreateRoutine(
+            name: dependendency.title.value,
+            description: dependendency.description.value,
+            icon: dependendency.emoji.value,
+            tint: dependendency.tint.value,
+            createCheckLists: []
+        )
+        
+ 
+        Task{ [weak self] in
+            guard let self = self else { return
+            }
+            do{
+                try await self.dependendency.routineApplicationService.when(createRoutine)
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.msg)
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
+            }
+            
+        }
     }
 }

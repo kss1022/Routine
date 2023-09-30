@@ -1,25 +1,24 @@
 //
-//  RoutineTitleViewController.swift
+//  RoutineEditTitleViewController.swift
 //  Routine
 //
-//  Created by 한현규 on 2023/09/26.
+//  Created by 한현규 on 9/30/23.
 //
 
 import ModernRIBs
 import UIKit
 
-protocol RoutineTitlePresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+protocol RoutineEditTitlePresentableListener: AnyObject {
+    func setRoutineName(name : String)
+    func setRoutineDescription(description: String)
 }
 
-final class RoutineTitleViewController: UIViewController, RoutineTitlePresentable, RoutineTitleViewControllable {
+final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePresentable, RoutineEditTitleViewControllable {
+
+    weak var listener: RoutineEditTitlePresentableListener?
     
-    weak var listener: RoutineTitlePresentableListener?
     
-    
-    private let imojiButton : UIButton = {
+    private let emojiButton : UIButton = {
         let button = TouchesButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBackground
@@ -46,7 +45,7 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         return stackView
     }()
     
-    private let routineNameTextFeild: UITextField = {
+    private lazy var routineNameTextFeild: UITextField = {
         let textFeild = BottomLineTextField()
         
         textFeild.setFont(style: .title1)
@@ -54,7 +53,7 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         textFeild.placeholder = "Give it a name"
         textFeild.textAlignment = .center
         textFeild.becomeFirstResponder()
-        
+        textFeild.delegate = self
         return textFeild
     }()
     
@@ -80,12 +79,22 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         return stackView
     }()
     
-    private let routineDescriptionTextView: UITextView = {
+    private let routineDescriptionTitleLabel: UILabel = {
+        let label = UILabel()
+        label.setBoldFont(style: .headline)
+        label.textColor = .label
+        label.text = "Description"
+        return label
+    }()
+    
+    private lazy var routineDescriptionTextView: UITextView = {
         let textView = UITextView()
-        textView.setFont(style: .title1)
+        textView.setFont(style: .callout)
         textView.textColor = .label
-        //textView.placeholder = "Give it a name"
+                            
         textView.roundCorners()
+        textView.textContainerInset = .init(top: 16.0, left: 8.0, bottom: 16.0, right: 8.0)
+        textView.delegate = self
         return textView
     }()
     
@@ -103,40 +112,40 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         super.init(nibName: nil, bundle: nil)
         
         setLayout()
-        imojiButton.setTitle("🐢", for: .normal)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
         setLayout()
-        imojiButton.setTitle("🐢", for: .normal)
     }
     
     private func setLayout(){
         
-        view.addSubview(imojiButton)
+        view.addSubview(emojiButton)
         view.addSubview(routineNameStackView)
         view.addSubview(routineDescriptionStackView)
         
         routineNameStackView.addArrangedSubview(routineNameTextFeild)
         routineNameStackView.addArrangedSubview(routineNameHelpLabel)
                         
-        routineNameStackView.addArrangedSubview(routineDescriptionTextView)
-        routineNameStackView.addArrangedSubview(routineDescriptionHelpLabel)
+        
+        routineDescriptionStackView.addArrangedSubview(routineDescriptionTitleLabel)
+        routineDescriptionStackView.addArrangedSubview(routineDescriptionTextView)
+        routineDescriptionStackView.addArrangedSubview(routineDescriptionHelpLabel)
                 
         
         NSLayoutConstraint.activate([
-            imojiButton.topAnchor.constraint(equalTo: view.topAnchor),
-            imojiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imojiButton.widthAnchor.constraint(equalToConstant: 80.0),
-            imojiButton.heightAnchor.constraint(equalToConstant: 80.0),
+            emojiButton.topAnchor.constraint(equalTo: view.topAnchor),
+            emojiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emojiButton.widthAnchor.constraint(equalToConstant: 80.0),
+            emojiButton.heightAnchor.constraint(equalToConstant: 80.0),
             
-            routineNameStackView.topAnchor.constraint(equalTo: imojiButton.bottomAnchor, constant: 50.0),
+            routineNameStackView.topAnchor.constraint(equalTo: emojiButton.bottomAnchor, constant: 50.0),
             routineNameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             routineNameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            routineDescriptionStackView.topAnchor.constraint(equalTo: routineNameStackView.bottomAnchor, constant: 50.0),
+            routineDescriptionStackView.topAnchor.constraint(equalTo: routineNameStackView.bottomAnchor, constant: 32.0),
             routineDescriptionStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             routineDescriptionStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             routineDescriptionStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16.0),
@@ -147,5 +156,73 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         routineNameTextFeild.becomeFirstResponder()
     }
     
+    func setEmoji(_ emoji: String) {
+        emojiButton.setTitle(emoji, for: .normal)
+    }
     
+    
+}
+
+
+extension RoutineEditTitleViewController : UITextFieldDelegate{
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField != self.routineNameTextFeild{
+            return
+        }
+        
+        if let name = textField.text{
+            listener?.setRoutineName(name: name)
+        }
+    }
+        
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.routineDescriptionTextView.becomeFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let before = textField.text{
+            let textCount = string.count + before.count
+            
+            if textCount > 50{
+                return false
+            }
+            
+            self.routineNameHelpLabel.text = "\(textCount)/50"
+        }
+        
+        
+        return true
+    }
+    
+}
+
+extension RoutineEditTitleViewController : UITextViewDelegate{
+    
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView != self.routineDescriptionTextView{
+            return
+        }
+        
+        if let description = textView.text{
+            listener?.setRoutineDescription(description: description)
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let textCount = text.count + textView.text.count
+        
+        if textCount > 50{
+            return false
+        }
+        
+        self.routineDescriptionHelpLabel.text = "\(textCount)/50"
+        
+        return true
+    }
+
 }

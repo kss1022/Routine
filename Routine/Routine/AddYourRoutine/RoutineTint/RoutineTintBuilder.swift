@@ -8,13 +8,15 @@
 import ModernRIBs
 
 protocol RoutineTintDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var routineReadModel: RoutineReadModelFacade{ get }
+    
+    var tintSubject: CurrentValuePublisher<String>{ get }
 }
 
-final class RoutineTintComponent: Component<RoutineTintDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class RoutineTintComponent: Component<RoutineTintDependency>, RoutineTintInteractorDependency {
+    var routineReadModel: RoutineReadModelFacade{ dependency.routineReadModel}
+    
+    var tintSubject: CurrentValuePublisher<String>{ dependency.tintSubject }
 }
 
 // MARK: - Builder
@@ -32,7 +34,7 @@ final class RoutineTintBuilder: Builder<RoutineTintDependency>, RoutineTintBuild
     func build(withListener listener: RoutineTintListener) -> RoutineTintRouting {
         let component = RoutineTintComponent(dependency: dependency)
         let viewController = RoutineTintViewController()
-        let interactor = RoutineTintInteractor(presenter: viewController)
+        let interactor = RoutineTintInteractor(presenter: viewController,dependency: component)
         interactor.listener = listener
         return RoutineTintRouter(interactor: interactor, viewController: viewController)
     }

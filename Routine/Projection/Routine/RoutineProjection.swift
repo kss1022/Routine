@@ -49,12 +49,18 @@ final class RoutineProjection{
             let routineList = RoutineListDto(
                 routineId: event.routineId.id,
                 routineName: event.routineName.name,
+                routineDescription: event.routineDescription.description,
+                emojiIcon: event.icon.imoji,
+                tint: event.tint.color,
                 sequence: 0
             )
             
             let routineDetail = RoutineDetailDto(
                 routineId: event.routineId.id,
                 routineName: event.routineName.name,
+                routineDescription: event.routineDescription.description,
+                emojiIcon: event.icon.imoji,
+                tint: event.tint.color,
                 updatedAt: event.occurredOn
             )
             

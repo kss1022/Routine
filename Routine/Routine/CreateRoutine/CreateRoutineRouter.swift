@@ -43,18 +43,18 @@ final class CreateRoutineRouter: ViewableRouter<CreateRoutineInteractable, Creat
         let router = addYourRoutinBuildable.build(withListener: interactor)
         let navigation = NavigationControllerable(root: router.viewControllable)
         
-
+        let standardAppearance = UINavigationBarAppearance()
+        standardAppearance.configureWithTransparentBackground()
         
-//        navigation.navigationController.navigationBar.isTranslucent = false
-//        navigation.navigationController.navigationBar.backgroundColor = .clear
-
+        let scrollAppearacne = UINavigationBarAppearance()
+        scrollAppearacne.configureWithTransparentBackground()
+        scrollAppearacne.titleTextAttributes = [.foregroundColor: UIColor.clear]
         
-        let appear = UINavigationBarAppearance()
-        appear.configureWithTransparentBackground()
-        navigation.navigationController.navigationBar.standardAppearance  = appear
-        navigation.navigationController.navigationBar.scrollEdgeAppearance = navigation.navigationController.navigationBar.standardAppearance
-
+        let nav = navigation.navigationController
+        nav.navigationBar.standardAppearance  = standardAppearance
+        nav.navigationBar.scrollEdgeAppearance = scrollAppearacne
         
+                
         navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
         viewController.present(navigation, animated: true, completion: nil)
         

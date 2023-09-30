@@ -90,6 +90,12 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     }
     
 
+    func addRoutineList(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
     @objc
     private func createRoutineBarButtonTap(){
         listener?.createRoutineDidTap()

@@ -15,22 +15,42 @@
 		8712F6572AC2E09A008A02C4 /* RoutineTintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6532AC2E09A008A02C4 /* RoutineTintViewController.swift */; };
 		8712F6582AC2E09A008A02C4 /* RoutineTintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6542AC2E09A008A02C4 /* RoutineTintBuilder.swift */; };
 		8712F6592AC2E09A008A02C4 /* RoutineTintInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6552AC2E09A008A02C4 /* RoutineTintInteractor.swift */; };
-		8712F65F2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F65B2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift */; };
-		8712F6602AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F65C2AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift */; };
-		8712F6612AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F65D2AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift */; };
-		8712F6622AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F65E2AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift */; };
-		8712F6682AC2E838008A02C4 /* RoutineTitleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6642AC2E838008A02C4 /* RoutineTitleRouter.swift */; };
-		8712F6692AC2E838008A02C4 /* RoutineTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6652AC2E838008A02C4 /* RoutineTitleViewController.swift */; };
-		8712F66A2AC2E838008A02C4 /* RoutineTitleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6662AC2E838008A02C4 /* RoutineTitleBuilder.swift */; };
-		8712F66B2AC2E838008A02C4 /* RoutineTitleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6672AC2E838008A02C4 /* RoutineTitleInteractor.swift */; };
 		8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8735AB532AC18D220092BDF3 /* RoutineDescription.swift */; };
 		8745900D2AB43E780043214E /* EventSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745900C2AB43E780043214E /* EventSerializer.swift */; };
+		8749884A2AC3FBFF004DC64A /* emojis11.0.1.json in Resources */ = {isa = PBXBuildFile; fileRef = 874988492AC3FBFF004DC64A /* emojis11.0.1.json */; };
+		8749884C2AC3FCA5004DC64A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8749884B2AC3FCA5004DC64A /* Category.swift */; };
+		8749884E2AC40361004DC64A /* tints.json in Resources */ = {isa = PBXBuildFile; fileRef = 8749884D2AC40361004DC64A /* tints.json */; };
+		874988502AC40396004DC64A /* TintDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8749884F2AC40396004DC64A /* TintDto.swift */; };
+		874988522AC403D9004DC64A /* EmojiDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874988512AC403D9004DC64A /* EmojiDto.swift */; };
+		874988582AC40AA4004DC64A /* emojis.json in Resources */ = {isa = PBXBuildFile; fileRef = 874988572AC40AA4004DC64A /* emojis.json */; };
+		874988602AC41F7D004DC64A /* RoutineListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8749885C2AC41F7D004DC64A /* RoutineListRouter.swift */; };
+		874988612AC41F7D004DC64A /* RoutineListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8749885D2AC41F7D004DC64A /* RoutineListViewController.swift */; };
+		874988622AC41F7D004DC64A /* RoutineListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8749885E2AC41F7D004DC64A /* RoutineListBuilder.swift */; };
+		874988632AC41F7D004DC64A /* RoutineListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8749885F2AC41F7D004DC64A /* RoutineListInteractor.swift */; };
+		874988662AC420D9004DC64A /* RoutineListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874988652AC420D9004DC64A /* RoutineListButton.swift */; };
+		874988682AC4226D004DC64A /* RoutineListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874988672AC4226D004DC64A /* RoutineListViewModel.swift */; };
 		874CAF2F2AB45A580053E021 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF2E2AB45A580053E021 /* Routine.swift */; };
 		874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF302AB45B4B0053E021 /* RoutineId.swift */; };
 		87504A182ABB4E7B0046EFD5 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87504A172ABB4E7B0046EFD5 /* DatabaseManager.swift */; };
 		87504A1B2ABB4EA30046EFD5 /* RoutineListDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87504A1A2ABB4EA30046EFD5 /* RoutineListDto.swift */; };
 		87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87504A1C2ABB4EAC0046EFD5 /* RoutineDetailDto.swift */; };
 		87504A232ABB702E0046EFD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87504A222ABB702E0046EFD5 /* GoogleService-Info.plist */; };
+		8751F0912AC7E776000462EC /* RoutineDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F08D2AC7E776000462EC /* RoutineDetailRouter.swift */; };
+		8751F0922AC7E776000462EC /* RoutineDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F08E2AC7E776000462EC /* RoutineDetailViewController.swift */; };
+		8751F0932AC7E776000462EC /* RoutineDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F08F2AC7E776000462EC /* RoutineDetailBuilder.swift */; };
+		8751F0942AC7E776000462EC /* RoutineDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0902AC7E776000462EC /* RoutineDetailInteractor.swift */; };
+		8751F09A2AC7F092000462EC /* RoutineEditTitleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0962AC7F092000462EC /* RoutineEditTitleRouter.swift */; };
+		8751F09B2AC7F092000462EC /* RoutineEditTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0972AC7F092000462EC /* RoutineEditTitleViewController.swift */; };
+		8751F09C2AC7F092000462EC /* RoutineEditTitleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0982AC7F092000462EC /* RoutineEditTitleBuilder.swift */; };
+		8751F09D2AC7F092000462EC /* RoutineEditTitleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0992AC7F092000462EC /* RoutineEditTitleInteractor.swift */; };
+		8751F0AB2AC7F2FC000462EC /* RoutineTitleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0A72AC7F2FC000462EC /* RoutineTitleRouter.swift */; };
+		8751F0AC2AC7F2FC000462EC /* RoutineTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0A82AC7F2FC000462EC /* RoutineTitleViewController.swift */; };
+		8751F0AD2AC7F2FC000462EC /* RoutineTitleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0A92AC7F2FC000462EC /* RoutineTitleBuilder.swift */; };
+		8751F0AE2AC7F2FC000462EC /* RoutineTitleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0AA2AC7F2FC000462EC /* RoutineTitleInteractor.swift */; };
+		8751F0B42AC7F79D000462EC /* RoutineEmojiIconRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0B02AC7F79D000462EC /* RoutineEmojiIconRouter.swift */; };
+		8751F0B52AC7F79D000462EC /* RoutineEmojiIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0B12AC7F79D000462EC /* RoutineEmojiIconViewController.swift */; };
+		8751F0B62AC7F79D000462EC /* RoutineEmojiIconBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0B22AC7F79D000462EC /* RoutineEmojiIconBuilder.swift */; };
+		8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0B32AC7F79D000462EC /* RoutineEmojiIconInteractor.swift */; };
 		8754D2AB2AC2F6EF00440385 /* BottomLiseTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */; };
 		8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5E72ABC35AE00CB35EC /* CheckList.swift */; };
 		8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5E92ABC37DD00CB35EC /* CheckListId.swift */; };
@@ -166,22 +186,42 @@
 		8712F6532AC2E09A008A02C4 /* RoutineTintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintViewController.swift; sourceTree = "<group>"; };
 		8712F6542AC2E09A008A02C4 /* RoutineTintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintBuilder.swift; sourceTree = "<group>"; };
 		8712F6552AC2E09A008A02C4 /* RoutineTintInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintInteractor.swift; sourceTree = "<group>"; };
-		8712F65B2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineImojiIconRouter.swift; sourceTree = "<group>"; };
-		8712F65C2AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineImojiIconViewController.swift; sourceTree = "<group>"; };
-		8712F65D2AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineImojiIconBuilder.swift; sourceTree = "<group>"; };
-		8712F65E2AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineImojiIconInteractor.swift; sourceTree = "<group>"; };
-		8712F6642AC2E838008A02C4 /* RoutineTitleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleRouter.swift; sourceTree = "<group>"; };
-		8712F6652AC2E838008A02C4 /* RoutineTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleViewController.swift; sourceTree = "<group>"; };
-		8712F6662AC2E838008A02C4 /* RoutineTitleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleBuilder.swift; sourceTree = "<group>"; };
-		8712F6672AC2E838008A02C4 /* RoutineTitleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleInteractor.swift; sourceTree = "<group>"; };
 		8735AB532AC18D220092BDF3 /* RoutineDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDescription.swift; sourceTree = "<group>"; };
 		8745900C2AB43E780043214E /* EventSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSerializer.swift; sourceTree = "<group>"; };
+		874988492AC3FBFF004DC64A /* emojis11.0.1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emojis11.0.1.json; sourceTree = "<group>"; };
+		8749884B2AC3FCA5004DC64A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		8749884D2AC40361004DC64A /* tints.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tints.json; sourceTree = "<group>"; };
+		8749884F2AC40396004DC64A /* TintDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintDto.swift; sourceTree = "<group>"; };
+		874988512AC403D9004DC64A /* EmojiDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiDto.swift; sourceTree = "<group>"; };
+		874988572AC40AA4004DC64A /* emojis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emojis.json; sourceTree = "<group>"; };
+		8749885C2AC41F7D004DC64A /* RoutineListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListRouter.swift; sourceTree = "<group>"; };
+		8749885D2AC41F7D004DC64A /* RoutineListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListViewController.swift; sourceTree = "<group>"; };
+		8749885E2AC41F7D004DC64A /* RoutineListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListBuilder.swift; sourceTree = "<group>"; };
+		8749885F2AC41F7D004DC64A /* RoutineListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListInteractor.swift; sourceTree = "<group>"; };
+		874988652AC420D9004DC64A /* RoutineListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListButton.swift; sourceTree = "<group>"; };
+		874988672AC4226D004DC64A /* RoutineListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListViewModel.swift; sourceTree = "<group>"; };
 		874CAF2E2AB45A580053E021 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		874CAF302AB45B4B0053E021 /* RoutineId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineId.swift; sourceTree = "<group>"; };
 		87504A172ABB4E7B0046EFD5 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		87504A1A2ABB4EA30046EFD5 /* RoutineListDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListDto.swift; sourceTree = "<group>"; };
 		87504A1C2ABB4EAC0046EFD5 /* RoutineDetailDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailDto.swift; sourceTree = "<group>"; };
 		87504A222ABB702E0046EFD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8751F08D2AC7E776000462EC /* RoutineDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailRouter.swift; sourceTree = "<group>"; };
+		8751F08E2AC7E776000462EC /* RoutineDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailViewController.swift; sourceTree = "<group>"; };
+		8751F08F2AC7E776000462EC /* RoutineDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailBuilder.swift; sourceTree = "<group>"; };
+		8751F0902AC7E776000462EC /* RoutineDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailInteractor.swift; sourceTree = "<group>"; };
+		8751F0962AC7F092000462EC /* RoutineEditTitleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditTitleRouter.swift; sourceTree = "<group>"; };
+		8751F0972AC7F092000462EC /* RoutineEditTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditTitleViewController.swift; sourceTree = "<group>"; };
+		8751F0982AC7F092000462EC /* RoutineEditTitleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditTitleBuilder.swift; sourceTree = "<group>"; };
+		8751F0992AC7F092000462EC /* RoutineEditTitleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditTitleInteractor.swift; sourceTree = "<group>"; };
+		8751F0A72AC7F2FC000462EC /* RoutineTitleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleRouter.swift; sourceTree = "<group>"; };
+		8751F0A82AC7F2FC000462EC /* RoutineTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleViewController.swift; sourceTree = "<group>"; };
+		8751F0A92AC7F2FC000462EC /* RoutineTitleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleBuilder.swift; sourceTree = "<group>"; };
+		8751F0AA2AC7F2FC000462EC /* RoutineTitleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleInteractor.swift; sourceTree = "<group>"; };
+		8751F0B02AC7F79D000462EC /* RoutineEmojiIconRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmojiIconRouter.swift; sourceTree = "<group>"; };
+		8751F0B12AC7F79D000462EC /* RoutineEmojiIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmojiIconViewController.swift; sourceTree = "<group>"; };
+		8751F0B22AC7F79D000462EC /* RoutineEmojiIconBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmojiIconBuilder.swift; sourceTree = "<group>"; };
+		8751F0B32AC7F79D000462EC /* RoutineEmojiIconInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmojiIconInteractor.swift; sourceTree = "<group>"; };
 		8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLiseTextFeild.swift; sourceTree = "<group>"; };
 		8768E5E72ABC35AE00CB35EC /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
 		8768E5E92ABC37DD00CB35EC /* CheckListId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListId.swift; sourceTree = "<group>"; };
@@ -324,8 +364,8 @@
 		8712F63C2AC2DC04008A02C4 /* AddYourRoutine */ = {
 			isa = PBXGroup;
 			children = (
-				8712F6632AC2E825008A02C4 /* RoutineTitle */,
-				8712F65A2AC2E38E008A02C4 /* RoutineImojiIcon */,
+				8751F0AF2AC7F78B000462EC /* RoutineEmojiIcon */,
+				8751F0952AC7F079000462EC /* RoutineEditTitle */,
 				8712F6512AC2E092008A02C4 /* RoutineTint */,
 				8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */,
 				8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */,
@@ -338,34 +378,44 @@
 		8712F6512AC2E092008A02C4 /* RoutineTint */ = {
 			isa = PBXGroup;
 			children = (
-				8712F6522AC2E09A008A02C4 /* RoutineTintRouter.swift */,
 				8712F6542AC2E09A008A02C4 /* RoutineTintBuilder.swift */,
+				8712F6522AC2E09A008A02C4 /* RoutineTintRouter.swift */,
 				8712F6552AC2E09A008A02C4 /* RoutineTintInteractor.swift */,
 				8712F6532AC2E09A008A02C4 /* RoutineTintViewController.swift */,
 			);
 			path = RoutineTint;
 			sourceTree = "<group>";
 		};
-		8712F65A2AC2E38E008A02C4 /* RoutineImojiIcon */ = {
+		874988482AC3FBBA004DC64A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				8712F65B2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift */,
-				8712F65D2AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift */,
-				8712F65E2AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift */,
-				8712F65C2AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift */,
+				874988572AC40AA4004DC64A /* emojis.json */,
+				8749884B2AC3FCA5004DC64A /* Category.swift */,
+				8749884D2AC40361004DC64A /* tints.json */,
+				874988492AC3FBFF004DC64A /* emojis11.0.1.json */,
 			);
-			path = RoutineImojiIcon;
+			path = Resource;
 			sourceTree = "<group>";
 		};
-		8712F6632AC2E825008A02C4 /* RoutineTitle */ = {
+		874988592AC41F63004DC64A /* RoutineList */ = {
 			isa = PBXGroup;
 			children = (
-				8712F6642AC2E838008A02C4 /* RoutineTitleRouter.swift */,
-				8712F6662AC2E838008A02C4 /* RoutineTitleBuilder.swift */,
-				8712F6672AC2E838008A02C4 /* RoutineTitleInteractor.swift */,
-				8712F6652AC2E838008A02C4 /* RoutineTitleViewController.swift */,
+				8749885E2AC41F7D004DC64A /* RoutineListBuilder.swift */,
+				8749885C2AC41F7D004DC64A /* RoutineListRouter.swift */,
+				8749885F2AC41F7D004DC64A /* RoutineListInteractor.swift */,
+				8749885D2AC41F7D004DC64A /* RoutineListViewController.swift */,
+				874988642AC420CD004DC64A /* Views */,
 			);
-			path = RoutineTitle;
+			path = RoutineList;
+			sourceTree = "<group>";
+		};
+		874988642AC420CD004DC64A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				874988672AC4226D004DC64A /* RoutineListViewModel.swift */,
+				874988652AC420D9004DC64A /* RoutineListButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		87504A192ABB4E880046EFD5 /* Dto */ = {
@@ -384,6 +434,51 @@
 				87901E9C2ABAF7B3002CA93F /* RoutineListDao.swift */,
 			);
 			path = Dao;
+			sourceTree = "<group>";
+		};
+		8751F08C2AC7E75F000462EC /* RoutineDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8751F09E2AC7F1E9000462EC /* RoutineTitle */,
+				8751F08F2AC7E776000462EC /* RoutineDetailBuilder.swift */,
+				8751F08D2AC7E776000462EC /* RoutineDetailRouter.swift */,
+				8751F0902AC7E776000462EC /* RoutineDetailInteractor.swift */,
+				8751F08E2AC7E776000462EC /* RoutineDetailViewController.swift */,
+			);
+			path = RoutineDetail;
+			sourceTree = "<group>";
+		};
+		8751F0952AC7F079000462EC /* RoutineEditTitle */ = {
+			isa = PBXGroup;
+			children = (
+				8751F0982AC7F092000462EC /* RoutineEditTitleBuilder.swift */,
+				8751F0962AC7F092000462EC /* RoutineEditTitleRouter.swift */,
+				8751F0992AC7F092000462EC /* RoutineEditTitleInteractor.swift */,
+				8751F0972AC7F092000462EC /* RoutineEditTitleViewController.swift */,
+			);
+			path = RoutineEditTitle;
+			sourceTree = "<group>";
+		};
+		8751F09E2AC7F1E9000462EC /* RoutineTitle */ = {
+			isa = PBXGroup;
+			children = (
+				8751F0A72AC7F2FC000462EC /* RoutineTitleRouter.swift */,
+				8751F0A82AC7F2FC000462EC /* RoutineTitleViewController.swift */,
+				8751F0A92AC7F2FC000462EC /* RoutineTitleBuilder.swift */,
+				8751F0AA2AC7F2FC000462EC /* RoutineTitleInteractor.swift */,
+			);
+			path = RoutineTitle;
+			sourceTree = "<group>";
+		};
+		8751F0AF2AC7F78B000462EC /* RoutineEmojiIcon */ = {
+			isa = PBXGroup;
+			children = (
+				8751F0B22AC7F79D000462EC /* RoutineEmojiIconBuilder.swift */,
+				8751F0B02AC7F79D000462EC /* RoutineEmojiIconRouter.swift */,
+				8751F0B32AC7F79D000462EC /* RoutineEmojiIconInteractor.swift */,
+				8751F0B12AC7F79D000462EC /* RoutineEmojiIconViewController.swift */,
+			);
+			path = RoutineEmojiIcon;
 			sourceTree = "<group>";
 		};
 		8768E5E62ABC35A200CB35EC /* CheckList */ = {
@@ -456,6 +551,7 @@
 				876E94DA2AB2CF8700046809 /* Timer */,
 				876E94DB2AB2CF8A00046809 /* Profile */,
 				87DFEC622AC1A98D00531EE3 /* Views */,
+				874988482AC3FBBA004DC64A /* Resource */,
 				876E94B92AB2CE3E00046809 /* Assets.xcassets */,
 				876E94BB2AB2CE3E00046809 /* LaunchScreen.storyboard */,
 				876E94BE2AB2CE3E00046809 /* Info.plist */,
@@ -491,6 +587,7 @@
 			isa = PBXGroup;
 			children = (
 				87D5AAEA2AB83BA500FE712C /* RoutineHome */,
+				8751F08C2AC7E75F000462EC /* RoutineDetail */,
 				87DFEC592AC19E1C00531EE3 /* CreateRoutine */,
 				8712F63C2AC2DC04008A02C4 /* AddYourRoutine */,
 			);
@@ -742,6 +839,7 @@
 		87D5AAEA2AB83BA500FE712C /* RoutineHome */ = {
 			isa = PBXGroup;
 			children = (
+				874988592AC41F63004DC64A /* RoutineList */,
 				876E94FF2AB2CFC100046809 /* RoutineHomeBuilder.swift */,
 				876E94FD2AB2CFC100046809 /* RoutineHomeRouter.swift */,
 				876E95002AB2CFC100046809 /* RoutineHomeInteractor.swift */,
@@ -814,6 +912,8 @@
 				87504A192ABB4E880046EFD5 /* Dto */,
 				87D5AB082AB867CE00FE712C /* RoutineProjection.swift */,
 				878EAD5E2ABB717E00593700 /* RoutineReadModel.swift */,
+				8749884F2AC40396004DC64A /* TintDto.swift */,
+				874988512AC403D9004DC64A /* EmojiDto.swift */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -939,9 +1039,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				874988582AC40AA4004DC64A /* emojis.json in Resources */,
 				876E94BD2AB2CE3E00046809 /* LaunchScreen.storyboard in Resources */,
 				876E94BA2AB2CE3E00046809 /* Assets.xcassets in Resources */,
 				87504A232ABB702E0046EFD5 /* GoogleService-Info.plist in Resources */,
+				8749884E2AC40361004DC64A /* tints.json in Resources */,
+				8749884A2AC3FBFF004DC64A /* emojis11.0.1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,16 +1098,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */,
+				8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */,
 				876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */,
 				876E95962AB2FA5B00046809 /* ValueObject.swift in Sources */,
 				87D5AADA2AB8377100FE712C /* RoutineApplicationService.swift in Sources */,
 				87D5AAF02AB83D1500FE712C /* CreateRoutine.swift in Sources */,
 				876E95572AB2D00F00046809 /* UIFont+Utils.swift in Sources */,
+				8751F09B2AC7F092000462EC /* RoutineEditTitleViewController.swift in Sources */,
 				8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */,
 				8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */,
+				8751F0AC2AC7F2FC000462EC /* RoutineTitleViewController.swift in Sources */,
 				87D5AAE72AB83A4A00FE712C /* CDSnapshotRepository.swift in Sources */,
 				8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */,
 				8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */,
+				8751F0922AC7E776000462EC /* RoutineDetailViewController.swift in Sources */,
 				876E94D32AB2CED800046809 /* AppRootViewController.swift in Sources */,
 				876E95032AB2CFC100046809 /* RoutineHomeBuilder.swift in Sources */,
 				874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */,
@@ -1014,7 +1121,7 @@
 				8712F6592AC2E09A008A02C4 /* RoutineTintInteractor.swift in Sources */,
 				876E955D2AB2D00F00046809 /* UILabel+Utils.swift in Sources */,
 				876E95122AB2CFDB00046809 /* TimerHomeViewController.swift in Sources */,
-				8712F6682AC2E838008A02C4 /* RoutineTitleRouter.swift in Sources */,
+				874988612AC41F7D004DC64A /* RoutineListViewController.swift in Sources */,
 				8745900D2AB43E780043214E /* EventSerializer.swift in Sources */,
 				876E95522AB2D00F00046809 /* PushModalPresentationController.swift in Sources */,
 				8754D2AB2AC2F6EF00440385 /* BottomLiseTextFeild.swift in Sources */,
@@ -1023,23 +1130,26 @@
 				87AF756E2AB99DD1001CF7F2 /* EventEntity+CoreDataClass.swift in Sources */,
 				876E95562AB2D00F00046809 /* UIIMageView+Utils.swift in Sources */,
 				87D5AB0C2AB8736500FE712C /* RoutineNameChanged.swift in Sources */,
+				8749884C2AC3FCA5004DC64A /* Category.swift in Sources */,
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
 				8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */,
 				87F3A3802AB3009600A2102D /* SnapshotRepository.swift in Sources */,
 				876E955B2AB2D00F00046809 /* AdaptivePresentationControllerDelegate.swift in Sources */,
 				876E954F2AB2D00F00046809 /* AttributedString+Utils.swift in Sources */,
-				8712F66B2AC2E838008A02C4 /* RoutineTitleInteractor.swift in Sources */,
 				87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */,
+				8751F0B42AC7F79D000462EC /* RoutineEmojiIconRouter.swift in Sources */,
 				876E95492AB2D00F00046809 /* URLSchemeHelper.swift in Sources */,
 				876E955C2AB2D00F00046809 /* UIImage+Utils.swift in Sources */,
 				87AF75732AB99DD1001CF7F2 /* SnapshotEntity+CoreDataProperties.swift in Sources */,
 				87DFEC642AC1A9A200531EE3 /* TouchesButton.swift in Sources */,
+				874988602AC41F7D004DC64A /* RoutineListRouter.swift in Sources */,
 				87F3A37A2AB3006500A2102D /* EventStore.swift in Sources */,
 				876E959D2AB2FBE100046809 /* CoreDataUtils.swift in Sources */,
 				876E95132AB2CFDB00046809 /* TimerHomeBuilder.swift in Sources */,
 				87D5AAE52AB83A2200FE712C /* CDAppendOnlyStore.swift in Sources */,
 				87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */,
 				876E956C2AB2D84100046809 /* RoutineLogFormatter.swift in Sources */,
+				8751F09D2AC7F092000462EC /* RoutineEditTitleInteractor.swift in Sources */,
 				874CAF2F2AB45A580053E021 /* Routine.swift in Sources */,
 				8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */,
 				87DFEC5E2AC19E2800531EE3 /* CreateRoutineRouter.swift in Sources */,
@@ -1047,14 +1157,16 @@
 				8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */,
 				876E95192AB2CFE900046809 /* ProfileHomeRouter.swift in Sources */,
 				878EAD5F2ABB717E00593700 /* RoutineReadModel.swift in Sources */,
+				874988502AC40396004DC64A /* TintDto.swift in Sources */,
+				8751F0AD2AC7F2FC000462EC /* RoutineTitleBuilder.swift in Sources */,
 				876E95532AB2D00F00046809 /* UIButton+Utils.swift in Sources */,
 				87F3A3902AB312AE00A2102D /* EventListener.swift in Sources */,
 				876E95782AB2E06200046809 /* DDCrashlyticsLogger.swift in Sources */,
 				876E950C2AB2CFD000046809 /* RecordHomeInteractor.swift in Sources */,
 				876E950A2AB2CFD000046809 /* RecordHomeViewController.swift in Sources */,
 				876E95542AB2D00F00046809 /* UIView+Utils.swift in Sources */,
+				874988522AC403D9004DC64A /* EmojiDto.swift in Sources */,
 				8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */,
-				8712F6622AC2E3A3008A02C4 /* RoutineImojiIconInteractor.swift in Sources */,
 				87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */,
 				87D5AB032AB84FEE00FE712C /* AppError.swift in Sources */,
 				876E958C2AB2F9D600046809 /* ThreadLocal.swift in Sources */,
@@ -1063,23 +1175,25 @@
 				87D5AB092AB867CE00FE712C /* RoutineProjection.swift in Sources */,
 				876E95762AB2D9B700046809 /* DDLog+Utils.swift in Sources */,
 				876E95592AB2D00F00046809 /* UIScroll+Utils.swift in Sources */,
+				8751F0912AC7E776000462EC /* RoutineDetailRouter.swift in Sources */,
+				8751F0AE2AC7F2FC000462EC /* RoutineTitleInteractor.swift in Sources */,
+				874988682AC4226D004DC64A /* RoutineListViewModel.swift in Sources */,
 				876E94AE2AB2CE3D00046809 /* AppDelegate.swift in Sources */,
 				876E95942AB2FA2300046809 /* Command.swift in Sources */,
+				8751F0B52AC7F79D000462EC /* RoutineEmojiIconViewController.swift in Sources */,
 				87D5AAFF2AB8415D00FE712C /* AppRootComponent.swift in Sources */,
 				87D5AAEE2AB83CD100FE712C /* RoutineCreated.swift in Sources */,
+				8751F0932AC7E776000462EC /* RoutineDetailBuilder.swift in Sources */,
 				876E94D52AB2CED800046809 /* AppRootInteractor.swift in Sources */,
 				87AF756F2AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift in Sources */,
 				87DFEC612AC19E2800531EE3 /* CreateRoutineInteractor.swift in Sources */,
 				876E954B2AB2D00F00046809 /* KeychainAccess.swift in Sources */,
-				8712F66A2AC2E838008A02C4 /* RoutineTitleBuilder.swift in Sources */,
 				876E95552AB2D00F00046809 /* UIColor+Utils.swift in Sources */,
 				8768E6052ABC541000CB35EC /* CDCheckListFactory.swift in Sources */,
 				8712F6502AC2DF68008A02C4 /* AddYourRoutineInteractor.swift in Sources */,
-				8712F6692AC2E838008A02C4 /* RoutineTitleViewController.swift in Sources */,
 				876E951C2AB2CFE900046809 /* ProfileHomeInteractor.swift in Sources */,
 				876E94B82AB2CE3D00046809 /* EventStream.xcdatamodeld in Sources */,
 				876E954D2AB2D00F00046809 /* Array+Utils.swift in Sources */,
-				8712F6602AC2E3A3008A02C4 /* RoutineImojiIconViewController.swift in Sources */,
 				876E95012AB2CFC100046809 /* RoutineHomeRouter.swift in Sources */,
 				8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */,
 				876E95982AB2FA6F00046809 /* Specification.swift in Sources */,
@@ -1089,21 +1203,25 @@
 				876E95042AB2CFC100046809 /* RoutineHomeInteractor.swift in Sources */,
 				876E959B2AB2FB9400046809 /* Transaction.swift in Sources */,
 				8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */,
+				8751F09A2AC7F092000462EC /* RoutineEditTitleRouter.swift in Sources */,
 				876E955A2AB2D00F00046809 /* UIViewController+Utils.swift in Sources */,
 				876E95672AB2D3F700046809 /* Combine+Utils.swift in Sources */,
+				874988622AC41F7D004DC64A /* RoutineListBuilder.swift in Sources */,
+				8751F09C2AC7F092000462EC /* RoutineEditTitleBuilder.swift in Sources */,
 				87DFEC602AC19E2800531EE3 /* CreateRoutineBuilder.swift in Sources */,
 				87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */,
 				8768E6082ABC563700CB35EC /* CheckListProjection.swift in Sources */,
 				87D5AB102AB873CF00FE712C /* ChangeRoutineName.swift in Sources */,
 				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
-				8712F65F2AC2E3A3008A02C4 /* RoutineImojiIconRouter.swift in Sources */,
 				876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */,
 				876E95142AB2CFDB00046809 /* TimerHomeInteractor.swift in Sources */,
 				8768E5FC2ABC3D2300CB35EC /* SetCount.swift in Sources */,
+				8751F0AB2AC7F2FC000462EC /* RoutineTitleRouter.swift in Sources */,
 				8712F6562AC2E09A008A02C4 /* RoutineTintRouter.swift in Sources */,
 				876E954C2AB2D00F00046809 /* PreferenceStorage.swift in Sources */,
 				8768E5EE2ABC386500CB35EC /* ImojiIcon.swift in Sources */,
 				876E94B02AB2CE3D00046809 /* SceneDelegate.swift in Sources */,
+				8751F0942AC7E776000462EC /* RoutineDetailInteractor.swift in Sources */,
 				876E951A2AB2CFE900046809 /* ProfileHomeViewController.swift in Sources */,
 				8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */,
 				876E95512AB2D00F00046809 /* String+Utils.swift in Sources */,
@@ -1113,14 +1231,16 @@
 				8768E5F02ABC388B00CB35EC /* Tint.swift in Sources */,
 				8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */,
 				876E95432AB2D00F00046809 /* RIBs+Utils.swift in Sources */,
+				874988662AC420D9004DC64A /* RoutineListButton.swift in Sources */,
 				876E954E2AB2D00F00046809 /* Formatter.swift in Sources */,
 				87DFEC5F2AC19E2800531EE3 /* CreateRoutineViewController.swift in Sources */,
 				87DFEC712AC1B43C00531EE3 /* Keyboard+Utils.swift in Sources */,
-				8712F6612AC2E3A3008A02C4 /* RoutineImojiIconBuilder.swift in Sources */,
+				874988632AC41F7D004DC64A /* RoutineListInteractor.swift in Sources */,
 				876E950B2AB2CFD000046809 /* RecordHomeBuilder.swift in Sources */,
 				876E951B2AB2CFE900046809 /* ProfileHomeBuilder.swift in Sources */,
 				876E95022AB2CFC100046809 /* RoutineHomeViewController.swift in Sources */,
 				87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */,
+				8751F0B62AC7F79D000462EC /* RoutineEmojiIconBuilder.swift in Sources */,
 				8712F6582AC2E09A008A02C4 /* RoutineTintBuilder.swift in Sources */,
 				87AF75722AB99DD1001CF7F2 /* SnapshotEntity+CoreDataClass.swift in Sources */,
 				876E954A2AB2D00F00046809 /* PropertyWrapperSample.swift in Sources */,

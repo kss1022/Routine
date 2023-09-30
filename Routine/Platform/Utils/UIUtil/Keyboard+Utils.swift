@@ -24,7 +24,7 @@ public class CombineKeyboard: NSObject, CombineKeyboardType {
     public var willShowVisibleHeight: AnyPublisher<CGFloat, Never>
     public var isHidden: AnyPublisher<Bool, Never>
 
-    private var disposeBag = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
     private let panRecognizer = UIPanGestureRecognizer()
 
     private override init() {
@@ -105,7 +105,7 @@ public class CombineKeyboard: NSObject, CombineKeyboardType {
             
         Publishers.Merge3(didPan, willChangeFrame, willHide)
             .sink(receiveValue: { frameSubject.send($0) })
-            .store(in: &disposeBag)
+            .store(in: &cancellables)
 
         // Gesture recognizer
         panRecognizer.delegate = self

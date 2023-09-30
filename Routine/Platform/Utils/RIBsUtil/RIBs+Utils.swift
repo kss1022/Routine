@@ -83,3 +83,32 @@ public extension ViewControllable {
         return top
     }
 }
+
+
+public extension ViewControllable{
+    
+        
+    func setLargeTitle(){
+        if let nav = self.uiviewController as? UINavigationController {
+            nav.navigationBar.prefersLargeTitles = true
+            nav.navigationItem.largeTitleDisplayMode = .always
+        } else if let nav = self.uiviewController.navigationController{
+            nav.navigationBar.prefersLargeTitles = true
+            nav.navigationItem.largeTitleDisplayMode = .always
+        }
+    }
+    
+    func setTransparent(){
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+                         
+        if let nav = self.uiviewController as? UINavigationController {
+            nav.navigationBar.standardAppearance  = appearance
+            nav.navigationBar.scrollEdgeAppearance = nav.navigationBar.standardAppearance
+        } else if let nav = self.uiviewController.navigationController{
+            nav.navigationBar.standardAppearance  = appearance
+            nav.navigationBar.scrollEdgeAppearance = nav.navigationBar.standardAppearance
+        }
+    }
+    
+}

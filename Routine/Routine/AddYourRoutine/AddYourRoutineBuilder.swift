@@ -8,13 +8,28 @@
 import ModernRIBs
 
 protocol AddYourRoutineDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var routineApplicationService: RoutineApplicationService{ get }
+    var routineReadModel : RoutineReadModelFacade { get }
 }
 
-final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, RoutineTitleDependency, RoutineTintDependency, RoutineImojiIconDependency {
+final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, AddYourRoutineInteractorDependency {
+        
+    var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
+    var routineReadModel : RoutineReadModelFacade{ dependency.routineReadModel }
+    
+    
+    var title: ReadOnlyCurrentValuePublisher<String>{ titleSubject}
+    let titleSubject = CurrentValuePublisher<String>("")
+    
+    var description: ReadOnlyCurrentValuePublisher<String>{ descriptionSubject }
+    let descriptionSubject = CurrentValuePublisher<String>("")
 
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var tint: ReadOnlyCurrentValuePublisher<String>{ tintSubject }
+    let tintSubject = CurrentValuePublisher<String>("")
+    
+    var emoji: ReadOnlyCurrentValuePublisher<String>{ emojiSubject }
+    let emojiSubject = CurrentValuePublisher<String>("😊")
+    
 }
 
 // MARK: - Builder
@@ -24,27 +39,27 @@ protocol AddYourRoutineBuildable: Buildable {
 }
 
 final class AddYourRoutineBuilder: Builder<AddYourRoutineDependency>, AddYourRoutineBuildable {
-
+    
     override init(dependency: AddYourRoutineDependency) {
         super.init(dependency: dependency)
     }
-
+    
     func build(withListener listener: AddYourRoutineListener) -> AddYourRoutineRouting {
         let component = AddYourRoutineComponent(dependency: dependency)
         let viewController = AddYourRoutineViewController()
-        let interactor = AddYourRoutineInteractor(presenter: viewController)
+        let interactor = AddYourRoutineInteractor(presenter: viewController,dependency: component)
         interactor.listener = listener
         
-        let routineTitleBuilder = RoutineTitleBuilder(dependency: component)
+        let routineEditTitleBuilder = RoutineEditTitleBuilder(dependency: component)
         let routineTintBuilder = RoutineTintBuilder(dependency: component)
-        let routineImojiIconBuilder = RoutineImojiIconBuilder(dependency: component)
+        let routineEmojiIconBuilder = RoutineEmojiIconBuilder(dependency: component)
         
         return AddYourRoutineRouter(
             interactor: interactor,
             viewController: viewController,
-            routineTitleBuildable: routineTitleBuilder,
+            routineEditTitleBuildable: routineEditTitleBuilder,
             routineTintBuildable: routineTintBuilder,
-            routineImojiIconBuildable: routineImojiIconBuilder
+            routineEmojiIconBuildable: routineEmojiIconBuilder
         )
     }
 }

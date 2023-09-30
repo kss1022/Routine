@@ -32,8 +32,8 @@ class DatabaseManager{
         db = try Connection(path)
         
 #if DEBUG
-        try RoutineListSQLDao.dropTable(db: db)
-        try RoutineDetailSQLDao.dropTable(db: db)        
+//        try RoutineListSQLDao.dropTable(db: db)
+//        try RoutineDetailSQLDao.dropTable(db: db)        
 #endif
         
         self.routineListDao = try RoutineListSQLDao(db: db)

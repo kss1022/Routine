@@ -18,6 +18,9 @@ class RoutineDetailSQLDao: RoutineDetailDao{
     private static let tableName = "ROUTINEDETAIL"
     private let routineId: Expression<UUID>
     private let routineName: Expression<String>
+    public let routineDescription: Expression<String>
+    public let emojiIcon: Expression<String>
+    public let tint: Expression<String>
     private let updatedAt: Expression<Date>
     
     init(db: Connection) throws{
@@ -26,6 +29,9 @@ class RoutineDetailSQLDao: RoutineDetailDao{
         table = Table(RoutineDetailSQLDao.tableName)
         routineId =  Expression<UUID>("routineId")
         routineName = Expression<String>("routineName")
+        routineDescription = Expression<String>("routineDescription")
+        emojiIcon = Expression<String>("emojiIcon")
+        tint = Expression<String>("tint")
         updatedAt = Expression<Date>("updatedAt")
         
         try setup()
@@ -37,13 +43,16 @@ class RoutineDetailSQLDao: RoutineDetailDao{
     }
     
     private func setup() throws{
-        try db.run(table.create(ifNotExists: true){ t in
-            t.column(routineId, primaryKey: true)
-            t.column(routineName)
-            t.column(updatedAt)
+        try db.run(table.create(ifNotExists: true){ table in
+            table.column(routineId, primaryKey: true)
+            table.column(routineName)
+            table.column(routineDescription)
+            table.column(emojiIcon)
+            table.column(tint)
+            table.column(updatedAt)
         })
         db.userVersion = 0
-        Log.v("Create Table (If Not Exists): \(RoutineDetailSQLDao.tableName))")
+        Log.v("Create Table (If Not Exists): \(RoutineDetailSQLDao.tableName)")
     }
     
     
@@ -51,6 +60,9 @@ class RoutineDetailSQLDao: RoutineDetailDao{
         let insert = table.insert(
             routineId <- dto.routineId,
             routineName <- dto.routineName,
+            routineDescription <- dto.routineDescription,
+            emojiIcon <- dto.emojiIcon,
+            tint <- dto.tint,
             updatedAt <- dto.updatedAt
         )
         try db.run(insert)
@@ -73,6 +85,9 @@ class RoutineDetailSQLDao: RoutineDetailDao{
             RoutineDetailDto(
                 routineId: $0[routineId],
                 routineName: $0[routineName],
+                routineDescription: $0[routineDescription],
+                emojiIcon: $0[emojiIcon],
+                tint: $0[tint],
                 updatedAt: $0[updatedAt]
             )
         }.first

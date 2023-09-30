@@ -10,12 +10,11 @@ import UIKit
 import Combine
 
 protocol AddYourRoutinePresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func nextBarButtonDidTap()
 }
 
 final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresentable, AddYourRoutineViewControllable {
+
     
     weak var listener: AddYourRoutinePresentableListener?
     
@@ -50,7 +49,6 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         super.init(nibName: nil, bundle: nil)
         
         setLayout()        
-        view.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 204/255, alpha: 1.0) // 연한 분홍
     }
     
     
@@ -59,7 +57,6 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         super.init(coder: coder)
         
         setLayout()
-        view.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 204/255, alpha: 1.0) // 연한 분홍
     }
     
     private func setLayout(){
@@ -82,8 +79,8 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: inset),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -inset),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
         
@@ -121,7 +118,7 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         vc.didMove(toParent: self)
     }
     
-    func addImojiIcon(_ view: ViewControllable) {
+    func addEmojiIcon(_ view: ViewControllable) {
         let vc = view.uiviewController
         addChild(vc)
         
@@ -131,13 +128,18 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         stackView.addArrangedSubview(view)
         vc.didMove(toParent: self)
     }
+
+    
+    func setTint(_ color: String) {
+        view.backgroundColor = UIColor(hex: color)
+    }
     
 
     
     @objc
     private func nextBarButtonTap(){
-        Log.v("Tap")
         view.endEditing(true)
+        listener?.nextBarButtonDidTap()
     }
     
 }

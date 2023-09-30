@@ -9,10 +9,13 @@ import Foundation
 
 
 
-final class RoutineReadModelFacade{
+public final class RoutineReadModelFacade{
     
     private let routineListDao: RoutineListDao
     private let routineDetailDao: RoutineDetailDao
+    
+    private(set) var emojis = [EmojiDto]()
+    private(set) var tints = [TintDto]()
     
     init() throws{
         guard let dbManager = DatabaseManager.default else {
@@ -31,4 +34,17 @@ final class RoutineReadModelFacade{
         try routineDetailDao.find(id)
     }
     
+    func fetchEmojis() async throws{
+        let path = Bundle.main.path(forResource: "emojis", ofType: "json")!
+        let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+        let emojis = try JSONDecoder().decode([EmojiDto].self, from: data)
+        self.emojis = emojis
+    }
+    
+    func fetchTints() async throws{
+        let path = Bundle.main.path(forResource: "tints", ofType: "json")!
+        let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+        let tints = try JSONDecoder().decode([TintDto].self, from: data)
+        self.tints = tints
+    }
 }

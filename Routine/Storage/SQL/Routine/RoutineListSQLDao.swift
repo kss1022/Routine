@@ -19,7 +19,11 @@ class RoutineListSQLDao: RoutineListDao{
     private static let tableName = "ROUTINELIST"
     private let routineId: Expression<UUID>
     private let routineName: Expression<String>
+    public let routineDescription: Expression<String>
+    public let emojiIcon: Expression<String>
+    public let tint: Expression<String>
     private let sequence: Expression<Int64>
+    
     
     
     init(db: Connection) throws{
@@ -28,7 +32,11 @@ class RoutineListSQLDao: RoutineListDao{
         table = Table(RoutineListSQLDao.tableName)
         routineId = Expression<UUID>("routineId")
         routineName = Expression<String>("routineName")
+        routineDescription = Expression<String>("routineDescription")
+        emojiIcon = Expression<String>("emojiIcon")
+        tint = Expression<String>("tint")
         sequence = Expression<Int64>("sequence")
+
         
         try setup()
     }
@@ -42,10 +50,13 @@ class RoutineListSQLDao: RoutineListDao{
         try db.run(table.create(ifNotExists: true){ table in
             table.column(routineId, primaryKey: true)
             table.column(routineName)
+            table.column(routineDescription)
+            table.column(emojiIcon)
+            table.column(tint)
             table.column(sequence)
         })
         db.userVersion = 0
-        Log.v("Create Table (If Not Exists): \(RoutineListSQLDao.tableName))")
+        Log.v("Create Table (If Not Exists): \(RoutineListSQLDao.tableName)")
     }
     
     
@@ -54,6 +65,9 @@ class RoutineListSQLDao: RoutineListDao{
         let insert = table.insert(
             routineId <- dto.routineId,
             routineName <- dto.routineName,
+            routineDescription <- dto.routineDescription,
+            emojiIcon <- dto.emojiIcon,
+            tint <- dto.tint,
             sequence <- dto.sequence
         )
         try db.run(insert)
@@ -76,6 +90,9 @@ class RoutineListSQLDao: RoutineListDao{
             RoutineListDto(
                 routineId: $0[routineId],
                 routineName: $0[routineName],
+                routineDescription: $0[routineDescription],
+                emojiIcon: $0[emojiIcon],
+                tint: $0[tint],
                 sequence: $0[sequence]
             )
         }.first
@@ -86,6 +103,9 @@ class RoutineListSQLDao: RoutineListDao{
             RoutineListDto(
                 routineId: $0[routineId],
                 routineName: $0[routineName],
+                routineDescription: $0[routineDescription],
+                emojiIcon: $0[emojiIcon],
+                tint: $0[tint],
                 sequence: $0[sequence]
             )
         }

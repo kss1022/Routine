@@ -12,6 +12,11 @@ import Foundation
 protocol RoutineHomeRouting: ViewableRouting {
     func attachCreateRoutine()
     func detachCreateRoutine()
+    
+    func attachRoutineDetail(routineId: UUID)
+    func detachRoutineDetail()
+    
+    func attachRoutineList()
 }
 
 protocol RoutineHomePresentable: Presentable {
@@ -28,6 +33,7 @@ protocol RoutineHomeInteractorDependency{
 }
 
 final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>, RoutineHomeInteractable, RoutineHomePresentableListener, AdaptivePresentationControllerDelegate {
+
 
     let presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
     
@@ -58,14 +64,10 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         super.didBecomeActive()
         // TODO: Implement business logic here.
         
+    
         Log.v("Home DidBecome Active💪")
-        do{
-            let list = try dependency.routineReadModel.routineList()
-            Log.v("Read SavedList: \(list)")
-        }catch{
-            Log.e("Read RoutineList Error: \(error)")
-        }
         
+        router?.attachRoutineList()
     }
     
     override func willResignActive() {
@@ -77,34 +79,18 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     
     func createRoutineDidTap() {
         router?.attachCreateRoutine()
-//        Task{
-//            do{
-//                try await dependency.routineApplicationService.when(CreateRoutine(
-//                    name: "NewRoutine",
-//                    description: "Description",
-//                    icon: "💪",
-//                    tint: "0xff000000",
-//                    createCheckLists: [
-//                        CreateCheckList(name: "NewCheckList", reps: 3, set: 3, weight: 5.0, sequence: 0)
-//                    ]
-//                ))
-//                let list = try dependency.routineReadModel.routineList()
-//                Log.v("Read SavedList: \(list)")
-//            }catch{
-//                if let error = error as? ArgumentException{
-//                    Log.e(error.msg)
-//                }else{
-//                    Log.e("UnkownError\n\(error)" )
-//                }
-//            }
-//        }
-//        
     }
     
     func presentationControllerDidDismiss() {
         router?.detachCreateRoutine()
     }
     
+    func routineListDidTapRoutineDetail(routineId: UUID) {
+        router?.attachRoutineDetail(routineId: routineId)
+    }
     
+    func routineDetailDidMoved() {
+        router?.detachRoutineDetail()
+    }
     
 }
