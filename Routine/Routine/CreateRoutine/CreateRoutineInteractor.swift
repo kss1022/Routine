@@ -23,7 +23,7 @@ protocol CreateRoutineListener: AnyObject {
 }
 
 protocol CreateRoutineInteractorDependency{
-    var routineReadModel: RoutineReadModelFacade{ get }
+    var routineRepository: RoutineRepository{ get }
 }
 
 final class CreateRoutineInteractor: PresentableInteractor<CreateRoutinePresentable>, CreateRoutineInteractable, CreateRoutinePresentableListener, AdaptivePresentationControllerDelegate {
@@ -61,14 +61,12 @@ final class CreateRoutineInteractor: PresentableInteractor<CreateRoutinePresenta
     }
     
     func addYourOwnButtonDidTap() {
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
-                try await dependency.routineReadModel.fetchTints()
-                try await dependency.routineReadModel.fetchEmojis()
-                
-                DispatchQueue.main.async { [weak self] in 
-                    self?.router?.attachAddYourRoutine()
-                }
+                try await dependency.routineRepository.fetchTints()
+                try await dependency.routineRepository.fetchEmojis()                                
+                await MainActor.run { self.router?.attachAddYourRoutine() }
             }catch{
                 Log.e("\(error)")
             }

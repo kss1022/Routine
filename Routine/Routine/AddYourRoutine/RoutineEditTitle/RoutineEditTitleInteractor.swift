@@ -15,7 +15,8 @@ protocol RoutineEditTitleRouting: ViewableRouting {
 
 protocol RoutineEditTitlePresentable: Presentable {
     var listener: RoutineEditTitlePresentableListener? { get set }
-    
+
+    func setTitle(emoji: String, routineName: String, routineDescription: String)
     func setEmoji(_ emoji: String)
 
 }
@@ -50,10 +51,11 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
     }
 
     override func didBecomeActive() {
-        super.didBecomeActive()
-        
-        
-        dependency.emoji.subscribe(on: DispatchQueue.main)
+        super.didBecomeActive()        
+        presenter.setTitle(emoji: dependency.emoji.value, routineName: dependency.titleSubject.value, routineDescription: dependency.descriptionSubject.value)
+
+        dependency.emoji
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] emoji in
                 self?.presenter.setEmoji(emoji)
             }

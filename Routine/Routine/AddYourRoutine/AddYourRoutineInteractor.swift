@@ -39,7 +39,7 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     weak var router: AddYourRoutineRouting?
     weak var listener: AddYourRoutineListener?
 
-    private var cancelablse: Set<AnyCancellable>
+    private var cancellables: Set<AnyCancellable>
     private let dependendency: AddYourRoutineInteractorDependency
     
     // in constructor.
@@ -47,7 +47,7 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         presenter: AddYourRoutinePresentable,
         dependency: AddYourRoutineInteractorDependency
     ) {
-        self.cancelablse = .init()
+        self.cancellables = .init()
         self.dependendency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
@@ -60,16 +60,20 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         router?.attachRoutineEmojiIcon()
         
         
-        dependendency.tint.subscribe(on: DispatchQueue.main)
-            .sink {  [weak self] tint in
-                self?.presenter.setTint(tint)
+        dependendency.tint
+            .receive(on: DispatchQueue.main)
+            .sink {  tint in
+                self.presenter.setTint(tint)
             }
-            .store(in: &cancelablse)
+            .store(in: &cancellables)
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        
+        
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
     }
     
     func nextBarButtonDidTap() {
@@ -94,7 +98,6 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
                     Log.e("UnkownError\n\(error)" )
                 }
             }
-            
         }
     }
 }

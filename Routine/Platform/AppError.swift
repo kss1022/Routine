@@ -17,3 +17,8 @@ class ArgumentException : Error{
     }
 }
 
+
+
+enum RepositoryError: Error{
+    case decodeError( type: String , reason: String)
+}

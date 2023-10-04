@@ -9,6 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol RoutineDetailPresentableListener: AnyObject {
+    func editButtonDidTap()
     func didMoved()
 }
 
@@ -17,6 +18,16 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
     weak var listener: RoutineDetailPresentableListener?
     
     
+    private lazy var editBarButtonItem: UIBarButtonItem = {
+        let editButton = RoutineEditButton()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        editButton.addGestureRecognizer(tap)
+        
+        let barButtonItem = UIBarButtonItem(customView: editButton)
+        return barButtonItem
+    }()
+            
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +43,7 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
         stackView.spacing = 8.0
         return stackView
     }()
-    
+            
     init(){
         super.init(nibName: nil, bundle: nil)
         
@@ -50,9 +61,11 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
     private func setLayout(){
         view.backgroundColor = .systemBackground
         
+        navigationItem.rightBarButtonItem = editBarButtonItem
+        
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
-        
+                
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -62,7 +75,7 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
             stackView.topAnchor.constraint(equalTo: stackView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
-            stackView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
         ])
         
     }
@@ -80,8 +93,19 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
         let vc = view.uiviewController
         
         addChild(vc)
-
         stackView.addArrangedSubview(vc.view)
         vc.didMove(toParent: self)
     }
+
+    func setBackgroundColor(_ tint: String) {
+        view.backgroundColor = UIColor(hex: tint)
+    }
+    
+    
+    
+    @objc
+    private func didTap(){
+        self.listener?.editButtonDidTap()
+    }
+
 }

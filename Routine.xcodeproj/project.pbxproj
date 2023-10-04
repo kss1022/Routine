@@ -15,6 +15,11 @@
 		8712F6572AC2E09A008A02C4 /* RoutineTintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6532AC2E09A008A02C4 /* RoutineTintViewController.swift */; };
 		8712F6582AC2E09A008A02C4 /* RoutineTintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6542AC2E09A008A02C4 /* RoutineTintBuilder.swift */; };
 		8712F6592AC2E09A008A02C4 /* RoutineTintInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6552AC2E09A008A02C4 /* RoutineTintInteractor.swift */; };
+		87135AE52AC93E30006B71D5 /* RoutineEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87135AE42AC93E30006B71D5 /* RoutineEditButton.swift */; };
+		87135AEB2AC9454E006B71D5 /* RoutineEditRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87135AE72AC9454E006B71D5 /* RoutineEditRouter.swift */; };
+		87135AEC2AC9454E006B71D5 /* RoutineEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87135AE82AC9454E006B71D5 /* RoutineEditViewController.swift */; };
+		87135AED2AC9454E006B71D5 /* RoutineEditBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87135AE92AC9454E006B71D5 /* RoutineEditBuilder.swift */; };
+		87135AEE2AC9454E006B71D5 /* RoutineEditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87135AEA2AC9454E006B71D5 /* RoutineEditInteractor.swift */; };
 		8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8735AB532AC18D220092BDF3 /* RoutineDescription.swift */; };
 		8745900D2AB43E780043214E /* EventSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745900C2AB43E780043214E /* EventSerializer.swift */; };
 		8749884A2AC3FBFF004DC64A /* emojis11.0.1.json in Resources */ = {isa = PBXBuildFile; fileRef = 874988492AC3FBFF004DC64A /* emojis11.0.1.json */; };
@@ -148,6 +153,9 @@
 		87AF756F2AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AF75692AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift */; };
 		87AF75722AB99DD1001CF7F2 /* SnapshotEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AF756C2AB99DD1001CF7F2 /* SnapshotEntity+CoreDataClass.swift */; };
 		87AF75732AB99DD1001CF7F2 /* SnapshotEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AF756D2AB99DD1001CF7F2 /* SnapshotEntity+CoreDataProperties.swift */; };
+		87D0CACF2ACCFE9B00FE405F /* RoutineTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CACE2ACCFE9B00FE405F /* RoutineTitleViewModel.swift */; };
+		87D0CAD52ACD0EE600FE405F /* RoutineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAD42ACD0EE600FE405F /* RoutineRepository.swift */; };
+		87D0CADF2ACD1BA900FE405F /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CADE2ACD1BA900FE405F /* DatabaseError.swift */; };
 		87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD42AB8372800FE712C /* RoutineService.swift */; };
 		87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD62AB8373400FE712C /* RoutineFactory.swift */; };
 		87D5AADA2AB8377100FE712C /* RoutineApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD92AB8377100FE712C /* RoutineApplicationService.swift */; };
@@ -186,6 +194,11 @@
 		8712F6532AC2E09A008A02C4 /* RoutineTintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintViewController.swift; sourceTree = "<group>"; };
 		8712F6542AC2E09A008A02C4 /* RoutineTintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintBuilder.swift; sourceTree = "<group>"; };
 		8712F6552AC2E09A008A02C4 /* RoutineTintInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTintInteractor.swift; sourceTree = "<group>"; };
+		87135AE42AC93E30006B71D5 /* RoutineEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditButton.swift; sourceTree = "<group>"; };
+		87135AE72AC9454E006B71D5 /* RoutineEditRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditRouter.swift; sourceTree = "<group>"; };
+		87135AE82AC9454E006B71D5 /* RoutineEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditViewController.swift; sourceTree = "<group>"; };
+		87135AE92AC9454E006B71D5 /* RoutineEditBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditBuilder.swift; sourceTree = "<group>"; };
+		87135AEA2AC9454E006B71D5 /* RoutineEditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditInteractor.swift; sourceTree = "<group>"; };
 		8735AB532AC18D220092BDF3 /* RoutineDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDescription.swift; sourceTree = "<group>"; };
 		8745900C2AB43E780043214E /* EventSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSerializer.swift; sourceTree = "<group>"; };
 		874988492AC3FBFF004DC64A /* emojis11.0.1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emojis11.0.1.json; sourceTree = "<group>"; };
@@ -312,6 +325,9 @@
 		87AF75692AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		87AF756C2AB99DD1001CF7F2 /* SnapshotEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnapshotEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		87AF756D2AB99DD1001CF7F2 /* SnapshotEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnapshotEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		87D0CACE2ACCFE9B00FE405F /* RoutineTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleViewModel.swift; sourceTree = "<group>"; };
+		87D0CAD42ACD0EE600FE405F /* RoutineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRepository.swift; sourceTree = "<group>"; };
+		87D0CADE2ACD1BA900FE405F /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		87D5AAD42AB8372800FE712C /* RoutineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineService.swift; sourceTree = "<group>"; };
 		87D5AAD62AB8373400FE712C /* RoutineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFactory.swift; sourceTree = "<group>"; };
 		87D5AAD92AB8377100FE712C /* RoutineApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineApplicationService.swift; sourceTree = "<group>"; };
@@ -386,6 +402,25 @@
 			path = RoutineTint;
 			sourceTree = "<group>";
 		};
+		87135AE32AC93E26006B71D5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87135AE42AC93E30006B71D5 /* RoutineEditButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87135AE62AC9453C006B71D5 /* RoutineEdit */ = {
+			isa = PBXGroup;
+			children = (
+				87135AE92AC9454E006B71D5 /* RoutineEditBuilder.swift */,
+				87135AE72AC9454E006B71D5 /* RoutineEditRouter.swift */,
+				87135AEA2AC9454E006B71D5 /* RoutineEditInteractor.swift */,
+				87135AE82AC9454E006B71D5 /* RoutineEditViewController.swift */,
+			);
+			path = RoutineEdit;
+			sourceTree = "<group>";
+		};
 		874988482AC3FBBA004DC64A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +479,7 @@
 				8751F08D2AC7E776000462EC /* RoutineDetailRouter.swift */,
 				8751F0902AC7E776000462EC /* RoutineDetailInteractor.swift */,
 				8751F08E2AC7E776000462EC /* RoutineDetailViewController.swift */,
+				87135AE32AC93E26006B71D5 /* Views */,
 			);
 			path = RoutineDetail;
 			sourceTree = "<group>";
@@ -462,10 +498,11 @@
 		8751F09E2AC7F1E9000462EC /* RoutineTitle */ = {
 			isa = PBXGroup;
 			children = (
-				8751F0A72AC7F2FC000462EC /* RoutineTitleRouter.swift */,
-				8751F0A82AC7F2FC000462EC /* RoutineTitleViewController.swift */,
 				8751F0A92AC7F2FC000462EC /* RoutineTitleBuilder.swift */,
+				8751F0A72AC7F2FC000462EC /* RoutineTitleRouter.swift */,
 				8751F0AA2AC7F2FC000462EC /* RoutineTitleInteractor.swift */,
+				8751F0A82AC7F2FC000462EC /* RoutineTitleViewController.swift */,
+				87D0CACD2ACCFE8700FE405F /* Views */,
 			);
 			path = RoutineTitle;
 			sourceTree = "<group>";
@@ -586,8 +623,10 @@
 		876E94D82AB2CF8000046809 /* Routine */ = {
 			isa = PBXGroup;
 			children = (
+				87D0CAD32ACD0EDC00FE405F /* RoutineRepository */,
 				87D5AAEA2AB83BA500FE712C /* RoutineHome */,
 				8751F08C2AC7E75F000462EC /* RoutineDetail */,
+				87135AE62AC9453C006B71D5 /* RoutineEdit */,
 				87DFEC592AC19E1C00531EE3 /* CreateRoutine */,
 				8712F63C2AC2DC04008A02C4 /* AddYourRoutine */,
 			);
@@ -738,6 +777,7 @@
 			isa = PBXGroup;
 			children = (
 				87504A172ABB4E7B0046EFD5 /* DatabaseManager.swift */,
+				87D0CADE2ACD1BA900FE405F /* DatabaseError.swift */,
 				876E958B2AB2F9D600046809 /* ThreadLocal.swift */,
 				87901E962ABADC3E002CA93F /* SQL */,
 				87D5AAFA2AB83EE800FE712C /* CoreData */,
@@ -760,6 +800,22 @@
 				8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */,
 			);
 			path = Factory;
+			sourceTree = "<group>";
+		};
+		87D0CACD2ACCFE8700FE405F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87D0CACE2ACCFE9B00FE405F /* RoutineTitleViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87D0CAD32ACD0EDC00FE405F /* RoutineRepository */ = {
+			isa = PBXGroup;
+			children = (
+				87D0CAD42ACD0EE600FE405F /* RoutineRepository.swift */,
+			);
+			path = RoutineRepository;
 			sourceTree = "<group>";
 		};
 		87D5AACD2AB836B200FE712C /* Application */ = {
@@ -1132,6 +1188,7 @@
 				87D5AB0C2AB8736500FE712C /* RoutineNameChanged.swift in Sources */,
 				8749884C2AC3FCA5004DC64A /* Category.swift in Sources */,
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
+				87135AEE2AC9454E006B71D5 /* RoutineEditInteractor.swift in Sources */,
 				8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */,
 				87F3A3802AB3009600A2102D /* SnapshotRepository.swift in Sources */,
 				876E955B2AB2D00F00046809 /* AdaptivePresentationControllerDelegate.swift in Sources */,
@@ -1209,6 +1266,7 @@
 				874988622AC41F7D004DC64A /* RoutineListBuilder.swift in Sources */,
 				8751F09C2AC7F092000462EC /* RoutineEditTitleBuilder.swift in Sources */,
 				87DFEC602AC19E2800531EE3 /* CreateRoutineBuilder.swift in Sources */,
+				87D0CADF2ACD1BA900FE405F /* DatabaseError.swift in Sources */,
 				87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */,
 				8768E6082ABC563700CB35EC /* CheckListProjection.swift in Sources */,
 				87D5AB102AB873CF00FE712C /* ChangeRoutineName.swift in Sources */,
@@ -1217,6 +1275,7 @@
 				876E95142AB2CFDB00046809 /* TimerHomeInteractor.swift in Sources */,
 				8768E5FC2ABC3D2300CB35EC /* SetCount.swift in Sources */,
 				8751F0AB2AC7F2FC000462EC /* RoutineTitleRouter.swift in Sources */,
+				87135AED2AC9454E006B71D5 /* RoutineEditBuilder.swift in Sources */,
 				8712F6562AC2E09A008A02C4 /* RoutineTintRouter.swift in Sources */,
 				876E954C2AB2D00F00046809 /* PreferenceStorage.swift in Sources */,
 				8768E5EE2ABC386500CB35EC /* ImojiIcon.swift in Sources */,
@@ -1232,6 +1291,7 @@
 				8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */,
 				876E95432AB2D00F00046809 /* RIBs+Utils.swift in Sources */,
 				874988662AC420D9004DC64A /* RoutineListButton.swift in Sources */,
+				87135AE52AC93E30006B71D5 /* RoutineEditButton.swift in Sources */,
 				876E954E2AB2D00F00046809 /* Formatter.swift in Sources */,
 				87DFEC5F2AC19E2800531EE3 /* CreateRoutineViewController.swift in Sources */,
 				87DFEC712AC1B43C00531EE3 /* Keyboard+Utils.swift in Sources */,
@@ -1241,9 +1301,13 @@
 				876E95022AB2CFC100046809 /* RoutineHomeViewController.swift in Sources */,
 				87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */,
 				8751F0B62AC7F79D000462EC /* RoutineEmojiIconBuilder.swift in Sources */,
+				87135AEB2AC9454E006B71D5 /* RoutineEditRouter.swift in Sources */,
 				8712F6582AC2E09A008A02C4 /* RoutineTintBuilder.swift in Sources */,
 				87AF75722AB99DD1001CF7F2 /* SnapshotEntity+CoreDataClass.swift in Sources */,
+				87D0CACF2ACCFE9B00FE405F /* RoutineTitleViewModel.swift in Sources */,
 				876E954A2AB2D00F00046809 /* PropertyWrapperSample.swift in Sources */,
+				87D0CAD52ACD0EE600FE405F /* RoutineRepository.swift in Sources */,
+				87135AEC2AC9454E006B71D5 /* RoutineEditViewController.swift in Sources */,
 				876E95902AB2FA1A00046809 /* Entity.swift in Sources */,
 				87901EA12ABAFDA9002CA93F /* RoutineDetailDao.swift in Sources */,
 				87D5AB052AB8621A00FE712C /* ApplicationService.swift in Sources */,

@@ -45,3 +45,10 @@ public final class CurrentValuePublisher<Element>: ReadOnlyCurrentValuePublisher
   }
   
 }
+
+
+extension Task {
+    func store(in set: inout Set<AnyCancellable>) {
+        set.insert(AnyCancellable(cancel))
+    }
+}

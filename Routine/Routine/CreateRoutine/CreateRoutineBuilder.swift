@@ -10,12 +10,12 @@ import Combine
 
 protocol CreateRoutineDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
-    var routineReadModel: RoutineReadModelFacade{ get }
+    var routineRepository: RoutineRepository{ get }
 }
 
-final class CreateRoutineComponent: Component<CreateRoutineDependency> ,AddYourRoutineDependency, CreateRoutineInteractorDependency{
+final class CreateRoutineComponent: Component<CreateRoutineDependency> ,AddYourRoutineDependency, CreateRoutineInteractorDependency{    
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService}
-    var routineReadModel: RoutineReadModelFacade{ dependency.routineReadModel}
+    var routineRepository: RoutineRepository{ dependency.routineRepository }
 }
 
 // MARK: - Builder

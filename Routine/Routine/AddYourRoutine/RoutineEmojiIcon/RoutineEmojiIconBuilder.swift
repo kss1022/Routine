@@ -9,12 +9,12 @@ import ModernRIBs
 
 protocol RoutineEmojiIconDependency: Dependency {
     var emojiSubject: CurrentValuePublisher<String>{ get }
-    var routineReadModel: RoutineReadModelFacade{ get }
+    var routineRepository : RoutineRepository { get }
 }
 
 final class RoutineEmojiIconComponent: Component<RoutineEmojiIconDependency>, RoutineEmojiIconInteractorDependency {
     var emojiSubject: CurrentValuePublisher<String>{ dependency.emojiSubject }
-    var routineReadModel: RoutineReadModelFacade{ dependency.routineReadModel }
+    var routineRepository : RoutineRepository { dependency.routineRepository }
 }
 
 // MARK: - Builder

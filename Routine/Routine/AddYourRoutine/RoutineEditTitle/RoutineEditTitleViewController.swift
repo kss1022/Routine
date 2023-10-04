@@ -156,6 +156,13 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         routineNameTextFeild.becomeFirstResponder()
     }
     
+    func setTitle(emoji: String, routineName: String, routineDescription: String) {
+        emojiButton.setTitle(emoji, for: .normal)
+        routineNameTextFeild.text = routineName
+        routineDescriptionTextView.text = routineDescription
+    }
+    
+    
     func setEmoji(_ emoji: String) {
         emojiButton.setTitle(emoji, for: .normal)
     }

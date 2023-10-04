@@ -5,7 +5,9 @@
 //  Created by 한현규 on 9/30/23.
 //
 
+import Foundation
 import ModernRIBs
+import Combine
 
 protocol RoutineTitleRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -13,11 +15,17 @@ protocol RoutineTitleRouting: ViewableRouting {
 
 protocol RoutineTitlePresentable: Presentable {
     var listener: RoutineTitlePresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    
+    func setRoutineTitle(_ viewModel: RoutineTitleViewModel)
 }
 
 protocol RoutineTitleListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+}
+
+
+protocol RoutineTitleInteractorDependency{
+    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ get }
 }
 
 final class RoutineTitleInteractor: PresentableInteractor<RoutineTitlePresentable>, RoutineTitleInteractable, RoutineTitlePresentableListener {
@@ -25,20 +33,37 @@ final class RoutineTitleInteractor: PresentableInteractor<RoutineTitlePresentabl
     weak var router: RoutineTitleRouting?
     weak var listener: RoutineTitleListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: RoutineTitleInteractorDependency
+    private var cancelables: Set<AnyCancellable>
+    
     // in constructor.
-    override init(presenter: RoutineTitlePresentable) {
+    init(
+        presenter: RoutineTitlePresentable,
+        dependency: RoutineTitleInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.cancelables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+        
+        
+        dependency.routineDetail
+            .receive(on: DispatchQueue.main)
+            .sink { detail in
+                if let viewModel =  detail.map(RoutineTitleViewModel.init){
+                    self.presenter.setRoutineTitle(viewModel)
+                }
+            }
+            .store(in: &cancelables)
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        cancelables.forEach { $0.cancel() }
+        cancelables.removeAll()
     }
 }

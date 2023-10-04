@@ -7,6 +7,7 @@
 
 import Foundation
 import ModernRIBs
+import Combine
 
 protocol RoutineListRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -22,47 +23,51 @@ protocol RoutineListListener: AnyObject {
 }
 
 protocol RoutineListInteractorDependency{
-    var routineReadModel: RoutineReadModelFacade{ get }
+    var routineRepository: RoutineRepository{ get }
 }
 
 final class RoutineListInteractor: PresentableInteractor<RoutineListPresentable>, RoutineListInteractable, RoutineListPresentableListener {
 
     weak var router: RoutineListRouting?
     weak var listener: RoutineListListener?
-
+    
     private let dependency: RoutineListInteractorDependency
-
+    private var cancelables: Set<AnyCancellable>
+    
     // in constructor.
     init(
         presenter: RoutineListPresentable,
         dependency: RoutineListInteractorDependency
     ) {
         self.dependency = dependency
+        self.cancelables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        
-        do{
-            let list = try dependency.routineReadModel.routineList()
-            let viewModels = list.map{ list in
-                RoutineListViewModel(list) { [weak self] in
-                    self?.listener?.routineListDidTapRoutineDetail(routineId: list.routineId)
-                } tapCheckButtonHandler: {
-                    Log.v("check Button tap \(list.routineName)")
+
+        dependency.routineRepository.routineLists
+            .receive(on: DispatchQueue.main)
+            .sink { lists in
+                let viewModels = lists.map{ list in
+                    RoutineListViewModel(list) { [weak self] in
+                        self?.listener?.routineListDidTapRoutineDetail(routineId: list.routineId)
+                    } tapCheckButtonHandler: {
+                        Log.v("check Button tap \(list.routineName)")
+                    }
                 }
+                self.presenter.setRoutineLists(viewModels: viewModels)
             }
-            presenter.setRoutineLists(viewModels: viewModels)
-        }catch{
-            Log.e("\(error)")
-        }
-        
+            .store(in: &cancelables)
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+        
+        cancelables.forEach { $0.cancel() }
+        cancelables.removeAll()
     }
 }

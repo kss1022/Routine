@@ -24,7 +24,7 @@ protocol RoutineEmojiIconListener: AnyObject {
 
 protocol RoutineEmojiIconInteractorDependency{
     var emojiSubject: CurrentValuePublisher<String>{ get }
-    var routineReadModel: RoutineReadModelFacade{ get }
+    var routineRepository: RoutineRepository { get }
 }
 
 final class RoutineEmojiIconInteractor: PresentableInteractor<RoutineEmojiIconPresentable>, RoutineEmojiIconInteractable, RoutineEmojiIconPresentableListener {
@@ -50,7 +50,7 @@ final class RoutineEmojiIconInteractor: PresentableInteractor<RoutineEmojiIconPr
     override func didBecomeActive() {
         super.didBecomeActive()
                 
-        let emojis = dependency.routineReadModel.emojis.map { $0.emoji }
+        let emojis = dependency.routineRepository.emojis.map { $0.emoji }
         
         if emojis.count == 0{
             fatalError()

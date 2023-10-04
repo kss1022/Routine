@@ -21,13 +21,13 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     
     
     private lazy var createRoutineBarButtonItem : UIBarButtonItem = {
-        let button = UIBarButtonItem(
+        let barButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "plus.circle"),
             style: .plain,
             target: self,
             action: #selector(createRoutineBarButtonTap)
         )
-        return button
+        return barButtonItem
     }()
     
     private let scrollView: UIScrollView = {

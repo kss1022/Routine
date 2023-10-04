@@ -29,7 +29,7 @@ protocol RoutineHomeListener: AnyObject {
 
 protocol RoutineHomeInteractorDependency{
     var routineApplicationService: RoutineApplicationService{ get }
-    var routineReadModel: RoutineReadModelFacade{ get }
+    var routineRepository: RoutineRepository{ get }
 }
 
 final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>, RoutineHomeInteractable, RoutineHomePresentableListener, AdaptivePresentationControllerDelegate {
@@ -76,7 +76,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     }
     
             
-    
+    // MARK: CreateRoutine
     func createRoutineDidTap() {
         router?.attachCreateRoutine()
     }
@@ -85,10 +85,23 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         router?.detachCreateRoutine()
     }
     
+    // MARK: RoutineList
     func routineListDidTapRoutineDetail(routineId: UUID) {
-        router?.attachRoutineDetail(routineId: routineId)
+        Task{ [weak self] in
+            guard let self = self else { return }
+            do{
+                try await dependency.routineRepository.fetchRoutineDetail(routineId)
+                await MainActor.run { [weak self] in
+                    self?.router?.attachRoutineDetail(routineId: routineId)
+                }
+            }catch{
+                Log.e("\(error)")
+            }
+            
+        }
     }
     
+    // MARK: RoutineDetail
     func routineDetailDidMoved() {
         router?.detachRoutineDetail()
     }

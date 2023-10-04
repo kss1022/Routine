@@ -62,7 +62,7 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
         button.setTitle("Complete", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.systemBackground, for: .normal)
         button.backgroundColor = .label
         
         let buttonInset: CGFloat = 16.0
@@ -84,14 +84,12 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         super.init(nibName: nil, bundle: nil)
         
         setLayout()
-        setMock()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        setLayout()
-        setMock()
+        setLayout()        
     }
     
     private func setLayout(){
@@ -123,11 +121,10 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         
     }
     
-    
-    private func setMock(){
-        emojiLabel.text = "🐢"
-        routineNameLabel.text = "This is RoutineName Label"
-        routineDescriptionLabel.text = "This is RoutineDescription Label"
+    func setRoutineTitle(_ viewModel: RoutineTitleViewModel) {
+        emojiLabel.text = viewModel.emojiIcon
+        routineNameLabel.text = viewModel.routineName
+        routineDescriptionLabel.text = viewModel.routineDescription
     }
     
     @objc

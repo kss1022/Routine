@@ -1,26 +1,26 @@
 //
-//  AddYourRoutineViewController.swift
+//  RoutineEditViewController.swift
 //  Routine
 //
-//  Created by 한현규 on 2023/09/26.
+//  Created by 한현규 on 10/1/23.
 //
 
 import ModernRIBs
 import UIKit
 import Combine
 
-protocol AddYourRoutinePresentableListener: AnyObject {
-    func nextBarButtonDidTap()
+protocol RoutineEditPresentableListener: AnyObject {
+    func doneButtonDidTap()
 }
 
-final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresentable, AddYourRoutineViewControllable {
-    
-    weak var listener: AddYourRoutinePresentableListener?
+final class RoutineEditViewController: UIViewController, RoutineEditPresentable, RoutineEditViewControllable {
+
+    weak var listener: RoutineEditPresentableListener?
     
     private var cancelables :  Set<AnyCancellable>
     
-    private lazy var nextBarButtonItem : UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(nextBarButtonTap))
+    private lazy var doneBarButtonItem : UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBarButtonTap))
         return barButtonItem
     }()
     
@@ -46,7 +46,7 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         cancelables = .init()
         super.init(nibName: nil, bundle: nil)
         
-        setLayout()        
+        setLayout()
     }
     
     
@@ -62,7 +62,7 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         
         view.addSubview(scrollView)
         
-        navigationItem.rightBarButtonItem = nextBarButtonItem
+        navigationItem.rightBarButtonItem = doneBarButtonItem
         scrollView.addSubview(stackView)
         
         
@@ -135,9 +135,9 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
 
     
     @objc
-    private func nextBarButtonTap(){
+    private func doneBarButtonTap(){
         view.endEditing(true)
-        listener?.nextBarButtonDidTap()
+        self.listener?.doneButtonDidTap()
     }
-    
+
 }

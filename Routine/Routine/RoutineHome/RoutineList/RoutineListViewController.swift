@@ -59,6 +59,8 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
     
     
     func setRoutineLists(viewModels: [RoutineListViewModel]) {
+        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
         viewModels.map(RoutineListButton.init)
             .forEach {
                 stackView.addArrangedSubview($0)

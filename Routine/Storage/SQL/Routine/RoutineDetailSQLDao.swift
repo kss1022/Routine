@@ -99,7 +99,7 @@ class RoutineDetailSQLDao: RoutineDetailDao{
             .limit(1)
         
         try db.run(query.update(routineName <- name))
-        Log.v("Update RoutineListDto: \(id) \(name)")
+        Log.v("Update \(RoutineDetailDao.self): \(id) \(name)")
     }
 
 }

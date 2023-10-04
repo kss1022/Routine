@@ -9,13 +9,13 @@ import ModernRIBs
 
 protocol AddYourRoutineDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
-    var routineReadModel : RoutineReadModelFacade { get }
+    var routineRepository : RoutineRepository { get }
 }
 
 final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, AddYourRoutineInteractorDependency {
         
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
-    var routineReadModel : RoutineReadModelFacade{ dependency.routineReadModel }
+    var routineRepository : RoutineRepository { dependency.routineRepository }
     
     
     var title: ReadOnlyCurrentValuePublisher<String>{ titleSubject}

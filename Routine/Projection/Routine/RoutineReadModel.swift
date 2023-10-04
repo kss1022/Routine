@@ -6,16 +6,19 @@
 //
 
 import Foundation
+import Combine
 
 
+protocol RoutineReadModelFacade{
+    func routineLists() throws -> [RoutineListDto]
+    func routineDetail(id: UUID) throws -> RoutineDetailDto?
+}
 
-public final class RoutineReadModelFacade{
+public final class RoutineReadModelFacadeImp: RoutineReadModelFacade{
     
     private let routineListDao: RoutineListDao
     private let routineDetailDao: RoutineDetailDao
-    
-    private(set) var emojis = [EmojiDto]()
-    private(set) var tints = [TintDto]()
+
     
     init() throws{
         guard let dbManager = DatabaseManager.default else {
@@ -26,7 +29,7 @@ public final class RoutineReadModelFacade{
         routineDetailDao = dbManager.routineDetailDao
     }
     
-    func routineList() throws -> [RoutineListDto]{
+    func routineLists() throws -> [RoutineListDto]{
         try routineListDao.findAll()
     }
     
@@ -34,17 +37,5 @@ public final class RoutineReadModelFacade{
         try routineDetailDao.find(id)
     }
     
-    func fetchEmojis() async throws{
-        let path = Bundle.main.path(forResource: "emojis", ofType: "json")!
-        let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-        let emojis = try JSONDecoder().decode([EmojiDto].self, from: data)
-        self.emojis = emojis
-    }
-    
-    func fetchTints() async throws{
-        let path = Bundle.main.path(forResource: "tints", ofType: "json")!
-        let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-        let tints = try JSONDecoder().decode([TintDto].self, from: data)
-        self.tints = tints
-    }
+ 
 }

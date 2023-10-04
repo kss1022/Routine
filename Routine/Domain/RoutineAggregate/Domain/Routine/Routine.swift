@@ -55,6 +55,9 @@ final class Routine: DomainEntity{
     private func when(_ event: RoutineCreated){
         self.routineId = event.routineId
         self.routineName = event.routineName
+        self.routineDescription = event.routineDescription
+        self.icon = event.icon
+        self.tint = event.tint
     }
 
     func when(_ event: RoutineNameChanged){

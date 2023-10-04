@@ -9,15 +9,16 @@ import Foundation
 import ModernRIBs
 
 
-final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependency, RecordHomeDependency, TimerHomeDependency, ProfileHomeDependency, CreateRoutineDependency{
+final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependency, RecordHomeDependency, TimerHomeDependency, ProfileHomeDependency, CreateRoutineDependency{    
 
     
     let routineApplicationService: RoutineApplicationService
+    let routineRepository: RoutineRepository
+        
+    private let routineProjection: RoutineProjection
+    private let routineReadModel: RoutineReadModelFacade
     
-    let routineProjection: RoutineProjection
-    let routineReadModel: RoutineReadModelFacade
-    
-    let checkListProjection: CheckListProjection
+    private let checkListProjection: CheckListProjection
     
     
     lazy var createRoutineBuildable: CreateRoutineBuildable = {
@@ -40,7 +41,7 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         let checkListFactory = CDCheckListFactory()
         
         routineProjection = try! RoutineProjection()
-        routineReadModel = try! RoutineReadModelFacade()
+        routineReadModel = try! RoutineReadModelFacadeImp()
         
         checkListProjection = CheckListProjection()
         
@@ -51,6 +52,8 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
             routineService: routineService,
             checkListFactory: checkListFactory
         )
+        
+        self.routineRepository = RoutineRepositoryImp(routineReadModel: routineReadModel)
          
         self.appRootViewController = viewController
         super.init(dependency: dependency)

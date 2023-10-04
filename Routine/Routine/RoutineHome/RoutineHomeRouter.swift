@@ -88,7 +88,7 @@ final class RoutineHomeRouter: ViewableRouter<RoutineHomeInteractable, RoutineHo
             return
         }
         
-        let router = routineDetailBuildable.build(withListener: interactor)
+        let router = routineDetailBuildable.build(withListener: interactor, routineId: routineId)
         viewController.pushViewController(router.viewControllable, animated: true)
         self.routineDetailRouting = router
         attachChild(router)

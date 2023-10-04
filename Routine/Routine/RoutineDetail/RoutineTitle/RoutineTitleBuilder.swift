@@ -5,16 +5,15 @@
 //  Created by 한현규 on 9/30/23.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol RoutineTitleDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ get }
 }
 
-final class RoutineTitleComponent: Component<RoutineTitleDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class RoutineTitleComponent: Component<RoutineTitleDependency>, RoutineTitleInteractorDependency {
+    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ dependency.routineDetail }
 }
 
 // MARK: - Builder
@@ -32,7 +31,7 @@ final class RoutineTitleBuilder: Builder<RoutineTitleDependency>, RoutineTitleBu
     func build(withListener listener: RoutineTitleListener) -> RoutineTitleRouting {
         let component = RoutineTitleComponent(dependency: dependency)
         let viewController = RoutineTitleViewController()
-        let interactor = RoutineTitleInteractor(presenter: viewController)
+        let interactor = RoutineTitleInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return RoutineTitleRouter(interactor: interactor, viewController: viewController)
     }

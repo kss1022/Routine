@@ -23,8 +23,8 @@ protocol RoutineTintListener: AnyObject {
 }
 
 protocol RoutineTintInteractorDependency{
+    var routineRepository : RoutineRepository { get }
     var tintSubject: CurrentValuePublisher<String>{ get }
-    var routineReadModel: RoutineReadModelFacade{ get }
 }
 
 final class RoutineTintInteractor: PresentableInteractor<RoutineTintPresentable>, RoutineTintInteractable, RoutineTintPresentableListener {
@@ -49,7 +49,7 @@ final class RoutineTintInteractor: PresentableInteractor<RoutineTintPresentable>
     override func didBecomeActive() {
         super.didBecomeActive()
             
-        let tints = dependency.routineReadModel.tints.map { $0.hex }
+        let tints = dependency.routineRepository.tints.map { $0.hex }
         
         if tints.count == 0{
             fatalError()

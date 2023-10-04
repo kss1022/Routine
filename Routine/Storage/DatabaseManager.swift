@@ -43,8 +43,3 @@ class DatabaseManager{
 }
 
 
-
-enum DatabaseError: Error{
-    case couldNotFindPathToCreateDatabasePath
-    case couldNotGetDatabaseManagerInstance
-}
