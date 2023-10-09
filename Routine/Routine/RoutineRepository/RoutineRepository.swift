@@ -51,7 +51,7 @@ final class RoutineRepositoryImp: RoutineRepository{
         let routineDetail = try routineReadModel.routineDetail(id: routineId)
         self.currentRoutineDetailSubject.send(routineDetail)
         
-        Log.v("Read Data: \(RoutineDetailDto.self)")
+        Log.v("Read Data: \(RoutineDetailDto.self) (\(routineId))")
     }
     
     func fetchEmojis() async throws{

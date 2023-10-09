@@ -11,11 +11,12 @@ import Foundation
 
 protocol RoutineHomeRouting: ViewableRouting {
     func attachCreateRoutine()
-    func detachCreateRoutine()
+    func detachCreateRoutine(dismiss: Bool)
     
     func attachRoutineDetail(routineId: UUID)
-    func detachRoutineDetail()
+    func detachRoutineDetail(dismiss: Bool)
     
+    func attachRoutineWeekCalender()
     func attachRoutineList()
 }
 
@@ -32,11 +33,13 @@ protocol RoutineHomeInteractorDependency{
     var routineRepository: RoutineRepository{ get }
 }
 
+
+
 final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>, RoutineHomeInteractable, RoutineHomePresentableListener, AdaptivePresentationControllerDelegate {
 
-
-    let presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
     
+    let presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
+    private var presentationType : RoutineHomePresentationType
     
     weak var router: RoutineHomeRouting?
     weak var listener: RoutineHomeListener?
@@ -52,8 +55,9 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     ) {
         self.dependency = dependency
         self.cancellables = .init()
-        
+                
         self.presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
+        presentationType  = .none
         super.init(presenter: presenter)
         
         presenter.listener = self
@@ -62,36 +66,53 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
-        
-    
         Log.v("Home DidBecome Active💪")
-        
+        router?.attachRoutineWeekCalender()
         router?.attachRoutineList()
     }
     
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+    }
+        
+    
+    func presentationControllerDidDismiss() {
+        switch presentationType {
+        case .none: break
+        case .create:
+            router?.detachCreateRoutine(dismiss: false)
+        case .detail:
+            router?.detachRoutineDetail(dismiss: false)
+        }
+        
+        presentationType = .none
     }
     
             
     // MARK: CreateRoutine
-    func createRoutineDidTap() {
+    func createRoutineBarButtonDidTap() {
+        presentationType = .create
         router?.attachCreateRoutine()
     }
-    
-    func presentationControllerDidDismiss() {
-        router?.detachCreateRoutine()
+
+    func createRoutineDismiss() {
+        presentationType = .none
+        router?.detachCreateRoutine(dismiss: true)
     }
+        
     
-    // MARK: RoutineList
+    // MARK: RoutineDetail
     func routineListDidTapRoutineDetail(routineId: UUID) {
+        if presentationType == .detail{
+            return
+        }
+        
         Task{ [weak self] in
             guard let self = self else { return }
             do{
                 try await dependency.routineRepository.fetchRoutineDetail(routineId)
                 await MainActor.run { [weak self] in
+                    self?.presentationType = .detail
                     self?.router?.attachRoutineDetail(routineId: routineId)
                 }
             }catch{
@@ -101,9 +122,17 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         }
     }
     
-    // MARK: RoutineDetail
-    func routineDetailDidMoved() {
-        router?.detachRoutineDetail()
+    func routineDetailDismiss() {
+        presentationType = .none
+        self.router?.detachRoutineDetail(dismiss: true)
+    }
+    
+
+    
+    private enum RoutineHomePresentationType{
+        case none
+        case create
+        case detail
     }
     
 }

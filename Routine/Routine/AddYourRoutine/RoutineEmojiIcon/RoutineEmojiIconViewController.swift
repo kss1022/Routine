@@ -16,8 +16,9 @@ final class RoutineEmojiIconViewController: UIViewController, RoutineEmojiIconPr
 
     weak var listener: RoutineEmojiIconPresentableListener?
     
-    
+    private let n : Int = 5
     private var selectedButton: UIButton?
+    
     
     private let verticalStackView: UIStackView = {
         let stackView = UIStackView()
@@ -60,8 +61,6 @@ final class RoutineEmojiIconViewController: UIViewController, RoutineEmojiIconPr
     
     
     func setEmojis(_ emojis: [String]) {
-        let n = 5
-        
         for startIndex in stride(from: 0, to: emojis.count, by: n) {
             let endIndex = min(startIndex + n, emojis.count)
             let sublist = Array(emojis[startIndex..<endIndex])
@@ -76,9 +75,15 @@ final class RoutineEmojiIconViewController: UIViewController, RoutineEmojiIconPr
             }
         }
         
-        setSelectedButton()
     }
     
+    func setEmoji(pos: Int) {
+        if let verticalView = self.verticalStackView.arrangedSubviews[safe: pos / n] as? UIStackView,
+            let button = verticalView.arrangedSubviews[safe: pos % n] as? UIButton{
+             setSelectedBorder(button)
+         }
+    }
+            
     
     private func horizontalStaciView() -> UIStackView{
         let stackView = UIStackView()
@@ -110,12 +115,6 @@ final class RoutineEmojiIconViewController: UIViewController, RoutineEmojiIconPr
         return button
     }
     
-    private func setSelectedButton(){
-        if let verticalView = self.verticalStackView.arrangedSubviews.first as? UIStackView,
-           let button = verticalView.arrangedSubviews.first as? UIButton{
-            setSelectedBorder(button)
-        }
-    }
     
     private func setSelectedBorder(_ button: UIButton){
         button.layer.borderColor = UIColor.label.cgColor

@@ -13,7 +13,7 @@ protocol RoutineEditDependency: Dependency {
     var routineRepository: RoutineRepository{ get }
 }
 
-final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineEditInteractorDependency{
+final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency,RoutineEditInteractorDependency{
     
     let routineId: UUID
     
@@ -60,11 +60,15 @@ final class RoutineEditBuilder: Builder<RoutineEditDependency>, RoutineEditBuild
         interactor.listener = listener
         
         let routineEditTitleBuilder = RoutineEditTitleBuilder(dependency: component)
+        let routineTintBuilder = RoutineTintBuilder(dependency: component)
+        let routineEmojiIconBuilder = RoutineEmojiIconBuilder(dependency: component)
         
         return RoutineEditRouter(
             interactor: interactor,
             viewController: viewController,
-            routineEditTitleBuildable: routineEditTitleBuilder
+            routineEditTitleBuildable: routineEditTitleBuilder,
+            routineTintBuildable: routineTintBuilder,
+            routineEmojiIconBuildable: routineEmojiIconBuilder
         )
     }
 }

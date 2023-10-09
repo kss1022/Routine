@@ -40,7 +40,7 @@ final class RoutineApplicationService : ApplicationService{
             let routineId = RoutineId(UUID())
             let routineName = try RoutineName(command.name)
             let routineDescription = try RoutineDescription(description: command.description)
-            let icon = ImojiIcon(command.icon)
+            let icon = Emoji(command.emoji)
             let tint = Tint(command.tint)
                                                 
             let routine = routineFactory.create(routineId: routineId, routineName: routineName, routineDescription: routineDescription, icon: icon, tint: tint)
@@ -79,6 +79,29 @@ final class RoutineApplicationService : ApplicationService{
     }
     
     
+    func when(_ command: UpdateRoutine) async throws{
+        do{
+            let routineId = RoutineId(UUID())
+            let routineName = try RoutineName(command.name)
+            let routineDescription = try RoutineDescription(description: command.description)
+            let icon = Emoji(command.emoji)
+            let tint = Tint(command.tint)
+         
+            try update(id: command.routineId) { (routine: Routine) in
+                routine.updateRoutine(
+                    routineName,
+                    routineDescription: routineDescription,
+                    emoji: icon,
+                    tint: tint
+                )
+            }
+            
+            try Transaction.commit()
+        }catch{
+            try Transaction.rollback()
+            throw error
+        }
+    }
     
     func when(_ command: ChangeRoutineName) async throws{
         do{
@@ -86,6 +109,19 @@ final class RoutineApplicationService : ApplicationService{
             
             try update(id: command.routineId) { (routine: Routine) in
                 routine.changeRoutineName(routineName)
+            }
+            
+            try Transaction.commit()
+        }catch{
+            try Transaction.rollback()
+            throw error
+        }
+    }
+    
+    func when(_ command: DeleteRoutine) async throws{
+        do{
+            try update(id: command.routineId) {  (routine: Routine) in
+                routine.deleteRoutine()
             }
             
             try Transaction.commit()

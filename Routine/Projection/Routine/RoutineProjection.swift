@@ -39,7 +39,15 @@ final class RoutineProjection{
             .store(in: &cancellables)
         
         DomainEventPublihser.share
+            .onReceive(RoutineUpdated.self, action: when)
+            .store(in: &cancellables)
+        
+        DomainEventPublihser.share
             .onReceive(RoutineNameChanged.self, action: when)
+            .store(in: &cancellables)
+        
+        DomainEventPublihser.share
+            .onReceive(RoutineDeleted.self, action: when)
             .store(in: &cancellables)
     }
     
@@ -50,7 +58,7 @@ final class RoutineProjection{
                 routineId: event.routineId.id,
                 routineName: event.routineName.name,
                 routineDescription: event.routineDescription.description,
-                emojiIcon: event.icon.imoji,
+                emojiIcon: event.emoji.emoji,
                 tint: event.tint.color,
                 sequence: 0
             )
@@ -59,13 +67,40 @@ final class RoutineProjection{
                 routineId: event.routineId.id,
                 routineName: event.routineName.name,
                 routineDescription: event.routineDescription.description,
-                emojiIcon: event.icon.imoji,
+                emojiIcon: event.emoji.emoji,
                 tint: event.tint.color,
                 updatedAt: event.occurredOn
             )
             
             try routineListDao.save(routineList)
             try routineDetailDao.save(routineDetail)
+        }catch{
+            Log.e("EventHandler Error: RoutineCreated \(error)")
+        }
+    }
+    
+    func when(event: RoutineUpdated){
+        do{
+            let routineList = RoutineListDto(
+                routineId: event.routineId.id,
+                routineName: event.routineName.name,
+                routineDescription: event.routineDescription.description,
+                emojiIcon: event.emoji.emoji,
+                tint: event.tint.color,
+                sequence: 0
+            )
+            
+            let routineDetail = RoutineDetailDto(
+                routineId: event.routineId.id,
+                routineName: event.routineName.name,
+                routineDescription: event.routineDescription.description,
+                emojiIcon: event.emoji.emoji,
+                tint: event.tint.color,
+                updatedAt: event.occurredOn
+            )
+            
+            try routineListDao.update(routineList)
+            try routineDetailDao.update(routineDetail)
         }catch{
             Log.e("EventHandler Error: RoutineCreated \(error)")
         }
@@ -81,6 +116,16 @@ final class RoutineProjection{
             try routineDetailDao.updateName(routineId, name: changedName)
         }catch{
             Log.e("EventHandler Error: RoutineNameChanged \(error)")
+        }
+    }
+    
+    func when(event: RoutineDeleted){
+        do{
+            let routineId = event.routineId.id
+            try routineListDao.delete(routineId)
+            try routineDetailDao.delete(routineId)
+        }catch{
+            Log.e("EventHandler Error: RoutineDeleted \(error)")
         }
     }
     

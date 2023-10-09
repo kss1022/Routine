@@ -1,18 +1,16 @@
 //
-//  RoutineListButton.swift
+//  RoutineListCell.swift
 //  Routine
 //
-//  Created by 한현규 on 2023/09/27.
+//  Created by 한현규 on 10/4/23.
 //
 
-import Foundation
 import UIKit
 
 
 
-final class RoutineListButton: UIControl{
+final class RoutineListCell: UICollectionViewCell{
     
-    private var tapHandler: (() -> Void)?
     private var checkButtonTapHandler: (() -> Void)?
     
     private let emojiIconLabel: UILabel = {
@@ -38,7 +36,7 @@ final class RoutineListButton: UIControl{
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.setFont(style: .headline)
-        label.textColor = .label
+        label.textColor = .black
         return label
     }()
     
@@ -46,7 +44,7 @@ final class RoutineListButton: UIControl{
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.setFont(style: .caption1)
-        label.textColor = .secondaryLabel
+        label.textColor = .systemGray
         return label
     }()
     
@@ -59,11 +57,10 @@ final class RoutineListButton: UIControl{
         return button
     }()
     
-    init(_ viewModel: RoutineListViewModel){
-        super.init(frame: .zero)
-
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
         setView()
-        bindView(viewModel)
     }
     
     required init?(coder: NSCoder) {
@@ -72,20 +69,6 @@ final class RoutineListButton: UIControl{
         setView()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        UIView.animate(withDuration: 0.3) {
-            self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        UIView.animate(withDuration: 0.3) {
-            self.transform = .identity
-        }
-    }
-
     
     private func setView(){
         addSubview(emojiIconLabel)
@@ -94,10 +77,6 @@ final class RoutineListButton: UIControl{
         
         stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(descriptionLabel)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        addGestureRecognizer(tap)
-
         
         let inset: CGFloat = 16.0
         
@@ -127,8 +106,8 @@ final class RoutineListButton: UIControl{
         self.roundCorners()
     }
 
-    private func bindView(_ viewModel: RoutineListViewModel){
-        backgroundColor = viewModel.color
+    func bindView(_ viewModel: RoutineListViewModel){
+        backgroundColor = viewModel.tint
         
         self.emojiIconLabel.text = viewModel.emojiIcon
         self.nameLabel.text = viewModel.name
@@ -137,34 +116,23 @@ final class RoutineListButton: UIControl{
         
         if viewModel.isChecked{
             self.checkButton.setImage(UIImage(systemName: "checkmark.seal.fill"), for: .normal)
-            self.checkButton.tintColor = .green
+            self.checkButton.tintColor = UIColor(hex: "#00EA96FF")
         }else{
             self.checkButton.setImage(UIImage(systemName: "circle"), for: .normal)
-            self.checkButton.tintColor = .label
+            self.checkButton.tintColor = .black
         }
 
         
-        self.tapHandler = viewModel.tapHandler
         self.checkButtonTapHandler = viewModel.tapCheckButtonHandler
-        
-        self.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         self.checkButton.addTarget(self, action: #selector(checkButtonDidTap), for: .touchUpInside)
     }
     
-    @objc
-    private func didTap(){
-        tapHandler?()
-        
-        //It is processed when it is not reduced by the navigation push effect. 
-        UIView.animate(withDuration: 0.3) {
-            self.transform = .identity
-        }
-    }
+
     
     @objc
     private func checkButtonDidTap(){
         checkButtonTapHandler?()
     }
 
-    
+
 }

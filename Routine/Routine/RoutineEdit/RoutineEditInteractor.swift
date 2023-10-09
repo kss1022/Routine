@@ -10,7 +10,9 @@ import ModernRIBs
 import Combine
 
 protocol RoutineEditRouting: ViewableRouting {
-    func attachRoutingTitle()
+    func attachRoutineTitle()
+    func attachRoutineTint()
+    func attachRoutineEmojiIcon()
 }
 
 protocol RoutineEditPresentable: Presentable {
@@ -20,6 +22,7 @@ protocol RoutineEditPresentable: Presentable {
 
 protocol RoutineEditListener: AnyObject {
     func routineEditDoneButtonDidTap()
+    func routineEditDeleteButtonDidTap()
 }
 
 protocol RoutineEditInteractorDependency{
@@ -61,7 +64,9 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     override func didBecomeActive() {
         super.didBecomeActive()
         
-        self.router?.attachRoutingTitle()
+        router?.attachRoutineTitle()
+        router?.attachRoutineTint()
+        router?.attachRoutineEmojiIcon()
         
         dependency.tint
             .receive(on: DispatchQueue.main)
@@ -79,17 +84,34 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     }
     
     func doneButtonDidTap() {
-        let changeRoutineName = ChangeRoutineName(
+        let updateRoutine = UpdateRoutine(
             routineId: dependency.routineId,
-            routineName: dependency.titleSubject.value
+            name: dependency.titleSubject.value,
+            description: dependency.descriptionSubject.value,
+            emoji: dependency.emojiSubject.value,
+            tint: dependency.tintSubject.value
         )
         
         Task{
             do{
-                try await dependency.routineApplicationService.when(changeRoutineName)
+                try await dependency.routineApplicationService.when(updateRoutine)
                 try await dependency.routineRepository.fetchRoutineLists()
                 try await dependency.routineRepository.fetchRoutineDetail(dependency.routineId)
                 await MainActor.run{ listener?.routineEditDoneButtonDidTap() }
+            }catch{
+                Log.e("\(error)")
+            }
+        }
+    }
+    
+    func deleteButtonDidTap() {
+        let deleteRoutine = DeleteRoutine(routineId: dependency.routineId)
+        
+        Task{
+            do{
+                try await dependency.routineApplicationService.when(deleteRoutine)
+                try await dependency.routineRepository.fetchRoutineLists()
+                await MainActor.run{ listener?.routineEditDeleteButtonDidTap() }
             }catch{
                 Log.e("\(error)")
             }

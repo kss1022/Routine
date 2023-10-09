@@ -10,17 +10,19 @@ import UIKit
 import Combine
 
 protocol AddYourRoutinePresentableListener: AnyObject {
-    func nextBarButtonDidTap()
+    func doneBarButtonDidTap()
 }
 
 final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresentable, AddYourRoutineViewControllable {
+    
+    
     
     weak var listener: AddYourRoutinePresentableListener?
     
     private var cancelables :  Set<AnyCancellable>
     
-    private lazy var nextBarButtonItem : UIBarButtonItem = {
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(nextBarButtonTap))
+    private lazy var doneBarButtonItem : UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBarButtonTap))
         return barButtonItem
     }()
     
@@ -62,7 +64,7 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         
         view.addSubview(scrollView)
         
-        navigationItem.rightBarButtonItem = nextBarButtonItem
+        navigationItem.rightBarButtonItem = doneBarButtonItem
         scrollView.addSubview(stackView)
         
         
@@ -127,6 +129,16 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         vc.didMove(toParent: self)
     }
 
+    func addRepeat(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)
+        
+        let view = vc.view!
+        view.roundCorners()
+        
+        stackView.addArrangedSubview(view)
+        vc.didMove(toParent: self)
+    }
     
     func setTint(_ color: String) {
         view.backgroundColor = UIColor(hex: color)
@@ -135,9 +147,9 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
 
     
     @objc
-    private func nextBarButtonTap(){
+    private func doneBarButtonTap(){
         view.endEditing(true)
-        listener?.nextBarButtonDidTap()
+        listener?.doneBarButtonDidTap()
     }
     
 }

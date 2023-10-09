@@ -47,9 +47,10 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
     
     private lazy var routineNameTextFeild: UITextField = {
         let textFeild = BottomLineTextField()
+        textFeild.setStrokeColor(strokeColor: UIColor.systemGray.cgColor)
         
         textFeild.setFont(style: .title1)
-        textFeild.textColor = .label
+        textFeild.textColor = .black
         textFeild.placeholder = "Give it a name"
         textFeild.textAlignment = .center
         textFeild.becomeFirstResponder()
@@ -61,7 +62,7 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         let label = UILabel()
         
         label.setFont(style: .caption1)
-        label.textColor = .secondaryLabel
+        label.textColor = .systemGray
         label.text = "0/50"
         label.textAlignment = .right
         
@@ -82,7 +83,7 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
     private let routineDescriptionTitleLabel: UILabel = {
         let label = UILabel()
         label.setBoldFont(style: .headline)
-        label.textColor = .label
+        label.textColor = .black
         label.text = "Description"
         return label
     }()
@@ -102,7 +103,7 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         let label = UILabel()
         
         label.setFont(style: .caption1)
-        label.textColor = .secondaryLabel
+        label.textColor = .systemGray
         label.text = "0/50"
         label.textAlignment = .right
         return label

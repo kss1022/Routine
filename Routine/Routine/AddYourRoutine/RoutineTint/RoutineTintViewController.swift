@@ -17,6 +17,7 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
     
     weak var listener: RoutineTintPresentableListener?
     
+    private let n : Int = 5
     private var selectedButton: UIButton?
 
     
@@ -61,8 +62,6 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
     }
     
     func setTints(tints: [String]) {
-        let n = 5
-        
         let tints = tints.compactMap { UIColor(hex: $0) }
         
         for startIndex in stride(from: 0, to: tints.count, by: n) {
@@ -77,8 +76,14 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
                 horizointalStackView.addArrangedSubview(view)
             }
         }
-        
-        setSelectedButton()
+    }
+    
+    
+    func setTint(pos: Int) {
+        if let verticalView = self.verticalStackView.arrangedSubviews[safe: pos / n] as? UIStackView,
+            let button = verticalView.arrangedSubviews[safe: pos % n] as? UIButton{
+             setSelectedBorder(button)
+         }
     }
     
     private func horizontalStaciView() -> UIStackView{
@@ -99,14 +104,7 @@ final class RoutineTintViewController: UIViewController, RoutineTintPresentable,
         button.addTarget(self, action: #selector(tintButtonTap), for: .touchUpInside)
         return button
     }
-    
-    private func setSelectedButton(){
-        if let verticalView = self.verticalStackView.arrangedSubviews.first as? UIStackView,
-           let button = verticalView.arrangedSubviews.first as? UIButton{
-            setSelectedBorder(button)
-        }
-    }
-    
+
     private func setSelectedBorder(_ button: UIButton){
         button.layer.borderColor = UIColor.label.cgColor
         button.layer.borderWidth = 1.0

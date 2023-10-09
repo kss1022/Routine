@@ -14,7 +14,7 @@ protocol RoutineHomeDependency: Dependency {
     var createRoutineBuildable: CreateRoutineBuildable{ get }
 }
 
-final class RoutineHomeComponent: Component<RoutineHomeDependency> , RoutineHomeInteractorDependency, RoutineDetailDependency, CreateRoutineDependency, RoutineListDependency{
+final class RoutineHomeComponent: Component<RoutineHomeDependency> , RoutineHomeInteractorDependency, RoutineDetailDependency, CreateRoutineDependency, RoutineWeekCalenderDependency, RoutineListDependency{
     
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
     var routineRepository: RoutineRepository{ dependency.routineRepository }
@@ -40,14 +40,18 @@ final class RoutineHomeBuilder: Builder<RoutineHomeDependency>, RoutineHomeBuild
         let interactor = RoutineHomeInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
+        
+        let routineWeekCalenderBuilder = RoutineWeekCalenderBuilder(dependency: component)
         let routineListBuilder = RoutineListBuilder(dependency: component)
         let routineDetailBuilder = RoutineDetailBuilder(dependency: component)
+        
                                 
         return RoutineHomeRouter(
             interactor: interactor,
             viewController: viewController, 
             routineDetailBuildable: routineDetailBuilder,
-            createRoutineBuildable: component.createRoutineBuildable,
+            createRoutineBuildable: component.createRoutineBuildable, 
+            routineWeekCalenderBuildable: routineWeekCalenderBuilder,
             routineListBuildable: routineListBuilder
         )
     }

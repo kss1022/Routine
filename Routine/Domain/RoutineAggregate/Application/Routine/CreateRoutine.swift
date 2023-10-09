@@ -9,10 +9,10 @@ import Foundation
 
 
 
-struct CreateRoutine : Command{
+struct CreateRoutine: Command{
     let name: String
     let description: String
-    let icon: String
+    let emoji: String
     let tint: String
     let createCheckLists: [CreateCheckList]
 }

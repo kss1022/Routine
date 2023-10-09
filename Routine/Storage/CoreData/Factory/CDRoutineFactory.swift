@@ -10,7 +10,7 @@ import Foundation
 
 
 final class CDRoutineFactory: RoutineFactory{
-    func create(routineId: RoutineId, routineName: RoutineName, routineDescription: RoutineDescription , icon: ImojiIcon, tint: Tint) -> Routine {
+    func create(routineId: RoutineId, routineName: RoutineName, routineDescription: RoutineDescription , icon: Emoji, tint: Tint) -> Routine {
         Routine(routineId: routineId, routineName: routineName, routineDescription: routineDescription ,icon: icon, tint: tint)
     }
 }

@@ -9,22 +9,37 @@ import UIKit
 
 
 
-struct RoutineListViewModel{
+struct RoutineListViewModel: Hashable{
+    
+    let routineId: UUID
     let name: String
     let description: String
     let emojiIcon: String
-    let color: UIColor?
+    let tint: UIColor?
     let isChecked: Bool
-    let tapHandler: () -> Void
     let tapCheckButtonHandler: () -> Void
 
-    init(_ model: RoutineListDto, _ tapHandler: @escaping () -> Void, tapCheckButtonHandler: @escaping () -> Void) {
+    init(_ model: RoutineListDto, tapCheckButtonHandler: @escaping () -> Void) {
+        self.routineId = model.routineId
         self.name = model.routineName
         self.description = model.routineDescription
         self.emojiIcon = model.emojiIcon
-        self.color = UIColor(hex: model.tint)
+        self.tint = UIColor(hex: model.tint)
         self.isChecked = Bool.random()
-        self.tapHandler = tapHandler
         self.tapCheckButtonHandler = tapCheckButtonHandler
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(routineId)
+        hasher.combine(name)
+        hasher.combine(description)
+        hasher.combine(emojiIcon)
+        hasher.combine(tint)
+        hasher.combine(isChecked)
+    }
+    
+    static func == (lhs: RoutineListViewModel, rhs: RoutineListViewModel) -> Bool {
+        lhs.routineId == rhs.routineId && lhs.name == rhs.name && lhs.description == rhs.description
+        && lhs.emojiIcon == rhs.emojiIcon && lhs.tint == rhs.tint && lhs.isChecked == rhs.isChecked
     }
 }

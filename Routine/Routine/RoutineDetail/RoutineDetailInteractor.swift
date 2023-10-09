@@ -11,7 +11,7 @@ import Combine
 
 protocol RoutineDetailRouting: ViewableRouting {
     func attachRoutineEdit(routineId: UUID)
-    func detachRoutineEdit(dissmiss: Bool)
+    func detachRoutineEdit(dismiss: Bool)
     
     func attachRoutineTitle()
 }
@@ -22,11 +22,12 @@ protocol RoutineDetailPresentable: Presentable {
 }
 
 protocol RoutineDetailListener: AnyObject {
-    func routineDetailDidMoved()
+    func routineDetailDismiss()
 }
 
 protocol RoutineDetailInteractorDependency{
     var routineId: UUID{ get }
+    var routineRepository: RoutineRepository{ get }
     var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ get }
 }
 
@@ -62,8 +63,10 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
             .receive(on: DispatchQueue.main)
             .sink { detail in
                 if detail?.routineId != self.dependency.routineId{
+                    Log.e("\(detail!.routineId)(detail.routineId) != \(self.dependency.routineId)(self.dependency.routineId)")
                     fatalError()
                 }
+                                                
                 self.presenter.setBackgroundColor(detail!.tint)
             }
             .store(in: &cancelables)
@@ -75,19 +78,31 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
         cancelables.removeAll()
     }
     
-    func didMoved() {
-        listener?.routineDetailDidMoved()
-    }
+
     
     func editButtonDidTap() {
-        router?.attachRoutineEdit(routineId: dependency.routineId)
+        Task{ [weak self] in
+            guard let self = self else { return }
+            do{
+                try await dependency.routineRepository.fetchTints()
+                try await dependency.routineRepository.fetchEmojis()
+                await MainActor.run { self.router?.attachRoutineEdit(routineId: self.dependency.routineId) }
+            }catch{
+                Log.e("\(error)")
+            }
+        }
     }
     
     func presentationControllerDidDismiss() {
-        router?.detachRoutineEdit(dissmiss: false)
+        router?.detachRoutineEdit(dismiss: false)
     }
     
     func routineEditDoneButtonDidTap() {
-        router?.detachRoutineEdit(dissmiss: true)
+        router?.detachRoutineEdit(dismiss: true)
+    }
+    
+    func routineEditDeleteButtonDidTap() {
+        router?.detachRoutineEdit(dismiss: false)
+        listener?.routineDetailDismiss()
     }
 }

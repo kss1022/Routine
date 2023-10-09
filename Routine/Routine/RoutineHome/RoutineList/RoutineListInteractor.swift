@@ -52,9 +52,7 @@ final class RoutineListInteractor: PresentableInteractor<RoutineListPresentable>
             .receive(on: DispatchQueue.main)
             .sink { lists in
                 let viewModels = lists.map{ list in
-                    RoutineListViewModel(list) { [weak self] in
-                        self?.listener?.routineListDidTapRoutineDetail(routineId: list.routineId)
-                    } tapCheckButtonHandler: {
+                    RoutineListViewModel(list) {
                         Log.v("check Button tap \(list.routineName)")
                     }
                 }
@@ -69,5 +67,9 @@ final class RoutineListInteractor: PresentableInteractor<RoutineListPresentable>
         
         cancelables.forEach { $0.cancel() }
         cancelables.removeAll()
+    }
+    
+    func routineListDidTap(_ routineId: UUID) {
+        listener?.routineListDidTapRoutineDetail(routineId: routineId)
     }
 }

@@ -16,6 +16,7 @@ protocol RoutineTintPresentable: Presentable {
     var listener: RoutineTintPresentableListener? { get set }
     
     func setTints(tints: [String])
+    func setTint(pos: Int)
 }
 
 protocol RoutineTintListener: AnyObject {
@@ -54,9 +55,12 @@ final class RoutineTintInteractor: PresentableInteractor<RoutineTintPresentable>
         if tints.count == 0{
             fatalError()
         }
-        
-        dependency.tintSubject.send(tints[0])
+                
         presenter.setTints(tints: tints)
+        
+        let currentTint = dependency.tintSubject.value
+        let pos = tints.firstIndex(of: currentTint) ?? 0
+        self.presenter.setTint(pos: pos)
     }
 
     override func willResignActive() {

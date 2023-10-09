@@ -7,6 +7,7 @@
 
 import Foundation
 import ModernRIBs
+import UIKit
 
 protocol RoutineDetailInteractable: Interactable , RoutineEditListener, RoutineTitleListener{
     var router: RoutineDetailRouting? { get set }
@@ -59,21 +60,33 @@ final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, Routi
     
         
         let router = routineEditBuildable.build(withListener: interactor, routineId: routineId)
-        let navigaion = NavigationControllerable(root: router.viewControllable)
+        let navigation = NavigationControllerable(root: router.viewControllable)
         
-        navigaion.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
-        viewController.present(navigaion, animated: true, completion: nil)
+        
+        let standardAppearance = UINavigationBarAppearance()
+        standardAppearance.configureWithTransparentBackground()
+        
+        let scrollAppearacne = UINavigationBarAppearance()
+        scrollAppearacne.configureWithTransparentBackground()
+        scrollAppearacne.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        
+        let nav = navigation.navigationController
+        nav.navigationBar.standardAppearance  = standardAppearance
+        nav.navigationBar.scrollEdgeAppearance = scrollAppearacne
+        
+        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
+        viewController.present(navigation, animated: true, completion: nil)
         
         routineEditRouting = router
         attachChild(router)
     }
     
-    func detachRoutineEdit(dissmiss: Bool) {
+    func detachRoutineEdit(dismiss: Bool) {
         guard let router = routineEditRouting else {
             return
         }
         
-        if dissmiss{
+        if dismiss{
             viewController.dismiss(completion: nil)
         }            
                 

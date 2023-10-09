@@ -16,7 +16,7 @@ final class Routine: DomainEntity{
     private(set) var routineId: RoutineId!
     private(set) var routineName: RoutineName!
     private(set) var routineDescription: RoutineDescription!
-    private(set) var icon: ImojiIcon!
+    private(set) var icon: Emoji!
     private(set) var tint: Tint!
     
 
@@ -25,7 +25,7 @@ final class Routine: DomainEntity{
         routineId: RoutineId,
         routineName: RoutineName,
         routineDescription: RoutineDescription,
-        icon: ImojiIcon,
+        icon: Emoji,
         tint: Tint
     ) {
         self.routineId = routineId
@@ -49,6 +49,15 @@ final class Routine: DomainEntity{
     override func mutate(_ event: Event){
         if let created = event as? RoutineCreated{
             when(created)
+        }else if let updated = event as? RoutineUpdated{
+            when(updated)
+        }else if let nameChanged = event as? RoutineNameChanged{
+            when(nameChanged)
+        }else if let delete = event as? RoutineDeleted{
+            //nothing to do
+            Log.e("Routine is Deleted: \(delete.routineId)")
+        }else{
+            Log.e("Event is not handling")
         }
     }
     
@@ -56,7 +65,7 @@ final class Routine: DomainEntity{
         self.routineId = event.routineId
         self.routineName = event.routineName
         self.routineDescription = event.routineDescription
-        self.icon = event.icon
+        self.icon = event.emoji
         self.tint = event.tint
     }
 
@@ -65,10 +74,33 @@ final class Routine: DomainEntity{
         self.routineName = event.routineName
     }
     
+    func when(_ event: RoutineUpdated){
+        self.routineId = event.routineId
+        self.routineName = event.routineName
+        self.routineDescription = event.routineDescription
+        self.icon = event.emoji
+        self.tint = event.tint
+    }
+    
+    func updateRoutine(_ routineName: RoutineName, routineDescription: RoutineDescription, emoji: Emoji, tint: Tint){
+        self.routineName = routineName
+        self.routineDescription = routineDescription
+        self.icon = emoji
+        self.tint = tint
+        
+        changes.append(RoutineUpdated(routineId: self.routineId, routineName: routineName, routineDescription: routineDescription, emoji: icon, tint: tint))
+    }
+    
     func changeRoutineName(_ routineName: RoutineName){
         self.routineName = routineName
         changes.append(
             RoutineNameChanged(routineId: self.routineId, routineName: routineName)
+        )
+    }
+    
+    func deleteRoutine(){
+        changes.append(
+            RoutineDeleted(routineId: self.routineId)
         )
     }
     
@@ -88,7 +120,7 @@ final class Routine: DomainEntity{
         guard let routineId = RoutineId(coder: coder),
               let routineName = RoutineName(coder: coder),
               let routineDescription = RoutineDescription(coder: coder),
-              let icon = ImojiIcon(coder: coder),
+              let icon = Emoji(coder: coder),
               let tint = Tint(coder: coder)
         else { return nil }
                     

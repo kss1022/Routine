@@ -13,6 +13,7 @@ protocol AddYourRoutineRouting: ViewableRouting {
     func attachRoutineTitle()
     func attachRoutineTint()
     func attachRoutineEmojiIcon()
+    func attachRoutineRepeat()
 }
 
 protocol AddYourRoutinePresentable: Presentable {
@@ -22,14 +23,16 @@ protocol AddYourRoutinePresentable: Presentable {
 }
 
 protocol AddYourRoutineListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func addYourRoutineDoneButtonDidTap()
 }
 
 protocol AddYourRoutineInteractorDependency{
     var routineApplicationService: RoutineApplicationService{ get }
+    var routineRepository: RoutineRepository{ get }
 
     var title: ReadOnlyCurrentValuePublisher<String>{ get }
     var description: ReadOnlyCurrentValuePublisher<String>{ get }
+    var repeatSegmentType: ReadOnlyCurrentValuePublisher<RepeatSegmentType>{ get }
     var tint: ReadOnlyCurrentValuePublisher<String>{ get }
     var emoji: ReadOnlyCurrentValuePublisher<String>{ get }
 }
@@ -40,7 +43,7 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     weak var listener: AddYourRoutineListener?
 
     private var cancellables: Set<AnyCancellable>
-    private let dependendency: AddYourRoutineInteractorDependency
+    private let dependency: AddYourRoutineInteractorDependency
     
     // in constructor.
     init(
@@ -48,7 +51,7 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         dependency: AddYourRoutineInteractorDependency
     ) {
         self.cancellables = .init()
-        self.dependendency = dependency
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -56,11 +59,11 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     override func didBecomeActive() {
         super.didBecomeActive()
         router?.attachRoutineTitle()
+        router?.attachRoutineRepeat()
         router?.attachRoutineTint()
-        router?.attachRoutineEmojiIcon()
+        router?.attachRoutineEmojiIcon()        
         
-        
-        dependendency.tint
+        dependency.tint
             .receive(on: DispatchQueue.main)
             .sink {  tint in
                 self.presenter.setTint(tint)
@@ -76,12 +79,15 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         cancellables.removeAll()
     }
     
-    func nextBarButtonDidTap() {
+    func doneBarButtonDidTap() {
+        
+        Log.v("\(dependency.repeatSegmentType.value)")
+        
         let createRoutine = CreateRoutine(
-            name: dependendency.title.value,
-            description: dependendency.description.value,
-            icon: dependendency.emoji.value,
-            tint: dependendency.tint.value,
+            name: dependency.title.value,
+            description: dependency.description.value,
+            emoji: dependency.emoji.value,
+            tint: dependency.tint.value,
             createCheckLists: []
         )
         
@@ -90,7 +96,9 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
             guard let self = self else { return
             }
             do{
-                try await self.dependendency.routineApplicationService.when(createRoutine)
+                try await self.dependency.routineApplicationService.when(createRoutine)
+                try await self.dependency.routineRepository.fetchRoutineLists()
+                await MainActor.run{ self.listener?.addYourRoutineDoneButtonDidTap() }
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.msg)

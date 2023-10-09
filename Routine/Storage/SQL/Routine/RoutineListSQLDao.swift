@@ -78,8 +78,16 @@ class RoutineListSQLDao: RoutineListDao{
         let query = table.filter(routineId == dto.routineId)
             .limit(1)
         
-        try db.run(query.update(routineName <- dto.routineName, sequence <- dto.sequence))
-        Log.v("Insert RoutineListDto: \(dto)")
+        let update = query.update(            
+            routineName <- dto.routineName,
+            routineDescription <- dto.routineDescription,
+            emojiIcon <- dto.emojiIcon,
+            tint <- dto.tint,
+            sequence <- dto.sequence
+        )
+        
+        try db.run(update)
+        Log.v("Update RoutineListDto: \(dto)")
     }
     
     func find(_ id: UUID) throws -> RoutineListDto? {
@@ -118,6 +126,15 @@ class RoutineListSQLDao: RoutineListDao{
         
         try db.run(query.update(routineName <- name))
         Log.v("Update \(RoutineListDto.self): \(id) \(name)")
+    }
+    
+    
+    func delete(_ id: UUID) throws {
+        let query = table.filter(routineId == id)
+            .limit(1)
+        
+        try db.run(query.delete())
+        Log.v("Delete \(RoutineListDto.self): \(id)")
     }
     
 }

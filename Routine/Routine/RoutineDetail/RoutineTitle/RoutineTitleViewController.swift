@@ -41,7 +41,7 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
     private let routineNameLabel: UILabel = {
         let label = UILabel()
         label.setBoldFont(style: .title1)
-        label.textColor = .label
+        label.textColor = .black
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -50,7 +50,7 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
     private let routineDescriptionLabel: UILabel = {
         let label = UILabel()
         label.setFont(style: .headline)
-        label.textColor = .secondaryLabel
+        label.textColor = .systemGray
         label.numberOfLines = 0
         label.textAlignment = .center
         return label

@@ -19,7 +19,7 @@ protocol CreateRoutinePresentable: Presentable {
 }
 
 protocol CreateRoutineListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func createRoutineDismiss()
 }
 
 protocol CreateRoutineInteractorDependency{
@@ -27,6 +27,7 @@ protocol CreateRoutineInteractorDependency{
 }
 
 final class CreateRoutineInteractor: PresentableInteractor<CreateRoutinePresentable>, CreateRoutineInteractable, CreateRoutinePresentableListener, AdaptivePresentationControllerDelegate {
+
 
             
     weak var router: CreateRoutineRouting?
@@ -60,6 +61,12 @@ final class CreateRoutineInteractor: PresentableInteractor<CreateRoutinePresenta
         // TODO: Pause any business logic.
     }
     
+    func presentationControllerDidDismiss() {
+        router?.detachAddYoutRoutine()
+    }
+    
+
+    // MARK: AddYourOwn
     func addYourOwnButtonDidTap() {
         Task{ [weak self] in
             guard let self = self else { return }
@@ -73,8 +80,9 @@ final class CreateRoutineInteractor: PresentableInteractor<CreateRoutinePresenta
         }
     }
     
-    func presentationControllerDidDismiss() {
+    func addYourRoutineDoneButtonDidTap() {
         router?.detachAddYoutRoutine()
+        listener?.createRoutineDismiss()
     }
     
     

@@ -10,13 +10,14 @@ import UIKit
 
 protocol RoutineDetailPresentableListener: AnyObject {
     func editButtonDidTap()
-    func didMoved()
 }
 
 final class RoutineDetailViewController: UIViewController, RoutineDetailPresentable, RoutineDetailViewControllable {
 
     weak var listener: RoutineDetailPresentableListener?
     
+    var panGestureRecognizer: UIPanGestureRecognizer!
+
     
     private lazy var editBarButtonItem: UIBarButtonItem = {
         let editButton = RoutineEditButton()
@@ -63,6 +64,10 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
         
         navigationItem.rightBarButtonItem = editBarButtonItem
         
+        self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanWith(gestureRecognizer:)))
+        self.panGestureRecognizer.delegate = self
+
+        
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
                 
@@ -81,12 +86,12 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
     }
 
     
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        if parent == nil{
-            listener?.didMoved()
-        }
-    }
+//    override func didMove(toParent parent: UIViewController?) {
+//        super.didMove(toParent: parent)
+//        if parent == nil{
+//            listener?.didMoved()
+//        }
+//    }
     
     
     func addTitle(_ view: ViewControllable) {
@@ -107,5 +112,64 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
     private func didTap(){
         self.listener?.editButtonDidTap()
     }
+
+}
+
+
+extension RoutineDetailViewController : UIGestureRecognizerDelegate{
+    
+    
+    @objc func didPanWith(gestureRecognizer: UIPanGestureRecognizer) {
+        switch gestureRecognizer.state {
+        case .began:
+//            self.currentViewController.scrollView.isScrollEnabled = false
+//            self.transitionController.isInteractive = true
+//            let _ = self.navigationController?.popViewController(animated: true)
+            Log.v("began")
+        case .ended:
+            Log.v("endend")
+//            if self.transitionController.isInteractive {
+//                self.currentViewController.scrollView.isScrollEnabled = true
+//                self.transitionController.isInteractive = false
+//                self.transitionController.didPanWith(gestureRecognizer: gestureRecognizer)
+//            }
+        default:
+            Log.v("default")
+//            if self.transitionController.isInteractive {
+//                self.transitionController.didPanWith(gestureRecognizer: gestureRecognizer)
+//            }
+        }
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let gestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
+            let velocity = gestureRecognizer.velocity(in: self.view)
+            
+            var velocityCheck : Bool = false
+            
+            if UIDevice.current.orientation.isLandscape {
+                velocityCheck = velocity.x < 0
+            }
+            else {
+                velocityCheck = velocity.y < 0
+            }
+            if velocityCheck {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        if otherGestureRecognizer == self.currentViewController.scrollView.panGestureRecognizer {
+//            if self.currentViewController.scrollView.contentOffset.y == 0 {
+//                return true
+//            }
+//        }
+        
+        return false
+    }
+    
 
 }

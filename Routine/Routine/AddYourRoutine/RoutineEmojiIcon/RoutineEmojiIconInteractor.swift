@@ -15,7 +15,9 @@ protocol RoutineEmojiIconRouting: ViewableRouting {
 protocol RoutineEmojiIconPresentable: Presentable {
     var listener: RoutineEmojiIconPresentableListener? { get set }
     
+    
     func setEmojis(_ emojis: [String])
+    func setEmoji(pos: Int)
 }
 
 protocol RoutineEmojiIconListener: AnyObject {
@@ -56,8 +58,11 @@ final class RoutineEmojiIconInteractor: PresentableInteractor<RoutineEmojiIconPr
             fatalError()
         }
                 
-        self.dependency.emojiSubject.send(emojis[0])
         self.presenter.setEmojis(emojis)
+        
+        let currentEmoji = dependency.emojiSubject.value
+        let pos = emojis.firstIndex(of: currentEmoji) ?? 0
+        self.presenter.setEmoji(pos: pos)
     }
 
     override func willResignActive() {

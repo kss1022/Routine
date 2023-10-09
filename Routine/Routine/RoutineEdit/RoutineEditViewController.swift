@@ -11,6 +11,7 @@ import Combine
 
 protocol RoutineEditPresentableListener: AnyObject {
     func doneButtonDidTap()
+    func deleteButtonDidTap()
 }
 
 final class RoutineEditViewController: UIViewController, RoutineEditPresentable, RoutineEditViewControllable {
@@ -22,6 +23,26 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
     private lazy var doneBarButtonItem : UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBarButtonTap))
         return barButtonItem
+    }()
+    
+    private lazy var deleteButton: UIButton = {
+        let button = TouchesButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
+        button.setTitle("Delete", for: .normal)
+        button.setTitleColor(.systemBackground, for: .normal)
+        button.backgroundColor = .label
+                                
+        button.contentEdgeInsets.top = 16.0
+        button.contentEdgeInsets.bottom = 16.0
+        button.contentEdgeInsets.left = 32.0
+        button.contentEdgeInsets.right = 32.0
+        
+        button.roundCorners(24.0)
+        button.addTarget(self, action: #selector(deleteButtonTap), for: .touchUpInside)
+        
+        return button
     }()
     
     private let scrollView: UIScrollView = {
@@ -64,7 +85,7 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
         
         navigationItem.rightBarButtonItem = doneBarButtonItem
         scrollView.addSubview(stackView)
-        
+        scrollView.addSubview(deleteButton)
         
         
         
@@ -79,7 +100,13 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            //stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            
+            deleteButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16.0),
+            deleteButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            deleteButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16.0),
+            deleteButton.heightAnchor.constraint(equalToConstant: 48.0)
         ])
         
         CombineKeyboard.shared.visibleHeight
@@ -138,6 +165,12 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
     private func doneBarButtonTap(){
         view.endEditing(true)
         self.listener?.doneButtonDidTap()
+    }
+    
+    @objc
+    private func deleteButtonTap(){
+        view.endEditing(true)
+        self.listener?.deleteButtonDidTap()
     }
 
 }

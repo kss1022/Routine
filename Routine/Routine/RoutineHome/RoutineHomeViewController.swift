@@ -10,7 +10,7 @@ import UIKit
 import CocoaLumberjackSwift
 
 protocol RoutineHomePresentableListener: AnyObject {
-    func createRoutineDidTap()    
+    func createRoutineBarButtonDidTap()    
 }
 
 final class RoutineHomeViewController: UIViewController, RoutineHomePresentable, RoutineHomeViewControllable {
@@ -33,6 +33,8 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentInsetAdjustmentBehavior = .always
+        
         return scrollView
     }()
 
@@ -65,7 +67,6 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
         
         navigationItem.rightBarButtonItems = [ createRoutineBarButtonItem]
 
-        
         tabBarItem = UITabBarItem(
             title: "Routine",
             image: UIImage(systemName: "checkmark.seal"),
@@ -89,16 +90,28 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
         ])        
     }
     
-
+    
+    func addRoutineWeekCalender(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        
+        stackView.addArrangedSubview(vc.view)        
+        vc.didMove(toParent: self)
+    }
+    
+    
     func addRoutineList(_ view: ViewControllable) {
         let vc = view.uiviewController
+                        
         stackView.addArrangedSubview(vc.view)
         vc.didMove(toParent: self)
+        
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        vc.view.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor).isActive = true
     }
     
     @objc
     private func createRoutineBarButtonTap(){
-        listener?.createRoutineDidTap()
+        listener?.createRoutineBarButtonDidTap()
     }
 }
 

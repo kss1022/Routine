@@ -14,6 +14,7 @@ class BottomLineTextField: UITextField{
     private var strokeColor : CGColor = UIColor.secondaryLabel.cgColor
     private var lineHeight : CGFloat = 1.0
    
+    private var addedLayer: CAShapeLayer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,10 +26,15 @@ class BottomLineTextField: UITextField{
         self.borderStyle = .none
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
+//    override func draw(_ rect: CGRect) {
+//        super.draw(rect)
+//
+//        setBottomLayer()
+//    }
     
+    private func setBottomLayer(){
+        addedLayer?.removeFromSuperlayer()
+        
         let shapeLayer = CAShapeLayer()
         shapeLayer.strokeColor =  strokeColor
         shapeLayer.lineWidth = lineHeight
@@ -40,7 +46,8 @@ class BottomLineTextField: UITextField{
         
         shapeLayer.path = path
         
-        layer.addSublayer(shapeLayer)
+        self.addedLayer = shapeLayer
+        layer.addSublayer(shapeLayer)        
     }
 
     
@@ -53,6 +60,11 @@ class BottomLineTextField: UITextField{
         lineHeight = height
     }
     
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setBottomLayer()
+    }
+    
     
 }
