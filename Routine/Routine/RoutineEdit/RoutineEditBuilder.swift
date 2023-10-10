@@ -15,6 +15,7 @@ protocol RoutineEditDependency: Dependency {
 
 final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, RoutineEditRepeatDependency, RoutineEditInteractorDependency{
     
+    
     let routineId: UUID
     
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
@@ -27,16 +28,10 @@ final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEdit
     lazy var descriptionSubject = CurrentValuePublisher<String>( routineRepository.currentRoutineDetail.value!.routineDescription )
     
     var repeatSegmentType: ReadOnlyCurrentValuePublisher<RepeatSegmentType>{ repeatSegmentTypeSubject }
-    let repeatSegmentTypeSubject = CurrentValuePublisher<RepeatSegmentType>(.none)
+    let repeatSegmentTypeSubject = CurrentValuePublisher<RepeatSegmentType>(.doItOnce)
     
-    var repeatDoItOnceControlValue: ReadOnlyCurrentValuePublisher<Date>{ repeatDoItOnceControlValueSubject }
-    var repeatDoItOnceControlValueSubject = CurrentValuePublisher<Date>( .init() )
-    
-    var repeatWeeklyControlValue: ReadOnlyCurrentValuePublisher<Set<Weekly>>{ repeatWeeklyControlValueSubject }
-    let repeatWeeklyControlValueSubject = CurrentValuePublisher<Set<Weekly>>(.init())
-    
-    var repeatMonthlyControlValue: ReadOnlyCurrentValuePublisher<Set<Monthly>>{ repeatMonthlyControlValueSubject }
-    let repeatMonthlyControlValueSubject = CurrentValuePublisher<Set<Monthly>>(.init())
+    var repeatData: ReadOnlyCurrentValuePublisher<RepeatData>{ repeatDataSubject }
+    let repeatDataSubject = CurrentValuePublisher<RepeatData>(.daliy)
 
     var tint: ReadOnlyCurrentValuePublisher<String>{ tintSubject }
     lazy var  tintSubject = CurrentValuePublisher<String>( routineRepository.currentRoutineDetail.value!.tint )

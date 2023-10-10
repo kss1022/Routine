@@ -58,11 +58,10 @@ final class RepeatWeeklyControl: UIControl{
         ])
         
 
-        weeklys.routineWeeklys.enumerated().forEach { (index, weekly) in
-            let button = weeklyButton()
-            
-            let rawValue = weekly.weekly.rawValue.prefix(1).map(String.init).first!
-            button.setTitle(rawValue, for: .normal)
+        
+        ["S","M","S","W","T","F","S"].enumerated().forEach { (index, weekly) in
+            let button = weeklyButton()                        
+            button.setTitle(weekly, for: .normal)
             button.tag = index
             stackView.addArrangedSubview(button)
         }

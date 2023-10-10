@@ -14,6 +14,7 @@ final class RoutineProjection{
     
     private let routineListDao: RoutineListDao
     private let routineDetailDao: RoutineDetailDao
+    private let repeatDao: RepeatDao
     
     private var cancellables: Set<AnyCancellable>
 
@@ -25,6 +26,7 @@ final class RoutineProjection{
         
         routineListDao = dbManager.routineListDao
         routineDetailDao = dbManager.routineDetailDao
+        repeatDao = dbManager.repeatDao
         
         cancellables = .init()
         
@@ -72,8 +74,15 @@ final class RoutineProjection{
                 updatedAt: event.occurredOn
             )
             
+            let `repeat` = RepeatDto(
+                routineId: event.routineId.id,
+                repeatType: RepeatTypeDto(event.repeat.repeatType),
+                repeatValue: RepeatValueDto(event.repeat.repeatValue)
+            )
+            
             try routineListDao.save(routineList)
             try routineDetailDao.save(routineDetail)
+            try repeatDao.save(`repeat`)
         }catch{
             Log.e("EventHandler Error: RoutineCreated \(error)")
         }

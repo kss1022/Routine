@@ -10,17 +10,12 @@ import ModernRIBs
 
 protocol RoutineEditRepeatDependency: Dependency {
     var repeatSegmentTypeSubject: CurrentValuePublisher<RepeatSegmentType>{ get }
-    var repeatDoItOnceControlValueSubject: CurrentValuePublisher<Date>{ get }
-    var repeatWeeklyControlValueSubject: CurrentValuePublisher<Set<Weekly>>{ get }
-    var repeatMonthlyControlValueSubject: CurrentValuePublisher<Set<Monthly>>{ get }
-    
+    var repeatDataSubject: CurrentValuePublisher<RepeatData>{ get }
 }
 
 final class RoutineEditRepeatComponent: Component<RoutineEditRepeatDependency>, RoutineEditRepeatInteractorDependency {
     var repeatSegmentTypeSubject: CurrentValuePublisher<RepeatSegmentType>{ dependency.repeatSegmentTypeSubject }
-    var repeatDoItOnceControlValueSubject: CurrentValuePublisher<Date>{ dependency.repeatDoItOnceControlValueSubject }
-    var repeatWeeklyControlValueSubject: CurrentValuePublisher<Set<Weekly>>{ dependency.repeatWeeklyControlValueSubject }
-    var repeatMonthlyControlValueSubject: CurrentValuePublisher<Set<Monthly>>{ dependency.repeatMonthlyControlValueSubject }
+    var repeatDataSubject: CurrentValuePublisher<RepeatData>{ dependency.repeatDataSubject }
 }
 
 // MARK: - Builder

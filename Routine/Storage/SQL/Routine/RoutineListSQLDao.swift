@@ -9,14 +9,14 @@ import Foundation
 import SQLite
 
 
-class RoutineListSQLDao: RoutineListDao{
+final class RoutineListSQLDao: RoutineListDao{
     
     
     private let db : Connection
     private let table: Table
     
     // MARK: Columns
-    private static let tableName = "ROUTINELIST"
+    internal static let tableName = "ROUTINELIST"
     private let routineId: Expression<UUID>
     private let routineName: Expression<String>
     public let routineDescription: Expression<String>
@@ -71,7 +71,7 @@ class RoutineListSQLDao: RoutineListDao{
             sequence <- dto.sequence
         )
         try db.run(insert)
-        Log.v("Insert RoutineListDto: \(dto)")
+        Log.v("Insert \(RoutineListDto.self): \(dto)")
     }
     
     func update(_ dto: RoutineListDto) throws{
@@ -87,7 +87,7 @@ class RoutineListSQLDao: RoutineListDao{
         )
         
         try db.run(update)
-        Log.v("Update RoutineListDto: \(dto)")
+        Log.v("Update \(RoutineListDto.self): \(dto)")
     }
     
     func find(_ id: UUID) throws -> RoutineListDto? {

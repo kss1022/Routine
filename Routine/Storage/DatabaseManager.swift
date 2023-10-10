@@ -2,6 +2,8 @@
 //  DatabaseManager.swift
 //  Routine
 //  https://github.com/stephencelis/SQLite.swift/blob/master/Documentation/Index.md#sqliteswift-documentation
+//
+//  https://www.sqlite.org/foreignkeys.html#fk_actions
 //  Created by 한현규 on 2023/09/21.
 //
 
@@ -20,6 +22,7 @@ class DatabaseManager{
     public static let `default` = try? DatabaseManager()
     public let routineListDao: RoutineListDao
     public let routineDetailDao: RoutineDetailDao
+    public let repeatDao: RepeatDao
     
     private init() throws {
         guard let directoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else{
@@ -30,14 +33,17 @@ class DatabaseManager{
         Log.d("RoutineSQLitePath \(path)")
         
         db = try Connection(path)
-        
+        db.foreignKeys = true
+
 #if DEBUG
 //        try RoutineListSQLDao.dropTable(db: db)
-//        try RoutineDetailSQLDao.dropTable(db: db)        
+//        try RoutineDetailSQLDao.dropTable(db: db)      
+//        try RepeatSQLDao.dropTable(db: db)
 #endif
         
         self.routineListDao = try RoutineListSQLDao(db: db)
         self.routineDetailDao = try RoutineDetailSQLDao(db: db)
+        self.repeatDao = try  RepeatSQLDao(db: db)
     }
     
 }

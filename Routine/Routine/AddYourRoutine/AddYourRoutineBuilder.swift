@@ -26,17 +26,10 @@ final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, Routin
     let descriptionSubject = CurrentValuePublisher<String>("")
             
     var repeatSegmentType: ReadOnlyCurrentValuePublisher<RepeatSegmentType>{ repeatSegmentTypeSubject }
-    let repeatSegmentTypeSubject = CurrentValuePublisher<RepeatSegmentType>(.none)
-    
-    var repeatDoItOnceControlValue: ReadOnlyCurrentValuePublisher<Date>{ repeatDoItOnceControlValueSubject }
-    var repeatDoItOnceControlValueSubject = CurrentValuePublisher<Date>( .init() )
-    
-    var repeatWeeklyControlValue: ReadOnlyCurrentValuePublisher<Set<Weekly>>{ repeatWeeklyControlValueSubject }
-    let repeatWeeklyControlValueSubject = CurrentValuePublisher<Set<Weekly>>(.init())
-    
-    var repeatMonthlyControlValue: ReadOnlyCurrentValuePublisher<Set<Monthly>>{ repeatMonthlyControlValueSubject }
-    let repeatMonthlyControlValueSubject = CurrentValuePublisher<Set<Monthly>>(.init())
-                
+    let repeatSegmentTypeSubject = CurrentValuePublisher<RepeatSegmentType>(.doItOnce)
+        
+    var repeatData: ReadOnlyCurrentValuePublisher<RepeatData>{ repeatDataSubject }
+    var repeatDataSubject = CurrentValuePublisher<RepeatData>( .daliy )
 
     var tint: ReadOnlyCurrentValuePublisher<String>{ tintSubject }
     let tintSubject = CurrentValuePublisher<String>("#FFCCCCFF")

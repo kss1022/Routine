@@ -46,6 +46,7 @@ final class RoutineRepositoryImp: RoutineRepository{
         
         Log.v("Read Data: \([RoutineListDto].self)")
     }
+
     
     func fetchRoutineDetail(_ routineId: UUID) async throws {
         let routineDetail = try routineReadModel.routineDetail(id: routineId)
@@ -88,13 +89,26 @@ final class RoutineRepositoryImp: RoutineRepository{
     
     
     private let routineReadModel: RoutineReadModelFacade
+    private let repeatReadModel: RepeatReadModelFacade
     
-    init(routineReadModel: RoutineReadModelFacade) {
+    init(routineReadModel: RoutineReadModelFacade, repeatReadModel: RepeatReadModelFacade) {
         self.routineReadModel = routineReadModel
+        self.repeatReadModel = repeatReadModel
+        Task{ 
+            try? await fetchRoutineLists()
+        }
         
-        Task{ try? await fetchRoutineLists() }
+        Task{
+            try? await fetchRepeatTest()
+        }
     }
 
+    
+    func fetchRepeatTest() async throws {
+        let repeats = try repeatReadModel.repeatList()
+                
+        Log.v("Read Data: \([RepeatDto].self) \n\(repeats)")
+    }
     
 }
 

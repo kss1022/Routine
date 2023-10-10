@@ -18,7 +18,10 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
     private let routineProjection: RoutineProjection
     private let routineReadModel: RoutineReadModelFacade
     
+        
     private let checkListProjection: CheckListProjection
+    
+    private let repeatReadModel: RepeatReadModelFacade
     
     
     lazy var createRoutineBuildable: CreateRoutineBuildable = {
@@ -45,6 +48,8 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         
         checkListProjection = CheckListProjection()
         
+        repeatReadModel = try! RepeatReadModelFacadeImp()
+        
         self.routineApplicationService = RoutineApplicationService(
             eventStore: eventStore,
             snapshotRepository: snapshotRepository,
@@ -52,8 +57,9 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
             routineService: routineService,
             checkListFactory: checkListFactory
         )
+                
         
-        self.routineRepository = RoutineRepositoryImp(routineReadModel: routineReadModel)
+        self.routineRepository = RoutineRepositoryImp(routineReadModel: routineReadModel, repeatReadModel: repeatReadModel)
          
         self.appRootViewController = viewController
         super.init(dependency: dependency)

@@ -9,7 +9,7 @@ import Foundation
 import SQLite
 
 
-class RoutineDetailSQLDao: RoutineDetailDao{
+final class RoutineDetailSQLDao: RoutineDetailDao{
     
     private let db: Connection
     private let table: Table
@@ -43,6 +43,8 @@ class RoutineDetailSQLDao: RoutineDetailDao{
     }
     
     private func setup() throws{
+        let listTable = Table(RoutineListSQLDao.tableName)
+        
         try db.run(table.create(ifNotExists: true){ table in
             table.column(routineId, primaryKey: true)
             table.column(routineName)
@@ -50,6 +52,7 @@ class RoutineDetailSQLDao: RoutineDetailDao{
             table.column(emojiIcon)
             table.column(tint)
             table.column(updatedAt)
+            table.foreignKey(routineId, references: listTable, routineId, delete: .cascade)
         })
         db.userVersion = 0
         Log.v("Create Table (If Not Exists): \(RoutineDetailSQLDao.tableName)")
@@ -66,7 +69,7 @@ class RoutineDetailSQLDao: RoutineDetailDao{
             updatedAt <- dto.updatedAt
         )
         try db.run(insert)
-        Log.v("Insert RoutineDetailDto: \(dto)")
+        Log.v("Insert \(RoutineDetailDao.self): \(dto)")
     }
     
     func update(_ dto: RoutineDetailDto) throws{
@@ -83,7 +86,7 @@ class RoutineDetailSQLDao: RoutineDetailDao{
         )
         
         try db.run(update)
-        Log.v("Update RoutineListDto: \(dto)")
+        Log.v("Update \(RoutineDetailDao.self): \(dto)")
     }
     
     func find(_ id: UUID) throws -> RoutineDetailDto? {

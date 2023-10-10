@@ -15,4 +15,6 @@ struct CreateRoutine: Command{
     let emoji: String
     let tint: String
     let createCheckLists: [CreateCheckList]
+    let repeatType: String
+    let repeatData: Any?
 }

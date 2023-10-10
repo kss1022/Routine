@@ -34,9 +34,8 @@ protocol RoutineEditRepeatListener: AnyObject {
 
 protocol RoutineEditRepeatInteractorDependency{
     var repeatSegmentTypeSubject: CurrentValuePublisher<RepeatSegmentType>{ get }
-    var repeatDoItOnceControlValueSubject: CurrentValuePublisher<Date>{ get }
-    var repeatWeeklyControlValueSubject: CurrentValuePublisher<Set<Weekly>>{ get }
-    var repeatMonthlyControlValueSubject: CurrentValuePublisher<Set<Monthly>>{ get }
+    var repeatDataSubject: CurrentValuePublisher<RepeatData>{ get }
+
 }
 
 final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeatPresentable>, RoutineEditRepeatInteractable, RoutineEditRepeatPresentableListener {
@@ -69,7 +68,7 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
         
     func repeatToogleTap(isOn: Bool) {
         if isOn{
-            dependency.repeatSegmentTypeSubject.send(.none)
+            dependency.repeatSegmentTypeSubject.send(.doItOnce)
             
             presenter.hideDoItOnceControl()
             presenter.showRepeatSegmentControl()
@@ -99,22 +98,23 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
     }
 
     
-    func repeatDoItOnceControlTap(selected: Date) {        
-        dependency.repeatDoItOnceControlValueSubject.send(selected)
+    func repeatDoItOnceControlTap(selected: Date) {       
+        
+        dependency.repeatDataSubject.send(.doitOnce(date: selected))
     }
     
     func repeatWeeklyControlTap(weekly: Set<Weekly>) {        
-        dependency.repeatWeeklyControlValueSubject.send(weekly)
+        dependency.repeatDataSubject.send(.weekly(weekly: weekly))
     }
     
     func repeatMonthlyControlTap(monthly: Set<Monthly>) {
-        dependency.repeatWeeklyControlValueSubject.send(.init())
+        dependency.repeatDataSubject.send(.monhtly(monthly: monthly))
     }
     
     
     private func hideSegmentTypeView(){
         switch dependency.repeatSegmentTypeSubject.value{
-        case .none: break //nothing to do
+        case .doItOnce: break //nothing to do
         case .daliy: break // nothing to do
         case .weekliy: presenter.hideWeeklyControl()
         case .monthly: presenter.hideMonthlyConrol()

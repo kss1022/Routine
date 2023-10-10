@@ -16,6 +16,7 @@ final class Routine: DomainEntity{
     private(set) var routineId: RoutineId!
     private(set) var routineName: RoutineName!
     private(set) var routineDescription: RoutineDescription!
+    private(set) var `repeat`: Repeat!
     private(set) var icon: Emoji!
     private(set) var tint: Tint!
     
@@ -25,19 +26,21 @@ final class Routine: DomainEntity{
         routineId: RoutineId,
         routineName: RoutineName,
         routineDescription: RoutineDescription,
+        repeat: Repeat,
         icon: Emoji,
         tint: Tint
     ) {
         self.routineId = routineId
         self.routineName = routineName
         self.routineDescription = routineDescription
+        self.repeat = `repeat`
         self.icon = icon
         self.tint = tint
         super.init()
 
         
         changes.append(
-            RoutineCreated(routineId: routineId, routineName: routineName, routineDescription: routineDescription, icon: icon, tint: tint)
+            RoutineCreated(routineId: routineId, routineName: routineName, routineDescription: routineDescription, repeat: `repeat`, icon: icon, tint: tint)
         )
     }
    
@@ -65,6 +68,7 @@ final class Routine: DomainEntity{
         self.routineId = event.routineId
         self.routineName = event.routineName
         self.routineDescription = event.routineDescription
+        self.`repeat` = event.repeat
         self.icon = event.emoji
         self.tint = event.tint
     }
@@ -111,6 +115,7 @@ final class Routine: DomainEntity{
         routineId.encode(with: coder)
         routineName.encode(with: coder)
         routineDescription.encode(with: coder)
+        `repeat`.encode(with: coder)
         icon.encode(with: coder)
         tint.encode(with: coder)
         super.encode(with: coder)
@@ -120,6 +125,7 @@ final class Routine: DomainEntity{
         guard let routineId = RoutineId(coder: coder),
               let routineName = RoutineName(coder: coder),
               let routineDescription = RoutineDescription(coder: coder),
+              let routineRepeat = Repeat(coder: coder),
               let icon = Emoji(coder: coder),
               let tint = Tint(coder: coder)
         else { return nil }
@@ -127,6 +133,7 @@ final class Routine: DomainEntity{
         self.routineId =  routineId
         self.routineName = routineName
         self.routineDescription = routineDescription
+        self.`repeat` = routineRepeat
         self.icon = icon
         self.tint = tint
         

@@ -22,12 +22,12 @@ public class Event: NSObject{
 
     public func encode(with coder: NSCoder) {
         coder.encode(eventVersion, forKey: "eventVersion")
-        coder.encode(occurredOn as NSDate, forKey: "occuredOn")
+        coder.encodeDate(occurredOn, forKey: "occuredOn")
     }
     
     public init?(coder: NSCoder) {
         self.eventVersion = coder.decodeInteger(forKey: "eventVersion")
-        self.occurredOn = coder.decodeObject(of: NSDate.self, forKey: "occuredOn")! as Date
+        self.occurredOn = coder.decodeDate(forKey: "occuredOn")
     }
 }
 

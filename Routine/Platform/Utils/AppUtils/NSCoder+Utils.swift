@@ -31,4 +31,24 @@ extension NSCoder{
         decodeObject(of: NSString.self, forKey: forKey) as? String
     }
     
+    //MARK: Date
+    func encodeDate(_ date: Date, forKey: String){
+        encode(date as NSDate, forKey: forKey)
+    }
+    func decodeDate(forKey: String) -> Date{        
+        decodeObject(of: NSDate.self, forKey: forKey)! as Date
+    }
+    
+    
+    //MARK: Set
+    func encodeSet<T>(_ set: Set<T>, forKey: String){
+        encode(set as NSSet, forKey: forKey)
+    }
+    
+    
+    func decodeSet(forKey: String) -> NSSet{
+        self.decodeObject(of: NSSet.self, forKey: forKey)!                        
+    }
+    
+    
 }

@@ -33,6 +33,7 @@ protocol AddYourRoutineInteractorDependency{
     var title: ReadOnlyCurrentValuePublisher<String>{ get }
     var description: ReadOnlyCurrentValuePublisher<String>{ get }
     var repeatSegmentType: ReadOnlyCurrentValuePublisher<RepeatSegmentType>{ get }
+    var repeatData: ReadOnlyCurrentValuePublisher<RepeatData>{ get }
     var tint: ReadOnlyCurrentValuePublisher<String>{ get }
     var emoji: ReadOnlyCurrentValuePublisher<String>{ get }
 }
@@ -83,15 +84,18 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         
         Log.v("\(dependency.repeatSegmentType.value)")
         
+        
+        
         let createRoutine = CreateRoutine(
             name: dependency.title.value,
             description: dependency.description.value,
             emoji: dependency.emoji.value,
             tint: dependency.tint.value,
-            createCheckLists: []
+            createCheckLists: [],
+            repeatType: dependency.repeatSegmentType.value.rawValue,
+            repeatData: dependency.repeatData.value.data()
         )
-        
- 
+         
         Task{ [weak self] in
             guard let self = self else { return
             }

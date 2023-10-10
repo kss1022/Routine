@@ -37,17 +37,19 @@ final class RoutineApplicationService : ApplicationService{
     
     func when(_ command: CreateRoutine) async throws{
         do{
+            Log.v("When (\(CreateRoutine.self)):  \(command)")
+            
             let routineId = RoutineId(UUID())
             let routineName = try RoutineName(command.name)
             let routineDescription = try RoutineDescription(description: command.description)
+            let `repeat` = try Repeat(repeatType: command.repeatType, data: command.repeatData)
             let icon = Emoji(command.emoji)
             let tint = Tint(command.tint)
                                                 
-            let routine = routineFactory.create(routineId: routineId, routineName: routineName, routineDescription: routineDescription, icon: icon, tint: tint)
+            let routine = routineFactory.create(routineId: routineId, routineName: routineName, routineDescription: routineDescription, repeat: `repeat`, icon: icon, tint: tint)
             
             
-            
-            
+                        
             let checkLists = try command.createCheckLists.map { createCheckList in
                 let checkListId =  CheckListId(UUID())
                 let checkListName = try CheckListName(createCheckList.name)
@@ -72,6 +74,8 @@ final class RoutineApplicationService : ApplicationService{
             
             try eventStore.appendToStream(id: routine.routineId.id, expectedVersion: -1, events: routine.changes)
             try Transaction.commit()
+            
+            
         }catch{
             try Transaction.rollback()
             throw error
