@@ -153,6 +153,17 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
         stackView.addArrangedSubview(view)
         vc.didMove(toParent: self)
     }
+    
+    func addRepeat(_ view: ModernRIBs.ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)
+        
+        let view = vc.view!
+        view.roundCorners()
+        
+        stackView.addArrangedSubview(view)
+        vc.didMove(toParent: self)
+    }
 
     
     func setTint(_ color: String) {

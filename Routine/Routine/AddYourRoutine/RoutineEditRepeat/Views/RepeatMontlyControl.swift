@@ -19,8 +19,8 @@ final class RepeatMontlyControl: UIControl{
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
         stackView.spacing = 8.0
         return stackView
     }()
@@ -28,22 +28,16 @@ final class RepeatMontlyControl: UIControl{
     private func weeklyStackView() -> UIStackView{
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
         stackView.spacing = 16.0
         return stackView
     }
     
     private func dateButton() -> UIButton{
-        let button = UIButton()
+        let button = RoutineRepeatControlButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .regular)
-        button.setTitleColor(.label, for: .normal)
-        button.titleLabel?.textAlignment = .center
-        button.backgroundColor = .clear
-                                
-        button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true                
-        
+        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .regular)        
         button.addTarget(self, action: #selector(dateButtonTap), for: .touchUpInside)
         return button
     }
@@ -53,7 +47,7 @@ final class RepeatMontlyControl: UIControl{
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.setTitleColor(.systemBlue, for: .normal)
-        button.setFont(style: .caption2)
+        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .regular)
         
         button.setTitle("Reset", for: .normal)
         button.addTarget(self, action: #selector(resetButtonTap), for: .touchUpInside)
@@ -110,7 +104,8 @@ final class RepeatMontlyControl: UIControl{
         }
                         
         for _ in 0..<4{
-            weeklyStackView.addArrangedSubview(UIView())
+            let button = UIButton()
+            weeklyStackView.addArrangedSubview(button)
         }
 
     }
@@ -149,16 +144,10 @@ final class RepeatMontlyControl: UIControl{
             self.days[tag]  = nil
         }
 
-        if isSelected{
-            sender.setTitleColor(.white, for: .normal)
-            sender.backgroundColor = .primaryColor
-        }else{
-            sender.setTitleColor(.label, for: .normal)
-            sender.backgroundColor = .clear
-        }
+        sender.isSelected = isSelected
+
                 
         self.sendActions(for: .valueChanged)
-        
     }
     
     
@@ -221,8 +210,7 @@ extension RepeatMontlyControl{
         }
         
         self.days[tag] = true
-        sender.setTitleColor(.white, for: .normal)
-        sender.backgroundColor = .primaryColor
+        sender.isSelected = true
         self.sendActions(for: .valueChanged)
     }
     
@@ -238,7 +226,6 @@ extension RepeatMontlyControl{
         
         
         self.days[tag] = nil
-        sender.setTitleColor(.label, for: .normal)
-        sender.backgroundColor = .clear
+        sender.isSelected = false
     }
 }

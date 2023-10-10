@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol RoutineEditInteractable: Interactable, RoutineEditTitleListener, RoutineTintListener , RoutineEmojiIconListener{
+protocol RoutineEditInteractable: Interactable, RoutineEditTitleListener, RoutineTintListener , RoutineEmojiIconListener, RoutineEditRepeatListener{
     var router: RoutineEditRouting? { get set }
     var listener: RoutineEditListener? { get set }
 }
@@ -16,6 +16,7 @@ protocol RoutineEditViewControllable: ViewControllable{
     func addTitle(_ view: ViewControllable)
     func addTint(_ view: ViewControllable)
     func addEmojiIcon(_ view: ViewControllable)
+    func addRepeat(_ view: ViewControllable)
 }
 
 final class RoutineEditRouter: ViewableRouter<RoutineEditInteractable, RoutineEditViewControllable>, RoutineEditRouting {
@@ -29,18 +30,21 @@ final class RoutineEditRouter: ViewableRouter<RoutineEditInteractable, RoutineEd
     private let routineEmojiIconBuildable: RoutineEmojiIconBuildable
     private var routineEmojiIconRouting : Routing?
     
-    
+    private let routineEditRepeatBuidlable: RoutineEditRepeatBuildable
+    private var routineEditRepeatRouting: Routing?
     
     init(
         interactor: RoutineEditInteractable,
         viewController: RoutineEditViewControllable,
         routineEditTitleBuildable: RoutineEditTitleBuildable,
         routineTintBuildable: RoutineTintBuildable,
-        routineEmojiIconBuildable: RoutineEmojiIconBuildable
+        routineEmojiIconBuildable: RoutineEmojiIconBuildable,
+        routineEditRepeatBuidlable: RoutineEditRepeatBuildable
     ) {
         self.routineEditTitleBuildable = routineEditTitleBuildable
         self.routineTintBuildable = routineTintBuildable
         self.routineEmojiIconBuildable = routineEmojiIconBuildable
+        self.routineEditRepeatBuidlable = routineEditRepeatBuidlable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -80,6 +84,18 @@ final class RoutineEditRouter: ViewableRouter<RoutineEditInteractable, RoutineEd
         viewController.addEmojiIcon(router.viewControllable)
         
         self.routineEmojiIconRouting = router
+        attachChild(router)
+    }
+    
+    func attachRoutineRepeat() {
+        if routineEditRepeatRouting != nil{
+            return
+        }
+        
+        let router = routineEditRepeatBuidlable.build(withListener: interactor)
+        viewController.addRepeat(router.viewControllable)
+        
+        self.routineEditRepeatRouting = router
         attachChild(router)
     }
 }

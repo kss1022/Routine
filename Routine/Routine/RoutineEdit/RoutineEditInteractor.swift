@@ -13,6 +13,7 @@ protocol RoutineEditRouting: ViewableRouting {
     func attachRoutineTitle()
     func attachRoutineTint()
     func attachRoutineEmojiIcon()
+    func attachRoutineRepeat()
 }
 
 protocol RoutineEditPresentable: Presentable {
@@ -65,6 +66,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         super.didBecomeActive()
         
         router?.attachRoutineTitle()
+        router?.attachRoutineRepeat()
         router?.attachRoutineTint()
         router?.attachRoutineEmojiIcon()
         

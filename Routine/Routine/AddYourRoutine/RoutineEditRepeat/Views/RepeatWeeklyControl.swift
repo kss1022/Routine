@@ -14,37 +14,23 @@ import UIKit
 final class RepeatWeeklyControl: UIControl{
     
     public var weeklys = Repeatweeklys()
-
-    
-    private let buttonTitleColor = UIColor.label
-    private let buttonBackgroundColor = UIColor.systemBackground
-    
-    private let buttonSelectedTitleColor = UIColor.white
-    private let buttonSelectedBackgroundColor = UIColor.primaryColor
-    
+        
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
         stackView.spacing = 16.0
         return stackView
     }()
     
     private func weeklyButton() -> UIButton{
-        let button = UIButton()
+        let button = RoutineRepeatControlButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .regular)
-        button.setTitleColor(self.buttonTitleColor, for: .normal)
-        button.titleLabel?.textAlignment = .center
-        button.backgroundColor = self.buttonBackgroundColor
-        
-        
         button.addTarget(self, action: #selector(weeklyButtonTap), for: .touchUpInside)
-        button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
-        
         return button
     };
     
@@ -85,16 +71,6 @@ final class RepeatWeeklyControl: UIControl{
     
     
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        let height = stackView.frame.height
-        
-        stackView.arrangedSubviews.forEach {
-            $0.roundCorners(height / 2)
-        }
-    }
-    
     
     @objc
     private func weeklyButtonTap(sender : UIButton){
@@ -103,16 +79,8 @@ final class RepeatWeeklyControl: UIControl{
         let isSelected = !self.weeklys.routineWeeklys[tag].isSelected
         self.weeklys.routineWeeklys[tag].isSelected = isSelected
         
-        if isSelected{
-            sender.setTitleColor(self.buttonSelectedTitleColor, for: .normal)
-            sender.backgroundColor = self.buttonSelectedBackgroundColor
-        }else{
-            sender.setTitleColor(self.buttonTitleColor, for: .normal)
-            sender.backgroundColor = self.buttonBackgroundColor
-        }
-                        
+        sender.isSelected = isSelected
         self.sendActions(for: .valueChanged)
-        
     }
     
     

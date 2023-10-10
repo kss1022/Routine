@@ -212,7 +212,7 @@ extension RoutineListViewController: UICollectionViewDropDelegate{
                 //destination이 뒤에 있는 경우
                 snapShot.insertItems([sourceItem], afterItem: destinationItem)
             }
-            self.dataSource.apply( snapShot , animatingDifferences: false )
+            self.dataSource.apply( snapShot , animatingDifferences: true )
             coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
             
             Log.v("DragDrop RoutineLiset \(sourceIndexPath.row) to \(destinationIndexPath.row)")

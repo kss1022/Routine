@@ -13,7 +13,7 @@ protocol RoutineEditDependency: Dependency {
     var routineRepository: RoutineRepository{ get }
 }
 
-final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency,RoutineEditInteractorDependency{
+final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, RoutineEditRepeatDependency, RoutineEditInteractorDependency{
     
     let routineId: UUID
     
@@ -25,6 +25,18 @@ final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEdit
     
     var description: ReadOnlyCurrentValuePublisher<String>{ descriptionSubject }
     lazy var descriptionSubject = CurrentValuePublisher<String>( routineRepository.currentRoutineDetail.value!.routineDescription )
+    
+    var repeatSegmentType: ReadOnlyCurrentValuePublisher<RepeatSegmentType>{ repeatSegmentTypeSubject }
+    let repeatSegmentTypeSubject = CurrentValuePublisher<RepeatSegmentType>(.none)
+    
+    var repeatDoItOnceControlValue: ReadOnlyCurrentValuePublisher<Date>{ repeatDoItOnceControlValueSubject }
+    var repeatDoItOnceControlValueSubject = CurrentValuePublisher<Date>( .init() )
+    
+    var repeatWeeklyControlValue: ReadOnlyCurrentValuePublisher<Set<Weekly>>{ repeatWeeklyControlValueSubject }
+    let repeatWeeklyControlValueSubject = CurrentValuePublisher<Set<Weekly>>(.init())
+    
+    var repeatMonthlyControlValue: ReadOnlyCurrentValuePublisher<Set<Monthly>>{ repeatMonthlyControlValueSubject }
+    let repeatMonthlyControlValueSubject = CurrentValuePublisher<Set<Monthly>>(.init())
 
     var tint: ReadOnlyCurrentValuePublisher<String>{ tintSubject }
     lazy var  tintSubject = CurrentValuePublisher<String>( routineRepository.currentRoutineDetail.value!.tint )
@@ -62,13 +74,15 @@ final class RoutineEditBuilder: Builder<RoutineEditDependency>, RoutineEditBuild
         let routineEditTitleBuilder = RoutineEditTitleBuilder(dependency: component)
         let routineTintBuilder = RoutineTintBuilder(dependency: component)
         let routineEmojiIconBuilder = RoutineEmojiIconBuilder(dependency: component)
+        let routineEditRepeatBuilder = RoutineEditRepeatBuilder(dependency: component)
         
         return RoutineEditRouter(
             interactor: interactor,
             viewController: viewController,
             routineEditTitleBuildable: routineEditTitleBuilder,
             routineTintBuildable: routineTintBuilder,
-            routineEmojiIconBuildable: routineEmojiIconBuilder
+            routineEmojiIconBuildable: routineEmojiIconBuilder,
+            routineEditRepeatBuidlable: routineEditRepeatBuilder
         )
     }
 }

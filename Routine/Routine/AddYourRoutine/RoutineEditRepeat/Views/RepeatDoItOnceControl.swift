@@ -78,8 +78,7 @@ final class RepeatDoItOnceControl: UIControl{
 extension RepeatDoItOnceControl: FSCalendarDataSource{
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         heightConstraint.constant = CGRectGetHeight(bounds);
-        // Do other updates here
-        
+        // Do other updates here        
         self.layoutIfNeeded()
     }
     
@@ -90,16 +89,8 @@ extension RepeatDoItOnceControl: FSCalendarDataSource{
 extension RepeatDoItOnceControl: FSCalendarDelegate{
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        Log.v("FSCalendarDelegate didSelect: \(date) \(monthPosition)")
         self.selectedDay = date
         self.sendActions(for: .valueChanged)
     }
 
 }
-
-
-//extension RoutineWeekCalenderViewController: FSCalendarDelegateAppearance{
-//
-//}
-
-

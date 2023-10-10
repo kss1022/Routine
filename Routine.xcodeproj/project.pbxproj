@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8703F56F2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8703F56E2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift */; };
 		8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */; };
 		8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */; };
 		8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */; };
@@ -211,6 +212,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8703F56E2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRepeatControlButton.swift; sourceTree = "<group>"; };
 		8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineRouter.swift; sourceTree = "<group>"; };
 		8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineViewController.swift; sourceTree = "<group>"; };
 		8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineBuilder.swift; sourceTree = "<group>"; };
@@ -895,6 +897,7 @@
 				87F7FAA72AD4527500F14831 /* RepeatDoItOnceControl.swift */,
 				87C8153F2AD3ED8E0062BEDF /* RepeatWeeklyControl.swift */,
 				87C815432AD405E20062BEDF /* RepeatMontlyControl.swift */,
+				8703F56E2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1392,6 +1395,7 @@
 				876E95042AB2CFC100046809 /* RoutineHomeInteractor.swift in Sources */,
 				876E959B2AB2FB9400046809 /* Transaction.swift in Sources */,
 				87C815392AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift in Sources */,
+				8703F56F2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift in Sources */,
 				8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */,
 				878DA79B2ACE64F500220653 /* RoutineWeekCalenderViewController.swift in Sources */,
 				8751F09A2AC7F092000462EC /* RoutineEditTitleRouter.swift in Sources */,
