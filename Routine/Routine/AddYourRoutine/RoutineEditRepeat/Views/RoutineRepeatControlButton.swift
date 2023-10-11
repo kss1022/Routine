@@ -9,8 +9,6 @@ import UIKit
 
 
 
-
-
 final class RoutineRepeatControlButton: UIButton{
 
     override var isSelected: Bool{
@@ -42,10 +40,6 @@ final class RoutineRepeatControlButton: UIButton{
         setView()
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        updateForLayoutIfNeed()
-//    }
     
     private func setView(){
         self.setTitleColor(titleColor, for: .normal)
@@ -62,16 +56,6 @@ final class RoutineRepeatControlButton: UIButton{
             removeAddedLayer()
         }
     }
-    
-//    private func updateForLayoutIfNeed(){
-//        Log.v("UpdateForLayoutIfNeed")
-//                
-//        if isSelected {
-//            removeAddedLayer()
-//            drawCircle()
-//        }
-//    }
-    
     private func updateTitleColor(){
         let titleCOlor: UIColor
         isSelected ? (titleCOlor = selectedTitleColor) : (titleCOlor = titleColor)
@@ -87,13 +71,23 @@ extension RoutineRepeatControlButton: CAAnimationDelegate{
         let shapeLayer = CAShapeLayer()
         shapeLayer.fillColor = fillColor
             
-        let width =  self.bounds.width
+        var width =  self.bounds.width
+        if width == 0.0{
+            width = 30.0
+        }
         let radius = width / 2
         
         
+//        let react = CGRect(
+//            x: self.bounds.midX - radius,
+//            y: self.bounds.midY - radius,
+//            width: width,
+//            height: width
+//        )
+        
         let react = CGRect(
-            x: self.bounds.midX - radius,
-            y: self.bounds.midY - radius,
+            x: 0.0,
+            y: 0.0,
             width: width,
             height: width
         )

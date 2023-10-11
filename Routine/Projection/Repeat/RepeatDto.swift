@@ -10,8 +10,8 @@ import Foundation
 
 
 public struct RepeatDto{
-    let routineId: UUID
-    let repeatType: RepeatTypeDto
-    let repeatValue: RepeatValueDto
+    public let routineId: UUID
+    public let repeatType: RepeatTypeDto
+    public let repeatValue: RepeatValueDto
 }
 

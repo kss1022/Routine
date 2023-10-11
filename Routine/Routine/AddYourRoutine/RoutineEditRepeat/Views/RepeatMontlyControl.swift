@@ -13,7 +13,7 @@ final class RepeatMontlyControl: UIControl{
     
     public var days : [Int: Bool]
     
-    private var dragedButton: UIButton?
+    private var dragedButton: UIButton? //For PagGesture
     
     private let monthlyStackView: UIStackView = {
         let stackView = UIStackView()
@@ -110,26 +110,22 @@ final class RepeatMontlyControl: UIControl{
 
     }
     
-    
-    
-    
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        let height = ( monthlyStackView.frame.height - (monthlyStackView.spacing * 4) ) / 5
-        
-        monthlyStackView.arrangedSubviews.forEach {
-            if let weeklyStackView = $0 as? UIStackView{
-                weeklyStackView.arrangedSubviews.forEach {
-                    $0.roundCorners()
-                    $0.roundCorners(height / 2)
+    func setMonthly(monthly: Set<RepeatMonthlyViewModel>){
+        monthly.forEach { monthy in
+            self.days[monthy.day] = true
+            
+            let index = (monthy.day - 1)
+            let monthlyIndex = index / 7
+            let dayIndex = index % 7
+            
+            if let weeklyStackView =  monthlyStackView.arrangedSubviews[safe: monthlyIndex] as? UIStackView{
+                if let dayButton = weeklyStackView.arrangedSubviews[safe: dayIndex] as? RoutineRepeatControlButton{
+                    dayButton.isSelected = true
+                    //dayButton.updateLayer()
                 }
             }
         }
     }
-    
-
   
     
     @objc

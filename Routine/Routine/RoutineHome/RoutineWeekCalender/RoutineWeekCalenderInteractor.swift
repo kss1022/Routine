@@ -5,6 +5,7 @@
 //  Created by 한현규 on 10/5/23.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol RoutineWeekCalenderRouting: ViewableRouting {
@@ -17,7 +18,7 @@ protocol RoutineWeekCalenderPresentable: Presentable {
 }
 
 protocol RoutineWeekCalenderListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func routineWeekCalenderDidTap(date: Date)
 }
 
 final class RoutineWeekCalenderInteractor: PresentableInteractor<RoutineWeekCalenderPresentable>, RoutineWeekCalenderInteractable, RoutineWeekCalenderPresentableListener {
@@ -41,4 +42,9 @@ final class RoutineWeekCalenderInteractor: PresentableInteractor<RoutineWeekCale
         super.willResignActive()
         // TODO: Pause any business logic.
     }
+    
+    func weekCalenderDidTap(date: Date) {
+        listener?.routineWeekCalenderDidTap(date: date)
+    }
+    
 }

@@ -32,8 +32,8 @@ protocol AddYourRoutineInteractorDependency{
 
     var title: ReadOnlyCurrentValuePublisher<String>{ get }
     var description: ReadOnlyCurrentValuePublisher<String>{ get }
-    var repeatSegmentType: ReadOnlyCurrentValuePublisher<RepeatSegmentType>{ get }
-    var repeatData: ReadOnlyCurrentValuePublisher<RepeatData>{ get }
+    var repeatType: ReadOnlyCurrentValuePublisher<RepeatTypeViewModel>{ get }
+    var repeatValue: ReadOnlyCurrentValuePublisher<RepeatValueViewModel>{ get }
     var tint: ReadOnlyCurrentValuePublisher<String>{ get }
     var emoji: ReadOnlyCurrentValuePublisher<String>{ get }
 }
@@ -82,18 +82,18 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     
     func doneBarButtonDidTap() {
         
-        Log.v("\(dependency.repeatSegmentType.value)")
+        Log.v("\(dependency.repeatType.value)")
         
         
         
         let createRoutine = CreateRoutine(
             name: dependency.title.value,
             description: dependency.description.value,
+            repeatType: dependency.repeatType.value.rawValue,
+            repeatValue: dependency.repeatValue.value.rawValue(),
             emoji: dependency.emoji.value,
             tint: dependency.tint.value,
-            createCheckLists: [],
-            repeatType: dependency.repeatSegmentType.value.rawValue,
-            repeatData: dependency.repeatData.value.data()
+            createCheckLists: []
         )
          
         Task{ [weak self] in
@@ -101,7 +101,7 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
             }
             do{
                 try await self.dependency.routineApplicationService.when(createRoutine)
-                try await self.dependency.routineRepository.fetchRoutineLists()
+                try await self.dependency.routineRepository.fetchLists()
                 await MainActor.run{ self.listener?.addYourRoutineDoneButtonDidTap() }
             }catch{
                 if let error = error as? ArgumentException{

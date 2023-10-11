@@ -13,6 +13,8 @@ struct UpdateRoutine: Command{
     let routineId: UUID
     let name: String
     let description: String
+    let repeatType: String
+    let repeatValue: Any?
     let emoji: String
     let tint: String
 }

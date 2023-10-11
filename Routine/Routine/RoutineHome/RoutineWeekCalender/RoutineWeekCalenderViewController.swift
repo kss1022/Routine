@@ -10,9 +10,7 @@ import UIKit
 import FSCalendar
 
 protocol RoutineWeekCalenderPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func weekCalenderDidTap(date: Date)
 }
 
 final class RoutineWeekCalenderViewController: UIViewController, RoutineWeekCalenderPresentable, RoutineWeekCalenderViewControllable {
@@ -95,7 +93,7 @@ extension RoutineWeekCalenderViewController: FSCalendarDataSource{
 extension RoutineWeekCalenderViewController: FSCalendarDelegate{
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        Log.v("FSCalendarDelegate didSelect: \(date) \(monthPosition)")
+        listener?.weekCalenderDidTap(date: date)
     }
 
 }

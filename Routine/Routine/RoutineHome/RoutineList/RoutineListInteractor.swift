@@ -47,8 +47,7 @@ final class RoutineListInteractor: PresentableInteractor<RoutineListPresentable>
 
     override func didBecomeActive() {
         super.didBecomeActive()
-
-        dependency.routineRepository.routineLists
+        dependency.routineRepository.homeLists
             .receive(on: DispatchQueue.main)
             .sink { lists in
                 let viewModels = lists.map{ list in

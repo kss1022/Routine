@@ -76,7 +76,7 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
         let beforeItems = snapShot.itemIdentifiers(inSection: .routineList)
         snapShot.deleteItems(beforeItems)
         snapShot.appendItems(viewModels , toSection: .routineList )
-        self.dataSource.apply( snapShot , animatingDifferences: true )
+        self.dataSource.apply( snapShot , animatingDifferences: false )
         
         Log.d("SetRoutineList : \(Thread.current)")
     }

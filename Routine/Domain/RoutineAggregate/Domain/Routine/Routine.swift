@@ -86,13 +86,14 @@ final class Routine: DomainEntity{
         self.tint = event.tint
     }
     
-    func updateRoutine(_ routineName: RoutineName, routineDescription: RoutineDescription, emoji: Emoji, tint: Tint){
+    func updateRoutine(_ routineName: RoutineName, routineDescription: RoutineDescription, repeat: Repeat, emoji: Emoji, tint: Tint){
         self.routineName = routineName
         self.routineDescription = routineDescription
+        self.repeat = `repeat`
         self.icon = emoji
         self.tint = tint
         
-        changes.append(RoutineUpdated(routineId: self.routineId, routineName: routineName, routineDescription: routineDescription, emoji: icon, tint: tint))
+        changes.append(RoutineUpdated(routineId: self.routineId, routineName: routineName, routineDescription: routineDescription, repeat: `repeat`, emoji: icon, tint: tint))
     }
     
     func changeRoutineName(_ routineName: RoutineName){

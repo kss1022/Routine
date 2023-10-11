@@ -12,8 +12,8 @@ protocol RoutineEditRepeatPresentableListener: AnyObject {
     func repeatToogleTap(isOn: Bool)
     func repeatSegmentTap(segmentIndex: Int)
     func repeatDoItOnceControlTap(selected: Date)
-    func repeatWeeklyControlTap(weekly: Set<Weekly>)
-    func repeatMonthlyControlTap(monthly: Set<Monthly>)
+    func repeatWeeklyControlTap(weekly: Set<WeekliyViewModel>)
+    func repeatMonthlyControlTap(monthly: Set<RepeatMonthlyViewModel>)
 }
 
 final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeatPresentable, RoutineEditRepeatViewControllable {
@@ -166,8 +166,6 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
             controlStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             controlStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset)
         ])
-        
-        showDoItOnceControl()
     }
     
     // MARK: Presentable
@@ -183,9 +181,13 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
 //        }
     
     
+    func setToogle(on: Bool) {
+        self.repeatToogle.isOn = true
+    }
+    
     func showRepeatSegmentControl() {
         controlStackView.addArrangedSubview(repeatSegmentControl)
-        repeatSegmentControlTap(control: self.repeatSegmentControl)
+        //repeatSegmentControlTap(control: self.repeatSegmentControl)
     }
     
     func hideRepeatSegmentControl() {
@@ -194,29 +196,49 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
     
     func showDoItOnceControl() {
         controlStackView.addArrangedSubview(repeatDoItOnceControl)
+        setDoItOnceSubscribeText()
     }
     
     func hideDoItOnceControl() {
         repeatDoItOnceControl.removeFromSuperview()
-
+    }
+    
+    func setDoItOnceDate(date: Date) {
+        repeatDoItOnceControl.setDate(date: date)
+        setDoItOnceSubscribeText()
     }
     
     
+    func showDaliy() {
+        setDaliySubscribeText()
+    }
+    
     func showWeeklyControl() {
         self.controlStackView.addArrangedSubview(self.repeatWeeklyControl)
+        setWeeklySubscribeText()
     }
     
     func hideWeeklyControl() {
         repeatWeeklyControl.removeFromSuperview()
     }
     
+    func setWeeklys(weeklys: Set<WeekliyViewModel>) {
+        repeatSegmentControl.selectedSegmentIndex = 1
+        repeatWeeklyControl.setWeeklys(weeklys: weeklys)
+    }
 
     func showMonthlyControl() {
         self.controlStackView.addArrangedSubview(self.repeatMonthlyControl)
+        setMonthlySubscribeText()
     }
     
     func hideMonthlyConrol() {
         repeatMonthlyControl.removeFromSuperview()
+    }
+    
+    func setMonthlyData(monthly: Set<RepeatMonthlyViewModel>) {
+        repeatSegmentControl.selectedSegmentIndex = 2
+        repeatMonthlyControl.setMonthly(monthly: monthly)
     }
     
     
@@ -238,30 +260,68 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
     @objc
     private func repeatDoItOnceControlTap(control: RepeatDoItOnceControl) {
         let selectedDay = control.selectedDay
-                
-        let date = Formatter.asRecentTimeString(date: selectedDay)
-        repeatSubscribeLabel.text = date
         listener?.repeatDoItOnceControlTap(selected: selectedDay)
         
+        setDoItOnceSubscribeText()
     }
+    
     
     @objc
     private func repeatWeeklyControlTap(control: RepeatWeeklyControl) {
         let selected =  control.weeklys.routineWeeklys.filter { $0.isSelected }
             .map { $0.weekly }
-        
-        let weekly = Set<Weekly>(selected)
+        let weekly = Set<WeekliyViewModel>(selected)
         listener?.repeatWeeklyControlTap(weekly: weekly)
+        
+        setWeeklySubscribeText()
     }
     
     
     @objc
     private func repeatMonthlyControlControlTap(control: RepeatMontlyControl) {
-        let selected =  control.days.map { Monthly($0.key) }
-        
-        let monthly = Set<Monthly>(selected)
+        let selected =  control.days.map { RepeatMonthlyViewModel($0.key) }
+        let monthly = Set<RepeatMonthlyViewModel>(selected)
         listener?.repeatMonthlyControlTap(monthly: monthly)
+        
+        setMonthlySubscribeText()
+    }
+
+
+    // MARK: set Subscribe test
+    private func setDoItOnceSubscribeText(){
+        let selectedDay = repeatDoItOnceControl.selectedDay
+                
+        let date = Formatter.asRecentTimeString(date: selectedDay)
+        repeatSubscribeLabel.text = date
+        listener?.repeatDoItOnceControlTap(selected: selectedDay)
     }
     
-
+    private func setDaliySubscribeText(){
+        repeatSubscribeLabel.text = "Daily"
+    }
+    
+    private func setWeeklySubscribeText(){
+        let selected = repeatWeeklyControl.weeklys.routineWeeklys.filter { $0.isSelected }
+            .map { $0.weekly.label() }
+                    
+        var subscribe = selected.joined(separator: ", ")
+        if subscribe.isEmpty{
+            subscribe = "Weekly"
+        }
+        repeatSubscribeLabel.text = subscribe
+    }
+    
+    private func setMonthlySubscribeText(){
+        let selected =  repeatMonthlyControl.days.compactMap { $0.key }
+            .sorted{
+                $0 < $1
+            }
+        
+        var subscribe = selected.map(String.init)
+            .joined(separator: ", ")
+        if subscribe.isEmpty{
+            subscribe = "Monthly"
+        }
+        repeatSubscribeLabel.text = subscribe
+    }
 }

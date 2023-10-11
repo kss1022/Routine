@@ -88,6 +88,14 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         presentationType = .none
     }
     
+    //MARK: RoutineWeekCalender
+    func routineWeekCalenderDidTap(date: Date) {
+        Task{ [weak self] in
+            await self?.dependency.routineRepository.fetchHomeList(date: date)
+        }
+    }
+    
+
             
     // MARK: CreateRoutine
     func createRoutineBarButtonDidTap() {
@@ -110,7 +118,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         Task{ [weak self] in
             guard let self = self else { return }
             do{
-                try await dependency.routineRepository.fetchRoutineDetail(routineId)
+                try await dependency.routineRepository.fetchDetail(routineId)
                 await MainActor.run { [weak self] in
                     self?.presentationType = .detail
                     self?.router?.attachRoutineDetail(routineId: routineId)

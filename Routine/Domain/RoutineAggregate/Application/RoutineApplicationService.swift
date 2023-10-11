@@ -42,7 +42,7 @@ final class RoutineApplicationService : ApplicationService{
             let routineId = RoutineId(UUID())
             let routineName = try RoutineName(command.name)
             let routineDescription = try RoutineDescription(description: command.description)
-            let `repeat` = try Repeat(repeatType: command.repeatType, data: command.repeatData)
+            let `repeat` = try Repeat(repeatType: command.repeatType, data: command.repeatValue)
             let icon = Emoji(command.emoji)
             let tint = Tint(command.tint)
                                                 
@@ -88,13 +88,15 @@ final class RoutineApplicationService : ApplicationService{
             let routineId = RoutineId(UUID())
             let routineName = try RoutineName(command.name)
             let routineDescription = try RoutineDescription(description: command.description)
+            let `repeat` = try Repeat(repeatType: command.repeatType, data: command.repeatValue)
             let icon = Emoji(command.emoji)
             let tint = Tint(command.tint)
          
             try update(id: command.routineId) { (routine: Routine) in
                 routine.updateRoutine(
                     routineName,
-                    routineDescription: routineDescription,
+                    routineDescription: routineDescription, 
+                    repeat: `repeat`,
                     emoji: icon,
                     tint: tint
                 )

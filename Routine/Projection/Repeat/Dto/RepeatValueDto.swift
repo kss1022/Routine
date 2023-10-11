@@ -28,4 +28,24 @@ public enum RepeatValueDto{
             self = .set(set: monthly)
         }                
     }
+    
+    
+    
+    func date() -> Date?{
+        guard case .date(let date) = self else {
+            return nil
+        }
+        
+        return date
+    }
+    
+    func set() -> Set<Int>?{
+        guard case .set(let set) = self else {
+            return nil
+        }
+
+        return set
+    }
+    
+    
 }

@@ -10,50 +10,98 @@ import Combine
 
                       
 protocol RoutineRepository{
+
+    var lists: ReadOnlyCurrentValuePublisher<[RoutineListDto]> { get }
+    var homeLists: ReadOnlyCurrentValuePublisher<[RoutineListDto]> { get }
+    var detail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?> { get }
+    
+    
+    func fetchLists() async throws
+    func fetchDetail(_ routineId: UUID) async throws
+    func fetchHomeList(date: Date) async
+    
+    
+
     
     var emojis : [EmojiDto]{ get }
     func fetchEmojis() async throws
     
     var tints: [TintDto]{ get }
     func fetchTints() async throws
-    
-    var routineLists: ReadOnlyCurrentValuePublisher<[RoutineListDto]> { get }
-    func fetchRoutineLists() async throws
-    
-    var currentRoutineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?> { get }
-    func fetchRoutineDetail(_ routineId: UUID) async throws
-    
 }
 
 
 final class RoutineRepositoryImp: RoutineRepository{
     
+    var lists: ReadOnlyCurrentValuePublisher<[RoutineListDto]>{ listsSubject }
+    let listsSubject = CurrentValuePublisher<[RoutineListDto]>([])
     
-    var routineLists: ReadOnlyCurrentValuePublisher<[RoutineListDto]>{ routineListsSubject }
-    let routineListsSubject = CurrentValuePublisher<[RoutineListDto]>([])
+    var homeLists: ReadOnlyCurrentValuePublisher<[RoutineListDto]>{ homeListsSubject } // TODO: cache Dictionary
+    let homeListsSubject = CurrentValuePublisher<[RoutineListDto]>([])
+    private var homeDate = Date()
     
-    var currentRoutineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ currentRoutineDetailSubject }
-    var currentRoutineDetailSubject = CurrentValuePublisher<RoutineDetailDto?>(nil)
+    var detail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ detailSubject }
+    var detailSubject = CurrentValuePublisher<RoutineDetailDto?>(nil)
     
             
     private(set) var emojis = [EmojiDto]()
     private(set) var tints = [TintDto]()
     
-    
-    func fetchRoutineLists() async throws {
-        let routineLists = try routineReadModel.routineLists()
-        self.routineListsSubject.send(routineLists)
+    func fetchLists() async throws {
+        let list = try routineReadModel.routineLists()
+        self.listsSubject.send(list)
         
-        Log.v("Read Data: \([RoutineListDto].self)")
+        Log.v("RoutineRepository: fetch lists")
+        try await fetchHomeList(date: self.homeDate)
     }
 
     
-    func fetchRoutineDetail(_ routineId: UUID) async throws {
-        let routineDetail = try routineReadModel.routineDetail(id: routineId)
-        self.currentRoutineDetailSubject.send(routineDetail)
+    func fetchHomeList(date: Date) async {
+        self.homeDate = date
+        let lists = self.lists.value
         
-        Log.v("Read Data: \(RoutineDetailDto.self) (\(routineId))")
+        let calendar = Calendar.current
+                
+        var dayOfList: [RoutineListDto] = .init()
+        let dayOfWeek = calendar.component(.weekday, from: date) - 1 // sun = 0 , mon = 1 ...
+        let dayOfMonth = calendar.component(.day, from: date)
+        
+        lists.forEach { list in
+            switch list.repeatType {
+            case .doItOnce:
+                guard let getDate = list.repeatValue.date() else { break }
+                if getDate == date{
+                    dayOfList.append(list)
+                }
+            case .daliy:
+                dayOfList.append(list)
+            case .weekliy:
+                guard let set = list.repeatValue.set() else { break }
+                if set.contains(dayOfWeek){
+                    dayOfList.append(list)
+                }
+            case .monthly:
+                guard let set = list.repeatValue.set() else { break }
+                if set.contains(dayOfMonth){
+                    dayOfList.append(list)
+                }
+            }
+        }
+        homeListsSubject.send(dayOfList)
+        
+        Log.v("RoutineRepository: fetch homeList")
+
     }
+    
+    func fetchDetail(_ routineId: UUID) async throws {
+        let detail = try routineReadModel.routineDetail(id: routineId)
+        self.detailSubject.send(detail)
+        
+        Log.v("RoutineRepository: fetch detail")
+    }
+    
+    
+    
     
     func fetchEmojis() async throws{
         if emojis.isEmpty{
@@ -88,27 +136,27 @@ final class RoutineRepositoryImp: RoutineRepository{
     }
     
     
+    
+    
+    
     private let routineReadModel: RoutineReadModelFacade
     private let repeatReadModel: RepeatReadModelFacade
+    
+    private var cancelables: Set<AnyCancellable>
     
     init(routineReadModel: RoutineReadModelFacade, repeatReadModel: RepeatReadModelFacade) {
         self.routineReadModel = routineReadModel
         self.repeatReadModel = repeatReadModel
-        Task{ 
-            try? await fetchRoutineLists()
-        }
+        self.cancelables = .init()
         
         Task{
-            try? await fetchRepeatTest()
+            try? await fetchLists()
         }
     }
-
     
-    func fetchRepeatTest() async throws {
-        let repeats = try repeatReadModel.repeatList()
-                
-        Log.v("Read Data: \([RepeatDto].self) \n\(repeats)")
-    }
+    
+
+
     
 }
 

@@ -19,6 +19,8 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
     private let routineId: Expression<UUID>
     private let routineName: Expression<String>
     public let routineDescription: Expression<String>
+    private let repeatType: Expression<RepeatTypeDto>
+    private let repeatValue: Expression<RepeatValueDto>
     public let emojiIcon: Expression<String>
     public let tint: Expression<String>
     private let updatedAt: Expression<Date>
@@ -30,6 +32,8 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
         routineId =  Expression<UUID>("routineId")
         routineName = Expression<String>("routineName")
         routineDescription = Expression<String>("routineDescription")
+        repeatType = Expression<RepeatTypeDto>("repeatType")
+        repeatValue = Expression<RepeatValueDto>("repeatValue")
         emojiIcon = Expression<String>("emojiIcon")
         tint = Expression<String>("tint")
         updatedAt = Expression<Date>("updatedAt")
@@ -49,6 +53,8 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
             table.column(routineId, primaryKey: true)
             table.column(routineName)
             table.column(routineDescription)
+            table.column(repeatType)
+            table.column(repeatValue)
             table.column(emojiIcon)
             table.column(tint)
             table.column(updatedAt)
@@ -64,6 +70,8 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
             routineId <- dto.routineId,
             routineName <- dto.routineName,
             routineDescription <- dto.routineDescription,
+            repeatType <- dto.repeatType,
+            repeatValue <- dto.repeatValue,
             emojiIcon <- dto.emojiIcon,
             tint <- dto.tint,
             updatedAt <- dto.updatedAt
@@ -80,6 +88,8 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
             routineId <- dto.routineId,
             routineName <- dto.routineName,
             routineDescription <- dto.routineDescription,
+            repeatType <- dto.repeatType,
+            repeatValue <- dto.repeatValue,
             emojiIcon <- dto.emojiIcon,
             tint <- dto.tint,
             updatedAt <- dto.updatedAt
@@ -98,6 +108,8 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
                 routineId: $0[routineId],
                 routineName: $0[routineName],
                 routineDescription: $0[routineDescription],
+                repeatType: $0[repeatType],
+                repeatValue: $0[repeatValue],
                 emojiIcon: $0[emojiIcon],
                 tint: $0[tint],
                 updatedAt: $0[updatedAt]

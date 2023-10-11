@@ -60,6 +60,8 @@ final class RoutineProjection{
                 routineId: event.routineId.id,
                 routineName: event.routineName.name,
                 routineDescription: event.routineDescription.description,
+                repeatType: RepeatTypeDto(event.repeat.repeatType),
+                repeatValue: RepeatValueDto(event.repeat.repeatValue),
                 emojiIcon: event.emoji.emoji,
                 tint: event.tint.color,
                 sequence: 0
@@ -69,6 +71,8 @@ final class RoutineProjection{
                 routineId: event.routineId.id,
                 routineName: event.routineName.name,
                 routineDescription: event.routineDescription.description,
+                repeatType: RepeatTypeDto(event.repeat.repeatType),
+                repeatValue: RepeatValueDto(event.repeat.repeatValue),
                 emojiIcon: event.emoji.emoji,
                 tint: event.tint.color,
                 updatedAt: event.occurredOn
@@ -94,6 +98,8 @@ final class RoutineProjection{
                 routineId: event.routineId.id,
                 routineName: event.routineName.name,
                 routineDescription: event.routineDescription.description,
+                repeatType: RepeatTypeDto(event.repeat.repeatType),
+                repeatValue: RepeatValueDto(event.repeat.repeatValue),
                 emojiIcon: event.emoji.emoji,
                 tint: event.tint.color,
                 sequence: 0
@@ -103,6 +109,8 @@ final class RoutineProjection{
                 routineId: event.routineId.id,
                 routineName: event.routineName.name,
                 routineDescription: event.routineDescription.description,
+                repeatType: RepeatTypeDto(event.repeat.repeatType),
+                repeatValue: RepeatValueDto(event.repeat.repeatValue),
                 emojiIcon: event.emoji.emoji,
                 tint: event.tint.color,
                 updatedAt: event.occurredOn

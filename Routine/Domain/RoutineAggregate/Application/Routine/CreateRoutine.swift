@@ -12,9 +12,9 @@ import Foundation
 struct CreateRoutine: Command{
     let name: String
     let description: String
+    let repeatType: String
+    let repeatValue: Any?
     let emoji: String
     let tint: String
-    let createCheckLists: [CreateCheckList]
-    let repeatType: String
-    let repeatData: Any?
+    let createCheckLists: [CreateCheckList]    
 }

@@ -24,7 +24,7 @@ struct Repeat: ValueObject{
         switch self.repeatType {
         case .doItOnce:
             guard let data = data as? Date else {
-                throw ArgumentException("This is not the right data for your type: %@ != %@", "\(Date.self)", "\(data.self ?? "nil")")
+                throw ArgumentException("This is not the right data for your type (doItOnce): %@ != %@", "Date", "\(data.self ?? "nil")")
             }
             
             self.repeatValue = .doItOne(date: data)
@@ -32,13 +32,13 @@ struct Repeat: ValueObject{
             self.repeatValue = .daliy
         case .weekliy:
             guard let weekly = data as? Set<Int> else {
-                throw ArgumentException("This is not the right data for your type: %@ != %@", "\(Set<Int>.self)", "\(data.self ?? "nil")")
+                throw ArgumentException("This is not the right data for your type (weekly): %@ != %@", "Set<Int>", "\(data.self ?? "nil")")
             }
 
             self.repeatValue = .weekly(weekly: weekly)
         case .monthly:
             guard let monthly = data as? Set<Int> else {
-                throw ArgumentException("This is not the right data for your type: %@ != %@", "\(Set<Int>.self)", "\(data.self ?? "nil")")
+                throw ArgumentException("This is not the right data for your type (monthly): %@ != %@", "Set<Int>", "\(data.self ?? "nil")")
             }
 
             self.repeatValue = .monthly(monthly: monthly)

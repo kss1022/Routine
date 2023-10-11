@@ -16,7 +16,7 @@ protocol RoutineDetailDependency: Dependency {
 final class RoutineDetailComponent: Component<RoutineDetailDependency>, RoutineTitleDependency, RoutineEditDependency, RoutineDetailInteractorDependency {
             
     var routineId: UUID
-    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ routineRepository.currentRoutineDetail}
+    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ routineRepository.detail}
     
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
     var routineRepository: RoutineRepository{ dependency.routineRepository }

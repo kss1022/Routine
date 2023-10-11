@@ -1,5 +1,5 @@
 //
-//  RepeatSegmentType.swift
+//  RepeatTypeViewModel.swift
 //  Routine
 //
 //  Created by 한현규 on 10/9/23.
@@ -9,7 +9,7 @@ import Foundation
 
 
 
-enum RepeatSegmentType: String{
+enum RepeatTypeViewModel: String{
     case doItOnce
     case daliy
     case weekliy

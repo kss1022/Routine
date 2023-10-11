@@ -35,7 +35,7 @@ final class RepeatDoItOnceControl: UIControl{
         calendar.appearance.eventDefaultColor = .red
         calendar.appearance.selectionColor = .blue
                 
-        
+        calendar.select(selectedDay)
         return calendar
     }()
     
@@ -69,8 +69,13 @@ final class RepeatDoItOnceControl: UIControl{
             weekCalender.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             heightConstraint
         ])
-        
-        
+    }
+    
+    
+    func setDate(date: Date){
+        Log.v("Set DoItOnceControl: \(date)")
+        self.selectedDay = date
+        weekCalender.select(date)
     }
 }
 

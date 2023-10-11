@@ -15,6 +15,7 @@ final class RepeatWeeklyControl: UIControl{
     
     public var weeklys = Repeatweeklys()
         
+    private var dragedButton: UIButton? //For PagGesture
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -50,6 +51,9 @@ final class RepeatWeeklyControl: UIControl{
     private func setView(){
         self.addSubview(stackView)
         
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanWith(gestureRecognizer:)))
+        self.addGestureRecognizer(panGestureRecognizer)
+                
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -59,8 +63,9 @@ final class RepeatWeeklyControl: UIControl{
         
 
         
-        ["S","M","S","W","T","F","S"].enumerated().forEach { (index, weekly) in
-            let button = weeklyButton()                        
+        self.weeklys.routineWeeklys.map{ "\($0.weekly.label().first!)" }
+            .enumerated().forEach { (index, weekly) in
+            let button = weeklyButton()
             button.setTitle(weekly, for: .normal)
             button.tag = index
             stackView.addArrangedSubview(button)
@@ -68,6 +73,17 @@ final class RepeatWeeklyControl: UIControl{
 
     }
     
+    
+    func setWeeklys(weeklys: Set<WeekliyViewModel>){
+        weeklys.forEach { weekly in
+            self.weeklys.routineWeeklys[weekly.rawValue].isSelected = true
+            
+            if let button = stackView.arrangedSubviews[safe: weekly.rawValue] as? RoutineRepeatControlButton{
+                button.isSelected = true
+                //button.updateLayer()
+            }
+        }
+    }
     
     
     
@@ -86,6 +102,30 @@ final class RepeatWeeklyControl: UIControl{
 }
 
 
+extension RepeatWeeklyControl{
+    
+    
+    @objc
+    private func didPanWith(gestureRecognizer: UIPanGestureRecognizer) {
+        let point = gestureRecognizer.location(in: self)
+        
+        let draggedView = self.hitTest(point, with: nil)
+        
+        
+        guard let dateButton = draggedView as? UIButton else { return }
+        if dateButton == dragedButton{ return }
+        
+        self.dragedButton = dateButton
+        if gestureRecognizer.state == .changed{
+            weeklyButtonTap(sender: dateButton) //sendActions
+        }else if  gestureRecognizer.state.rawValue > UIGestureRecognizer.State.changed.rawValue{
+            dragedButton = nil
+            self.sendActions(for: .valueChanged)
+        }
+    }
+    
+}
+
 
 
 internal struct Repeatweeklys{
@@ -93,20 +133,23 @@ internal struct Repeatweeklys{
     var routineWeeklys: [Repeatweekly]
         
     init() {
-        self.routineWeeklys = Weekly.allCases.map(Repeatweekly.init)
+        self.routineWeeklys = WeekliyViewModel.allCases.map(Repeatweekly.init)
     }
 
 }
 
 internal struct Repeatweekly{
     
-    let weekly: Weekly
+    let weekly: WeekliyViewModel
     var isSelected: Bool
     
-    init(weekly: Weekly) {
+    init(weekly: WeekliyViewModel) {
         self.weekly = weekly
         self.isSelected = false
     }
+        
     
 }
+
+
 

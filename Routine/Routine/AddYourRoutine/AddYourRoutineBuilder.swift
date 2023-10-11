@@ -25,11 +25,11 @@ final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, Routin
     var description: ReadOnlyCurrentValuePublisher<String>{ descriptionSubject }
     let descriptionSubject = CurrentValuePublisher<String>("")
             
-    var repeatSegmentType: ReadOnlyCurrentValuePublisher<RepeatSegmentType>{ repeatSegmentTypeSubject }
-    let repeatSegmentTypeSubject = CurrentValuePublisher<RepeatSegmentType>(.doItOnce)
+    var repeatType: ReadOnlyCurrentValuePublisher<RepeatTypeViewModel>{ repeatTypeSubject }
+    let repeatTypeSubject = CurrentValuePublisher<RepeatTypeViewModel>(.doItOnce)
         
-    var repeatData: ReadOnlyCurrentValuePublisher<RepeatData>{ repeatDataSubject }
-    var repeatDataSubject = CurrentValuePublisher<RepeatData>( .daliy )
+    var repeatValue: ReadOnlyCurrentValuePublisher<RepeatValueViewModel>{ repeatValueSubject }
+    var repeatValueSubject = CurrentValuePublisher<RepeatValueViewModel>( .daliy )
 
     var tint: ReadOnlyCurrentValuePublisher<String>{ tintSubject }
     let tintSubject = CurrentValuePublisher<String>("#FFCCCCFF")

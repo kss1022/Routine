@@ -22,22 +22,34 @@ final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEdit
     var routineRepository: RoutineRepository{ dependency.routineRepository }
     
     var title: ReadOnlyCurrentValuePublisher<String>{ titleSubject}
-    lazy var titleSubject = CurrentValuePublisher<String>( routineRepository.currentRoutineDetail.value!.routineName )
+    lazy var titleSubject = CurrentValuePublisher<String>( routineRepository.detail.value!.routineName )
     
     var description: ReadOnlyCurrentValuePublisher<String>{ descriptionSubject }
-    lazy var descriptionSubject = CurrentValuePublisher<String>( routineRepository.currentRoutineDetail.value!.routineDescription )
+    lazy var descriptionSubject = CurrentValuePublisher<String>( routineRepository.detail.value!.routineDescription )
     
-    var repeatSegmentType: ReadOnlyCurrentValuePublisher<RepeatSegmentType>{ repeatSegmentTypeSubject }
-    let repeatSegmentTypeSubject = CurrentValuePublisher<RepeatSegmentType>(.doItOnce)
+    var repeatType: ReadOnlyCurrentValuePublisher<RepeatTypeViewModel>{ repeatTypeSubject }
+    lazy var repeatTypeSubject: CurrentValuePublisher<RepeatTypeViewModel> = {
+        let rawValue = routineRepository.detail.value!.repeatType.rawValue
+        let type = RepeatTypeViewModel(rawValue: rawValue)! //?? .daliy
+        return CurrentValuePublisher<RepeatTypeViewModel>(type)
+    }()
     
-    var repeatData: ReadOnlyCurrentValuePublisher<RepeatData>{ repeatDataSubject }
-    let repeatDataSubject = CurrentValuePublisher<RepeatData>(.daliy)
+    
+    var repeatValue: ReadOnlyCurrentValuePublisher<RepeatValueViewModel>{ repeatValueSubject }
+    lazy var repeatValueSubject: CurrentValuePublisher<RepeatValueViewModel> = {
+        let value = routineRepository.detail.value!
+        let repeatValue = RepeatValueViewModel(
+            type: value.repeatType,
+            value: value.repeatValue
+        )!  //?? .daliy        
+        return CurrentValuePublisher<RepeatValueViewModel>(repeatValue)
+    }()
 
     var tint: ReadOnlyCurrentValuePublisher<String>{ tintSubject }
-    lazy var  tintSubject = CurrentValuePublisher<String>( routineRepository.currentRoutineDetail.value!.tint )
+    lazy var  tintSubject = CurrentValuePublisher<String>( routineRepository.detail.value!.tint )
     
     var emoji: ReadOnlyCurrentValuePublisher<String>{ emojiSubject }
-    lazy var  emojiSubject = CurrentValuePublisher<String>( routineRepository.currentRoutineDetail.value!.emojiIcon )
+    lazy var  emojiSubject = CurrentValuePublisher<String>( routineRepository.detail.value!.emojiIcon )
     
     init(
         dependency: RoutineEditDependency,

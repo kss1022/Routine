@@ -34,8 +34,10 @@ protocol RoutineEditInteractorDependency{
     var routineRepository: RoutineRepository{ get }
         
     var titleSubject: CurrentValuePublisher<String>{ get }
-        
     var descriptionSubject: CurrentValuePublisher<String>{ get }
+    
+    var repeatType: ReadOnlyCurrentValuePublisher<RepeatTypeViewModel>{ get }
+    var repeatValue: ReadOnlyCurrentValuePublisher<RepeatValueViewModel>{ get }
 
     var tint: ReadOnlyCurrentValuePublisher<String>{ get }
     var tintSubject: CurrentValuePublisher<String>{ get }
@@ -90,6 +92,8 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
             routineId: dependency.routineId,
             name: dependency.titleSubject.value,
             description: dependency.descriptionSubject.value,
+            repeatType: dependency.repeatType.value.rawValue,
+            repeatValue: dependency.repeatValue.value.rawValue(),
             emoji: dependency.emojiSubject.value,
             tint: dependency.tintSubject.value
         )
@@ -97,11 +101,15 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         Task{
             do{
                 try await dependency.routineApplicationService.when(updateRoutine)
-                try await dependency.routineRepository.fetchRoutineLists()
-                try await dependency.routineRepository.fetchRoutineDetail(dependency.routineId)
+                try await dependency.routineRepository.fetchLists()
+                try await dependency.routineRepository.fetchDetail(dependency.routineId)
                 await MainActor.run{ listener?.routineEditDoneButtonDidTap() }
             }catch{
-                Log.e("\(error)")
+                if let error = error as? ArgumentException{
+                    Log.e(error.msg)
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
             }
         }
     }
@@ -112,7 +120,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         Task{
             do{
                 try await dependency.routineApplicationService.when(deleteRoutine)
-                try await dependency.routineRepository.fetchRoutineLists()
+                try await dependency.routineRepository.fetchLists()
                 await MainActor.run{ listener?.routineEditDeleteButtonDidTap() }
             }catch{
                 Log.e("\(error)")
