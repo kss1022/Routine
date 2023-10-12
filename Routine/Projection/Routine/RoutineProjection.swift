@@ -119,7 +119,7 @@ final class RoutineProjection{
             try routineListDao.update(routineList)
             try routineDetailDao.update(routineDetail)
         }catch{
-            Log.e("EventHandler Error: RoutineCreated \(error)")
+            Log.e("EventHandler Error: RoutineUpdated \(error)")
         }
     }
     

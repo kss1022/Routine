@@ -85,7 +85,6 @@ final class RoutineApplicationService : ApplicationService{
     
     func when(_ command: UpdateRoutine) async throws{
         do{
-            let routineId = RoutineId(UUID())
             let routineName = try RoutineName(command.name)
             let routineDescription = try RoutineDescription(description: command.description)
             let `repeat` = try Repeat(repeatType: command.repeatType, data: command.repeatValue)

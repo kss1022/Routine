@@ -13,10 +13,10 @@ protocol RoutineHomeRouting: ViewableRouting {
     func attachCreateRoutine()
     func detachCreateRoutine(dismiss: Bool)
     
-    func attachRoutineDetail(routineId: UUID)
+    func attachRoutineDetail(routineId: UUID, recordDate: Date)
     func detachRoutineDetail(dismiss: Bool)
     
-    func attachRoutineWeekCalender()
+    func attachRoutineWeekCalendar()
     func attachRoutineList()
 }
 
@@ -30,6 +30,7 @@ protocol RoutineHomeListener: AnyObject {
 
 protocol RoutineHomeInteractorDependency{
     var routineApplicationService: RoutineApplicationService{ get }
+    var recordApplicationService: RecordApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
 }
 
@@ -48,6 +49,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     private var cancellables: Set<AnyCancellable>
     
     private var list : [RoutineListDto] = []
+    private var date = Date()
     
     init(
         presenter: RoutineHomePresentable,
@@ -67,7 +69,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     override func didBecomeActive() {
         super.didBecomeActive()
         Log.v("Home DidBecome Active💪")
-        router?.attachRoutineWeekCalender()
+        router?.attachRoutineWeekCalendar()
         router?.attachRoutineList()
     }
     
@@ -88,14 +90,29 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         presentationType = .none
     }
     
-    //MARK: RoutineWeekCalender
-    func routineWeekCalenderDidTap(date: Date) {
+    //MARK: RoutineWeekCalendar
+    func routineWeekCalendarDidTap(date: Date) {
         Task{ [weak self] in
-            await self?.dependency.routineRepository.fetchHomeList(date: date)
+            do{
+                self?.date = date
+                try await self?.dependency.routineRepository.fetchHomeList(date: date)
+            }catch{
+                Log.e("\(error)")
+            }
         }
     }
     
 
+    //MARK: RoutineList
+    func routineListDidComplete(list: RoutineHomeListModel) {
+        if list.recordId == nil{
+            let command = CreateRecord(routineId: list.routineId, date: self.date)
+            createRecord(command)
+        }else{
+            let command = SetCompleteRecord(recordId: list.recordId!, isComplete: !list.isComplete)
+            setComplete(command)
+        }
+    }
             
     // MARK: CreateRoutine
     func createRoutineBarButtonDidTap() {
@@ -120,8 +137,9 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
             do{
                 try await dependency.routineRepository.fetchDetail(routineId)
                 await MainActor.run { [weak self] in
-                    self?.presentationType = .detail
-                    self?.router?.attachRoutineDetail(routineId: routineId)
+                    guard let self = self else { return }
+                    self.presentationType = .detail
+                    self.router?.attachRoutineDetail(routineId: routineId,recordDate: self.date)
                 }
             }catch{
                 Log.e("\(error)")
@@ -135,6 +153,36 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         self.router?.detachRoutineDetail(dismiss: true)
     }
     
+    
+    private func createRecord(_ command: CreateRecord){
+        Task{
+            do{
+                try await self.dependency.recordApplicationService.when(command)
+                try await self.dependency.routineRepository.fetchLists()
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.msg)
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
+            }
+        }
+    }
+    
+    private func setComplete(_ command: SetCompleteRecord){
+        Task{
+            do{
+                try await self.dependency.recordApplicationService.when(command)
+                try await self.dependency.routineRepository.fetchLists()
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.msg)
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
+            }
+        }
+    }
 
     
     private enum RoutineHomePresentationType{
@@ -144,3 +192,4 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     }
     
 }
+

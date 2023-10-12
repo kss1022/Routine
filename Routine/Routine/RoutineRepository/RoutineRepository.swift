@@ -12,15 +12,13 @@ import Combine
 protocol RoutineRepository{
 
     var lists: ReadOnlyCurrentValuePublisher<[RoutineListDto]> { get }
-    var homeLists: ReadOnlyCurrentValuePublisher<[RoutineListDto]> { get }
-    var detail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?> { get }
-    
+    var homeLists: ReadOnlyCurrentValuePublisher<[RoutineHomeListModel]> { get }
+    var detail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?> { get }
+    var detailRecords: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ get }
     
     func fetchLists() async throws
     func fetchDetail(_ routineId: UUID) async throws
-    func fetchHomeList(date: Date) async
-    
-    
+    func fetchHomeList(date: Date) async throws
 
     
     var emojis : [EmojiDto]{ get }
@@ -35,13 +33,16 @@ final class RoutineRepositoryImp: RoutineRepository{
     
     var lists: ReadOnlyCurrentValuePublisher<[RoutineListDto]>{ listsSubject }
     let listsSubject = CurrentValuePublisher<[RoutineListDto]>([])
-    
-    var homeLists: ReadOnlyCurrentValuePublisher<[RoutineListDto]>{ homeListsSubject } // TODO: cache Dictionary
-    let homeListsSubject = CurrentValuePublisher<[RoutineListDto]>([])
-    private var homeDate = Date()
-    
-    var detail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ detailSubject }
-    var detailSubject = CurrentValuePublisher<RoutineDetailDto?>(nil)
+
+    private var recordDate = Date()
+    var homeLists: ReadOnlyCurrentValuePublisher<[RoutineHomeListModel]>{ homeListsSubject }
+    let homeListsSubject = CurrentValuePublisher<[RoutineHomeListModel]>([])    
+        
+    var detail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?>{ detailSubject }
+    var detailSubject = CurrentValuePublisher<RoutineDetailModel?>(nil)
+        
+    var detailRecords: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ detailRecordsSubject }
+    var detailRecordsSubject = CurrentValuePublisher<RoutineDetailRecordModel?>(nil)
     
             
     private(set) var emojis = [EmojiDto]()
@@ -52,12 +53,12 @@ final class RoutineRepositoryImp: RoutineRepository{
         self.listsSubject.send(list)
         
         Log.v("RoutineRepository: fetch lists")
-        try await fetchHomeList(date: self.homeDate)
+        try await fetchHomeList(date: self.recordDate)
     }
 
     
-    func fetchHomeList(date: Date) async {
-        self.homeDate = date
+    func fetchHomeList(date: Date) async throws{
+        self.recordDate = date
         let lists = self.lists.value
         
         let calendar = Calendar.current
@@ -87,18 +88,40 @@ final class RoutineRepositoryImp: RoutineRepository{
                 }
             }
         }
-        homeListsSubject.send(dayOfList)
         
-        Log.v("RoutineRepository: fetch homeList")
+        
+        let recordSet : Set<RecordDto> = Set(
+            try fetchRecord(date: date)
+        )
+                
+        let homeListModel = dayOfList.map { RoutineHomeListModel(routineListDto: $0, set: recordSet, recordDate: recordDate)}
+        
+        homeListsSubject.send(homeListModel)
+        
+        Log.v("RoutineRepository: fetch homeList \(date)")
 
     }
+
     
     func fetchDetail(_ routineId: UUID) async throws {
         let detail = try routineReadModel.routineDetail(id: routineId)
-        self.detailSubject.send(detail)
+        
+        let record = try recordReadModel.record(routineId: routineId, date: recordDate)
+        let records = try recordReadModel.records(routineId: routineId)
+        
+        
+        let detailModel = detail.map(RoutineDetailModel.init)
+        self.detailSubject.send(detailModel)
+        
+        let detailRecordModel = RoutineDetailRecordModel(recordDto: record, recordDate: recordDate, recordDtos: records)
+        self.detailRecordsSubject.send(detailRecordModel)
+        
         
         Log.v("RoutineRepository: fetch detail")
     }
+    
+    
+    
     
     
     
@@ -137,26 +160,47 @@ final class RoutineRepositoryImp: RoutineRepository{
     
     
     
+    private func fetchRecord(date: Date) throws -> [RecordDto] {
+        let list = try recordReadModel.records(date: date)
+        Log.v("RoutineRepository: fetch Record \(date)")
+        return list
+    }
+    
     
     
     private let routineReadModel: RoutineReadModelFacade
     private let repeatReadModel: RepeatReadModelFacade
+    private let recordReadModel: RecordReadModelFacade
     
     private var cancelables: Set<AnyCancellable>
     
-    init(routineReadModel: RoutineReadModelFacade, repeatReadModel: RepeatReadModelFacade) {
+    init(
+        routineReadModel: RoutineReadModelFacade,
+        repeatReadModel: RepeatReadModelFacade,
+        recordReadModel: RecordReadModelFacade
+    ) {
         self.routineReadModel = routineReadModel
         self.repeatReadModel = repeatReadModel
+        self.recordReadModel = recordReadModel
         self.cancelables = .init()
         
         Task{
             try? await fetchLists()
         }
     }
+
+}
+
+extension RecordDto: Hashable{
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.recordId)
+    }
     
     
-
-
+    public static func == (lhs: RecordDto, rhs: RecordDto) -> Bool {
+        lhs.recordId == rhs.recordId
+    }
     
 }
 

@@ -8,11 +8,15 @@
 import ModernRIBs
 
 protocol RoutineListDependency: Dependency {
+    var recordApplicationService: RecordApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
 }
 
 final class RoutineListComponent: Component<RoutineListDependency>, RoutineListInteractorDependency {
+    
+    var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService}
     var routineRepository: RoutineRepository{ dependency.routineRepository }
+    
 }
 
 // MARK: - Builder

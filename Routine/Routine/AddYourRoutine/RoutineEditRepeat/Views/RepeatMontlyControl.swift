@@ -74,7 +74,7 @@ final class RepeatMontlyControl: UIControl{
         self.addSubview(monthlyStackView)
         self.addSubview(resetButton)
         
-        
+        // TODO: LongPress로 변경?
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanWith(gestureRecognizer:)))        
         self.addGestureRecognizer(panGestureRecognizer)
 
@@ -179,12 +179,12 @@ extension RepeatMontlyControl{
         let draggedView = self.hitTest(point, with: nil)
 
         
-        guard let dateButton = draggedView as? UIButton else { return }
+        guard let dateButton = draggedView as? RoutineRepeatControlButton else { return }
         if dateButton == dragedButton{ return }
         
         self.dragedButton = dateButton
-        if gestureRecognizer.state == .changed{
-            selectButton(sender: dateButton) //sendActions
+        if gestureRecognizer.state == .changed{            
+            dateButtonTap(sender: dateButton)
         }else if  gestureRecognizer.state.rawValue > UIGestureRecognizer.State.changed.rawValue{
             dragedButton = nil
             self.sendActions(for: .valueChanged)

@@ -149,3 +149,21 @@ extension RoutineRepeatControlButton: CAAnimationDelegate{
     
     
 }
+
+
+
+// TODO: TODO: FSCalendarCell.m 파일 참고해보기
+/**
+ *
+ *        CGFloat diameter = MIN(MIN(self.fs_width, self.fs_height),FSCalendarMaximumEventDotDiameter);
+        for (int i = 0; i < self.eventLayers.count; i++) {
+            CALayer *eventLayer = [self.eventLayers pointerAtIndex:i];
+            eventLayer.hidden = i >= self.numberOfEvents;
+            if (!eventLayer.hidden) {
+                eventLayer.frame = CGRectMake(2*i*diameter, (self.fs_height-diameter)*0.5, diameter, diameter);
+                if (eventLayer.cornerRadius != diameter/2) {
+                    eventLayer.cornerRadius = diameter/2;
+                }
+            }
+        }*
+ */

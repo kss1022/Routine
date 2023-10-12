@@ -23,6 +23,7 @@ class DatabaseManager{
     public let routineListDao: RoutineListDao
     public let routineDetailDao: RoutineDetailDao
     public let repeatDao: RepeatDao
+    public let recordDao: RecordDao
     
     private init() throws {
         guard let directoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else{
@@ -43,7 +44,8 @@ class DatabaseManager{
         
         self.routineListDao = try RoutineListSQLDao(db: db)
         self.routineDetailDao = try RoutineDetailSQLDao(db: db)
-        self.repeatDao = try  RepeatSQLDao(db: db)
+        self.repeatDao = try RepeatSQLDao(db: db)
+        self.recordDao = try RecordSQLDao(db: db)
     }
     
 }

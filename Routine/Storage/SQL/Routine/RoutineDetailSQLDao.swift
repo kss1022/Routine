@@ -18,11 +18,11 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
     private static let tableName = "ROUTINEDETAIL"
     private let routineId: Expression<UUID>
     private let routineName: Expression<String>
-    public let routineDescription: Expression<String>
+    private let routineDescription: Expression<String>
     private let repeatType: Expression<RepeatTypeDto>
     private let repeatValue: Expression<RepeatValueDto>
-    public let emojiIcon: Expression<String>
-    public let tint: Expression<String>
+    private let emojiIcon: Expression<String>
+    private let tint: Expression<String>
     private let updatedAt: Expression<Date>
     
     init(db: Connection) throws{

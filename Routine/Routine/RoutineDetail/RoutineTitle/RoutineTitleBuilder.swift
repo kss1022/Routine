@@ -9,11 +9,13 @@ import Foundation
 import ModernRIBs
 
 protocol RoutineTitleDependency: Dependency {
-    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ get }
+    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?>{ get }
+    var routineDetailRecord: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ get }
 }
 
 final class RoutineTitleComponent: Component<RoutineTitleDependency>, RoutineTitleInteractorDependency {
-    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ dependency.routineDetail }
+    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?>{ dependency.routineDetail }
+    var routineDetailRecord: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ dependency.routineDetailRecord }
 }
 
 // MARK: - Builder

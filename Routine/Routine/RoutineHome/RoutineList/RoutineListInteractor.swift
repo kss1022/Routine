@@ -20,10 +20,11 @@ protocol RoutineListPresentable: Presentable {
 
 protocol RoutineListListener: AnyObject {
     func routineListDidTapRoutineDetail(routineId: UUID)
+    func routineListDidComplete(list: RoutineHomeListModel)
 }
 
 protocol RoutineListInteractorDependency{
-    var routineRepository: RoutineRepository{ get }
+    var routineRepository: RoutineRepository{ get }    
 }
 
 final class RoutineListInteractor: PresentableInteractor<RoutineListPresentable>, RoutineListInteractable, RoutineListPresentableListener {
@@ -49,10 +50,11 @@ final class RoutineListInteractor: PresentableInteractor<RoutineListPresentable>
         super.didBecomeActive()
         dependency.routineRepository.homeLists
             .receive(on: DispatchQueue.main)
-            .sink { lists in
+            .sink { [weak self] lists in
+                guard let self = self else { return }
                 let viewModels = lists.map{ list in
                     RoutineListViewModel(list) {
-                        Log.v("check Button tap \(list.routineName)")
+                        self.listener?.routineListDidComplete(list: list)
                     }
                 }
                 self.presenter.setRoutineLists(viewModels: viewModels)

@@ -14,7 +14,7 @@ struct RoutineTitleViewModel{
     let routineName: String
     let routineDescription: String
     
-    init(_ dto: RoutineDetailDto) {
+    init(_ dto: RoutineDetailModel) {
         self.emojiIcon = dto.emojiIcon
         self.routineName = dto.routineName
         self.routineDescription = dto.routineDescription

@@ -17,12 +17,13 @@ final class RepeatDoItOnceControl: UIControl{
 
     private var heightConstraint: NSLayoutConstraint!
     
-    private lazy var weekCalender : FSCalendar = {
+    private lazy var calendar : FSCalendar = {
         let calendar = FSCalendar()
         calendar.translatesAutoresizingMaskIntoConstraints = false
         calendar.dataSource = self
         calendar.delegate = self
         
+        //calendar.locale = Locale(identifier: "ko_KR")
         
         calendar.setScope(.month, animated: false)
         
@@ -33,7 +34,7 @@ final class RepeatDoItOnceControl: UIControl{
         calendar.appearance.headerTitleColor = .label
         calendar.appearance.weekdayTextColor = .gray
         calendar.appearance.eventDefaultColor = .red
-        calendar.appearance.selectionColor = .blue
+        calendar.appearance.selectionColor = .primaryColor
                 
         calendar.select(selectedDay)
         return calendar
@@ -58,15 +59,16 @@ final class RepeatDoItOnceControl: UIControl{
 
     
     private func setView(){
-        self.addSubview(weekCalender)
+        self.addSubview(calendar)
         
-        self.heightConstraint = weekCalender.heightAnchor.constraint(equalToConstant: 300.0)
+        let height =  UIDevice.current.model.hasPrefix("iPad") ? 400.0 : 300.0
+        self.heightConstraint = calendar.heightAnchor.constraint(equalToConstant: height)
         
         NSLayoutConstraint.activate([
-            weekCalender.topAnchor.constraint(equalTo: self.topAnchor),
-            weekCalender.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            weekCalender.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            weekCalender.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            calendar.topAnchor.constraint(equalTo: self.topAnchor),
+            calendar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            calendar.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            calendar.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             heightConstraint
         ])
     }
@@ -75,7 +77,7 @@ final class RepeatDoItOnceControl: UIControl{
     func setDate(date: Date){
         Log.v("Set DoItOnceControl: \(date)")
         self.selectedDay = date
-        weekCalender.select(date)
+        calendar.select(date)
     }
 }
 

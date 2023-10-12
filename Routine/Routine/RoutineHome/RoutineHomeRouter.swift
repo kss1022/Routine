@@ -8,14 +8,14 @@
 import Foundation
 import ModernRIBs
 
-protocol RoutineHomeInteractable: Interactable , RoutineDetailListener, CreateRoutineListener, RoutineWeekCalenderListener, RoutineListListener{
+protocol RoutineHomeInteractable: Interactable , RoutineDetailListener, CreateRoutineListener, RoutineWeekCalendarListener, RoutineListListener{
     var router: RoutineHomeRouting? { get set }
     var listener: RoutineHomeListener? { get set }
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy { get }
 }
 
 protocol RoutineHomeViewControllable: ViewControllable {
-    func addRoutineWeekCalender(_ view: ViewControllable)
+    func addRoutineWeekCalendar(_ view: ViewControllable)
     func addRoutineList(_ view: ViewControllable)
 }
 
@@ -28,8 +28,8 @@ final class RoutineHomeRouter: ViewableRouter<RoutineHomeInteractable, RoutineHo
     private let routineDetailBuildable: RoutineDetailBuildable
     private var routineDetailRouting: Routing?
     
-    private let routineWeekCalenderBuildable: RoutineWeekCalenderBuildable
-    private var routineWeekCalenderRouting: Routing?
+    private let routineWeekCalendarBuildable: RoutineWeekCalendarBuildable
+    private var routineWeekCalendarRouting: Routing?
     
     private let routineListBuildable: RoutineListBuildable
     private var routineListRouting: Routing?
@@ -40,12 +40,12 @@ final class RoutineHomeRouter: ViewableRouter<RoutineHomeInteractable, RoutineHo
         viewController: RoutineHomeViewControllable,
         routineDetailBuildable: RoutineDetailBuildable,
         createRoutineBuildable: CreateRoutineBuildable,
-        routineWeekCalenderBuildable: RoutineWeekCalenderBuildable,
+        routineWeekCalendarBuildable: RoutineWeekCalendarBuildable,
         routineListBuildable: RoutineListBuildable
     ) {
         self.routineDetailBuildable = routineDetailBuildable
         self.createRoutineBuildable = createRoutineBuildable
-        self.routineWeekCalenderBuildable = routineWeekCalenderBuildable
+        self.routineWeekCalendarBuildable = routineWeekCalendarBuildable
         self.routineListBuildable = routineListBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
@@ -82,14 +82,14 @@ final class RoutineHomeRouter: ViewableRouter<RoutineHomeInteractable, RoutineHo
     }
     
     
-    func attachRoutineWeekCalender() {
-        if routineWeekCalenderRouting != nil{
+    func attachRoutineWeekCalendar() {
+        if routineWeekCalendarRouting != nil{
             return
         }
         
-        let router = routineWeekCalenderBuildable.build(withListener: interactor)
-        viewController.addRoutineWeekCalender(router.viewControllable)
-        self.routineWeekCalenderRouting = router
+        let router = routineWeekCalendarBuildable.build(withListener: interactor)
+        viewController.addRoutineWeekCalendar(router.viewControllable)
+        self.routineWeekCalendarRouting = router
         attachChild(router)
     }
     
@@ -104,12 +104,12 @@ final class RoutineHomeRouter: ViewableRouter<RoutineHomeInteractable, RoutineHo
         attachChild(router)
     }
     
-    func attachRoutineDetail(routineId: UUID) {
+    func attachRoutineDetail(routineId: UUID, recordDate: Date) {
         if routineDetailRouting != nil{
             return
         }
         
-        let router = routineDetailBuildable.build(withListener: interactor, routineId: routineId)
+        let router = routineDetailBuildable.build(withListener: interactor, routineId: routineId, recordDate: recordDate)
         let navigation = NavigationControllerable(root: router.viewControllable)
         navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
         viewController.present(navigation, animated: true, completion: nil)

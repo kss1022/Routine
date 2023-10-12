@@ -15,6 +15,10 @@ extension NSCoder{
         encode(Int64(int), forKey: forKey)
     }
     
+    // MARK: Bool
+    func encodeBool(_ bool: Bool, forKey: String){
+        encode(bool as Bool, forKey: forKey)
+    }
     
     // MARK: UUID
     func encodeUUID(_ uuid: UUID, forKey: String){

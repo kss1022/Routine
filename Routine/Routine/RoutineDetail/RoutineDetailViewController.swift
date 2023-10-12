@@ -41,7 +41,7 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
-        stackView.spacing = 8.0
+        stackView.spacing = 16.0
         return stackView
     }()
             
@@ -95,6 +95,15 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
         let vc = view.uiviewController
         
         addChild(vc)
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
+    func addRecordCalendar(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        
+        addChild(vc)
+        vc.view.roundCorners()        
         stackView.addArrangedSubview(vc.view)
         vc.didMove(toParent: self)
     }

@@ -91,7 +91,7 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     }
     
     
-    func addRoutineWeekCalender(_ view: ViewControllable) {
+    func addRoutineWeekCalendar(_ view: ViewControllable) {
         let vc = view.uiviewController
         
         stackView.addArrangedSubview(vc.view)        

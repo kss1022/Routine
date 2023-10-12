@@ -7,9 +7,7 @@
 
 import UIKit
 
-// TODO: Button의 selected원을 보여줄떄 작아졋다 커지는 애니메이션을 해준다.
-// FSCalender 와 같이 circle을 직접 그려준다. 
-// font와 관계없이 그려주는게 좋을 듯함! -> 중앙을 찍고 원을 그려버린다.
+
 
 final class RepeatWeeklyControl: UIControl{
     
@@ -50,7 +48,7 @@ final class RepeatWeeklyControl: UIControl{
     
     private func setView(){
         self.addSubview(stackView)
-        
+        // TODO: LongPress로 변경?
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanWith(gestureRecognizer:)))
         self.addGestureRecognizer(panGestureRecognizer)
                 

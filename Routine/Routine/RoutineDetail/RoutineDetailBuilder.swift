@@ -10,19 +10,30 @@ import ModernRIBs
 
 protocol RoutineDetailDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
+    var recordApplicationService: RecordApplicationService{ get }
+    
     var routineRepository: RoutineRepository{ get }
+    
 }
 
-final class RoutineDetailComponent: Component<RoutineDetailDependency>, RoutineTitleDependency, RoutineEditDependency, RoutineDetailInteractorDependency {
-            
+final class RoutineDetailComponent: Component<RoutineDetailDependency>, RoutineEditDependency,  RoutineTitleDependency, RecordCalendarDependency, RoutineDetailInteractorDependency {
+    
+    
     var routineId: UUID
-    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ routineRepository.detail}
-    
+    var recordDate: Date
+
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
-    var routineRepository: RoutineRepository{ dependency.routineRepository }
+    var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     
-    init(dependency: RoutineDetailDependency,routineId: UUID) {
+    var routineRepository: RoutineRepository{ dependency.routineRepository }
+        
+    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?>{ routineRepository.detail}
+    var routineDetailRecord: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ routineRepository.detailRecords }
+        
+    
+    init(dependency: RoutineDetailDependency, routineId: UUID, recordDate: Date) {
         self.routineId = routineId
+        self.recordDate = recordDate
         super.init(dependency: dependency)
     }
 }
@@ -30,7 +41,7 @@ final class RoutineDetailComponent: Component<RoutineDetailDependency>, RoutineT
 // MARK: - Builder
 
 protocol RoutineDetailBuildable: Buildable {
-    func build(withListener listener: RoutineDetailListener, routineId: UUID) -> RoutineDetailRouting
+    func build(withListener listener: RoutineDetailListener, routineId: UUID, recordDate: Date) -> RoutineDetailRouting
 }
 
 final class RoutineDetailBuilder: Builder<RoutineDetailDependency>, RoutineDetailBuildable {
@@ -39,20 +50,23 @@ final class RoutineDetailBuilder: Builder<RoutineDetailDependency>, RoutineDetai
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: RoutineDetailListener, routineId: UUID) -> RoutineDetailRouting {
-        let component = RoutineDetailComponent(dependency: dependency, routineId: routineId)
+    func build(withListener listener: RoutineDetailListener, routineId: UUID, recordDate: Date) -> RoutineDetailRouting {
+        let component = RoutineDetailComponent(dependency: dependency, routineId: routineId, recordDate: recordDate)
         let viewController = RoutineDetailViewController()
         let interactor = RoutineDetailInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
-        let routineTitleBuilder = RoutineTitleBuilder(dependency: component)
+        
         let routineEditBuilder = RoutineEditBuilder(dependency: component)
+        let routineTitleBuilder = RoutineTitleBuilder(dependency: component)
+        let recordCalendarBuilder = RecordCalendarBuilder(dependency: component)
         
         return RoutineDetailRouter(
             interactor: interactor,
             viewController: viewController,
             routineEditBuildable: routineEditBuilder,
-            routineTitleBuildable: routineTitleBuilder
+            routineTitleBuildable: routineTitleBuilder,
+            recordCalendarBuildable: recordCalendarBuilder
         )
     }
 }

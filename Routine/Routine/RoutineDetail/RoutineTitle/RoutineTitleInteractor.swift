@@ -17,15 +17,17 @@ protocol RoutineTitlePresentable: Presentable {
     var listener: RoutineTitlePresentableListener? { get set }
     
     func setRoutineTitle(_ viewModel: RoutineTitleViewModel)
+    func setIsComplete(_ isComplete: Bool)
 }
 
 protocol RoutineTitleListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func routineTitleCompleteButtonDidTap()
 }
 
 
 protocol RoutineTitleInteractorDependency{
-    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailDto?>{ get }
+    var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?>{ get }
+    var routineDetailRecord: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ get }
 }
 
 final class RoutineTitleInteractor: PresentableInteractor<RoutineTitlePresentable>, RoutineTitleInteractable, RoutineTitlePresentableListener {
@@ -49,13 +51,21 @@ final class RoutineTitleInteractor: PresentableInteractor<RoutineTitlePresentabl
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        
-        
+                
         dependency.routineDetail
             .receive(on: DispatchQueue.main)
             .sink { detail in
                 if let viewModel =  detail.map(RoutineTitleViewModel.init){
                     self.presenter.setRoutineTitle(viewModel)
+                }
+            }
+            .store(in: &cancelables)
+        
+        dependency.routineDetailRecord
+            .receive(on: DispatchQueue.main)
+            .sink {
+                if let record = $0{
+                    self.presenter.setIsComplete(record.isComplete)
                 }
             }
             .store(in: &cancelables)
@@ -65,5 +75,9 @@ final class RoutineTitleInteractor: PresentableInteractor<RoutineTitlePresentabl
         super.willResignActive()
         cancelables.forEach { $0.cancel() }
         cancelables.removeAll()
+    }
+    
+    func completeButtonDidTap() {
+        self.listener?.routineTitleCompleteButtonDidTap()
     }
 }

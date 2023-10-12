@@ -9,14 +9,16 @@ import ModernRIBs
 
 protocol RoutineHomeDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
+    var recordApplicationService: RecordApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
     
     var createRoutineBuildable: CreateRoutineBuildable{ get }
 }
 
-final class RoutineHomeComponent: Component<RoutineHomeDependency> , RoutineHomeInteractorDependency, RoutineDetailDependency, CreateRoutineDependency, RoutineWeekCalenderDependency, RoutineListDependency{
-    
+final class RoutineHomeComponent: Component<RoutineHomeDependency> , RoutineHomeInteractorDependency, RoutineDetailDependency, CreateRoutineDependency, RoutineWeekCalendarDependency, RoutineListDependency{
+            
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
+    var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     var routineRepository: RoutineRepository{ dependency.routineRepository }
     
     var createRoutineBuildable: CreateRoutineBuildable{ dependency.createRoutineBuildable }
@@ -41,7 +43,7 @@ final class RoutineHomeBuilder: Builder<RoutineHomeDependency>, RoutineHomeBuild
         interactor.listener = listener
         
         
-        let routineWeekCalenderBuilder = RoutineWeekCalenderBuilder(dependency: component)
+        let routineWeekCalendarBuilder = RoutineWeekCalendarBuilder(dependency: component)
         let routineListBuilder = RoutineListBuilder(dependency: component)
         let routineDetailBuilder = RoutineDetailBuilder(dependency: component)
         
@@ -51,7 +53,7 @@ final class RoutineHomeBuilder: Builder<RoutineHomeDependency>, RoutineHomeBuild
             viewController: viewController, 
             routineDetailBuildable: routineDetailBuilder,
             createRoutineBuildable: component.createRoutineBuildable, 
-            routineWeekCalenderBuildable: routineWeekCalenderBuilder,
+            routineWeekCalendarBuildable: routineWeekCalendarBuilder,
             routineListBuildable: routineListBuilder
         )
     }

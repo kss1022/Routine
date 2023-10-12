@@ -26,7 +26,7 @@ final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, Routin
     let descriptionSubject = CurrentValuePublisher<String>("")
             
     var repeatType: ReadOnlyCurrentValuePublisher<RepeatTypeViewModel>{ repeatTypeSubject }
-    let repeatTypeSubject = CurrentValuePublisher<RepeatTypeViewModel>(.doItOnce)
+    let repeatTypeSubject = CurrentValuePublisher<RepeatTypeViewModel>(.daliy)
         
     var repeatValue: ReadOnlyCurrentValuePublisher<RepeatValueViewModel>{ repeatValueSubject }
     var repeatValueSubject = CurrentValuePublisher<RepeatValueViewModel>( .daliy )

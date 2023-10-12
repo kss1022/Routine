@@ -9,7 +9,7 @@ import Foundation
 import ModernRIBs
 import UIKit
 
-protocol RoutineDetailInteractable: Interactable , RoutineEditListener, RoutineTitleListener{
+protocol RoutineDetailInteractable: Interactable , RoutineEditListener, RoutineTitleListener, RecordCalendarListener{
     var router: RoutineDetailRouting? { get set }
     var listener: RoutineDetailListener? { get set }
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy{ get }
@@ -17,6 +17,7 @@ protocol RoutineDetailInteractable: Interactable , RoutineEditListener, RoutineT
 
 protocol RoutineDetailViewControllable: ViewControllable {
     func addTitle(_ view: ViewControllable)
+    func addRecordCalendar(_ view: ViewControllable)
 }
 
 final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, RoutineDetailViewControllable>, RoutineDetailRouting {
@@ -27,32 +28,26 @@ final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, Routi
     
     private let routineTitleBuildable: RoutineTitleBuildable
     private var routineTitleRouting: Routing?
+    
+    private let recordCalendarBuildable: RecordCalendarBuildable
+    private var recordCalendarRouting: Routing?
 
     
     init(
         interactor: RoutineDetailInteractable,
         viewController: RoutineDetailViewControllable,
         routineEditBuildable: RoutineEditBuildable,
-        routineTitleBuildable: RoutineTitleBuildable
+        routineTitleBuildable: RoutineTitleBuildable,
+        recordCalendarBuildable: RecordCalendarBuildable
     ) {
         self.routineEditBuildable = routineEditBuildable
         self.routineTitleBuildable = routineTitleBuildable
+        self.recordCalendarBuildable = recordCalendarBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
     
-    func attachRoutineTitle() {
-        if routineTitleRouting != nil{
-            return
-        }
         
-        let router = routineTitleBuildable.build(withListener: interactor)
-        viewController.addTitle(router.viewControllable)
-        
-        self.routineTitleRouting = router
-        attachChild(router)
-    }
-    
     func attachRoutineEdit(routineId: UUID) {
         if routineEditRouting != nil{
             return
@@ -92,6 +87,30 @@ final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, Routi
                 
         detachChild(router)
         routineEditRouting = nil
+    }
+    
+    func attachRoutineTitle() {
+        if routineTitleRouting != nil{
+            return
+        }
+        
+        let router = routineTitleBuildable.build(withListener: interactor)
+        viewController.addTitle(router.viewControllable)
+        
+        self.routineTitleRouting = router
+        attachChild(router)
+    }
+    
+    func attachRecordCalendar() {
+        if recordCalendarRouting != nil{
+            return
+        }
+        
+        let routing = recordCalendarBuildable.build(withListener: interactor)
+        viewController.addRecordCalendar(routing.viewControllable)
+        
+        self.recordCalendarRouting = routing
+        attachChild(routing)
     }
 
 }

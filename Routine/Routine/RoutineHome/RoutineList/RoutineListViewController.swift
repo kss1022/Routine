@@ -77,8 +77,6 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
         snapShot.deleteItems(beforeItems)
         snapShot.appendItems(viewModels , toSection: .routineList )
         self.dataSource.apply( snapShot , animatingDifferences: false )
-        
-        Log.d("SetRoutineList : \(Thread.current)")
     }
     
     private func setDataSource(){

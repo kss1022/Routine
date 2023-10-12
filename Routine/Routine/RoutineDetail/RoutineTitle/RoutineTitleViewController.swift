@@ -9,9 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol RoutineTitlePresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func completeButtonDidTap()
 }
 
 final class RoutineTitleViewController: UIViewController, RoutineTitlePresentable, RoutineTitleViewControllable {
@@ -56,12 +54,12 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         return label
     }()
     
-    private lazy var checkButton: UIButton = {
+    private lazy var completeButton: UIButton = {
         let button = TouchesButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
-        button.setTitle("Complete", for: .normal)
+        //button.setTitle("Complete", for: .normal)
         button.setTitleColor(.systemBackground, for: .normal)
         button.backgroundColor = .label
         
@@ -74,7 +72,7 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         
         button.roundCorners(24.0)
         
-        button.addTarget(self, action: #selector(checkButtonTap), for: .touchUpInside)
+        button.addTarget(self, action: #selector(completeButtonTap), for: .touchUpInside)
         return button
     }()
 
@@ -96,7 +94,7 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
      
         view.addSubview(emojiLabel)
         view.addSubview(stackView)
-        view.addSubview(checkButton)
+        view.addSubview(completeButton)
         
         stackView.addArrangedSubview(routineNameLabel)
         stackView.addArrangedSubview(routineDescriptionLabel)
@@ -111,11 +109,11 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            checkButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 32.0),
-            checkButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            checkButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16.0),
+            completeButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 32.0),
+            completeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            completeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16.0),
             
-            checkButton.heightAnchor.constraint(equalToConstant: 48.0)
+            completeButton.heightAnchor.constraint(equalToConstant: 48.0)
         ])
         
         
@@ -127,9 +125,17 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         routineDescriptionLabel.text = viewModel.routineDescription
     }
     
+    func setIsComplete(_ isComplete: Bool) {
+        if isComplete{
+            self.completeButton.setAttributedTitle("Completed".getAttributeStrkeString(), for: .normal)
+        }else{
+            self.completeButton.setAttributedTitle("Complete".getAttributeSting(), for: .normal)
+        }
+    }
+    
     @objc
-    private func checkButtonTap(){
-        
+    private func completeButtonTap(){
+        listener?.completeButtonDidTap()
     }
 
 }

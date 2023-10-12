@@ -110,14 +110,16 @@ final class RoutineListCell: UICollectionViewCell{
         backgroundColor = viewModel.tint
         
         self.emojiIconLabel.text = viewModel.emojiIcon
-        self.nameLabel.text = viewModel.name
-        self.descriptionLabel.text = viewModel.description
-        self.checkButton.isSelected = viewModel.isChecked
+        self.checkButton.isSelected = viewModel.isCompleted
         
-        if viewModel.isChecked{
+        if viewModel.isCompleted{
+            self.nameLabel.attributedText = viewModel.name.getAttributeStrkeString()
+            self.descriptionLabel.attributedText = viewModel.description.getAttributeStrkeString()
             self.checkButton.setImage(UIImage(systemName: "checkmark.seal.fill"), for: .normal)
             self.checkButton.tintColor = UIColor(hex: "#00EA96FF")
         }else{
+            self.nameLabel.attributedText = viewModel.name.getAttributeSting()
+            self.descriptionLabel.attributedText = viewModel.description.getAttributeSting()
             self.checkButton.setImage(UIImage(systemName: "circle"), for: .normal)
             self.checkButton.tintColor = .black
         }

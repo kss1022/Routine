@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8702610D2AD7ADED00B6A4F4 /* RoutineDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8702610C2AD7ADED00B6A4F4 /* RoutineDetailModel.swift */; };
+		8702610F2AD7B11A00B6A4F4 /* RoutineDetailRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8702610E2AD7B11A00B6A4F4 /* RoutineDetailRecordModel.swift */; };
 		8703F56F2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8703F56E2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift */; };
 		8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */; };
 		8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */; };
@@ -35,6 +37,11 @@
 		874988632AC41F7D004DC64A /* RoutineListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8749885F2AC41F7D004DC64A /* RoutineListInteractor.swift */; };
 		874988682AC4226D004DC64A /* RoutineListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874988672AC4226D004DC64A /* RoutineListViewModel.swift */; };
 		874B91532AD55A3A0089FC6E /* RepeatValueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B91522AD55A3A0089FC6E /* RepeatValueViewModel.swift */; };
+		874C4DCF2AD7C11100734491 /* RecordCalendarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DCB2AD7C11100734491 /* RecordCalendarRouter.swift */; };
+		874C4DD02AD7C11100734491 /* RecordCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DCC2AD7C11100734491 /* RecordCalendarViewController.swift */; };
+		874C4DD12AD7C11100734491 /* RecordCalendarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DCD2AD7C11100734491 /* RecordCalendarBuilder.swift */; };
+		874C4DD22AD7C11100734491 /* RecordCalendarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DCE2AD7C11100734491 /* RecordCalendarInteractor.swift */; };
+		874C4DD42AD7D7F100734491 /* RecordCalenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DD32AD7D7F100734491 /* RecordCalenderCell.swift */; };
 		874CAF2F2AB45A580053E021 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF2E2AB45A580053E021 /* Routine.swift */; };
 		874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF302AB45B4B0053E021 /* RoutineId.swift */; };
 		87504A182ABB4E7B0046EFD5 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87504A172ABB4E7B0046EFD5 /* DatabaseManager.swift */; };
@@ -154,10 +161,10 @@
 		877DF8D32AD5ABB700F45C10 /* RepeatSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DF8D22AD5ABB700F45C10 /* RepeatSQLDao.swift */; };
 		877DF8D62AD5BA0500F45C10 /* RepeatReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DF8D52AD5BA0500F45C10 /* RepeatReadModel.swift */; };
 		878DA7942ACE64D300220653 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 878DA7932ACE64D300220653 /* FSCalendar */; };
-		878DA79A2ACE64F500220653 /* RoutineWeekCalenderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7962ACE64F500220653 /* RoutineWeekCalenderRouter.swift */; };
-		878DA79B2ACE64F500220653 /* RoutineWeekCalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7972ACE64F500220653 /* RoutineWeekCalenderViewController.swift */; };
-		878DA79C2ACE64F500220653 /* RoutineWeekCalenderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7982ACE64F500220653 /* RoutineWeekCalenderBuilder.swift */; };
-		878DA79D2ACE64F500220653 /* RoutineWeekCalenderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7992ACE64F500220653 /* RoutineWeekCalenderInteractor.swift */; };
+		878DA79A2ACE64F500220653 /* RoutineWeekCalendarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7962ACE64F500220653 /* RoutineWeekCalendarRouter.swift */; };
+		878DA79B2ACE64F500220653 /* RoutineWeekCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7972ACE64F500220653 /* RoutineWeekCalendarViewController.swift */; };
+		878DA79C2ACE64F500220653 /* RoutineWeekCalendarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7982ACE64F500220653 /* RoutineWeekCalendarBuilder.swift */; };
+		878DA79D2ACE64F500220653 /* RoutineWeekCalendarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7992ACE64F500220653 /* RoutineWeekCalendarInteractor.swift */; };
 		878DA79F2ACE8C6500220653 /* DeleteRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA79E2ACE8C6500220653 /* DeleteRoutine.swift */; };
 		878DA7A12ACE8D2D00220653 /* RoutineDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7A02ACE8D2D00220653 /* RoutineDeleted.swift */; };
 		878DA7A42ACEA0FF00220653 /* ZoomTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7A32ACEA0FF00220653 /* ZoomTransitionController.swift */; };
@@ -171,6 +178,11 @@
 		87901EA32ABAFDCC002CA93F /* RoutineDetailSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87901EA22ABAFDCC002CA93F /* RoutineDetailSQLDao.swift */; };
 		87AD2D582AD6B44D00B0E2CF /* RepeatWeeklyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D572AD6B44D00B0E2CF /* RepeatWeeklyViewModel.swift */; };
 		87AD2D5A2AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D592AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift */; };
+		87AD2D5F2AD6D26D00B0E2CF /* RecordApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D5E2AD6D26D00B0E2CF /* RecordApplicationService.swift */; };
+		87AD2D632AD6D31400B0E2CF /* RecordFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D622AD6D31400B0E2CF /* RecordFactory.swift */; };
+		87AD2D652AD6D32700B0E2CF /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D642AD6D32700B0E2CF /* Record.swift */; };
+		87AD2D672AD6D34100B0E2CF /* RecordId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D662AD6D34100B0E2CF /* RecordId.swift */; };
+		87AD2D692AD6D61B00B0E2CF /* RecordDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D682AD6D61B00B0E2CF /* RecordDate.swift */; };
 		87AF46F02AD46C4800647201 /* RoutineRepeatFormaater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AF46EF2AD46C4800647201 /* RoutineRepeatFormaater.swift */; };
 		87AF756E2AB99DD1001CF7F2 /* EventEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AF75682AB99DD1001CF7F2 /* EventEntity+CoreDataClass.swift */; };
 		87AF756F2AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AF75692AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift */; };
@@ -193,7 +205,6 @@
 		87D0CAE92ACD593900FE405F /* RoutineNameChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAE82ACD593900FE405F /* RoutineNameChanged.swift */; };
 		87D0CAEB2ACD594200FE405F /* ChangeRoutineName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAEA2ACD594200FE405F /* ChangeRoutineName.swift */; };
 		87D0CAF12ACD627700FE405F /* Repeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAF02ACD627700FE405F /* Repeat.swift */; };
-		87D0CAF52ACD64B000FE405F /* CalenderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAF42ACD64B000FE405F /* CalenderHelper.swift */; };
 		87D0CB032ACD83AC00FE405F /* RoutineRepeatChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CB022ACD83AC00FE405F /* RoutineRepeatChanged.swift */; };
 		87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD42AB8372800FE712C /* RoutineService.swift */; };
 		87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD62AB8373400FE712C /* RoutineFactory.swift */; };
@@ -214,6 +225,19 @@
 		87DFEC612AC19E2800531EE3 /* CreateRoutineInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC5D2AC19E2800531EE3 /* CreateRoutineInteractor.swift */; };
 		87DFEC642AC1A9A200531EE3 /* TouchesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC632AC1A9A200531EE3 /* TouchesButton.swift */; };
 		87DFEC712AC1B43C00531EE3 /* Keyboard+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC702AC1B43C00531EE3 /* Keyboard+Utils.swift */; };
+		87E375FF2AD6D99000359850 /* RecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E375FE2AD6D99000359850 /* RecordService.swift */; };
+		87E376022AD6DAC300359850 /* RecordCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376012AD6DAC300359850 /* RecordCreated.swift */; };
+		87E376042AD6DAC900359850 /* CreateRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376032AD6DAC900359850 /* CreateRecord.swift */; };
+		87E376072AD6E06200359850 /* RecordProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376062AD6E06200359850 /* RecordProjection.swift */; };
+		87E376092AD6E0E000359850 /* RecordReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376082AD6E0E000359850 /* RecordReadModel.swift */; };
+		87E3760D2AD6E12A00359850 /* RecordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3760C2AD6E12A00359850 /* RecordDto.swift */; };
+		87E3760F2AD6E16700359850 /* RecordDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3760E2AD6E16700359850 /* RecordDao.swift */; };
+		87E376112AD6E22100359850 /* CDRecordFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376102AD6E22100359850 /* CDRecordFactory.swift */; };
+		87E376142AD6E43D00359850 /* RecordSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376132AD6E43D00359850 /* RecordSQLDao.swift */; };
+		87E376162AD6EA1E00359850 /* RoutineHomeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376152AD6EA1E00359850 /* RoutineHomeListModel.swift */; };
+		87E3761A2AD704DE00359850 /* RecordFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376192AD704DE00359850 /* RecordFormatter.swift */; };
+		87E3761C2AD70E8B00359850 /* RecordCompleteSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3761B2AD70E8B00359850 /* RecordCompleteSet.swift */; };
+		87E3761E2AD70EA500359850 /* SetCompleteRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3761D2AD70EA500359850 /* SetCompleteRecord.swift */; };
 		87F3A37A2AB3006500A2102D /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A3792AB3006500A2102D /* EventStore.swift */; };
 		87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37B2AB3007100A2102D /* EventStream.swift */; };
 		87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */; };
@@ -224,6 +248,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8702610C2AD7ADED00B6A4F4 /* RoutineDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailModel.swift; sourceTree = "<group>"; };
+		8702610E2AD7B11A00B6A4F4 /* RoutineDetailRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailRecordModel.swift; sourceTree = "<group>"; };
 		8703F56E2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRepeatControlButton.swift; sourceTree = "<group>"; };
 		8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineRouter.swift; sourceTree = "<group>"; };
 		8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +278,11 @@
 		8749885F2AC41F7D004DC64A /* RoutineListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListInteractor.swift; sourceTree = "<group>"; };
 		874988672AC4226D004DC64A /* RoutineListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListViewModel.swift; sourceTree = "<group>"; };
 		874B91522AD55A3A0089FC6E /* RepeatValueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatValueViewModel.swift; sourceTree = "<group>"; };
+		874C4DCB2AD7C11100734491 /* RecordCalendarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarRouter.swift; sourceTree = "<group>"; };
+		874C4DCC2AD7C11100734491 /* RecordCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarViewController.swift; sourceTree = "<group>"; };
+		874C4DCD2AD7C11100734491 /* RecordCalendarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarBuilder.swift; sourceTree = "<group>"; };
+		874C4DCE2AD7C11100734491 /* RecordCalendarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarInteractor.swift; sourceTree = "<group>"; };
+		874C4DD32AD7D7F100734491 /* RecordCalenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalenderCell.swift; sourceTree = "<group>"; };
 		874CAF2E2AB45A580053E021 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		874CAF302AB45B4B0053E021 /* RoutineId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineId.swift; sourceTree = "<group>"; };
 		87504A172ABB4E7B0046EFD5 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
@@ -364,10 +395,10 @@
 		877DF8D02AD5AB5E00F45C10 /* RepeatDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDao.swift; sourceTree = "<group>"; };
 		877DF8D22AD5ABB700F45C10 /* RepeatSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatSQLDao.swift; sourceTree = "<group>"; };
 		877DF8D52AD5BA0500F45C10 /* RepeatReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatReadModel.swift; sourceTree = "<group>"; };
-		878DA7962ACE64F500220653 /* RoutineWeekCalenderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekCalenderRouter.swift; sourceTree = "<group>"; };
-		878DA7972ACE64F500220653 /* RoutineWeekCalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekCalenderViewController.swift; sourceTree = "<group>"; };
-		878DA7982ACE64F500220653 /* RoutineWeekCalenderBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekCalenderBuilder.swift; sourceTree = "<group>"; };
-		878DA7992ACE64F500220653 /* RoutineWeekCalenderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekCalenderInteractor.swift; sourceTree = "<group>"; };
+		878DA7962ACE64F500220653 /* RoutineWeekCalendarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekCalendarRouter.swift; sourceTree = "<group>"; };
+		878DA7972ACE64F500220653 /* RoutineWeekCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekCalendarViewController.swift; sourceTree = "<group>"; };
+		878DA7982ACE64F500220653 /* RoutineWeekCalendarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekCalendarBuilder.swift; sourceTree = "<group>"; };
+		878DA7992ACE64F500220653 /* RoutineWeekCalendarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekCalendarInteractor.swift; sourceTree = "<group>"; };
 		878DA79E2ACE8C6500220653 /* DeleteRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRoutine.swift; sourceTree = "<group>"; };
 		878DA7A02ACE8D2D00220653 /* RoutineDeleted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDeleted.swift; sourceTree = "<group>"; };
 		878DA7A32ACEA0FF00220653 /* ZoomTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTransitionController.swift; sourceTree = "<group>"; };
@@ -380,6 +411,11 @@
 		87901EA22ABAFDCC002CA93F /* RoutineDetailSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDetailSQLDao.swift; sourceTree = "<group>"; };
 		87AD2D572AD6B44D00B0E2CF /* RepeatWeeklyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatWeeklyViewModel.swift; sourceTree = "<group>"; };
 		87AD2D592AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatMonthlyViewModel.swift; sourceTree = "<group>"; };
+		87AD2D5E2AD6D26D00B0E2CF /* RecordApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordApplicationService.swift; sourceTree = "<group>"; };
+		87AD2D622AD6D31400B0E2CF /* RecordFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordFactory.swift; sourceTree = "<group>"; };
+		87AD2D642AD6D32700B0E2CF /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		87AD2D662AD6D34100B0E2CF /* RecordId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordId.swift; sourceTree = "<group>"; };
+		87AD2D682AD6D61B00B0E2CF /* RecordDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDate.swift; sourceTree = "<group>"; };
 		87AF46EF2AD46C4800647201 /* RoutineRepeatFormaater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRepeatFormaater.swift; sourceTree = "<group>"; };
 		87AF75682AB99DD1001CF7F2 /* EventEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		87AF75692AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -402,7 +438,6 @@
 		87D0CAE82ACD593900FE405F /* RoutineNameChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutineNameChanged.swift; sourceTree = "<group>"; };
 		87D0CAEA2ACD594200FE405F /* ChangeRoutineName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeRoutineName.swift; sourceTree = "<group>"; };
 		87D0CAF02ACD627700FE405F /* Repeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repeat.swift; sourceTree = "<group>"; };
-		87D0CAF42ACD64B000FE405F /* CalenderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderHelper.swift; sourceTree = "<group>"; };
 		87D0CB022ACD83AC00FE405F /* RoutineRepeatChanged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRepeatChanged.swift; sourceTree = "<group>"; };
 		87D5AAD42AB8372800FE712C /* RoutineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineService.swift; sourceTree = "<group>"; };
 		87D5AAD62AB8373400FE712C /* RoutineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFactory.swift; sourceTree = "<group>"; };
@@ -423,6 +458,19 @@
 		87DFEC5D2AC19E2800531EE3 /* CreateRoutineInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineInteractor.swift; sourceTree = "<group>"; };
 		87DFEC632AC1A9A200531EE3 /* TouchesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchesButton.swift; sourceTree = "<group>"; };
 		87DFEC702AC1B43C00531EE3 /* Keyboard+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keyboard+Utils.swift"; sourceTree = "<group>"; };
+		87E375FE2AD6D99000359850 /* RecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordService.swift; sourceTree = "<group>"; };
+		87E376012AD6DAC300359850 /* RecordCreated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCreated.swift; sourceTree = "<group>"; };
+		87E376032AD6DAC900359850 /* CreateRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecord.swift; sourceTree = "<group>"; };
+		87E376062AD6E06200359850 /* RecordProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordProjection.swift; sourceTree = "<group>"; };
+		87E376082AD6E0E000359850 /* RecordReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReadModel.swift; sourceTree = "<group>"; };
+		87E3760C2AD6E12A00359850 /* RecordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDto.swift; sourceTree = "<group>"; };
+		87E3760E2AD6E16700359850 /* RecordDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDao.swift; sourceTree = "<group>"; };
+		87E376102AD6E22100359850 /* CDRecordFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDRecordFactory.swift; sourceTree = "<group>"; };
+		87E376132AD6E43D00359850 /* RecordSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSQLDao.swift; sourceTree = "<group>"; };
+		87E376152AD6EA1E00359850 /* RoutineHomeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeListModel.swift; sourceTree = "<group>"; };
+		87E376192AD704DE00359850 /* RecordFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordFormatter.swift; sourceTree = "<group>"; };
+		87E3761B2AD70E8B00359850 /* RecordCompleteSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCompleteSet.swift; sourceTree = "<group>"; };
+		87E3761D2AD70EA500359850 /* SetCompleteRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCompleteRecord.swift; sourceTree = "<group>"; };
 		87F3A3792AB3006500A2102D /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		87F3A37B2AB3007100A2102D /* EventStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
 		87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendOnlyStore.swift; sourceTree = "<group>"; };
@@ -530,6 +578,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		874C4DBF2AD7BCBB00734491 /* RecordCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				874C4DCD2AD7C11100734491 /* RecordCalendarBuilder.swift */,
+				874C4DCB2AD7C11100734491 /* RecordCalendarRouter.swift */,
+				874C4DCE2AD7C11100734491 /* RecordCalendarInteractor.swift */,
+				874C4DCC2AD7C11100734491 /* RecordCalendarViewController.swift */,
+				874C4DD32AD7D7F100734491 /* RecordCalenderCell.swift */,
+			);
+			path = RecordCalendar;
+			sourceTree = "<group>";
+		};
 		87504A192ABB4E880046EFD5 /* Dto */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,6 +612,7 @@
 			isa = PBXGroup;
 			children = (
 				8751F09E2AC7F1E9000462EC /* RoutineTitle */,
+				874C4DBF2AD7BCBB00734491 /* RecordCalendar */,
 				8751F08F2AC7E776000462EC /* RoutineDetailBuilder.swift */,
 				8751F08D2AC7E776000462EC /* RoutineDetailRouter.swift */,
 				8751F0902AC7E776000462EC /* RoutineDetailInteractor.swift */,
@@ -579,7 +640,7 @@
 				8751F0A72AC7F2FC000462EC /* RoutineTitleRouter.swift */,
 				8751F0AA2AC7F2FC000462EC /* RoutineTitleInteractor.swift */,
 				8751F0A82AC7F2FC000462EC /* RoutineTitleViewController.swift */,
-				87D0CACD2ACCFE8700FE405F /* Views */,
+				87D0CACE2ACCFE9B00FE405F /* RoutineTitleViewModel.swift */,
 			);
 			path = RoutineTitle;
 			sourceTree = "<group>";
@@ -912,10 +973,10 @@
 		878DA7952ACE64E000220653 /* RoutineWeekCalender */ = {
 			isa = PBXGroup;
 			children = (
-				878DA7982ACE64F500220653 /* RoutineWeekCalenderBuilder.swift */,
-				878DA7962ACE64F500220653 /* RoutineWeekCalenderRouter.swift */,
-				878DA7992ACE64F500220653 /* RoutineWeekCalenderInteractor.swift */,
-				878DA7972ACE64F500220653 /* RoutineWeekCalenderViewController.swift */,
+				878DA7982ACE64F500220653 /* RoutineWeekCalendarBuilder.swift */,
+				878DA7962ACE64F500220653 /* RoutineWeekCalendarRouter.swift */,
+				878DA7992ACE64F500220653 /* RoutineWeekCalendarInteractor.swift */,
+				878DA7972ACE64F500220653 /* RoutineWeekCalendarViewController.swift */,
 			);
 			path = RoutineWeekCalender;
 			sourceTree = "<group>";
@@ -935,6 +996,7 @@
 			children = (
 				87D5AAFD2AB8401300FE712C /* Routine */,
 				877DF8CE2AD5AB4800F45C10 /* Repeat */,
+				87E376122AD6E42900359850 /* Record */,
 			);
 			path = SQL;
 			sourceTree = "<group>";
@@ -944,8 +1006,48 @@
 			children = (
 				87D5AAF32AB83D9D00FE712C /* CDRoutineFactory.swift */,
 				8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */,
+				87E376102AD6E22100359850 /* CDRecordFactory.swift */,
 			);
 			path = Factory;
+			sourceTree = "<group>";
+		};
+		87AD2D5C2AD6D24100B0E2CF /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				87AD2D5E2AD6D26D00B0E2CF /* RecordApplicationService.swift */,
+				87AD2D602AD6D27800B0E2CF /* Record */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		87AD2D5D2AD6D24A00B0E2CF /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				87AD2D612AD6D30B00B0E2CF /* Record */,
+				87E375FD2AD6D98900359850 /* Service */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		87AD2D602AD6D27800B0E2CF /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				87E376032AD6DAC900359850 /* CreateRecord.swift */,
+				87E3761D2AD70EA500359850 /* SetCompleteRecord.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		87AD2D612AD6D30B00B0E2CF /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				87AD2D622AD6D31400B0E2CF /* RecordFactory.swift */,
+				87AD2D642AD6D32700B0E2CF /* Record.swift */,
+				87AD2D662AD6D34100B0E2CF /* RecordId.swift */,
+				87AD2D682AD6D61B00B0E2CF /* RecordDate.swift */,
+				87E376002AD6DAB000359850 /* Event */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		87C815332AD3DBC80062BEDF /* RoutineEditRepeat */ = {
@@ -977,28 +1079,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		87D0CACD2ACCFE8700FE405F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				87D0CACE2ACCFE9B00FE405F /* RoutineTitleViewModel.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		87D0CAD32ACD0EDC00FE405F /* RoutineRepository */ = {
 			isa = PBXGroup;
 			children = (
 				87D0CAD42ACD0EE600FE405F /* RoutineRepository.swift */,
+				87E376152AD6EA1E00359850 /* RoutineHomeListModel.swift */,
+				8702610C2AD7ADED00B6A4F4 /* RoutineDetailModel.swift */,
+				8702610E2AD7B11A00B6A4F4 /* RoutineDetailRecordModel.swift */,
+				8749884F2AC40396004DC64A /* TintDto.swift */,
+				874988512AC403D9004DC64A /* EmojiDto.swift */,
 			);
 			path = RoutineRepository;
 			sourceTree = "<group>";
 		};
-		87D0CAF32ACD649800FE405F /* RcordAggregate */ = {
+		87D0CAF32ACD649800FE405F /* RecordAggregate */ = {
 			isa = PBXGroup;
 			children = (
-				87D0CAF42ACD64B000FE405F /* CalenderHelper.swift */,
+				87AD2D5C2AD6D24100B0E2CF /* Application */,
+				87AD2D5D2AD6D24A00B0E2CF /* Domain */,
 			);
-			path = RcordAggregate;
+			path = RecordAggregate;
 			sourceTree = "<group>";
 		};
 		87D5AACD2AB836B200FE712C /* Application */ = {
@@ -1095,7 +1195,7 @@
 			isa = PBXGroup;
 			children = (
 				87D5AAFB2AB83F5A00FE712C /* RoutineAggregate */,
-				87D0CAF32ACD649800FE405F /* RcordAggregate */,
+				87D0CAF32ACD649800FE405F /* RecordAggregate */,
 				876E958A2AB2F9CF00046809 /* Share */,
 			);
 			path = Domain;
@@ -1145,6 +1245,7 @@
 			children = (
 				87D5AB072AB867C700FE712C /* Routine */,
 				877DF8C62AD5AAF800F45C10 /* Repeat */,
+				87E376052AD6E04D00359850 /* Record */,
 				8768E6062ABC562800CB35EC /* CheckList */,
 			);
 			path = Projection;
@@ -1157,8 +1258,6 @@
 				87504A192ABB4E880046EFD5 /* Dto */,
 				87D5AB082AB867CE00FE712C /* RoutineProjection.swift */,
 				878EAD5E2ABB717E00593700 /* RoutineReadModel.swift */,
-				8749884F2AC40396004DC64A /* TintDto.swift */,
-				874988512AC403D9004DC64A /* EmojiDto.swift */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -1194,6 +1293,59 @@
 				8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		87E375FD2AD6D98900359850 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				87E375FE2AD6D99000359850 /* RecordService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		87E376002AD6DAB000359850 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				87E376012AD6DAC300359850 /* RecordCreated.swift */,
+				87E3761B2AD70E8B00359850 /* RecordCompleteSet.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		87E376052AD6E04D00359850 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				87E3760A2AD6E0E200359850 /* Dao */,
+				87E3760B2AD6E0E600359850 /* Dto */,
+				87E376062AD6E06200359850 /* RecordProjection.swift */,
+				87E376082AD6E0E000359850 /* RecordReadModel.swift */,
+				87E376192AD704DE00359850 /* RecordFormatter.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		87E3760A2AD6E0E200359850 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				87E3760E2AD6E16700359850 /* RecordDao.swift */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		87E3760B2AD6E0E600359850 /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				87E3760C2AD6E12A00359850 /* RecordDto.swift */,
+			);
+			path = Dto;
+			sourceTree = "<group>";
+		};
+		87E376122AD6E42900359850 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				87E376132AD6E43D00359850 /* RecordSQLDao.swift */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		87F3A3782AB3001F00A2102D /* EventSourcing */ = {
@@ -1350,6 +1502,7 @@
 			files = (
 				87D0CAF12ACD627700FE405F /* Repeat.swift in Sources */,
 				878DA7A42ACEA0FF00220653 /* ZoomTransitionController.swift in Sources */,
+				87E3760F2AD6E16700359850 /* RecordDao.swift in Sources */,
 				8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */,
 				8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */,
 				876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */,
@@ -1359,11 +1512,14 @@
 				87D5AAF02AB83D1500FE712C /* CreateRoutine.swift in Sources */,
 				876E95572AB2D00F00046809 /* UIFont+Utils.swift in Sources */,
 				8751F09B2AC7F092000462EC /* RoutineEditTitleViewController.swift in Sources */,
+				874C4DD42AD7D7F100734491 /* RecordCalenderCell.swift in Sources */,
 				8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */,
 				8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */,
+				87AD2D632AD6D31400B0E2CF /* RecordFactory.swift in Sources */,
 				8751F0AC2AC7F2FC000462EC /* RoutineTitleViewController.swift in Sources */,
 				87D5AAE72AB83A4A00FE712C /* CDSnapshotRepository.swift in Sources */,
 				8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */,
+				87AD2D672AD6D34100B0E2CF /* RecordId.swift in Sources */,
 				8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */,
 				87C815442AD405E20062BEDF /* RepeatMontlyControl.swift in Sources */,
 				8751F0922AC7E776000462EC /* RoutineDetailViewController.swift in Sources */,
@@ -1372,6 +1528,7 @@
 				874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */,
 				87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */,
 				876E94D72AB2CEE600046809 /* AppComponent.swift in Sources */,
+				87AD2D5F2AD6D26D00B0E2CF /* RecordApplicationService.swift in Sources */,
 				87D5AAF42AB83D9D00FE712C /* CDRoutineFactory.swift in Sources */,
 				8712F6592AC2E09A008A02C4 /* RoutineTintInteractor.swift in Sources */,
 				876E955D2AB2D00F00046809 /* UILabel+Utils.swift in Sources */,
@@ -1382,15 +1539,19 @@
 				876E95522AB2D00F00046809 /* PushModalPresentationController.swift in Sources */,
 				8754D2AB2AC2F6EF00440385 /* BottomLiseTextFeild.swift in Sources */,
 				87504A1B2ABB4EA30046EFD5 /* RoutineListDto.swift in Sources */,
+				87E376112AD6E22100359850 /* CDRecordFactory.swift in Sources */,
 				8768E5F82ABC3A6600CB35EC /* CreateCheckList.swift in Sources */,
 				87AF756E2AB99DD1001CF7F2 /* EventEntity+CoreDataClass.swift in Sources */,
 				876E95562AB2D00F00046809 /* UIIMageView+Utils.swift in Sources */,
+				874C4DCF2AD7C11100734491 /* RecordCalendarRouter.swift in Sources */,
 				87F7FAA82AD4527500F14831 /* RepeatDoItOnceControl.swift in Sources */,
 				8749884C2AC3FCA5004DC64A /* Category.swift in Sources */,
 				87D0CAE72ACD409000FE405F /* RoutineListCell.swift in Sources */,
+				87E376142AD6E43D00359850 /* RecordSQLDao.swift in Sources */,
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
 				87135AEE2AC9454E006B71D5 /* RoutineEditInteractor.swift in Sources */,
 				8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */,
+				87AD2D692AD6D61B00B0E2CF /* RecordDate.swift in Sources */,
 				87F3A3802AB3009600A2102D /* SnapshotRepository.swift in Sources */,
 				876E955B2AB2D00F00046809 /* AdaptivePresentationControllerDelegate.swift in Sources */,
 				876E954F2AB2D00F00046809 /* AttributedString+Utils.swift in Sources */,
@@ -1407,26 +1568,28 @@
 				876E959D2AB2FBE100046809 /* CoreDataUtils.swift in Sources */,
 				876E95132AB2CFDB00046809 /* TimerHomeBuilder.swift in Sources */,
 				87D5AAE52AB83A2200FE712C /* CDAppendOnlyStore.swift in Sources */,
+				87E376072AD6E06200359850 /* RecordProjection.swift in Sources */,
 				87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */,
 				876E956C2AB2D84100046809 /* RoutineLogFormatter.swift in Sources */,
 				8751F09D2AC7F092000462EC /* RoutineEditTitleInteractor.swift in Sources */,
 				874CAF2F2AB45A580053E021 /* Routine.swift in Sources */,
 				8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */,
 				87DFEC5E2AC19E2800531EE3 /* CreateRoutineRouter.swift in Sources */,
-				878DA79C2ACE64F500220653 /* RoutineWeekCalenderBuilder.swift in Sources */,
+				874C4DD02AD7C11100734491 /* RecordCalendarViewController.swift in Sources */,
+				878DA79C2ACE64F500220653 /* RoutineWeekCalendarBuilder.swift in Sources */,
 				8712F6572AC2E09A008A02C4 /* RoutineTintViewController.swift in Sources */,
 				8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */,
 				876E95192AB2CFE900046809 /* ProfileHomeRouter.swift in Sources */,
 				878EAD5F2ABB717E00593700 /* RoutineReadModel.swift in Sources */,
+				874C4DD22AD7C11100734491 /* RecordCalendarInteractor.swift in Sources */,
 				878DA79F2ACE8C6500220653 /* DeleteRoutine.swift in Sources */,
-				878DA79A2ACE64F500220653 /* RoutineWeekCalenderRouter.swift in Sources */,
+				878DA79A2ACE64F500220653 /* RoutineWeekCalendarRouter.swift in Sources */,
 				874988502AC40396004DC64A /* TintDto.swift in Sources */,
 				8751F0AD2AC7F2FC000462EC /* RoutineTitleBuilder.swift in Sources */,
 				876E95532AB2D00F00046809 /* UIButton+Utils.swift in Sources */,
 				87F3A3902AB312AE00A2102D /* EventListener.swift in Sources */,
 				878DA7A82ACEA11F00220653 /* ZoomAnimator.swift in Sources */,
 				876E95782AB2E06200046809 /* DDCrashlyticsLogger.swift in Sources */,
-				87D0CAF52ACD64B000FE405F /* CalenderHelper.swift in Sources */,
 				876E950C2AB2CFD000046809 /* RecordHomeInteractor.swift in Sources */,
 				876E950A2AB2CFD000046809 /* RecordHomeViewController.swift in Sources */,
 				876E95542AB2D00F00046809 /* UIView+Utils.swift in Sources */,
@@ -1456,6 +1619,7 @@
 				87D5AAEE2AB83CD100FE712C /* RoutineCreated.swift in Sources */,
 				8751F0932AC7E776000462EC /* RoutineDetailBuilder.swift in Sources */,
 				876E94D52AB2CED800046809 /* AppRootInteractor.swift in Sources */,
+				87E376042AD6DAC900359850 /* CreateRecord.swift in Sources */,
 				87AF756F2AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift in Sources */,
 				87DFEC612AC19E2800531EE3 /* CreateRoutineInteractor.swift in Sources */,
 				876E954B2AB2D00F00046809 /* KeychainAccess.swift in Sources */,
@@ -1474,25 +1638,31 @@
 				877DF8BC2AD57A8500F45C10 /* RepeatDto.swift in Sources */,
 				87504A182ABB4E7B0046EFD5 /* DatabaseManager.swift in Sources */,
 				876E95042AB2CFC100046809 /* RoutineHomeInteractor.swift in Sources */,
+				87E3761C2AD70E8B00359850 /* RecordCompleteSet.swift in Sources */,
 				876E959B2AB2FB9400046809 /* Transaction.swift in Sources */,
 				87C815392AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift in Sources */,
 				8703F56F2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift in Sources */,
 				8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */,
-				878DA79B2ACE64F500220653 /* RoutineWeekCalenderViewController.swift in Sources */,
+				878DA79B2ACE64F500220653 /* RoutineWeekCalendarViewController.swift in Sources */,
 				8751F09A2AC7F092000462EC /* RoutineEditTitleRouter.swift in Sources */,
 				876E955A2AB2D00F00046809 /* UIViewController+Utils.swift in Sources */,
 				87AD2D5A2AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift in Sources */,
 				876E95672AB2D3F700046809 /* Combine+Utils.swift in Sources */,
+				87E3761E2AD70EA500359850 /* SetCompleteRecord.swift in Sources */,
 				874988622AC41F7D004DC64A /* RoutineListBuilder.swift in Sources */,
 				8751F09C2AC7F092000462EC /* RoutineEditTitleBuilder.swift in Sources */,
 				87DFEC602AC19E2800531EE3 /* CreateRoutineBuilder.swift in Sources */,
 				87D0CADF2ACD1BA900FE405F /* DatabaseError.swift in Sources */,
 				87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */,
+				874C4DD12AD7C11100734491 /* RecordCalendarBuilder.swift in Sources */,
 				8768E6082ABC563700CB35EC /* CheckListProjection.swift in Sources */,
+				87E376092AD6E0E000359850 /* RecordReadModel.swift in Sources */,
+				87AD2D652AD6D32700B0E2CF /* Record.swift in Sources */,
 				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
 				876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */,
 				878DA7A62ACEA11200220653 /* ZoomDismissalInteractionController.swift in Sources */,
 				876E95142AB2CFDB00046809 /* TimerHomeInteractor.swift in Sources */,
+				8702610D2AD7ADED00B6A4F4 /* RoutineDetailModel.swift in Sources */,
 				874B91532AD55A3A0089FC6E /* RepeatValueViewModel.swift in Sources */,
 				8768E5FC2ABC3D2300CB35EC /* SetCount.swift in Sources */,
 				87C815402AD3ED8E0062BEDF /* RepeatWeeklyControl.swift in Sources */,
@@ -1501,6 +1671,7 @@
 				877DF8D32AD5ABB700F45C10 /* RepeatSQLDao.swift in Sources */,
 				87D0CAE12ACD326500FE405F /* UpdateRoutine.swift in Sources */,
 				8712F6562AC2E09A008A02C4 /* RoutineTintRouter.swift in Sources */,
+				87E3760D2AD6E12A00359850 /* RecordDto.swift in Sources */,
 				876E954C2AB2D00F00046809 /* PreferenceStorage.swift in Sources */,
 				8768E5EE2ABC386500CB35EC /* Emoji.swift in Sources */,
 				876E94B02AB2CE3D00046809 /* SceneDelegate.swift in Sources */,
@@ -1511,7 +1682,7 @@
 				8768E5FE2ABC3D3C00CB35EC /* Weight.swift in Sources */,
 				87901EA32ABAFDCC002CA93F /* RoutineDetailSQLDao.swift in Sources */,
 				87C8153E2AD3E6270062BEDF /* RepeatSegmentControl.swift in Sources */,
-				878DA79D2ACE64F500220653 /* RoutineWeekCalenderInteractor.swift in Sources */,
+				878DA79D2ACE64F500220653 /* RoutineWeekCalendarInteractor.swift in Sources */,
 				876E95092AB2CFD000046809 /* RecordHomeRouter.swift in Sources */,
 				8768E5F02ABC388B00CB35EC /* Tint.swift in Sources */,
 				8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */,
@@ -1524,7 +1695,9 @@
 				874988632AC41F7D004DC64A /* RoutineListInteractor.swift in Sources */,
 				876E950B2AB2CFD000046809 /* RecordHomeBuilder.swift in Sources */,
 				87D0CB032ACD83AC00FE405F /* RoutineRepeatChanged.swift in Sources */,
+				87E375FF2AD6D99000359850 /* RecordService.swift in Sources */,
 				876E951B2AB2CFE900046809 /* ProfileHomeBuilder.swift in Sources */,
+				87E3761A2AD704DE00359850 /* RecordFormatter.swift in Sources */,
 				876E95022AB2CFC100046809 /* RoutineHomeViewController.swift in Sources */,
 				87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */,
 				8751F0B62AC7F79D000462EC /* RoutineEmojiIconBuilder.swift in Sources */,
@@ -1537,6 +1710,8 @@
 				87C815422AD3EF820062BEDF /* RepeatTypeViewModel.swift in Sources */,
 				877DF8BF2AD5998D00F45C10 /* RepeatDto+SQL.swift in Sources */,
 				87AF46F02AD46C4800647201 /* RoutineRepeatFormaater.swift in Sources */,
+				87E376162AD6EA1E00359850 /* RoutineHomeListModel.swift in Sources */,
+				8702610F2AD7B11A00B6A4F4 /* RoutineDetailRecordModel.swift in Sources */,
 				877DF8CB2AD5AB2400F45C10 /* RepeatTypeDto.swift in Sources */,
 				87D0CAD52ACD0EE600FE405F /* RoutineRepository.swift in Sources */,
 				87135AEC2AC9454E006B71D5 /* RoutineEditViewController.swift in Sources */,
@@ -1545,6 +1720,7 @@
 				87D5AB052AB8621A00FE712C /* ApplicationService.swift in Sources */,
 				876E95852AB2E55C00046809 /* Analytics+Events.swift in Sources */,
 				876E94D42AB2CED800046809 /* AppRootBuilder.swift in Sources */,
+				87E376022AD6DAC300359850 /* RecordCreated.swift in Sources */,
 				876E95582AB2D00F00046809 /* UITableView+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
