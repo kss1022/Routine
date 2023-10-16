@@ -140,6 +140,17 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         vc.didMove(toParent: self)
     }
     
+    func addReminder(_ view: ModernRIBs.ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)
+        
+        let view = vc.view!
+        view.roundCorners()
+        
+        stackView.addArrangedSubview(view)
+        vc.didMove(toParent: self)
+    }
+    
     func setTint(_ color: String) {
         view.backgroundColor = UIColor(hex: color)
     }

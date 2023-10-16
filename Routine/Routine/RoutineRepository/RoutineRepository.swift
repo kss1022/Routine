@@ -109,9 +109,9 @@ final class RoutineRepositoryImp: RoutineRepository{
         let record = try recordReadModel.record(routineId: routineId, date: recordDate)
         let records = try recordReadModel.records(routineId: routineId)
         
-        
         let detailModel = detail.map(RoutineDetailModel.init)
         self.detailSubject.send(detailModel)
+        
         
         let detailRecordModel = RoutineDetailRecordModel(recordDto: record, recordDate: recordDate, recordDtos: records)
         self.detailRecordsSubject.send(detailRecordModel)
@@ -133,7 +133,7 @@ final class RoutineRepositoryImp: RoutineRepository{
             let emojis = try JSONDecoder().decode([EmojiDto].self, from: data)
                         
             if emojis.isEmpty{
-                throw RepositoryError.decodeError(type: "\([EmojiDto].self)", reason: "List is Empty")
+                throw RepositoryException("Decode Path from jsonFile: \([EmojiDto].self) is Empty")                
             }
             
             self.emojis = emojis
@@ -149,7 +149,7 @@ final class RoutineRepositoryImp: RoutineRepository{
             let tints = try JSONDecoder().decode([TintDto].self, from: data)
             
             if tints.isEmpty{
-                throw RepositoryError.decodeError(type: "\([TintDto].self)", reason: "List is Empty")
+                throw RepositoryException("Decode Path from jsonFile: \([TintDto].self) is Empty")
             }
             
             self.tints = tints
@@ -171,17 +171,20 @@ final class RoutineRepositoryImp: RoutineRepository{
     private let routineReadModel: RoutineReadModelFacade
     private let repeatReadModel: RepeatReadModelFacade
     private let recordReadModel: RecordReadModelFacade
+    private let reminderReadModel: ReminderReadModelFacade
     
     private var cancelables: Set<AnyCancellable>
     
     init(
         routineReadModel: RoutineReadModelFacade,
         repeatReadModel: RepeatReadModelFacade,
-        recordReadModel: RecordReadModelFacade
+        recordReadModel: RecordReadModelFacade,
+        reminderReadModel: ReminderReadModelFacade
     ) {
         self.routineReadModel = routineReadModel
         self.repeatReadModel = repeatReadModel
         self.recordReadModel = recordReadModel
+        self.reminderReadModel = reminderReadModel
         self.cancelables = .init()
         
         Task{

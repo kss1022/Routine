@@ -37,13 +37,12 @@ protocol RoutineEditRepeatPresentable: Presentable {
 }
 
 protocol RoutineEditRepeatListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func routineEditRepeatSetType(type: RepeatTypeViewModel)
+    func routineEditRepeatSetValue(value: RepeatValueViewModel)
 }
 
 protocol RoutineEditRepeatInteractorDependency{
-    var repeatTypeSubject: CurrentValuePublisher<RepeatTypeViewModel>{ get }
-    var repeatValueSubject: CurrentValuePublisher<RepeatValueViewModel>{ get }
-
+    var detail: RoutineDetailModel?{ get }
 }
 
 final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeatPresentable>, RoutineEditRepeatInteractable, RoutineEditRepeatPresentableListener {
@@ -53,7 +52,7 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
     weak var listener: RoutineEditRepeatListener?
     
     private let dependency: RoutineEditRepeatInteractorDependency
-    
+    private let detail: RoutineDetailModel?
     
     private var segmentType: SegmentType = .daliy
     private var doItOnceDate: Date?
@@ -67,14 +66,16 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
         dependency: RoutineEditRepeatInteractorDependency
     ) {
         self.dependency = dependency
+        self.detail = dependency.detail
         super.init(presenter: presenter)
         presenter.listener = self
     }
     
     override func didBecomeActive() {
         super.didBecomeActive()
-        
-        Log.v("RoutineEditRepaet DidBecome Active🔁: \(dependency.repeatTypeSubject.value) & \(dependency.repeatValueSubject.value)")
+        let type = detail?.repeatType ?? .doItOnce
+        let value = detail?.repeatValue ?? .empty
+        Log.v("RoutineEditRepaet DidBecome Active🔁: \(type) & \(value)")
        setRepeatData()
     }
     
@@ -83,7 +84,7 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
     }
     
         
-    func repeatToogleTap(isOn: Bool) {
+    func repeatToogleValueChange(isOn: Bool) {
         if isOn{
             sendTypeValue()
             sendRepeatValue()
@@ -92,7 +93,7 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
             presenter.showRepeatSegmentControl()
             showControlView()
         }else{
-            dependency.repeatTypeSubject.send(.doItOnce)
+            listener?.routineEditRepeatSetType(type: .doItOnce)
             
             presenter.hideRepeatSegmentControl()
             hideControlView()
@@ -100,26 +101,25 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
         }
     }
     
-    func repeatSegmentTap(segmentIndex: Int) {
+    func repeatSegmentValueChange(segmentIndex: Int) {
         hideControlView()
         
         switch segmentIndex{
         case 0:
-            dependency.repeatTypeSubject.send(.daliy)
-            dependency.repeatValueSubject.send(.daliy)
+            listener?.routineEditRepeatSetType(type: .daliy)
+            listener?.routineEditRepeatSetValue(value: .daliy)
             
             presenter.showDaliy()
             self.segmentType = .daliy
         case 1:
-            dependency.repeatTypeSubject.send(.weekliy)
-            if let weekly = weekly{ self.dependency.repeatValueSubject.send(.weekly(weekly: weekly)) }
+            listener?.routineEditRepeatSetType(type: .weekliy)
+            if let weekly = weekly{ listener?.routineEditRepeatSetValue(value: .weekly(weekly: weekly)) }
             
             presenter.showWeeklyControl()
             self.segmentType = .weekliy
         case 2:
-            dependency.repeatTypeSubject.send(.monthly)
-            if let monthly = monthly{ self.dependency.repeatValueSubject.send(.monhtly(monthly: monthly)) }
-            
+            listener?.routineEditRepeatSetType(type: .monthly)
+            if let monthly = monthly{ listener?.routineEditRepeatSetValue(value: .monhtly(monthly: monthly)) }
             presenter.showMonthlyControl()
             self.segmentType = .monthly
         default:
@@ -128,30 +128,32 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
     }
 
     
-    func repeatDoItOnceControlTap(selected: Date) {
-        self.doItOnceDate = selected        
-        dependency.repeatValueSubject.send(.doitOnce(date: selected))
+    func repeatDoItOnceControlValueChange(date: Date) {
+        self.doItOnceDate = date
+        listener?.routineEditRepeatSetValue(value: .doitOnce(date: date))
     }
     
-    func repeatWeeklyControlTap(weekly: Set<WeekliyViewModel>) {
+    func repeatWeeklyControlValueChange(weekly: Set<WeekliyViewModel>) {
         self.weekly = weekly
-        dependency.repeatValueSubject.send(.weekly(weekly: weekly))
+        listener?.routineEditRepeatSetValue(value: .weekly(weekly: weekly))
     }
     
-    func repeatMonthlyControlTap(monthly: Set<RepeatMonthlyViewModel>) {
+    func repeatMonthlyControlValueChange(monthly: Set<RepeatMonthlyViewModel>) {
         self.monthly = monthly
-        dependency.repeatValueSubject.send(.monhtly(monthly: monthly))
+        listener?.routineEditRepeatSetValue(value: .monhtly(monthly: monthly))
     }
     
     
     
     //set initial Data
     private func setRepeatData(){
-        let type = dependency.repeatTypeSubject.value
+                
+        let type = RepeatTypeViewModel(rawValue: (detail?.repeatType ?? .daliy).rawValue)!
+        let value = RepeatValueViewModel(
+            type: detail?.repeatType ?? .daliy,
+            value: detail?.repeatValue ?? .empty
+        )!.value()
         
-        
-        
-        let value = dependency.repeatValueSubject.value.value()
         
         switch type {
         case .doItOnce:
@@ -211,25 +213,25 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
     private func sendTypeValue(){
         switch segmentType {
         case .daliy:
-            dependency.repeatTypeSubject.send(.daliy)
+            listener?.routineEditRepeatSetType(type: .daliy)
         case .weekliy:
-            dependency.repeatTypeSubject.send(.weekliy)
+            listener?.routineEditRepeatSetType(type: .weekliy)
         case .monthly:
-            dependency.repeatTypeSubject.send(.monthly)
+            listener?.routineEditRepeatSetType(type: .monthly)
         }
     }
     
     private func sendRepeatValue(){
         switch segmentType {
         case .daliy:
-            self.dependency.repeatValueSubject.send(.daliy)
+            listener?.routineEditRepeatSetValue(value: .daliy)
         case .weekliy:
             if let weekly = self.weekly{
-                self.dependency.repeatValueSubject.send(.weekly(weekly: weekly))
+                listener?.routineEditRepeatSetValue(value: .weekly(weekly: weekly))
             }
         case .monthly:
             if let monthly = self.monthly{
-                self.dependency.repeatValueSubject.send(.monhtly(monthly: monthly))
+                listener?.routineEditRepeatSetValue(value: .monhtly(monthly: monthly))
             }
         }
     }

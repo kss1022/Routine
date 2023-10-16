@@ -10,7 +10,6 @@ import Foundation
 
 
 indirect enum ConcurrencyError : Error{
-    
     case ConcurrencyError(storeEvents: [Event], storeVersion : Int)
     case RealConcurrencyException( msg : String, concurrencyError : ConcurrencyError)
     case AppendOnlyStoreConcurrency( version: Int, expectedVersion: Int, name: String)

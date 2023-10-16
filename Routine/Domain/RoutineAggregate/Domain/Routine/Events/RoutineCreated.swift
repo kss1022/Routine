@@ -16,15 +16,17 @@ final class RoutineCreated : DomainEvent{
     let routineName: RoutineName
     let routineDescription: RoutineDescription
     let `repeat`: Repeat
+    let reminder: Reminder?
     let emoji: Emoji
     let tint: Tint
     
     
-    init(routineId: RoutineId, routineName: RoutineName, routineDescription: RoutineDescription, `repeat`: Repeat, icon: Emoji, tint: Tint) {
+    init(routineId: RoutineId, routineName: RoutineName, routineDescription: RoutineDescription, `repeat`: Repeat, reminder: Reminder?, icon: Emoji, tint: Tint) {
         self.routineId = routineId
         self.routineName = routineName
         self.routineDescription = routineDescription
         self.`repeat` = `repeat`
+        self.reminder = reminder
         self.emoji = icon
         self.tint = tint
         super.init()
@@ -35,6 +37,7 @@ final class RoutineCreated : DomainEvent{
         routineName.encode(with: coder)
         routineDescription.encode(with: coder)
         `repeat`.encode(with: coder)
+        reminder?.encode(with: coder)
         emoji.encode(with: coder)
         tint.encode(with: coder)
         super.encode(with: coder)
@@ -53,6 +56,7 @@ final class RoutineCreated : DomainEvent{
         self.routineName = routineName
         self.routineDescription = routineDescription
         self.`repeat` = routineRepeat
+        self.reminder = Reminder(coder: coder)
         self.emoji = icon
         self.tint = tint
         

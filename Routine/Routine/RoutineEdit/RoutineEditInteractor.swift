@@ -14,6 +14,7 @@ protocol RoutineEditRouting: ViewableRouting {
     func attachRoutineTint()
     func attachRoutineEmojiIcon()
     func attachRoutineRepeat()
+    func attachRoutineReminder()
 }
 
 protocol RoutineEditPresentable: Presentable {
@@ -32,16 +33,8 @@ protocol RoutineEditInteractorDependency{
     
     var routineApplicationService: RoutineApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
-        
-    var titleSubject: CurrentValuePublisher<String>{ get }
-    var descriptionSubject: CurrentValuePublisher<String>{ get }
     
-    var repeatType: ReadOnlyCurrentValuePublisher<RepeatTypeViewModel>{ get }
-    var repeatValue: ReadOnlyCurrentValuePublisher<RepeatValueViewModel>{ get }
-
-    var tint: ReadOnlyCurrentValuePublisher<String>{ get }
-    var tintSubject: CurrentValuePublisher<String>{ get }
-        
+    var detail: RoutineDetailModel?{ get }
     var emojiSubject: CurrentValuePublisher<String>{ get }
 }
 
@@ -53,6 +46,20 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     private var cancelables: Set<AnyCancellable>
     private let dependency: RoutineEditInteractorDependency
     
+    private var name: String
+    private var description: String
+    
+    private var repeatType: RepeatTypeViewModel
+    private var repeatValue: RepeatValueViewModel
+    
+    private var reminderIsON: Bool = false
+    private var reminderHour: Int?
+    private var reminderMinute: Int?
+    
+    private var tint: String
+    private var emoji: String
+
+    
     // in constructor.
     init(
         presenter: RoutineEditPresentable,
@@ -60,6 +67,21 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     ) {
         self.cancelables = .init()
         self.dependency = dependency
+        
+        let detail = dependency.detail!
+        name = detail.routineName
+        description = detail.routineName
+        repeatType = RepeatTypeViewModel(rawValue: detail.repeatType.rawValue)!
+        repeatValue = RepeatValueViewModel(
+            type: detail.repeatType,
+            value: detail.repeatValue
+        )!
+        reminderIsON = detail.reminderIsON
+        reminderHour = detail.reminderHour
+        reminderMinute = detail.reminderMinute
+        tint = detail.tint
+        emoji = detail.emojiIcon
+        
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -69,15 +91,9 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         
         router?.attachRoutineTitle()
         router?.attachRoutineRepeat()
+        router?.attachRoutineReminder()
         router?.attachRoutineTint()
         router?.attachRoutineEmojiIcon()
-        
-        dependency.tint
-            .receive(on: DispatchQueue.main)
-            .sink { tint in
-                self.presenter.setTint(tint)
-            }
-            .store(in: &cancelables)
     }
 
     override func willResignActive() {
@@ -90,12 +106,13 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     func doneButtonDidTap() {
         let updateRoutine = UpdateRoutine(
             routineId: dependency.routineId,
-            name: dependency.titleSubject.value,
-            description: dependency.descriptionSubject.value,
-            repeatType: dependency.repeatType.value.rawValue,
-            repeatValue: dependency.repeatValue.value.rawValue(),
-            emoji: dependency.emojiSubject.value,
-            tint: dependency.tintSubject.value
+            name: name,
+            description: description,
+            repeatType: repeatType.rawValue,
+            reminderTime: reminderIsON ? (reminderHour!, reminderMinute!) : nil,
+            repeatValue: repeatValue.rawValue(),
+            emoji: emoji,
+            tint: tint
         )
         
         Task{
@@ -106,7 +123,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
                 await MainActor.run{ listener?.routineEditDoneButtonDidTap() }
             }catch{
                 if let error = error as? ArgumentException{
-                    Log.e(error.msg)
+                    Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
@@ -127,4 +144,46 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
             }
         }
     }
+    
+    //MARK: RoutineEditTitle
+    func routineEditTitleSetName(name: String) {
+        self.name = name
+    }
+    
+    func routineEditTitleSetDescription(description: String) {
+        self.description = description
+    }
+    
+    //MARK: RoutineEditRepeat
+    func routineEditRepeatSetType(type: RepeatTypeViewModel) {
+        self.repeatType = type
+    }
+    
+    func routineEditRepeatSetValue(value: RepeatValueViewModel) {
+        self.repeatValue = value
+    }
+            
+    //MARK: RoutineEditReminder
+    func routineReminderValueChange(isOn: Bool, hour: Int?, minute: Int?) {
+        self.reminderIsON = isOn
+        self.reminderHour = hour
+        self.reminderMinute = minute
+    }
+    
+    
+    //MARK: RoutineTint
+    func routineTintSetTint(color: String) {
+        self.tint = color
+        self.presenter.setTint(tint)
+    }
+    
+
+    //MARK: RoutineEmoji
+    func routineEmojiSetEmoji(emoji: String) {
+        self.emoji = emoji
+        self.dependency.emojiSubject.send(emoji)
+    }
+    
+
+    
 }

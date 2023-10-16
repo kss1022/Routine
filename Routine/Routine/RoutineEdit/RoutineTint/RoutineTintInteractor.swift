@@ -21,11 +21,12 @@ protocol RoutineTintPresentable: Presentable {
 
 protocol RoutineTintListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func routineTintSetTint(color: String)
 }
 
 protocol RoutineTintInteractorDependency{
     var routineRepository : RoutineRepository { get }
-    var tintSubject: CurrentValuePublisher<String>{ get }
+    var detail: RoutineDetailModel?{ get }
 }
 
 final class RoutineTintInteractor: PresentableInteractor<RoutineTintPresentable>, RoutineTintInteractable, RoutineTintPresentableListener {
@@ -58,9 +59,10 @@ final class RoutineTintInteractor: PresentableInteractor<RoutineTintPresentable>
                 
         presenter.setTints(tints: tints)
         
-        let currentTint = dependency.tintSubject.value
+        let currentTint = dependency.detail?.tint ?? "#FFCCCCFF"
         let pos = tints.firstIndex(of: currentTint) ?? 0
         self.presenter.setTint(pos: pos)
+        self.listener?.routineTintSetTint(color: currentTint)
     }
 
     override func willResignActive() {
@@ -69,6 +71,6 @@ final class RoutineTintInteractor: PresentableInteractor<RoutineTintPresentable>
     }
     
     func tintButtonDidTap(color: String) {
-        dependency.tintSubject.send(color)
+        listener?.routineTintSetTint(color: color)
     }
 }

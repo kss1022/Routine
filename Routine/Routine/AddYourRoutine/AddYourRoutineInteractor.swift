@@ -14,6 +14,7 @@ protocol AddYourRoutineRouting: ViewableRouting {
     func attachRoutineTint()
     func attachRoutineEmojiIcon()
     func attachRoutineRepeat()
+    func attachRoutineReminder()
 }
 
 protocol AddYourRoutinePresentable: Presentable {
@@ -29,22 +30,33 @@ protocol AddYourRoutineListener: AnyObject {
 protocol AddYourRoutineInteractorDependency{
     var routineApplicationService: RoutineApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
-
-    var title: ReadOnlyCurrentValuePublisher<String>{ get }
-    var description: ReadOnlyCurrentValuePublisher<String>{ get }
-    var repeatType: ReadOnlyCurrentValuePublisher<RepeatTypeViewModel>{ get }
-    var repeatValue: ReadOnlyCurrentValuePublisher<RepeatValueViewModel>{ get }
-    var tint: ReadOnlyCurrentValuePublisher<String>{ get }
-    var emoji: ReadOnlyCurrentValuePublisher<String>{ get }
+    var emojiSubject: CurrentValuePublisher<String>{ get }
 }
 
 final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresentable>, AddYourRoutineInteractable, AddYourRoutinePresentableListener {
+    
 
     weak var router: AddYourRoutineRouting?
     weak var listener: AddYourRoutineListener?
 
     private var cancellables: Set<AnyCancellable>
     private let dependency: AddYourRoutineInteractorDependency
+    
+    
+    
+    private var name: String? = nil
+    private var description: String? = nil
+    
+    private var repeatType: RepeatTypeViewModel = .daliy
+    private var repeatValue: RepeatValueViewModel = .daliy
+    
+    private var reminderIsON: Bool = false
+    private var reminderHour: Int? = nil
+    private var reminderMinute: Int? = nil
+    
+    private var tint: String? = nil
+    private var emoji: String? = nil
+    
     
     // in constructor.
     init(
@@ -61,15 +73,9 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         super.didBecomeActive()
         router?.attachRoutineTitle()
         router?.attachRoutineRepeat()
+        router?.attachRoutineReminder()
         router?.attachRoutineTint()
-        router?.attachRoutineEmojiIcon()        
-        
-        dependency.tint
-            .receive(on: DispatchQueue.main)
-            .sink {  tint in
-                self.presenter.setTint(tint)
-            }
-            .store(in: &cancellables)
+        router?.attachRoutineEmojiIcon()
     }
 
     override func willResignActive() {
@@ -80,20 +86,16 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         cancellables.removeAll()
     }
     
+    //TODO: check input date (null check)
     func doneBarButtonDidTap() {
-        
-        Log.v("\(dependency.repeatType.value)")
-        
-        
-        
         let createRoutine = CreateRoutine(
-            name: dependency.title.value,
-            description: dependency.description.value,
-            repeatType: dependency.repeatType.value.rawValue,
-            repeatValue: dependency.repeatValue.value.rawValue(),
-            emoji: dependency.emoji.value,
-            tint: dependency.tint.value,
-            createCheckLists: []
+            name: name ?? "",
+            description: description ?? "",
+            repeatType: repeatType.rawValue,
+            repeatValue: repeatValue.rawValue(),
+            reminderTime: reminderIsON ? (reminderHour!, reminderMinute!) : nil,
+            emoji: emoji ?? "",
+            tint: tint ?? ""
         )
          
         Task{ [weak self] in
@@ -105,11 +107,50 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
                 await MainActor.run{ self.listener?.addYourRoutineDoneButtonDidTap() }
             }catch{
                 if let error = error as? ArgumentException{
-                    Log.e(error.msg)
+                    Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
             }
         }
     }
+
+    
+    //MARK: RoutineEditTitle
+    func routineEditTitleSetName(name: String) {
+        self.name = name
+    }
+    
+    func routineEditTitleSetDescription(description: String) {
+        self.description = description
+    }
+    
+    //MARK: RoutineEditRepeat
+    func routineEditRepeatSetType(type: RepeatTypeViewModel) {
+        self.repeatType = type
+    }
+    
+    func routineEditRepeatSetValue(value: RepeatValueViewModel) {
+        self.repeatValue = value
+    }
+    
+    //MARK: RoutineEditReminder
+    func routineReminderValueChange(isOn: Bool, hour: Int?, minute: Int?) {
+        self.reminderIsON = isOn
+        self.reminderHour = hour
+        self.reminderMinute = minute
+    }
+    
+    //MARK: RoutineTint
+    func routineTintSetTint(color: String) {
+        self.tint = color
+        self.presenter.setTint(tint!)
+    }
+    
+    //MARK: RoutineEmoji
+    func routineEmojiSetEmoji(emoji: String) {
+        self.emoji = emoji        
+        self.dependency.emojiSubject.send(emoji)
+    }
+    
 }

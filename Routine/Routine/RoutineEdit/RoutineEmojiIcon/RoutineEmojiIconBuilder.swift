@@ -8,13 +8,15 @@
 import ModernRIBs
 
 protocol RoutineEmojiIconDependency: Dependency {
-    var emojiSubject: CurrentValuePublisher<String>{ get }
     var routineRepository : RoutineRepository { get }
+    var emojiSubject: CurrentValuePublisher<String>{ get }
+    var detail: RoutineDetailModel?{ get }
 }
 
-final class RoutineEmojiIconComponent: Component<RoutineEmojiIconDependency>, RoutineEmojiIconInteractorDependency {
-    var emojiSubject: CurrentValuePublisher<String>{ dependency.emojiSubject }
+final class RoutineEmojiIconComponent: Component<RoutineEmojiIconDependency>, RoutineEmojiIconInteractorDependency {    
     var routineRepository : RoutineRepository { dependency.routineRepository }
+    var emojiSubject: CurrentValuePublisher<String>{ dependency.emojiSubject }
+    var detail: RoutineDetailModel?{ dependency.detail }
 }
 
 // MARK: - Builder

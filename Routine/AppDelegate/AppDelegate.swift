@@ -16,10 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         //setupFirebase()
         setupLogger()
-
+        
+        UNUserNotificationCenter.current().delegate = self
+        AppNotificationManager.share().setupNotification()
         return true
     }
 
@@ -43,24 +44,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
 
-    // MARK: - Core Data Saving support
+}
 
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }        
-    }
-    
+
+
+// MARK: Firebase
+extension AppDelegate{
     private func setupFirebase(){
         FirebaseApp.configure()
     }
+}
 
+// MARK: Logger
+extension AppDelegate{
+    
     
     private func setupLogger() {
         let consoleLogger = DDOSLogger.sharedInstance   // console logger
@@ -95,9 +92,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        DDLog.add(crashlyticsLogger)
         //
         //#endif
-                
-
     }
 
 }
 
+
+// MARK: CoreData
+extension AppDelegate{
+    //Core Data Saving support
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+}
+
+
+// MARK: LocalNotification
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        Log.d("userNotificationCenter didReceive")
+        
+        // Get the meeting ID from the original notification.
+        let userInfo = response.notification.request.content.userInfo
+        
+        if response.notification.request.content.categoryIdentifier ==
+            "ROUTINE_START" {
+            // Retrieve the meeting details.
+            let meetingID = userInfo["MEETING_ID"] as! String
+            let userID = userInfo["USER_ID"] as! String
+            
+            switch response.actionIdentifier {
+            case "ACCEPT_ACTION":
+                
+                Log.d("ACCEPT_ACTION")
+                break
+                
+            case "DECLINE_ACTION":
+                Log.d("DECLINE_ACTION")
+                break
+                
+            case UNNotificationDefaultActionIdentifier,
+            UNNotificationDismissActionIdentifier:
+                Log.d("if the user does not act.")
+                break
+            default:
+                break
+            }
+        }
+        else {
+            // Handle other notification types...
+        }
+
+        
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        Log.d("userNotificationCenter willPresent")
+        completionHandler([.list, .banner, .sound, .badge])
+    }
+}

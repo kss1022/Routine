@@ -22,9 +22,10 @@ enum RepeatValue: ValueObject{
             coder.encode(date, forKey: CodingKeys.routineRepeatValue.rawValue)
         case .daliy: break //nothing to do
         case .weekly(let weekly):
-            coder.encode(weekly, forKey: CodingKeys.routineRepeatValue.rawValue)
+            
+            coder.encodeSet(Set(weekly.map(Int16.init)), forKey: CodingKeys.routineRepeatValue.rawValue)
         case .monthly(let monthly):
-            coder.encode(monthly, forKey: CodingKeys.routineRepeatValue.rawValue)
+            coder.encodeSet(Set(monthly.map(Int16.init)), forKey: CodingKeys.routineRepeatValue.rawValue)
         }
     }
     
@@ -42,11 +43,11 @@ enum RepeatValue: ValueObject{
         case .daliy:
             self = .daliy
         case .weekliy:
-            let weekly = coder.decodeSet(forKey: CodingKeys.routineRepeatValue.rawValue)
-            self = .weekly(weekly: Set(weekly.compactMap { $0 as? Int }))
+            guard let weekly = coder.decodeSet(forKey: CodingKeys.routineRepeatValue.rawValue) else { return nil}
+            self = .weekly(weekly: weekly)
         case .monthly:
-            let monthly = coder.decodeSet(forKey: CodingKeys.routineRepeatValue.rawValue)
-            self = .monthly(monthly: Set(monthly.compactMap { $0 as? Int }))
+            guard let monthly = coder.decodeSet(forKey: CodingKeys.routineRepeatValue.rawValue) else { return nil }
+            self = .monthly(monthly: monthly)
         }
     }
     

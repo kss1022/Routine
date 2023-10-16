@@ -22,7 +22,7 @@ public final class RoutineReadModelFacadeImp: RoutineReadModelFacade{
     
     init() throws{
         guard let dbManager = DatabaseManager.default else {
-            throw DatabaseError.couldNotGetDatabaseManagerInstance
+            throw DatabaseException.couldNotGetDatabaseManagerInstance
         }
         
         routineListDao = dbManager.routineListDao

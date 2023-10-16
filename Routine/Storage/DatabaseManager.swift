@@ -23,11 +23,12 @@ class DatabaseManager{
     public let routineListDao: RoutineListDao
     public let routineDetailDao: RoutineDetailDao
     public let repeatDao: RepeatDao
+    public let reminderDao: ReminderDao
     public let recordDao: RecordDao
     
     private init() throws {
         guard let directoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else{
-            throw DatabaseError.couldNotFindPathToCreateDatabasePath
+            throw DatabaseException.couldNotFindPathToCreateDatabasePath
         }
         
         let path = (directoryPath as NSString).appendingPathComponent("RoutineDB.sqlite3")
@@ -40,11 +41,14 @@ class DatabaseManager{
 //        try RoutineListSQLDao.dropTable(db: db)
 //        try RoutineDetailSQLDao.dropTable(db: db)      
 //        try RepeatSQLDao.dropTable(db: db)
+//        try ReminderSQLDao.dropTable(db: db)
+//        try RecordSQLDao.dropTable(db: db)
 #endif
         
         self.routineListDao = try RoutineListSQLDao(db: db)
-        self.routineDetailDao = try RoutineDetailSQLDao(db: db)
+        self.routineDetailDao = try RoutineDetailSQLDao(db: db)        
         self.repeatDao = try RepeatSQLDao(db: db)
+        self.reminderDao = try ReminderSQLDao(db: db)
         self.recordDao = try RecordSQLDao(db: db)
     }
     

@@ -18,7 +18,4 @@ public struct RoutineListDto{
     public let emojiIcon: String
     public let tint: String
     public let sequence: Int64
-    
-//    public let repeatType: String
-//    public let repeatValue: Data
 }

@@ -7,6 +7,8 @@
 
 import Foundation
 import ModernRIBs
+import UIKit
+
 
 protocol RoutineHomeInteractable: Interactable , RoutineDetailListener, CreateRoutineListener, RoutineWeekCalendarListener, RoutineListListener{
     var router: RoutineHomeRouting? { get set }
@@ -111,7 +113,22 @@ final class RoutineHomeRouter: ViewableRouter<RoutineHomeInteractable, RoutineHo
         
         let router = routineDetailBuildable.build(withListener: interactor, routineId: routineId, recordDate: recordDate)
         let navigation = NavigationControllerable(root: router.viewControllable)
-        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
+        
+        let standardAppearance = UINavigationBarAppearance()
+        standardAppearance.configureWithTransparentBackground()
+        standardAppearance.backgroundColor = .white.withAlphaComponent(0.3)
+        standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        
+        let scrollAppearacne = UINavigationBarAppearance()
+        scrollAppearacne.configureWithTransparentBackground()
+        scrollAppearacne.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        
+        let nav = navigation.navigationController
+        nav.navigationBar.standardAppearance  = standardAppearance
+        nav.navigationBar.scrollEdgeAppearance = scrollAppearacne
+        nav.navigationBar.tintColor = .black
+        
+        nav.presentationController?.delegate = interactor.presentationDelegateProxy
         viewController.present(navigation, animated: true, completion: nil)
         
         self.routineDetailRouting = router

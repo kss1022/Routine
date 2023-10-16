@@ -17,6 +17,7 @@ final class Routine: DomainEntity{
     private(set) var routineName: RoutineName!
     private(set) var routineDescription: RoutineDescription!
     private(set) var `repeat`: Repeat!
+    private(set) var reminder: Reminder?
     private(set) var icon: Emoji!
     private(set) var tint: Tint!
     
@@ -27,6 +28,7 @@ final class Routine: DomainEntity{
         routineName: RoutineName,
         routineDescription: RoutineDescription,
         repeat: Repeat,
+        reminder: Reminder?,
         icon: Emoji,
         tint: Tint
     ) {
@@ -34,13 +36,14 @@ final class Routine: DomainEntity{
         self.routineName = routineName
         self.routineDescription = routineDescription
         self.repeat = `repeat`
+        self.reminder = reminder
         self.icon = icon
         self.tint = tint
         super.init()
 
         
         changes.append(
-            RoutineCreated(routineId: routineId, routineName: routineName, routineDescription: routineDescription, repeat: `repeat`, icon: icon, tint: tint)
+            RoutineCreated(routineId: routineId, routineName: routineName, routineDescription: routineDescription, repeat: `repeat`, reminder: reminder, icon: icon, tint: tint)
         )
     }
    
@@ -69,6 +72,7 @@ final class Routine: DomainEntity{
         self.routineName = event.routineName
         self.routineDescription = event.routineDescription
         self.`repeat` = event.repeat
+        self.reminder = event.reminder
         self.icon = event.emoji
         self.tint = event.tint
     }
@@ -82,18 +86,21 @@ final class Routine: DomainEntity{
         self.routineId = event.routineId
         self.routineName = event.routineName
         self.routineDescription = event.routineDescription
+        self.repeat = event.repeat
+        self.reminder = event.reminder
         self.icon = event.emoji
         self.tint = event.tint
     }
     
-    func updateRoutine(_ routineName: RoutineName, routineDescription: RoutineDescription, repeat: Repeat, emoji: Emoji, tint: Tint){
+    func updateRoutine(_ routineName: RoutineName, routineDescription: RoutineDescription, repeat: Repeat, reminder: Reminder?, emoji: Emoji, tint: Tint){
         self.routineName = routineName
         self.routineDescription = routineDescription
         self.repeat = `repeat`
+        self.reminder = reminder
         self.icon = emoji
         self.tint = tint
         
-        changes.append(RoutineUpdated(routineId: self.routineId, routineName: routineName, routineDescription: routineDescription, repeat: `repeat`, emoji: icon, tint: tint))
+        changes.append(RoutineUpdated(routineId: self.routineId, routineName: routineName, routineDescription: routineDescription, repeat: `repeat`, reminder: reminder, emoji: icon, tint: tint))
     }
     
     func changeRoutineName(_ routineName: RoutineName){
@@ -117,6 +124,7 @@ final class Routine: DomainEntity{
         routineName.encode(with: coder)
         routineDescription.encode(with: coder)
         `repeat`.encode(with: coder)
+        reminder?.encode(with: coder)
         icon.encode(with: coder)
         tint.encode(with: coder)
         super.encode(with: coder)
@@ -126,7 +134,7 @@ final class Routine: DomainEntity{
         guard let routineId = RoutineId(coder: coder),
               let routineName = RoutineName(coder: coder),
               let routineDescription = RoutineDescription(coder: coder),
-              let routineRepeat = Repeat(coder: coder),
+              let `Repeat` = Repeat(coder: coder),
               let icon = Emoji(coder: coder),
               let tint = Tint(coder: coder)
         else { return nil }
@@ -134,7 +142,8 @@ final class Routine: DomainEntity{
         self.routineId =  routineId
         self.routineName = routineName
         self.routineDescription = routineDescription
-        self.`repeat` = routineRepeat
+        self.`repeat` = `Repeat`
+        self.reminder = Reminder(coder: coder)
         self.icon = icon
         self.tint = tint
         

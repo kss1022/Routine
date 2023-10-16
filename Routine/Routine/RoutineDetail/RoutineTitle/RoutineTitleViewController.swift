@@ -42,6 +42,7 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
         label.textColor = .black
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.tag = 1
         return label
     }()
     

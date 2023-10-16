@@ -16,19 +16,20 @@ protocol RoutineEditTitleRouting: ViewableRouting {
 protocol RoutineEditTitlePresentable: Presentable {
     var listener: RoutineEditTitlePresentableListener? { get set }
 
-    func setTitle(emoji: String, routineName: String, routineDescription: String)
+    func setTitle(emoji: String, routineName: String?, routineDescription: String?)
     func setEmoji(_ emoji: String)
 
 }
 
 protocol RoutineEditTitleListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func routineEditTitleSetName(name: String)
+    func routineEditTitleSetDescription(description: String)
 }
 
 protocol RoutineEditTitleInteractorDependency{
     var emoji: ReadOnlyCurrentValuePublisher<String>{ get }
-    var titleSubject : CurrentValuePublisher<String>{ get }
-    var descriptionSubject : CurrentValuePublisher<String>{ get }
+    var detail: RoutineDetailModel?{ get }
 }
 
 final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePresentable>, RoutineEditTitleInteractable, RoutineEditTitlePresentableListener {
@@ -38,6 +39,7 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
 
     private var cancelables : Set<AnyCancellable>
     private let dependency : RoutineEditTitleInteractorDependency
+    private let detail: RoutineDetailModel?
     
     // in constructor.
     init(
@@ -46,13 +48,18 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
     ) {
         self.cancelables = .init()
         self.dependency = dependency
+        self.detail = dependency.detail
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()        
-        presenter.setTitle(emoji: dependency.emoji.value, routineName: dependency.titleSubject.value, routineDescription: dependency.descriptionSubject.value)
+        presenter.setTitle(
+            emoji: detail?.emojiIcon ?? "⭐️",
+            routineName: detail?.routineName,
+            routineDescription: detail?.routineDescription
+        )
 
         dependency.emoji
             .receive(on: DispatchQueue.main)
@@ -68,10 +75,10 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
     }
     
     func setRoutineName(name: String) {
-        dependency.titleSubject.send(name)
+        listener?.routineEditTitleSetName(name: name)
     }
     
     func setRoutineDescription(description: String) {
-        dependency.descriptionSubject.send(description)
+        listener?.routineEditTitleSetDescription(description: description)
     }
 }

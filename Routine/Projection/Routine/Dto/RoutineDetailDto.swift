@@ -15,6 +15,9 @@ public struct RoutineDetailDto{
     public let routineDescription: String
     public let repeatType: RepeatTypeDto
     public let repeatValue: RepeatValueDto
+    public let reminderIsOn: Bool
+    public let reminderHour: Int?
+    public let reminderMinute: Int?
     public let emojiIcon: String
     public let tint: String
     public let updatedAt: Date

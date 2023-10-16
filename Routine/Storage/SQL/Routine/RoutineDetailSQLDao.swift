@@ -21,6 +21,9 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
     private let routineDescription: Expression<String>
     private let repeatType: Expression<RepeatTypeDto>
     private let repeatValue: Expression<RepeatValueDto>
+    private let reminderIsOn: Expression<Bool>
+    private let reminderHour: Expression<Int?>
+    private let reminderMinute: Expression<Int?>
     private let emojiIcon: Expression<String>
     private let tint: Expression<String>
     private let updatedAt: Expression<Date>
@@ -34,6 +37,9 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
         routineDescription = Expression<String>("routineDescription")
         repeatType = Expression<RepeatTypeDto>("repeatType")
         repeatValue = Expression<RepeatValueDto>("repeatValue")
+        reminderIsOn = Expression<Bool>("reminderIsOn")
+        reminderHour = Expression<Int?>("reminderHour")
+        reminderMinute = Expression<Int?>("reminderMinute")
         emojiIcon = Expression<String>("emojiIcon")
         tint = Expression<String>("tint")
         updatedAt = Expression<Date>("updatedAt")
@@ -55,6 +61,9 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
             table.column(routineDescription)
             table.column(repeatType)
             table.column(repeatValue)
+            table.column(reminderIsOn)
+            table.column(reminderHour)
+            table.column(reminderMinute)
             table.column(emojiIcon)
             table.column(tint)
             table.column(updatedAt)
@@ -72,6 +81,9 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
             routineDescription <- dto.routineDescription,
             repeatType <- dto.repeatType,
             repeatValue <- dto.repeatValue,
+            reminderIsOn <- dto.reminderIsOn,
+            reminderHour <- dto.reminderHour,
+            reminderMinute <- dto.reminderMinute,
             emojiIcon <- dto.emojiIcon,
             tint <- dto.tint,
             updatedAt <- dto.updatedAt
@@ -90,6 +102,9 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
             routineDescription <- dto.routineDescription,
             repeatType <- dto.repeatType,
             repeatValue <- dto.repeatValue,
+            reminderIsOn <- dto.reminderIsOn,
+            reminderHour <- dto.reminderHour,
+            reminderMinute <- dto.reminderMinute,
             emojiIcon <- dto.emojiIcon,
             tint <- dto.tint,
             updatedAt <- dto.updatedAt
@@ -110,6 +125,9 @@ final class RoutineDetailSQLDao: RoutineDetailDao{
                 routineDescription: $0[routineDescription],
                 repeatType: $0[repeatType],
                 repeatValue: $0[repeatValue],
+                reminderIsOn: $0[reminderIsOn],
+                reminderHour: $0[reminderHour],
+                reminderMinute: $0[reminderMinute],
                 emojiIcon: $0[emojiIcon],
                 tint: $0[tint],
                 updatedAt: $0[updatedAt]

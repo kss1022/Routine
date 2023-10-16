@@ -14,7 +14,7 @@ struct CreateRoutine: Command{
     let description: String
     let repeatType: String
     let repeatValue: Any?
+    let reminderTime: (Int, Int)?
     let emoji: String
     let tint: String
-    let createCheckLists: [CreateCheckList]    
 }

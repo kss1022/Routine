@@ -9,14 +9,12 @@ import ModernRIBs
 
 protocol RoutineEditTitleDependency: Dependency {
     var emoji: ReadOnlyCurrentValuePublisher<String>{ get }
-    var titleSubject : CurrentValuePublisher<String>{ get }
-    var descriptionSubject : CurrentValuePublisher<String>{ get }
+    var detail: RoutineDetailModel?{ get }
 }
 
 final class RoutineEditTitleComponent: Component<RoutineEditTitleDependency> , RoutineEditTitleInteractorDependency{
     var emoji: ReadOnlyCurrentValuePublisher<String>{ dependency.emoji }
-    var titleSubject : CurrentValuePublisher<String>{ dependency.titleSubject }
-    var descriptionSubject : CurrentValuePublisher<String>{ dependency.descriptionSubject }
+    var detail: RoutineDetailModel?{ dependency.detail }
 }
 
 // MARK: - Builder

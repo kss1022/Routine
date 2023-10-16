@@ -22,7 +22,7 @@ public final class RecordReadModelFacadeImp: RecordReadModelFacade{
     
     init() throws{
         guard let dbManager = DatabaseManager.default else {
-            throw DatabaseError.couldNotGetDatabaseManagerInstance
+            throw DatabaseException.couldNotGetDatabaseManagerInstance
         }
         
         recordDao = dbManager.recordDao

@@ -161,7 +161,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
                 try await self.dependency.routineRepository.fetchLists()
             }catch{
                 if let error = error as? ArgumentException{
-                    Log.e(error.msg)
+                    Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
@@ -176,7 +176,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
                 try await self.dependency.routineRepository.fetchLists()
             }catch{
                 if let error = error as? ArgumentException{
-                    Log.e(error.msg)
+                    Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }

@@ -23,6 +23,8 @@
 		87135AEC2AC9454E006B71D5 /* RoutineEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87135AE82AC9454E006B71D5 /* RoutineEditViewController.swift */; };
 		87135AED2AC9454E006B71D5 /* RoutineEditBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87135AE92AC9454E006B71D5 /* RoutineEditBuilder.swift */; };
 		87135AEE2AC9454E006B71D5 /* RoutineEditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87135AEA2AC9454E006B71D5 /* RoutineEditInteractor.swift */; };
+		871D0FB92ADD04060080DEAC /* ReminderReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0FB82ADD04060080DEAC /* ReminderReadModel.swift */; };
+		871D0FBB2ADD05440080DEAC /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0FBA2ADD05440080DEAC /* RecordModel.swift */; };
 		8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8735AB532AC18D220092BDF3 /* RoutineDescription.swift */; };
 		8745900D2AB43E780043214E /* EventSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745900C2AB43E780043214E /* EventSerializer.swift */; };
 		8749884A2AC3FBFF004DC64A /* emojis11.0.1.json in Resources */ = {isa = PBXBuildFile; fileRef = 874988492AC3FBFF004DC64A /* emojis11.0.1.json */; };
@@ -42,6 +44,12 @@
 		874C4DD12AD7C11100734491 /* RecordCalendarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DCD2AD7C11100734491 /* RecordCalendarBuilder.swift */; };
 		874C4DD22AD7C11100734491 /* RecordCalendarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DCE2AD7C11100734491 /* RecordCalendarInteractor.swift */; };
 		874C4DD42AD7D7F100734491 /* RecordCalenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DD32AD7D7F100734491 /* RecordCalenderCell.swift */; };
+		874C4DDA2AD80CCA00734491 /* RoutineBasicInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DD62AD80CCA00734491 /* RoutineBasicInfoRouter.swift */; };
+		874C4DDB2AD80CCA00734491 /* RoutineBasicInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DD72AD80CCA00734491 /* RoutineBasicInfoViewController.swift */; };
+		874C4DDC2AD80CCA00734491 /* RoutineBasicInfoBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DD82AD80CCA00734491 /* RoutineBasicInfoBuilder.swift */; };
+		874C4DDD2AD80CCA00734491 /* RoutineBasicInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DD92AD80CCA00734491 /* RoutineBasicInfoInteractor.swift */; };
+		874C4DE02AD80D7A00734491 /* BasicInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C4DDF2AD80D7A00734491 /* BasicInfoView.swift */; };
+		874C4DE22AD824D800734491 /* UITest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 874C4DE12AD824D800734491 /* UITest.storyboard */; };
 		874CAF2F2AB45A580053E021 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF2E2AB45A580053E021 /* Routine.swift */; };
 		874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF302AB45B4B0053E021 /* RoutineId.swift */; };
 		87504A182ABB4E7B0046EFD5 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87504A172ABB4E7B0046EFD5 /* DatabaseManager.swift */; };
@@ -65,6 +73,7 @@
 		8751F0B62AC7F79D000462EC /* RoutineEmojiIconBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0B22AC7F79D000462EC /* RoutineEmojiIconBuilder.swift */; };
 		8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0B32AC7F79D000462EC /* RoutineEmojiIconInteractor.swift */; };
 		8754D2AB2AC2F6EF00440385 /* BottomLiseTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */; };
+		87615D712AD83495008E983D /* RoutineBasicInfoFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87615D702AD83495008E983D /* RoutineBasicInfoFormatter.swift */; };
 		8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5E72ABC35AE00CB35EC /* CheckList.swift */; };
 		8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5E92ABC37DD00CB35EC /* CheckListId.swift */; };
 		8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5EB2ABC37E300CB35EC /* CheckListName.swift */; };
@@ -78,7 +87,6 @@
 		8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6002ABC3FF000CB35EC /* CheckListCreated.swift */; };
 		8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6022ABC536900CB35EC /* CheckListFactory.swift */; };
 		8768E6052ABC541000CB35EC /* CDCheckListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */; };
-		8768E6082ABC563700CB35EC /* CheckListProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6072ABC563700CB35EC /* CheckListProjection.swift */; };
 		8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */; };
 		8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */; };
 		876E94AE2AB2CE3D00046809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94AD2AB2CE3D00046809 /* AppDelegate.swift */; };
@@ -198,7 +206,6 @@
 		87C815442AD405E20062BEDF /* RepeatMontlyControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C815432AD405E20062BEDF /* RepeatMontlyControl.swift */; };
 		87D0CACF2ACCFE9B00FE405F /* RoutineTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CACE2ACCFE9B00FE405F /* RoutineTitleViewModel.swift */; };
 		87D0CAD52ACD0EE600FE405F /* RoutineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAD42ACD0EE600FE405F /* RoutineRepository.swift */; };
-		87D0CADF2ACD1BA900FE405F /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CADE2ACD1BA900FE405F /* DatabaseError.swift */; };
 		87D0CAE12ACD326500FE405F /* UpdateRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAE02ACD326500FE405F /* UpdateRoutine.swift */; };
 		87D0CAE52ACD337D00FE405F /* RoutineUpdated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAE42ACD337D00FE405F /* RoutineUpdated.swift */; };
 		87D0CAE72ACD409000FE405F /* RoutineListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAE62ACD409000FE405F /* RoutineListCell.swift */; };
@@ -216,9 +223,25 @@
 		87D5AAF42AB83D9D00FE712C /* CDRoutineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAF32AB83D9D00FE712C /* CDRoutineFactory.swift */; };
 		87D5AAFF2AB8415D00FE712C /* AppRootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAFE2AB8415D00FE712C /* AppRootComponent.swift */; };
 		87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB002AB84FCA00FE712C /* RoutineName.swift */; };
-		87D5AB032AB84FEE00FE712C /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB022AB84FEE00FE712C /* AppError.swift */; };
 		87D5AB052AB8621A00FE712C /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB042AB8621A00FE712C /* ApplicationService.swift */; };
 		87D5AB092AB867CE00FE712C /* RoutineProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB082AB867CE00FE712C /* RoutineProjection.swift */; };
+		87DEAAAC2AD8FE1000C94F0A /* AppNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAAB2AD8FE1000C94F0A /* AppNotificationManager.swift */; };
+		87DEAAAF2AD9061C00C94F0A /* SystemException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAAE2AD9061C00C94F0A /* SystemException.swift */; };
+		87DEAAB12AD9062400C94F0A /* ApplicationException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAB02AD9062400C94F0A /* ApplicationException.swift */; };
+		87DEAAB32AD9071800C94F0A /* DatabaseException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAB22AD9071800C94F0A /* DatabaseException.swift */; };
+		87DEAAB72AD90D3F00C94F0A /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAB62AD90D3F00C94F0A /* LocalNotification.swift */; };
+		87DEAAB92AD90D5600C94F0A /* LocalNotificationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAB82AD90D5600C94F0A /* LocalNotificationAdapter.swift */; };
+		87DEAABD2AD9364300C94F0A /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAABC2AD9364300C94F0A /* Reminder.swift */; };
+		87DEAACD2AD94CD600C94F0A /* ReminderDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAACC2AD94CD600C94F0A /* ReminderDto.swift */; };
+		87DEAAD12AD94D4100C94F0A /* ReminderDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAD02AD94D4100C94F0A /* ReminderDao.swift */; };
+		87DEAAD42AD94DF200C94F0A /* ReminderSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAD32AD94DF200C94F0A /* ReminderSQLDao.swift */; };
+		87DEAADA2AD95DC700C94F0A /* RoutineEditReminderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAD62AD95DC700C94F0A /* RoutineEditReminderRouter.swift */; };
+		87DEAADB2AD95DC700C94F0A /* RoutineEditReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAD72AD95DC700C94F0A /* RoutineEditReminderViewController.swift */; };
+		87DEAADC2AD95DC700C94F0A /* RoutineEditReminderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAD82AD95DC700C94F0A /* RoutineEditReminderBuilder.swift */; };
+		87DEAADD2AD95DC700C94F0A /* RoutineEditReminderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAD92AD95DC700C94F0A /* RoutineEditReminderInteractor.swift */; };
+		87DEAADF2AD95FEF00C94F0A /* ReminderDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAADE2AD95FEF00C94F0A /* ReminderDateFormatter.swift */; };
+		87DEAAE22AD9625E00C94F0A /* RoutineEditToogleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAE12AD9625E00C94F0A /* RoutineEditToogleView.swift */; };
+		87DEAAE42AD96FB100C94F0A /* RoutineEditReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAE32AD96FB100C94F0A /* RoutineEditReminderViewModel.swift */; };
 		87DFEC5E2AC19E2800531EE3 /* CreateRoutineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC5A2AC19E2800531EE3 /* CreateRoutineRouter.swift */; };
 		87DFEC5F2AC19E2800531EE3 /* CreateRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC5B2AC19E2800531EE3 /* CreateRoutineViewController.swift */; };
 		87DFEC602AC19E2800531EE3 /* CreateRoutineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFEC5C2AC19E2800531EE3 /* CreateRoutineBuilder.swift */; };
@@ -264,6 +287,8 @@
 		87135AE82AC9454E006B71D5 /* RoutineEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditViewController.swift; sourceTree = "<group>"; };
 		87135AE92AC9454E006B71D5 /* RoutineEditBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditBuilder.swift; sourceTree = "<group>"; };
 		87135AEA2AC9454E006B71D5 /* RoutineEditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditInteractor.swift; sourceTree = "<group>"; };
+		871D0FB82ADD04060080DEAC /* ReminderReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderReadModel.swift; sourceTree = "<group>"; };
+		871D0FBA2ADD05440080DEAC /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
 		8735AB532AC18D220092BDF3 /* RoutineDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDescription.swift; sourceTree = "<group>"; };
 		8745900C2AB43E780043214E /* EventSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSerializer.swift; sourceTree = "<group>"; };
 		874988492AC3FBFF004DC64A /* emojis11.0.1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emojis11.0.1.json; sourceTree = "<group>"; };
@@ -283,6 +308,12 @@
 		874C4DCD2AD7C11100734491 /* RecordCalendarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarBuilder.swift; sourceTree = "<group>"; };
 		874C4DCE2AD7C11100734491 /* RecordCalendarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalendarInteractor.swift; sourceTree = "<group>"; };
 		874C4DD32AD7D7F100734491 /* RecordCalenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCalenderCell.swift; sourceTree = "<group>"; };
+		874C4DD62AD80CCA00734491 /* RoutineBasicInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineBasicInfoRouter.swift; sourceTree = "<group>"; };
+		874C4DD72AD80CCA00734491 /* RoutineBasicInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineBasicInfoViewController.swift; sourceTree = "<group>"; };
+		874C4DD82AD80CCA00734491 /* RoutineBasicInfoBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineBasicInfoBuilder.swift; sourceTree = "<group>"; };
+		874C4DD92AD80CCA00734491 /* RoutineBasicInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineBasicInfoInteractor.swift; sourceTree = "<group>"; };
+		874C4DDF2AD80D7A00734491 /* BasicInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoView.swift; sourceTree = "<group>"; };
+		874C4DE12AD824D800734491 /* UITest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UITest.storyboard; sourceTree = "<group>"; };
 		874CAF2E2AB45A580053E021 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		874CAF302AB45B4B0053E021 /* RoutineId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineId.swift; sourceTree = "<group>"; };
 		87504A172ABB4E7B0046EFD5 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
@@ -306,6 +337,7 @@
 		8751F0B22AC7F79D000462EC /* RoutineEmojiIconBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmojiIconBuilder.swift; sourceTree = "<group>"; };
 		8751F0B32AC7F79D000462EC /* RoutineEmojiIconInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmojiIconInteractor.swift; sourceTree = "<group>"; };
 		8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLiseTextFeild.swift; sourceTree = "<group>"; };
+		87615D702AD83495008E983D /* RoutineBasicInfoFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineBasicInfoFormatter.swift; sourceTree = "<group>"; };
 		8768E5E72ABC35AE00CB35EC /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
 		8768E5E92ABC37DD00CB35EC /* CheckListId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListId.swift; sourceTree = "<group>"; };
 		8768E5EB2ABC37E300CB35EC /* CheckListName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListName.swift; sourceTree = "<group>"; };
@@ -319,7 +351,6 @@
 		8768E6002ABC3FF000CB35EC /* CheckListCreated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListCreated.swift; sourceTree = "<group>"; };
 		8768E6022ABC536900CB35EC /* CheckListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListFactory.swift; sourceTree = "<group>"; };
 		8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCheckListFactory.swift; sourceTree = "<group>"; };
-		8768E6072ABC563700CB35EC /* CheckListProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListProjection.swift; sourceTree = "<group>"; };
 		8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListApplicationService.swift; sourceTree = "<group>"; };
 		8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCoder+Utils.swift"; sourceTree = "<group>"; };
 		876E94AA2AB2CE3D00046809 /* Routine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Routine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,7 +462,6 @@
 		87C815432AD405E20062BEDF /* RepeatMontlyControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatMontlyControl.swift; sourceTree = "<group>"; };
 		87D0CACE2ACCFE9B00FE405F /* RoutineTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleViewModel.swift; sourceTree = "<group>"; };
 		87D0CAD42ACD0EE600FE405F /* RoutineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRepository.swift; sourceTree = "<group>"; };
-		87D0CADE2ACD1BA900FE405F /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		87D0CAE02ACD326500FE405F /* UpdateRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoutine.swift; sourceTree = "<group>"; };
 		87D0CAE42ACD337D00FE405F /* RoutineUpdated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineUpdated.swift; sourceTree = "<group>"; };
 		87D0CAE62ACD409000FE405F /* RoutineListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListCell.swift; sourceTree = "<group>"; };
@@ -449,9 +479,25 @@
 		87D5AAF32AB83D9D00FE712C /* CDRoutineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDRoutineFactory.swift; sourceTree = "<group>"; };
 		87D5AAFE2AB8415D00FE712C /* AppRootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootComponent.swift; sourceTree = "<group>"; };
 		87D5AB002AB84FCA00FE712C /* RoutineName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineName.swift; sourceTree = "<group>"; };
-		87D5AB022AB84FEE00FE712C /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		87D5AB042AB8621A00FE712C /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		87D5AB082AB867CE00FE712C /* RoutineProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProjection.swift; sourceTree = "<group>"; };
+		87DEAAAB2AD8FE1000C94F0A /* AppNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotificationManager.swift; sourceTree = "<group>"; };
+		87DEAAAE2AD9061C00C94F0A /* SystemException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemException.swift; sourceTree = "<group>"; };
+		87DEAAB02AD9062400C94F0A /* ApplicationException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationException.swift; sourceTree = "<group>"; };
+		87DEAAB22AD9071800C94F0A /* DatabaseException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseException.swift; sourceTree = "<group>"; };
+		87DEAAB62AD90D3F00C94F0A /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
+		87DEAAB82AD90D5600C94F0A /* LocalNotificationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationAdapter.swift; sourceTree = "<group>"; };
+		87DEAABC2AD9364300C94F0A /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		87DEAACC2AD94CD600C94F0A /* ReminderDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDto.swift; sourceTree = "<group>"; };
+		87DEAAD02AD94D4100C94F0A /* ReminderDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDao.swift; sourceTree = "<group>"; };
+		87DEAAD32AD94DF200C94F0A /* ReminderSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSQLDao.swift; sourceTree = "<group>"; };
+		87DEAAD62AD95DC700C94F0A /* RoutineEditReminderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditReminderRouter.swift; sourceTree = "<group>"; };
+		87DEAAD72AD95DC700C94F0A /* RoutineEditReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditReminderViewController.swift; sourceTree = "<group>"; };
+		87DEAAD82AD95DC700C94F0A /* RoutineEditReminderBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditReminderBuilder.swift; sourceTree = "<group>"; };
+		87DEAAD92AD95DC700C94F0A /* RoutineEditReminderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditReminderInteractor.swift; sourceTree = "<group>"; };
+		87DEAADE2AD95FEF00C94F0A /* ReminderDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDateFormatter.swift; sourceTree = "<group>"; };
+		87DEAAE12AD9625E00C94F0A /* RoutineEditToogleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditToogleView.swift; sourceTree = "<group>"; };
+		87DEAAE32AD96FB100C94F0A /* RoutineEditReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditReminderViewModel.swift; sourceTree = "<group>"; };
 		87DFEC5A2AC19E2800531EE3 /* CreateRoutineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineRouter.swift; sourceTree = "<group>"; };
 		87DFEC5B2AC19E2800531EE3 /* CreateRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineViewController.swift; sourceTree = "<group>"; };
 		87DFEC5C2AC19E2800531EE3 /* CreateRoutineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineBuilder.swift; sourceTree = "<group>"; };
@@ -504,14 +550,11 @@
 		8712F63C2AC2DC04008A02C4 /* AddYourRoutine */ = {
 			isa = PBXGroup;
 			children = (
-				8751F0952AC7F079000462EC /* RoutineEditTitle */,
-				87C815332AD3DBC80062BEDF /* RoutineEditRepeat */,
-				8712F6512AC2E092008A02C4 /* RoutineTint */,
-				8751F0AF2AC7F78B000462EC /* RoutineEmojiIcon */,
 				8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */,
 				8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */,
 				8712F64C2AC2DF68008A02C4 /* AddYourRoutineInteractor.swift */,
 				8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */,
+				87DEAAE02AD9624600C94F0A /* Views */,
 			);
 			path = AddYourRoutine;
 			sourceTree = "<group>";
@@ -538,6 +581,11 @@
 		87135AE62AC9453C006B71D5 /* RoutineEdit */ = {
 			isa = PBXGroup;
 			children = (
+				8751F0952AC7F079000462EC /* RoutineEditTitle */,
+				87C815332AD3DBC80062BEDF /* RoutineEditRepeat */,
+				87DEAAD52AD95DAF00C94F0A /* RoutineEditReminder */,
+				8712F6512AC2E092008A02C4 /* RoutineTint */,
+				8751F0AF2AC7F78B000462EC /* RoutineEmojiIcon */,
 				87135AE92AC9454E006B71D5 /* RoutineEditBuilder.swift */,
 				87135AE72AC9454E006B71D5 /* RoutineEditRouter.swift */,
 				87135AEA2AC9454E006B71D5 /* RoutineEditInteractor.swift */,
@@ -590,6 +638,27 @@
 			path = RecordCalendar;
 			sourceTree = "<group>";
 		};
+		874C4DD52AD80CB400734491 /* RoutineBasicInfo */ = {
+			isa = PBXGroup;
+			children = (
+				874C4DD82AD80CCA00734491 /* RoutineBasicInfoBuilder.swift */,
+				874C4DD62AD80CCA00734491 /* RoutineBasicInfoRouter.swift */,
+				874C4DD92AD80CCA00734491 /* RoutineBasicInfoInteractor.swift */,
+				874C4DD72AD80CCA00734491 /* RoutineBasicInfoViewController.swift */,
+				87615D702AD83495008E983D /* RoutineBasicInfoFormatter.swift */,
+				874C4DDE2AD80D6800734491 /* View */,
+			);
+			path = RoutineBasicInfo;
+			sourceTree = "<group>";
+		};
+		874C4DDE2AD80D6800734491 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				874C4DDF2AD80D7A00734491 /* BasicInfoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		87504A192ABB4E880046EFD5 /* Dto */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +682,7 @@
 			children = (
 				8751F09E2AC7F1E9000462EC /* RoutineTitle */,
 				874C4DBF2AD7BCBB00734491 /* RecordCalendar */,
+				874C4DD52AD80CB400734491 /* RoutineBasicInfo */,
 				8751F08F2AC7E776000462EC /* RoutineDetailBuilder.swift */,
 				8751F08D2AC7E776000462EC /* RoutineDetailRouter.swift */,
 				8751F0902AC7E776000462EC /* RoutineDetailInteractor.swift */,
@@ -688,14 +758,6 @@
 			path = Events;
 			sourceTree = "<group>";
 		};
-		8768E6062ABC562800CB35EC /* CheckList */ = {
-			isa = PBXGroup;
-			children = (
-				8768E6072ABC563700CB35EC /* CheckListProjection.swift */,
-			);
-			path = CheckList;
-			sourceTree = "<group>";
-		};
 		876E94A12AB2CE3D00046809 = {
 			isa = PBXGroup;
 			children = (
@@ -719,6 +781,7 @@
 				87D5AAF92AB83E9F00FE712C /* Domain */,
 				87D5AB062AB867BF00FE712C /* Projection */,
 				876E95992AB2FB8300046809 /* Storage */,
+				87DEAAAA2AD8FDF900C94F0A /* Adapter */,
 				876E94CC2AB2CE9F00046809 /* AppDelegate */,
 				876E94CD2AB2CEC600046809 /* AppRoot */,
 				876E94D82AB2CF8000046809 /* Routine */,
@@ -729,6 +792,7 @@
 				874988482AC3FBBA004DC64A /* Resource */,
 				876E94B92AB2CE3E00046809 /* Assets.xcassets */,
 				876E94BB2AB2CE3E00046809 /* LaunchScreen.storyboard */,
+				874C4DE12AD824D800734491 /* UITest.storyboard */,
 				876E94BE2AB2CE3E00046809 /* Info.plist */,
 				876E94B62AB2CE3D00046809 /* EventStream.xcdatamodeld */,
 				87504A222ABB702E0046EFD5 /* GoogleService-Info.plist */,
@@ -764,9 +828,9 @@
 				87D0CAD32ACD0EDC00FE405F /* RoutineRepository */,
 				87D5AAEA2AB83BA500FE712C /* RoutineHome */,
 				8751F08C2AC7E75F000462EC /* RoutineDetail */,
-				87135AE62AC9453C006B71D5 /* RoutineEdit */,
 				87DFEC592AC19E1C00531EE3 /* CreateRoutine */,
 				8712F63C2AC2DC04008A02C4 /* AddYourRoutine */,
+				87135AE62AC9453C006B71D5 /* RoutineEdit */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -807,6 +871,7 @@
 		876E94DC2AB2CF8D00046809 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				87DEAAAD2AD9061000C94F0A /* Error */,
 				876E951F2AB2D00F00046809 /* AppUtils */,
 				876E951D2AB2D00F00046809 /* RIBsUtil */,
 				876E95312AB2D00F00046809 /* UIUtil */,
@@ -892,7 +957,6 @@
 			isa = PBXGroup;
 			children = (
 				876E94DC2AB2CF8D00046809 /* Utils */,
-				87D5AB022AB84FEE00FE712C /* AppError.swift */,
 			);
 			path = Platform;
 			sourceTree = "<group>";
@@ -915,7 +979,7 @@
 			isa = PBXGroup;
 			children = (
 				87504A172ABB4E7B0046EFD5 /* DatabaseManager.swift */,
-				87D0CADE2ACD1BA900FE405F /* DatabaseError.swift */,
+				87DEAAB22AD9071800C94F0A /* DatabaseException.swift */,
 				876E958B2AB2F9D600046809 /* ThreadLocal.swift */,
 				87901E962ABADC3E002CA93F /* SQL */,
 				87D5AAFA2AB83EE800FE712C /* CoreData */,
@@ -997,6 +1061,7 @@
 				87D5AAFD2AB8401300FE712C /* Routine */,
 				877DF8CE2AD5AB4800F45C10 /* Repeat */,
 				87E376122AD6E42900359850 /* Record */,
+				87DEAAD22AD94DE000C94F0A /* Reminder */,
 			);
 			path = SQL;
 			sourceTree = "<group>";
@@ -1085,6 +1150,7 @@
 				87D0CAD42ACD0EE600FE405F /* RoutineRepository.swift */,
 				87E376152AD6EA1E00359850 /* RoutineHomeListModel.swift */,
 				8702610C2AD7ADED00B6A4F4 /* RoutineDetailModel.swift */,
+				871D0FBA2ADD05440080DEAC /* RecordModel.swift */,
 				8702610E2AD7B11A00B6A4F4 /* RoutineDetailRecordModel.swift */,
 				8749884F2AC40396004DC64A /* TintDto.swift */,
 				874988512AC403D9004DC64A /* EmojiDto.swift */,
@@ -1117,6 +1183,7 @@
 			children = (
 				87D5AAD32AB8371E00FE712C /* Routine */,
 				877DF8C42AD5A55300F45C10 /* Repeat */,
+				87DEAAA62AD8FA6E00C94F0A /* Reminder */,
 				8768E5E62ABC35A200CB35EC /* CheckList */,
 				87D5AAD22AB8371900FE712C /* Service */,
 			);
@@ -1173,7 +1240,6 @@
 			children = (
 				87F3A3832AB300FA00A2102D /* DomainEventPublihser.swift */,
 				87F3A38F2AB312AE00A2102D /* EventListener.swift */,
-				8745900C2AB43E780043214E /* EventSerializer.swift */,
 			);
 			path = EventPublisher;
 			sourceTree = "<group>";
@@ -1245,8 +1311,8 @@
 			children = (
 				87D5AB072AB867C700FE712C /* Routine */,
 				877DF8C62AD5AAF800F45C10 /* Repeat */,
+				87DEAACB2AD94C9300C94F0A /* Reminder */,
 				87E376052AD6E04D00359850 /* Record */,
-				8768E6062ABC562800CB35EC /* CheckList */,
 			);
 			path = Projection;
 			sourceTree = "<group>";
@@ -1272,6 +1338,88 @@
 				878DA7A02ACE8D2D00220653 /* RoutineDeleted.swift */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		87DEAAA62AD8FA6E00C94F0A /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				87DEAABC2AD9364300C94F0A /* Reminder.swift */,
+			);
+			path = Reminder;
+			sourceTree = "<group>";
+		};
+		87DEAAAA2AD8FDF900C94F0A /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				87DEAAAB2AD8FE1000C94F0A /* AppNotificationManager.swift */,
+				87DEAAB82AD90D5600C94F0A /* LocalNotificationAdapter.swift */,
+				87DEAAB62AD90D3F00C94F0A /* LocalNotification.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		87DEAAAD2AD9061000C94F0A /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				87DEAAB02AD9062400C94F0A /* ApplicationException.swift */,
+				87DEAAAE2AD9061C00C94F0A /* SystemException.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		87DEAACB2AD94C9300C94F0A /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				87DEAACF2AD94D2000C94F0A /* Dao */,
+				87DEAACE2AD94D1D00C94F0A /* Dto */,
+				871D0FB82ADD04060080DEAC /* ReminderReadModel.swift */,
+			);
+			path = Reminder;
+			sourceTree = "<group>";
+		};
+		87DEAACE2AD94D1D00C94F0A /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				87DEAACC2AD94CD600C94F0A /* ReminderDto.swift */,
+			);
+			path = Dto;
+			sourceTree = "<group>";
+		};
+		87DEAACF2AD94D2000C94F0A /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				87DEAAD02AD94D4100C94F0A /* ReminderDao.swift */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		87DEAAD22AD94DE000C94F0A /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				87DEAAD32AD94DF200C94F0A /* ReminderSQLDao.swift */,
+			);
+			path = Reminder;
+			sourceTree = "<group>";
+		};
+		87DEAAD52AD95DAF00C94F0A /* RoutineEditReminder */ = {
+			isa = PBXGroup;
+			children = (
+				87DEAAD62AD95DC700C94F0A /* RoutineEditReminderRouter.swift */,
+				87DEAAD82AD95DC700C94F0A /* RoutineEditReminderBuilder.swift */,
+				87DEAAD92AD95DC700C94F0A /* RoutineEditReminderInteractor.swift */,
+				87DEAAD72AD95DC700C94F0A /* RoutineEditReminderViewController.swift */,
+				87DEAAE32AD96FB100C94F0A /* RoutineEditReminderViewModel.swift */,
+				87DEAADE2AD95FEF00C94F0A /* ReminderDateFormatter.swift */,
+			);
+			path = RoutineEditReminder;
+			sourceTree = "<group>";
+		};
+		87DEAAE02AD9624600C94F0A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87DEAAE12AD9625E00C94F0A /* RoutineEditToogleView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		87DFEC592AC19E1C00531EE3 /* CreateRoutine */ = {
@@ -1355,6 +1503,7 @@
 				87F3A37B2AB3007100A2102D /* EventStream.swift */,
 				87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */,
 				87F3A37F2AB3009600A2102D /* SnapshotRepository.swift */,
+				8745900C2AB43E780043214E /* EventSerializer.swift */,
 				876E959E2AB2FC6800046809 /* EventSourcingError.swift */,
 				87D5AAE92AB83A7B00FE712C /* EventPublisher */,
 			);
@@ -1445,6 +1594,7 @@
 				874988582AC40AA4004DC64A /* emojis.json in Resources */,
 				876E94BD2AB2CE3E00046809 /* LaunchScreen.storyboard in Resources */,
 				876E94BA2AB2CE3E00046809 /* Assets.xcassets in Resources */,
+				874C4DE22AD824D800734491 /* UITest.storyboard in Resources */,
 				87504A232ABB702E0046EFD5 /* GoogleService-Info.plist in Resources */,
 				8749884E2AC40361004DC64A /* tints.json in Resources */,
 				8749884A2AC3FBFF004DC64A /* emojis11.0.1.json in Resources */,
@@ -1501,7 +1651,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				87D0CAF12ACD627700FE405F /* Repeat.swift in Sources */,
+				87DEAADA2AD95DC700C94F0A /* RoutineEditReminderRouter.swift in Sources */,
 				878DA7A42ACEA0FF00220653 /* ZoomTransitionController.swift in Sources */,
+				87DEAAE22AD9625E00C94F0A /* RoutineEditToogleView.swift in Sources */,
 				87E3760F2AD6E16700359850 /* RecordDao.swift in Sources */,
 				8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */,
 				8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */,
@@ -1510,7 +1662,9 @@
 				876E95962AB2FA5B00046809 /* ValueObject.swift in Sources */,
 				87D5AADA2AB8377100FE712C /* RoutineApplicationService.swift in Sources */,
 				87D5AAF02AB83D1500FE712C /* CreateRoutine.swift in Sources */,
+				87DEAAD42AD94DF200C94F0A /* ReminderSQLDao.swift in Sources */,
 				876E95572AB2D00F00046809 /* UIFont+Utils.swift in Sources */,
+				87DEAAB12AD9062400C94F0A /* ApplicationException.swift in Sources */,
 				8751F09B2AC7F092000462EC /* RoutineEditTitleViewController.swift in Sources */,
 				874C4DD42AD7D7F100734491 /* RecordCalenderCell.swift in Sources */,
 				8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */,
@@ -1538,6 +1692,7 @@
 				8745900D2AB43E780043214E /* EventSerializer.swift in Sources */,
 				876E95522AB2D00F00046809 /* PushModalPresentationController.swift in Sources */,
 				8754D2AB2AC2F6EF00440385 /* BottomLiseTextFeild.swift in Sources */,
+				87DEAAB32AD9071800C94F0A /* DatabaseException.swift in Sources */,
 				87504A1B2ABB4EA30046EFD5 /* RoutineListDto.swift in Sources */,
 				87E376112AD6E22100359850 /* CDRecordFactory.swift in Sources */,
 				8768E5F82ABC3A6600CB35EC /* CreateCheckList.swift in Sources */,
@@ -1551,6 +1706,7 @@
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
 				87135AEE2AC9454E006B71D5 /* RoutineEditInteractor.swift in Sources */,
 				8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */,
+				87DEAAB72AD90D3F00C94F0A /* LocalNotification.swift in Sources */,
 				87AD2D692AD6D61B00B0E2CF /* RecordDate.swift in Sources */,
 				87F3A3802AB3009600A2102D /* SnapshotRepository.swift in Sources */,
 				876E955B2AB2D00F00046809 /* AdaptivePresentationControllerDelegate.swift in Sources */,
@@ -1559,6 +1715,7 @@
 				8751F0B42AC7F79D000462EC /* RoutineEmojiIconRouter.swift in Sources */,
 				876E95492AB2D00F00046809 /* URLSchemeHelper.swift in Sources */,
 				876E955C2AB2D00F00046809 /* UIImage+Utils.swift in Sources */,
+				874C4DDA2AD80CCA00734491 /* RoutineBasicInfoRouter.swift in Sources */,
 				87AF75732AB99DD1001CF7F2 /* SnapshotEntity+CoreDataProperties.swift in Sources */,
 				87C8153B2AD3DBDA0062BEDF /* RoutineEditRepeatInteractor.swift in Sources */,
 				87DFEC642AC1A9A200531EE3 /* TouchesButton.swift in Sources */,
@@ -1572,8 +1729,10 @@
 				87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */,
 				876E956C2AB2D84100046809 /* RoutineLogFormatter.swift in Sources */,
 				8751F09D2AC7F092000462EC /* RoutineEditTitleInteractor.swift in Sources */,
+				87DEAADB2AD95DC700C94F0A /* RoutineEditReminderViewController.swift in Sources */,
 				874CAF2F2AB45A580053E021 /* Routine.swift in Sources */,
 				8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */,
+				871D0FB92ADD04060080DEAC /* ReminderReadModel.swift in Sources */,
 				87DFEC5E2AC19E2800531EE3 /* CreateRoutineRouter.swift in Sources */,
 				874C4DD02AD7C11100734491 /* RecordCalendarViewController.swift in Sources */,
 				878DA79C2ACE64F500220653 /* RoutineWeekCalendarBuilder.swift in Sources */,
@@ -1594,12 +1753,14 @@
 				876E950A2AB2CFD000046809 /* RecordHomeViewController.swift in Sources */,
 				876E95542AB2D00F00046809 /* UIView+Utils.swift in Sources */,
 				87C8153A2AD3DBDA0062BEDF /* RoutineEditRepeatBuilder.swift in Sources */,
+				874C4DDC2AD80CCA00734491 /* RoutineBasicInfoBuilder.swift in Sources */,
 				874988522AC403D9004DC64A /* EmojiDto.swift in Sources */,
 				8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */,
+				87DEAACD2AD94CD600C94F0A /* ReminderDto.swift in Sources */,
+				874C4DDD2AD80CCA00734491 /* RoutineBasicInfoInteractor.swift in Sources */,
 				877DF8D12AD5AB5E00F45C10 /* RepeatDao.swift in Sources */,
 				877DF8C32AD5A48300F45C10 /* RepeatType.swift in Sources */,
 				87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */,
-				87D5AB032AB84FEE00FE712C /* AppError.swift in Sources */,
 				87D0CAE52ACD337D00FE405F /* RoutineUpdated.swift in Sources */,
 				876E958C2AB2F9D600046809 /* ThreadLocal.swift in Sources */,
 				87901E9F2ABAFA69002CA93F /* RoutineListSQLDao.swift in Sources */,
@@ -1613,7 +1774,9 @@
 				8751F0AE2AC7F2FC000462EC /* RoutineTitleInteractor.swift in Sources */,
 				874988682AC4226D004DC64A /* RoutineListViewModel.swift in Sources */,
 				876E94AE2AB2CE3D00046809 /* AppDelegate.swift in Sources */,
+				874C4DDB2AD80CCA00734491 /* RoutineBasicInfoViewController.swift in Sources */,
 				876E95942AB2FA2300046809 /* Command.swift in Sources */,
+				87DEAABD2AD9364300C94F0A /* Reminder.swift in Sources */,
 				8751F0B52AC7F79D000462EC /* RoutineEmojiIconViewController.swift in Sources */,
 				87D5AAFF2AB8415D00FE712C /* AppRootComponent.swift in Sources */,
 				87D5AAEE2AB83CD100FE712C /* RoutineCreated.swift in Sources */,
@@ -1638,13 +1801,17 @@
 				877DF8BC2AD57A8500F45C10 /* RepeatDto.swift in Sources */,
 				87504A182ABB4E7B0046EFD5 /* DatabaseManager.swift in Sources */,
 				876E95042AB2CFC100046809 /* RoutineHomeInteractor.swift in Sources */,
+				87615D712AD83495008E983D /* RoutineBasicInfoFormatter.swift in Sources */,
+				871D0FBB2ADD05440080DEAC /* RecordModel.swift in Sources */,
 				87E3761C2AD70E8B00359850 /* RecordCompleteSet.swift in Sources */,
 				876E959B2AB2FB9400046809 /* Transaction.swift in Sources */,
 				87C815392AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift in Sources */,
 				8703F56F2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift in Sources */,
+				87DEAADC2AD95DC700C94F0A /* RoutineEditReminderBuilder.swift in Sources */,
 				8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */,
 				878DA79B2ACE64F500220653 /* RoutineWeekCalendarViewController.swift in Sources */,
 				8751F09A2AC7F092000462EC /* RoutineEditTitleRouter.swift in Sources */,
+				87DEAADF2AD95FEF00C94F0A /* ReminderDateFormatter.swift in Sources */,
 				876E955A2AB2D00F00046809 /* UIViewController+Utils.swift in Sources */,
 				87AD2D5A2AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift in Sources */,
 				876E95672AB2D3F700046809 /* Combine+Utils.swift in Sources */,
@@ -1652,20 +1819,23 @@
 				874988622AC41F7D004DC64A /* RoutineListBuilder.swift in Sources */,
 				8751F09C2AC7F092000462EC /* RoutineEditTitleBuilder.swift in Sources */,
 				87DFEC602AC19E2800531EE3 /* CreateRoutineBuilder.swift in Sources */,
-				87D0CADF2ACD1BA900FE405F /* DatabaseError.swift in Sources */,
 				87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */,
 				874C4DD12AD7C11100734491 /* RecordCalendarBuilder.swift in Sources */,
-				8768E6082ABC563700CB35EC /* CheckListProjection.swift in Sources */,
+				87DEAAAC2AD8FE1000C94F0A /* AppNotificationManager.swift in Sources */,
 				87E376092AD6E0E000359850 /* RecordReadModel.swift in Sources */,
 				87AD2D652AD6D32700B0E2CF /* Record.swift in Sources */,
 				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
+				87DEAADD2AD95DC700C94F0A /* RoutineEditReminderInteractor.swift in Sources */,
 				876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */,
 				878DA7A62ACEA11200220653 /* ZoomDismissalInteractionController.swift in Sources */,
+				87DEAAAF2AD9061C00C94F0A /* SystemException.swift in Sources */,
 				876E95142AB2CFDB00046809 /* TimerHomeInteractor.swift in Sources */,
 				8702610D2AD7ADED00B6A4F4 /* RoutineDetailModel.swift in Sources */,
 				874B91532AD55A3A0089FC6E /* RepeatValueViewModel.swift in Sources */,
+				87DEAAB92AD90D5600C94F0A /* LocalNotificationAdapter.swift in Sources */,
 				8768E5FC2ABC3D2300CB35EC /* SetCount.swift in Sources */,
 				87C815402AD3ED8E0062BEDF /* RepeatWeeklyControl.swift in Sources */,
+				87DEAAE42AD96FB100C94F0A /* RoutineEditReminderViewModel.swift in Sources */,
 				8751F0AB2AC7F2FC000462EC /* RoutineTitleRouter.swift in Sources */,
 				87135AED2AC9454E006B71D5 /* RoutineEditBuilder.swift in Sources */,
 				877DF8D32AD5ABB700F45C10 /* RepeatSQLDao.swift in Sources */,
@@ -1681,6 +1851,7 @@
 				876E95512AB2D00F00046809 /* String+Utils.swift in Sources */,
 				8768E5FE2ABC3D3C00CB35EC /* Weight.swift in Sources */,
 				87901EA32ABAFDCC002CA93F /* RoutineDetailSQLDao.swift in Sources */,
+				87DEAAD12AD94D4100C94F0A /* ReminderDao.swift in Sources */,
 				87C8153E2AD3E6270062BEDF /* RepeatSegmentControl.swift in Sources */,
 				878DA79D2ACE64F500220653 /* RoutineWeekCalendarInteractor.swift in Sources */,
 				876E95092AB2CFD000046809 /* RecordHomeRouter.swift in Sources */,
@@ -1716,6 +1887,7 @@
 				87D0CAD52ACD0EE600FE405F /* RoutineRepository.swift in Sources */,
 				87135AEC2AC9454E006B71D5 /* RoutineEditViewController.swift in Sources */,
 				876E95902AB2FA1A00046809 /* Entity.swift in Sources */,
+				874C4DE02AD80D7A00734491 /* BasicInfoView.swift in Sources */,
 				87901EA12ABAFDA9002CA93F /* RoutineDetailDao.swift in Sources */,
 				87D5AB052AB8621A00FE712C /* ApplicationService.swift in Sources */,
 				876E95852AB2E55C00046809 /* Analytics+Events.swift in Sources */,

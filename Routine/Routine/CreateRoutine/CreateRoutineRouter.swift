@@ -45,6 +45,7 @@ final class CreateRoutineRouter: ViewableRouter<CreateRoutineInteractable, Creat
         
         let standardAppearance = UINavigationBarAppearance()
         standardAppearance.configureWithTransparentBackground()
+        standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
         
         let scrollAppearacne = UINavigationBarAppearance()
         scrollAppearacne.configureWithTransparentBackground()
@@ -53,9 +54,10 @@ final class CreateRoutineRouter: ViewableRouter<CreateRoutineInteractable, Creat
         let nav = navigation.navigationController
         nav.navigationBar.standardAppearance  = standardAppearance
         nav.navigationBar.scrollEdgeAppearance = scrollAppearacne
-        
+        nav.navigationBar.tintColor = .black
+
                 
-        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
+        nav.presentationController?.delegate = interactor.presentationDelegateProxy                        
         viewController.present(navigation, animated: true, completion: nil)
         
         addYoutRoutineRouting = router

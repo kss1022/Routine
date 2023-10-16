@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol AddYourRoutineInteractable: Interactable ,RoutineEditTitleListener, RoutineTintListener , RoutineEmojiIconListener, RoutineEditRepeatListener{
+protocol AddYourRoutineInteractable: Interactable ,RoutineEditTitleListener, RoutineTintListener , RoutineEmojiIconListener, RoutineEditRepeatListener, RoutineEditReminderListener{
     var router: AddYourRoutineRouting? { get set }
     var listener: AddYourRoutineListener? { get set }
 }
@@ -18,6 +18,7 @@ protocol AddYourRoutineViewControllable: ViewControllable {
     func addTint(_ view: ViewControllable)
     func addEmojiIcon(_ view: ViewControllable)
     func addRepeat(_ view: ViewControllable)
+    func addReminder(_ view: ViewControllable)
 }
 
 final class AddYourRoutineRouter: ViewableRouter<AddYourRoutineInteractable, AddYourRoutineViewControllable>, AddYourRoutineRouting {
@@ -34,6 +35,9 @@ final class AddYourRoutineRouter: ViewableRouter<AddYourRoutineInteractable, Add
     private let routineEditRepeatBuidlable: RoutineEditRepeatBuildable
     private var routineEditRepeatRouting: Routing?
     
+    private let routineEditReminderBuildable: RoutineEditReminderBuildable
+    private var routineEditReminderRouting: Routing?
+    
     
     init(
         interactor: AddYourRoutineInteractable,
@@ -41,12 +45,14 @@ final class AddYourRoutineRouter: ViewableRouter<AddYourRoutineInteractable, Add
         routineEditTitleBuildable: RoutineEditTitleBuildable,
         routineTintBuildable: RoutineTintBuildable,
         routineEmojiIconBuildable: RoutineEmojiIconBuildable,
-        routineEditRepeatBuildable: RoutineEditRepeatBuildable
+        routineEditRepeatBuildable: RoutineEditRepeatBuildable,
+        routineEditReminderBuildable: RoutineEditReminderBuildable
     ) {
         self.routineEditTitleBuildable = routineEditTitleBuildable
         self.routineTintBuildable = routineTintBuildable
         self.routineEmojiIconBuildable = routineEmojiIconBuildable
         self.routineEditRepeatBuidlable = routineEditRepeatBuildable
+        self.routineEditReminderBuildable = routineEditReminderBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -56,7 +62,7 @@ final class AddYourRoutineRouter: ViewableRouter<AddYourRoutineInteractable, Add
         if routineEditTitleRouting != nil{
             return
         }
-        
+                
         let router = routineEditTitleBuildable.build(withListener: interactor)
         viewController.addTitle(router.viewControllable)
         
@@ -99,5 +105,18 @@ final class AddYourRoutineRouter: ViewableRouter<AddYourRoutineInteractable, Add
         
         self.routineEditRepeatRouting = router
         attachChild(router)        
+    }
+    
+    
+    func attachRoutineReminder() {
+        if routineEditReminderRouting != nil{
+            return
+        }
+        
+        let router = routineEditReminderBuildable.build(withListener: interactor)
+        viewController.addRepeat(router.viewControllable)
+        
+        self.routineEditReminderRouting = router
+        attachChild(router)
     }
 }

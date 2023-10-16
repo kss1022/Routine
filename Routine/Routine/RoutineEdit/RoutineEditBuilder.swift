@@ -13,7 +13,7 @@ protocol RoutineEditDependency: Dependency {
     var routineRepository: RoutineRepository{ get }
 }
 
-final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, RoutineEditRepeatDependency, RoutineEditInteractorDependency{
+final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, RoutineEditRepeatDependency, RoutineEditReminderDependency, RoutineEditInteractorDependency{
     
     
     let routineId: UUID
@@ -21,29 +21,8 @@ final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEdit
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
     var routineRepository: RoutineRepository{ dependency.routineRepository }
     
-    var title: ReadOnlyCurrentValuePublisher<String>{ titleSubject}
-    lazy var titleSubject = CurrentValuePublisher<String>( routineRepository.detail.value!.routineName )
     
-    var description: ReadOnlyCurrentValuePublisher<String>{ descriptionSubject }
-    lazy var descriptionSubject = CurrentValuePublisher<String>( routineRepository.detail.value!.routineDescription )
-    
-    var repeatType: ReadOnlyCurrentValuePublisher<RepeatTypeViewModel>{ repeatTypeSubject }
-    lazy var repeatTypeSubject: CurrentValuePublisher<RepeatTypeViewModel> = {
-        let rawValue = routineRepository.detail.value!.repeatType.rawValue
-        let type = RepeatTypeViewModel(rawValue: rawValue)! //?? .daliy
-        return CurrentValuePublisher<RepeatTypeViewModel>(type)
-    }()
-    
-    
-    var repeatValue: ReadOnlyCurrentValuePublisher<RepeatValueViewModel>{ repeatValueSubject }
-    lazy var repeatValueSubject: CurrentValuePublisher<RepeatValueViewModel> = {
-        let value = routineRepository.detail.value!
-        let repeatValue = RepeatValueViewModel(
-            type: value.repeatType,
-            value: value.repeatValue
-        )!  //?? .daliy        
-        return CurrentValuePublisher<RepeatValueViewModel>(repeatValue)
-    }()
+    var detail: RoutineDetailModel?{ routineRepository.detail.value }
 
     var tint: ReadOnlyCurrentValuePublisher<String>{ tintSubject }
     lazy var  tintSubject = CurrentValuePublisher<String>( routineRepository.detail.value!.tint )
@@ -82,6 +61,7 @@ final class RoutineEditBuilder: Builder<RoutineEditDependency>, RoutineEditBuild
         let routineTintBuilder = RoutineTintBuilder(dependency: component)
         let routineEmojiIconBuilder = RoutineEmojiIconBuilder(dependency: component)
         let routineEditRepeatBuilder = RoutineEditRepeatBuilder(dependency: component)
+        let routineEditReminderBuilder = RoutineEditReminderBuilder(dependency: component)
         
         return RoutineEditRouter(
             interactor: interactor,
@@ -89,7 +69,8 @@ final class RoutineEditBuilder: Builder<RoutineEditDependency>, RoutineEditBuild
             routineEditTitleBuildable: routineEditTitleBuilder,
             routineTintBuildable: routineTintBuilder,
             routineEmojiIconBuildable: routineEmojiIconBuilder,
-            routineEditRepeatBuidlable: routineEditRepeatBuilder
+            routineEditRepeatBuidlable: routineEditRepeatBuilder,
+            routineEditReminderBuildable: routineEditReminderBuilder
         )
     }
 }

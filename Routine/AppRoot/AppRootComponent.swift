@@ -19,10 +19,10 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
     private let routineReadModel: RoutineReadModelFacade
     private let repeatReadModel: RepeatReadModelFacade
     private let recordReadModel: RecordReadModelFacade
+    private let reminderReadModel: ReminderReadModelFacade
     
     //MAKR: Projection
     private let routineProjection: RoutineProjection
-    private let checkListProjection: CheckListProjection
     private let recordProjection: RecordProjection
     
     //MARK: Repository
@@ -50,15 +50,12 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         //Factory
         let routineFactory = CDRoutineFactory()
         let recordFactory = CDRecordFactory()
-        let checkListFactory = CDCheckListFactory()
-        
-        
+                
         //Service
         let routineService = RoutineService()
                 
         //Projection
-        routineProjection = try! RoutineProjection()
-        checkListProjection = CheckListProjection()
+        routineProjection = try! RoutineProjection()        
         recordProjection = try! RecordProjection()
         
         
@@ -66,14 +63,14 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         routineReadModel = try! RoutineReadModelFacadeImp()
         repeatReadModel = try! RepeatReadModelFacadeImp()
         recordReadModel = try! RecordReadModelFacadeImp()
+        reminderReadModel = try! ReminderReadModelFacadeImp()
         
         //ApplicationService
         self.routineApplicationService = RoutineApplicationService(
             eventStore: eventStore,
             snapshotRepository: snapshotRepository,
             routineFactory: routineFactory,
-            routineService: routineService,
-            checkListFactory: checkListFactory
+            routineService: routineService
         )
         
         self.recordApplicationService = RecordApplicationService(
@@ -86,7 +83,8 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         self.routineRepository = RoutineRepositoryImp(
             routineReadModel: routineReadModel,
             repeatReadModel: repeatReadModel,
-            recordReadModel: recordReadModel
+            recordReadModel: recordReadModel,
+            reminderReadModel: reminderReadModel
         )
         
          

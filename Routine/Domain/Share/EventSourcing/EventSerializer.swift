@@ -8,10 +8,6 @@
 import Foundation
 
 
-enum SerializeError : Error{    
-    case CastingError
-}
-
 final class EventSerializer{
     
     static func archiveData(_ event: Event) throws -> Data?{
@@ -23,7 +19,7 @@ final class EventSerializer{
         if let event = object as? Event{
             return event
         }
-        throw  SerializeError.CastingError
+        throw  InvalidCastException("EventSerializer casting to Event Fail")
     }
 }
 
@@ -38,7 +34,7 @@ final class EntitySerializer{
         if let event = object as? Entity{
             return event
         }
-        throw  SerializeError.CastingError
+        throw  InvalidCastException("EventSerializer casting to Entity Fail")
     }
 }
 

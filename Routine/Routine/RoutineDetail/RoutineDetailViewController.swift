@@ -18,6 +18,10 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
     
     var panGestureRecognizer: UIPanGestureRecognizer!
 
+    //Title Gesture
+    private var routineNameLabel : UIView?
+    private var routineName: String?
+
     
     private lazy var editBarButtonItem: UIBarButtonItem = {
         let editButton = RoutineEditButton()
@@ -41,7 +45,7 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
-        stackView.spacing = 16.0
+        stackView.spacing = 24.0
         return stackView
     }()
             
@@ -66,6 +70,7 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
         
         
         view.addSubview(scrollView)
+        scrollView.delegate = self
         scrollView.addSubview(stackView)
                 
         NSLayoutConstraint.activate([
@@ -74,12 +79,11 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            stackView.topAnchor.constraint(equalTo: stackView.topAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
-            stackView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ])
-        
     }
 
     
@@ -90,12 +94,13 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
 //        }
 //    }
     
-    
+    //MARK: ViewControllable
     func addTitle(_ view: ViewControllable) {
         let vc = view.uiviewController
         
         addChild(vc)
         stackView.addArrangedSubview(vc.view)
+        self.routineNameLabel = findSubviewInView(view: vc.view, withTag: 1)    //RoutineTitleViewController routineNameLabel's Tag
         vc.didMove(toParent: self)
     }
     
@@ -103,11 +108,24 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
         let vc = view.uiviewController
         
         addChild(vc)
-        vc.view.roundCorners()        
+        vc.view.roundCorners()
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
+    func addBasicInfo(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        
+        addChild(vc)
         stackView.addArrangedSubview(vc.view)
         vc.didMove(toParent: self)
     }
 
+    // MARK: Presentable
+    func setTitle(_ title: String) {
+        self.routineName = title
+    }
+    
     func setBackgroundColor(_ tint: String) {
         view.backgroundColor = UIColor(hex: tint)
     }
@@ -118,6 +136,36 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
     private func didTap(){
         self.listener?.editButtonDidTap()
     }
-
+        
 }
 
+
+
+extension RoutineDetailViewController : UIScrollViewDelegate{
+        
+    func scrollViewDidScroll(_ scrollView: UIScrollView){
+        guard let targetView = routineNameLabel else { return }
+        guard let navigationBar =  navigationController?.navigationBar else { return }
+        let targetViewFrame = targetView.convert(targetView.bounds, to: navigationBar)
+        if (targetViewFrame.midY > navigationBar.frame.height / 2){
+            self.title = nil
+        }else{
+            self.title = routineName
+        }
+    }
+    
+    private func findSubviewInView(view: UIView, withTag tag: Int) -> UIView? {
+        if view.tag == tag {
+            return view
+        }
+        
+        for subview in view.subviews {
+            if let foundView = findSubviewInView(view: subview, withTag: tag) {
+                return foundView
+            }
+        }
+        return nil
+    }
+
+  
+}

@@ -9,13 +9,11 @@ import Foundation
 import ModernRIBs
 
 protocol RoutineEditRepeatDependency: Dependency {
-    var repeatTypeSubject: CurrentValuePublisher<RepeatTypeViewModel>{ get }
-    var repeatValueSubject: CurrentValuePublisher<RepeatValueViewModel>{ get }
+    var detail: RoutineDetailModel?{ get }    
 }
 
 final class RoutineEditRepeatComponent: Component<RoutineEditRepeatDependency>, RoutineEditRepeatInteractorDependency {
-    var repeatTypeSubject: CurrentValuePublisher<RepeatTypeViewModel>{ dependency.repeatTypeSubject }
-    var repeatValueSubject: CurrentValuePublisher<RepeatValueViewModel>{ dependency.repeatValueSubject }
+    var detail: RoutineDetailModel?{ dependency.detail }
 }
 
 // MARK: - Builder

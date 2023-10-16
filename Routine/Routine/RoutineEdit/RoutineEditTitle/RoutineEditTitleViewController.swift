@@ -51,7 +51,12 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         
         textFeild.setFont(style: .title1)
         textFeild.textColor = .black
-        textFeild.placeholder = "Give it a name"
+        
+        textFeild.attributedPlaceholder = NSAttributedString(
+            string: "Give it a name",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray]
+        )
+        
         textFeild.textAlignment = .center
         textFeild.becomeFirstResponder()
         textFeild.delegate = self
@@ -157,7 +162,7 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         routineNameTextFeild.becomeFirstResponder()
     }
     
-    func setTitle(emoji: String, routineName: String, routineDescription: String) {
+    func setTitle(emoji: String, routineName: String?, routineDescription: String?) {
         emojiButton.setTitle(emoji, for: .normal)
         routineNameTextFeild.text = routineName
         routineDescriptionTextView.text = routineDescription

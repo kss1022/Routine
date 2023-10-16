@@ -47,11 +47,15 @@ extension NSCoder{
     //MARK: Set
     func encodeSet<T>(_ set: Set<T>, forKey: String){
         encode(set as NSSet, forKey: forKey)
+        //encode(set, forKey: forKey)
     }
     
     
-    func decodeSet(forKey: String) -> NSSet{
-        self.decodeObject(of: NSSet.self, forKey: forKey)!                        
+    func decodeSet(forKey: String) -> Set<Int>?{
+        guard let getSet = self.decodeObject(of: [NSSet.self, NSNumber.self], forKey: forKey) as? NSSet else{
+            return nil
+        }    
+        return Set(getSet.compactMap{ $0 as? Int})
     }
     
     

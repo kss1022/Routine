@@ -15,12 +15,10 @@ protocol RepeatReadModelFacade{
 public final class RepeatReadModelFacadeImp: RepeatReadModelFacade{
     
     private let repeatDao: RepeatDao
-
-
     
     init() throws{
         guard let dbManager = DatabaseManager.default else {
-            throw DatabaseError.couldNotGetDatabaseManagerInstance
+            throw DatabaseException.couldNotGetDatabaseManagerInstance
         }
         
         repeatDao = dbManager.repeatDao

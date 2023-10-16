@@ -16,7 +16,7 @@ protocol RoutineDetailDependency: Dependency {
     
 }
 
-final class RoutineDetailComponent: Component<RoutineDetailDependency>, RoutineEditDependency,  RoutineTitleDependency, RecordCalendarDependency, RoutineDetailInteractorDependency {
+final class RoutineDetailComponent: Component<RoutineDetailDependency>, RoutineEditDependency,  RoutineTitleDependency, RecordCalendarDependency, RoutineBasicInfoDependency, RoutineDetailInteractorDependency {
     
     
     var routineId: UUID
@@ -60,13 +60,15 @@ final class RoutineDetailBuilder: Builder<RoutineDetailDependency>, RoutineDetai
         let routineEditBuilder = RoutineEditBuilder(dependency: component)
         let routineTitleBuilder = RoutineTitleBuilder(dependency: component)
         let recordCalendarBuilder = RecordCalendarBuilder(dependency: component)
+        let routineBasicInfoBuilder = RoutineBasicInfoBuilder(dependency: component)
         
         return RoutineDetailRouter(
             interactor: interactor,
             viewController: viewController,
             routineEditBuildable: routineEditBuilder,
             routineTitleBuildable: routineTitleBuilder,
-            recordCalendarBuildable: recordCalendarBuilder
+            recordCalendarBuildable: recordCalendarBuilder,
+            routineBasicInfoBuildable: routineBasicInfoBuilder
         )
     }
 }

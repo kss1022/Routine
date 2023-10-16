@@ -9,14 +9,12 @@ import ModernRIBs
 
 protocol RoutineTintDependency: Dependency {
     var routineRepository : RoutineRepository { get }
-
-    var tintSubject: CurrentValuePublisher<String>{ get }
+    var detail: RoutineDetailModel?{ get }
 }
 
 final class RoutineTintComponent: Component<RoutineTintDependency>, RoutineTintInteractorDependency {
     var routineRepository : RoutineRepository { dependency.routineRepository }
-
-    var tintSubject: CurrentValuePublisher<String>{ dependency.tintSubject }
+    var detail: RoutineDetailModel?{ dependency.detail }
 }
 
 // MARK: - Builder

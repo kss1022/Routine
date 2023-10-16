@@ -21,12 +21,12 @@ protocol RoutineEmojiIconPresentable: Presentable {
 }
 
 protocol RoutineEmojiIconListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func routineEmojiSetEmoji(emoji: String)
 }
 
 protocol RoutineEmojiIconInteractorDependency{
-    var emojiSubject: CurrentValuePublisher<String>{ get }
     var routineRepository: RoutineRepository { get }
+    var detail: RoutineDetailModel?{ get }
 }
 
 final class RoutineEmojiIconInteractor: PresentableInteractor<RoutineEmojiIconPresentable>, RoutineEmojiIconInteractable, RoutineEmojiIconPresentableListener {
@@ -60,9 +60,10 @@ final class RoutineEmojiIconInteractor: PresentableInteractor<RoutineEmojiIconPr
                 
         self.presenter.setEmojis(emojis)
         
-        let currentEmoji = dependency.emojiSubject.value
+        let currentEmoji = dependency.detail?.emojiIcon ?? "⭐️" 
         let pos = emojis.firstIndex(of: currentEmoji) ?? 0
         self.presenter.setEmoji(pos: pos)
+        listener?.routineEmojiSetEmoji(emoji: currentEmoji)
     }
 
     override func willResignActive() {
@@ -71,6 +72,6 @@ final class RoutineEmojiIconInteractor: PresentableInteractor<RoutineEmojiIconPr
     }
     
     func emojiButtonDidTap(emoji: String) {
-        dependency.emojiSubject.send(emoji)
+        listener?.routineEmojiSetEmoji(emoji: emoji)
     }
 }

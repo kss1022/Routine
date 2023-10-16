@@ -9,7 +9,7 @@ import Foundation
 import ModernRIBs
 import UIKit
 
-protocol RoutineDetailInteractable: Interactable , RoutineEditListener, RoutineTitleListener, RecordCalendarListener{
+protocol RoutineDetailInteractable: Interactable , RoutineEditListener, RoutineTitleListener, RecordCalendarListener, RoutineBasicInfoListener{
     var router: RoutineDetailRouting? { get set }
     var listener: RoutineDetailListener? { get set }
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy{ get }
@@ -18,6 +18,7 @@ protocol RoutineDetailInteractable: Interactable , RoutineEditListener, RoutineT
 protocol RoutineDetailViewControllable: ViewControllable {
     func addTitle(_ view: ViewControllable)
     func addRecordCalendar(_ view: ViewControllable)
+    func addBasicInfo(_ view: ViewControllable)
 }
 
 final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, RoutineDetailViewControllable>, RoutineDetailRouting {
@@ -31,6 +32,9 @@ final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, Routi
     
     private let recordCalendarBuildable: RecordCalendarBuildable
     private var recordCalendarRouting: Routing?
+    
+    private let routineBasicInfoBuildable: RoutineBasicInfoBuildable
+    private var routineBasicInfoRouting: Routing?
 
     
     init(
@@ -38,11 +42,13 @@ final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, Routi
         viewController: RoutineDetailViewControllable,
         routineEditBuildable: RoutineEditBuildable,
         routineTitleBuildable: RoutineTitleBuildable,
-        recordCalendarBuildable: RecordCalendarBuildable
+        recordCalendarBuildable: RecordCalendarBuildable,
+        routineBasicInfoBuildable: RoutineBasicInfoBuildable
     ) {
         self.routineEditBuildable = routineEditBuildable
         self.routineTitleBuildable = routineTitleBuildable
         self.recordCalendarBuildable = recordCalendarBuildable
+        self.routineBasicInfoBuildable = routineBasicInfoBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -60,6 +66,8 @@ final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, Routi
         
         let standardAppearance = UINavigationBarAppearance()
         standardAppearance.configureWithTransparentBackground()
+        standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+
         
         let scrollAppearacne = UINavigationBarAppearance()
         scrollAppearacne.configureWithTransparentBackground()
@@ -68,8 +76,9 @@ final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, Routi
         let nav = navigation.navigationController
         nav.navigationBar.standardAppearance  = standardAppearance
         nav.navigationBar.scrollEdgeAppearance = scrollAppearacne
+        nav.navigationBar.tintColor = .black
         
-        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
+        nav.presentationController?.delegate = interactor.presentationDelegateProxy
         viewController.present(navigation, animated: true, completion: nil)
         
         routineEditRouting = router
@@ -113,4 +122,16 @@ final class RoutineDetailRouter: ViewableRouter<RoutineDetailInteractable, Routi
         attachChild(routing)
     }
 
+    
+    func attachRoutineBasicInfo() {
+        if routineBasicInfoRouting != nil{
+            return
+        }
+        
+        let routing = routineBasicInfoBuildable.build(withListener: interactor)
+        viewController.addBasicInfo(routing.viewControllable)
+        
+        self.routineBasicInfoRouting = routing
+        attachChild(routing)
+    }
 }

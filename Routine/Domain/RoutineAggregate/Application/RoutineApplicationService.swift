@@ -17,20 +17,17 @@ final class RoutineApplicationService : ApplicationService{
     private let routineFactory: RoutineFactory
     private let routineService: RoutineService
     
-    private let checkListFactory: CheckListFactory
     
     init(
         eventStore: EventStore,
         snapshotRepository: SnapshotRepository,
         routineFactory: RoutineFactory,
-        routineService: RoutineService,
-        checkListFactory: CheckListFactory
+        routineService: RoutineService
     ) {
         self.eventStore = eventStore
         self.snapshotRepository = snapshotRepository
         self.routineFactory = routineFactory
-        self.routineService = routineService
-        self.checkListFactory = checkListFactory
+        self.routineService = routineService        
     }
     
     
@@ -43,39 +40,17 @@ final class RoutineApplicationService : ApplicationService{
             let routineName = try RoutineName(command.name)
             let routineDescription = try RoutineDescription(description: command.description)
             let `repeat` = try Repeat(repeatType: command.repeatType, data: command.repeatValue)
+            let reminder =  try command.reminderTime.map {
+                try Reminder(repeatType: command.repeatType, data: command.repeatValue, hour: $0.0,minute: $0.1)
+            }
             let icon = Emoji(command.emoji)
             let tint = Tint(command.tint)
                                                 
-            let routine = routineFactory.create(routineId: routineId, routineName: routineName, routineDescription: routineDescription, repeat: `repeat`, icon: icon, tint: tint)
-            
-            
+            let routine = routineFactory.create(routineId: routineId, routineName: routineName, routineDescription: routineDescription, repeat: `repeat`, reminder: reminder, icon: icon, tint: tint)
                         
-            let checkLists = try command.createCheckLists.map { createCheckList in
-                let checkListId =  CheckListId(UUID())
-                let checkListName = try CheckListName(createCheckList.name)
-                let reps = Repetition(createCheckList.reps)
-                let set = SetCount(createCheckList.set)
-                let weight = Weight(createCheckList.weight)
-                
-                return checkListFactory.create(
-                    routineId: routineId,
-                    checkListId: checkListId,
-                    checkListName: checkListName,
-                    reps: reps,
-                    set: set,
-                    weight: weight
-                )
-            }
-            
-            try checkLists.forEach { checkList in
-                try eventStore.appendToStream(id: checkList.checkListId.id, expectedVersion: -1, events: checkList.changes)
-            }
-            
-            
             try eventStore.appendToStream(id: routine.routineId.id, expectedVersion: -1, events: routine.changes)
             try Transaction.commit()
-            
-            
+
         }catch{
             try Transaction.rollback()
             throw error
@@ -88,6 +63,9 @@ final class RoutineApplicationService : ApplicationService{
             let routineName = try RoutineName(command.name)
             let routineDescription = try RoutineDescription(description: command.description)
             let `repeat` = try Repeat(repeatType: command.repeatType, data: command.repeatValue)
+            let reminder =  try command.reminderTime.map {
+                try Reminder(repeatType: command.repeatType, data: command.repeatValue, hour: $0.0,minute: $0.1)
+            }
             let icon = Emoji(command.emoji)
             let tint = Tint(command.tint)
          
@@ -95,7 +73,8 @@ final class RoutineApplicationService : ApplicationService{
                 routine.updateRoutine(
                     routineName,
                     routineDescription: routineDescription, 
-                    repeat: `repeat`,
+                    repeat: `repeat`, 
+                    reminder: reminder,
                     emoji: icon,
                     tint: tint
                 )

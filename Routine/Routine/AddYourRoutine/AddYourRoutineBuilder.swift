@@ -13,31 +13,16 @@ protocol AddYourRoutineDependency: Dependency {
     var routineRepository : RoutineRepository { get }
 }
 
-final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, AddYourRoutineInteractorDependency, RoutineEditRepeatDependency{
+final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, RoutineEditRepeatDependency, RoutineEditReminderDependency, AddYourRoutineInteractorDependency{
+    
         
+    var emoji: ReadOnlyCurrentValuePublisher<String>{ emojiSubject}
+    var emojiSubject = CurrentValuePublisher<String>("⭐️")
+    
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
     var routineRepository : RoutineRepository { dependency.routineRepository }
     
-    
-    var title: ReadOnlyCurrentValuePublisher<String>{ titleSubject}
-    let titleSubject = CurrentValuePublisher<String>("")
-    
-    var description: ReadOnlyCurrentValuePublisher<String>{ descriptionSubject }
-    let descriptionSubject = CurrentValuePublisher<String>("")
-            
-    var repeatType: ReadOnlyCurrentValuePublisher<RepeatTypeViewModel>{ repeatTypeSubject }
-    let repeatTypeSubject = CurrentValuePublisher<RepeatTypeViewModel>(.daliy)
-        
-    var repeatValue: ReadOnlyCurrentValuePublisher<RepeatValueViewModel>{ repeatValueSubject }
-    var repeatValueSubject = CurrentValuePublisher<RepeatValueViewModel>( .daliy )
-
-    var tint: ReadOnlyCurrentValuePublisher<String>{ tintSubject }
-    let tintSubject = CurrentValuePublisher<String>("#FFCCCCFF")
-    
-    var emoji: ReadOnlyCurrentValuePublisher<String>{ emojiSubject }
-    let emojiSubject = CurrentValuePublisher<String>("⭐️")
-    
-    
+    var detail: RoutineDetailModel?{ nil }
 }
 
 // MARK: - Builder
@@ -62,7 +47,7 @@ final class AddYourRoutineBuilder: Builder<AddYourRoutineDependency>, AddYourRou
         let routineTintBuilder = RoutineTintBuilder(dependency: component)
         let routineEmojiIconBuilder = RoutineEmojiIconBuilder(dependency: component)
         let routineEditRepeatBuilder = RoutineEditRepeatBuilder(dependency: component)
-
+        let routineEditReminderBulider = RoutineEditReminderBuilder(dependency: component)
         
         return AddYourRoutineRouter(
             interactor: interactor,
@@ -70,7 +55,8 @@ final class AddYourRoutineBuilder: Builder<AddYourRoutineDependency>, AddYourRou
             routineEditTitleBuildable: routineEditTitleBuilder,
             routineTintBuildable: routineTintBuilder,
             routineEmojiIconBuildable: routineEmojiIconBuilder,
-            routineEditRepeatBuildable: routineEditRepeatBuilder
+            routineEditRepeatBuildable: routineEditRepeatBuilder,
+            routineEditReminderBuildable: routineEditReminderBulider
         )
     }
 }

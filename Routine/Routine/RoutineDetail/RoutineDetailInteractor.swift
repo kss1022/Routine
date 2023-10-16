@@ -15,10 +15,12 @@ protocol RoutineDetailRouting: ViewableRouting {
     
     func attachRoutineTitle()
     func attachRecordCalendar()
+    func attachRoutineBasicInfo()
 }
 
 protocol RoutineDetailPresentable: Presentable {
     var listener: RoutineDetailPresentableListener? { get set }
+    func setTitle(_ title: String)
     func setBackgroundColor(_ tint: String)
 }
 
@@ -83,11 +85,15 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
         
         router?.attachRoutineTitle()
         router?.attachRecordCalendar()
+        router?.attachRoutineBasicInfo()
     
         dependency.routineDetail
             .receive(on: DispatchQueue.main)
-            .sink { detail in
-                self.presenter.setBackgroundColor(detail!.tint)
+            .sink {
+                if let detail = $0{
+                    self.presenter.setTitle(detail.routineName)
+                    self.presenter.setBackgroundColor(detail.tint)
+                }
             }
             .store(in: &cancelables)
     }
@@ -150,7 +156,7 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
                 try await self.dependency.routineRepository.fetchLists()
             }catch{
                 if let error = error as? ArgumentException{
-                    Log.e(error.msg)
+                    Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
@@ -166,7 +172,7 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
                 try await self.dependency.routineRepository.fetchDetail(self.dependency.routineId)
             }catch{
                 if let error = error as? ArgumentException{
-                    Log.e(error.msg)
+                    Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }

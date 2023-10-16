@@ -19,7 +19,7 @@ final class RecordProjection{
     
     init() throws{
         guard let dbManager = DatabaseManager.default else {
-            throw DatabaseError.couldNotGetDatabaseManagerInstance
+            throw DatabaseException.couldNotGetDatabaseManagerInstance
         }
         
         self.recordDao = dbManager.recordDao
