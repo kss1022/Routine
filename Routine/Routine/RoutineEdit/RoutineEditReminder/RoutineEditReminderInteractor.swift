@@ -15,10 +15,9 @@ protocol RoutineEditReminderRouting: ViewableRouting {
 protocol RoutineEditReminderPresentable: Presentable {
     var listener: RoutineEditReminderPresentableListener? { get set }
     
+    func setToogleEnable(enable: Bool)
     func setToogle(on: Bool)
     func setDate(date: Date)
-
-
     
     func showTimePikcer()
     func hideTimePicker()
@@ -35,10 +34,11 @@ protocol RoutineEditReminderInteractorDependency{
 }
 
 final class RoutineEditReminderInteractor: PresentableInteractor<RoutineEditReminderPresentable>, RoutineEditReminderInteractable, RoutineEditReminderPresentableListener {
-
+    
+    
     weak var router: RoutineEditReminderRouting?
     weak var listener: RoutineEditReminderListener?
-
+    
     private var isON: Bool
     private var date: Date
     
@@ -63,22 +63,28 @@ final class RoutineEditReminderInteractor: PresentableInteractor<RoutineEditRemi
         }else{
             self.date = Date()
         }
-
+        
         super.init(presenter: presenter)
         presenter.listener = self
     }
-
+    
     override func didBecomeActive() {
         super.didBecomeActive()
-                
+        
         presenter.setToogle(on: isON)
+        
+        Task{ [weak self] in
+            let granted =  try await AppNotificationManager.share.setupNotification()
+            await self?.handleNotificationStatus(granted: granted)
+        }
+        
         
         if isON{
             presenter.showTimePikcer()
             presenter.setDate(date: date)
-        }                
+        }
     }
-
+    
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
@@ -98,6 +104,14 @@ final class RoutineEditReminderInteractor: PresentableInteractor<RoutineEditRemi
         handleValueChange()
     }
     
+    
+    func didBecomeActiveNotification() {
+        Task{ [weak self] in
+            let granted = await AppNotificationManager.share.checkNotificationStatus()
+            await self?.handleNotificationStatus(granted: granted)
+        }
+    }
+    
     private func handleValueChange(){
         if !isON{
             listener?.routineReminderValueChange(isOn: false, hour: nil, minute: nil)
@@ -113,5 +127,20 @@ final class RoutineEditReminderInteractor: PresentableInteractor<RoutineEditRemi
         
         let subTitle = Formatter.reminderDateFormatter().string(from: date)
         presenter.setSubTitle(subTitle: subTitle)
+    }
+    
+    @MainActor
+    private func handleNotificationStatus(granted: Bool){
+        if !granted{
+            self.isON = false
+            self.presenter.setToogle(on: false)
+            self.presenter.hideTimePicker()
+        }else{
+            isON ? presenter.showTimePikcer() : presenter.hideTimePicker()
+        }
+        
+        
+        self.presenter.setToogleEnable(enable: granted)
+        handleValueChange()
     }
 }

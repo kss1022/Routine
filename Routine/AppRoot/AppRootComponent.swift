@@ -27,7 +27,7 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
     
     //MARK: Repository
     let routineRepository: RoutineRepository
-    
+    let timerRepository: TimerRepository
     
     
     
@@ -87,6 +87,7 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
             reminderReadModel: reminderReadModel
         )
         
+        self.timerRepository = TimerRepositoryImp()
          
         self.appRootViewController = viewController
         super.init(dependency: dependency)

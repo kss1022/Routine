@@ -19,16 +19,9 @@ protocol AppNotification{
 
 final class AppNotificationManager{
     
-    
+    public static let share = AppNotificationManager()
+        
     private let center = UNUserNotificationCenter.current()
-            
-    
-    private static var instance : AppNotificationManager?
-    public static func share() -> AppNotificationManager{
-        if self.instance == nil{ self.instance = AppNotificationManager() }
-        return instance!
-    }
-    
     public let localAdapter: LocalNotificationAdapter
     
             
@@ -41,16 +34,19 @@ final class AppNotificationManager{
     }
     
     
-    func setupNotification(){
-        Task{
-            do{
-                let granted = try await requestPermission()
-                setRoutineAction()
-                Log.e("Notification Center Perssion: \(granted)")
-            }catch{
-                Log.e("\(error)")
-            }
-        }
+    func setupNotification() async throws -> Bool {
+        let granted = try await requestPermission()
+        setRoutineAction()
+        Log.v("Notification Center Perssion: \(granted)")
+        return granted
+    }
+    
+    func checkNotificationStatus() async -> Bool{
+        let setttings = await UNUserNotificationCenter.current().notificationSettings()
+        let isGranted = setttings.authorizationStatus == .authorized
+                
+        Log.v("UNAuthorizationStatus is \(setttings.authorizationStatus)")
+        return isGranted
     }
     
     

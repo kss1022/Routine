@@ -48,9 +48,6 @@ final class RecordProjection{
                 isComplete: event.isComplete,
                 completedAt: event.occurredOn
             )
-            
-            Log.v("\(Formatter.recordDate(year: event.recordDate.year, month: event.recordDate.month, day: event.recordDate.day))에 해당하는 기록을 생성합니다.")
-            
             try recordDao.save(record)
         }catch{
             Log.e("EventHandler Error: RecordCreated \(error)")

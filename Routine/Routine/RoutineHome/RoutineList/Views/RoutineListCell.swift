@@ -71,9 +71,9 @@ final class RoutineListCell: UICollectionViewCell{
     
     
     private func setView(){
-        addSubview(emojiIconLabel)
-        addSubview(stackView)
-        addSubview(checkButton)
+        contentView.addSubview(emojiIconLabel)
+        contentView.addSubview(stackView)
+        contentView.addSubview(checkButton)
         
         stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(descriptionLabel)
@@ -81,17 +81,17 @@ final class RoutineListCell: UICollectionViewCell{
         let inset: CGFloat = 16.0
         
         NSLayoutConstraint.activate([
-            emojiIconLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8.0),
+            emojiIconLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0),
             emojiIconLabel.topAnchor.constraint(equalTo: stackView.topAnchor),
             emojiIconLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
             emojiIconLabel.widthAnchor.constraint(equalTo: emojiIconLabel.heightAnchor),
             
-            stackView.leadingAnchor.constraint(equalTo: self.emojiIconLabel.trailingAnchor, constant: 8.0),
-            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: inset),
+            stackView.leadingAnchor.constraint(equalTo: emojiIconLabel.trailingAnchor, constant: 8.0),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
             stackView.trailingAnchor.constraint(equalTo: checkButton.leadingAnchor, constant: -8.0),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -inset),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
             
-            checkButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8.0),
+            checkButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
             checkButton.topAnchor.constraint(equalTo: stackView.topAnchor),
             checkButton.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
             checkButton.widthAnchor.constraint(equalTo: checkButton.heightAnchor),
@@ -110,7 +110,7 @@ final class RoutineListCell: UICollectionViewCell{
         backgroundColor = viewModel.tint
         
         self.emojiIconLabel.text = viewModel.emojiIcon
-        self.checkButton.isSelected = viewModel.isCompleted
+        //self.checkButton.isSelected = viewModel.isCompleted
         
         if viewModel.isCompleted{
             self.nameLabel.attributedText = viewModel.name.getAttributeStrkeString()

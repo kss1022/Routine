@@ -11,12 +11,14 @@ import UIKit
 protocol RoutineEditReminderPresentableListener: AnyObject {
     func reminderToogleValueChange(isON: Bool)
     func reminderTimePickerValueChange(date: Date)
+    func didBecomeActiveNotification()
 }
 
 final class RoutineEditReminderViewController: UIViewController, RoutineEditReminderPresentable, RoutineEditReminderViewControllable {
 
     
     weak var listener: RoutineEditReminderPresentableListener?
+    
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -81,10 +83,16 @@ final class RoutineEditReminderViewController: UIViewController, RoutineEditRemi
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset)
         ])
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     
     // MARK: Presentable
+    
+    func setToogleEnable(enable: Bool) {
+        routineEditToogleView.setToogleEnable(enable)
+    }
     
     func setToogle(on: Bool) {
         routineEditToogleView.setToogle(on)
@@ -118,6 +126,12 @@ final class RoutineEditReminderViewController: UIViewController, RoutineEditRemi
     @objc
     private func timePickerValueChanged(_ sender: UIDatePicker) {
         self.listener?.reminderTimePickerValueChange(date: sender.date)
+    }
+    
+    
+    
+    @objc private func didBecomeActive() {
+        listener?.didBecomeActiveNotification()
     }
     
 

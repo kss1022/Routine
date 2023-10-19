@@ -47,6 +47,43 @@ public final class CurrentValuePublisher<Element>: ReadOnlyCurrentValuePublisher
 }
 
 
+public class ReadOnlyPassthroughPublisher<Element>: Publisher {
+    
+    public typealias Output = Element
+    public typealias Failure = Never
+        
+//    public var value: Element? {
+//        passthroughRelay.value
+//    }
+    
+    fileprivate let passthroughRelay: PassthroughRelay<Output>
+    
+    fileprivate init() {
+        passthroughRelay = PassthroughRelay()
+    }
+    
+    public func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, Element == S.Input {
+        passthroughRelay.receive(subscriber: subscriber)
+    }
+    
+}
+
+public final class PassthroughPublisher<Element>: ReadOnlyPassthroughPublisher<Element> {
+  
+  typealias Output = Element
+  typealias Failure = Never
+  
+  public override init() {
+    super.init()
+  }
+
+  public func send(_ value: Element) {
+      passthroughRelay.accept(value)
+  }
+  
+}
+
+
 extension Task {
     func store(in set: inout Set<AnyCancellable>) {
         set.insert(AnyCancellable(cancel))

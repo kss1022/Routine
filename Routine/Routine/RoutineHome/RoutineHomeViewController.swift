@@ -64,16 +64,15 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     
     private func setLayout(){
         title = "Routine"
-        
-        navigationItem.rightBarButtonItems = [ createRoutineBarButtonItem]
-
         tabBarItem = UITabBarItem(
             title: "Routine",
             image: UIImage(systemName: "checkmark.seal"),
             selectedImage: UIImage(systemName: "checkmark.seal.fill")
         )
-        view.backgroundColor = .systemBackground
         
+        navigationItem.rightBarButtonItems = [ createRoutineBarButtonItem]
+
+        view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         

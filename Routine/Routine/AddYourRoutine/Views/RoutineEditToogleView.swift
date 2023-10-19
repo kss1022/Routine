@@ -112,6 +112,10 @@ final class RoutineEditToogleView: UIView{
         subTitleLabel.text = subTitle
     }
     
+    func setToogleEnable(_ enable: Bool){
+        toogle.isEnabled = enable
+    }
+    
     func setToogle(_ isON: Bool){
         toogle.isOn = isON
     }

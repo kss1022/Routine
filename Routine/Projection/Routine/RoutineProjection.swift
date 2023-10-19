@@ -187,7 +187,7 @@ final class RoutineProjection{
         
         Task{
             do{
-                try await AppNotificationManager.share().localAdapter.registerNotifcation(notification: notification)
+                try await AppNotificationManager.share.localAdapter.registerNotifcation(notification: notification)
                 try reminderDao.save(reminderDto)
             }catch{
                 Log.e("\(error)")
@@ -224,7 +224,7 @@ final class RoutineProjection{
             //save
             Task{
                 do{
-                    try await AppNotificationManager.share().localAdapter.registerNotifcation(notification: notification)
+                    try await AppNotificationManager.share.localAdapter.registerNotifcation(notification: notification)
                     try reminderDao.save(reminderDto)
                 }catch{
                     Log.e("\(error)")
@@ -241,8 +241,8 @@ final class RoutineProjection{
 //                for identifire in remain.getIdentifires(){
 //                    await AppNotificationManager.share().localAdapter.unRegisterNotification(id: identifire)
 //                }
-                await AppNotificationManager.share().localAdapter.unRegisterNotifications(ids: remain.getIdentifires())
-                try await AppNotificationManager.share().localAdapter.registerNotifcation(notification: notification)
+                await AppNotificationManager.share.localAdapter.unRegisterNotifications(ids: remain.getIdentifires())
+                try await AppNotificationManager.share.localAdapter.registerNotifcation(notification: notification)
                 try reminderDao.update(reminderDto)
             }catch{
                 Log.e("\(error)")

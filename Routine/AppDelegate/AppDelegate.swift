@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupLogger()
         
         UNUserNotificationCenter.current().delegate = self
-        AppNotificationManager.share().setupNotification()
         return true
     }
 

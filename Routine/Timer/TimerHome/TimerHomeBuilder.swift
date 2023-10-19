@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol TimerHomeDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var timerRepository: TimerRepository{ get }
 }
 
-final class TimerHomeComponent: Component<TimerHomeDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, TimerDetailDependency, TimerListDependency {
+    var timerRepository: TimerRepository{ dependency.timerRepository }
 }
 
 // MARK: - Builder
@@ -34,6 +32,19 @@ final class TimerHomeBuilder: Builder<TimerHomeDependency>, TimerHomeBuildable {
         let viewController = TimerHomeViewController()
         let interactor = TimerHomeInteractor(presenter: viewController)
         interactor.listener = listener
-        return TimerHomeRouter(interactor: interactor, viewController: viewController)
+
+        
+        let createTimerBuilder = CreateTimerBuilder(dependency: component)
+        let timerDetailBuilder = TimerDetailBuilder(dependency: component)
+        let timerListBuilder = TimerListBuilder(dependency: component)
+        
+        
+        return TimerHomeRouter(
+            interactor: interactor,
+            viewController: viewController,
+            creatTimerBuildable: createTimerBuilder,
+            timerDetailBuildable: timerDetailBuilder,
+            timerListBuildable: timerListBuilder
+        )
     }
 }

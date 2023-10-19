@@ -11,7 +11,7 @@ import Combine
                       
 protocol RoutineRepository{
 
-    var lists: ReadOnlyCurrentValuePublisher<[RoutineListDto]> { get }
+    //var lists: ReadOnlyCurrentValuePublisher<[RoutineListDto]> { get }
     var homeLists: ReadOnlyCurrentValuePublisher<[RoutineHomeListModel]> { get }
     var detail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?> { get }
     var detailRecords: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ get }
