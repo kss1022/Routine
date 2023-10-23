@@ -9,9 +9,8 @@ import ModernRIBs
 import UIKit
 
 protocol TimerSectionEditTitlePresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func sectionNameDidEndEditing(name: String)
+    func sectionDescriptionDidEndEditing(description: String)
 }
 
 final class TimerSectionEditTitleViewController: UIViewController, TimerSectionEditTitlePresentable, TimerSectionEditTitleViewControllable {
@@ -24,7 +23,7 @@ final class TimerSectionEditTitleViewController: UIViewController, TimerSectionE
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .label
         
-        button.setFont(style: .largeTitle)
+        button.setFont(style: .subheadline)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         
         button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
@@ -62,7 +61,6 @@ final class TimerSectionEditTitleViewController: UIViewController, TimerSectionE
         textFeild.textColor = .label
         textFeild.placeholder = "Give it a name"
         textFeild.textAlignment = .center
-        textFeild.becomeFirstResponder()
         textFeild.delegate = self
         return textFeild
     }()
@@ -105,7 +103,6 @@ final class TimerSectionEditTitleViewController: UIViewController, TimerSectionE
         textFeild.textColor = .label
         textFeild.placeholder = "Give it a name"
         textFeild.textAlignment = .center
-        textFeild.becomeFirstResponder()
         textFeild.delegate = self
         return textFeild
     }()
@@ -184,12 +181,12 @@ extension TimerSectionEditTitleViewController : UITextFieldDelegate{
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField != self.sectionNameTextFeild{
-            return
-        }
+        guard let text = textField.text else { return }
         
-        if let name = textField.text{
-            //listener?.setRoutineName(name: name)
+        if textField == sectionNameTextFeild{
+            listener?.sectionNameDidEndEditing(name: text)
+        }else if textField == sectionDescriptionTextFeild{
+            listener?.sectionDescriptionDidEndEditing(description: text)
         }
     }
         
@@ -211,9 +208,12 @@ extension TimerSectionEditTitleViewController : UITextFieldDelegate{
                 return false
             }
             
-            self.sectionNameHelpLabel.text = "\(textCount)/50"
+            if textField == sectionNameTextFeild{
+                self.sectionNameHelpLabel.text = "\(textCount)/50"
+            }else if textField == sectionDescriptionTextFeild{
+                self.sectionDescriptionHelpLabel.text = "\(textCount)/50"
+            }
         }
-        
         
         return true
     }

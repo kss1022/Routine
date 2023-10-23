@@ -9,16 +9,15 @@ import ModernRIBs
 import UIKit
 
 protocol AddYourTimerPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func doneBarButtonDidTap()
 }
 
 final class AddYourTimerViewController: UIViewController, AddYourTimerPresentable, AddYourTimerViewControllable {
 
+
     weak var listener: AddYourTimerPresentableListener?
     
-    private lazy var doneBarButtonItem: UIBarButtonItem = {
+    private lazy var doneBarButtonItem: UIBarButtonItem = {        
         let barbuttonItem = UIBarButtonItem(
             barButtonSystemItem: .done,
             target: self, action: #selector(doneBarButtonDidTap))
@@ -29,7 +28,7 @@ final class AddYourTimerViewController: UIViewController, AddYourTimerPresentabl
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.contentInsetAdjustmentBehavior = .always
-        
+        scrollView.keyboardDismissMode = .onDrag
         return scrollView
     }()
 
@@ -58,14 +57,7 @@ final class AddYourTimerViewController: UIViewController, AddYourTimerPresentabl
     
     
     private func setLayout(){
-        title = "Timer"
-        tabBarItem = UITabBarItem(
-            title: "Timer",
-            image: UIImage(systemName: "stopwatch"),
-            selectedImage: UIImage(systemName: "stopwatch.fill")
-        )
-        
-        navigationItem.rightBarButtonItems = [doneBarButtonItem]
+        navigationItem.rightBarButtonItem = doneBarButtonItem
 
         view.backgroundColor = .systemBackground
         
@@ -85,9 +77,20 @@ final class AddYourTimerViewController: UIViewController, AddYourTimerPresentabl
         ])
     }
     
-    func addEditSection(_ view: ViewControllable) {
+    //MARK: ViewControllable
+    func addEditTitle(_ view: ViewControllable) {
         let vc = view.uiviewController
-                        
+        addChild(vc)
+
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
+    
+    func addSectionLists(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)
+
         stackView.addArrangedSubview(vc.view)
         vc.didMove(toParent: self)
         
@@ -95,8 +98,14 @@ final class AddYourTimerViewController: UIViewController, AddYourTimerPresentabl
         vc.view.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor).isActive = true
     }
     
+    //MARK: Presentable
+    func setTitle(title: String) {
+        self.title = title
+    }
+    
     @objc
     private func doneBarButtonDidTap(){
-        
+        view.endEditing(true)
+        listener?.doneBarButtonDidTap()
     }
 }

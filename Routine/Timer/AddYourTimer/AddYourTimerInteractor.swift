@@ -6,38 +6,58 @@
 //
 
 import ModernRIBs
+import Foundation
 
 protocol AddYourTimerRouting: ViewableRouting {
-    func attachTimerSectionEdit()
+    func attachTimerSectionEdit(sectionList: TimerSectionListViewModel)
     func detachTimerSectionEdit()
     
+    func attachTimerEditTitle()
     func attachTimerSectionListection()
 }
 
 protocol AddYourTimerPresentable: Presentable {
     var listener: AddYourTimerPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setTitle(title: String)
 }
 
 protocol AddYourTimerListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func addYourTimeDoneButtonDidTap()
+}
+
+protocol AddYourTimeInteractorDependency{
+    var timerApplicationService: TimerApplicationService{ get }
+    var timerRepository: TimerRepository{ get }
+    var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
+    var timerType: AddTimerType{ get }
 }
 
 final class AddYourTimerInteractor: PresentableInteractor<AddYourTimerPresentable>, AddYourTimerInteractable, AddYourTimerPresentableListener {
 
+
     weak var router: AddYourTimerRouting?
     weak var listener: AddYourTimerListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: AddYourTimeInteractorDependency
+    private var name: String
+    
     // in constructor.
-    override init(presenter: AddYourTimerPresentable) {
+    init(
+        presenter: AddYourTimerPresentable,
+        dependency: AddYourTimeInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.name = dependency.timerType.name
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        
+        router?.attachTimerEditTitle()
         router?.attachTimerSectionListection()
+        presenter.setTitle(title: dependency.timerType.title)
     }
 
     override func willResignActive() {
@@ -45,13 +65,54 @@ final class AddYourTimerInteractor: PresentableInteractor<AddYourTimerPresentabl
         // TODO: Pause any business logic.
     }
     
+    //MARK: TimerEditTitle
+    func timerEditTitleSetName(name: String) {
+        self.name = name
+    }
+    
+    
     //MARK: TimerSectionList
-    func timeSectionListDidSelectRowAt(viewModel: TimerSectionListViewModel) {
-        router?.attachTimerSectionEdit()
+    func timeSectionListDidSelectRowAt(sectionList: TimerSectionListViewModel) {
+        router?.attachTimerSectionEdit(sectionList: sectionList)
     }
     
     //MARK: TimerSectionEdit
     func timerSectionEditDidMoved() {
         router?.detachTimerSectionEdit()
     }
+    
+    func doneBarButtonDidTap() {
+        let createSections = dependency.sectionLists.value.enumerated().map { (sequence, section) in
+            CreateSection(
+                name: section.name,
+                description: section.description,
+                sequence: sequence,
+                type: section.type.rawValue,
+                min: section.value.min,
+                sec: section.value.sec,
+                count: section.value.count,
+                emoji: section.emoji,
+                color: section.tint
+            )
+        }
+        
+        let createTimer = CreateTimer(
+            name: self.name,
+            timerType: dependency.timerType.rawValue,
+            createSectoins: createSections
+        )
+        
+        
+        Task{
+            do{
+                try await dependency.timerApplicationService.when(createTimer)
+                try await dependency.timerRepository.fetchLists()
+                await MainActor.run { listener?.addYourTimeDoneButtonDidTap() }
+            }catch{
+                Log.e("\(error)")
+            }
+        }
+        
+    }
 }
+ 

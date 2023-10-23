@@ -25,11 +25,11 @@ final class RecordProjection{
         self.recordDao = dbManager.recordDao
         cancellables = .init()
         
-        registerReciver()
+        registerReceiver()
     }
     
     
-    func registerReciver(){
+    private func registerReceiver(){
         DomainEventPublihser.share
             .onReceive(RecordCreated.self, action: when)
             .store(in: &cancellables)
@@ -39,7 +39,7 @@ final class RecordProjection{
             .store(in: &cancellables)
     }
     
-    func when(event: RecordCreated){
+    private func when(event: RecordCreated){
         do{
             let record = RecordDto(
                 routineId: event.routineId.id,
@@ -54,7 +54,7 @@ final class RecordProjection{
         }
     }
     
-    func when(event: RecordCompleteSet){
+    private func when(event: RecordCompleteSet){
         do{
             try recordDao.updateComplete(recordId: event.recordId.id, isComplete: event.isComplete, completeAt: event.occurredOn)
         }catch{

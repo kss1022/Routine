@@ -26,6 +26,9 @@ class DatabaseManager{
     public let reminderDao: ReminderDao
     public let recordDao: RecordDao
     
+    public let timerListDao: TimerListDao
+    public let timerSectionListDao: TimerSectionListDao
+    
     private init() throws {
         guard let directoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else{
             throw DatabaseException.couldNotFindPathToCreateDatabasePath
@@ -43,6 +46,8 @@ class DatabaseManager{
 //        try RepeatSQLDao.dropTable(db: db)
 //        try ReminderSQLDao.dropTable(db: db)
 //        try RecordSQLDao.dropTable(db: db)
+//        try TimerListSQLDao.dropTable(db: db)
+//        try TimerSectionListSQLDao.dropTable(db: db)
 #endif
         
         self.routineListDao = try RoutineListSQLDao(db: db)
@@ -50,6 +55,8 @@ class DatabaseManager{
         self.repeatDao = try RepeatSQLDao(db: db)
         self.reminderDao = try ReminderSQLDao(db: db)
         self.recordDao = try RecordSQLDao(db: db)
+        self.timerListDao = try TimerListSQLDao(db: db)
+        self.timerSectionListDao = try TimerSectionListSQLDao(db: db)
     }
     
 }

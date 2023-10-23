@@ -48,8 +48,7 @@ final class CreateTimerRouter: ViewableRouter<CreateTimerInteractable, CreateTim
     }
     
     func detachAddYourTimer() {
-        guard let router = addYourTimerRouting else { return }
-        
+        guard let router = addYourTimerRouting else { return }                
         detachChild(router)
         addYourTimerRouting = nil
     }

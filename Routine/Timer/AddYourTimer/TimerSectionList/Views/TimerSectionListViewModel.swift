@@ -12,23 +12,21 @@ import UIKit.UIColor
 struct TimerSectionListViewModel: Hashable{
     let emoji: String
     let name: String
-    let description: String    
-    let value: String
+    let description: String
+    let sequence: Int
+    let type: TimerSectionTypeModel
+    let value: TimerSectionValueModel
     let color: UIColor?
-    
-    
-    
-    init(_ model: TimerSectionListModel) {
+            
+    init(_ model: TimerSectionListModel) {        
         self.emoji = model.emoji
         self.name = model.name
         self.description = model.description
-        switch model.value {
-        case .countdown(let min, let sec):
-            self.value = String(format: "%02d:%02d", min, sec)
-        case .count(let count):
-            self.value = "\(count)"
-        }
-        
-        self.color  = model.color.flatMap { UIColor(hex: $0) }
+        self.sequence = model.sequence
+        self.type = model.type        
+        self.value = model.value
+        self.color  = model.tint.flatMap { UIColor(hex: $0) }
     }
+
+    
 }

@@ -8,19 +8,26 @@
 import ModernRIBs
 
 protocol TimerSectionEditDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var sectionListsSubject: CurrentValuePublisher<[TimerSectionListModel]>{ get }
 }
 
-final class TimerSectionEditComponent: Component<TimerSectionEditDependency>, TimerSectionEditTitleDependency, TimerSectionEditValueDependency {
+final class TimerSectionEditComponent: Component<TimerSectionEditDependency>, TimerSectionEditTitleDependency, TimerSectionEditValueDependency, TimerSectionEditInteractorDependency {
+    
+    var sectionList: TimerSectionListViewModel
+    var sectionListsSubject: CurrentValuePublisher<[TimerSectionListModel]>{ dependency.sectionListsSubject }
 
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    
+    init(dependency: TimerSectionEditDependency, sectionList: TimerSectionListViewModel) {
+        self.sectionList = sectionList
+        super.init(dependency: dependency)
+    }
+    
 }
 
 // MARK: - Builder
 
 protocol TimerSectionEditBuildable: Buildable {
-    func build(withListener listener: TimerSectionEditListener) -> TimerSectionEditRouting
+    func build(withListener listener: TimerSectionEditListener, sectionList: TimerSectionListViewModel) -> TimerSectionEditRouting
 }
 
 final class TimerSectionEditBuilder: Builder<TimerSectionEditDependency>, TimerSectionEditBuildable {
@@ -29,10 +36,10 @@ final class TimerSectionEditBuilder: Builder<TimerSectionEditDependency>, TimerS
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: TimerSectionEditListener) -> TimerSectionEditRouting {
-        let component = TimerSectionEditComponent(dependency: dependency)
+    func build(withListener listener: TimerSectionEditListener, sectionList: TimerSectionListViewModel) -> TimerSectionEditRouting {
+        let component = TimerSectionEditComponent(dependency: dependency, sectionList: sectionList)
         let viewController = TimerSectionEditViewController()
-        let interactor = TimerSectionEditInteractor(presenter: viewController)
+        let interactor = TimerSectionEditInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
         let timerSectionEditTitleBuilder = TimerSectionEditTitleBuilder(dependency: component)

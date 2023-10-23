@@ -66,7 +66,7 @@ final class TimerNextSectionView: UIView{
         
         nameLabel.text = "\(viewModel.emoji) \(viewModel.name)"
         descriptionLabel.text = viewModel.description
-        timerLabel.text = viewModel.value
+        timerLabel.text = viewModel.value.rawValue()
         
         if viewModel.color != nil{
             categoryView.isHidden = false

@@ -39,11 +39,10 @@ final class CircularTimerViewController: UIViewController, CircularTimerPresenta
     private lazy var activeButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Start", for: .normal)
-        button.setTitleColor(.systemGreen, for: .normal)
-        button.backgroundColor = .systemGreen.withAlphaComponent(0.5)
+        
+        button.setBoldFont(style: .subheadline)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
-
+        
         button.contentEdgeInsets = .init(
             top: 8.0,
             left: 8.0,
@@ -59,10 +58,10 @@ final class CircularTimerViewController: UIViewController, CircularTimerPresenta
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Cancle", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemGray.withAlphaComponent(0.5)
+        button.setBoldFont(style: .subheadline)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
+        
+        button.setTitleColor(.white, for: .normal)
         
         button.contentEdgeInsets = .init(
             top: 8.0,
@@ -70,6 +69,9 @@ final class CircularTimerViewController: UIViewController, CircularTimerPresenta
             bottom: 8.0,
             right: 8.0
         )
+        
+        button.setTitle("Cancle", for: .normal)
+        button.backgroundColor = UIColor(hex: "#5B5B5BFF")
         
         button.addTarget(self, action: #selector(cancelButtonTap), for: .touchUpInside)
         
@@ -122,15 +124,21 @@ final class CircularTimerViewController: UIViewController, CircularTimerPresenta
     
     // MARK: Presentable
     func showStartButton() {
-        
+        activeButton.setTitle("Start", for: .normal)
+        activeButton.setTitleColor(.systemGreen, for: .normal)
+        activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
     }
     
     func showPauseButton() {
-        
+        activeButton.setTitle("Pause", for: .normal)
+        activeButton.setTitleColor(.systemOrange, for: .normal)
+        activeButton.backgroundColor = .systemOrange.withAlphaComponent(0.5)
     }
     
     func showResumeButton() {
-        
+        activeButton.setTitle("Resume", for: .normal)
+        activeButton.setTitleColor(.systemGreen, for: .normal)
+        activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
     }
     
     func setTimer(_ viewModel: CircularTimerViewModel) {

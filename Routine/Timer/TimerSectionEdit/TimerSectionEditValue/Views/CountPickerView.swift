@@ -12,7 +12,7 @@ import UIKit
 final class CountPickerView: UIControl{
 
     
-    var value: Int
+    var count: Int
     
     private let countNumberArray: [Int]
     
@@ -27,7 +27,7 @@ final class CountPickerView: UIControl{
     
     init(){
         self.countNumberArray = Array(0...59)
-        self.value = countNumberArray[0]        
+        self.count = countNumberArray[0]        
         super.init(frame: .zero)
         
         setLayout()
@@ -35,7 +35,7 @@ final class CountPickerView: UIControl{
     
     required init?(coder: NSCoder) {
         self.countNumberArray = Array(0...59)
-        self.value = countNumberArray[0]
+        self.count = countNumberArray[0]
         super.init(coder: coder)
         
         setLayout()
@@ -52,6 +52,10 @@ final class CountPickerView: UIControl{
             countPickerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             countPickerView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
+    }
+    
+    func setCount(count: Int){
+        countPickerView.selectRow(count, inComponent: 0, animated: false)
     }
     
 }
@@ -81,7 +85,7 @@ extension CountPickerView: UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component{
         case 0:
-            self.value = countNumberArray[row]
+            self.count = countNumberArray[row]
             self.sendActions(for: .valueChanged)
         default:
             fatalError("Invalid Component: \(component)")

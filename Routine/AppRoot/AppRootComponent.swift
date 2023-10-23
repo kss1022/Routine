@@ -14,16 +14,20 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
     //MARK: ApplicationService
     let routineApplicationService: RoutineApplicationService
     let recordApplicationService: RecordApplicationService
+    let timerApplicationService: TimerApplicationService
     
     //MARK: ReadModel
     private let routineReadModel: RoutineReadModelFacade
     private let repeatReadModel: RepeatReadModelFacade
     private let recordReadModel: RecordReadModelFacade
     private let reminderReadModel: ReminderReadModelFacade
+    private let timerReadModel: TimerReadModelFacade
+    
     
     //MAKR: Projection
     private let routineProjection: RoutineProjection
     private let recordProjection: RecordProjection
+    private let timerProjection: TimerProjection
     
     //MARK: Repository
     let routineRepository: RoutineRepository
@@ -50,6 +54,7 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         //Factory
         let routineFactory = CDRoutineFactory()
         let recordFactory = CDRecordFactory()
+        let timerFactory = CDTimerFactory()
                 
         //Service
         let routineService = RoutineService()
@@ -57,13 +62,14 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         //Projection
         routineProjection = try! RoutineProjection()        
         recordProjection = try! RecordProjection()
-        
+        timerProjection = try! TimerProjection()
         
         //ReadModel
         routineReadModel = try! RoutineReadModelFacadeImp()
         repeatReadModel = try! RepeatReadModelFacadeImp()
         recordReadModel = try! RecordReadModelFacadeImp()
         reminderReadModel = try! ReminderReadModelFacadeImp()
+        timerReadModel = try! TimerReadModelFacadeImp()
         
         //ApplicationService
         self.routineApplicationService = RoutineApplicationService(
@@ -79,6 +85,12 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
             recordFactory: recordFactory
         )                
         
+        self.timerApplicationService = TimerApplicationService(
+            eventStore: eventStore,
+            snapshotRepository: snapshotRepository,
+            timerFactory: timerFactory
+        )
+        
         //Repository
         self.routineRepository = RoutineRepositoryImp(
             routineReadModel: routineReadModel,
@@ -86,8 +98,10 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
             recordReadModel: recordReadModel,
             reminderReadModel: reminderReadModel
         )
-        
-        self.timerRepository = TimerRepositoryImp()
+                        
+        self.timerRepository = TimerRepositoryImp(
+            timerReadModel: timerReadModel
+        )
          
         self.appRootViewController = viewController
         super.init(dependency: dependency)

@@ -8,10 +8,13 @@
 import ModernRIBs
 
 protocol TimerHomeDependency: Dependency {
-    var timerRepository: TimerRepository{ get }
+    var timerApplicationService: TimerApplicationService{ get }
+    var timerRepository: TimerRepository{ get }    
 }
 
-final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, TimerDetailDependency, TimerListDependency {
+final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, TimerDetailDependency, TimerListDependency, TimerHomeInteractorDependency {
+    
+    var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
 }
 
@@ -30,7 +33,7 @@ final class TimerHomeBuilder: Builder<TimerHomeDependency>, TimerHomeBuildable {
     func build(withListener listener: TimerHomeListener) -> TimerHomeRouting {
         let component = TimerHomeComponent(dependency: dependency)
         let viewController = TimerHomeViewController()
-        let interactor = TimerHomeInteractor(presenter: viewController)
+        let interactor = TimerHomeInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
 
         

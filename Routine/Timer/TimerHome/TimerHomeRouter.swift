@@ -60,7 +60,7 @@ final class TimerHomeRouter: ViewableRouter<TimerHomeInteractable, TimerHomeView
     
     func detachCreateTimer() {
         guard let router = createTimerRouting else { return }
-     
+        viewController.dismiss(completion: nil)
         detachChild(router)
         createTimerRouting = nil
     }

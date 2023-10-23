@@ -17,7 +17,12 @@ protocol TimerSectionEditTitlePresentable: Presentable {
 }
 
 protocol TimerSectionEditTitleListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func timerSectionEditTitleSetName(name: String)
+    func timerSectionEditTitleSetDescription(description: String)
+}
+
+protocol TimerSectionEditTitleInteractorDependency{
+    var sectionList: TimerSectionListViewModel{ get }
 }
 
 final class TimerSectionEditTitleInteractor: PresentableInteractor<TimerSectionEditTitlePresentable>, TimerSectionEditTitleInteractable, TimerSectionEditTitlePresentableListener {
@@ -25,9 +30,14 @@ final class TimerSectionEditTitleInteractor: PresentableInteractor<TimerSectionE
     weak var router: TimerSectionEditTitleRouting?
     weak var listener: TimerSectionEditTitleListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: TimerSectionEditTitleInteractorDependency
+    
     // in constructor.
-    override init(presenter: TimerSectionEditTitlePresentable) {
+    init(
+        presenter: TimerSectionEditTitlePresentable,
+        dependency: TimerSectionEditTitleInteractorDependency
+    ) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -35,11 +45,25 @@ final class TimerSectionEditTitleInteractor: PresentableInteractor<TimerSectionE
     override func didBecomeActive() {
         super.didBecomeActive()
         
-        presenter.setTitle(emoji: "🔥", name: "Ready", description: "Before start CountDown")
+        let sectionList = dependency.sectionList
+        
+        presenter.setTitle(
+            emoji: sectionList.emoji,
+            name: sectionList.name,
+            description: sectionList.description
+        )
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func sectionNameDidEndEditing(name: String) {
+        listener?.timerSectionEditTitleSetName(name: name)
+    }
+    
+    func sectionDescriptionDidEndEditing(description: String) {
+        listener?.timerSectionEditTitleSetDescription(description: description)
     }
 }

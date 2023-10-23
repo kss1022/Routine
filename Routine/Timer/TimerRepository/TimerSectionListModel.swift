@@ -10,20 +10,36 @@ import Foundation
 
 
 struct TimerSectionListModel{
-    let id: UUID
+    let timerId: UUID?
     let emoji: String
     let name: String
     let description: String
-    let value: TimerSectionValue
-    let color: String?
+    let sequence: Int
+    let type: TimerSectionTypeModel
+    let value: TimerSectionValueModel
+    let tint: String?
     
     
-    init(id: UUID, emoji: String, name: String, description: String, value: TimerSectionValue, color: String? = nil) {
-        self.id = id
+    init(_ dto: TimerSectionListDto){
+        self.timerId = dto.timerId
+        self.emoji = dto.emoji
+        self.name = dto.sectionName
+        self.sequence = dto.sequence
+        self.description = dto.sectionDescription
+        self.type = TimerSectionTypeModel(dto.timerSectionType)
+        self.value = TimerSectionValueModel(dto.timerSectionValue)
+        self.tint = dto.tint
+    }
+    
+    
+    init(id: UUID? = nil, emoji: String, name: String, description: String, sequence: Int,type: TimerSectionTypeModel, value: TimerSectionValueModel, color: String? = nil) {
+        self.timerId = id
         self.emoji = emoji
         self.name = name
+        self.sequence = sequence
         self.description = description
+        self.type = type
         self.value = value
-        self.color = color
+        self.tint = color
     }
 }

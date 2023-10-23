@@ -12,6 +12,10 @@ import Foundation
 protocol TimerRepository{
     var lists: ReadOnlyCurrentValuePublisher<[TimerListModel]>{ get }
     var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
+    
+    func baseSectionList(type: AddTimerType) -> [TimerSectionListModel]
+    func fetchLists() async throws
+    func fetchSectionLists(timerId: UUID) async throws
 }
 
 
@@ -23,53 +27,28 @@ final class TimerRepositoryImp: TimerRepository{
     var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionsSubject }
     var sectionsSubject = CurrentValuePublisher<[TimerSectionListModel]>([])
     
-    init() {
-        fetchLists()
-        setFetchSectionList()
-    }
+
     
-    private func fetchLists(){
-        let models = [
-            TimerListModel(
-                timerId: UUID(),
-                name: "Tabata",
-                description: "Tabata",
-                emoji: "🔥",
-                tint: "#CCFFCCFF",
-                status: .initialized
-            ),
-            
-            TimerListModel(
-                timerId: UUID(),
-                name: "Round",
-                description: "Roud",
-                emoji: "💣",
-                tint: "#FFE5CCFF",
-                status: .initialized
-            ),
-            
-            TimerListModel(
-                timerId: UUID(),
-                name: "chest exercises",
-                description: "You can do it",
-                emoji: "💪",
-                tint: "#FFFFCCFF",
-                status: .initialized
-            ),
-            
-            TimerListModel(
-                timerId: UUID(),
-                name: "Running",
-                description: "Running",
-                emoji: "🏃",
-                tint: "#FFCCFFFF",
-                status: .initialized
-            )
-        ]
+    
+    func fetchLists() async throws {
+        let models = try timerReadModel.timerLists()
+            .map(TimerListModel.init)
         listsSubject.send(models)
     }
     
-    private func setFetchSectionList(){
+    func fetchSectionLists(timerId: UUID) async throws {
+        let models = try timerReadModel.timerSectionLists(id: timerId).map {
+            TimerSectionListModel($0)
+        }
+        Log.e("\(models)")
+        sectionsSubject.send(models)
+    }
+    
+    
+    func baseSectionList(type: AddTimerType) -> [TimerSectionListModel] {
+        if type == .custom{
+            return []
+        }
         
         var models = [
             TimerSectionListModel(
@@ -77,56 +56,112 @@ final class TimerRepositoryImp: TimerRepository{
                 emoji: "🔥",
                 name: "Ready",
                 description: "Before start countdown",
-                value: .countdown(min: 0, sec: 10)
+                sequence: 0,
+                type: .ready,
+                value: .countdown(min: 0, sec: 5)
             ),TimerSectionListModel(
                 id: UUID(),
                 emoji: "🧘‍♂️",
                 name: "Take a rest",
                 description: "Take a rest",
-                value: .countdown(min: 0, sec: 10),
+                sequence: 1,
+                type: .rest,
+                value: .countdown(min: 1, sec: 10),
                 color: "#3BD2AEff"
             ),TimerSectionListModel(
                 id: UUID(),
                 emoji: "🏃",
                 name: "Excercise",
                 description: "You can do it!!!",
+                sequence: 2,
+                type: .exsercise,
                 value: .countdown(min: 0, sec: 5),
                 color: "#3BD2AEff"
-            ),
-            TimerSectionListModel(
-                id: UUID(),
-                emoji: "🔄",
-                name: "Round",
-                description: "Round is excersise and take a rest",
-                value: .count(count: 3)
-            ),
-            TimerSectionListModel(
-                id: UUID(),
-                emoji: "❄️",
-                name: "Cool Down",
-                description: "After excersice cool down",
-                value: .countdown(min: 0, sec: 30)
-            )
-            
-//            TimerSectionListModel(
-//                emoji: "🔄",
-//                name: "Cycle",
-//                description: "Cycle is \(3) round",
-//                value: .count(count: 3),
-//                color: "#6200EEFF"
-//            ),
-//            TimerSectionListModel(
-//                emoji: "🧘‍♀️",
-//                name: "Cycle Rest",
-//                description: "Take a rest",
-//                value: .countdown(min: 0, sec: 30),
-//                color: "#6200EEFF"
-//            ),
-        ]
+            )]
         
-
-        self.sectionsSubject.send(models)
-
+        if type == .round{
+            models.append(contentsOf: [
+                TimerSectionListModel(
+                    id: UUID(),
+                    emoji: "⛳️",
+                    name: "Round",
+                    description: "Round is excersise and take a rest",
+                    sequence: 3,
+                    type: .round,
+                    value: .count(count: 3)
+                ),
+                TimerSectionListModel(
+                    id: UUID(),
+                    emoji: "❄️",
+                    name: "Cool Down",
+                    description: "After excersice cool down",
+                    sequence: 4,
+                    type: .cooldown,
+                    value: .countdown(min: 0, sec: 30)
+                )
+            ])
+            
+            return models
+        }
+        
+        if type == .tabata{
+            models.append(contentsOf: [
+                TimerSectionListModel(
+                    id: UUID(),
+                    emoji: "⛳️",
+                    name: "Round",
+                    description: "Round is excersise + rest",
+                    sequence: 3,
+                    type: .round,
+                    value: .count(count: 3)
+                ),
+                TimerSectionListModel(
+                    id: UUID(),
+                    emoji: "🔄",
+                    name: "Cycle",
+                    description: "Cycle is \(3) round",
+                    sequence: 4,
+                    type: .cycle,
+                    value: .count(count: 3),
+                    color: "#6200EEFF"
+                ),
+                TimerSectionListModel(
+                    id: UUID(),
+                    emoji: "🧘‍♀️",
+                    name: "Cycle Rest",
+                    description: "Take a rest",
+                    sequence: 5,
+                    type: .cycleRest,
+                    value: .countdown(min: 0, sec: 30),
+                    color: "#6200EEFF"
+                ),
+                TimerSectionListModel(
+                    id: UUID(),
+                    emoji: "❄️",
+                    name: "Cool Down",                    
+                    description: "After excersice cool down",
+                    sequence: 6,
+                    type: .cooldown,
+                    value: .countdown(min: 0, sec: 30)
+                )
+            ])
+            
+            return models
+        }
+        
+        fatalError("Some types do not handle.")
     }
+    
+    private let timerReadModel: TimerReadModelFacade
+    
+    init(timerReadModel: TimerReadModelFacade) {
+        self.timerReadModel = timerReadModel
+        
+        Task{
+            try? await fetchLists()
+        }
+        
+    }
+    
 
 }

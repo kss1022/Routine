@@ -32,12 +32,12 @@ final class RoutineProjection{
         
         cancellables = .init()
         
-        registerReciver()
+        registerReceiver()
     }
     
     
     
-    func registerReciver(){
+    private func registerReceiver(){
         DomainEventPublihser.share
             .onReceive(RoutineCreated.self, action: when)
             .store(in: &cancellables)
@@ -56,7 +56,7 @@ final class RoutineProjection{
     }
     
     
-    func when(event: RoutineCreated){
+    private func when(event: RoutineCreated){
         do{
             let routineList = RoutineListDto(
                 routineId: event.routineId.id,
@@ -101,7 +101,7 @@ final class RoutineProjection{
         }
     }
     
-    func when(event: RoutineUpdated){
+    private func when(event: RoutineUpdated){
         do{
             let routineList = RoutineListDto(
                 routineId: event.routineId.id,
@@ -137,7 +137,7 @@ final class RoutineProjection{
     }
     
     
-    func when(event: RoutineNameChanged){
+    private func when(event: RoutineNameChanged){
         do{
             let routineId = event.routineId.id
             let changedName = event.routineName.name
@@ -149,7 +149,7 @@ final class RoutineProjection{
         }
     }
     
-    func when(event: RoutineDeleted){
+    private func when(event: RoutineDeleted){
         do{
             let routineId = event.routineId.id
             try routineListDao.delete(routineId)

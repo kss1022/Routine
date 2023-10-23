@@ -30,9 +30,8 @@ enum RepeatValue: ValueObject{
     }
     
     
-    init?(coder: NSCoder) {
-        //nothing to do
-        nil
+    init?(coder: NSCoder) {        
+        fatalError("You must use with RepeatType")
     }
     
     init?(coder: NSCoder, type: RepeatType) {

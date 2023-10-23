@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol TimerSectionEditTitleDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var sectionList: TimerSectionListViewModel{ get }
 }
 
-final class TimerSectionEditTitleComponent: Component<TimerSectionEditTitleDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class TimerSectionEditTitleComponent: Component<TimerSectionEditTitleDependency>, TimerSectionEditTitleInteractorDependency {
+    var sectionList: TimerSectionListViewModel{ dependency.sectionList}
 }
 
 // MARK: - Builder
@@ -32,7 +30,7 @@ final class TimerSectionEditTitleBuilder: Builder<TimerSectionEditTitleDependenc
     func build(withListener listener: TimerSectionEditTitleListener) -> TimerSectionEditTitleRouting {
         let component = TimerSectionEditTitleComponent(dependency: dependency)
         let viewController = TimerSectionEditTitleViewController()
-        let interactor = TimerSectionEditTitleInteractor(presenter: viewController)
+        let interactor = TimerSectionEditTitleInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return TimerSectionEditTitleRouter(interactor: interactor, viewController: viewController)
     }

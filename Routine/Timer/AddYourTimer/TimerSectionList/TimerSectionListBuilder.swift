@@ -8,11 +8,11 @@
 import ModernRIBs
 
 protocol TimerSectionListDependency: Dependency {
-    var timerType: AddTimerType{ get }
+    var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
 }
 
 final class TimerSectionListComponent: Component<TimerSectionListDependency>, TimerSectionListInternalDependency {
-    var timerType: AddTimerType{ dependency.timerType}
+    var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ dependency.sectionLists }
 }
 
 // MARK: - Builder

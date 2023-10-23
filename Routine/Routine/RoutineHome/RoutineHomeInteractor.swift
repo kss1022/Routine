@@ -139,7 +139,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
                 await MainActor.run { [weak self] in
                     guard let self = self else { return }
                     self.presentationType = .detail
-                    self.router?.attachRoutineDetail(routineId: routineId,recordDate: self.date)
+                    self.router?.attachRoutineDetail(routineId: routineId, recordDate: self.date)
                 }
             }catch{
                 Log.e("\(error)")

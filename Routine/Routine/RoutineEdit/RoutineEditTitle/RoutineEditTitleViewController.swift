@@ -58,7 +58,6 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         )
         
         textFeild.textAlignment = .center
-        textFeild.becomeFirstResponder()
         textFeild.delegate = self
         return textFeild
     }()
@@ -158,8 +157,6 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
             
             routineDescriptionTextView.heightAnchor.constraint(equalToConstant: 120.0)
         ])
-        
-        routineNameTextFeild.becomeFirstResponder()
     }
     
     func setTitle(emoji: String, routineName: String?, routineDescription: String?) {

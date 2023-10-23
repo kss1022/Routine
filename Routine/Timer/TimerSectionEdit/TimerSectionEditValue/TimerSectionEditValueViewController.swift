@@ -9,23 +9,22 @@ import ModernRIBs
 import UIKit
 
 protocol TimerSectionEditValuePresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func countdownPickerDidValueChange(min: Int , sec: Int)
+    func countPickerDidValueChange(count: Int)
 }
 
 final class TimerSectionEditValueViewController: UIViewController, TimerSectionEditValuePresentable, TimerSectionEditValueViewControllable {
 
     weak var listener: TimerSectionEditValuePresentableListener?
         
-    private lazy var countdownPickerView: UIControl = {
+    private lazy var countdownPickerView: CountdownPickerView = {
         var pickerView = CountdownPickerView()
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         pickerView.addTarget(self, action: #selector(countdownPickerViewValueChange(control:)), for: .valueChanged)
         return pickerView
     }()
     
-    private lazy var countPickerView: UIControl = {
+    private lazy var countPickerView: CountPickerView = {
         var pickerView = CountPickerView()
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         pickerView.addTarget(self, action: #selector(countPickerViewValueChange(control:)), for: .valueChanged)
@@ -41,7 +40,9 @@ final class TimerSectionEditValueViewController: UIViewController, TimerSectionE
         super.init(coder: coder)
     }
     
-    func showCountDownPicker() {
+    func showCountDownPicker(min: Int, sec: Int) {
+        countdownPickerView.setCountDown(min: min, sec: sec)
+        
         view.addSubview(countdownPickerView)
         
         NSLayoutConstraint.activate([
@@ -52,7 +53,9 @@ final class TimerSectionEditValueViewController: UIViewController, TimerSectionE
         ])
     }
     
-    func showCountPicker() {
+    func showCountPicker(count: Int) {
+        countPickerView.setCount(count: count)
+        
         view.addSubview(countPickerView)
         
         NSLayoutConstraint.activate([
@@ -67,14 +70,12 @@ final class TimerSectionEditValueViewController: UIViewController, TimerSectionE
     
     @objc
     private func countdownPickerViewValueChange(control: CountdownPickerView){
-        Log.v("\(control.min) min \(control.min) sec")
-        
+        listener?.countdownPickerDidValueChange(min: control.min, sec: control.sec)
     }
     
     @objc
     private func countPickerViewValueChange(control: CountPickerView){
-        Log.v("\(control.value)")
-        
+        listener?.countPickerDidValueChange(count: control.count)
     }
     
 }

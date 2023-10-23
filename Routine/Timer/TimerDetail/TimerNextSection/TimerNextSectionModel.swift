@@ -13,11 +13,11 @@ struct TimerNextSectionModel{
     let emoji: String
     let name: String
     let description: String
-    let value: TimerSectionValue
+    let value: TimerSectionValueModel
     let color: String?
     
     
-    init(emoji: String, name: String, description: String, value: TimerSectionValue, color: String? = nil) {
+    init(emoji: String, name: String, description: String, value: TimerSectionValueModel, color: String? = nil) {
         self.emoji = emoji
         self.name = name
         self.description = description

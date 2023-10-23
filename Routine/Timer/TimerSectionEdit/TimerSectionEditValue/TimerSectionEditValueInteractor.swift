@@ -14,12 +14,17 @@ protocol TimerSectionEditValueRouting: ViewableRouting {
 protocol TimerSectionEditValuePresentable: Presentable {
     var listener: TimerSectionEditValuePresentableListener? { get set }
     
-    func showCountDownPicker()
-    func showCountPicker()
+    func showCountDownPicker(min: Int, sec: Int)
+    func showCountPicker(count: Int)
 }
 
 protocol TimerSectionEditValueListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func timerSectionEditValueSetCountdown(min: Int, sec: Int)
+    func timerSectionEditValueSetCount(count: Int)    
+}
+
+protocol TimerSectionEditValueInteractorDependency{
+    var sectionList: TimerSectionListViewModel{ get }
 }
 
 final class TimerSectionEditValueInteractor: PresentableInteractor<TimerSectionEditValuePresentable>, TimerSectionEditValueInteractable, TimerSectionEditValuePresentableListener {
@@ -27,9 +32,14 @@ final class TimerSectionEditValueInteractor: PresentableInteractor<TimerSectionE
     weak var router: TimerSectionEditValueRouting?
     weak var listener: TimerSectionEditValueListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: TimerSectionEditValueInteractorDependency
+    
     // in constructor.
-    override init(presenter: TimerSectionEditValuePresentable) {
+    init(
+        presenter: TimerSectionEditValuePresentable,
+        dependency: TimerSectionEditValueInteractorDependency
+    ) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -38,12 +48,26 @@ final class TimerSectionEditValueInteractor: PresentableInteractor<TimerSectionE
         super.didBecomeActive()
         // TODO: Implement business logic here.
         
-        //presenter.showCountPicker()
-        presenter.showCountDownPicker()
+        switch dependency.sectionList.type {
+        case .ready, .rest, .exsercise, .cycleRest, .cooldown:
+            guard case .countdown(let min,let sec) = dependency.sectionList.value else { return }
+            presenter.showCountDownPicker(min: min, sec: sec)
+        case .round, .cycle:
+            guard case .count(let count) = dependency.sectionList.value else { return }
+            presenter.showCountPicker(count: count)
+        }
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func countPickerDidValueChange(count: Int) {
+        listener?.timerSectionEditValueSetCount(count: count)
+    }
+    
+    func countdownPickerDidValueChange(min: Int, sec: Int) {
+        listener?.timerSectionEditValueSetCountdown(min: min, sec: sec)
     }
 }

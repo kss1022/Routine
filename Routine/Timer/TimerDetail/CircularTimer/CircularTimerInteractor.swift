@@ -99,12 +99,16 @@ final class CircularTimerInteractor: PresentableInteractor<CircularTimerPresenta
             }catch{
                 Log.e("\(error)")
             }
+            
+            presenter.showPauseButton()
             presenter.startProgress(totalDuration: totalDuration)
         case .resumed:
             timer.suspend()
+            presenter.showResumeButton()
             presenter.suspendProgress()
         case .suspended:
             timer.resume()
+            presenter.showPauseButton()
             presenter.resumeProgress()
         default: break //cancel
         }
@@ -126,7 +130,10 @@ final class CircularTimerInteractor: PresentableInteractor<CircularTimerPresenta
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 let remainTime = self.timer.remainDuration.value
-                self.presenter.updateRemainTime(time: remainTime.time)
+                
+                if remainTime != 0{
+                    self.presenter.updateRemainTime(time: remainTime.time)
+                }                
             }
             .store(in: &cancellables)
         
@@ -143,11 +150,13 @@ final class CircularTimerInteractor: PresentableInteractor<CircularTimerPresenta
         switch timer.state {
         case .resumed:
             updateProgress()
+            presenter.showPauseButton()
             presenter.resumeProgress()
         case .suspended:
             updateProgress()
+            presenter.showResumeButton()
             presenter.suspendProgress()
-        default: break //initialize cancel
+        default: presenter.showStartButton()
         }
     }
         

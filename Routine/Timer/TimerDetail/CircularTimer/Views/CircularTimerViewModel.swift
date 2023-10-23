@@ -21,7 +21,7 @@ struct CircularTimerViewModel{
             return nil
         }
         
-        self.id = model.id
+        self.id = model.timerId!
         self.emoji = model.emoji
         self.name = model.name
         self.description = model.description

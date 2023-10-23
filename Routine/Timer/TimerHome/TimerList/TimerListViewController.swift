@@ -9,7 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol TimerListPresentableListener: AnyObject {
-    func collectionViewDidSelectItemAt()
+    func collectionViewDidSelectItemAt(timerId: UUID)
 }
 
 final class TimerListViewController: UIViewController, TimerListPresentable, TimerListViewControllable {
@@ -138,7 +138,7 @@ fileprivate final class TimerListDiffableDataSource: UICollectionViewDiffableDat
 extension TimerListViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let viewModel =  dataSource.itemIdentifier(for: indexPath){
-            listener?.collectionViewDidSelectItemAt()
+            listener?.collectionViewDidSelectItemAt(timerId: viewModel.timerId)
         }
     }
     

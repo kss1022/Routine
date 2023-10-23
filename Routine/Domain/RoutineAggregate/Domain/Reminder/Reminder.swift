@@ -116,13 +116,13 @@ struct Reminder: ValueObject{
         
         //Set(weekly.compactMap { $0 as? Int })
     
-        if let weekDays = coder.decodeSet(forKey: CodingKeys.weekDays.rawValue)?.compactMap({ $0 as? Int}){
+        if let weekDays = coder.decodeSet(forKey: CodingKeys.weekDays.rawValue){
             self.weekDays = Set(weekDays)
         }else{
             self.weekDays = nil
         }
         
-        if let monthDays = coder.decodeSet(forKey: CodingKeys.monthDays.rawValue)?.compactMap({ $0 as? Int}){
+        if let monthDays = coder.decodeSet(forKey: CodingKeys.monthDays.rawValue){
             self.monthDays = Set(monthDays)
         }else{
             self.monthDays = nil

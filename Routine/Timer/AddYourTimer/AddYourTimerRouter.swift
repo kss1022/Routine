@@ -7,17 +7,21 @@
 
 import ModernRIBs
 
-protocol AddYourTimerInteractable: Interactable, TimerSectionEditListener, TimerSectionListListener {
+protocol AddYourTimerInteractable: Interactable, TimerSectionEditListener, TimerEditTitleListener, TimerSectionListListener {
     var router: AddYourTimerRouting? { get set }
     var listener: AddYourTimerListener? { get set }
 }
 
 protocol AddYourTimerViewControllable: ViewControllable {
-    func addEditSection(_ view: ViewControllable)
+    func addEditTitle(_ view: ViewControllable)
+    func addSectionLists(_ view: ViewControllable)
 }
 
 final class AddYourTimerRouter: ViewableRouter<AddYourTimerInteractable, AddYourTimerViewControllable>, AddYourTimerRouting {
 
+    private let timerEditTitleBuildable: TimerEditTitleBuildable
+    private var timerEditTitleRouting: TimerEditTitleRouting?
+    
     private let timerSectionListBuildable: TimerSectionListBuildable
     private var timerSectionListRouting: TimerSectionListRouting?
     
@@ -27,22 +31,25 @@ final class AddYourTimerRouter: ViewableRouter<AddYourTimerInteractable, AddYour
     init(
         interactor: AddYourTimerInteractable,
         viewController: AddYourTimerViewControllable,
-        timerSectionEditBuildable: TimerSectionEditBuildable,
-        timerSectionListBuildable: TimerSectionListBuildable
+        timerEditTitleBuildable: TimerEditTitleBuildable,
+        timerSectionListBuildable: TimerSectionListBuildable,
+        timerSectionEditBuildable: TimerSectionEditBuildable
     ) {
+        self.timerEditTitleBuildable = timerEditTitleBuildable
+        self.timerSectionListBuildable = timerSectionListBuildable
         self.timerSectionEditBuildable = timerSectionEditBuildable
-        self.timerSectionListBuildable = timerSectionListBuildable        
+                
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
     
     
-    func attachTimerSectionEdit() {
+    func attachTimerSectionEdit(sectionList: TimerSectionListViewModel) {
         if timerSectionEditRouting != nil{
             return
         }
         
-        let router = timerSectionEditBuildable.build(withListener: interactor)
+        let router = timerSectionEditBuildable.build(withListener: interactor, sectionList: sectionList)
         viewController.pushViewController(router.viewControllable, animated: true)
         
         timerSectionEditRouting = router
@@ -56,13 +63,26 @@ final class AddYourTimerRouter: ViewableRouter<AddYourTimerInteractable, AddYour
         timerSectionEditRouting = nil
     }
     
+    func attachTimerEditTitle() {
+        if timerEditTitleRouting != nil{
+            return
+        }
+        
+        
+        let router = timerEditTitleBuildable.build(withListener: interactor)
+        viewController.addEditTitle(router.viewControllable)
+        
+        timerEditTitleRouting = router
+        attachChild(router)
+    }
+    
     func attachTimerSectionListection() {
         if timerSectionListRouting != nil{
             return
         }
         
         let router = timerSectionListBuildable.build(withListener: interactor)
-        viewController.addEditSection(router.viewControllable)
+        viewController.addSectionLists(router.viewControllable)
         
         timerSectionListRouting = router
         attachChild(router)

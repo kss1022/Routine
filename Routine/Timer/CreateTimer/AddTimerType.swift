@@ -9,8 +9,24 @@ import Foundation
 
 
 
-enum AddTimerType{
+enum AddTimerType: String{
     case tabata
     case round
     case custom
+    
+    var name: String{
+        switch self {
+        case .tabata: return "Tabata"
+        case .round: return "Round"
+        case .custom: return "Timer"
+        }
+    }
+    
+    var title: String{
+        switch self {
+        case .tabata: return "Tabata"
+        case .round: return "Round"
+        case .custom: return "Add Your Timer"
+        }
+    }
 }

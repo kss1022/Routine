@@ -5,8 +5,9 @@
 //  Created by 한현규 on 10/17/23.
 //
 
-import ModernRIBs
 import Foundation
+import ModernRIBs
+import Combine
 
 protocol TimerSectionListRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -18,12 +19,12 @@ protocol TimerSectionListPresentable: Presentable {
 
 }
 
-protocol TimerSectionListListener: AnyObject {
-    func timeSectionListDidSelectRowAt(viewModel: TimerSectionListViewModel)
+protocol TimerSectionListListener: AnyObject {    
+    func timeSectionListDidSelectRowAt(sectionList: TimerSectionListViewModel)
 }
 
 protocol TimerSectionListInternalDependency{
-    var timerType: AddTimerType{ get }
+    var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
 }
 
 final class TimerSectionListInteractor: PresentableInteractor<TimerSectionListPresentable>, TimerSectionListInteractable, TimerSectionListPresentableListener {
@@ -33,6 +34,7 @@ final class TimerSectionListInteractor: PresentableInteractor<TimerSectionListPr
 
     
     private let dependency: TimerSectionListInternalDependency
+    private var cancellables: Set<AnyCancellable>
     
     // in constructor.
     init(
@@ -40,6 +42,7 @@ final class TimerSectionListInteractor: PresentableInteractor<TimerSectionListPr
         dependency: TimerSectionListInternalDependency
     ) {
         self.dependency = dependency
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -48,108 +51,24 @@ final class TimerSectionListInteractor: PresentableInteractor<TimerSectionListPr
         super.didBecomeActive()
         
         
-        var models = listModels()
-                                
-        
-        presenter.setSections(models.map(TimerSectionListViewModel.init))
+        dependency.sectionLists.receive(on: DispatchQueue.main)
+            .sink { lists in
+                self.presenter.setSections(lists.map(TimerSectionListViewModel.init))
+            }
+            .store(in: &cancellables)
+
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
     }
     
     //MARK: Listener
-    func tableViewDidSelectRowAt(viewModel: TimerSectionListViewModel) {
-        listener?.timeSectionListDidSelectRowAt(viewModel: viewModel)
+    func tableViewDidSelectRowAt(sectionList: TimerSectionListViewModel) {
+        listener?.timeSectionListDidSelectRowAt(sectionList: sectionList)
     }
-    
-    private func listModels() -> [TimerSectionListModel]{
-        if dependency.timerType == .custom{
-            return []
-        }
-        
-        var models = [
-            TimerSectionListModel(
-                id: UUID(),
-                emoji: "🔥",
-                name: "Ready",
-                description: "Before start countdown",
-                value: .countdown(min: 0, sec: 5)
-            ),TimerSectionListModel(
-                id: UUID(),
-                emoji: "🧘‍♂️",
-                name: "Take a rest",
-                description: "Take a rest",
-                value: .countdown(min: 1, sec: 10),
-                color: "#3BD2AEff"
-            ),TimerSectionListModel(
-                id: UUID(),
-                emoji: "🏃",
-                name: "Excercise",
-                description: "You can do it!!!",
-                value: .countdown(min: 0, sec: 5),
-                color: "#3BD2AEff"
-            )]
-        
-        if dependency.timerType == .round{
-            models.append(contentsOf: [
-                TimerSectionListModel(
-                    id: UUID(),
-                    emoji: "⛳️",
-                    name: "Round",
-                    description: "Round is excersise and take a rest",
-                    value: .count(count: 3)
-                ),
-                TimerSectionListModel(
-                    id: UUID(),
-                    emoji: "❄️",
-                    name: "Cool Down",
-                    description: "After excersice cool down",
-                    value: .countdown(min: 0, sec: 30)
-                )
-            ])
-            
-            return models
-        }
-        
-        if dependency.timerType == .tabata{
-            models.append(contentsOf: [
-                TimerSectionListModel(
-                    id: UUID(),
-                    emoji: "⛳️",
-                    name: "Round",
-                    description: "Round is excersise + rest",
-                    value: .count(count: 3)
-                ),
-                TimerSectionListModel(
-                    id: UUID(),
-                    emoji: "🔄",
-                    name: "Cycle",
-                    description: "Cycle is \(3) round",
-                    value: .count(count: 3),
-                    color: "#6200EEFF"
-                ),
-                TimerSectionListModel(
-                    id: UUID(),
-                    emoji: "🧘‍♀️",
-                    name: "Cycle Rest",
-                    description: "Take a rest",
-                    value: .countdown(min: 0, sec: 30),
-                    color: "#6200EEFF"
-                ),
-                TimerSectionListModel(
-                    id: UUID(),
-                    emoji: "❄️",
-                    name: "Cool Down",
-                    description: "After excersice cool down",
-                    value: .countdown(min: 0, sec: 30)
-                )
-            ])
-            
-            return models
-        }
-        
-        fatalError("Some types do not handle.")
-    }
+
 }

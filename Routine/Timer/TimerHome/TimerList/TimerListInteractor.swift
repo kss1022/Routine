@@ -20,7 +20,7 @@ protocol TimerListPresentable: Presentable {
 }
 
 protocol TimerListListener: AnyObject {
-    func timerListDidSelectAt()
+    func timerListDidSelectAt(timerId: UUID)
 }
 
 protocol TimerListInteractorDependency{
@@ -66,7 +66,7 @@ final class TimerListInteractor: PresentableInteractor<TimerListPresentable>, Ti
         cancellables.removeAll()
     }
     
-    func collectionViewDidSelectItemAt() {
-        listener?.timerListDidSelectAt()
+    func collectionViewDidSelectItemAt(timerId: UUID) {
+        listener?.timerListDidSelectAt(timerId: timerId)
     }
 }

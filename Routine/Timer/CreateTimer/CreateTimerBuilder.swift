@@ -8,13 +8,13 @@
 import ModernRIBs
 
 protocol CreateTimerDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var timerApplicationService: TimerApplicationService{ get }
+    var timerRepository: TimerRepository{ get }
 }
 
 final class CreateTimerComponent: Component<CreateTimerDependency>, AddYourTimerDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var timerRepository: TimerRepository{ dependency.timerRepository }
+    var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
 }
 
 // MARK: - Builder

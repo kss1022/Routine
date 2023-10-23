@@ -131,7 +131,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         }
     }
     
-    func deleteButtonDidTap() {
+    func deleteBarButtonDidTap() {
         let deleteRoutine = DeleteRoutine(routineId: dependency.routineId)
         
         Task{

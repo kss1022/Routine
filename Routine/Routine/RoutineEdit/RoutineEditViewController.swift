@@ -11,7 +11,7 @@ import Combine
 
 protocol RoutineEditPresentableListener: AnyObject {
     func doneButtonDidTap()
-    func deleteButtonDidTap()
+    func deleteBarButtonDidTap()
 }
 
 final class RoutineEditViewController: UIViewController, RoutineEditPresentable, RoutineEditViewControllable {
@@ -193,7 +193,7 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
     @objc
     private func deleteButtonTap(){
         view.endEditing(true)
-        self.listener?.deleteButtonDidTap()
+        self.listener?.deleteBarButtonDidTap()
     }
 
 }

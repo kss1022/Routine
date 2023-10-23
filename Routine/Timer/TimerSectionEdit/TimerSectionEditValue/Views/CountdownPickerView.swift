@@ -56,6 +56,11 @@ final class CountdownPickerView: UIControl{
         ])
     }
     
+    func setCountDown(min: Int, sec: Int){
+        countdownPickerView.selectRow(min, inComponent: 0, animated: false)
+        countdownPickerView.selectRow(sec, inComponent: 1, animated: false)
+    }
+    
 }
 
 
@@ -85,9 +90,11 @@ extension CountdownPickerView: UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component{
         case 0:
-            Log.v("SelectedHour \(row)")
+            self.min = countDownNumberArray[row]
+            sendActions(for: .valueChanged)
         case 1:
-            Log.v("SelectedHour \(row)")
+            self.sec = countDownNumberArray[row]
+            sendActions(for: .valueChanged)
         default:
             fatalError("Invalid Component: \(component)")
         }

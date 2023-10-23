@@ -60,6 +60,8 @@ final class RoutineApplicationService : ApplicationService{
     
     func when(_ command: UpdateRoutine) async throws{
         do{
+            Log.v("When (\(UpdateRoutine.self)):  \(command)")
+            
             let routineName = try RoutineName(command.name)
             let routineDescription = try RoutineDescription(description: command.description)
             let `repeat` = try Repeat(repeatType: command.repeatType, data: command.repeatValue)
@@ -104,6 +106,8 @@ final class RoutineApplicationService : ApplicationService{
     
     func when(_ command: DeleteRoutine) async throws{
         do{
+            Log.v("When (\(DeleteRoutine.self)):  \(command)")
+            
             try update(id: command.routineId) {  (routine: Routine) in
                 routine.deleteRoutine()
             }

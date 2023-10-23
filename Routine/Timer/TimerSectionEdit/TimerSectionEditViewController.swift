@@ -51,8 +51,7 @@ final class TimerSectionEditViewController: UIViewController, TimerSectionEditPr
     
     
     private func setLayout(){
-        title = "Rest"
-        
+        title = "Edit Section"        
         view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)

@@ -5,6 +5,7 @@
 //  Created by 한현규 on 10/17/23.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol TimerSectionEditRouting: ViewableRouting {
@@ -14,21 +15,39 @@ protocol TimerSectionEditRouting: ViewableRouting {
 
 protocol TimerSectionEditPresentable: Presentable {
     var listener: TimerSectionEditPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol TimerSectionEditListener: AnyObject {
     func timerSectionEditDidMoved()
 }
 
+protocol TimerSectionEditInteractorDependency{
+    var sectionList: TimerSectionListViewModel{ get }
+    var sectionListsSubject: CurrentValuePublisher<[TimerSectionListModel]>{ get }
+}
+
 final class TimerSectionEditInteractor: PresentableInteractor<TimerSectionEditPresentable>, TimerSectionEditInteractable, TimerSectionEditPresentableListener {
+    
 
     weak var router: TimerSectionEditRouting?
     weak var listener: TimerSectionEditListener?
+    
+    private let dependency: TimerSectionEditInteractorDependency
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private var name: String
+    private var description: String
+    private var value: TimerSectionValueModel
+    
+    
     // in constructor.
-    override init(presenter: TimerSectionEditPresentable) {
+    init(
+        presenter: TimerSectionEditPresentable,
+        dependency: TimerSectionEditInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.name = dependency.sectionList.name
+        self.description = dependency.sectionList.description
+        self.value = dependency.sectionList.value
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -50,10 +69,43 @@ final class TimerSectionEditInteractor: PresentableInteractor<TimerSectionEditPr
     }
     
     
-    // MARK: TimerEditCountdown
-    func timerEditCountdownValueChange() {
-        
+    // MARK: TimerSectionEditTitle
+    func timerSectionEditTitleSetName(name: String) {
+        self.name = name
+        updateList()
     }
     
+    func timerSectionEditTitleSetDescription(description: String) {
+        self.description = description
+        updateList()
+    }
+    
+    // MARK: TimerSectionEditValue
+    func timerSectionEditValueSetCount(count: Int) {
+        self.value = .count(count: count)
+        updateList()
+    }
+    
+    func timerSectionEditValueSetCountdown(min: Int, sec: Int) {
+        self.value = .countdown(min: min, sec: sec)
+        updateList()
+    }
+        
+    func updateList(){
+        var lists = dependency.sectionListsSubject.value
+        var before = dependency.sectionList
+        
+        let newModel = TimerSectionListModel(
+            emoji: before.emoji,
+            name: self.name,
+            description: self.description, 
+            sequence: before.sequence,
+            type: before.type,
+            value: self.value
+        )
+        
+        lists[before.sequence] = newModel
+        dependency.sectionListsSubject.send(lists)        
+    }
 
 }

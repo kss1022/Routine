@@ -19,7 +19,7 @@ protocol CreateTimerPresentable: Presentable {
 }
 
 protocol CreateTimerListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func createTimerDismiss()
 }
 
 final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>, CreateTimerInteractable, CreateTimerPresentableListener, AdaptivePresentationControllerDelegate {
@@ -85,5 +85,10 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
     //MARK: AddYourTimer
     func presentationControllerDidDismiss() {
         router?.detachAddYourTimer()
+    }
+    
+    func addYourTimeDoneButtonDidTap() {
+        router?.detachAddYourTimer()
+        listener?.createTimerDismiss()
     }
 }
