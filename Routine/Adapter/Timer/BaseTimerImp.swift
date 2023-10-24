@@ -1,5 +1,5 @@
 //
-//  AppBackgroundTimer.swift
+//  BaseTimer.swift
 //  Routine
 //
 //  Created by 한현규 on 10/18/23.
@@ -15,48 +15,59 @@ import Foundation
  *
  */
 
+protocol BaseTimer{
+    var timerState: AppTimerState{ get }
+    var totalTime: TimeInterval{ get }
+    var remainTime: ReadOnlyCurrentValuePublisher<TimeInterval>{ get }
+    var completeEvent: ReadOnlyCurrentValuePublisher<Void>{ get }
+    
+    func start()
+    func resume()
+    func suspend()
+    func cancel()
+    func complete()
+}
 
-final class AppBackgroundTimer: AppTimer {
-    
-    var remainDuration: ReadOnlyCurrentValuePublisher<TimeInterval>{ remainDurationSubject }
-    private let remainDurationSubject = CurrentValuePublisher<TimeInterval>(0)
-    
-    
-    var complete: ReadOnlyPassthroughPublisher<Void>{ completeSubject }
-    private let completeSubject = PassthroughPublisher<Void>()
 
-
+class BaseTimerImp: BaseTimer{
     
-    private var timerLock = NSLock()
-    private var interval: Int = 100 //milliseconds
-    private var eventHandler: (() -> Void)?
-    private var completion: (() -> Void)?
+    public var totalTime: TimeInterval
+    public var remainTime: ReadOnlyCurrentValuePublisher<TimeInterval>{ remainTimeSubject }
+    private let remainTimeSubject = CurrentValuePublisher<TimeInterval>(-1.0)
     
-
-    //Current State
-    private(set) var state = TimerState.initialized
-    private var totalDuration: TimeInterval?
-    //private(set) var remainDuration: TimeInterval?
-    var progress: CGFloat?{
-        guard let totalDuration = totalDuration else { return nil}
-            
-        return remainDuration.value / totalDuration
-    }
+    public var completeEvent: ReadOnlyCurrentValuePublisher<Void>{ completeEventSubject }
+    private let completeEventSubject = CurrentValuePublisher<Void>(())
+    
+    
     
     private var timer: DispatchSourceTimer?
+    public var timerState = AppTimerState.initialized
+    
+    private var timerLock = NSLock()
+    private let interval: Int = 10 //milliseconds
+    private lazy var minusTime: Double = Double(interval) / 1000
+    
+    init(time: Double){
+        self.totalTime = time
+        self.remainTimeSubject.send(time)
+    }
     
     deinit {
         removeTimer()
     }
     
     
-    func start(durationSeconds: Double) throws {
-        guard case .initialized = state else {
-            throw InvalidCastException("Could not start timer. (check state or recreate timer): \(state.rawValue)")
+    func reset(time: Double){
+        self.totalTime = time
+        self.remainTimeSubject.send(time)
+    }
+    
+    
+    func start()  {
+        if timerState != .initialized && timerState != .canceled{
+            Log.e("Could not start timer. (check state or recreate timer): \(timerState.rawValue)")
+            return
         }
-        
-        self.totalDuration = durationSeconds
-        self.remainDurationSubject.send(durationSeconds)
         
         timer = newTimer()
         timer!.setEventHandler(handler: { [weak self] in
@@ -64,16 +75,15 @@ final class AppBackgroundTimer: AppTimer {
             self.updateTime()
         })
         
-                
+        
         activate()
     }
-
-    
+        
     
     private func activate() {
         timerLock.lock()
         timer!.activate()
-        state = .resumed
+        timerState = .resumed
         timerLock.unlock()
         Log.v("App timer: active")
     }
@@ -85,14 +95,14 @@ final class AppBackgroundTimer: AppTimer {
         }
         
         timerLock.lock()
-        if state == .resumed {
+        if timerState == .resumed {
             Log.e("App timer resume fail: state is already resume")
             timerLock.unlock()
             return
         }
         
         timer.resume()
-        state = .resumed
+        timerState = .resumed
         
         timerLock.unlock()
         Log.v("App timer: resume")
@@ -105,14 +115,14 @@ final class AppBackgroundTimer: AppTimer {
         }
         
         timerLock.lock()
-        if state == .suspended {
+        if timerState == .suspended {
             timerLock.unlock()
-            Log.e("App timer resume fail: state is already suspend")
+            Log.e("App timer suspend fail: state is already suspend")
             return
         }
         
         timer.suspend()
-        state = .suspended
+        timerState = .suspended
         
         timerLock.unlock()
         Log.v("App timer: suspend")
@@ -126,13 +136,13 @@ final class AppBackgroundTimer: AppTimer {
         
         timerLock.lock()
         
-        if state == .canceled {
+        if timerState == .canceled {
             timerLock.unlock()
-            Log.e("App timer resume fail: state is already canceled")
+            Log.e("App timer cancel fail: state is already canceled")
             return
         }
         
-        if state == .suspended{
+        if timerState == .suspended{
             timerLock.unlock()
             resume()
             cancel()
@@ -140,11 +150,16 @@ final class AppBackgroundTimer: AppTimer {
         }
         
         timer.cancel()
-        state = .canceled
+        timerState = .canceled
         
         timerLock.unlock()
         Log.v("App timer: cancle")
     }
+    
+    func complete(){
+        completeEventSubject.send(Void())
+    }
+    
     
     private func newTimer() -> DispatchSourceTimer{
         let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.init(label: "kr.routine.timer"))
@@ -154,25 +169,30 @@ final class AppBackgroundTimer: AppTimer {
     }
     
     
-    private func updateTime(){        
-        if remainDuration.value > 0{
-            remainDurationSubject.send(remainDuration.value - 0.1)
+    func updateTime(){
+        if remainTime.value > 0{
+            //Log.v("Update!!! \(remainTime.value)")
+            remainTimeSubject.send(remainTime.value - minusTime)
         }else{
             Log.v("App timer: finish")
             cancel()
-            completion?()
+            complete()
         }
     }
-
+    
     
     private func removeTimer(){
-        eventHandler = nil
-        completion = nil
-        
         timer?.setEventHandler(handler: nil)
-        cancel()
+        
+        if timerState != .canceled{
+            cancel()
+        }
+        
         timer = nil
-        Log.v("App timer: RemoveTimer")
+        Log.v("App timer: Remove Timer")
     }
+    
+    
+    
     
 }

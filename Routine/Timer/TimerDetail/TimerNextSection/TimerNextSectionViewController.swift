@@ -50,11 +50,15 @@ final class TimerNextSectionViewController: UIViewController, TimerNextSectionPr
         ])
     }
     
-    func setNextSection(_ viewModel: TimerSectionListViewModel) {
+    func setNextSection(_ viewModel: TimerNextSectionViewModel) {
+        self.stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
         let sectionView = TimerNextSectionView(viewModel)
-        stackView.addArrangedSubview(sectionView)
+        self.stackView.addArrangedSubview(sectionView)
     }
     
-    
-    
+    func removeNextSection() {
+        self.stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+    }
+            
 }

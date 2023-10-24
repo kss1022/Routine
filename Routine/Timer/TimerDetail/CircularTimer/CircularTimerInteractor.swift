@@ -32,12 +32,13 @@ protocol CircularTimerPresentable: Presentable {
 
 protocol CircularTimerListener: AnyObject {
     func circularTimerDidTapCancle()
-    func circularTimerDidFinish()
+    func circularTimerDidFinish()    
 }
 
 protocol CircularTimerInteractorDependency{
-    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
-    var sectionIndex: ReadOnlyCurrentValuePublisher<Int>{ get }
+    var timer: AppTimer{ get }
+    var model: BaseTimerModel{ get }
+    var detail: TimerDetailModel{ get }
 }
 
 final class CircularTimerInteractor: PresentableInteractor<CircularTimerPresentable>, CircularTimerInteractable, CircularTimerPresentableListener {
@@ -48,9 +49,9 @@ final class CircularTimerInteractor: PresentableInteractor<CircularTimerPresenta
     private let dependency : CircularTimerInteractorDependency
     private var cancellables: Set<AnyCancellable>
 
-    private var timer: AppTimer!
-    private var totalDuration: TimeInterval!
-    
+    private let timer: AppTimer
+    private let model: BaseTimerModel
+    private let detail: TimerDetailModel
     
     // in constructor.
     init(
@@ -58,50 +59,70 @@ final class CircularTimerInteractor: PresentableInteractor<CircularTimerPresenta
         dependency: CircularTimerInteractorDependency
     ) {
         self.dependency = dependency
-        self.cancellables = .init()
+        self.cancellables = .init()        
+        self.timer = dependency.timer
+        self.model = dependency.model
+        self.detail = dependency.detail
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        
-        Publishers.CombineLatest(dependency.sections,dependency.sectionIndex)
-            .receive(on: DispatchQueue.main)
-            .sink { (lists, index) in
-                if let viewModel = lists[safe: index].flatMap(CircularTimerViewModel.init){
-                    self.presenter.setTimer(viewModel)
-                    self.timer = AppTimerManager.share.timer(id: viewModel.id.uuidString)
-                    self.totalDuration = viewModel.duration
-                    
-                    self.registerHandler()
-                    self.checkExistTimer()
-                }
 
+        
+        self.setTimer(section: timer.sectionState.value)                
+        self.checkExistTimer()
+        
+        self.timer.remainTime
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                let remainTime = self.timer.remainTime.value
+                
+                if remainTime != -1{
+                    self.presenter.updateRemainTime(time: remainTime.time)
+                }
             }
             .store(in: &cancellables)
+        
+        self.timer.completeEvent
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.removeTimer()
+                self.listener?.circularTimerDidFinish()
+            }
+            .store(in: &cancellables)
+        
+        self.timer.sectionState
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { section in
+                self.setTimer(section: section)
+                self.presenter.startProgress(totalDuration: self.timer.totalTime)
+            }
+            .store(in: &cancellables)
+        
     }
 
     override func willResignActive() {
         super.willResignActive()
+        
+        if timer.timerState == .initialized{
+            removeTimer()
+        }
+        
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
-        //timer.registerHandler(eventHandler: nil, completion: nil)
     }
     
 
     
     func activeButtonDidTap() {
-        switch timer.state {
-        case .initialized:
-            do{
-                try timer.start(durationSeconds: totalDuration)
-            }catch{
-                Log.e("\(error)")
-            }
-            
+        switch timer.timerState {
+        case .initialized:            
+            timer.start()
             presenter.showPauseButton()
-            presenter.startProgress(totalDuration: totalDuration)
+            presenter.startProgress(totalDuration: timer.totalTime)
         case .resumed:
             timer.suspend()
             presenter.showResumeButton()
@@ -115,7 +136,7 @@ final class CircularTimerInteractor: PresentableInteractor<CircularTimerPresenta
     }
     
     func cancelButtonDidTap() {
-        if timer.state != .initialized{
+        if timer.timerState != .initialized{
             timer.cancel()
             presenter.suspendProgress()
         }
@@ -125,29 +146,12 @@ final class CircularTimerInteractor: PresentableInteractor<CircularTimerPresenta
     }
     
     
-    private func registerHandler(){
-        self.timer.remainDuration
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                let remainTime = self.timer.remainDuration.value
-                
-                if remainTime != 0{
-                    self.presenter.updateRemainTime(time: remainTime.time)
-                }                
-            }
-            .store(in: &cancellables)
-        
-        self.timer.complete
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                self.listener?.circularTimerDidFinish()
-            }
-            .store(in: &cancellables)
-    }
     
     
     private func checkExistTimer(){
-        switch timer.state {
+        switch timer.timerState {
+        case .initialized:
+            presenter.showStartButton()
         case .resumed:
             updateProgress()
             presenter.showPauseButton()
@@ -156,18 +160,40 @@ final class CircularTimerInteractor: PresentableInteractor<CircularTimerPresenta
             updateProgress()
             presenter.showResumeButton()
             presenter.suspendProgress()
-        default: presenter.showStartButton()
+        case .canceled:
+            //TODO: Show Cancel State
+            presenter.showStartButton()
         }
     }
+    
+    
+    
+    
+    private func setTimer(section: AppTimerSectionState){
+        let viewModel : CircularTimerViewModel
+        switch section {
+        case .ready: viewModel = CircularTimerViewModel(self.model.ready)
+        case .rest: viewModel = CircularTimerViewModel(self.model.rest)
+        case .exercise: viewModel = CircularTimerViewModel(self.model.exercise)
+        case .cycleRest: viewModel = CircularTimerViewModel(self.model.cycleRest!)
+        case .cooldown: viewModel = CircularTimerViewModel(self.model.cooldown)
+        }
+        presenter.setTimer(viewModel)
+    }
+    
         
     private func updateProgress(){
-        let remainDuration = timer.remainDuration.value
-        let progress = remainDuration / totalDuration
+        let remainDuration = timer.remainTime.value
+        let progress = remainDuration / timer.totalTime
         presenter.updateProgress(from: progress, remainDuration: remainDuration)
     }
     
+    private func removeTimer(){
+        AppTimerManager.share.removeTimer(timerId: detail.timerId.uuidString)
+    }
 
 }
+
 
 
 
@@ -176,3 +202,4 @@ private extension TimeInterval {
         return String(format:"%02d:%02d", Int(self/60), Int(ceil(truncatingRemainder(dividingBy: 60))) )
     }
 }
+ 

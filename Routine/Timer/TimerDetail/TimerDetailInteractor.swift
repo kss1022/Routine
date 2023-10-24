@@ -8,6 +8,7 @@
 import ModernRIBs
 
 protocol TimerDetailRouting: ViewableRouting {
+    func attachTimerRemian()
     func attachCircularTimer()
     func attachTimerNextSection()
 }
@@ -21,7 +22,6 @@ protocol TimerDetailListener: AnyObject {
 }
 
 protocol TimerDetailInteractorDependency{
-    var sectionIndexSubject: CurrentValuePublisher<Int>{ get }
 }
 
 final class TimerDetailInteractor: PresentableInteractor<TimerDetailPresentable>, TimerDetailInteractable, TimerDetailPresentableListener {
@@ -46,6 +46,7 @@ final class TimerDetailInteractor: PresentableInteractor<TimerDetailPresentable>
         super.didBecomeActive()
         
         // TODO: Implement business logic here.
+        router?.attachTimerRemian()
         router?.attachCircularTimer()
         router?.attachTimerNextSection()
     }
@@ -58,9 +59,9 @@ final class TimerDetailInteractor: PresentableInteractor<TimerDetailPresentable>
 
     //MARK: CircularTimer
     func circularTimerDidFinish() {
-        self.sectionIndex += 1
-        dependency.sectionIndexSubject.send(self.sectionIndex)
+        //TODO: Handle Complete
     }
+        
     
     func circularTimerDidTapCancle() {
         listener?.timerDetailDidTapClose()

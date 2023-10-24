@@ -8,13 +8,18 @@
 import ModernRIBs
 
 protocol TimerNextSectionDependency: Dependency {
-    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
-    var sectionIndex: ReadOnlyCurrentValuePublisher<Int>{ get }
+    var detail: TimerDetailModel{ get }
+    var timer: AppTimer{ get }
+    var model: BaseTimerModel{ get }
 }
 
 final class TimerNextSectionComponent: Component<TimerNextSectionDependency>, TimerNextSectionInteractorDependency {
-    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ dependency.sections }
-    var sectionIndex: ReadOnlyCurrentValuePublisher<Int>{ dependency.sectionIndex }
+    
+    var timer: AppTimer{ dependency.timer }
+    var model: BaseTimerModel{ dependency.model }
+    var detail: TimerDetailModel{ dependency.detail }
+    
+    
 }
 
 // MARK: - Builder

@@ -167,7 +167,6 @@ class CircularTimerView: UIControl {
     private var strokeEnd: CGFloat!
     
     func startProgress(duration: TimeInterval) {
-                        
         let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
         strokeAnimation.fromValue = 1.0
         strokeAnimation.toValue = 0.0
@@ -177,6 +176,7 @@ class CircularTimerView: UIControl {
         strokeAnimation.isRemovedOnCompletion = false
         strokeAnimation.duration = duration
         self.strokeAnimation = strokeAnimation
+        barLayer.beginTime = 0.0
         barLayer.add(strokeAnimation, forKey: "strokeAnimation")
         //barLayer.strokeEnd = to
     }
@@ -207,7 +207,7 @@ class CircularTimerView: UIControl {
     }
     
     func suspendProgress(){
-        let pausedTime = barLayer.convertTime(CACurrentMediaTime(), from: nil)
+        let pausedTime = barLayer.convertTime(CACurrentMediaTime(), from: nil)        
         barLayer.speed = 0.0
         barLayer.timeOffset = pausedTime
     }

@@ -11,10 +11,14 @@ import Foundation
 
 protocol TimerRepository{
     var lists: ReadOnlyCurrentValuePublisher<[TimerListModel]>{ get }
-    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
+    var detail: ReadOnlyCurrentValuePublisher<TimerDetailModel?>{ get }
     
+    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
     func baseSectionList(type: AddTimerType) -> [TimerSectionListModel]
+    
+    
     func fetchLists() async throws
+    func fetchDetail(timerId: UUID) async throws
     func fetchSectionLists(timerId: UUID) async throws
 }
 
@@ -23,6 +27,9 @@ final class TimerRepositoryImp: TimerRepository{
     
     var lists: ReadOnlyCurrentValuePublisher<[TimerListModel]>{ listsSubject }
     var listsSubject = CurrentValuePublisher<[TimerListModel]>([])
+    
+    var detail: ReadOnlyCurrentValuePublisher<TimerDetailModel?>{ detailSubject }
+    var detailSubject = CurrentValuePublisher<TimerDetailModel?>(nil)
     
     var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionsSubject }
     var sectionsSubject = CurrentValuePublisher<[TimerSectionListModel]>([])
@@ -36,11 +43,22 @@ final class TimerRepositoryImp: TimerRepository{
         listsSubject.send(models)
     }
     
+    func fetchDetail(timerId: UUID) async throws {
+        let timer = try timerReadModel.timer(id: timerId)
+        let sections = try timerReadModel.timerSectionLists(id: timerId)
+        
+        let detailModel = timer.flatMap {
+            TimerDetailModel(timerDto: $0, sections: sections)
+        }
+        
+        detailSubject.send(detailModel)
+    }
+    
     func fetchSectionLists(timerId: UUID) async throws {
         let models = try timerReadModel.timerSectionLists(id: timerId).map {
             TimerSectionListModel($0)
         }
-        Log.e("\(models)")
+        
         sectionsSubject.send(models)
     }
     

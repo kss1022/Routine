@@ -17,6 +17,12 @@ protocol TimerDetailPresentableListener: AnyObject {
 final class TimerDetailViewController: UIViewController, TimerDetailPresentable, TimerDetailViewControllable {
     
     weak var listener: TimerDetailPresentableListener?
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
                   
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -24,7 +30,7 @@ final class TimerDetailViewController: UIViewController, TimerDetailPresentable,
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
-        stackView.spacing = 16.0
+        stackView.spacing = 32.0
         return stackView
     }()
    
@@ -43,14 +49,31 @@ final class TimerDetailViewController: UIViewController, TimerDetailPresentable,
         title = "Timer"
         view.backgroundColor = .systemBackground
         
-        view.addSubview(stackView)        
+        
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+        
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ])
+    }
+    
+    func addTimerRemain(_ view: ViewControllable) {
+        let vc = view.uiviewController
+         addChild(vc)
+         
+         stackView.addArrangedSubview(vc.view)
+         vc.didMove(toParent: self)
     }
     
     func addCircularTimer(_ view: ViewControllable) {

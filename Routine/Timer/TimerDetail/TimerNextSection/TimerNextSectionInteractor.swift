@@ -15,8 +15,8 @@ protocol TimerNextSectionRouting: ViewableRouting {
 
 protocol TimerNextSectionPresentable: Presentable {
     var listener: TimerNextSectionPresentableListener? { get set }
-    func setNextSection(_ viewModel: TimerSectionListViewModel)
-
+    func setNextSection(_ viewModel: TimerNextSectionViewModel)
+    func removeNextSection()
 }
 
 protocol TimerNextSectionListener: AnyObject {
@@ -24,8 +24,9 @@ protocol TimerNextSectionListener: AnyObject {
 }
 
 protocol TimerNextSectionInteractorDependency{    
-    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
-    var sectionIndex: ReadOnlyCurrentValuePublisher<Int>{ get }
+    var timer: AppTimer{ get }
+    var model: BaseTimerModel{ get }
+    var detail: TimerDetailModel{ get }
 }
 
 final class TimerNextSectionInteractor: PresentableInteractor<TimerNextSectionPresentable>, TimerNextSectionInteractable, TimerNextSectionPresentableListener {
@@ -36,6 +37,10 @@ final class TimerNextSectionInteractor: PresentableInteractor<TimerNextSectionPr
     private let dependency: TimerNextSectionInteractorDependency
     private var cancellables: Set<AnyCancellable>
     
+    private let timer: AppTimer
+    private let model: BaseTimerModel
+    private let detail: TimerDetailModel
+    
     // in constructor.
     init(
         presenter: TimerNextSectionPresentable,
@@ -43,20 +48,25 @@ final class TimerNextSectionInteractor: PresentableInteractor<TimerNextSectionPr
     ) {
         self.dependency = dependency
         self.cancellables = .init()
+        self.timer = dependency.timer
+        self.model = dependency.model
+        self.detail = dependency.detail
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-
-
-        Publishers.CombineLatest(dependency.sections,dependency.sectionIndex)
+        
+        let section = timer.sectionState.value
+        let remainRound = timer.remainRound
+        let remainCycle = timer.remainCycle
+        setNextSection(section: section, remainRound: remainRound, remainCycle: remainCycle)
+        
+        timer.sectionState
             .receive(on: DispatchQueue.main)
-            .sink { (lists, index) in
-                if let section = lists[safe: index + 1]{
-                    self.presenter.setNextSection(TimerSectionListViewModel(section))
-                }
+            .sink { section in
+                self.setNextSection(section: section, remainRound: self.timer.remainRound, remainCycle: self.timer.remainCycle)
             }
             .store(in: &cancellables)
     }
@@ -65,5 +75,41 @@ final class TimerNextSectionInteractor: PresentableInteractor<TimerNextSectionPr
         super.willResignActive()
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
+    }
+    
+    private func setNextSection(section: AppTimerSectionState, remainRound: Int, remainCycle: Int?){
+                        
+        let viewModel: TimerNextSectionViewModel
+        switch section {
+        case .ready: 
+            viewModel = TimerNextSectionViewModel(self.model.exercise)
+            presenter.setNextSection(viewModel)
+        case .exercise:
+            viewModel = TimerNextSectionViewModel(self.model.rest)
+            presenter.setNextSection(viewModel)
+        case .rest:
+            if remainRound == 0{
+                if remainCycle == nil || remainCycle == 0{
+                    viewModel = TimerNextSectionViewModel(self.model.cooldown)
+                    presenter.setNextSection(viewModel)
+                    return
+                }
+            }
+            
+            viewModel = TimerNextSectionViewModel(self.model.exercise)
+            presenter.setNextSection(viewModel)
+            return
+        case .cycleRest:
+            if remainCycle == 0{
+                viewModel = TimerNextSectionViewModel(self.model.cooldown)
+                presenter.setNextSection(viewModel)
+                return
+            }
+            
+            viewModel = TimerNextSectionViewModel(self.model.exercise)
+            presenter.setNextSection(viewModel)
+        case .cooldown:
+            presenter.removeNextSection()
+        }
     }
 }

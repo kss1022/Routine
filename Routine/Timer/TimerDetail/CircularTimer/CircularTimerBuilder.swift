@@ -8,13 +8,15 @@
 import ModernRIBs
 
 protocol CircularTimerDependency: Dependency {
-    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
-    var sectionIndex: ReadOnlyCurrentValuePublisher<Int>{ get }
+    var detail: TimerDetailModel{ get }
+    var timer: AppTimer{ get }
+    var model: BaseTimerModel{ get }
 }
 
 final class CircularTimerComponent: Component<CircularTimerDependency>, CircularTimerInteractorDependency {
-    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ dependency.sections }
-    var sectionIndex: ReadOnlyCurrentValuePublisher<Int>{ dependency.sectionIndex }
+    var detail: TimerDetailModel{ dependency.detail }
+    var timer: AppTimer{ dependency.timer }
+    var model: BaseTimerModel{ dependency.model }
 }
 
 // MARK: - Builder

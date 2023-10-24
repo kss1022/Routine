@@ -9,6 +9,7 @@ import Foundation
 
 
 
+
 struct TimerSectionListModel{
     let timerId: UUID?
     let emoji: String

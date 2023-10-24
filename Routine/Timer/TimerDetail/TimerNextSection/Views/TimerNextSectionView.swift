@@ -51,7 +51,7 @@ final class TimerNextSectionView: UIView{
         return label
     }()
     
-    private let timerLabel: UILabel = {
+    private let timeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setFont(style: .title3)
@@ -60,20 +60,20 @@ final class TimerNextSectionView: UIView{
     }()
     
 
-    init(_ viewModel: TimerSectionListViewModel){
+    init(_ viewModel: TimerNextSectionViewModel){
         super.init(frame: .zero)
         setView()
         
-        nameLabel.text = "\(viewModel.emoji) \(viewModel.name)"
+        nameLabel.text = viewModel.name
         descriptionLabel.text = viewModel.description
-        timerLabel.text = viewModel.value.rawValue()
+        timeLabel.text = viewModel.time
         
-        if viewModel.color != nil{
-            categoryView.isHidden = false
-            categoryView.backgroundColor = viewModel.color!
-        }else{
-            categoryView.isHidden = true
-        }
+//        if viewModel.color != nil{
+//            categoryView.isHidden = false
+//            categoryView.backgroundColor = viewModel.color!
+//        }else{
+//            categoryView.isHidden = true
+//        }
     }
     
     required init?(coder: NSCoder) {
@@ -87,7 +87,7 @@ final class TimerNextSectionView: UIView{
         self.addSubview(categoryView)
         
         stackView.addArrangedSubview(titleStackView)
-        stackView.addArrangedSubview(timerLabel)
+        stackView.addArrangedSubview(timeLabel)
         
         titleStackView.addArrangedSubview(nameLabel)
         titleStackView.addArrangedSubview(descriptionLabel)

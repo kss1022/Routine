@@ -34,7 +34,7 @@ final class TimerListCell: UICollectionViewCell{
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.setFont(style: .headline)
-        label.textColor = .black
+        label.textColor = .label
         return label
     }()
  

@@ -10,7 +10,9 @@ import Foundation
 
 
 protocol TimerReadModelFacade{
+    func timer(id: UUID) throws -> TimerListDto?
     func timerLists() throws -> [TimerListDto]
+    
     func timerSectionLists(id: UUID) throws -> [TimerSectionListDto]
 }
 
@@ -27,6 +29,10 @@ public final class TimerReadModelFacadeImp: TimerReadModelFacade{
         
         self.timerListDao = dbManager.timerListDao
         self.timerSectionListDao = dbManager.timerSectionListDao
+    }
+    
+    func timer(id: UUID) throws -> TimerListDto? {
+        try timerListDao.find(id)
     }
     
     func timerLists() throws -> [TimerListDto] {

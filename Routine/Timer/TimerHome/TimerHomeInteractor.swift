@@ -89,7 +89,7 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         Task{ [weak self] in
             guard let self = self else { return }
             do{
-                try await self.dependency.timerRepository.fetchSectionLists(timerId: timerId)
+                try await self.dependency.timerRepository.fetchDetail(timerId: timerId)
                 await MainActor.run { [weak self] in
                     guard let self = self else { return }
                     self.router?.attachTimerDetail()

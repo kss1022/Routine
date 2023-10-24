@@ -28,6 +28,14 @@ enum TimerSectionValueModel: Hashable{
         }
     }
     
+    var duration: Int?{
+        guard case .countdown(let min, let sec) = self else {
+            return nil
+        }
+        
+        return min * 60 + sec
+    }
+    
     var min: Int?{
         guard case .countdown(let min, _) = self else {
             return nil
