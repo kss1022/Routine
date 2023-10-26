@@ -11,22 +11,19 @@ import Foundation
 
 
 enum TimerType: String, ValueObject{
-    case tabata
-    case round
-    case custom
+    case focus
+    case section
     
-    init(_ timerType: String) throws{
-        switch timerType{
-        case "tabata":
-            self = .tabata
-        case "round":
-            self = .round
-        case "custom":
-            self = .custom
-        default: throw ArgumentException("This is not the right data for your type: \(timerType)")
-        }
-    }
-    
+//    init(_ timerType: String) throws{
+//        switch timerType{
+//        case "focus":
+//            self = .focus
+//        case "section":
+//            self = .section
+//        default: throw ArgumentException("This is not the right data for your type: \(timerType)")
+//        }
+//    }
+//    
     func encode(with coder: NSCoder) {
         coder.encode(self.rawValue, forKey: CodingKeys.timerType.rawValue)
     }
@@ -36,18 +33,6 @@ enum TimerType: String, ValueObject{
             return nil
         }
         self.init(rawValue: timerType)
-    }
-    
-    init?(rawValue: String) {
-        switch rawValue{
-        case "tabata":
-            self = .tabata
-        case "round":
-            self = .round
-        case "custom":
-            self = .custom
-        default: return nil
-        }
     }
     
     private enum CodingKeys: String{

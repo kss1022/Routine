@@ -98,7 +98,8 @@ final class TimerSectionListSQLDao: TimerSectionListDao{
         let query = table.filter(timerId == id)            
             .order(sequecne.asc)
         
-        return try db.prepareRowIterator(query).map { 
+        return try db.prepareRowIterator(query).map {
+        
             TimerSectionListDto(
                 timerId: $0[timerId],
                 sectionName: $0[sectionName],

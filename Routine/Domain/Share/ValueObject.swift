@@ -34,3 +34,14 @@ extension Array where Element: EncodableValueObject {
         return coder.decodeArrayOfObjects(ofClass: Element.self, forKey: "\(Element.self)")
     }
 }
+
+
+//extension Array where Element: EncodableValueObject? {
+//    func encode(with coder: NSCoder) {
+//        coder.encode(self, forKey: "\(Element.self)")
+//    }
+//    
+//    static func decode(coder: NSCoder) -> [Element]? {
+//        return coder.decodeArrayOfObjects(ofClass: Element.self, forKey: "\(Element.self)")
+//    }
+//}

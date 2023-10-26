@@ -15,8 +15,8 @@ enum TimerSectionValueDto{
     
     init(_ timerSectionValue: TimerSectionValue){
         switch timerSectionValue {
-        case .countdown(let min, let sec): self = .countdown(min: min, sec: sec)
-        case .count(let count): self = .count(count: count)
+        case .countdown(let countdown): self = .countdown(min: countdown.min, sec: countdown.sec)
+        case .count(let count): self = .count(count: count.count)
         }
     }
 }

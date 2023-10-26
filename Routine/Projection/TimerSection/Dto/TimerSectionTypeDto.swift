@@ -12,7 +12,7 @@ import Foundation
 enum TimerSectionTypeDto: String{
     case ready
     case rest
-    case exsercise
+    case exercise
     case round
     case cycle
     case cycleRest
@@ -22,7 +22,7 @@ enum TimerSectionTypeDto: String{
         switch timerSectionType {
         case .ready: self = .ready
         case .rest: self = .rest
-        case .exsercise: self = .exsercise
+        case .exercise: self = .exercise
         case .round: self = .round
         case .cycle: self = .cycle
         case .cycleRest: self = .cycleRest

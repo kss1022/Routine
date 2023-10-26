@@ -10,31 +10,25 @@ import Foundation
 
 
 protocol TimerRepository{
-    var lists: ReadOnlyCurrentValuePublisher<[TimerListModel]>{ get }
-    var detail: ReadOnlyCurrentValuePublisher<TimerDetailModel?>{ get }
     
-    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
+    var lists: ReadOnlyCurrentValuePublisher<[TimerListModel]>{ get }
+    var sections: ReadOnlyCurrentValuePublisher<TimerSectionsModel?>{ get }
+    
     func baseSectionList(type: AddTimerType) -> [TimerSectionListModel]
     
     
     func fetchLists() async throws
     func fetchDetail(timerId: UUID) async throws
-    func fetchSectionLists(timerId: UUID) async throws
 }
 
 
 final class TimerRepositoryImp: TimerRepository{
-    
+        
     var lists: ReadOnlyCurrentValuePublisher<[TimerListModel]>{ listsSubject }
-    var listsSubject = CurrentValuePublisher<[TimerListModel]>([])
+    private let listsSubject = CurrentValuePublisher<[TimerListModel]>([])
     
-    var detail: ReadOnlyCurrentValuePublisher<TimerDetailModel?>{ detailSubject }
-    var detailSubject = CurrentValuePublisher<TimerDetailModel?>(nil)
-    
-    var sections: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionsSubject }
-    var sectionsSubject = CurrentValuePublisher<[TimerSectionListModel]>([])
-    
-
+    var sections: ReadOnlyCurrentValuePublisher<TimerSectionsModel?>{ sectionsSubject }
+    private let sectionsSubject = CurrentValuePublisher<TimerSectionsModel?>(nil)
     
     
     func fetchLists() async throws {
@@ -48,19 +42,27 @@ final class TimerRepositoryImp: TimerRepository{
         let sections = try timerReadModel.timerSectionLists(id: timerId)
         
         let detailModel = timer.flatMap {
-            TimerDetailModel(timerDto: $0, sections: sections)
+            TimerSectionsModel(timerDto: $0, sections: sections)
         }
         
-        detailSubject.send(detailModel)
+        sectionsSubject.send(detailModel)
     }
     
-    func fetchSectionLists(timerId: UUID) async throws {
-        let models = try timerReadModel.timerSectionLists(id: timerId).map {
-            TimerSectionListModel($0)
-        }
-        
-        sectionsSubject.send(models)
+    
+    private let timerReadModel: TimerReadModelFacade
+    
+    init(timerReadModel: TimerReadModelFacade) {
+        self.timerReadModel = timerReadModel                        
     }
+    
+
+}
+
+
+extension TimerRepository{
+    
+
+    
     
     
     func baseSectionList(type: AddTimerType) -> [TimerSectionListModel] {
@@ -92,7 +94,7 @@ final class TimerRepositoryImp: TimerRepository{
                 name: "Excercise",
                 description: "You can do it!!!",
                 sequence: 2,
-                type: .exsercise,
+                type: .exercise,
                 value: .countdown(min: 0, sec: 5),
                 color: "#3BD2AEff"
             )]
@@ -156,7 +158,7 @@ final class TimerRepositoryImp: TimerRepository{
                 TimerSectionListModel(
                     id: UUID(),
                     emoji: "❄️",
-                    name: "Cool Down",                    
+                    name: "Cool Down",
                     description: "After excersice cool down",
                     sequence: 6,
                     type: .cooldown,
@@ -169,17 +171,4 @@ final class TimerRepositoryImp: TimerRepository{
         
         fatalError("Some types do not handle.")
     }
-    
-    private let timerReadModel: TimerReadModelFacade
-    
-    init(timerReadModel: TimerReadModelFacade) {
-        self.timerReadModel = timerReadModel
-        
-        Task{
-            try? await fetchLists()
-        }
-        
-    }
-    
-
 }

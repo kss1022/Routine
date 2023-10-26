@@ -10,13 +10,15 @@ import UIKit
 
 protocol TimerHomePresentableListener: AnyObject {
     func creatTimerBarButtonDidTap()
+    func startTimerButtonDidTap()
+    func currentTimerButtonDidTap()
 }
 
 final class TimerHomeViewController: UIViewController, TimerHomePresentable, TimerHomeViewControllable {
     
-
+    
     weak var listener: TimerHomePresentableListener?
-            
+    
     private lazy var createTimerBarButtonItem : UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "plus.circle"),
@@ -27,24 +29,36 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         return barButtonItem
     }()
     
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentInsetAdjustmentBehavior = .always
-        
-        return scrollView
-    }()
-
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 16.0
-        return stackView
+    
+    private lazy var startTimerButton: TimerStartButton = {
+        let button = TimerStartButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(startTimerButtonTap), for: .touchUpInside)
+        return button
     }()
     
+    private lazy var currentTimerButton: UIButton = {
+        let button = TouchesRoundButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(currentTimerButtonTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var timerRullerView: UIView = {
+        //0.2 * 5 = 1.0
+        var rullerView = ScrollRuller(
+            minValue: 0,
+            maxValue: 20,
+            step: 0.3,
+            num: 5
+        )
+        rullerView.translatesAutoresizingMaskIntoConstraints = false
+        rullerView.delegate      = self
+        return rullerView
+    }()
+    
+    
+
     
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -66,41 +80,63 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
             image: UIImage(systemName: "stopwatch"),
             selectedImage: UIImage(systemName: "stopwatch.fill")
         )
-                
+        
         navigationItem.rightBarButtonItems = [ createTimerBarButtonItem]
-
+        
         view.backgroundColor = .systemBackground
         
-        view.addSubview(scrollView)
-        scrollView.addSubview(stackView)
         
+        view.addSubview(startTimerButton)
+        view.addSubview(currentTimerButton)
+        view.addSubview(timerRullerView)
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            startTimerButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            startTimerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startTimerButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
+            startTimerButton.heightAnchor.constraint(equalTo: startTimerButton.widthAnchor),
             
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            currentTimerButton.topAnchor.constraint(equalTo: startTimerButton.bottomAnchor, constant: 24.0),
+            currentTimerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            
+            timerRullerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            timerRullerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            timerRullerView.heightAnchor.constraint(equalToConstant: 70.0),
+            timerRullerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24.0)
         ])
     }
     
-    
-    //MARK: ViewControllable
-    func setList(_ view: ModernRIBs.ViewControllable) {
-        let vc = view.uiviewController
-                        
-        stackView.addArrangedSubview(vc.view)
-        vc.didMove(toParent: self)
-        
-        vc.view.translatesAutoresizingMaskIntoConstraints = false
-        vc.view.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor).isActive = true
+    // MARK: Presentable
+    func setTimer(name: String, time: String) {
+        startTimerButton.setTime(time: time)
+        currentTimerButton.setTitle(name, for: .normal)
     }
+    
     
     @objc
     private func createTimerBarButtonTap(){
         listener?.creatTimerBarButtonDidTap()
+    }
+    
+    
+    @objc
+    private func startTimerButtonTap(){
+        listener?.startTimerButtonDidTap()
+    }
+    
+    @objc
+    private func currentTimerButtonTap(){
+        listener?.currentTimerButtonDidTap()
+    }
+    
+    
+}
+
+
+
+extension TimerHomeViewController :ScrollRullerDelegate {
+    func dyScrollRulerViewValueChange(rulerView: ScrollRuller, value: CGFloat) {
+        Log.v("ScrollRuller :\(value)")
     }
 }

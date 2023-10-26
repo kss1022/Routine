@@ -4,7 +4,7 @@ public extension UIView {
   func addShadowWithRoundedCorners(
     _ radius: CGFloat = 16,
     shadowColor: CGColor = UIColor.label.cgColor,
-    opacity: Float = 0.1
+    opacity: Float = 0.3
   ) {
     self.layer.cornerCurve = .continuous
     self.layer.masksToBounds = false

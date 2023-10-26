@@ -19,7 +19,7 @@ protocol BaseTimer{
     var timerState: AppTimerState{ get }
     var totalTime: TimeInterval{ get }
     var remainTime: ReadOnlyCurrentValuePublisher<TimeInterval>{ get }
-    var completeEvent: ReadOnlyCurrentValuePublisher<Void>{ get }
+    var completeEvent: ReadOnlyPassthroughPublisher<Void>{ get }
     
     func start()
     func resume()
@@ -35,8 +35,8 @@ class BaseTimerImp: BaseTimer{
     public var remainTime: ReadOnlyCurrentValuePublisher<TimeInterval>{ remainTimeSubject }
     private let remainTimeSubject = CurrentValuePublisher<TimeInterval>(-1.0)
     
-    public var completeEvent: ReadOnlyCurrentValuePublisher<Void>{ completeEventSubject }
-    private let completeEventSubject = CurrentValuePublisher<Void>(())
+    public var completeEvent: ReadOnlyPassthroughPublisher<Void>{ completeEventSubject }
+    private let completeEventSubject = PassthroughPublisher<Void>()
     
     
     
@@ -153,7 +153,7 @@ class BaseTimerImp: BaseTimer{
         timerState = .canceled
         
         timerLock.unlock()
-        Log.v("App timer: cancle")
+        Log.v("App timer: cancel")
     }
     
     func complete(){
@@ -164,7 +164,7 @@ class BaseTimerImp: BaseTimer{
     private func newTimer() -> DispatchSourceTimer{
         let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.init(label: "kr.routine.timer"))
         timer.schedule(deadline: .now(), repeating: .milliseconds(self.interval))
-        Log.v("App timer new Timer: BackgroundTimer")
+        Log.v("App timer new Timer: BackgroundTimer \(timer)")
         return timer
     }
     

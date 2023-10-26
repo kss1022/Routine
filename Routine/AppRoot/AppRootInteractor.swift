@@ -21,24 +21,35 @@ protocol AppRootListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRootInteractable, AppRootPresentableListener , URLHandler{
+protocol AppRootInteractorDependency{
+    var timerApplicationService: TimerApplicationService{ get }
+}
 
+final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRootInteractable, AppRootPresentableListener , URLHandler{
+    
     weak var router: AppRootRouting?
     weak var listener: AppRootListener?
-
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    
+    private let dependency: AppRootInteractorDependency
+    
     // in constructor.
-    override init(presenter: AppRootPresentable) {
+    init(
+        presenter: AppRootPresentable,
+        dependency: AppRootInteractorDependency
+    ) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
-
+    
     override func didBecomeActive() {
         super.didBecomeActive()
-                
+        
+        initTimer()
+        
         router?.attachTabs()
     }
-
+    
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
@@ -49,4 +60,25 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
         Log.v("Need To URL Hadle \(url)")
     }
     
+    
+    func initTimer(){
+        let preference = PreferenceStorage.shared
+        if preference.timerSetup{
+            return
+        }
+        
+        
+        Task{
+            do{
+                try await TimerSetup(timerApplicationService: dependency.timerApplicationService)
+                    .initTimer()
+                preference.timerSetup = true
+                Log.d("Setup Timer")
+            }catch{
+                Log.e("Setup Timer: \(error)")
+                fatalError()
+            }
+        }
+    }
 }
+

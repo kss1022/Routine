@@ -12,7 +12,7 @@ protocol TimerHomeDependency: Dependency {
     var timerRepository: TimerRepository{ get }    
 }
 
-final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, TimerDetailDependency, TimerListDependency, TimerHomeInteractorDependency {
+final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, TimerSectionDependency, TimerSelectDependency, TimerHomeInteractorDependency {
     
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
@@ -38,16 +38,15 @@ final class TimerHomeBuilder: Builder<TimerHomeDependency>, TimerHomeBuildable {
 
         
         let createTimerBuilder = CreateTimerBuilder(dependency: component)
-        let timerDetailBuilder = TimerDetailBuilder(dependency: component)
-        let timerListBuilder = TimerListBuilder(dependency: component)
-        
+        let timerSectionBuilder = TimerSectionBuilder(dependency: component)
+        let timerSelectBuilder = TimerSelectBuilder(dependency: component)
         
         return TimerHomeRouter(
             interactor: interactor,
             viewController: viewController,
             creatTimerBuildable: createTimerBuilder,
-            timerDetailBuildable: timerDetailBuilder,
-            timerListBuildable: timerListBuilder
+            timerSectionBuildable: timerSectionBuilder,
+            timerSelectBuildable: timerSelectBuilder
         )
     }
 }

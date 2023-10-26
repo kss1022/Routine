@@ -32,17 +32,17 @@ protocol RoutineRepository{
 final class RoutineRepositoryImp: RoutineRepository{
     
     var lists: ReadOnlyCurrentValuePublisher<[RoutineListDto]>{ listsSubject }
-    let listsSubject = CurrentValuePublisher<[RoutineListDto]>([])
+    private let listsSubject = CurrentValuePublisher<[RoutineListDto]>([])
 
     private var recordDate = Date()
     var homeLists: ReadOnlyCurrentValuePublisher<[RoutineHomeListModel]>{ homeListsSubject }
-    let homeListsSubject = CurrentValuePublisher<[RoutineHomeListModel]>([])    
+    private let homeListsSubject = CurrentValuePublisher<[RoutineHomeListModel]>([])
         
     var detail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?>{ detailSubject }
-    var detailSubject = CurrentValuePublisher<RoutineDetailModel?>(nil)
+    private let detailSubject = CurrentValuePublisher<RoutineDetailModel?>(nil)
         
     var detailRecords: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ detailRecordsSubject }
-    var detailRecordsSubject = CurrentValuePublisher<RoutineDetailRecordModel?>(nil)
+    private let detailRecordsSubject = CurrentValuePublisher<RoutineDetailRecordModel?>(nil)
     
             
     private(set) var emojis = [EmojiDto]()

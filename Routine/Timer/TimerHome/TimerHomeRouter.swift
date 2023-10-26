@@ -7,37 +7,39 @@
 
 import ModernRIBs
 
-protocol TimerHomeInteractable: Interactable, CreateTimerListener, TimerDetailListener,TimerListListener {
+protocol TimerHomeInteractable: Interactable, CreateTimerListener, TimerDetailListener, TimerSelectListener {
     var router: TimerHomeRouting? { get set }
     var listener: TimerHomeListener? { get set }
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy{ get }
 }
 
 protocol TimerHomeViewControllable: ViewControllable {
-    func setList(_ view: ViewControllable)
 }
 
 final class TimerHomeRouter: ViewableRouter<TimerHomeInteractable, TimerHomeViewControllable>, TimerHomeRouting {
 
+    
+
     private let createTimerBuildable: CreateTimerBuildable
     private var createTimerRouting: Routing?
     
-    private let timerDetailBuildable: TimerDetailBuildable
-    private var timerDetailRouting: Routing?
+    private let timerSectionBuildable: TimerSectionBuildable
+    private var timerSectionRouting: Routing?
     
-    private let timerListBuildable: TimerListBuildable
-    private var timerListRouting: Routing?
+    private let timerSelectBuildable: TimerSelectBuildable
+    private var timerSelectRouting: Routing?
+    
     
     init(
         interactor: TimerHomeInteractable,
         viewController: TimerHomeViewControllable,
         creatTimerBuildable: CreateTimerBuildable,
-        timerDetailBuildable: TimerDetailBuildable,
-        timerListBuildable: TimerListBuildable
+        timerSectionBuildable: TimerSectionBuildable,
+        timerSelectBuildable: TimerSelectBuildable
     ) {
         self.createTimerBuildable = creatTimerBuildable
-        self.timerDetailBuildable = timerDetailBuildable
-        self.timerListBuildable = timerListBuildable
+        self.timerSectionBuildable = timerSectionBuildable
+        self.timerSelectBuildable = timerSelectBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -65,37 +67,49 @@ final class TimerHomeRouter: ViewableRouter<TimerHomeInteractable, TimerHomeView
         createTimerRouting = nil
     }
     
-    func attachTimerDetail() {
-        if timerDetailRouting != nil{
+    func attachTimerSection() {
+        if timerSectionRouting != nil{
             return
         }
         
-        let router = timerDetailBuildable.build(withListener: interactor)
+        let router = timerSectionBuildable.build(withListener: interactor)
         
         let navigation = NavigationControllerable(root: router.viewControllable)
         navigation.setLargeTitle()
         navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
         viewController.present(navigation, animated: true, completion: nil)
-        timerDetailRouting = router
+        timerSectionRouting = router
         attachChild(router)
     }
     
-    func detachTimerDetail() {
-        guard let router = timerDetailRouting else { return }
+    func detachTimerSection() {
+        guard let router = timerSelectRouting else { return }
         viewController.dismiss(completion: nil)
         detachChild(router)
-        timerDetailRouting = nil
+        timerSectionRouting = nil
     }
     
-    func attachTimerList() {
-        if timerListRouting != nil{
+    func attachSelectTimer() {
+        if timerSelectRouting != nil{
             return
         }
         
-        let router = timerListBuildable.build(withListener: interactor)
-        viewController.setList(router.viewControllable)
+        let router = timerSelectBuildable.build(withListener: interactor)
         
-        self.timerListRouting = router
+        let navigation = NavigationControllerable(root: router.viewControllable)
+        navigation.setLargeTitle()
+        
+        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
+        viewController.present(navigation, animated: true, completion: nil)
+        timerSelectRouting = router
         attachChild(router)
     }
+    
+    func detachSelectTimer() {
+        guard let router = timerSelectRouting else { return }
+        viewController.dismiss(completion: nil)
+        detachChild(router)
+        timerSelectRouting = nil
+    }
+
 }

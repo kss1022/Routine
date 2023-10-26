@@ -33,7 +33,7 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
         )
         
                         
-        let interactor = AppRootInteractor(presenter: viewController)
+        let interactor = AppRootInteractor(presenter: viewController, dependency: component)
         
         let routineBuildable = RoutineHomeBuilder(dependency: component)
         let recordHomeBuildable = RecordHomeBuilder(dependency: component)

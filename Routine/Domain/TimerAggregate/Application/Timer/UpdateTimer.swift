@@ -10,6 +10,5 @@ import Foundation
 
 struct UpdateTimer{
     let timerId: UUID
-    let name: String
-    let timerType: String
+    let name: String    
 }

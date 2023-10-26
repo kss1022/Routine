@@ -44,3 +44,4 @@ struct TimerSectionListModel{
         self.tint = color
     }
 }
+

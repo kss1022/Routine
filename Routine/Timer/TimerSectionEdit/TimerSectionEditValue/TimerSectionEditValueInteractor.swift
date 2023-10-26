@@ -49,7 +49,7 @@ final class TimerSectionEditValueInteractor: PresentableInteractor<TimerSectionE
         // TODO: Implement business logic here.
         
         switch dependency.sectionList.type {
-        case .ready, .rest, .exsercise, .cycleRest, .cooldown:
+        case .ready, .rest, .exercise, .cycleRest, .cooldown:
             guard case .countdown(let min,let sec) = dependency.sectionList.value else { return }
             presenter.showCountDownPicker(min: min, sec: sec)
         case .round, .cycle:

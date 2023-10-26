@@ -96,10 +96,9 @@ final class AddYourTimerInteractor: PresentableInteractor<AddYourTimerPresentabl
             )
         }
         
-        let createTimer = CreateTimer(
+        let createTimer = CreateSectionTimer(
             name: self.name,
-            timerType: dependency.timerType.rawValue,
-            createSectoins: createSections
+            createSections: createSections
         )
         
         
@@ -109,7 +108,11 @@ final class AddYourTimerInteractor: PresentableInteractor<AddYourTimerPresentabl
                 try await dependency.timerRepository.fetchLists()
                 await MainActor.run { listener?.addYourTimeDoneButtonDidTap() }
             }catch{
-                Log.e("\(error)")
+                if let error = error as? ArgumentException{
+                    Log.e(error.message)
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
             }
         }
         

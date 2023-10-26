@@ -10,5 +10,6 @@ import Foundation
 
 
 protocol TimerFactory{
-    func create(timerId: TimerId, timerName: TimerName, timerType: TimerType, timerSections: [TimerSection]) -> Timer
+    func create(timerId: TimerId, timerName: TimerName, timerType: TimerType, timerSections: TimerSections) -> SectionTimer
+    func create(timerId: TimerId, timerName: TimerName, timerType: TimerType, timerCountdown: TimerFocusCountdown) -> FocusTimer
 }

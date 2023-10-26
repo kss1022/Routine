@@ -11,29 +11,29 @@ import Foundation
 struct TimerListModel{
     let timerId: UUID
     let name: String
-    let emoji: String
     let timerType: TimerTypeModel
+    let timerCountdown: Int?
+    let tint: String
     
     init(_ dto: TimerListDto) {
         self.timerId = dto.timerId
         self.name = dto.timerName
-        self.emoji = "🏃"
         self.timerType = TimerTypeModel(dto.timerType)
+        self.timerCountdown = dto.timerCountdown
+        self.tint = "#CCFFCCFF"
     }
 
 }
 
 
-enum TimerTypeModel{
-    case tabata
-    case round
-    case custom
+enum TimerTypeModel: String{
+    case focus
+    case section
     
     init(_ dto: TimerTypeDto){
         switch dto {
-        case .tabata: self = .tabata
-        case .round: self = .round
-        case .custom: self = .custom
+        case .focus: self = .focus
+        case .section: self = .section
         }
     }
 }

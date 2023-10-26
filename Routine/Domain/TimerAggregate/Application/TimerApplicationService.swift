@@ -27,27 +27,20 @@ final class TimerApplicationService: ApplicationService{
         self.timerFactory = timerFactory
     }
     
-    func when(_ command: CreateTimer) async throws{
+    func when(_ command: CreateSectionTimer) async throws{
         do{
-            Log.v("When (\(CreateTimer.self)):  \(command)")
+            Log.v("When (\(CreateSectionTimer.self)):  \(command)")
             
             let timerId = TimerId(UUID())
             let timerName = try TimerName(command.name)
-            let timerType = try TimerType(command.timerType)
-            let timerSections = try command.createSectoins.map {
-                try TimerSection(
-                    name: $0.name,
-                    description: $0.description,
-                    sequence: $0.sequence,
-                    type: $0.type,
-                    min: $0.min,
-                    sec: $0.sec,
-                    count: $0.count,
-                    emoji: $0.emoji,
-                    color: $0.color
-                )
-            }
+            let timerType = TimerType.section
             
+            let sections = try command.createSections.map {
+                try TimerSection(command: $0)
+            }
+            let timerSections = try TimerSections(sections: sections)
+            
+
             let timer = timerFactory.create(timerId: timerId, timerName: timerName, timerType: timerType, timerSections: timerSections)
             
             //section을 생성해준다.                                    
@@ -60,16 +53,34 @@ final class TimerApplicationService: ApplicationService{
         
     }
     
+    func when(_ command: CreateFocusTimer) async throws{
+        do{
+            Log.v("When (\(CreateFocusTimer.self)):  \(command)")
+            
+            let timerId = TimerId(UUID())
+            let timerName = try TimerName(command.name)
+            let timerType = TimerType.focus
+            let timerCountdown = try TimerFocusCountdown(min: command.min)
+            
+            let timer = timerFactory.create(timerId: timerId, timerName: timerName, timerType: timerType, timerCountdown: timerCountdown)
+                        
+            try eventStore.appendToStream(id: timer.timerId.id, expectedVersion: -1, events: timer.changes)
+            try Transaction.commit()
+        }catch{
+            try Transaction.rollback()
+            throw error
+        }
+    }
+    
     
     func when(_ command: UpdateTimer) async throws{
         do{
             Log.v("When (\(UpdateTimer.self)):  \(command)")
                         
             let timerName = try TimerName(command.name)
-            let timerType = try TimerType(command.timerType)
             
-            try update(id: command.timerId) { (timer: Timer) in
-                timer.updateTime(timerName: timerName, timerType: timerType)
+            try update(id: command.timerId) { (timer: SectionTimer) in
+                timer.updateTime(timerName: timerName)
             }
             
             try Transaction.commit()

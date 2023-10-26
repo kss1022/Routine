@@ -9,7 +9,7 @@ import Foundation
 import ModernRIBs
 
 
-final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependency, RecordHomeDependency, TimerHomeDependency, ProfileHomeDependency, CreateRoutineDependency{    
+final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependency, RecordHomeDependency, TimerHomeDependency, ProfileHomeDependency, CreateRoutineDependency, AppRootInteractorDependency{    
 
     //MARK: ApplicationService
     let routineApplicationService: RoutineApplicationService

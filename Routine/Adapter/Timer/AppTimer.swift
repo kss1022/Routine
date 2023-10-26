@@ -84,7 +84,10 @@ class AppTimer: BaseTimerImp{
     //MARK: override
     override func cancel() {
         super.cancel()
-        super.complete()
+        
+        if remainTime.value > 0{
+            super.complete()
+        }        
     }
 
     override func complete() {

@@ -31,36 +31,33 @@ final class TimerProjection{
     
     private func registerReceiver(){
         DomainEventPublihser.share
-            .onReceive(TimerCreated.self, action: when)
+            .onReceive(SectionTimerCreated.self, action: when)
             .store(in: &cancellables)
         
         DomainEventPublihser.share
-            .onReceive(TimerUpdated.self, action: when)
+            .onReceive(FocusTimerCreated.self, action: when)
             .store(in: &cancellables)
     }
     
     
-    private func when(event: TimerCreated){
+    private func when(event: SectionTimerCreated){
         do{
+            
             let timerList = TimerListDto(
                 timerId: event.timerId.id,
                 timerName: event.timerName.name,
-                timerType: TimerTypeDto(timerType: event.timerType)
+                timerType: event.timerType
             )
             
-            let timerSections = event.timerSections.map{
-                TimerSectionListDto(
-                    timerId: event.timerId.id,
-                    sectionName: $0.sectionName.name,
-                    sectionDescription: $0.sectionDescription.description,
-                    timerSectionType: TimerSectionTypeDto($0.timerSectionType),
-                    timerSectionValue: TimerSectionValueDto($0.timerSectionValue),
-                    sequence: $0.sequence.sequence,
-                    emoji: $0.emoji.emoji,
-                    tint: $0.tint?.color
-                )
-            }
+                                    
+
+            let timerSections = sectionDtos(
+                timerId: event.timerId,
+                sections: event.timerSections
+            )
             
+            
+               
             try timerListDao.save(timerList)
             try timerSectionListDao.save(timerSections)
         }catch{
@@ -68,21 +65,38 @@ final class TimerProjection{
         }
     }
     
-    private func when(event: TimerUpdated){
+    private func when(event: FocusTimerCreated){
         do{
             let timerList = TimerListDto(
                 timerId: event.timerId.id,
                 timerName: event.timerName.name,
-                timerType: TimerTypeDto(timerType: event.timerType)
+                timerType: event.timerType,
+                timerCountdown: event.timerCountdown.min
             )
             
-            try timerListDao.update(timerList)
+               
+            try timerListDao.save(timerList)
+        
         }catch{
-            Log.e("EventHandler Error: TimerUpdated \(error)")
+            Log.e("EventHandler Error: TimerCreated \(error)")
         }
     }
     
+}
+
+
+extension TimerProjection{
     
+    func sectionDtos(timerId: TimerId, sections: TimerSections) -> [TimerSectionListDto]{
+        let ready = TimerSectionListDto(timerId: timerId, section: sections.ready)
+        let exercise = TimerSectionListDto(timerId: timerId, section: sections.exercise)
+        let rest = TimerSectionListDto(timerId: timerId, section: sections.rest)
+        let round = TimerSectionListDto(timerId: timerId, section: sections.round)
+        let cycle = sections.cycle.flatMap { TimerSectionListDto(timerId: timerId, section: $0) }
+        let cycleRest = sections.cycleRest.flatMap { TimerSectionListDto(timerId: timerId, section: $0) }
+        let cooldown = TimerSectionListDto(timerId: timerId, section: sections.cooldown)
+        return [ ready, exercise, rest, round, cycle , cycleRest, cooldown ].compactMap { $0 }
+    }
 }
 
 
