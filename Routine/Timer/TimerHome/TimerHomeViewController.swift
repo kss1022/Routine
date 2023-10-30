@@ -30,6 +30,8 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
     }()
     
     
+    private var startButtonVerticalConstraint: NSLayoutConstraint?
+    
     private lazy var startTimerButton: TimerStartButton = {
         let button = TimerStartButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -40,25 +42,12 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
     private lazy var currentTimerButton: UIButton = {
         let button = TouchesRoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .systemOrange
         button.addTarget(self, action: #selector(currentTimerButtonTap), for: .touchUpInside)
         return button
     }()
     
-    private lazy var timerRullerView: UIView = {
-        //0.2 * 5 = 1.0
-        var rullerView = ScrollRuller(
-            minValue: 0,
-            maxValue: 20,
-            step: 0.3,
-            num: 5
-        )
-        rullerView.translatesAutoresizingMaskIntoConstraints = false
-        rullerView.delegate      = self
-        return rullerView
-    }()
     
-    
-
     
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -87,25 +76,45 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         
         
         view.addSubview(startTimerButton)
-        view.addSubview(currentTimerButton)
-        view.addSubview(timerRullerView)
+        view.addSubview(currentTimerButton)        
         
+        let width = UIDevice.frame().width * 0.6
         NSLayoutConstraint.activate([
-            startTimerButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             startTimerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startTimerButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
+            startTimerButton.widthAnchor.constraint(equalToConstant: width),
             startTimerButton.heightAnchor.constraint(equalTo: startTimerButton.widthAnchor),
             
             currentTimerButton.topAnchor.constraint(equalTo: startTimerButton.bottomAnchor, constant: 24.0),
             currentTimerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            
-            timerRullerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            timerRullerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            timerRullerView.heightAnchor.constraint(equalToConstant: 70.0),
-            timerRullerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24.0)
         ])
+        
+        updateTransition() //handle startButton Vertical Constraint
     }
+    
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            self?.updateTransition()
+        }, completion: nil)
+    }
+    
+    
+
+    private func updateTransition() {
+        if let before = startButtonVerticalConstraint{
+            before.isActive = false
+        }
+                
+        if !UIDevice.current.orientation.isLandscape{
+            startButtonVerticalConstraint = startTimerButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        }else{
+            startButtonVerticalConstraint = startTimerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8.0)
+        }
+        startButtonVerticalConstraint!.isActive = true
+    }
+    
     
     // MARK: Presentable
     func setTimer(name: String, time: String) {
@@ -131,12 +140,4 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
     }
     
     
-}
-
-
-
-extension TimerHomeViewController :ScrollRullerDelegate {
-    func dyScrollRulerViewValueChange(rulerView: ScrollRuller, value: CGFloat) {
-        Log.v("ScrollRuller :\(value)")
-    }
 }

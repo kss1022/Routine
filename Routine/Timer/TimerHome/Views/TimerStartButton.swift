@@ -10,8 +10,8 @@ import UIKit
 
 class TimerStartButton: UIControl {
     
-    private var fillLayerStrokeColor: CGColor = UIColor.systemOrange.withAlphaComponent(0.6).cgColor
-    private var dashLayerStrokeColor: CGColor = UIColor.systemOrange.withAlphaComponent(0.6).cgColor
+    private var fillLayerStrokeColor: CGColor = UIColor.systemOrange.cgColor
+    private var dashLayerStrokeColor: CGColor = UIColor.systemOrange.cgColor
     
     
     private var lineWidth = 16.0
@@ -94,15 +94,13 @@ class TimerStartButton: UIControl {
         super.touchesBegan(touches, with: event)
         UIView.animate(withDuration: 0.3) {
             self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            self.alpha = 0.7
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         UIView.animate(withDuration: 0.3) {
-            self.transform = .identity
-            self.alpha = 0.7
+            self.transform = .identity            
         }
     }
     

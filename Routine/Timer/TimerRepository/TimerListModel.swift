@@ -24,16 +24,3 @@ struct TimerListModel{
     }
 
 }
-
-
-enum TimerTypeModel: String{
-    case focus
-    case section
-    
-    init(_ dto: TimerTypeDto){
-        switch dto {
-        case .focus: self = .focus
-        case .section: self = .section
-        }
-    }
-}

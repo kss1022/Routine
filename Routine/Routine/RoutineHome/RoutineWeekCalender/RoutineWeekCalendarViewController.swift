@@ -76,6 +76,17 @@ final class RoutineWeekCalendarViewController: UIViewController, RoutineWeekCale
         
         
     }
+    
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            guard let self = self else { return }
+            self.weekCalendar.reloadData()
+            self.weekCalendar.select(self.weekCalendar.selectedDate)
+        }, completion: nil)
+    }
 }
 
 

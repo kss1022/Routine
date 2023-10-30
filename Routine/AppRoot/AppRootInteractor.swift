@@ -45,9 +45,10 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
     override func didBecomeActive() {
         super.didBecomeActive()
         
-        initTimer()
-        
-        router?.attachTabs()
+        Task{
+            try? await initTimer()
+            await MainActor.run { router?.attachTabs() }
+        }                        
     }
     
     override func willResignActive() {
@@ -61,24 +62,15 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
     }
     
     
-    func initTimer(){
+    func initTimer() async throws{
         let preference = PreferenceStorage.shared
         if preference.timerSetup{
             return
         }
         
-        
-        Task{
-            do{
-                try await TimerSetup(timerApplicationService: dependency.timerApplicationService)
-                    .initTimer()
-                preference.timerSetup = true
-                Log.d("Setup Timer")
-            }catch{
-                Log.e("Setup Timer: \(error)")
-                fatalError()
-            }
-        }
+        try await TimerSetup(timerApplicationService: dependency.timerApplicationService)
+            .initTimer()
+        preference.timerSetup = true
     }
 }
 

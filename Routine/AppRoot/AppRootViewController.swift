@@ -20,6 +20,6 @@ final class AppRootViewController: UITabBarController, AppRootPresentable, AppRo
     
     func setViewControllers(_ viewControllers: [ViewControllable]) {
         super.setViewControllers(viewControllers.map(\.uiviewController), animated: false)
-        self.selectedIndex = 2
+        //self.selectedIndex = 2
     }
 }

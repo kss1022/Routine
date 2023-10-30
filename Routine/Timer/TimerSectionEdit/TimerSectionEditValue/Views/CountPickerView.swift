@@ -55,6 +55,7 @@ final class CountPickerView: UIControl{
     }
     
     func setCount(count: Int){
+        self.count = count
         countPickerView.selectRow(count, inComponent: 0, animated: false)
     }
     

@@ -39,7 +39,9 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         CreateRoutineBuilder(dependency: self)
     }()
     
-    private let appRootViewController: ViewControllable
+   
+    var startTimerBaseViewController: ViewControllable { rootViewController.topViewControllable }
+    private let rootViewController: ViewControllable
     
     init(
         dependency: AppRootDependency,
@@ -103,7 +105,7 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
             timerReadModel: timerReadModel
         )
          
-        self.appRootViewController = viewController
+        self.rootViewController = viewController
         super.init(dependency: dependency)
     }
     

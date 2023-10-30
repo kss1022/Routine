@@ -10,6 +10,8 @@ import Foundation
 
 // MARK: - Time extensions
 
+
+
 extension Double {
     public var millisecond: TimeInterval  { return self / 1000 }
     public var milliseconds: TimeInterval { return self / 1000 }

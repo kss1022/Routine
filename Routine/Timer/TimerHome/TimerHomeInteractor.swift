@@ -13,8 +13,8 @@ protocol TimerHomeRouting: ViewableRouting {
     func attachCreateTimer()
     func detachCreateTimer()
     
-    func attachTimerSection()
-    func detachTimerSection()
+    func attachStartTimer(timerId: UUID)
+    func detachStartTimer()
     
     func attachSelectTimer()
     func detachSelectTimer()
@@ -47,8 +47,9 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
     
     
-    //private var isCreate: Bool
-    private var isDetail: Bool
+    private var isCreate: Bool
+    private var isStart: Bool
+    private var isSelect: Bool
     
     // in constructor.
     init(
@@ -58,8 +59,9 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         self.dependency = dependency
         self.cancellables = .init()
         self.presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
-        //self.isCreate = false
-        self.isDetail = false
+        self.isCreate = false
+        self.isStart = false
+        self.isSelect = false
         super.init(presenter: presenter)
         presenter.listener = self
         self.presentationDelegateProxy.delegate = self
@@ -67,6 +69,8 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
 
     override func didBecomeActive() {
         super.didBecomeActive()   
+        
+        Log.v("Timer Home DidBecome Active ⏰")
         
         Task{
             try? await dependency.timerRepository.fetchLists()
@@ -107,39 +111,36 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
     
     //MARK: CreateTimer
     func creatTimerBarButtonDidTap() {
-        //isCreate = true
-        //router?.attachCreateTimer()
+        isCreate = true
+        router?.attachCreateTimer()
     }
     
     func createTimerDismiss() {
-        //isCreate = false
-        //router?.detachCreateTimer()
+        isCreate = false
+        router?.detachCreateTimer()
     }
     
-    //MARK: TimerDetail
+    //MARK: StartTimer
     func startTimerButtonDidTap() {
-        Task{ [weak self] in
-            guard let self = self else { return }
-            do{
-                try await self.dependency.timerRepository.fetchDetail(timerId: UUID(uuidString: PreferenceStorage.shared.timerId)!)
-                await MainActor.run { [weak self] in
-                    guard let self = self else { return }
-                    self.isDetail = true
-                    self.router?.attachTimerSection()
-                }
-            }catch{
-                Log.e("\(error)")
-            }
-        }
+        let timerId = UUID(uuidString: PreferenceStorage.shared.timerId)!
+        self.isStart = true
+        self.router?.attachStartTimer(timerId: timerId)
+    }
+    
+    func startTimerDidClose() {
+        self.isStart = false
+        router?.detachStartTimer()
     }
     
     // MARK: SelectTimer
     func currentTimerButtonDidTap() {
+        self.isSelect = true
         router?.attachSelectTimer()
     }
     
     func timerDetailDidTapClose() {
-        router?.detachTimerSection()
+        self.isSelect = false
+        router?.detachStartTimer()
     }
     
     func timerSelectDidSelectItem(timerId: UUID) {
@@ -157,23 +158,31 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
             self.presenter.setTimer(name: currentTimer.name, time: time)
         }
         
+        self.isSelect = true
         router?.detachSelectTimer()
     }
         
     
     func presentationControllerDidDismiss() {
-//        if isCreate{
-//            isCreate = false
-//            router?.detachCreateTimer()
-//        }else{
-//            router?.detachTimerSection()
-//        }
-        if isDetail{
-            isDetail = false
-            router?.detachTimerSection()
-        }else{
-            router?.detachSelectTimer()
+
+        if isCreate{
+            isCreate = false
+            router?.detachCreateTimer()
+            return
         }
+        
+        if isStart{
+            isStart = false
+            router?.detachStartTimer()
+            return
+        }
+        
+        if isSelect{
+            isSelect = false
+            router?.detachSelectTimer()
+            return
+        }
+        
     }
     
 

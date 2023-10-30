@@ -27,7 +27,6 @@ final class TouchesRoundButton : TouchesButton{
     
     private func setView(){
         self.setTitleColor(.white, for: .normal)
-        self.backgroundColor = .systemOrange.withAlphaComponent(0.6)
         
         self.contentEdgeInsets = .init(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     }

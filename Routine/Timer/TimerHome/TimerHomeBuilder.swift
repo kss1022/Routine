@@ -9,13 +9,16 @@ import ModernRIBs
 
 protocol TimerHomeDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
-    var timerRepository: TimerRepository{ get }    
+    var timerRepository: TimerRepository{ get }
+    
+    var startTimerBaseViewController: ViewControllable{ get }
 }
 
-final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, TimerSectionDependency, TimerSelectDependency, TimerHomeInteractorDependency {
-    
+final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, StartTimerDependency, TimerSelectDependency, TimerHomeInteractorDependency {
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
+    
+    var startTimerBaseViewController: ViewControllable{ dependency.startTimerBaseViewController }
 }
 
 // MARK: - Builder
@@ -38,14 +41,14 @@ final class TimerHomeBuilder: Builder<TimerHomeDependency>, TimerHomeBuildable {
 
         
         let createTimerBuilder = CreateTimerBuilder(dependency: component)
-        let timerSectionBuilder = TimerSectionBuilder(dependency: component)
+        let startTimerBuilder = StartTimerBuilder(dependency: component)
         let timerSelectBuilder = TimerSelectBuilder(dependency: component)
         
         return TimerHomeRouter(
             interactor: interactor,
             viewController: viewController,
             creatTimerBuildable: createTimerBuilder,
-            timerSectionBuildable: timerSectionBuilder,
+            startTimerBuildable: startTimerBuilder,
             timerSelectBuildable: timerSelectBuilder
         )
     }

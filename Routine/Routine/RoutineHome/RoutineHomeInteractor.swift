@@ -68,7 +68,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     
     override func didBecomeActive() {
         super.didBecomeActive()
-        Log.v("Home DidBecome Active💪")
+        Log.v("Routine Home DidBecome Active ✅")
         router?.attachRoutineWeekCalendar()
         router?.attachRoutineList()
     }

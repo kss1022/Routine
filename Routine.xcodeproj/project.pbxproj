@@ -12,7 +12,7 @@
 		8703F56F2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8703F56E2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift */; };
 		8709DEDF2AE8EF020077FBD3 /* TimerStartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709DEDE2AE8EF020077FBD3 /* TimerStartButton.swift */; };
 		8709DEE52AE8FCA00077FBD3 /* TouchesRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709DEE42AE8FCA00077FBD3 /* TouchesRoundButton.swift */; };
-		8709DEE72AE8FE180077FBD3 /* TimerRullerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709DEE62AE8FE180077FBD3 /* TimerRullerView.swift */; };
+		8709DEE72AE8FE180077FBD3 /* RullerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709DEE62AE8FE180077FBD3 /* RullerView.swift */; };
 		870B571E2AE11999006579CE /* TimerApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B571D2AE11999006579CE /* TimerApplicationService.swift */; };
 		870B57212AE119BE006579CE /* CreateSectionTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B57202AE119BE006579CE /* CreateSectionTimer.swift */; };
 		870B57242AE119EB006579CE /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B57232AE119EB006579CE /* TimerFactory.swift */; };
@@ -58,11 +58,11 @@
 		8713C7912ADF9A9A007CDD33 /* TimerSectionEditValueInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C78D2ADF9A9A007CDD33 /* TimerSectionEditValueInteractor.swift */; };
 		8713C7942ADF9E29007CDD33 /* Double+TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C7932ADF9E29007CDD33 /* Double+TimeInterval.swift */; };
 		8713C7982ADF9E7A007CDD33 /* BaseTimerImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C7972ADF9E7A007CDD33 /* BaseTimerImp.swift */; };
-		8713C79D2ADFB779007CDD33 /* TimerSectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C7992ADFB779007CDD33 /* TimerSectionRouter.swift */; };
-		8713C79E2ADFB779007CDD33 /* TimerSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C79A2ADFB779007CDD33 /* TimerSectionViewController.swift */; };
-		8713C79F2ADFB779007CDD33 /* TimerSectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C79B2ADFB779007CDD33 /* TimerSectionBuilder.swift */; };
-		8713C7A02ADFB779007CDD33 /* TimerSectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C79C2ADFB779007CDD33 /* TimerSectionInteractor.swift */; };
-		8713C7A32ADFC3E9007CDD33 /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C7A22ADFC3E9007CDD33 /* CircularTimerView.swift */; };
+		8713C79D2ADFB779007CDD33 /* SectionTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C7992ADFB779007CDD33 /* SectionTimerRouter.swift */; };
+		8713C79E2ADFB779007CDD33 /* SectionTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C79A2ADFB779007CDD33 /* SectionTimerViewController.swift */; };
+		8713C79F2ADFB779007CDD33 /* SectionTimerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C79B2ADFB779007CDD33 /* SectionTimerBuilder.swift */; };
+		8713C7A02ADFB779007CDD33 /* SectionTimerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C79C2ADFB779007CDD33 /* SectionTimerInteractor.swift */; };
+		8713C7A32ADFC3E9007CDD33 /* RoundTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713C7A22ADFC3E9007CDD33 /* RoundTimerView.swift */; };
 		8713D4FA2ADF778100735913 /* CreateTimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713D4F92ADF778100735913 /* CreateTimerModel.swift */; };
 		8713D4FF2ADF7C0300735913 /* AddTimerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713D4FE2ADF7C0300735913 /* AddTimerType.swift */; };
 		8713D50C2ADF7D6C00735913 /* TimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713D50B2ADF7D6C00735913 /* TimerRepository.swift */; };
@@ -70,6 +70,16 @@
 		8713D5102ADF83B400735913 /* TimerSectionValueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713D50F2ADF83B400735913 /* TimerSectionValueModel.swift */; };
 		87157C922AE69C31002C8003 /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87157C912AE69C31002C8003 /* CustomTimer.swift */; };
 		87157C992AE6E5CE002C8003 /* AppTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87157C982AE6E5CE002C8003 /* AppTimer.swift */; };
+		871961E82AEBB3D600E17417 /* RullerFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871961E72AEBB3D600E17417 /* RullerFooterCell.swift */; };
+		871961EA2AEBB3E300E17417 /* RulerHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871961E92AEBB3E300E17417 /* RulerHeaderCell.swift */; };
+		871961EC2AEBB3E900E17417 /* RullerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871961EB2AEBB3E900E17417 /* RullerCell.swift */; };
+		871961F62AEBB4A900E17417 /* RullerCursorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871961F52AEBB4A900E17417 /* RullerCursorView.swift */; };
+		871961FD2AEBB6AA00E17417 /* FocusTimePickerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871961F92AEBB6AA00E17417 /* FocusTimePickerRouter.swift */; };
+		871961FE2AEBB6AA00E17417 /* FocusTimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871961FA2AEBB6AA00E17417 /* FocusTimePickerViewController.swift */; };
+		871961FF2AEBB6AA00E17417 /* FocusTimePickerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871961FB2AEBB6AA00E17417 /* FocusTimePickerBuilder.swift */; };
+		871962002AEBB6AA00E17417 /* FocusTimePickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871961FC2AEBB6AA00E17417 /* FocusTimePickerInteractor.swift */; };
+		871962022AEBDF2200E17417 /* Formatter+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871962012AEBDF2200E17417 /* Formatter+Timer.swift */; };
+		871962042AEBE63600E17417 /* UIDevice+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871962032AEBE63600E17417 /* UIDevice+Utils.swift */; };
 		871D0FB92ADD04060080DEAC /* ReminderReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0FB82ADD04060080DEAC /* ReminderReadModel.swift */; };
 		871D0FBB2ADD05440080DEAC /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0FBA2ADD05440080DEAC /* RecordModel.swift */; };
 		871E69DF2ADE7F580051F978 /* AddYourTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E69DB2ADE7F580051F978 /* AddYourTimerRouter.swift */; };
@@ -144,6 +154,8 @@
 		8751F0B62AC7F79D000462EC /* RoutineEmojiIconBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0B22AC7F79D000462EC /* RoutineEmojiIconBuilder.swift */; };
 		8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751F0B32AC7F79D000462EC /* RoutineEmojiIconInteractor.swift */; };
 		8754D2AB2AC2F6EF00440385 /* BottomLiseTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */; };
+		875874D62AECF16A00E03F4F /* TimerCountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875874D52AECF16A00E03F4F /* TimerCountInfoView.swift */; };
+		875874D82AECF3FC00E03F4F /* TimerCountInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875874D72AECF3FC00E03F4F /* TimerCountInfoViewModel.swift */; };
 		87615D712AD83495008E983D /* RoutineBasicInfoFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87615D702AD83495008E983D /* RoutineBasicInfoFormatter.swift */; };
 		876662E52AEA09C300390D48 /* PreferenceKeys+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876662E42AEA09C300390D48 /* PreferenceKeys+Timer.swift */; };
 		8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5E72ABC35AE00CB35EC /* CheckList.swift */; };
@@ -277,18 +289,29 @@
 		879D825F2AE2697400F1348E /* TimerSectionValueDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879D825E2AE2697400F1348E /* TimerSectionValueDto.swift */; };
 		879D82622AE26AFE00F1348E /* TimerSectionListDto+SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879D82612AE26AFE00F1348E /* TimerSectionListDto+SQL.swift */; };
 		87AAE64F2ADFFABA000A7D4F /* AppTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE64E2ADFFABA000A7D4F /* AppTimerManager.swift */; };
-		87AAE6552AE006EB000A7D4F /* CircularTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6512AE006EB000A7D4F /* CircularTimerRouter.swift */; };
-		87AAE6562AE006EB000A7D4F /* CircularTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6522AE006EB000A7D4F /* CircularTimerViewController.swift */; };
-		87AAE6572AE006EB000A7D4F /* CircularTimerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6532AE006EB000A7D4F /* CircularTimerBuilder.swift */; };
-		87AAE6582AE006EB000A7D4F /* CircularTimerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6542AE006EB000A7D4F /* CircularTimerInteractor.swift */; };
+		87AAE6552AE006EB000A7D4F /* SectionRoundTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6512AE006EB000A7D4F /* SectionRoundTimerRouter.swift */; };
+		87AAE6562AE006EB000A7D4F /* SectionRoundTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6522AE006EB000A7D4F /* SectionRoundTimerViewController.swift */; };
+		87AAE6572AE006EB000A7D4F /* SectionRoundTimerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6532AE006EB000A7D4F /* SectionRoundTimerBuilder.swift */; };
+		87AAE6582AE006EB000A7D4F /* SectionRoundTimerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6542AE006EB000A7D4F /* SectionRoundTimerInteractor.swift */; };
 		87AAE65E2AE00B47000A7D4F /* TimerNextSectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE65A2AE00B47000A7D4F /* TimerNextSectionRouter.swift */; };
 		87AAE65F2AE00B47000A7D4F /* TimerNextSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE65B2AE00B47000A7D4F /* TimerNextSectionViewController.swift */; };
 		87AAE6602AE00B47000A7D4F /* TimerNextSectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE65C2AE00B47000A7D4F /* TimerNextSectionBuilder.swift */; };
 		87AAE6612AE00B47000A7D4F /* TimerNextSectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE65D2AE00B47000A7D4F /* TimerNextSectionInteractor.swift */; };
-		87AAE6632AE00B58000A7D4F /* TimerNextSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6622AE00B58000A7D4F /* TimerNextSectionView.swift */; };
 		87AAE6662AE00FB0000A7D4F /* TimerNextSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6652AE00FB0000A7D4F /* TimerNextSectionModel.swift */; };
 		87AAE66A2AE011A8000A7D4F /* TimerListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE6692AE011A8000A7D4F /* TimerListModel.swift */; };
-		87AAE66E2AE01A1C000A7D4F /* CircularTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE66D2AE01A1C000A7D4F /* CircularTimerViewModel.swift */; };
+		87AAE66E2AE01A1C000A7D4F /* RoundTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AAE66D2AE01A1C000A7D4F /* RoundTimerViewModel.swift */; };
+		87AB91202AEB6EBB0051FB9F /* TimerTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB911F2AEB6EBB0051FB9F /* TimerTypeModel.swift */; };
+		87AB912F2AEB901B0051FB9F /* FocusTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB912B2AEB901B0051FB9F /* FocusTimerRouter.swift */; };
+		87AB91302AEB901B0051FB9F /* FocusTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB912C2AEB901B0051FB9F /* FocusTimerViewController.swift */; };
+		87AB91312AEB901B0051FB9F /* FocusTimerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB912D2AEB901B0051FB9F /* FocusTimerBuilder.swift */; };
+		87AB91322AEB901B0051FB9F /* FocusTimerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB912E2AEB901B0051FB9F /* FocusTimerInteractor.swift */; };
+		87AB91372AEB90640051FB9F /* FocusRoundTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB91332AEB90640051FB9F /* FocusRoundTimerRouter.swift */; };
+		87AB91382AEB90640051FB9F /* FocusRoundTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB91342AEB90640051FB9F /* FocusRoundTimerViewController.swift */; };
+		87AB91392AEB90640051FB9F /* FocusRoundTimerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB91352AEB90640051FB9F /* FocusRoundTimerBuilder.swift */; };
+		87AB913A2AEB90640051FB9F /* FocusRoundTimerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB91362AEB90640051FB9F /* FocusRoundTimerInteractor.swift */; };
+		87AB913C2AEB931A0051FB9F /* TimerFocusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB913B2AEB931A0051FB9F /* TimerFocusModel.swift */; };
+		87AB913E2AEB934C0051FB9F /* AppFocusTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB913D2AEB934C0051FB9F /* AppFocusTimer.swift */; };
+		87AB91412AEB958D0051FB9F /* TimeInterval+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB91402AEB958D0051FB9F /* TimeInterval+Utils.swift */; };
 		87AD2D582AD6B44D00B0E2CF /* RepeatWeeklyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D572AD6B44D00B0E2CF /* RepeatWeeklyViewModel.swift */; };
 		87AD2D5A2AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D592AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift */; };
 		87AD2D5F2AD6D26D00B0E2CF /* RecordApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D5E2AD6D26D00B0E2CF /* RecordApplicationService.swift */; };
@@ -315,6 +338,9 @@
 		87B3789E2AEA79E5006F8C22 /* TimerSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B3789A2AEA79E5006F8C22 /* TimerSelectViewController.swift */; };
 		87B3789F2AEA79E5006F8C22 /* TimerSelectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B3789B2AEA79E5006F8C22 /* TimerSelectBuilder.swift */; };
 		87B378A02AEA79E5006F8C22 /* TimerSelectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B3789C2AEA79E5006F8C22 /* TimerSelectInteractor.swift */; };
+		87B378A72AEA8F05006F8C22 /* StartTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A42AEA8F05006F8C22 /* StartTimerRouter.swift */; };
+		87B378A82AEA8F05006F8C22 /* StartTimerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A52AEA8F05006F8C22 /* StartTimerBuilder.swift */; };
+		87B378A92AEA8F05006F8C22 /* StartTimerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A62AEA8F05006F8C22 /* StartTimerInteractor.swift */; };
 		87C815382AD3DBDA0062BEDF /* RoutineEditRepeatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C815342AD3DBDA0062BEDF /* RoutineEditRepeatRouter.swift */; };
 		87C815392AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C815352AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift */; };
 		87C8153A2AD3DBDA0062BEDF /* RoutineEditRepeatBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C815362AD3DBDA0062BEDF /* RoutineEditRepeatBuilder.swift */; };
@@ -396,7 +422,7 @@
 		8703F56E2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRepeatControlButton.swift; sourceTree = "<group>"; };
 		8709DEDE2AE8EF020077FBD3 /* TimerStartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartButton.swift; sourceTree = "<group>"; };
 		8709DEE42AE8FCA00077FBD3 /* TouchesRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchesRoundButton.swift; sourceTree = "<group>"; };
-		8709DEE62AE8FE180077FBD3 /* TimerRullerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRullerView.swift; sourceTree = "<group>"; };
+		8709DEE62AE8FE180077FBD3 /* RullerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RullerView.swift; sourceTree = "<group>"; };
 		870B571D2AE11999006579CE /* TimerApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApplicationService.swift; sourceTree = "<group>"; };
 		870B57202AE119BE006579CE /* CreateSectionTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSectionTimer.swift; sourceTree = "<group>"; };
 		870B57232AE119EB006579CE /* TimerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFactory.swift; sourceTree = "<group>"; };
@@ -442,11 +468,11 @@
 		8713C78D2ADF9A9A007CDD33 /* TimerSectionEditValueInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionEditValueInteractor.swift; sourceTree = "<group>"; };
 		8713C7932ADF9E29007CDD33 /* Double+TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+TimeInterval.swift"; sourceTree = "<group>"; };
 		8713C7972ADF9E7A007CDD33 /* BaseTimerImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTimerImp.swift; sourceTree = "<group>"; };
-		8713C7992ADFB779007CDD33 /* TimerSectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionRouter.swift; sourceTree = "<group>"; };
-		8713C79A2ADFB779007CDD33 /* TimerSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionViewController.swift; sourceTree = "<group>"; };
-		8713C79B2ADFB779007CDD33 /* TimerSectionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionBuilder.swift; sourceTree = "<group>"; };
-		8713C79C2ADFB779007CDD33 /* TimerSectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionInteractor.swift; sourceTree = "<group>"; };
-		8713C7A22ADFC3E9007CDD33 /* CircularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerView.swift; sourceTree = "<group>"; };
+		8713C7992ADFB779007CDD33 /* SectionTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTimerRouter.swift; sourceTree = "<group>"; };
+		8713C79A2ADFB779007CDD33 /* SectionTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTimerViewController.swift; sourceTree = "<group>"; };
+		8713C79B2ADFB779007CDD33 /* SectionTimerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTimerBuilder.swift; sourceTree = "<group>"; };
+		8713C79C2ADFB779007CDD33 /* SectionTimerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTimerInteractor.swift; sourceTree = "<group>"; };
+		8713C7A22ADFC3E9007CDD33 /* RoundTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTimerView.swift; sourceTree = "<group>"; };
 		8713D4F92ADF778100735913 /* CreateTimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimerModel.swift; sourceTree = "<group>"; };
 		8713D4FE2ADF7C0300735913 /* AddTimerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerType.swift; sourceTree = "<group>"; };
 		8713D50B2ADF7D6C00735913 /* TimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRepository.swift; sourceTree = "<group>"; };
@@ -454,6 +480,16 @@
 		8713D50F2ADF83B400735913 /* TimerSectionValueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionValueModel.swift; sourceTree = "<group>"; };
 		87157C912AE69C31002C8003 /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		87157C982AE6E5CE002C8003 /* AppTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTimer.swift; sourceTree = "<group>"; };
+		871961E72AEBB3D600E17417 /* RullerFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RullerFooterCell.swift; sourceTree = "<group>"; };
+		871961E92AEBB3E300E17417 /* RulerHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulerHeaderCell.swift; sourceTree = "<group>"; };
+		871961EB2AEBB3E900E17417 /* RullerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RullerCell.swift; sourceTree = "<group>"; };
+		871961F52AEBB4A900E17417 /* RullerCursorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RullerCursorView.swift; sourceTree = "<group>"; };
+		871961F92AEBB6AA00E17417 /* FocusTimePickerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimePickerRouter.swift; sourceTree = "<group>"; };
+		871961FA2AEBB6AA00E17417 /* FocusTimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimePickerViewController.swift; sourceTree = "<group>"; };
+		871961FB2AEBB6AA00E17417 /* FocusTimePickerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimePickerBuilder.swift; sourceTree = "<group>"; };
+		871961FC2AEBB6AA00E17417 /* FocusTimePickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimePickerInteractor.swift; sourceTree = "<group>"; };
+		871962012AEBDF2200E17417 /* Formatter+Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+Timer.swift"; sourceTree = "<group>"; };
+		871962032AEBE63600E17417 /* UIDevice+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Utils.swift"; sourceTree = "<group>"; };
 		871D0FB82ADD04060080DEAC /* ReminderReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderReadModel.swift; sourceTree = "<group>"; };
 		871D0FBA2ADD05440080DEAC /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
 		871E69DB2ADE7F580051F978 /* AddYourTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourTimerRouter.swift; sourceTree = "<group>"; };
@@ -528,6 +564,8 @@
 		8751F0B22AC7F79D000462EC /* RoutineEmojiIconBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmojiIconBuilder.swift; sourceTree = "<group>"; };
 		8751F0B32AC7F79D000462EC /* RoutineEmojiIconInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmojiIconInteractor.swift; sourceTree = "<group>"; };
 		8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomLiseTextFeild.swift; sourceTree = "<group>"; };
+		875874D52AECF16A00E03F4F /* TimerCountInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountInfoView.swift; sourceTree = "<group>"; };
+		875874D72AECF3FC00E03F4F /* TimerCountInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountInfoViewModel.swift; sourceTree = "<group>"; };
 		87615D702AD83495008E983D /* RoutineBasicInfoFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineBasicInfoFormatter.swift; sourceTree = "<group>"; };
 		876662E42AEA09C300390D48 /* PreferenceKeys+Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferenceKeys+Timer.swift"; sourceTree = "<group>"; };
 		8768E5E72ABC35AE00CB35EC /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
@@ -653,18 +691,29 @@
 		879D825E2AE2697400F1348E /* TimerSectionValueDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionValueDto.swift; sourceTree = "<group>"; };
 		879D82612AE26AFE00F1348E /* TimerSectionListDto+SQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerSectionListDto+SQL.swift"; sourceTree = "<group>"; };
 		87AAE64E2ADFFABA000A7D4F /* AppTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTimerManager.swift; sourceTree = "<group>"; };
-		87AAE6512AE006EB000A7D4F /* CircularTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerRouter.swift; sourceTree = "<group>"; };
-		87AAE6522AE006EB000A7D4F /* CircularTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerViewController.swift; sourceTree = "<group>"; };
-		87AAE6532AE006EB000A7D4F /* CircularTimerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerBuilder.swift; sourceTree = "<group>"; };
-		87AAE6542AE006EB000A7D4F /* CircularTimerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerInteractor.swift; sourceTree = "<group>"; };
+		87AAE6512AE006EB000A7D4F /* SectionRoundTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRoundTimerRouter.swift; sourceTree = "<group>"; };
+		87AAE6522AE006EB000A7D4F /* SectionRoundTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRoundTimerViewController.swift; sourceTree = "<group>"; };
+		87AAE6532AE006EB000A7D4F /* SectionRoundTimerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRoundTimerBuilder.swift; sourceTree = "<group>"; };
+		87AAE6542AE006EB000A7D4F /* SectionRoundTimerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRoundTimerInteractor.swift; sourceTree = "<group>"; };
 		87AAE65A2AE00B47000A7D4F /* TimerNextSectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNextSectionRouter.swift; sourceTree = "<group>"; };
 		87AAE65B2AE00B47000A7D4F /* TimerNextSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNextSectionViewController.swift; sourceTree = "<group>"; };
 		87AAE65C2AE00B47000A7D4F /* TimerNextSectionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNextSectionBuilder.swift; sourceTree = "<group>"; };
 		87AAE65D2AE00B47000A7D4F /* TimerNextSectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNextSectionInteractor.swift; sourceTree = "<group>"; };
-		87AAE6622AE00B58000A7D4F /* TimerNextSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNextSectionView.swift; sourceTree = "<group>"; };
 		87AAE6652AE00FB0000A7D4F /* TimerNextSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNextSectionModel.swift; sourceTree = "<group>"; };
 		87AAE6692AE011A8000A7D4F /* TimerListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerListModel.swift; sourceTree = "<group>"; };
-		87AAE66D2AE01A1C000A7D4F /* CircularTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerViewModel.swift; sourceTree = "<group>"; };
+		87AAE66D2AE01A1C000A7D4F /* RoundTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTimerViewModel.swift; sourceTree = "<group>"; };
+		87AB911F2AEB6EBB0051FB9F /* TimerTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTypeModel.swift; sourceTree = "<group>"; };
+		87AB912B2AEB901B0051FB9F /* FocusTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerRouter.swift; sourceTree = "<group>"; };
+		87AB912C2AEB901B0051FB9F /* FocusTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerViewController.swift; sourceTree = "<group>"; };
+		87AB912D2AEB901B0051FB9F /* FocusTimerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerBuilder.swift; sourceTree = "<group>"; };
+		87AB912E2AEB901B0051FB9F /* FocusTimerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusTimerInteractor.swift; sourceTree = "<group>"; };
+		87AB91332AEB90640051FB9F /* FocusRoundTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusRoundTimerRouter.swift; sourceTree = "<group>"; };
+		87AB91342AEB90640051FB9F /* FocusRoundTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusRoundTimerViewController.swift; sourceTree = "<group>"; };
+		87AB91352AEB90640051FB9F /* FocusRoundTimerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusRoundTimerBuilder.swift; sourceTree = "<group>"; };
+		87AB91362AEB90640051FB9F /* FocusRoundTimerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusRoundTimerInteractor.swift; sourceTree = "<group>"; };
+		87AB913B2AEB931A0051FB9F /* TimerFocusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFocusModel.swift; sourceTree = "<group>"; };
+		87AB913D2AEB934C0051FB9F /* AppFocusTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFocusTimer.swift; sourceTree = "<group>"; };
+		87AB91402AEB958D0051FB9F /* TimeInterval+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Utils.swift"; sourceTree = "<group>"; };
 		87AD2D572AD6B44D00B0E2CF /* RepeatWeeklyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatWeeklyViewModel.swift; sourceTree = "<group>"; };
 		87AD2D592AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatMonthlyViewModel.swift; sourceTree = "<group>"; };
 		87AD2D5E2AD6D26D00B0E2CF /* RecordApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordApplicationService.swift; sourceTree = "<group>"; };
@@ -691,6 +740,9 @@
 		87B3789A2AEA79E5006F8C22 /* TimerSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSelectViewController.swift; sourceTree = "<group>"; };
 		87B3789B2AEA79E5006F8C22 /* TimerSelectBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSelectBuilder.swift; sourceTree = "<group>"; };
 		87B3789C2AEA79E5006F8C22 /* TimerSelectInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSelectInteractor.swift; sourceTree = "<group>"; };
+		87B378A42AEA8F05006F8C22 /* StartTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerRouter.swift; sourceTree = "<group>"; };
+		87B378A52AEA8F05006F8C22 /* StartTimerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerBuilder.swift; sourceTree = "<group>"; };
+		87B378A62AEA8F05006F8C22 /* StartTimerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerInteractor.swift; sourceTree = "<group>"; };
 		87C815342AD3DBDA0062BEDF /* RoutineEditRepeatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditRepeatRouter.swift; sourceTree = "<group>"; };
 		87C815352AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditRepeatViewController.swift; sourceTree = "<group>"; };
 		87C815362AD3DBDA0062BEDF /* RoutineEditRepeatBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditRepeatBuilder.swift; sourceTree = "<group>"; };
@@ -791,7 +843,6 @@
 			isa = PBXGroup;
 			children = (
 				8709DEDE2AE8EF020077FBD3 /* TimerStartButton.swift */,
-				8709DEE62AE8FE180077FBD3 /* TimerRullerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -962,18 +1013,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		8713C7922ADF9BC7007CDD33 /* TimerSection */ = {
+		8713C7922ADF9BC7007CDD33 /* SectionTimer */ = {
 			isa = PBXGroup;
 			children = (
 				874FED4D2AE7CF62000E3791 /* TimerRemain */,
-				87AAE6502AE006CA000A7D4F /* CircularTimer */,
+				87AAE6502AE006CA000A7D4F /* SectionRoundTimer */,
 				87AAE6592AE00B2E000A7D4F /* TimerNextSection */,
-				8713C79B2ADFB779007CDD33 /* TimerSectionBuilder.swift */,
-				8713C7992ADFB779007CDD33 /* TimerSectionRouter.swift */,
-				8713C79C2ADFB779007CDD33 /* TimerSectionInteractor.swift */,
-				8713C79A2ADFB779007CDD33 /* TimerSectionViewController.swift */,
+				8713C79B2ADFB779007CDD33 /* SectionTimerBuilder.swift */,
+				8713C7992ADFB779007CDD33 /* SectionTimerRouter.swift */,
+				8713C79C2ADFB779007CDD33 /* SectionTimerInteractor.swift */,
+				8713C79A2ADFB779007CDD33 /* SectionTimerViewController.swift */,
 			);
-			path = TimerSection;
+			path = SectionTimer;
 			sourceTree = "<group>";
 		};
 		8713C7952ADF9E2D007CDD33 /* Notification */ = {
@@ -992,9 +1043,11 @@
 				87AAE64E2ADFFABA000A7D4F /* AppTimerManager.swift */,
 				8792CC932AE794AA0024CFC2 /* AppTimerState.swift */,
 				87157C982AE6E5CE002C8003 /* AppTimer.swift */,
+				87AB913D2AEB934C0051FB9F /* AppFocusTimer.swift */,
 				8713C7972ADF9E7A007CDD33 /* BaseTimerImp.swift */,
 				87157C912AE69C31002C8003 /* CustomTimer.swift */,
 				8713C7932ADF9E29007CDD33 /* Double+TimeInterval.swift */,
+				87AB91402AEB958D0051FB9F /* TimeInterval+Utils.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -1002,8 +1055,8 @@
 		8713C7A12ADFBC3C007CDD33 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				87AAE66D2AE01A1C000A7D4F /* CircularTimerViewModel.swift */,
-				8713C7A22ADFC3E9007CDD33 /* CircularTimerView.swift */,
+				87AAE66D2AE01A1C000A7D4F /* RoundTimerViewModel.swift */,
+				8713C7A22ADFC3E9007CDD33 /* RoundTimerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1021,12 +1074,38 @@
 			children = (
 				8713D50B2ADF7D6C00735913 /* TimerRepository.swift */,
 				87AAE6692AE011A8000A7D4F /* TimerListModel.swift */,
+				87AB911F2AEB6EBB0051FB9F /* TimerTypeModel.swift */,
+				87AB913B2AEB931A0051FB9F /* TimerFocusModel.swift */,
 				8792CC912AE768F30024CFC2 /* TimerSectionsModel.swift */,
 				8713D50D2ADF7E9800735913 /* TimerSectionListModel.swift */,
 				870B57532AE143EC006579CE /* TimerSectionTypeModel.swift */,
 				8713D50F2ADF83B400735913 /* TimerSectionValueModel.swift */,
 			);
 			path = TimerRepository;
+			sourceTree = "<group>";
+		};
+		871961E52AEBB3A500E17417 /* FocusTimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				871961FB2AEBB6AA00E17417 /* FocusTimePickerBuilder.swift */,
+				871961F92AEBB6AA00E17417 /* FocusTimePickerRouter.swift */,
+				871961FC2AEBB6AA00E17417 /* FocusTimePickerInteractor.swift */,
+				871961FA2AEBB6AA00E17417 /* FocusTimePickerViewController.swift */,
+				871961E62AEBB3AE00E17417 /* Views */,
+			);
+			path = FocusTimePicker;
+			sourceTree = "<group>";
+		};
+		871961E62AEBB3AE00E17417 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8709DEE62AE8FE180077FBD3 /* RullerView.swift */,
+				871961F52AEBB4A900E17417 /* RullerCursorView.swift */,
+				871961EB2AEBB3E900E17417 /* RullerCell.swift */,
+				871961E92AEBB3E300E17417 /* RulerHeaderCell.swift */,
+				871961E72AEBB3D600E17417 /* RullerFooterCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		871E69CA2ADE7E210051F978 /* AddYourTimer */ = {
@@ -1179,6 +1258,7 @@
 				874FED4E2AE7CF81000E3791 /* TimerRemainRouter.swift */,
 				874FED512AE7CF81000E3791 /* TimerRemainInteractor.swift */,
 				874FED4F2AE7CF81000E3791 /* TimerRemainViewController.swift */,
+				875874D42AECF15700E03F4F /* Views */,
 			);
 			path = TimerRemain;
 			sourceTree = "<group>";
@@ -1248,6 +1328,15 @@
 				8751F0B12AC7F79D000462EC /* RoutineEmojiIconViewController.swift */,
 			);
 			path = RoutineEmojiIcon;
+			sourceTree = "<group>";
+		};
+		875874D42AECF15700E03F4F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				875874D52AECF16A00E03F4F /* TimerCountInfoView.swift */,
+				875874D72AECF3FC00E03F4F /* TimerCountInfoViewModel.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8768E5E62ABC35A200CB35EC /* CheckList */ = {
@@ -1375,14 +1464,13 @@
 			children = (
 				8713D50A2ADF7D6100735913 /* TimerRepository */,
 				87AD31362ADE63B7007DB743 /* TimerHome */,
-				87B378A12AEA7FCC006F8C22 /* TimerDetail */,
-				87B378952AEA61A6006F8C22 /* TimerFocus */,
-				8713C7922ADF9BC7007CDD33 /* TimerSection */,
+				87B378A32AEA8EEC006F8C22 /* StartTimer */,
 				87B378982AEA79D7006F8C22 /* TimerSelect */,
 				87AD312D2ADE6131007DB743 /* CreateTimer */,
 				871E69CA2ADE7E210051F978 /* AddYourTimer */,
 				871E69FC2ADE8E5D0051F978 /* TimerSectionEdit */,
 				876662E42AEA09C300390D48 /* PreferenceKeys+Timer.swift */,
+				871962012AEBDF2200E17417 /* Formatter+Timer.swift */,
 				87B378962AEA6DAD006F8C22 /* TimerSetup.swift */,
 			);
 			path = Timer;
@@ -1430,6 +1518,7 @@
 				876E952D2AB2D00F00046809 /* AttributedString+Utils.swift */,
 				876E95302AB2D00F00046809 /* String+Utils.swift */,
 				8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */,
+				871962032AEBE63600E17417 /* UIDevice+Utils.swift */,
 			);
 			path = AppUtils;
 			sourceTree = "<group>";
@@ -1671,16 +1760,15 @@
 			path = TimerSection;
 			sourceTree = "<group>";
 		};
-		87AAE6502AE006CA000A7D4F /* CircularTimer */ = {
+		87AAE6502AE006CA000A7D4F /* SectionRoundTimer */ = {
 			isa = PBXGroup;
 			children = (
-				87AAE6532AE006EB000A7D4F /* CircularTimerBuilder.swift */,
-				87AAE6512AE006EB000A7D4F /* CircularTimerRouter.swift */,
-				87AAE6542AE006EB000A7D4F /* CircularTimerInteractor.swift */,
-				87AAE6522AE006EB000A7D4F /* CircularTimerViewController.swift */,
-				8713C7A12ADFBC3C007CDD33 /* Views */,
+				87AAE6532AE006EB000A7D4F /* SectionRoundTimerBuilder.swift */,
+				87AAE6512AE006EB000A7D4F /* SectionRoundTimerRouter.swift */,
+				87AAE6542AE006EB000A7D4F /* SectionRoundTimerInteractor.swift */,
+				87AAE6522AE006EB000A7D4F /* SectionRoundTimerViewController.swift */,
 			);
-			path = CircularTimer;
+			path = SectionRoundTimer;
 			sourceTree = "<group>";
 		};
 		87AAE6592AE00B2E000A7D4F /* TimerNextSection */ = {
@@ -1691,18 +1779,33 @@
 				87AAE65D2AE00B47000A7D4F /* TimerNextSectionInteractor.swift */,
 				87AAE65B2AE00B47000A7D4F /* TimerNextSectionViewController.swift */,
 				87AAE6652AE00FB0000A7D4F /* TimerNextSectionModel.swift */,
-				87AAE6642AE00FA4000A7D4F /* Views */,
+				874FED4B2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift */,
 			);
 			path = TimerNextSection;
 			sourceTree = "<group>";
 		};
-		87AAE6642AE00FA4000A7D4F /* Views */ = {
+		87AB91212AEB8D9F0051FB9F /* FocusTimer */ = {
 			isa = PBXGroup;
 			children = (
-				87AAE6622AE00B58000A7D4F /* TimerNextSectionView.swift */,
-				874FED4B2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift */,
+				87AB912A2AEB8FF00051FB9F /* FocusRoundTimer */,
+				871961E52AEBB3A500E17417 /* FocusTimePicker */,
+				87AB912D2AEB901B0051FB9F /* FocusTimerBuilder.swift */,
+				87AB912B2AEB901B0051FB9F /* FocusTimerRouter.swift */,
+				87AB912E2AEB901B0051FB9F /* FocusTimerInteractor.swift */,
+				87AB912C2AEB901B0051FB9F /* FocusTimerViewController.swift */,
 			);
-			path = Views;
+			path = FocusTimer;
+			sourceTree = "<group>";
+		};
+		87AB912A2AEB8FF00051FB9F /* FocusRoundTimer */ = {
+			isa = PBXGroup;
+			children = (
+				87AB91352AEB90640051FB9F /* FocusRoundTimerBuilder.swift */,
+				87AB91332AEB90640051FB9F /* FocusRoundTimerRouter.swift */,
+				87AB91362AEB90640051FB9F /* FocusRoundTimerInteractor.swift */,
+				87AB91342AEB90640051FB9F /* FocusRoundTimerViewController.swift */,
+			);
+			path = FocusRoundTimer;
 			sourceTree = "<group>";
 		};
 		87AD2D5C2AD6D24100B0E2CF /* Application */ = {
@@ -1788,13 +1891,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		87B378952AEA61A6006F8C22 /* TimerFocus */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TimerFocus;
-			sourceTree = "<group>";
-		};
 		87B378982AEA79D7006F8C22 /* TimerSelect */ = {
 			isa = PBXGroup;
 			children = (
@@ -1807,11 +1903,17 @@
 			path = TimerSelect;
 			sourceTree = "<group>";
 		};
-		87B378A12AEA7FCC006F8C22 /* TimerDetail */ = {
+		87B378A32AEA8EEC006F8C22 /* StartTimer */ = {
 			isa = PBXGroup;
 			children = (
+				87AB91212AEB8D9F0051FB9F /* FocusTimer */,
+				8713C7922ADF9BC7007CDD33 /* SectionTimer */,
+				87B378A52AEA8F05006F8C22 /* StartTimerBuilder.swift */,
+				87B378A42AEA8F05006F8C22 /* StartTimerRouter.swift */,
+				87B378A62AEA8F05006F8C22 /* StartTimerInteractor.swift */,
+				8713C7A12ADFBC3C007CDD33 /* Views */,
 			);
-			path = TimerDetail;
+			path = StartTimer;
 			sourceTree = "<group>";
 		};
 		87C815332AD3DBC80062BEDF /* RoutineEditRepeat */ = {
@@ -2362,6 +2464,8 @@
 				8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */,
 				8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */,
 				876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */,
+				87AB913E2AEB934C0051FB9F /* AppFocusTimer.swift in Sources */,
+				87B378A72AEA8F05006F8C22 /* StartTimerRouter.swift in Sources */,
 				871E6A052ADE9A700051F978 /* TimerSectionListInteractor.swift in Sources */,
 				878DA7A12ACE8D2D00220653 /* RoutineDeleted.swift in Sources */,
 				876E95962AB2FA5B00046809 /* ValueObject.swift in Sources */,
@@ -2381,16 +2485,18 @@
 				87AD2D632AD6D31400B0E2CF /* RecordFactory.swift in Sources */,
 				879D82482AE25B9900F1348E /* TimerSectionType.swift in Sources */,
 				8751F0AC2AC7F2FC000462EC /* RoutineTitleViewController.swift in Sources */,
-				87AAE6572AE006EB000A7D4F /* CircularTimerBuilder.swift in Sources */,
+				87AAE6572AE006EB000A7D4F /* SectionRoundTimerBuilder.swift in Sources */,
 				871E69E12ADE7F580051F978 /* AddYourTimerBuilder.swift in Sources */,
 				87D5AAE72AB83A4A00FE712C /* CDSnapshotRepository.swift in Sources */,
 				8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */,
+				875874D62AECF16A00E03F4F /* TimerCountInfoView.swift in Sources */,
 				87AD2D672AD6D34100B0E2CF /* RecordId.swift in Sources */,
 				8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */,
 				87C815442AD405E20062BEDF /* RepeatMontlyControl.swift in Sources */,
 				879D825D2AE2696B00F1348E /* TimerSectionTypeDto.swift in Sources */,
 				871E6A362ADEADD30051F978 /* TimerSectionEditRouter.swift in Sources */,
 				8751F0922AC7E776000462EC /* RoutineDetailViewController.swift in Sources */,
+				871961E82AEBB3D600E17417 /* RullerFooterCell.swift in Sources */,
 				876E94D32AB2CED800046809 /* AppRootViewController.swift in Sources */,
 				876E95032AB2CFC100046809 /* RoutineHomeBuilder.swift in Sources */,
 				874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */,
@@ -2423,6 +2529,7 @@
 				87F7FAA82AD4527500F14831 /* RepeatDoItOnceControl.swift in Sources */,
 				8749884C2AC3FCA5004DC64A /* Category.swift in Sources */,
 				87D0CAE72ACD409000FE405F /* RoutineListCell.swift in Sources */,
+				87AB913A2AEB90640051FB9F /* FocusRoundTimerInteractor.swift in Sources */,
 				87E376142AD6E43D00359850 /* RecordSQLDao.swift in Sources */,
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
 				871E6A032ADE9A700051F978 /* TimerSectionListViewController.swift in Sources */,
@@ -2442,6 +2549,7 @@
 				876E95492AB2D00F00046809 /* URLSchemeHelper.swift in Sources */,
 				871E6A042ADE9A700051F978 /* TimerSectionListBuilder.swift in Sources */,
 				871E69E22ADE7F580051F978 /* AddYourTimerInteractor.swift in Sources */,
+				871961FE2AEBB6AA00E17417 /* FocusTimePickerViewController.swift in Sources */,
 				876E955C2AB2D00F00046809 /* UIImage+Utils.swift in Sources */,
 				87AD31332ADE615B007DB743 /* CreateTimerViewController.swift in Sources */,
 				874C4DDA2AD80CCA00734491 /* RoutineBasicInfoRouter.swift in Sources */,
@@ -2454,6 +2562,7 @@
 				879D82542AE2682600F1348E /* TimerSectionListDao.swift in Sources */,
 				876E959D2AB2FBE100046809 /* CoreDataUtils.swift in Sources */,
 				876E95132AB2CFDB00046809 /* TimerHomeBuilder.swift in Sources */,
+				87AB91322AEB901B0051FB9F /* FocusTimerInteractor.swift in Sources */,
 				87AD312C2ADE592B007DB743 /* TimerListViewModel.swift in Sources */,
 				87AAE65F2AE00B47000A7D4F /* TimerNextSectionViewController.swift in Sources */,
 				87D5AAE52AB83A2200FE712C /* CDAppendOnlyStore.swift in Sources */,
@@ -2468,28 +2577,32 @@
 				87DEAADB2AD95DC700C94F0A /* RoutineEditReminderViewController.swift in Sources */,
 				87AAE6602AE00B47000A7D4F /* TimerNextSectionBuilder.swift in Sources */,
 				874CAF2F2AB45A580053E021 /* Routine.swift in Sources */,
+				87AB91302AEB901B0051FB9F /* FocusTimerViewController.swift in Sources */,
 				8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */,
 				871D0FB92ADD04060080DEAC /* ReminderReadModel.swift in Sources */,
 				87DFEC5E2AC19E2800531EE3 /* CreateRoutineRouter.swift in Sources */,
 				87AAE65E2AE00B47000A7D4F /* TimerNextSectionRouter.swift in Sources */,
 				87B3789E2AEA79E5006F8C22 /* TimerSelectViewController.swift in Sources */,
-				8713C79F2ADFB779007CDD33 /* TimerSectionBuilder.swift in Sources */,
+				8713C79F2ADFB779007CDD33 /* SectionTimerBuilder.swift in Sources */,
 				87AAE66A2AE011A8000A7D4F /* TimerListModel.swift in Sources */,
 				8713D5102ADF83B400735913 /* TimerSectionValueModel.swift in Sources */,
 				874C4DD02AD7C11100734491 /* RecordCalendarViewController.swift in Sources */,
 				878DA79C2ACE64F500220653 /* RoutineWeekCalendarBuilder.swift in Sources */,
 				870B57292AE11A17006579CE /* SectionTimerCreated.swift in Sources */,
 				8712F6572AC2E09A008A02C4 /* RoutineTintViewController.swift in Sources */,
+				87AB912F2AEB901B0051FB9F /* FocusTimerRouter.swift in Sources */,
 				8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */,
 				876E95192AB2CFE900046809 /* ProfileHomeRouter.swift in Sources */,
 				87157C922AE69C31002C8003 /* CustomTimer.swift in Sources */,
-				8713C7A32ADFC3E9007CDD33 /* CircularTimerView.swift in Sources */,
+				8713C7A32ADFC3E9007CDD33 /* RoundTimerView.swift in Sources */,
+				87AB91202AEB6EBB0051FB9F /* TimerTypeModel.swift in Sources */,
 				8709DEE52AE8FCA00077FBD3 /* TouchesRoundButton.swift in Sources */,
 				878EAD5F2ABB717E00593700 /* RoutineReadModel.swift in Sources */,
 				874C4DD22AD7C11100734491 /* RecordCalendarInteractor.swift in Sources */,
 				879D82562AE2685000F1348E /* TimerSectionListDto.swift in Sources */,
 				8713C7982ADF9E7A007CDD33 /* BaseTimerImp.swift in Sources */,
 				878DA79F2ACE8C6500220653 /* DeleteRoutine.swift in Sources */,
+				871961FF2AEBB6AA00E17417 /* FocusTimePickerBuilder.swift in Sources */,
 				878DA79A2ACE64F500220653 /* RoutineWeekCalendarRouter.swift in Sources */,
 				874988502AC40396004DC64A /* TintDto.swift in Sources */,
 				8751F0AD2AC7F2FC000462EC /* RoutineTitleBuilder.swift in Sources */,
@@ -2514,7 +2627,7 @@
 				8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */,
 				87DEAACD2AD94CD600C94F0A /* ReminderDto.swift in Sources */,
 				874C4DDD2AD80CCA00734491 /* RoutineBasicInfoInteractor.swift in Sources */,
-				8713C7A02ADFB779007CDD33 /* TimerSectionInteractor.swift in Sources */,
+				8713C7A02ADFB779007CDD33 /* SectionTimerInteractor.swift in Sources */,
 				870B574E2AE13ABB006579CE /* TimerEditTitleViewController.swift in Sources */,
 				8713C7942ADF9E29007CDD33 /* Double+TimeInterval.swift in Sources */,
 				877DF8D12AD5AB5E00F45C10 /* RepeatDao.swift in Sources */,
@@ -2537,6 +2650,7 @@
 				879D824E2AE260BC00F1348E /* TimerSectionDescription.swift in Sources */,
 				877DF8C12AD5A47B00F45C10 /* RepeatValue.swift in Sources */,
 				876E95762AB2D9B700046809 /* DDLog+Utils.swift in Sources */,
+				871961EA2AEBB3E300E17417 /* RulerHeaderCell.swift in Sources */,
 				876E95592AB2D00F00046809 /* UIScroll+Utils.swift in Sources */,
 				8751F0912AC7E776000462EC /* RoutineDetailRouter.swift in Sources */,
 				874FED522AE7CF81000E3791 /* TimerRemainRouter.swift in Sources */,
@@ -2547,7 +2661,7 @@
 				876E95942AB2FA2300046809 /* Command.swift in Sources */,
 				87DEAABD2AD9364300C94F0A /* Reminder.swift in Sources */,
 				8751F0B52AC7F79D000462EC /* RoutineEmojiIconViewController.swift in Sources */,
-				8709DEE72AE8FE180077FBD3 /* TimerRullerView.swift in Sources */,
+				8709DEE72AE8FE180077FBD3 /* RullerView.swift in Sources */,
 				87D5AAFF2AB8415D00FE712C /* AppRootComponent.swift in Sources */,
 				87D5AAEE2AB83CD100FE712C /* RoutineCreated.swift in Sources */,
 				8751F0932AC7E776000462EC /* RoutineDetailBuilder.swift in Sources */,
@@ -2559,18 +2673,21 @@
 				876E95552AB2D00F00046809 /* UIColor+Utils.swift in Sources */,
 				8768E6052ABC541000CB35EC /* CDCheckListFactory.swift in Sources */,
 				8712F6502AC2DF68008A02C4 /* AddYourRoutineInteractor.swift in Sources */,
-				87AAE6632AE00B58000A7D4F /* TimerNextSectionView.swift in Sources */,
+				871962022AEBDF2200E17417 /* Formatter+Timer.swift in Sources */,
 				876E951C2AB2CFE900046809 /* ProfileHomeInteractor.swift in Sources */,
+				87AB91392AEB90640051FB9F /* FocusRoundTimerBuilder.swift in Sources */,
 				876E94B82AB2CE3D00046809 /* EventStream.xcdatamodeld in Sources */,
 				871E6A382ADEADD30051F978 /* TimerSectionEditBuilder.swift in Sources */,
 				876E954D2AB2D00F00046809 /* Array+Utils.swift in Sources */,
 				871E69E02ADE7F580051F978 /* AddYourTimerViewController.swift in Sources */,
+				87AB91312AEB901B0051FB9F /* FocusTimerBuilder.swift in Sources */,
 				876E95012AB2CFC100046809 /* RoutineHomeRouter.swift in Sources */,
 				877DF8CD2AD5AB2A00F45C10 /* RepeatValueDto.swift in Sources */,
 				87910D112AEA112A00CAC1ED /* FocusTimer.swift in Sources */,
 				870B57312AE120D3006579CE /* CDTimerFactory.swift in Sources */,
 				8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */,
 				876E95982AB2FA6F00046809 /* Specification.swift in Sources */,
+				871961FD2AEBB6AA00E17417 /* FocusTimePickerRouter.swift in Sources */,
 				87901E9D2ABAF7B3002CA93F /* RoutineListDao.swift in Sources */,
 				876E95112AB2CFDB00046809 /* TimerHomeRouter.swift in Sources */,
 				877DF8BC2AD57A8500F45C10 /* RepeatDto.swift in Sources */,
@@ -2581,7 +2698,7 @@
 				871E6A412ADEAF490051F978 /* TimerSectionEditTitleBuilder.swift in Sources */,
 				879D82522AE2634900F1348E /* TimerSequence.swift in Sources */,
 				871D0FBB2ADD05440080DEAC /* RecordModel.swift in Sources */,
-				87AAE6562AE006EB000A7D4F /* CircularTimerViewController.swift in Sources */,
+				87AAE6562AE006EB000A7D4F /* SectionRoundTimerViewController.swift in Sources */,
 				87E3761C2AD70E8B00359850 /* RecordCompleteSet.swift in Sources */,
 				876E959B2AB2FB9400046809 /* Transaction.swift in Sources */,
 				87C815392AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift in Sources */,
@@ -2598,12 +2715,13 @@
 				879D824C2AE260B100F1348E /* TimerSectionName.swift in Sources */,
 				87DEAADF2AD95FEF00C94F0A /* ReminderDateFormatter.swift in Sources */,
 				876E955A2AB2D00F00046809 /* UIViewController+Utils.swift in Sources */,
-				87AAE6552AE006EB000A7D4F /* CircularTimerRouter.swift in Sources */,
+				87AAE6552AE006EB000A7D4F /* SectionRoundTimerRouter.swift in Sources */,
 				8713C78E2ADF9A9A007CDD33 /* TimerSectionEditValueRouter.swift in Sources */,
 				87AD2D5A2AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift in Sources */,
 				876E95672AB2D3F700046809 /* Combine+Utils.swift in Sources */,
 				87E3761E2AD70EA500359850 /* SetCompleteRecord.swift in Sources */,
 				874988622AC41F7D004DC64A /* RoutineListBuilder.swift in Sources */,
+				87AB91382AEB90640051FB9F /* FocusRoundTimerViewController.swift in Sources */,
 				8713D4FF2ADF7C0300735913 /* AddTimerType.swift in Sources */,
 				8751F09C2AC7F092000462EC /* RoutineEditTitleBuilder.swift in Sources */,
 				874FED552AE7CF81000E3791 /* TimerRemainInteractor.swift in Sources */,
@@ -2617,6 +2735,7 @@
 				87AD2D652AD6D32700B0E2CF /* Record.swift in Sources */,
 				87339E9D2AE18FD50099AA33 /* TimerSection.swift in Sources */,
 				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
+				87B378A82AEA8F05006F8C22 /* StartTimerBuilder.swift in Sources */,
 				87DEAADD2AD95DC700C94F0A /* RoutineEditReminderInteractor.swift in Sources */,
 				876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */,
 				878DA7A62ACEA11200220653 /* ZoomDismissalInteractionController.swift in Sources */,
@@ -2624,10 +2743,13 @@
 				870B57422AE12BD7006579CE /* TimerTypeDto.swift in Sources */,
 				876E95142AB2CFDB00046809 /* TimerHomeInteractor.swift in Sources */,
 				8702610D2AD7ADED00B6A4F4 /* RoutineDetailModel.swift in Sources */,
+				871961EC2AEBB3E900E17417 /* RullerCell.swift in Sources */,
+				87B378A92AEA8F05006F8C22 /* StartTimerInteractor.swift in Sources */,
 				874B91532AD55A3A0089FC6E /* RepeatValueViewModel.swift in Sources */,
 				87DEAAB92AD90D5600C94F0A /* LocalNotificationAdapter.swift in Sources */,
 				8768E5FC2ABC3D2300CB35EC /* SetCount.swift in Sources */,
 				87C815402AD3ED8E0062BEDF /* RepeatWeeklyControl.swift in Sources */,
+				871962042AEBE63600E17417 /* UIDevice+Utils.swift in Sources */,
 				870B57402AE12B7F006579CE /* TimerListDto.swift in Sources */,
 				87DEAAE42AD96FB100C94F0A /* RoutineEditReminderViewModel.swift in Sources */,
 				8751F0AB2AC7F2FC000462EC /* RoutineTitleRouter.swift in Sources */,
@@ -2635,10 +2757,10 @@
 				877DF8D32AD5ABB700F45C10 /* RepeatSQLDao.swift in Sources */,
 				87D0CAE12ACD326500FE405F /* UpdateRoutine.swift in Sources */,
 				8712F6562AC2E09A008A02C4 /* RoutineTintRouter.swift in Sources */,
-				87AAE6582AE006EB000A7D4F /* CircularTimerInteractor.swift in Sources */,
+				87AAE6582AE006EB000A7D4F /* SectionRoundTimerInteractor.swift in Sources */,
 				87E3760D2AD6E12A00359850 /* RecordDto.swift in Sources */,
 				876E954C2AB2D00F00046809 /* PreferenceStorage.swift in Sources */,
-				8713C79D2ADFB779007CDD33 /* TimerSectionRouter.swift in Sources */,
+				8713C79D2ADFB779007CDD33 /* SectionTimerRouter.swift in Sources */,
 				871E6A372ADEADD30051F978 /* TimerSectionEditViewController.swift in Sources */,
 				8713C7902ADF9A9A007CDD33 /* TimerSectionEditValueBuilder.swift in Sources */,
 				8768E5EE2ABC386500CB35EC /* Emoji.swift in Sources */,
@@ -2650,6 +2772,7 @@
 				876E951A2AB2CFE900046809 /* ProfileHomeViewController.swift in Sources */,
 				8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */,
 				876E95512AB2D00F00046809 /* String+Utils.swift in Sources */,
+				871962002AEBB6AA00E17417 /* FocusTimePickerInteractor.swift in Sources */,
 				8768E5FE2ABC3D3C00CB35EC /* Weight.swift in Sources */,
 				87901EA32ABAFDCC002CA93F /* RoutineDetailSQLDao.swift in Sources */,
 				87DEAAD12AD94D4100C94F0A /* ReminderDao.swift in Sources */,
@@ -2664,10 +2787,12 @@
 				870B572B2AE11B73006579CE /* TimerId.swift in Sources */,
 				876662E52AEA09C300390D48 /* PreferenceKeys+Timer.swift in Sources */,
 				874FED4C2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift in Sources */,
+				87AB913C2AEB931A0051FB9F /* TimerFocusModel.swift in Sources */,
 				876E95432AB2D00F00046809 /* RIBs+Utils.swift in Sources */,
 				87135AE52AC93E30006B71D5 /* RoutineEditButton.swift in Sources */,
 				876E954E2AB2D00F00046809 /* Formatter.swift in Sources */,
 				87DFEC5F2AC19E2800531EE3 /* CreateRoutineViewController.swift in Sources */,
+				87AB91372AEB90640051FB9F /* FocusRoundTimerRouter.swift in Sources */,
 				87DFEC712AC1B43C00531EE3 /* Keyboard+Utils.swift in Sources */,
 				874988632AC41F7D004DC64A /* RoutineListInteractor.swift in Sources */,
 				876E950B2AB2CFD000046809 /* RecordHomeBuilder.swift in Sources */,
@@ -2675,6 +2800,7 @@
 				87E375FF2AD6D99000359850 /* RecordService.swift in Sources */,
 				876E951B2AB2CFE900046809 /* ProfileHomeBuilder.swift in Sources */,
 				87E3761A2AD704DE00359850 /* RecordFormatter.swift in Sources */,
+				871961F62AEBB4A900E17417 /* RullerCursorView.swift in Sources */,
 				876E95022AB2CFC100046809 /* RoutineHomeViewController.swift in Sources */,
 				87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */,
 				8751F0B62AC7F79D000462EC /* RoutineEmojiIconBuilder.swift in Sources */,
@@ -2687,16 +2813,17 @@
 				870B573C2AE12B6E006579CE /* TimerReadModel.swift in Sources */,
 				871E6A392ADEADD30051F978 /* TimerSectionEditInteractor.swift in Sources */,
 				87C815422AD3EF820062BEDF /* RepeatTypeViewModel.swift in Sources */,
-				87AAE66E2AE01A1C000A7D4F /* CircularTimerViewModel.swift in Sources */,
+				87AAE66E2AE01A1C000A7D4F /* RoundTimerViewModel.swift in Sources */,
 				870B57472AE12CEC006579CE /* TimerListDto+SQL.swift in Sources */,
 				870B57542AE143EC006579CE /* TimerSectionTypeModel.swift in Sources */,
 				877DF8BF2AD5998D00F45C10 /* RepeatDto+SQL.swift in Sources */,
 				87AF46F02AD46C4800647201 /* RoutineRepeatFormaater.swift in Sources */,
 				870B57352AE12A58006579CE /* TimerUpdated.swift in Sources */,
-				8713C79E2ADFB779007CDD33 /* TimerSectionViewController.swift in Sources */,
+				8713C79E2ADFB779007CDD33 /* SectionTimerViewController.swift in Sources */,
 				870B573E2AE12B7A006579CE /* TimerListDao.swift in Sources */,
 				87E376162AD6EA1E00359850 /* RoutineHomeListModel.swift in Sources */,
 				8702610F2AD7B11A00B6A4F4 /* RoutineDetailRecordModel.swift in Sources */,
+				875874D82AECF3FC00E03F4F /* TimerCountInfoViewModel.swift in Sources */,
 				877DF8CB2AD5AB2400F45C10 /* RepeatTypeDto.swift in Sources */,
 				87D0CAD52ACD0EE600FE405F /* RoutineRepository.swift in Sources */,
 				870B57332AE129AE006579CE /* UpdateTimer.swift in Sources */,
@@ -2714,6 +2841,7 @@
 				87157C992AE6E5CE002C8003 /* AppTimer.swift in Sources */,
 				876E95582AB2D00F00046809 /* UITableView+Utils.swift in Sources */,
 				87D9EB8B2AE186ED0026F9DE /* PaddingLabel.swift in Sources */,
+				87AB91412AEB958D0051FB9F /* TimeInterval+Utils.swift in Sources */,
 				8713C7782ADF97BD007CDD33 /* CountdownPickerView.swift in Sources */,
 				870B57502AE13ABB006579CE /* TimerEditTitleInteractor.swift in Sources */,
 				8713D4FA2ADF778100735913 /* CreateTimerModel.swift in Sources */,

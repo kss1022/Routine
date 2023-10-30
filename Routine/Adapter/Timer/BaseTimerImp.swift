@@ -90,7 +90,7 @@ class BaseTimerImp: BaseTimer{
     
     func resume() {
         guard let timer = timer else {
-            Log.e("App timer: timer == nil")
+            Log.e("App timer resume: timer == nil")
             return
         }
         
@@ -110,7 +110,7 @@ class BaseTimerImp: BaseTimer{
     
     func suspend() {
         guard let timer = timer else {
-            Log.e("App timer: timer == nil")
+            Log.e("App timer suspend: timer == nil")
             return
         }
         
@@ -129,8 +129,7 @@ class BaseTimerImp: BaseTimer{
     }
     
     func cancel() {
-        guard let timer = timer else {
-            Log.e("App timer: timer == nil")
+        guard let timer = timer else {            
             return
         }
         
@@ -164,7 +163,6 @@ class BaseTimerImp: BaseTimer{
     private func newTimer() -> DispatchSourceTimer{
         let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.init(label: "kr.routine.timer"))
         timer.schedule(deadline: .now(), repeating: .milliseconds(self.interval))
-        Log.v("App timer new Timer: BackgroundTimer \(timer)")
         return timer
     }
     
@@ -182,6 +180,10 @@ class BaseTimerImp: BaseTimer{
     
     
     private func removeTimer(){
+        if timer == nil{
+            return 
+        }
+        
         timer?.setEventHandler(handler: nil)
         
         if timerState != .canceled{

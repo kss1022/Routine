@@ -10,16 +10,6 @@ import Foundation
 
 
 
-protocol AppTimerDelegate: AnyObject{
-    //func timer()
-    func timer(sectionChanged: AppTimerSectionState)
-    
-}
-
-extension AppTimerDelegate{
-    func timer(sectionChanged: AppTimerSectionState){}
-}
-
 
 struct AppTimerModel{
     let ready: TimeInterval
@@ -29,6 +19,16 @@ struct AppTimerModel{
     let cycle: Int?
     let cycleRest: TimeInterval?
     let cooldown: TimeInterval
+    
+    init(_ model: TimerSectionsModel) {
+        self.ready = model.ready.time
+        self.exercise = model.exercise.time
+        self.rest = model.rest.time
+        self.round = model.round.count
+        self.cycle = model.cycle?.count
+        self.cycleRest = model.cycleRest?.time
+        self.cooldown = model.cooldown.time
+    }
 }
 
 
@@ -146,6 +146,7 @@ class AppTimer: BaseTimerImp{
                 return cycle
             }
             
+            remainRound -= 1
             return getCooldown()
         }
         
@@ -161,6 +162,7 @@ class AppTimer: BaseTimerImp{
         }
         
         if remainCycle == 1{
+            remainCycle! -= 1
             return getCooldown()
         }
                                         
@@ -175,91 +177,3 @@ class AppTimer: BaseTimerImp{
     
 
 }
-
-
-
-
-
-//struct Round{
-//    let ready: TimeInterval
-//    let exercise: TimeInterval
-//    let rest: TimeInterval
-//    let round: Int
-//    let cooldown: TimeInterval
-//}
-//
-//
-//enum RoundState{
-//    case ready
-//    case rest
-//    case exercise
-//    case cooldown
-//}
-//
-//
-//class RoundTimer: BackgroundTimer{
-//
-//    private let round: Round
-//
-//    var roundState: RoundState
-//    var remainRound: Int
-//    public weak var delegate: AppRepeatTimerDelegate?
-//
-//    
-//    func next() -> TimeInterval?{
-//        switch roundState {
-//        case .ready:
-//            self.roundState = .exercise
-//            return round.exercise
-//        case .exercise:
-//            self.roundState = .rest
-//            return round.rest
-//        case .rest:
-//            if remainRound == 0{
-//                self.roundState = .cooldown
-//                return round.cooldown
-//            }
-//            //Repeat Round
-//            remainRound -= 1
-//            self.roundState = .exercise
-//            return round.exercise
-//        case .cooldown:
-//            return nil
-//        }
-//    }
-//    
-//    init(round: Round) {
-//        self.round = round
-//        self.remainRound = round.round
-//        self.roundState = .ready
-//        super.init(durationSeconds: round.rest)
-//    }
-//
-//    
-//    
-//    override func updateTime() {
-//        if remainDuration.value > 0{
-//            remainDurationSubject.send(remainDuration.value - 0.1)
-//        }else{
-//    
-//            cancel()
-//            guard let nextDuration = next() else{
-//                completeSubject.send(Void())
-//                return
-//            }
-//            self.totalDuration = nextDuration
-//            self.remainDurationSubject.send(nextDuration)
-//            
-//            self.start()
-//            
-//            
-//            DispatchQueue.main.sync { [weak self] in
-//                guard let self = self else { return }
-//              
-////                self.delegate?.timer(repeatingIndex: self.repeatIndex, baseIndex: nextIndex)
-//            }
-//        }
-//    }
-//}
-//
-//

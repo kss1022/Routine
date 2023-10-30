@@ -79,8 +79,8 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -92,20 +92,21 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     
     func addRoutineWeekCalendar(_ view: ViewControllable) {
         let vc = view.uiviewController
-        
-        stackView.addArrangedSubview(vc.view)        
+        addChild(vc)
+        stackView.addArrangedSubview(vc.view)
         vc.didMove(toParent: self)
     }
     
     
     func addRoutineList(_ view: ViewControllable) {
         let vc = view.uiviewController
-                        
-        stackView.addArrangedSubview(vc.view)
-        vc.didMove(toParent: self)
+        addChild(vc)
         
+        stackView.addArrangedSubview(vc.view)
         vc.view.translatesAutoresizingMaskIntoConstraints = false
         vc.view.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor).isActive = true
+        
+        vc.didMove(toParent: self)        
     }
     
     @objc

@@ -57,6 +57,8 @@ final class CountdownPickerView: UIControl{
     }
     
     func setCountDown(min: Int, sec: Int){
+        self.min = min
+        self.sec = sec
         countdownPickerView.selectRow(min, inComponent: 0, animated: false)
         countdownPickerView.selectRow(sec, inComponent: 1, animated: false)
     }
