@@ -10,7 +10,7 @@ public enum DismissButtonType {
         case .back:
             return "chevron.backward"
         case .close:
-            return "xmark"
+            return "xmark.circle"
         }
     }
 }

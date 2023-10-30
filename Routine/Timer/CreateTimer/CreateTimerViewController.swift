@@ -9,14 +9,17 @@ import ModernRIBs
 import UIKit
 
 protocol CreateTimerPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func closeButtonDidTap()
 }
 
 final class CreateTimerViewController: UIViewController, CreateTimerPresentable, CreateTimerViewControllable {
 
     weak var listener: CreateTimerPresentableListener?
+    
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
+        return closeButton
+    }()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -50,6 +53,8 @@ final class CreateTimerViewController: UIViewController, CreateTimerPresentable,
         title = "Create Your Timer"
         view.backgroundColor = .systemBackground
         
+        navigationItem.leftBarButtonItem = closeBarButtonItem
+        
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         
@@ -70,6 +75,12 @@ final class CreateTimerViewController: UIViewController, CreateTimerPresentable,
             .forEach { button in
                 stackView.addArrangedSubview(button)
             }
+    }
+    
+    
+    @objc
+    private func closeBarButtonTap(){
+        self.listener?.closeButtonDidTap()
     }
     
 }

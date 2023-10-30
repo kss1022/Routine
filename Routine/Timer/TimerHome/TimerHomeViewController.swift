@@ -11,7 +11,7 @@ import UIKit
 protocol TimerHomePresentableListener: AnyObject {
     func creatTimerBarButtonDidTap()
     func startTimerButtonDidTap()
-    func currentTimerButtonDidTap()
+    func selectTimerButtonDidTap()
 }
 
 final class TimerHomeViewController: UIViewController, TimerHomePresentable, TimerHomeViewControllable {
@@ -39,11 +39,11 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         return button
     }()
     
-    private lazy var currentTimerButton: UIButton = {
+    private lazy var selectTimerButton: UIButton = {
         let button = TouchesRoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemOrange
-        button.addTarget(self, action: #selector(currentTimerButtonTap), for: .touchUpInside)
+        button.addTarget(self, action: #selector(selectTimerButtonTap), for: .touchUpInside)
         return button
     }()
     
@@ -76,7 +76,7 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         
         
         view.addSubview(startTimerButton)
-        view.addSubview(currentTimerButton)        
+        view.addSubview(selectTimerButton)        
         
         let width = UIDevice.frame().width * 0.6
         NSLayoutConstraint.activate([
@@ -84,8 +84,8 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
             startTimerButton.widthAnchor.constraint(equalToConstant: width),
             startTimerButton.heightAnchor.constraint(equalTo: startTimerButton.widthAnchor),
             
-            currentTimerButton.topAnchor.constraint(equalTo: startTimerButton.bottomAnchor, constant: 24.0),
-            currentTimerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            selectTimerButton.topAnchor.constraint(equalTo: startTimerButton.bottomAnchor, constant: 24.0),
+            selectTimerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
         updateTransition() //handle startButton Vertical Constraint
@@ -119,7 +119,7 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
     // MARK: Presentable
     func setTimer(name: String, time: String) {
         startTimerButton.setTime(time: time)
-        currentTimerButton.setTitle(name, for: .normal)
+        selectTimerButton.setTitle(name, for: .normal)
     }
     
     
@@ -135,8 +135,8 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
     }
     
     @objc
-    private func currentTimerButtonTap(){
-        listener?.currentTimerButtonDidTap()
+    private func selectTimerButtonTap(){
+        listener?.selectTimerButtonDidTap()
     }
     
     

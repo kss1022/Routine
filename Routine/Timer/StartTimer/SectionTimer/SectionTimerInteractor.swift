@@ -60,11 +60,15 @@ final class SectionTimerInteractor: PresentableInteractor<SectionTimerPresentabl
         // TODO: Pause any business logic.
     }
     
+    
+    func closeButtonDidTap() {
+        listener?.sectionTimerDidTapClose()
+    }
+    
 
     //MARK: SectionRoundTimer
     func sectionRoundDidTapCancle() {
         listener?.sectionTimerDidTapClose()
     }
-    
 
 }

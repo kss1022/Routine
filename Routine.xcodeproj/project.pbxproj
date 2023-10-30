@@ -1055,8 +1055,8 @@
 		8713C7A12ADFBC3C007CDD33 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				87AAE66D2AE01A1C000A7D4F /* RoundTimerViewModel.swift */,
 				8713C7A22ADFC3E9007CDD33 /* RoundTimerView.swift */,
+				87AAE66D2AE01A1C000A7D4F /* RoundTimerViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

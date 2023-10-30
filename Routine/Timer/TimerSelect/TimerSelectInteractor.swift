@@ -19,6 +19,7 @@ protocol TimerSelectPresentable: Presentable {
 }
 
 protocol TimerSelectListener: AnyObject {
+    func timerSelectCloseButtonDidTap()
     func timerSelectDidSelectItem(timerId: UUID)
 }
 
@@ -63,6 +64,10 @@ final class TimerSelectInteractor: PresentableInteractor<TimerSelectPresentable>
         
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
+    }
+    
+    func closeButtonDidTap() {
+        listener?.timerSelectCloseButtonDidTap()
     }
     
     func collectionViewDidSelectItemAt(timerId: UUID) {

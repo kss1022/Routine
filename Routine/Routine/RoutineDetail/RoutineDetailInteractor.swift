@@ -25,6 +25,7 @@ protocol RoutineDetailPresentable: Presentable {
 }
 
 protocol RoutineDetailListener: AnyObject {
+    func routineDetailCloseButtonDidTap()
     func routineDetailDismiss()
 }
 
@@ -105,7 +106,10 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
     }
     
 
-    
+    func closeButtonDidTap() {
+        listener?.routineDetailCloseButtonDidTap()
+    }
+        
     func editButtonDidTap() {
         Task{ [weak self] in
             guard let self = self else { return }
@@ -118,8 +122,8 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
             }
         }
     }
-    
-    
+        
+
     func routineTitleCompleteButtonDidTap() {
         let record = dependency.routineDetailRecord.value
         let routineId = dependency.routineId
@@ -138,6 +142,12 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
         router?.detachRoutineEdit(dismiss: false)
     }
     
+    
+    //MARK: RoutineEdit
+    func routineEditCloseButtonDidTap() {
+        router?.detachRoutineEdit(dismiss: true)
+    }
+    
     func routineEditDoneButtonDidTap() {
         router?.detachRoutineEdit(dismiss: true)
     }
@@ -148,7 +158,7 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
     }
     
     
-    
+    //MARK: Private
     private func createRecord(_ command: CreateRecord){
         Task{
             do{

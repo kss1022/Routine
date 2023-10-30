@@ -11,10 +11,10 @@ import Foundation
 
 protocol RoutineHomeRouting: ViewableRouting {
     func attachCreateRoutine()
-    func detachCreateRoutine(dismiss: Bool)
+    func detachCreateRoutine()
     
     func attachRoutineDetail(routineId: UUID, recordDate: Date)
-    func detachRoutineDetail(dismiss: Bool)
+    func detachRoutineDetail()
     
     func attachRoutineWeekCalendar()
     func attachRoutineList()
@@ -40,7 +40,6 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
 
     
     let presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
-    private var presentationType : RoutineHomePresentationType
     
     weak var router: RoutineHomeRouting?
     weak var listener: RoutineHomeListener?
@@ -51,6 +50,9 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     private var list : [RoutineListDto] = []
     private var date = Date()
     
+    private var isCreate: Bool
+    private var isDetail: Bool
+    
     init(
         presenter: RoutineHomePresentable,
         dependency: RoutineHomeInteractorDependency
@@ -59,7 +61,8 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         self.cancellables = .init()
                 
         self.presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
-        presentationType  = .none
+        self.isDetail = false
+        self.isCreate = false
         super.init(presenter: presenter)
         
         presenter.listener = self
@@ -79,15 +82,15 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         
     
     func presentationControllerDidDismiss() {
-        switch presentationType {
-        case .none: break
-        case .create:
-            router?.detachCreateRoutine(dismiss: false)
-        case .detail:
-            router?.detachRoutineDetail(dismiss: false)
+        if isCreate{
+            isCreate = false
+            router?.detachCreateRoutine()
         }
         
-        presentationType = .none
+        if isDetail{
+            isDetail = false
+            router?.detachRoutineDetail()
+        }
     }
     
     //MARK: RoutineWeekCalendar
@@ -115,30 +118,26 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     }
             
     // MARK: CreateRoutine
-    func createRoutineBarButtonDidTap() {
-        presentationType = .create
+    func createRoutineBarButtonDidTap() {                
+        isCreate = true
         router?.attachCreateRoutine()
     }
 
     func createRoutineDismiss() {
-        presentationType = .none
-        router?.detachCreateRoutine(dismiss: true)
+        isCreate = false
+        router?.detachCreateRoutine()
     }
         
     
     // MARK: RoutineDetail
     func routineListDidTapRoutineDetail(routineId: UUID) {
-        if presentationType == .detail{
-            return
-        }
-        
         Task{ [weak self] in
             guard let self = self else { return }
             do{
                 try await dependency.routineRepository.fetchDetail(routineId)
                 await MainActor.run { [weak self] in
                     guard let self = self else { return }
-                    self.presentationType = .detail
+                    self.isDetail = true
                     self.router?.attachRoutineDetail(routineId: routineId, recordDate: self.date)
                 }
             }catch{
@@ -148,9 +147,14 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         }
     }
     
+    func routineDetailCloseButtonDidTap() {
+        isDetail = false
+        self.router?.detachRoutineDetail()
+    }
+    
     func routineDetailDismiss() {
-        presentationType = .none
-        self.router?.detachRoutineDetail(dismiss: true)
+        isDetail = false
+        self.router?.detachRoutineDetail()
     }
     
     
@@ -183,13 +187,5 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
             }
         }
     }
-
-    
-    private enum RoutineHomePresentationType{
-        case none
-        case create
-        case detail
-    }
-    
 }
 

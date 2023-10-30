@@ -9,6 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol TimerSelectPresentableListener: AnyObject {
+    func closeButtonDidTap()
     func collectionViewDidSelectItemAt(timerId: UUID)
 }
 
@@ -17,6 +18,11 @@ final class TimerSelectViewController: UIViewController, TimerSelectPresentable,
     weak var listener: TimerSelectPresentableListener?
     
     private var dataSource: TimerListDiffableDataSource!
+    
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
+        return closeButton
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -51,6 +57,8 @@ final class TimerSelectViewController: UIViewController, TimerSelectPresentable,
     }
     
     private func setLayout(){
+        navigationItem.leftBarButtonItem = closeBarButtonItem
+
         view.addSubview(collectionView)
                 
         NSLayoutConstraint.activate([
@@ -114,6 +122,12 @@ final class TimerSelectViewController: UIViewController, TimerSelectPresentable,
         section.interGroupSpacing = 8.0
         
         return section
+    }
+    
+    
+    @objc
+    private func closeBarButtonTap(){
+        self.listener?.closeButtonDidTap()
     }
     
 }

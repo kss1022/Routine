@@ -9,6 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol RoutineDetailPresentableListener: AnyObject {
+    func closeButtonDidTap()
     func editButtonDidTap()
 }
 
@@ -22,11 +23,15 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
     private var routineNameLabel : UIView?
     private var routineName: String?
 
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
+        return closeButton
+    }()
     
     private lazy var editBarButtonItem: UIBarButtonItem = {
         let editButton = RoutineEditButton()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(editBarButtonTap))
         editButton.addGestureRecognizer(tap)
         
         let barButtonItem = UIBarButtonItem(customView: editButton)
@@ -66,8 +71,8 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
     private func setLayout(){
         view.backgroundColor = .systemBackground
         
+        navigationItem.leftBarButtonItem = closeBarButtonItem
         navigationItem.rightBarButtonItem = editBarButtonItem
-        
         
         view.addSubview(scrollView)
         scrollView.delegate = self
@@ -131,12 +136,15 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
     }
     
     
+    @objc
+    private func closeBarButtonTap(){
+        self.listener?.closeButtonDidTap()
+    }
     
     @objc
-    private func didTap(){
+    private func editBarButtonTap(){
         self.listener?.editButtonDidTap()
     }
-        
 }
 
 

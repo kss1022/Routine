@@ -83,7 +83,7 @@ final class TimerNextSectionViewController: UIViewController, TimerNextSectionPr
         
         let inset: CGFloat = 16.0
         
-        NSLayoutConstraint.activate([
+        NSLayoutConstraint.activate([            
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),

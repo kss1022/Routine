@@ -10,7 +10,7 @@ import ModernRIBs
 
 protocol CreateRoutineRouting: ViewableRouting {
     func attachAddYourRoutine()
-    func detachAddYoutRoutine()
+    func detachAddYoutRoutine(dismiss: Bool)
 }
 
 protocol CreateRoutinePresentable: Presentable {
@@ -62,7 +62,11 @@ final class CreateRoutineInteractor: PresentableInteractor<CreateRoutinePresenta
     }
     
     func presentationControllerDidDismiss() {
-        router?.detachAddYoutRoutine()
+        router?.detachAddYoutRoutine(dismiss: false)
+    }
+    
+    func closeButtonDidTap() {
+        listener?.createRoutineDismiss()
     }
     
 
@@ -80,8 +84,12 @@ final class CreateRoutineInteractor: PresentableInteractor<CreateRoutinePresenta
         }
     }
     
+    func addYourRoutineCloseButtonDidTap() {
+        router?.detachAddYoutRoutine(dismiss: true)
+    }
+    
     func addYourRoutineDoneButtonDidTap() {
-        router?.detachAddYoutRoutine()
+        router?.detachAddYoutRoutine(dismiss: false)
         listener?.createRoutineDismiss()
     }
     

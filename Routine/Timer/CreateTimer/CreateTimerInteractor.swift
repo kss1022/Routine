@@ -10,7 +10,7 @@ import ModernRIBs
 
 protocol CreateTimerRouting: ViewableRouting {
     func attachAddYourTimer(timerType: AddTimerType)
-    func detachAddYourTimer()
+    func detachAddYourTimer(dismiss: Bool)
 }
 
 protocol CreateTimerPresentable: Presentable {
@@ -19,6 +19,7 @@ protocol CreateTimerPresentable: Presentable {
 }
 
 protocol CreateTimerListener: AnyObject {
+    func createTimerCloseButtonDidTap()
     func createTimerDismiss()
 }
 
@@ -81,14 +82,24 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
         // TODO: Pause any business logic.
     }
     
+    func presentationControllerDidDismiss() {
+        router?.detachAddYourTimer(dismiss: false)
+    }
+    
+    func closeButtonDidTap() {
+        listener?.createTimerCloseButtonDidTap()
+    }
     
     //MARK: AddYourTimer
-    func presentationControllerDidDismiss() {
-        router?.detachAddYourTimer()
+    
+    func addYourTimerCloseButtonDidTap() {
+        router?.detachAddYourTimer(dismiss: true)
     }
     
-    func addYourTimeDoneButtonDidTap() {
-        router?.detachAddYourTimer()
+    func addYourTimerDoneButtonDidTap() {
+        router?.detachAddYourTimer(dismiss: false)
         listener?.createTimerDismiss()
     }
+    
+
 }

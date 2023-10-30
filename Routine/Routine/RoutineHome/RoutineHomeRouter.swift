@@ -70,15 +70,12 @@ final class RoutineHomeRouter: ViewableRouter<RoutineHomeInteractable, RoutineHo
         attachChild(router)
     }
     
-    func detachCreateRoutine(dismiss: Bool) {
+    func detachCreateRoutine() {
         guard let router = createRoutineRouting else {
           return
         }
-        
-        if dismiss{
-            viewController.dismiss(completion: nil)
-        }
-                
+
+        viewController.dismiss(completion: nil)
         detachChild(router)
         createRoutineRouting = nil
     }
@@ -135,15 +132,12 @@ final class RoutineHomeRouter: ViewableRouter<RoutineHomeInteractable, RoutineHo
         attachChild(router)
     }
     
-    func detachRoutineDetail(dismiss: Bool) {
+    func detachRoutineDetail() {
         guard let router = routineDetailRouting else {
             return
         }
-        
-        if dismiss{
-            viewController.dismiss(completion: nil)
-        }
-        
+
+        viewController.dismiss(completion: nil)
         detachChild(router)
         self.routineDetailRouting = nil
     }

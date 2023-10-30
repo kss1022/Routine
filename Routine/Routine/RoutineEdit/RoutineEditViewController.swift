@@ -10,6 +10,7 @@ import UIKit
 import Combine
 
 protocol RoutineEditPresentableListener: AnyObject {
+    func closeButtonDidTap()
     func doneButtonDidTap()
     func deleteBarButtonDidTap()
 }
@@ -19,6 +20,11 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
     weak var listener: RoutineEditPresentableListener?
     
     private var cancelables :  Set<AnyCancellable>
+    
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
+        return closeButton
+    }()
     
     private lazy var doneBarButtonItem : UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBarButtonTap))
@@ -83,6 +89,7 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
         
         view.addSubview(scrollView)
         
+        navigationItem.leftBarButtonItem = closeBarButtonItem
         navigationItem.rightBarButtonItem = doneBarButtonItem
         scrollView.addSubview(stackView)
         scrollView.addSubview(deleteButton)
@@ -182,7 +189,11 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
         view.backgroundColor = UIColor(hex: color)
     }
     
-
+    @objc
+    private func closeBarButtonTap(){
+        listener?.closeButtonDidTap()
+    }
+    
     
     @objc
     private func doneBarButtonTap(){

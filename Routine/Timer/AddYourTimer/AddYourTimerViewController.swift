@@ -9,13 +9,19 @@ import ModernRIBs
 import UIKit
 
 protocol AddYourTimerPresentableListener: AnyObject {
-    func doneBarButtonDidTap()
+    func closeButtonDidTap()
+    func doneButtonDidTap()
 }
 
 final class AddYourTimerViewController: UIViewController, AddYourTimerPresentable, AddYourTimerViewControllable {
 
 
     weak var listener: AddYourTimerPresentableListener?
+    
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
+        return closeButton
+    }()
     
     private lazy var doneBarButtonItem: UIBarButtonItem = {        
         let barbuttonItem = UIBarButtonItem(
@@ -57,6 +63,7 @@ final class AddYourTimerViewController: UIViewController, AddYourTimerPresentabl
     
     
     private func setLayout(){
+        navigationItem.leftBarButtonItem = closeBarButtonItem
         navigationItem.rightBarButtonItem = doneBarButtonItem
 
         view.backgroundColor = .systemBackground
@@ -104,8 +111,13 @@ final class AddYourTimerViewController: UIViewController, AddYourTimerPresentabl
     }
     
     @objc
+    private func closeBarButtonTap(){
+        self.listener?.closeButtonDidTap()
+    }
+    
+    @objc
     private func doneBarButtonDidTap(){
         view.endEditing(true)
-        listener?.doneBarButtonDidTap()
+        listener?.doneButtonDidTap()
     }
 }

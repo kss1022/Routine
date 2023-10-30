@@ -47,8 +47,13 @@ final class CreateTimerRouter: ViewableRouter<CreateTimerInteractable, CreateTim
         attachChild(router)
     }
     
-    func detachAddYourTimer() {
-        guard let router = addYourTimerRouting else { return }                
+    func detachAddYourTimer(dismiss: Bool) {
+        guard let router = addYourTimerRouting else { return }
+        
+        if dismiss{
+            viewController.dismiss(completion: nil)
+        }
+        
         detachChild(router)
         addYourTimerRouting = nil
     }

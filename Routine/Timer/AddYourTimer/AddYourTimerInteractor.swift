@@ -22,7 +22,8 @@ protocol AddYourTimerPresentable: Presentable {
 }
 
 protocol AddYourTimerListener: AnyObject {
-    func addYourTimeDoneButtonDidTap()
+    func addYourTimerCloseButtonDidTap()
+    func addYourTimerDoneButtonDidTap()
 }
 
 protocol AddYourTimeInteractorDependency{
@@ -65,23 +66,11 @@ final class AddYourTimerInteractor: PresentableInteractor<AddYourTimerPresentabl
         // TODO: Pause any business logic.
     }
     
-    //MARK: TimerEditTitle
-    func timerEditTitleSetName(name: String) {
-        self.name = name
+    func closeButtonDidTap() {
+        listener?.addYourTimerCloseButtonDidTap()
     }
     
-    
-    //MARK: TimerSectionList
-    func timeSectionListDidSelectRowAt(sectionList: TimerSectionListViewModel) {
-        router?.attachTimerSectionEdit(sectionList: sectionList)
-    }
-    
-    //MARK: TimerSectionEdit
-    func timerSectionEditDidMoved() {
-        router?.detachTimerSectionEdit()
-    }
-    
-    func doneBarButtonDidTap() {
+    func doneButtonDidTap() {
         let createSections = dependency.sectionLists.value.enumerated().map { (sequence, section) in
             CreateSection(
                 name: section.name,
@@ -106,7 +95,7 @@ final class AddYourTimerInteractor: PresentableInteractor<AddYourTimerPresentabl
             do{
                 try await dependency.timerApplicationService.when(createTimer)
                 try await dependency.timerRepository.fetchLists()
-                await MainActor.run { listener?.addYourTimeDoneButtonDidTap() }
+                await MainActor.run { listener?.addYourTimerDoneButtonDidTap() }
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
@@ -117,5 +106,24 @@ final class AddYourTimerInteractor: PresentableInteractor<AddYourTimerPresentabl
         }
         
     }
+    
+    
+    //MARK: TimerEditTitle
+    func timerEditTitleSetName(name: String) {
+        self.name = name
+    }
+    
+    
+    //MARK: TimerSectionList
+    func timeSectionListDidSelectRowAt(sectionList: TimerSectionListViewModel) {
+        router?.attachTimerSectionEdit(sectionList: sectionList)
+    }
+    
+    //MARK: TimerSectionEdit
+    func timerSectionEditDidMoved() {
+        router?.detachTimerSectionEdit()
+    }
+    
+    
 }
  

@@ -10,6 +10,7 @@ import UIKit
 import Combine
 
 protocol AddYourRoutinePresentableListener: AnyObject {
+    func closeButtonDidTap()
     func doneBarButtonDidTap()
 }
 
@@ -20,6 +21,11 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
     weak var listener: AddYourRoutinePresentableListener?
     
     private var cancelables :  Set<AnyCancellable>
+    
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
+        return closeButton
+    }()
     
     private lazy var doneBarButtonItem : UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBarButtonTap))
@@ -64,6 +70,7 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         
         view.addSubview(scrollView)
         
+        navigationItem.leftBarButtonItem = closeBarButtonItem
         navigationItem.rightBarButtonItem = doneBarButtonItem
         scrollView.addSubview(stackView)
         
@@ -156,6 +163,10 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
     }
     
 
+    @objc
+    private func closeBarButtonTap(){
+        listener?.closeButtonDidTap()
+    }
     
     @objc
     private func doneBarButtonTap(){

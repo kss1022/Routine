@@ -23,6 +23,7 @@ protocol RoutineEditPresentable: Presentable {
 }
 
 protocol RoutineEditListener: AnyObject {
+    func routineEditCloseButtonDidTap()
     func routineEditDoneButtonDidTap()
     func routineEditDeleteButtonDidTap()
 }
@@ -101,6 +102,10 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         
         cancelables.forEach { $0.cancel() }
         cancelables.removeAll()
+    }
+    
+    func closeButtonDidTap() {
+        listener?.routineEditCloseButtonDidTap()
     }
     
     func doneButtonDidTap() {

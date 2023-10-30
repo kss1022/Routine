@@ -57,6 +57,10 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
         // TODO: Pause any business logic.
     }
     
+    func closeButtonDidTap() {
+        listener?.focusTimerDidTapClose()
+    }
+    
     func focusRoundTimerDidTapCancle() {
         listener?.focusTimerDidTapClose()
     }

@@ -9,9 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol SectionTimerPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func closeButtonDidTap()
 }
 
 final class SectionTimerViewController: UIViewController, SectionTimerPresentable, SectionTimerViewControllable {
@@ -20,6 +18,11 @@ final class SectionTimerViewController: UIViewController, SectionTimerPresentabl
     
 
     private var roundTimerContainer: UIView?
+    
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
+        return closeButton
+    }()
                   
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -31,15 +34,19 @@ final class SectionTimerViewController: UIViewController, SectionTimerPresentabl
     
     init(){        
         super.init(nibName: nil, bundle: nil)
+        
         setLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
         setLayout()
     }
     
-    private func setLayout(){        
+    private func setLayout(){
+        navigationItem.leftBarButtonItem = closeBarButtonItem
+
         view.backgroundColor = .systemBackground
         
         
@@ -113,5 +120,11 @@ final class SectionTimerViewController: UIViewController, SectionTimerPresentabl
     //MARK: Presentable
     func setTitle(title: String) {
         self.title = title
+    }
+    
+    
+    @objc
+    private func closeBarButtonTap(){
+        self.listener?.closeButtonDidTap()
     }
 }

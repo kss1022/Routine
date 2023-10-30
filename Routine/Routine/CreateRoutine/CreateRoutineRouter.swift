@@ -65,9 +65,13 @@ final class CreateRoutineRouter: ViewableRouter<CreateRoutineInteractable, Creat
         
     }
     
-    func detachAddYoutRoutine() {
+    func detachAddYoutRoutine(dismiss: Bool) {
         guard let router = addYoutRoutineRouting else {
             return
+        }
+        
+        if dismiss{
+            viewController.dismiss(completion: nil)
         }
         
         detachChild(router)

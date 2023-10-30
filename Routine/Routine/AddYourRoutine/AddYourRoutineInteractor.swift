@@ -24,6 +24,7 @@ protocol AddYourRoutinePresentable: Presentable {
 }
 
 protocol AddYourRoutineListener: AnyObject {
+    func addYourRoutineCloseButtonDidTap()
     func addYourRoutineDoneButtonDidTap()
 }
 
@@ -87,6 +88,10 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     }
     
     //TODO: check input date (null check)
+    func closeButtonDidTap() {
+        listener?.addYourRoutineCloseButtonDidTap()
+    }
+    
     func doneBarButtonDidTap() {
         let createRoutine = CreateRoutine(
             name: name ?? "",
@@ -114,6 +119,8 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
             }
         }
     }
+    
+
 
     
     //MARK: RoutineEditTitle

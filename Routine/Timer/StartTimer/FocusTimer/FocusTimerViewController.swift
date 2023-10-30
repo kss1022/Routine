@@ -9,9 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol FocusTimerPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func closeButtonDidTap()
 }
 
 final class FocusTimerViewController: UIViewController, FocusTimerPresentable, FocusTimerViewControllable {
@@ -23,6 +21,12 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
     
     private var roundTimerContainer: UIView?
     private var timePickerContainer: UIView?
+    
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
+        return closeButton
+    }()
+    
                   
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -35,6 +39,7 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
     }
     
     private func setLayout(){
+        navigationItem.leftBarButtonItem = closeBarButtonItem
         view.backgroundColor = .systemBackground
     }    
     
@@ -76,5 +81,11 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
     //MARK: Presentable
     func setTitle(title: String) {
         self.title = title
+    }
+    
+    
+    @objc
+    private func closeBarButtonTap(){
+        self.listener?.closeButtonDidTap()
     }
 }

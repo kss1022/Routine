@@ -25,4 +25,12 @@ class TouchesButton: UIButton {
             self.titleLabel?.alpha = 1
         }
     }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        UIView.animate(withDuration: 0.3) {
+            self.transform = .identity
+            self.titleLabel?.alpha = 1
+        }
+    }
 }

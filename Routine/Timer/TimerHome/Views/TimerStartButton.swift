@@ -104,6 +104,12 @@ class TimerStartButton: UIControl {
         }
     }
     
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        UIView.animate(withDuration: 0.3) {
+            self.transform = .identity            
+        }
+    }
     
     func setTime(time: String){
         timeLabel.text = time

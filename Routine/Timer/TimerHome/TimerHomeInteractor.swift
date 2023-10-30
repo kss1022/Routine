@@ -109,10 +109,36 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         cancellables.removeAll()
     }
     
+    func presentationControllerDidDismiss() {
+        if isCreate{
+            isCreate = false
+            router?.detachCreateTimer()
+            return
+        }
+        
+        if isStart{
+            isStart = false
+            router?.detachStartTimer()
+            return
+        }
+        
+        if isSelect{
+            isSelect = false
+            router?.detachSelectTimer()
+            return
+        }
+    }
+    
+    
     //MARK: CreateTimer
     func creatTimerBarButtonDidTap() {
         isCreate = true
         router?.attachCreateTimer()
+    }
+    
+    func createTimerCloseButtonDidTap() {
+        isCreate = false
+        router?.detachCreateTimer()
     }
     
     func createTimerDismiss() {
@@ -133,14 +159,14 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
     }
     
     // MARK: SelectTimer
-    func currentTimerButtonDidTap() {
+    func selectTimerButtonDidTap() {
         self.isSelect = true
         router?.attachSelectTimer()
     }
     
-    func timerDetailDidTapClose() {
+    func timerSelectCloseButtonDidTap() {
         self.isSelect = false
-        router?.detachStartTimer()
+        router?.detachSelectTimer()
     }
     
     func timerSelectDidSelectItem(timerId: UUID) {
@@ -161,33 +187,5 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         self.isSelect = true
         router?.detachSelectTimer()
     }
-        
-    
-    func presentationControllerDidDismiss() {
-
-        if isCreate{
-            isCreate = false
-            router?.detachCreateTimer()
-            return
-        }
-        
-        if isStart{
-            isStart = false
-            router?.detachStartTimer()
-            return
-        }
-        
-        if isSelect{
-            isSelect = false
-            router?.detachSelectTimer()
-            return
-        }
-        
-    }
-    
-
-    
-    
-    
-    
+   
 }

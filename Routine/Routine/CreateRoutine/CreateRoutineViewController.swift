@@ -10,12 +10,17 @@ import UIKit
 
 protocol CreateRoutinePresentableListener: AnyObject {
     func addYourOwnButtonDidTap()
+    func closeButtonDidTap()
 }
 
 final class CreateRoutineViewController: UIViewController, CreateRoutinePresentable, CreateRoutineViewControllable {
     
     weak var listener: CreateRoutinePresentableListener?
     
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
+        return closeButton
+    }()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -74,6 +79,8 @@ final class CreateRoutineViewController: UIViewController, CreateRoutinePresenta
         
         view.backgroundColor = .systemBackground
         
+        navigationItem.leftBarButtonItem = closeBarButtonItem
+        
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         
@@ -103,5 +110,10 @@ final class CreateRoutineViewController: UIViewController, CreateRoutinePresenta
     @objc
     private func addYourOwnButtonTap(){
         listener?.addYourOwnButtonDidTap()
+    }
+    
+    @objc
+    private func closeBarButtonTap(){
+        listener?.closeButtonDidTap()
     }
 }
