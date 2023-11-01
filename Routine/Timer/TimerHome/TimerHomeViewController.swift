@@ -9,7 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol TimerHomePresentableListener: AnyObject {
-    func creatTimerBarButtonDidTap()
+    func creatTimerButtonDidTap()
     func startTimerButtonDidTap()
     func selectTimerButtonDidTap()
 }
@@ -42,7 +42,8 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
     private lazy var selectTimerButton: UIButton = {
         let button = TouchesRoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemOrange
+        button.backgroundColor = .label
+        button.setTitleColor(.systemBackground, for: .normal)
         button.addTarget(self, action: #selector(selectTimerButtonTap), for: .touchUpInside)
         return button
     }()
@@ -78,7 +79,9 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         view.addSubview(startTimerButton)
         view.addSubview(selectTimerButton)        
         
-        let width = UIDevice.frame().width * 0.6
+        let width =  UIDevice.frame().width * 0.6
+        
+        
         NSLayoutConstraint.activate([
             startTimerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             startTimerButton.widthAnchor.constraint(equalToConstant: width),
@@ -117,15 +120,15 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
     
     
     // MARK: Presentable
-    func setTimer(name: String, time: String) {
-        startTimerButton.setTime(time: time)
-        selectTimerButton.setTitle(name, for: .normal)
+    func setTimer(title: String, timerName: String) {
+        startTimerButton.setTime(time: title)
+        selectTimerButton.setTitle(timerName, for: .normal)
     }
     
     
     @objc
     private func createTimerBarButtonTap(){
-        listener?.creatTimerBarButtonDidTap()
+        listener?.creatTimerButtonDidTap()
     }
     
     

@@ -21,7 +21,6 @@ final class TimerListSQLDao: TimerListDao{
     private let timerId: Expression<UUID>
     private let timerName: Expression<String>
     private let timerType: Expression<TimerTypeDto>
-    private let timerCountdown: Expression<Int?>
     
     init(db: Connection) throws{
         self.db = db
@@ -29,7 +28,6 @@ final class TimerListSQLDao: TimerListDao{
         timerId = Expression<UUID>("timerId")
         timerName = Expression<String>("timerName")
         timerType = Expression<TimerTypeDto>("timerType")
-        timerCountdown = Expression<Int?>("timerCountdown")
         
         try setup()
     }
@@ -45,7 +43,6 @@ final class TimerListSQLDao: TimerListDao{
             table.column(timerId, primaryKey: true)
             table.column(timerName)
             table.column(timerType)
-            table.column(timerCountdown)
         })
         
         db.userVersion = 0
@@ -57,8 +54,7 @@ final class TimerListSQLDao: TimerListDao{
         let insert = table.insert(
             timerId <- dto.timerId,
             timerName <- dto.timerName,
-            timerType <- dto.timerType,
-            timerCountdown <- dto.timerCountdown
+            timerType <- dto.timerType
         )
         
         
@@ -73,8 +69,7 @@ final class TimerListSQLDao: TimerListDao{
         let update = query.update(
             timerId <- dto.timerId,
             timerName <- dto.timerName,
-            timerType <- dto.timerType,
-            timerCountdown <- dto.timerCountdown
+            timerType <- dto.timerType
         )
         
         try db.run(update)
@@ -89,8 +84,7 @@ final class TimerListSQLDao: TimerListDao{
             TimerListDto(
                 timerId: $0[timerId],
                 timerName: $0[timerName],
-                timerType: $0[timerType],
-                timerCountdown: $0[timerCountdown]
+                timerType: $0[timerType]
             )
         }.first
     }
@@ -100,8 +94,7 @@ final class TimerListSQLDao: TimerListDao{
             TimerListDto(
                 timerId: $0[timerId],
                 timerName: $0[timerName],
-                timerType: $0[timerType],
-                timerCountdown: $0[timerCountdown]
+                timerType: $0[timerType]
             )
         }
     }

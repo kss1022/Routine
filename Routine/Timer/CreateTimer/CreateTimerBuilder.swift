@@ -13,8 +13,18 @@ protocol CreateTimerDependency: Dependency {
 }
 
 final class CreateTimerComponent: Component<CreateTimerDependency>, AddYourTimerDependency {
+        
     var timerRepository: TimerRepository{ dependency.timerRepository }
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
+    
+    var addYourTimerBaseViewController: ViewControllable{ createTimerController }
+    private let createTimerController: ViewControllable
+    
+    init(dependency: CreateTimerDependency, createTimerController: ViewControllable) {
+        self.createTimerController = createTimerController
+        super.init(dependency: dependency)
+    }
+
 }
 
 // MARK: - Builder
@@ -30,8 +40,9 @@ final class CreateTimerBuilder: Builder<CreateTimerDependency>, CreateTimerBuild
     }
 
     func build(withListener listener: CreateTimerListener) -> CreateTimerRouting {
-        let component = CreateTimerComponent(dependency: dependency)
         let viewController = CreateTimerViewController()
+        let component = CreateTimerComponent(dependency: dependency, createTimerController: viewController)
+        
         let interactor = CreateTimerInteractor(presenter: viewController)
         interactor.listener = listener
         

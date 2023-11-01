@@ -58,7 +58,7 @@ final class StartTimerInteractor: Interactor, StartTimerInteractable, AdaptivePr
             Task{ [weak self] in
                 guard let self = self else { return }
                 do{
-                    try await self.dependency.timerRepository.fetchDetail(timerId: timerId)
+                    try await self.dependency.timerRepository.fetchSections(timerId: timerId)
                     
                     guard let sections =  self.dependency.timerRepository.sections.value else {
                         await MainActor.run { self.listener?.startTimerDidClose() }
@@ -70,7 +70,22 @@ final class StartTimerInteractor: Interactor, StartTimerInteractable, AdaptivePr
                 }
             }
         }else{
-            self.router?.attachFocusTimer(model: TimerFocusModel(timerId: find.timerId, timerName: find.name, timerCountdown: find.timerCountdown!))
+            Task{ [weak self] in
+                guard let self = self else { return }
+                do{
+                    try await self.dependency.timerRepository.fetchFocus(timerId: timerId)
+                    guard let focus = self.dependency.timerRepository.focus.value else {
+                        
+                        await MainActor.run { self.listener?.startTimerDidClose() }
+                        return
+                    }
+                    
+                    await MainActor.run { [weak self] in self?.router?.attachFocusTimer(model: focus) }
+                }catch{
+                    Log.e("\(error)")
+                }
+            }
+            
         }
     }
     

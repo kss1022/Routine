@@ -7,6 +7,7 @@
 
 import ModernRIBs
 import UIKit
+import SpriteKit
 
 protocol FocusTimerPresentableListener: AnyObject {
     func closeButtonDidTap()
@@ -40,8 +41,8 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
     
     private func setLayout(){
         navigationItem.leftBarButtonItem = closeBarButtonItem
-        view.backgroundColor = .systemBackground
-    }    
+        view.backgroundColor = .black
+    }
     
     //MARK: ViewControllerable
     func addRoundTimer(_ view: ViewControllable) {
@@ -61,27 +62,25 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
         vc.didMove(toParent: self)
     }
     
-    
-    func addTimePicker(_ view: ViewControllable) {
-        let vc = view.uiviewController
-        addChild(vc)
-        
-        timePickerContainer = vc.view
-        timePickerContainer!.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.view.addSubview(timePickerContainer!)
-        NSLayoutConstraint.activate([            
-            timePickerContainer!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            timePickerContainer!.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
-        
-        vc.didMove(toParent: self)
-    }
-    
     //MARK: Presentable
     func setTitle(title: String) {
         self.title = title
     }
+    
+    func showFinishTimer() {
+        let firework = ConfettiParticle()   //FireworkParticle()
+        firework.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(firework)
+        NSLayoutConstraint.activate([
+            firework.topAnchor.constraint(equalTo: view.topAnchor),
+            firework.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            firework.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            firework.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
+    }
+    
     
     
     @objc

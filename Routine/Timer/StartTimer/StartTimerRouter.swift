@@ -55,12 +55,12 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
         }
         
         let router = focusTimerBuildable.build(withListener: interactor, model: model)
-        
-        if let navigationController = navigationControllable{
-            navigationController.pushViewController(router.viewControllable, animated: true)
-        }else{
-            presentInsideNavigation(router.viewControllable)
-        }
+                
+        let navigation = NavigationControllerable(root: router.viewControllable)
+        navigation.navigationController.modalPresentationStyle = .fullScreen        
+        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
+        self.navigationControllable = navigation
+        viewController.present(navigation, animated: true, completion: nil)
         
         attachChild(router)
         focusTimerRouting = router

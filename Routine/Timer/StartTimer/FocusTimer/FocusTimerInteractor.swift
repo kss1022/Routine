@@ -9,12 +9,12 @@ import ModernRIBs
 
 protocol FocusTimerRouting: ViewableRouting {
     func attachFocusRoundTimer()
-    func attachFocusTimePicker()
 }
 
 protocol FocusTimerPresentable: Presentable {
     var listener: FocusTimerPresentableListener? { get set }
     func setTitle(title: String)
+    func showFinishTimer()
 }
 
 protocol FocusTimerListener: AnyObject {
@@ -47,7 +47,6 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
         super.didBecomeActive()
         
         router?.attachFocusRoundTimer()
-        //router?.attachFocusTimePicker()
         
         presenter.setTitle(title: dependency.model.timerName)
     }
@@ -61,8 +60,14 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
         listener?.focusTimerDidTapClose()
     }
     
+    // MARK: FocusRoundTimer
     func focusRoundTimerDidTapCancle() {
         listener?.focusTimerDidTapClose()
+        
+    }
+    
+    func focusRoundTimerDidFinish() {
+        presenter.showFinishTimer()
     }
     
 }

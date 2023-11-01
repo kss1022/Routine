@@ -15,6 +15,8 @@ protocol TimerHomeDependency: Dependency {
 }
 
 final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, StartTimerDependency, TimerSelectDependency, TimerHomeInteractorDependency {
+    
+    
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
     

@@ -12,14 +12,19 @@ import Foundation
 final class TimerSetup{
     
     private let timerApplicationService: TimerApplicationService
+    private let timerRepository: TimerRepository
     
-    init(timerApplicationService: TimerApplicationService) {
+    init(
+        timerApplicationService: TimerApplicationService,
+        timerRepository: TimerRepository
+    ) {
+        self.timerRepository = timerRepository
         self.timerApplicationService = timerApplicationService
     }
     
     func initTimer() async throws{
         let createFocusTimer = CreateFocusTimer(
-            name: "FocusTimer",
+            name: "Focus",
             min: 60
         )
         
@@ -75,6 +80,7 @@ final class TimerSetup{
         try await timerApplicationService.when(createFocusTimer)
         try await timerApplicationService.when(createTabataTimer)
         try await timerApplicationService.when(createRoundTimer)
+        try await timerRepository.fetchLists()
     }
 }
 
@@ -109,7 +115,7 @@ private extension TimerSetup{
     func exercise() -> TimerSectionListModel{
         TimerSectionListModel(
             id: UUID(),
-            emoji: "🏃",
+            emoji: "🏃‍♂️",
             name: "Excercise",
             description: "You can do it!!!",
             sequence: 2,

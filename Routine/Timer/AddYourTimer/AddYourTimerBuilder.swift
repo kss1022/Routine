@@ -2,32 +2,35 @@
 //  AddYourTimerBuilder.swift
 //  Routine
 //
-//  Created by 한현규 on 10/17/23.
+//  Created by 한현규 on 10/30/23.
 //
 
 import ModernRIBs
 
 protocol AddYourTimerDependency: Dependency {
+    
+    var addYourTimerBaseViewController: ViewControllable { get }
+    
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
 }
 
-final class AddYourTimerComponent: Component<AddYourTimerDependency>, TimerSectionEditDependency, TimerEditTitleDependency, TimerSectionListDependency , AddYourTimeInteractorDependency{
-        
-    
-    
+final class AddYourTimerComponent: Component<AddYourTimerDependency>,AddFocusTimerDependency, AddTabataTimerDependency, AddRoundTimerDependency, AddYourTimerInteractorDependency {
+
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
     
-    var timerType: AddTimerType
-    var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionListsSubject }
-    var sectionListsSubject = CurrentValuePublisher<[TimerSectionListModel]>([])
+    let timerType: AddTimerType
+    
+    fileprivate var addYourTimerBaseViewController: ViewControllable {
+        return dependency.addYourTimerBaseViewController
+    }
     
     init(dependency: AddYourTimerDependency, timerType: AddTimerType) {
         self.timerType = timerType
         super.init(dependency: dependency)
-        sectionListsSubject.send(timerRepository.baseSectionList(type: timerType))
     }
+
     
 }
 
@@ -45,20 +48,19 @@ final class AddYourTimerBuilder: Builder<AddYourTimerDependency>, AddYourTimerBu
 
     func build(withListener listener: AddYourTimerListener, timerType: AddTimerType) -> AddYourTimerRouting {
         let component = AddYourTimerComponent(dependency: dependency, timerType: timerType)
-        let viewController = AddYourTimerViewController()
-        let interactor = AddYourTimerInteractor(presenter: viewController,dependency: component)
+        let interactor = AddYourTimerInteractor(dependency: component)
         interactor.listener = listener
         
-        let timerEditTitleBuilder = TimerEditTitleBuilder(dependency: component)
-        let timerSectionEditBuilder = TimerSectionEditBuilder(dependency: component)
-        let timerSectionListBuilder = TimerSectionListBuilder(dependency: component)
+        let addFocusTimerBuilder = AddFocusTimerBuilder(dependency: component)
+        let addTabataTimerBuilder = AddTabataTimerBuilder(dependency: component)
+        let addRoundTimerBuilder = AddRoundTimerBuilder(dependency: component)
         
         return AddYourTimerRouter(
             interactor: interactor,
-            viewController: viewController,
-            timerEditTitleBuildable: timerEditTitleBuilder,
-            timerSectionListBuildable: timerSectionListBuilder,
-            timerSectionEditBuildable: timerSectionEditBuilder
+            viewController: component.addYourTimerBaseViewController,
+            addFocusTimerBuildable: addFocusTimerBuilder,
+            addTabataTimerBuildable: addTabataTimerBuilder,
+            addRoundTimerBuildable: addRoundTimerBuilder
         )
     }
 }

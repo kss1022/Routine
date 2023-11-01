@@ -16,12 +16,12 @@ protocol FocusRoundTimerRouting: ViewableRouting {
 protocol FocusRoundTimerPresentable: Presentable {
     var listener: FocusRoundTimerPresentableListener? { get set }
     
-    func setTimer(_ viewModel: RoundTimerViewModel)
+    func setTimer(_ viewModel: FocusRoundTimerViewModel)
     
     func showStartButton()
     func showPauseButton()
     func showResumeButton()
-    
+    func showTimerActionDialog()
     func updateRemainTime(time: String)
     
     func startProgress(totalDuration: TimeInterval)
@@ -32,6 +32,7 @@ protocol FocusRoundTimerPresentable: Presentable {
 
 protocol FocusRoundTimerListener: AnyObject {
     func focusRoundTimerDidTapCancle()
+    func focusRoundTimerDidFinish()
 }
 
 protocol FocusRoundTimerInteractorDependency{
@@ -75,7 +76,7 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
                 let remainTime = self.timer.remainTime.value
                 
                 if remainTime != -1{
-                    self.presenter.updateRemainTime(time: remainTime.time)
+                    self.presenter.updateRemainTime(time: remainTime.focusTime)
                 }
             }
             .store(in: &cancellables)
@@ -87,7 +88,7 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
                 if self.timer.remainTime.value > 0 {
                     self.listener?.focusRoundTimerDidTapCancle()
                 }else{
-                    // TODO: Set Timer Finish
+                    self.listener?.focusRoundTimerDidFinish()
                 }
             }
             .store(in: &cancellables)
@@ -106,7 +107,7 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
     
 
     
-    func activeButtonDidTap() {
+    func roundTimerDidTap() {
         switch timer.timerState {
         case .initialized:
             timer.start()
@@ -124,16 +125,35 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
         }
     }
     
+    func roundTimerLongPress() {
+        if timer.timerState != .initialized{
+            presenter.showTimerActionDialog()
+        }
+    }
+    
     func cancelButtonDidTap() {
         if timer.timerState != .initialized{
             timer.cancel()
             presenter.suspendProgress()
+            removeTimer()
+            listener?.focusRoundTimerDidTapCancle()
         }else{
             listener?.focusRoundTimerDidTapCancle()
         }
     }
     
     
+    
+    func finishButtonDidTap() {
+        if timer.timerState != .initialized{
+            timer.cancel()
+            presenter.suspendProgress()
+            removeTimer()
+            listener?.focusRoundTimerDidFinish()
+        }else{
+            listener?.focusRoundTimerDidTapCancle()
+        }
+    }
     
     
 
@@ -144,7 +164,7 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
     
     private func setTimer(){
         
-        presenter.setTimer(RoundTimerViewModel(self.model))
+        presenter.setTimer(FocusRoundTimerViewModel(self.model))
         
         switch timer.timerState {
         case .initialized:

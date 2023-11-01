@@ -64,7 +64,7 @@ class RecordCalenderCell: FSCalendarCell {
         self.selectionLayer.frame = self.titleLabel.bounds//self.contentView.bounds
         
         if selectionType == .middle {
-            self.selectionLayer.path = UIBezierPath(rect: self.selectionLayer.bounds).cgPath
+            self.selectionLayer.path = UIBezierPath(rect: self.selectionLayer.bounds.insetBy(dx: -1, dy: 0)).cgPath
         }
         else if selectionType == .leftBorder {
             self.selectionLayer.path = UIBezierPath(roundedRect: self.selectionLayer.bounds, byRoundingCorners: [.topLeft, .bottomLeft], cornerRadii: CGSize(width: self.selectionLayer.frame.width / 2, height: self.selectionLayer.frame.width / 2)).cgPath

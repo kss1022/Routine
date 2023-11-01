@@ -10,8 +10,8 @@ import UIKit
 
 class TimerStartButton: UIControl {
     
-    private var fillLayerStrokeColor: CGColor = UIColor.systemOrange.cgColor
-    private var dashLayerStrokeColor: CGColor = UIColor.systemOrange.cgColor
+    private var fillLayerStrokeColor: CGColor = UIColor.label.cgColor
+    private var dashLayerStrokeColor: CGColor = UIColor.label.cgColor
     
     
     private var lineWidth = 16.0
@@ -43,7 +43,7 @@ class TimerStartButton: UIControl {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 44.0, weight: .regular)
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .systemBackground
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
@@ -142,6 +142,7 @@ class TimerStartButton: UIControl {
         rotationAnimation.toValue = dashLayer.lineDashPattern?.reduce(0) { $0 + $1.intValue } // pattern lenght sum
         rotationAnimation.duration = 1
         rotationAnimation.repeatCount = .infinity
+        rotationAnimation.isRemovedOnCompletion = false
         dashLayer.add(rotationAnimation, forKey: "lineDashPhaseAnimation")
     }
 

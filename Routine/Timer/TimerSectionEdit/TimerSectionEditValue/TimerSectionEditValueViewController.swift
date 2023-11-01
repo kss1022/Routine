@@ -17,15 +17,15 @@ final class TimerSectionEditValueViewController: UIViewController, TimerSectionE
 
     weak var listener: TimerSectionEditValuePresentableListener?
         
-    private lazy var countdownPickerView: CountdownPickerView = {
-        var pickerView = CountdownPickerView()
+    private lazy var countdownPickerView: TimerSectionCountdownPickerView = {
+        var pickerView = TimerSectionCountdownPickerView()
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         pickerView.addTarget(self, action: #selector(countdownPickerViewValueChange(control:)), for: .valueChanged)
         return pickerView
     }()
     
-    private lazy var countPickerView: CountPickerView = {
-        var pickerView = CountPickerView()
+    private lazy var countPickerView: TimerSectionCountPickerView = {
+        var pickerView = TimerSectionCountPickerView()
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         pickerView.addTarget(self, action: #selector(countPickerViewValueChange(control:)), for: .valueChanged)
         return pickerView
@@ -69,12 +69,12 @@ final class TimerSectionEditValueViewController: UIViewController, TimerSectionE
     
     
     @objc
-    private func countdownPickerViewValueChange(control: CountdownPickerView){
+    private func countdownPickerViewValueChange(control: TimerSectionCountdownPickerView){
         listener?.countdownPickerDidValueChange(min: control.min, sec: control.sec)
     }
     
     @objc
-    private func countPickerViewValueChange(control: CountPickerView){
+    private func countPickerViewValueChange(control: TimerSectionCountPickerView){
         listener?.countPickerDidValueChange(count: control.count)
     }
     

@@ -9,7 +9,7 @@ import Foundation
 import ModernRIBs
 
 
-final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependency, RecordHomeDependency, TimerHomeDependency, ProfileHomeDependency, CreateRoutineDependency, AppRootInteractorDependency{    
+final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependency, RecordHomeDependency, TimerHomeDependency, ProfileHomeDependency, CreateRoutineDependency, AppRootInteractorDependency{
 
     //MARK: ApplicationService
     let routineApplicationService: RoutineApplicationService
@@ -40,8 +40,9 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
     }()
     
    
-    var startTimerBaseViewController: ViewControllable { rootViewController.topViewControllable }
+    var startTimerBaseViewController: ViewControllable { rootViewController.topViewControllable } 
     private let rootViewController: ViewControllable
+    
     
     init(
         dependency: AppRootDependency,

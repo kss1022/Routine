@@ -13,7 +13,7 @@ protocol FocusTimerDependency: Dependency {
     // created by this RIB.
 }
 
-final class FocusTimerComponent: Component<FocusTimerDependency>, FocusRoundTimerDependency, FocusTimePickerDependency, FocusTimerInteractorDependency {
+final class FocusTimerComponent: Component<FocusTimerDependency>, FocusRoundTimerDependency, FocusTimerInteractorDependency {
     
     let model: TimerFocusModel
     let timer: AppFocusTimer
@@ -46,13 +46,11 @@ final class FocusTimerBuilder: Builder<FocusTimerDependency>, FocusTimerBuildabl
         interactor.listener = listener
         
         let focusRoundTimerBuilder = FocusRoundTimerBuilder(dependency: component)
-        let focusTimePickerBuilder = FocusTimePickerBuilder(dependency: component)
         
         return FocusTimerRouter(
             interactor: interactor,
             viewController: viewController,
-            focusRoundTimerBuildable: focusRoundTimerBuilder,
-            focusTimePickerBuildable: focusTimePickerBuilder
+            focusRoundTimerBuildable: focusRoundTimerBuilder            
         )
     }
 }

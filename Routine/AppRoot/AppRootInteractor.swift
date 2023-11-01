@@ -23,6 +23,7 @@ protocol AppRootListener: AnyObject {
 
 protocol AppRootInteractorDependency{
     var timerApplicationService: TimerApplicationService{ get }
+    var timerRepository: TimerRepository{ get }
 }
 
 final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRootInteractable, AppRootPresentableListener , URLHandler{
@@ -47,8 +48,9 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
         
         Task{
             try? await initTimer()
-            await MainActor.run { router?.attachTabs() }
-        }                        
+        }
+        
+        router?.attachTabs()
     }
     
     override func willResignActive() {
@@ -68,8 +70,10 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
             return
         }
         
-        try await TimerSetup(timerApplicationService: dependency.timerApplicationService)
-            .initTimer()
+        try await TimerSetup(
+            timerApplicationService: dependency.timerApplicationService,
+            timerRepository: dependency.timerRepository
+        ).initTimer()
         preference.timerSetup = true
     }
 }

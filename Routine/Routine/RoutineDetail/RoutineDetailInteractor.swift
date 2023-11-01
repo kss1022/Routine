@@ -164,6 +164,7 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
             do{
                 try await self.dependency.recordApplicationService.when(command)
                 try await self.dependency.routineRepository.fetchLists()
+                try await self.dependency.routineRepository.fetchDetail(self.dependency.routineId)
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)

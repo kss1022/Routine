@@ -10,6 +10,7 @@ import UIKit
 
 protocol TimerSelectPresentableListener: AnyObject {
     func closeButtonDidTap()
+    func creatTimerButtonDidTap()
     func collectionViewDidSelectItemAt(timerId: UUID)
 }
 
@@ -23,6 +24,17 @@ final class TimerSelectViewController: UIViewController, TimerSelectPresentable,
         let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
         return closeButton
     }()
+    
+    private lazy var createTimerBarButtonItem : UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "plus.circle"),
+            style: .plain,
+            target: self,
+            action: #selector(createTimerBarButtonTap)
+        )
+        return barButtonItem
+    }()
+    
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -57,8 +69,10 @@ final class TimerSelectViewController: UIViewController, TimerSelectPresentable,
     }
     
     private func setLayout(){
+        title = "Choose your timer"
         navigationItem.leftBarButtonItem = closeBarButtonItem
-
+        navigationItem.rightBarButtonItem = createTimerBarButtonItem
+        
         view.addSubview(collectionView)
                 
         NSLayoutConstraint.activate([
@@ -130,6 +144,10 @@ final class TimerSelectViewController: UIViewController, TimerSelectPresentable,
         self.listener?.closeButtonDidTap()
     }
     
+    @objc
+    private func createTimerBarButtonTap(){
+        listener?.creatTimerButtonDidTap()
+    }
 }
 
 

@@ -7,14 +7,13 @@
 
 import ModernRIBs
 
-protocol FocusTimerInteractable: Interactable, FocusRoundTimerListener, FocusTimePickerListener {
+protocol FocusTimerInteractable: Interactable, FocusRoundTimerListener {
     var router: FocusTimerRouting? { get set }
     var listener: FocusTimerListener? { get set }
 }
 
 protocol FocusTimerViewControllable: ViewControllable {
     func addRoundTimer(_ view: ViewControllable)
-    func addTimePicker(_ view: ViewControllable)
 }
 
 final class FocusTimerRouter: ViewableRouter<FocusTimerInteractable, FocusTimerViewControllable>, FocusTimerRouting {
@@ -25,17 +24,12 @@ final class FocusTimerRouter: ViewableRouter<FocusTimerInteractable, FocusTimerV
     private var focusRoundTimerRouting: Routing?
     
     
-    private let focusTimePickerBuildable: FocusTimePickerBuildable
-    private var focusTimerPickerRouting: Routing?
-    
     init(
         interactor: FocusTimerInteractable,
         viewController: FocusTimerViewControllable,
-        focusRoundTimerBuildable: FocusRoundTimerBuildable,
-        focusTimePickerBuildable: FocusTimePickerBuildable
+        focusRoundTimerBuildable: FocusRoundTimerBuildable
     ) {
-        self.focusRoundTimerBuildable = focusRoundTimerBuildable
-        self.focusTimePickerBuildable = focusTimePickerBuildable
+        self.focusRoundTimerBuildable = focusRoundTimerBuildable        
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
@@ -50,17 +44,5 @@ final class FocusTimerRouter: ViewableRouter<FocusTimerInteractable, FocusTimerV
         
         focusRoundTimerRouting = routing
         attachChild(routing)        
-    }
-    
-    func attachFocusTimePicker() {
-        if focusTimerPickerRouting != nil{
-            return
-        }
-        
-        let routing = focusTimePickerBuildable.build(withListener: interactor)
-        viewController.addTimePicker(routing.viewControllable)
-        
-        focusTimerPickerRouting = routing
-        attachChild(routing)
     }
 }

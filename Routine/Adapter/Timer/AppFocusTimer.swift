@@ -11,7 +11,7 @@ struct AppFocusTimerModel{
     let min: TimeInterval
     
     init(_ model: TimerFocusModel) {
-        self.min = TimeInterval(model.timerCountdown)
+        self.min = TimeInterval(model.timerCountdown.minute).minute
     }
 }
 

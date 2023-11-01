@@ -2,90 +2,162 @@
 //  AddYourTimerRouter.swift
 //  Routine
 //
-//  Created by 한현규 on 10/17/23.
+//  Created by 한현규 on 10/30/23.
 //
 
 import ModernRIBs
 
-protocol AddYourTimerInteractable: Interactable, TimerSectionEditListener, TimerEditTitleListener, TimerSectionListListener {
+protocol AddYourTimerInteractable: Interactable, AddFocusTimerListener, AddTabataTimerListener, AddRoundTimerListener {
     var router: AddYourTimerRouting? { get set }
     var listener: AddYourTimerListener? { get set }
+    var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy{ get }
 }
 
 protocol AddYourTimerViewControllable: ViewControllable {
-    func addEditTitle(_ view: ViewControllable)
-    func addSectionLists(_ view: ViewControllable)
+    // TODO: Declare methods the router invokes to manipulate the view hierarchy. Since
+    // this RIB does not own its own view, this protocol is conformed to by one of this
+    // RIB's ancestor RIBs' view.
 }
 
-final class AddYourTimerRouter: ViewableRouter<AddYourTimerInteractable, AddYourTimerViewControllable>, AddYourTimerRouting {
+final class AddYourTimerRouter: Router<AddYourTimerInteractable>, AddYourTimerRouting {
 
-    private let timerEditTitleBuildable: TimerEditTitleBuildable
-    private var timerEditTitleRouting: TimerEditTitleRouting?
+    private let addFocusTimerBuildable: AddFocusTimerBuildable
+    private var addFocusTimerRouting: Routing?
     
-    private let timerSectionListBuildable: TimerSectionListBuildable
-    private var timerSectionListRouting: TimerSectionListRouting?
+    private let addTabataTimerBuildable: AddTabataTimerBuildable
+    private var addTabataTimerRouting: Routing?
     
-    private let timerSectionEditBuildable: TimerSectionEditBuildable
-    private var timerSectionEditRouting: TimerSectionEditRouting?
+    private let addRoundTimerBuildable: AddRoundTimerBuildable
+    private var addRoundTimerRouting: Routing?
     
     init(
         interactor: AddYourTimerInteractable,
-        viewController: AddYourTimerViewControllable,
-        timerEditTitleBuildable: TimerEditTitleBuildable,
-        timerSectionListBuildable: TimerSectionListBuildable,
-        timerSectionEditBuildable: TimerSectionEditBuildable
+        viewController: ViewControllable,
+        addFocusTimerBuildable: AddFocusTimerBuildable,
+        addTabataTimerBuildable: AddTabataTimerBuildable,
+        addRoundTimerBuildable: AddRoundTimerBuildable
     ) {
-        self.timerEditTitleBuildable = timerEditTitleBuildable
-        self.timerSectionListBuildable = timerSectionListBuildable
-        self.timerSectionEditBuildable = timerSectionEditBuildable
-                
-        super.init(interactor: interactor, viewController: viewController)
+        self.addFocusTimerBuildable = addFocusTimerBuildable
+        self.addTabataTimerBuildable = addTabataTimerBuildable
+        self.addRoundTimerBuildable = addRoundTimerBuildable
+        self.viewController = viewController
+        super.init(interactor: interactor)
         interactor.router = self
     }
+
+    func cleanupViews() {
+        if viewController.uiviewController.presentedViewController != nil, navigationControllable != nil {
+          navigationControllable?.dismiss(completion: nil)
+        }
+    }
     
-    
-    func attachTimerSectionEdit(sectionList: TimerSectionListViewModel) {
-        if timerSectionEditRouting != nil{
+    func attachAddFocusTimer() {
+        if addFocusTimerRouting != nil{
             return
         }
         
-        let router = timerSectionEditBuildable.build(withListener: interactor, sectionList: sectionList)
-        viewController.pushViewController(router.viewControllable, animated: true)
+        let router = addFocusTimerBuildable.build(withListener: interactor)
         
-        timerSectionEditRouting = router
+        if let navigationController = navigationControllable{
+            navigationController.pushViewController(router.viewControllable, animated: true)
+        }else{
+            presentInsideNavigation(router.viewControllable)
+        }
+        
         attachChild(router)
+        addFocusTimerRouting = router
     }
     
-    func detachTimerSectionEdit() {
-        guard let router = timerSectionEditRouting else { return }
+    func detachAddFocusTimer(dismiss: Bool) {
+        guard let router = addFocusTimerRouting else { return }
+
+        
+        if dismiss{
+            dismissPresentedNavigation(completion: nil)
+        }
+
+        detachChild(router)
+        self.navigationControllable = nil
+        addFocusTimerRouting = nil
+    }
+    
+    func attachAddTabataTimer() {
+        if addTabataTimerRouting != nil{
+            return
+        }
+        
+        let router = addTabataTimerBuildable.build(withListener: interactor)
+        
+        if let navigationController = navigationControllable{
+            navigationController.pushViewController(router.viewControllable, animated: true)
+        }else{
+            presentInsideNavigation(router.viewControllable)
+        }
+        
+        attachChild(router)
+        addTabataTimerRouting = router
+    }
+    
+    func detachAddTabataTimer(dismiss: Bool) {
+        guard let router = addTabataTimerRouting else { return }
+
+        
+        if dismiss{
+            dismissPresentedNavigation(completion: nil)
+        }
+
+        detachChild(router)
+        self.navigationControllable = nil
+        addTabataTimerRouting = nil
+    }
+    
+    
+    func attachAddRoundTimer() {
+        if addRoundTimerRouting != nil{
+            return
+        }
+        
+        let router = addRoundTimerBuildable.build(withListener: interactor)
+        
+        if let navigationController = navigationControllable{
+            navigationController.pushViewController(router.viewControllable, animated: true)
+        }else{
+            presentInsideNavigation(router.viewControllable)
+        }
+        
+        attachChild(router)
+        addRoundTimerRouting = router
+    }
+    
+    func detachAddRoundTimer(dismiss: Bool) {
+        guard let router = addRoundTimerRouting else { return }
+                        
+        if dismiss{
+            dismissPresentedNavigation(completion: nil)
+        }
         
         detachChild(router)
-        timerSectionEditRouting = nil
-    }
-    
-    func attachTimerEditTitle() {
-        if timerEditTitleRouting != nil{
-            return
-        }
-        
-        
-        let router = timerEditTitleBuildable.build(withListener: interactor)
-        viewController.addEditTitle(router.viewControllable)
-        
-        timerEditTitleRouting = router
-        attachChild(router)
-    }
-    
-    func attachTimerSectionListection() {
-        if timerSectionListRouting != nil{
-            return
-        }
-        
-        let router = timerSectionListBuildable.build(withListener: interactor)
-        viewController.addSectionLists(router.viewControllable)
-        
-        timerSectionListRouting = router
-        attachChild(router)
+        self.navigationControllable = nil
+        addRoundTimerRouting = nil
     }
 
+    // MARK: - Private
+    private func presentInsideNavigation(_ viewControllable: ViewControllable) {
+      let navigation = NavigationControllerable(root: viewControllable)
+      navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
+      self.navigationControllable = navigation
+      viewController.present(navigation, animated: true, completion: nil)
+    }
+
+    private func dismissPresentedNavigation(completion: (() -> Void)?) {
+      if self.navigationControllable == nil {
+        return
+      }
+      
+      viewController.dismiss(completion: nil)
+      self.navigationControllable = nil
+    }
+    
+    private var navigationControllable: NavigationControllerable?
+    private let viewController: ViewControllable
 }

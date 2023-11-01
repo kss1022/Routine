@@ -25,9 +25,7 @@ final class TouchesRoundButton : TouchesButton{
         setView()
     }
     
-    private func setView(){
-        self.setTitleColor(.white, for: .normal)
-        
+    private func setView(){        
         self.contentEdgeInsets = .init(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     }
     

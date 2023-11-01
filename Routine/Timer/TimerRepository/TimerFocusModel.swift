@@ -12,5 +12,22 @@ import Foundation
 struct TimerFocusModel{
     let timerId: UUID
     let timerName: String
-    let timerCountdown : Int
+    let timerCountdown : TimerCountdownModel
+    
+    
+    init(timerDto: TimerListDto, countdownDto: TimerCountdownDto){
+        self.timerId = timerDto.timerId
+        self.timerName = timerDto.timerName
+        self.timerCountdown = TimerCountdownModel(countdownDto)
+    }
+}
+
+
+
+struct TimerCountdownModel{
+    let minute: Int
+    
+    init(_ dto: TimerCountdownDto) {
+        self.minute = dto.minute
+    }
 }

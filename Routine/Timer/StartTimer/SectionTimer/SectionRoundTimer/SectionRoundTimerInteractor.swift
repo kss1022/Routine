@@ -16,7 +16,7 @@ protocol SectionRoundTimerRouting: ViewableRouting {
 protocol SectionRoundTimerPresentable: Presentable {
     var listener: SectionRoundTimerPresentableListener? { get set }
     
-    func setTimer(_ viewModel: RoundTimerViewModel)
+    func setTimer(_ viewModel: SectionRoundTimerViewModel)
     
     func showStartButton()
     func showPauseButton()
@@ -149,13 +149,13 @@ final class SectionRoundTimerInteractor: PresentableInteractor<SectionRoundTimer
     //MARK: Private
     
     private func setTimer(){
-        let viewModel : RoundTimerViewModel
+        let viewModel : SectionRoundTimerViewModel
         switch timer.sectionState.value {
-        case .ready: viewModel = RoundTimerViewModel(self.model.ready)
-        case .rest: viewModel = RoundTimerViewModel(self.model.rest)
-        case .exercise: viewModel = RoundTimerViewModel(self.model.exercise)
-        case .cycleRest: viewModel = RoundTimerViewModel(self.model.cycleRest!)
-        case .cooldown: viewModel = RoundTimerViewModel(self.model.cooldown)
+        case .ready: viewModel = SectionRoundTimerViewModel(self.model.ready)
+        case .rest: viewModel = SectionRoundTimerViewModel(self.model.rest)
+        case .exercise: viewModel = SectionRoundTimerViewModel(self.model.exercise)
+        case .cycleRest: viewModel = SectionRoundTimerViewModel(self.model.cycleRest!)
+        case .cooldown: viewModel = SectionRoundTimerViewModel(self.model.cooldown)
         }
         presenter.setTimer(viewModel)
     }

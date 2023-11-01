@@ -27,6 +27,7 @@ class DatabaseManager{
     public let recordDao: RecordDao
     
     public let timerListDao: TimerListDao
+    public let timerCountdownDao: TimerCountdownDao
     public let timerSectionListDao: TimerSectionListDao
     
     private init() throws {
@@ -47,6 +48,7 @@ class DatabaseManager{
 //        try ReminderSQLDao.dropTable(db: db)
 //        try RecordSQLDao.dropTable(db: db)
 //        try TimerListSQLDao.dropTable(db: db)
+        //        try TimerCountdownSQLDao.dropTable(db: db)
 //        try TimerSectionListSQLDao.dropTable(db: db)
 #endif
         
@@ -56,6 +58,7 @@ class DatabaseManager{
         self.reminderDao = try ReminderSQLDao(db: db)
         self.recordDao = try RecordSQLDao(db: db)
         self.timerListDao = try TimerListSQLDao(db: db)
+        self.timerCountdownDao = try TimerCountdownSQLDao(db: db)
         self.timerSectionListDao = try TimerSectionListSQLDao(db: db)
     }
     

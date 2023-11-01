@@ -2,7 +2,7 @@ import UIKit
 
 
 extension UIButton{
-    func setImage(image : UIImage , state : UIControl.State){
+    func setImage(image : UIImage? , state : UIControl.State){
         
         contentVerticalAlignment = .fill
         contentHorizontalAlignment = .fill

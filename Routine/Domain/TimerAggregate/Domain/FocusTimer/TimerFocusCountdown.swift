@@ -14,8 +14,8 @@ struct TimerFocusCountdown: ValueObject{
     let min: Int
     
     init(min: Int) throws{
-        if min < 1{
-            throw ArgumentException("Min must be bigger than 0")
+        if min < 0{
+            throw ArgumentException("Min must be equal to or greater than 0")
         }
                 
         self.min = min

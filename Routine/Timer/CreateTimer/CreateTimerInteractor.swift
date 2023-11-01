@@ -10,7 +10,7 @@ import ModernRIBs
 
 protocol CreateTimerRouting: ViewableRouting {
     func attachAddYourTimer(timerType: AddTimerType)
-    func detachAddYourTimer(dismiss: Bool)
+    func detachAddYourTimer()
 }
 
 protocol CreateTimerPresentable: Presentable {
@@ -20,7 +20,7 @@ protocol CreateTimerPresentable: Presentable {
 
 protocol CreateTimerListener: AnyObject {
     func createTimerCloseButtonDidTap()
-    func createTimerDismiss()
+    func createTimerDidAddNewTimer()
 }
 
 final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>, CreateTimerInteractable, CreateTimerPresentableListener, AdaptivePresentationControllerDelegate {
@@ -46,12 +46,19 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
         
         let models = [
             CreateTimerModel(
+                title: "Focus",
+                description: "Focus",
+                imageName: "createYourTimer_3",
+                timerType: .focus,
+                tapHandler: { [weak self] in
+                    self?.router?.attachAddYourTimer(timerType: .focus)
+                }),
+            CreateTimerModel(
                 title: "Tabata",
                 description: "Tabata Tabata Tabata Tabata Tabata Tabata Tabata Tabata Tabata Tabata",
                 imageName: "createYourTimer_1",
                 timerType: .tabata,
                 tapHandler: { [weak self] in
-                    Log.d("Tap Tabata")
                     self?.router?.attachAddYourTimer(timerType: .tabata)
                 }),
             CreateTimerModel(
@@ -60,17 +67,7 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
                 imageName: "createYourTimer_2",
                 timerType: .round,
                 tapHandler: { [weak self] in
-                    Log.d("Tap Round")
                     self?.router?.attachAddYourTimer(timerType: .round)
-                }),
-            CreateTimerModel(
-                title: "Custom",
-                description: "Custom",
-                imageName: "createYourTimer_3",
-                timerType: .custom,
-                tapHandler: { [weak self] in
-                    Log.d("Tap Custom")
-                    self?.router?.attachAddYourTimer(timerType: .custom)
                 })
         ]
         
@@ -82,8 +79,7 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
         // TODO: Pause any business logic.
     }
     
-    func presentationControllerDidDismiss() {
-        router?.detachAddYourTimer(dismiss: false)
+    func presentationControllerDidDismiss() {     
     }
     
     func closeButtonDidTap() {
@@ -92,14 +88,13 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
     
     //MARK: AddYourTimer
     
-    func addYourTimerCloseButtonDidTap() {
-        router?.detachAddYourTimer(dismiss: true)
+    func addYourTimerDidClose() {
+        router?.detachAddYourTimer()        
     }
     
-    func addYourTimerDoneButtonDidTap() {
-        router?.detachAddYourTimer(dismiss: false)
-        listener?.createTimerDismiss()
+    func addYourTimerDidAddNewTimer() {
+        router?.detachAddYourTimer()
+        listener?.createTimerDidAddNewTimer()
     }
     
-
 }

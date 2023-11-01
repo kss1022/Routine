@@ -23,7 +23,7 @@ protocol TimerHomeRouting: ViewableRouting {
 protocol TimerHomePresentable: Presentable {
     var listener: TimerHomePresentableListener? { get set }
     
-    func setTimer(name: String, time: String)
+    func setTimer(title: String, timerName: String)
 }
 
 protocol TimerHomeListener: AnyObject {
@@ -35,9 +35,7 @@ protocol TimerHomeInteractorDependency{
 }
 
 final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, TimerHomeInteractable, TimerHomePresentableListener, AdaptivePresentationControllerDelegate {
-
     
-
     weak var router: TimerHomeRouting?
     weak var listener: TimerHomeListener?
     
@@ -88,14 +86,7 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
                 
                 let timerId = PreferenceStorage.shared.timerId
                 if let currentTimer = list.first(where: { $0.timerId.uuidString == timerId }){
-                    let time: String
-                    if currentTimer.timerCountdown == nil{
-                        time = currentTimer.name
-                    }else{
-                        time = "\(currentTimer.timerCountdown!)"
-                    }
-                    
-                    self.presenter.setTimer(name: currentTimer.name, time: time)
+                    self.presenter.setTimer(title: currentTimer.timerType.title(), timerName: currentTimer.name)
                 }
             }
             .store(in: &cancellables)
@@ -131,7 +122,7 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
     
     
     //MARK: CreateTimer
-    func creatTimerBarButtonDidTap() {
+    func creatTimerButtonDidTap() {
         isCreate = true
         router?.attachCreateTimer()
     }
@@ -141,11 +132,12 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         router?.detachCreateTimer()
     }
     
-    func createTimerDismiss() {
+    func createTimerDidAddNewTimer() {
         isCreate = false
         router?.detachCreateTimer()
     }
     
+
     //MARK: StartTimer
     func startTimerButtonDidTap() {
         let timerId = UUID(uuidString: PreferenceStorage.shared.timerId)!
@@ -164,28 +156,45 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         router?.attachSelectTimer()
     }
     
+
     func timerSelectCloseButtonDidTap() {
         self.isSelect = false
         router?.detachSelectTimer()
     }
+    
+    
+    func timerSelectCreateTimerButtonDidTap() {
+        self.isSelect = false
+        router?.detachSelectTimer()
+        router?.attachCreateTimer()
+    }
+    
     
     func timerSelectDidSelectItem(timerId: UUID) {
         let preference = PreferenceStorage.shared
         preference.timerId = timerId.uuidString
                 
         if let currentTimer = dependency.timerRepository.lists.value.first(where: { $0.timerId.uuidString == timerId.uuidString }){
-            let time: String
-            if currentTimer.timerCountdown == nil{
-                time = currentTimer.name
-            }else{
-                time = "\(currentTimer.timerCountdown!)"
-            }
-            
-            self.presenter.setTimer(name: currentTimer.name, time: time)
+            self.presenter.setTimer(title: currentTimer.timerType.title(), timerName: currentTimer.name)
         }
         
         self.isSelect = true
         router?.detachSelectTimer()
     }
+
+
    
+}
+
+
+
+extension TimerTypeModel{
+    fileprivate func title() -> String{
+        switch self {
+        case .focus:
+            return "Focus"
+        case .section:
+            return "Repeat"
+        }
+    }
 }

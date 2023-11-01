@@ -39,21 +39,13 @@ final class CreateTimerRouter: ViewableRouter<CreateTimerInteractable, CreateTim
             return
         }
         
-        let router = addYourTimerBuildable.build(withListener: interactor, timerType: timerType)
-        let navigation = NavigationControllerable(root: router.viewControllable)
-        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
-        viewController.present(navigation, animated: true, completion: nil)
+        let router = addYourTimerBuildable.build(withListener: interactor, timerType: timerType)        
         addYourTimerRouting = router
         attachChild(router)
     }
     
-    func detachAddYourTimer(dismiss: Bool) {
+    func detachAddYourTimer() {
         guard let router = addYourTimerRouting else { return }
-        
-        if dismiss{
-            viewController.dismiss(completion: nil)
-        }
-        
         detachChild(router)
         addYourTimerRouting = nil
     }

@@ -20,7 +20,7 @@ struct TimerListViewModel: Hashable{
         
         switch model.timerType {
         case .focus:
-            self.info = "\(model.timerCountdown ?? 0)min"
+            self.info = "Focus"
         case .section:
             self.info = "Interval"
         }

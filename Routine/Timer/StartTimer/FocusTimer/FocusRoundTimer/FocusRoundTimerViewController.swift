@@ -9,8 +9,10 @@ import ModernRIBs
 import UIKit
 
 protocol FocusRoundTimerPresentableListener: AnyObject {
-    func activeButtonDidTap()
+    func roundTimerDidTap()
+    func roundTimerLongPress()
     func cancelButtonDidTap()
+    func finishButtonDidTap()
 }
 
 final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPresentable, FocusRoundTimerViewControllable {
@@ -19,59 +21,30 @@ final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPres
     
     private var timerViewWidthConstraint: NSLayoutConstraint?
     private var timerViewHeightConstraint: NSLayoutConstraint?
-    private var buttonStackViewWidhConstraint: NSLayoutConstraint?
-    
-    private lazy var timerView: RoundTimerView = {
-        let view = RoundTimerView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        
+    private lazy var roundTimerView: FocusRoundTimerView = {
+        let roundTimerView = FocusRoundTimerView()
+        roundTimerView.translatesAutoresizingMaskIntoConstraints = false
+        roundTimerView.addTarget(self, action: #selector(roundTimerTap), for: .touchUpInside)
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(roundTimerLongPress(gesture:)))
+        longPress.minimumPressDuration = 0.5
+        roundTimerView.addGestureRecognizer(longPress)
+        
+        return roundTimerView
     }()
     
-    private let buttonStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        return stackView
+  
+    private let timeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontSizeToFitWidth = true
+        label.font = .systemFont(ofSize: 48.0, weight: .bold)
+        label.textColor = .white
+        label.textAlignment = .center
+        return label
     }()
-    
-    private lazy var activeButton: UIButton = {
-        let button = TouchesRoundButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .bold)
-        button.contentEdgeInsets = .init(
-            top: 8.0,
-            left: 8.0,
-            bottom: 8.0,
-            right: 8.0
-        )
         
-        button.addTarget(self, action: #selector(activeButtonTap), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    private lazy var cancelButton: UIButton = {
-        let button = TouchesRoundButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .bold)
-        button.setTitleColor(.white, for: .normal)
-        button.contentEdgeInsets = .init(
-            top: 8.0,
-            left: 8.0,
-            bottom: 8.0,
-            right: 8.0
-        )
-        
-        button.setTitle("Cancle", for: .normal)
-        button.backgroundColor = UIColor(hex: "#5B5B5BFF")
-        
-        button.addTarget(self, action: #selector(cancelButtonTap), for: .touchUpInside)
-        
-        return button
-    }()
-    
     
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -84,32 +57,19 @@ final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPres
     }
     
     private func setLayout(){
-        title = "Timer"
-        view.backgroundColor = .systemBackground
+        view.addSubview(roundTimerView)
+        view.addSubview(timeLabel)
                 
-        
-        view.addSubview(timerView)
-        view.addSubview(buttonStackView)
-        
-            
-        buttonStackView.addArrangedSubview(cancelButton)
-        buttonStackView.addArrangedSubview(activeButton)
-                
-        let inset: CGFloat = 16.0
-        
-        
         NSLayoutConstraint.activate([
-            timerView.topAnchor.constraint(equalTo: view.topAnchor),
-            timerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            roundTimerView.topAnchor.constraint(equalTo: view.topAnchor),
+            roundTimerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            roundTimerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            roundTimerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            buttonStackView.topAnchor.constraint(equalTo: timerView.bottomAnchor, constant: -inset),
-            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor , constant: inset),
-            buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            buttonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            buttonStackView.heightAnchor.constraint(equalToConstant: 80.0),
-            
-            cancelButton.widthAnchor.constraint(equalToConstant: 80.0),
-            activeButton.widthAnchor.constraint(equalToConstant: 80.0),
+            timeLabel.topAnchor.constraint(equalTo: roundTimerView.bottomAnchor, constant: 24.0),
+            timeLabel.leadingAnchor.constraint(equalTo: roundTimerView.leadingAnchor),
+            timeLabel.trailingAnchor.constraint(equalTo: roundTimerView.trailingAnchor),
+            timeLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
         updateTransition()
@@ -129,87 +89,120 @@ final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPres
     private func updateTransition() {
         let bounds =  UIDevice.frame()
         var timerWidth = bounds.width * 0.7
-        var stackViewWidth = bounds.width - 32.0
         
         if UIDevice.current.orientation.isLandscape{
             timerWidth = bounds.width * 0.5
-            stackViewWidth = timerWidth + 32.0
         }
-                        
+        
         
         if let timerViewWidth = timerViewWidthConstraint,
-           let timerViewHeight = timerViewHeightConstraint,
-           let buttonStackViewWidhConstraint = buttonStackViewWidhConstraint
+           let timerViewHeight = timerViewHeightConstraint
         {
             timerViewWidth.constant = timerWidth
             timerViewHeight.constant = timerWidth
-            buttonStackViewWidhConstraint.constant = stackViewWidth
         }else{
-            timerViewWidthConstraint = timerView.widthAnchor.constraint(equalToConstant: timerWidth)
-            timerViewHeightConstraint = timerView.heightAnchor.constraint(equalToConstant: timerWidth)
-            buttonStackViewWidhConstraint = buttonStackView.widthAnchor.constraint(equalToConstant: stackViewWidth)
-            
+            timerViewWidthConstraint = roundTimerView.widthAnchor.constraint(equalToConstant: timerWidth)
+            timerViewHeightConstraint = roundTimerView.heightAnchor.constraint(equalToConstant: timerWidth)
+                                    
             timerViewWidthConstraint!.isActive = true
             timerViewHeightConstraint!.isActive = true
-            buttonStackViewWidhConstraint!.isActive = true
         }
     }
     
     // MARK: Presentable
     func showStartButton() {
-        activeButton.setTitle("Start", for: .normal)
-        activeButton.setTitleColor(.systemGreen, for: .normal)
-        activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
+//        activeButton.setTitle("Start", for: .normal)
+//        activeButton.setTitleColor(.systemGreen, for: .normal)
+//        activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
     }
     
     func showPauseButton() {
-        activeButton.setTitle("Pause", for: .normal)
-        activeButton.setTitleColor(.systemOrange, for: .normal)
-        activeButton.backgroundColor = .systemOrange.withAlphaComponent(0.5)
+//        activeButton.setTitle("Pause", for: .normal)
+//        activeButton.setTitleColor(.systemOrange, for: .normal)
+//        activeButton.backgroundColor = .systemOrange.withAlphaComponent(0.5)
     }
     
     func showResumeButton() {
-        activeButton.setTitle("Resume", for: .normal)
-        activeButton.setTitleColor(.systemGreen, for: .normal)
-        activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
+//        activeButton.setTitle("Resume", for: .normal)
+//        activeButton.setTitleColor(.systemGreen, for: .normal)
+//        activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
     }
     
-    func setTimer(_ viewModel: RoundTimerViewModel) {
-        timerView.bindView(viewModel)
+    func showTimerActionDialog() {
+        let alertController = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
+        )
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel Timer", style: .default) { [weak self] _ in
+            self?.listener?.cancelButtonDidTap()
+        }
+        
+        let finishAction = UIAlertAction(title: "Finish Timer", style: .default) { [weak self] _ in
+            self?.listener?.finishButtonDidTap()
+        }
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel)
+        
+        alertController.addAction(dismissAction)
+        alertController.addAction(cancelAction)
+        alertController.addAction(finishAction)
+        self.present(alertController, animated: true)
+    }
+    
+    func setTimer(_ viewModel: FocusRoundTimerViewModel) {
+        roundTimerView.bindView(viewModel)
+        timeLabel.text = viewModel.time
     }
     
     
     func updateRemainTime(time: String) {
-        timerView.setTimeLabel(time: time)
+        //timerView.setTimeLabel(time: time)
+        timeLabel.text = time
     }
     
     func startProgress(totalDuration: TimeInterval) {
-        timerView.startProgress(duration: totalDuration)
+        roundTimerView.startProgress(duration: totalDuration)
     }
     
     func updateProgress(from: CGFloat, remainDuration: TimeInterval) {
-        timerView.updateProgress(from: from, remainDuration: remainDuration)
+        roundTimerView.updateProgress(from: from, remainDuration: remainDuration)
     }
         
     func resumeProgress() {
-        timerView.resumeProgress()
+        roundTimerView.resumeProgress()
     }
     
     func suspendProgress(){
-        timerView.suspendProgress()
+        roundTimerView.suspendProgress()
     }
 
 
     @objc
-    private func activeButtonTap(){
-        listener?.activeButtonDidTap()
+    private func roundTimerTap(){
+        listener?.roundTimerDidTap()
     }
     
     @objc
-    private func cancelButtonTap(){
-        listener?.cancelButtonDidTap()
+    private func roundTimerLongPress(gesture: UILongPressGestureRecognizer){
+        if gesture.state == .began {            
+            listener?.roundTimerLongPress()
+        }
     }
     
+    
+//    @objc
+//    private func activeButtonTap(){
+//        listener?.activeButtonDidTap()
+//    }
+//    
+//    @objc
+//    private func cancelButtonTap(){
+//        listener?.cancelButtonDidTap()
+//    }
+//    
 
     
 }

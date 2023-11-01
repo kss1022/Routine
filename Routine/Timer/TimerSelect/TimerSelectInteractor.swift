@@ -21,6 +21,7 @@ protocol TimerSelectPresentable: Presentable {
 protocol TimerSelectListener: AnyObject {
     func timerSelectCloseButtonDidTap()
     func timerSelectDidSelectItem(timerId: UUID)
+    func timerSelectCreateTimerButtonDidTap()
 }
 
 protocol TimerSelectInteractorDependency{
@@ -69,6 +70,11 @@ final class TimerSelectInteractor: PresentableInteractor<TimerSelectPresentable>
     func closeButtonDidTap() {
         listener?.timerSelectCloseButtonDidTap()
     }
+    
+    func creatTimerButtonDidTap() {
+        listener?.timerSelectCreateTimerButtonDidTap()
+    }
+    
     
     func collectionViewDidSelectItemAt(timerId: UUID) {
         listener?.timerSelectDidSelectItem(timerId: timerId)
