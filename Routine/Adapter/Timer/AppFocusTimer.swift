@@ -19,10 +19,16 @@ struct AppFocusTimerModel{
 final class AppFocusTimer: BaseTimerImp{
  
     
+    var startAt: Date?
+    
     init(model: AppFocusTimerModel){
         super.init(time: model.min)
     }
     
+    override func start() {
+        super.start()
+        self.startAt = Date()
+    }
 }
 
 

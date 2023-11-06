@@ -109,10 +109,10 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     //MARK: RoutineList
     func routineListDidComplete(list: RoutineHomeListModel) {
         if list.recordId == nil{
-            let command = CreateRecord(routineId: list.routineId, date: self.date)
+            let command = CreateRoutineRecord(routineId: list.routineId, date: self.date)
             createRecord(command)
         }else{
-            let command = SetCompleteRecord(recordId: list.recordId!, isComplete: !list.isComplete)
+            let command = SetCompleteRoutineRecord(recordId: list.recordId!, isComplete: !list.isComplete)
             setComplete(command)
         }
     }
@@ -158,7 +158,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     }
     
     
-    private func createRecord(_ command: CreateRecord){
+    private func createRecord(_ command: CreateRoutineRecord){
         Task{
             do{
                 try await self.dependency.recordApplicationService.when(command)
@@ -173,7 +173,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         }
     }
     
-    private func setComplete(_ command: SetCompleteRecord){
+    private func setComplete(_ command: SetCompleteRoutineRecord){
         Task{
             do{
                 try await self.dependency.recordApplicationService.when(command)

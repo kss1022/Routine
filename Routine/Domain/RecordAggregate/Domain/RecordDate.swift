@@ -14,7 +14,7 @@ struct RecordDate: ValueObject{
     let month: Int
     let day: Int
     
-    init(date: Date){
+    init(_ date: Date){
         let calendar = Calendar.current
         year = calendar.component(.year, from: date)
         month = calendar.component(.month, from: date)

@@ -25,9 +25,9 @@ public class Event: NSObject{
         coder.encodeDate(occurredOn, forKey: "occuredOn")
     }
     
-    public init?(coder: NSCoder) {
+    public init?(coder: NSCoder) {                
         self.eventVersion = coder.decodeInteger(forKey: "eventVersion")
-        self.occurredOn = coder.decodeDate(forKey: "occuredOn")
+        self.occurredOn = coder.decodeDate(forKey: "occuredOn") ?? Date()
     }
 }
 

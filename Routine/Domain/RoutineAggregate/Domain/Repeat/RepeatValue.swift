@@ -37,7 +37,7 @@ enum RepeatValue: ValueObject{
     init?(coder: NSCoder, type: RepeatType) {
         switch type {
         case .doItOnce:
-            let date =  coder.decodeDate(forKey: CodingKeys.routineRepeatValue.rawValue)
+            guard let date =  coder.decodeDate(forKey: CodingKeys.routineRepeatValue.rawValue) else { return nil}
             self = .doItOne(date: date)
         case .daliy:
             self = .daliy

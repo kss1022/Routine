@@ -8,7 +8,7 @@
 import ModernRIBs
 
 protocol RecordHomeRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func appendRecordBanner()
 }
 
 protocol RecordHomePresentable: Presentable {
@@ -34,7 +34,10 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+        
+        
+        Log.v("Record Home DidBecome Active 🎥")
+        router?.appendRecordBanner()
     }
 
     override func willResignActive() {

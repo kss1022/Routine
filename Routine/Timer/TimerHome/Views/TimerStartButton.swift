@@ -19,8 +19,6 @@ class TimerStartButton: UIControl {
     
     private lazy var fillLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.fillColor = UIColor.clear.cgColor
-        //layer.strokeColor = fillLayerStrokeColor
         layer.fillColor = fillLayerStrokeColor
         layer.lineWidth = lineWidth
         return layer
@@ -63,7 +61,10 @@ class TimerStartButton: UIControl {
     override open func layoutSubviews() {
         super.layoutSubviews()
         fillLayer.frame = bounds
+        fillLayer.fillColor = fillLayerStrokeColor
+        
         dashLayer.frame = bounds
+        dashLayer.strokeColor = UIColor.label.cgColor
 
         let center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
         var radius: CGFloat { (bounds.height - lineWidth) / 2 }

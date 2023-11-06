@@ -31,8 +31,11 @@ protocol FocusRoundTimerPresentable: Presentable {
 }
 
 protocol FocusRoundTimerListener: AnyObject {
+    func focusRoundTimerDidStartTimer(startAt: Date)
+    func focusRoundTimerDidResume()
+    func focusRoundTimerDidSuspend()
     func focusRoundTimerDidTapCancle()
-    func focusRoundTimerDidFinish()
+    func focusRoundTimerDidFinish(startAt: Date, endAt: Date, duration: Double)
 }
 
 protocol FocusRoundTimerInteractorDependency{
@@ -84,12 +87,13 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
         self.timer.completeEvent
             .receive(on: DispatchQueue.main)
             .sink { _ in
+                self.listener?.focusRoundTimerDidFinish(
+                    startAt: self.timer.startAt!,
+                    endAt: Date(),
+                    duration: self.timer.totalTime - self.timer.remainTime.value
+                )
+                
                 self.removeTimer()
-                if self.timer.remainTime.value > 0 {
-                    self.listener?.focusRoundTimerDidTapCancle()
-                }else{
-                    self.listener?.focusRoundTimerDidFinish()
-                }
             }
             .store(in: &cancellables)
     }
@@ -109,18 +113,21 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
     
     func roundTimerDidTap() {
         switch timer.timerState {
-        case .initialized:
+        case .initialized:  //set start
             timer.start()
             presenter.showPauseButton()
             presenter.startProgress(totalDuration: timer.totalTime)
-        case .resumed:
+            listener?.focusRoundTimerDidStartTimer(startAt: timer.startAt!)
+        case .resumed:      //set suspend
             timer.suspend()
             presenter.showResumeButton()
             presenter.suspendProgress()
-        case .suspended:
+            listener?.focusRoundTimerDidSuspend()
+        case .suspended:    //set resume
             timer.resume()
             presenter.showPauseButton()
             presenter.resumeProgress()
+            listener?.focusRoundTimerDidResume()
         default: break //cancel
         }
     }
@@ -148,8 +155,13 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
         if timer.timerState != .initialized{
             timer.cancel()
             presenter.suspendProgress()
+            listener?.focusRoundTimerDidFinish(
+                startAt: self.timer.startAt!,
+                endAt: Date(),
+                duration: self.timer.totalTime - self.timer.remainTime.value
+            )
+            
             removeTimer()
-            listener?.focusRoundTimerDidFinish()
         }else{
             listener?.focusRoundTimerDidTapCancle()
         }
@@ -173,10 +185,12 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
             updateProgress()
             presenter.showPauseButton()
             presenter.resumeProgress()
+            listener?.focusRoundTimerDidResume()
         case .suspended:
             updateProgress()
             presenter.showResumeButton()
             presenter.suspendProgress()
+            listener?.focusRoundTimerDidSuspend()
         case .canceled:
             //TODO: Show Cancel State
             presenter.showStartButton()

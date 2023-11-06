@@ -41,7 +41,7 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
     
     private func setLayout(){
         navigationItem.leftBarButtonItem = closeBarButtonItem
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBlue
     }
     
     //MARK: ViewControllerable
@@ -63,11 +63,28 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
     }
     
     //MARK: Presentable
+    
+    func setResumeBaackground() {
+        UIView.animate(withDuration: 0.5.second) { [weak self] in
+            self?.view.backgroundColor = .black
+        }
+    }
+    
+    func setSuspendBackground() {
+        UIView.animate(withDuration: 0.5.second) { [weak self] in
+            self?.view.backgroundColor = .systemBlue
+        }
+    }
+    
     func setTitle(title: String) {
         self.title = title
     }
     
     func showFinishTimer() {
+        UIView.animate(withDuration: 0.3.second) { [weak self] in
+            self?.view.backgroundColor = .systemBlue
+        }
+        
         let firework = ConfettiParticle()   //FireworkParticle()
         firework.translatesAutoresizingMaskIntoConstraints = false
         

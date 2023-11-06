@@ -47,7 +47,7 @@ final class TimerNextSectionViewController: UIViewController, TimerNextSectionPr
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.setFont(style: .subheadline)
-        label.textColor = .label
+        label.textColor = .white
         return label
     }()
     
@@ -55,7 +55,7 @@ final class TimerNextSectionViewController: UIViewController, TimerNextSectionPr
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setFont(style: .title3)
-        label.textColor = .label
+        label.textColor = .white
         return label
     }()
     

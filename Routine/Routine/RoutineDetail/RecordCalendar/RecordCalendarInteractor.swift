@@ -53,7 +53,7 @@ final class RecordCalendarInteractor: PresentableInteractor<RecordCalendarPresen
         dependency.routineDetailRecord
             .receive(on: DispatchQueue.main)
             .sink {
-                let formaater = Formatter.recordFormatter()
+                let formaater = Formatter.recordDateFormatter()
                 
                 var set = Set<Date>()
                 

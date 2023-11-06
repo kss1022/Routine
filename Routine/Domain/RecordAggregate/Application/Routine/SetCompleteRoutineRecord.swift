@@ -10,7 +10,7 @@ import Foundation
 
 
 
-struct SetCompleteRecord{
+struct SetCompleteRoutineRecord{
     let recordId: UUID
     let isComplete: Bool
 }

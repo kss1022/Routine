@@ -1,5 +1,5 @@
 //
-//  Record.swift
+//  RoutineRecord.swift
 //  Routine
 //
 //  Created by 한현규 on 10/11/23.
@@ -9,7 +9,7 @@ import Foundation
 
 
 
-final class Record: DomainEntity{
+final class RoutineRecord: DomainEntity{
     
     private(set) var routineId: RoutineId!
     private(set) var recordId: RecordId!
@@ -29,7 +29,7 @@ final class Record: DomainEntity{
         super.init()
         
         changes.append(
-            RecordCreated(routineId: routineId, recordId: recordId, recordDate: recordDate, isComplete: isComplete)
+            RoutineRecordCreated(routineId: routineId, recordId: recordId, recordDate: recordDate, isComplete: isComplete)
         )
     }
         
@@ -39,23 +39,23 @@ final class Record: DomainEntity{
     }
     
     override func mutate(_ event: Event) {
-        if let created = event as? RecordCreated{
+        if let created = event as? RoutineRecordCreated{
             when(created)
-        }else if let completeSet = event as? RecordCompleteSet{
+        }else if let completeSet = event as? RoutineRecordCompleteSet{
             when(completeSet)
         }else{
             Log.e("Event is not handling")
         }
     }
     
-    private func when(_ event: RecordCreated){
+    private func when(_ event: RoutineRecordCreated){
         self.routineId = event.routineId
         self.recordId = event.recordId
         self.recordDate = event.recordDate
         self.isComplete = event.isComplete
     }
     
-    private func when(_ event: RecordCompleteSet){
+    private func when(_ event: RoutineRecordCompleteSet){
         self.isComplete = event.isComplete
     }
     
@@ -68,7 +68,7 @@ final class Record: DomainEntity{
         self.isComplete = isComplete
                 
         changes.append(
-            RecordCompleteSet(recordId: self.recordId, isComplete: isComplete)
+            RoutineRecordCompleteSet(routineId: self.routineId, recordId: self.recordId, recordDate: self.recordDate, isComplete: isComplete)
         )
     }
     

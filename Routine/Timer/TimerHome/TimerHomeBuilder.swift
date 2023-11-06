@@ -9,6 +9,8 @@ import ModernRIBs
 
 protocol TimerHomeDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
+    var recordApplicationService: RecordApplicationService{ get }
+
     var timerRepository: TimerRepository{ get }
     
     var startTimerBaseViewController: ViewControllable{ get }
@@ -18,6 +20,9 @@ final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDepen
     
     
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
+    var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
+
+    
     var timerRepository: TimerRepository{ dependency.timerRepository }
     
     var startTimerBaseViewController: ViewControllable{ dependency.startTimerBaseViewController }

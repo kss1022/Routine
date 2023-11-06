@@ -16,7 +16,7 @@ struct RecordModel{
     public let isComplete: Bool
     public let completedAt: Date
     
-    init(_ recordDto: RecordDto) {
+    init(_ recordDto: RoutineRecordDto) {
         self.routineId = recordDto.routineId
         self.recordId = recordDto.recordId
         self.recordDate = recordDto.recordDate

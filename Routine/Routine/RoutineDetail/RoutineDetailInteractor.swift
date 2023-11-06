@@ -76,8 +76,8 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
         }
                 
         //Check SelectedDate
-        let detailRecordDate = Formatter.recordFormatter().string(from: dependency.routineDetailRecord.value!.recordDate)
-        let recordDate = Formatter.recordFormatter().string(from: self.dependency.recordDate)
+        let detailRecordDate = Formatter.recordDateFormatter().string(from: dependency.routineDetailRecord.value!.recordDate)
+        let recordDate = Formatter.recordDateFormatter().string(from: self.dependency.recordDate)
         
         if detailRecordDate != recordDate{
             Log.e("\(detailRecordDate)(detail.recordDate) != \(recordDate)(self.dependency.recordDate)")
@@ -130,10 +130,10 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
         let recordDate = dependency.recordDate
         
         if record?.recordId == nil{
-            let command = CreateRecord(routineId: routineId, date: recordDate)
+            let command = CreateRoutineRecord(routineId: routineId, date: recordDate)
             createRecord(command)
         }else{
-            let command = SetCompleteRecord(recordId: record!.recordId!, isComplete: !(record!.isComplete))
+            let command = SetCompleteRoutineRecord(recordId: record!.recordId!, isComplete: !(record!.isComplete))
             setComplete(command)
         }
     }
@@ -159,7 +159,7 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
     
     
     //MARK: Private
-    private func createRecord(_ command: CreateRecord){
+    private func createRecord(_ command: CreateRoutineRecord){
         Task{
             do{
                 try await self.dependency.recordApplicationService.when(command)
@@ -175,7 +175,7 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
         }
     }
     
-    private func setComplete(_ command: SetCompleteRecord){
+    private func setComplete(_ command: SetCompleteRoutineRecord){
         Task{
             do{
                 try await self.dependency.recordApplicationService.when(command)

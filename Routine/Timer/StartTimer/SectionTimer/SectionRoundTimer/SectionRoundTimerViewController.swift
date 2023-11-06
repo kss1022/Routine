@@ -81,9 +81,7 @@ final class SectionRoundTimerViewController: UIViewController, SectionRoundTimer
     }
     
     private func setLayout(){
-        title = "Timer"
-        view.backgroundColor = .systemBackground
-        
+        title = "Timer"        
         
         view.addSubview(roundTimerView)
         view.addSubview(buttonStackView)

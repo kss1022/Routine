@@ -1,5 +1,5 @@
 //
-//  RecordSQLDao.swift
+//  RoutineRecordSQLDao.swift
 //  Routine
 //
 //  Created by 한현규 on 10/11/23.
@@ -11,13 +11,13 @@ import SQLite
 
 
 
-final class RecordSQLDao: RecordDao{
+final class RoutineRecordSQLDao: RoutineRecordDao{
     
-    private let db : Connection
+    private let db: Connection
     private let table: Table
     
     // MARK: Columns
-    internal static let tableName = "RECORD"
+    internal static let tableName = "ROUTINERECORD"
     private let routineId: Expression<UUID>
     private let recordId: Expression<UUID>
     private let recordDate: Expression<String>
@@ -28,7 +28,7 @@ final class RecordSQLDao: RecordDao{
     init(db: Connection) throws{
         self.db = db
         
-        table = Table(RecordSQLDao.tableName)
+        table = Table(RoutineRecordSQLDao.tableName)
         routineId = Expression<UUID>("routineId")
         recordId = Expression<UUID>("recordId")
         recordDate = Expression<String>("recordDate")
@@ -57,11 +57,11 @@ final class RecordSQLDao: RecordDao{
             table.foreignKey(routineId, references: listTable, routineId, delete: .cascade)
         })
         db.userVersion = 0
-        Log.v("Create Table (If Not Exists): \(RecordSQLDao.tableName)")
+        Log.v("Create Table (If Not Exists): \(RoutineRecordSQLDao.tableName)")
     }
     
 
-    func save(_ dto: RecordDto) throws {
+    func save(_ dto: RoutineRecordDto) throws {
         let insert = table.insert(
             routineId <- dto.routineId,
             recordId <- dto.recordId,
@@ -71,7 +71,7 @@ final class RecordSQLDao: RecordDao{
         )
         
         try db.run(insert)
-        Log.v("Insert \(RecordDto.self): \(dto)")
+        Log.v("Insert \(RoutineRecordDto.self): \(dto)")
 
     }
     
@@ -86,10 +86,10 @@ final class RecordSQLDao: RecordDao{
         
         try db.run(update)
             
-        Log.v("Update Complete \(RecordDto.self): \(recordId) \(isComplete)")
+        Log.v("Update Complete \(RoutineRecordDto.self): \(recordId) \(isComplete)")
     }
     
-    func find(routineId: UUID, date: String) throws -> RecordDto? {
+    func find(routineId: UUID, date: String) throws -> RoutineRecordDto? {
         let query = table.filter(
             self.routineId == routineId &&
             self.recordDate == date
@@ -99,7 +99,7 @@ final class RecordSQLDao: RecordDao{
         
         return try db.prepare(query)
             .map {
-                RecordDto(
+                RoutineRecordDto(
                     routineId: $0[self.routineId],
                     recordId: $0[recordId],
                     recordDate: $0[recordDate],
@@ -110,11 +110,11 @@ final class RecordSQLDao: RecordDao{
     }
     
     
-    func findAll(_ date: String) throws -> [RecordDto] {
+    func findAll(_ date: String) throws -> [RoutineRecordDto] {
         let query = table.filter(recordDate == date)
                             
         return try db.prepareRowIterator(query).map {
-            RecordDto(
+            RoutineRecordDto(
                 routineId: $0[routineId],
                 recordId: $0[recordId],
                 recordDate: $0[recordDate],
@@ -124,7 +124,7 @@ final class RecordSQLDao: RecordDao{
         }
     }
     
-    func findAll(_ routindId: UUID) throws -> [RecordDto] {
+    func findAll(_ routindId: UUID) throws -> [RoutineRecordDto] {
         let query = table.filter(
             self.routineId == routindId &&
             self.isComplete == true
@@ -132,7 +132,7 @@ final class RecordSQLDao: RecordDao{
             .order(recordDate.desc)
                             
         return try db.prepareRowIterator(query).map {
-            RecordDto(
+            RoutineRecordDto(
                 routineId: $0[routineId],
                 recordId: $0[recordId],
                 recordDate: $0[recordDate],
@@ -141,5 +141,6 @@ final class RecordSQLDao: RecordDao{
             )
         }
     }
+
 }
 

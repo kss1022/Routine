@@ -21,7 +21,7 @@ protocol StartTimerViewControllable: ViewControllable {
 
 final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting {
     
-
+    
     private let focusTimerBuildable: FocusTimerBuildable
     private var focusTimerRouting: Routing?
     
@@ -41,10 +41,10 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
         super.init(interactor: interactor)
         interactor.router = self
     }
-
+    
     func cleanupViews() {
         if viewController.uiviewController.presentedViewController != nil, navigationControllable != nil {
-          navigationControllable?.dismiss(completion: nil)
+            navigationControllable?.dismiss(completion: nil)
         }
     }
     
@@ -55,12 +55,12 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
         }
         
         let router = focusTimerBuildable.build(withListener: interactor, model: model)
-                
-        let navigation = NavigationControllerable(root: router.viewControllable)
-        navigation.navigationController.modalPresentationStyle = .fullScreen        
-        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
-        self.navigationControllable = navigation
-        viewController.present(navigation, animated: true, completion: nil)
+        
+        if let navigationController = navigationControllable{
+            navigationController.pushViewController(router.viewControllable, animated: true)
+        }else{
+            presentInsideNavigation(router.viewControllable)
+        }
         
         attachChild(router)
         focusTimerRouting = router
@@ -89,7 +89,7 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
         }
         
         attachChild(router)
-        sectionTimerRouting = router        
+        sectionTimerRouting = router
     }
     
     func detachSectionTimer() {
@@ -103,19 +103,20 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
     
     // MARK: - Private
     private func presentInsideNavigation(_ viewControllable: ViewControllable) {
-      let navigation = NavigationControllerable(root: viewControllable)
-      navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
-      self.navigationControllable = navigation
-      viewController.present(navigation, animated: true, completion: nil)
+        let navigation = NavigationControllerable(root: viewControllable)
+        navigation.navigationController.modalPresentationStyle = .fullScreen
+        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
+        self.navigationControllable = navigation
+        viewController.present(navigation, animated: true, completion: nil)
     }
-
+    
     private func dismissPresentedNavigation(completion: (() -> Void)?) {
-      if self.navigationControllable == nil {
-        return
-      }
-      
-      viewController.dismiss(completion: nil)
-      self.navigationControllable = nil
+        if self.navigationControllable == nil {
+            return
+        }
+        
+        viewController.dismiss(completion: nil)
+        self.navigationControllable = nil
     }
     
     private var navigationControllable: NavigationControllerable?

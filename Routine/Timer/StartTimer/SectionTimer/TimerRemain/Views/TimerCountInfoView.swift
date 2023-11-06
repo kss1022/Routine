@@ -26,7 +26,7 @@ final class TimerCountInfoView: UIView{
         let label = UILabel()
         label.setBoldFont(style: .footnote)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .label
+        label.textColor = .white
         return label
     }()
     
@@ -46,7 +46,7 @@ final class TimerCountInfoView: UIView{
         let label = UILabel()
         label.setFont(style: .caption1)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .label
+        label.textColor = .white
         return label
     }()
     
@@ -54,7 +54,7 @@ final class TimerCountInfoView: UIView{
         let label = UILabel()
         label.setFont(style: .caption1)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .label
+        label.textColor = .white
         label.text = " / "
         return label
     }()
@@ -63,7 +63,7 @@ final class TimerCountInfoView: UIView{
         let label = UILabel()
         label.setFont(style: .caption1)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .label
+        label.textColor = .white
         return label
     }()
     

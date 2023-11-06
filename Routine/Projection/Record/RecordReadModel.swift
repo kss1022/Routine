@@ -9,36 +9,56 @@ import Foundation
 
 
 
-protocol RecordReadModelFacade{
-    func record(routineId: UUID, date: Date) throws -> RecordDto?
-    func records(date: Date) throws -> [RecordDto]
-    func records(routineId: UUID) throws -> [RecordDto]
+protocol RoutineRecordReadModelFacade{
+    
+    func totalRecord(routineId: UUID) throws -> RoutineTotalRecordDto?
+    func monthRecord(routineId: UUID, date: Date) throws -> RoutineMonthRecordDto?
+            
+    func record(routineId: UUID, date: Date) throws -> RoutineRecordDto?
+    func records(date: Date) throws -> [RoutineRecordDto]
+    func records(routineId: UUID) throws -> [RoutineRecordDto]
+
 }
 
 
-public final class RecordReadModelFacadeImp: RecordReadModelFacade{        
+public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade{
     
-    private let recordDao: RecordDao
+    private let routineTotalRecordDao: RoutineTotalRecordDao
+    private let routineMonthRecordDao: RoutineMonthRecordDao
+    private let routineRecordDao: RoutineRecordDao
+    
     
     init() throws{
         guard let dbManager = DatabaseManager.default else {
             throw DatabaseException.couldNotGetDatabaseManagerInstance
         }
         
-        recordDao = dbManager.recordDao
-    }
-    func record(routineId: UUID, date: Date) throws -> RecordDto? {
-        let date =  Formatter.recordFormatter().string(from: date)
-        return try recordDao.find(routineId: routineId, date: date)
+        routineTotalRecordDao = dbManager.routineTotalRecordDao
+        routineMonthRecordDao = dbManager.routineMonthRecordDao
+        routineRecordDao = dbManager.routineRecordDao
     }
     
-    func records(date: Date) throws -> [RecordDto] {
-        let date =  Formatter.recordFormatter().string(from: date)
-        return try recordDao.findAll(date)
+    func totalRecord(routineId: UUID) throws -> RoutineTotalRecordDto? {
+        try routineTotalRecordDao.find(routineId: routineId)
     }
     
-    func records(routineId: UUID) throws -> [RecordDto] {
-        return try recordDao.findAll(routineId)
+    func monthRecord(routineId: UUID, date: Date) throws -> RoutineMonthRecordDto? {
+        let date = Formatter.recordMonthFormatter().string(from: date)
+        return try routineMonthRecordDao.find(routineId: routineId, recordMonth: date)
     }
     
+    func record(routineId: UUID, date: Date) throws -> RoutineRecordDto? {
+        let date =  Formatter.recordDateFormatter().string(from: date)
+        return try routineRecordDao.find(routineId: routineId, date: date)
+    }
+    
+    func records(date: Date) throws -> [RoutineRecordDto] {
+        let date =  Formatter.recordDateFormatter().string(from: date)
+        return try routineRecordDao.findAll(date)
+    }
+    
+    func records(routineId: UUID) throws -> [RoutineRecordDto] {
+        try routineRecordDao.findAll(routineId)
+    }
+
 }

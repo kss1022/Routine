@@ -9,11 +9,14 @@ import ModernRIBs
 import Foundation
 
 protocol FocusTimerDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var recordApplicationService: RecordApplicationService{ get }
+    var timerRepository: TimerRepository{ get }
 }
 
 final class FocusTimerComponent: Component<FocusTimerDependency>, FocusRoundTimerDependency, FocusTimerInteractorDependency {
+    
+    var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
+    var timerRepository: TimerRepository{ dependency.timerRepository }
     
     let model: TimerFocusModel
     let timer: AppFocusTimer

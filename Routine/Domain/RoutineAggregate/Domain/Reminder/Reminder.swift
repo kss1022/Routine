@@ -52,6 +52,10 @@ struct Reminder: ValueObject{
             }
             
             
+            if weekDays.isEmpty{
+                throw ArgumentException("WeekDays is Empty")
+            }
+            
             for weekDay in weekDays{
                 if weekDay < 0 || weekDay > 6{
                     throw ArgumentException("Weekly must be in the range 0 ~ 6")
@@ -66,6 +70,10 @@ struct Reminder: ValueObject{
         case .monthly:
             guard let monthDays = data as? Set<Int> else {
                 throw ArgumentException("This is not the right data for your type (monthly): %@ != %@", "Set<Int>", "\(data.self ?? "nil")")
+            }
+            
+            if monthDays.isEmpty{
+                throw ArgumentException("MonthkDays is Empty")
             }
             
             for day in monthDays{

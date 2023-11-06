@@ -8,13 +8,13 @@
 import ModernRIBs
 
 protocol RecordHomeDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var recordApplicationService: RecordApplicationService{ get }
+    var recordRepository: RecordRepository{ get }
 }
 
-final class RecordHomeComponent: Component<RecordHomeDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class RecordHomeComponent: Component<RecordHomeDependency>, RecordBannerDependency {
+    var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
+    var recordRepository: RecordRepository{ dependency.recordRepository }
 }
 
 // MARK: - Builder
@@ -34,6 +34,13 @@ final class RecordHomeBuilder: Builder<RecordHomeDependency>, RecordHomeBuildabl
         let viewController = RecordHomeViewController()
         let interactor = RecordHomeInteractor(presenter: viewController)
         interactor.listener = listener
-        return RecordHomeRouter(interactor: interactor, viewController: viewController)
+        
+        let recordBannerBuilder = RecordBannerBuilder(dependency: component)
+        
+        return RecordHomeRouter(
+            interactor: interactor,
+            viewController: viewController,
+            recordBannerBuildable: recordBannerBuilder
+        )
     }
 }

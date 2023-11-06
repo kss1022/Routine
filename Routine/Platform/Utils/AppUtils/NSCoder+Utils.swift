@@ -39,8 +39,8 @@ extension NSCoder{
     func encodeDate(_ date: Date, forKey: String){
         encode(date as NSDate, forKey: forKey)
     }
-    func decodeDate(forKey: String) -> Date{        
-        decodeObject(of: NSDate.self, forKey: forKey)! as Date
+    func decodeDate(forKey: String) -> Date?{        
+        decodeObject(of: NSDate.self, forKey: forKey) as? Date
     }
     
     

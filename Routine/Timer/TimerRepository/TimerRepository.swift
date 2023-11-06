@@ -14,11 +14,12 @@ protocol TimerRepository{
     var lists: ReadOnlyCurrentValuePublisher<[TimerListModel]>{ get }
     var focus: ReadOnlyCurrentValuePublisher<TimerFocusModel?>{ get}
     var sections: ReadOnlyCurrentValuePublisher<TimerSectionsModel?>{ get }
-    
         
     func fetchLists() async throws
     func fetchFocus(timerId: UUID) async throws
     func fetchSections(timerId: UUID) async throws
+    
+    func recordId(timerId: UUID, startAt: Date) async throws -> UUID?
 }
 
 
@@ -67,10 +68,20 @@ final class TimerRepositoryImp: TimerRepository{
     }
     
     
-    private let timerReadModel: TimerReadModelFacade
     
-    init(timerReadModel: TimerReadModelFacade) {
-        self.timerReadModel = timerReadModel                        
+    func recordId(timerId: UUID, startAt: Date) async throws -> UUID?{
+        try recordReadModel.record(timerId: timerId, startAt: startAt)?.recordId
+    }
+    
+    private let timerReadModel: TimerReadModelFacade
+    private let recordReadModel: TimerRecordReadModelFacade
+    
+    init(
+        timerReadModel: TimerReadModelFacade,
+        recordModel: TimerRecordReadModelFacade
+    ) {
+        self.timerReadModel = timerReadModel
+        self.recordReadModel = recordModel        
     }
     
 

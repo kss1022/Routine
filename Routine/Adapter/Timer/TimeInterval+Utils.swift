@@ -19,7 +19,7 @@ extension TimeInterval {
         let minutes = Int((self.truncatingRemainder(dividingBy: 3600)) / 60)
         let seconds = Int(self.truncatingRemainder(dividingBy: 60))
         
-        if hour == 0{
+        if hours == 0{
             return time
         }
         

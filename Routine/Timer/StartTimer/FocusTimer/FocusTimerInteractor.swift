@@ -5,6 +5,7 @@
 //  Created by 한현규 on 10/27/23.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol FocusTimerRouting: ViewableRouting {
@@ -14,6 +15,8 @@ protocol FocusTimerRouting: ViewableRouting {
 protocol FocusTimerPresentable: Presentable {
     var listener: FocusTimerPresentableListener? { get set }
     func setTitle(title: String)
+    func setResumeBaackground()
+    func setSuspendBackground()
     func showFinishTimer()
 }
 
@@ -22,6 +25,8 @@ protocol FocusTimerListener: AnyObject {
 }
 
 protocol FocusTimerInteractorDependency{
+    var recordApplicationService: RecordApplicationService{ get }
+    var timerRepository: TimerRepository{ get }
     var model: TimerFocusModel{ get }
 }
 
@@ -61,13 +66,69 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
     }
     
     // MARK: FocusRoundTimer
+    
+    func focusRoundTimerDidStartTimer(startAt: Date) {
+        let createRecord = CreateTimerRecord(
+            timerId: dependency.model.timerId,
+            startAt: startAt
+        )
+        
+        Task{
+            do{
+                try await dependency.recordApplicationService.when(createRecord)
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.message)
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
+            }
+            
+        }
+        
+        
+        presenter.setResumeBaackground()
+    }
+    
+    func focusRoundTimerDidResume() {
+        presenter.setResumeBaackground()
+    }
+    
+    func focusRoundTimerDidSuspend() {
+        presenter.setSuspendBackground()
+    }
+    
     func focusRoundTimerDidTapCancle() {
         listener?.focusTimerDidTapClose()
-        
     }
     
-    func focusRoundTimerDidFinish() {
+    
+    func focusRoundTimerDidFinish(startAt: Date, endAt: Date, duration: Double) {
+    
+        Task{
+            do{
+                guard let recordId = try await dependency.timerRepository.recordId(timerId: dependency.model.timerId, startAt: startAt) else {
+                    Log.e("Can't find RecordId: \(dependency.model.timerId) \(startAt)")
+                    return
+                }
+                
+                let setComplete = SetCompleteTimerRecord(
+                    recordId: recordId,
+                    endAt: Date(),
+                    duration: duration
+                )
+                
+                try await dependency.recordApplicationService.when(setComplete)
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.message)
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
+            }
+        }
+
         presenter.showFinishTimer()
     }
-    
+        
 }

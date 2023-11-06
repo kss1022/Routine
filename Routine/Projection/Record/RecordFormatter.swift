@@ -10,13 +10,28 @@ import Foundation
 
 extension Formatter{
     
-    static func recordDate(year: Int, month: Int, day: Int) -> String{
-        "\(year)-\(month)-\(day)"
+    static func recordDate(_ recordDate: RecordDate) -> String{
+        "\(recordDate.year)-\(recordDate.month)-\(recordDate.day)"
     }
     
-    static func recordFormatter() -> DateFormatter{
+//    static func recordDate(year: Int, month: Int, day: Int) -> String{
+//        "\(year)-\(month)-\(day)"
+//    }
+    
+    static func recordMonth(_ recordDate: RecordDate) -> String{
+        "\(recordDate.year)-\(recordDate.month)"
+    }
+        
+    
+    static func recordDateFormatter() -> DateFormatter{
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-d"
+        return formatter
+    }
+    
+    static func recordMonthFormatter() -> DateFormatter{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM"
         return formatter
     }
     

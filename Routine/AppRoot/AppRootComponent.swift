@@ -19,9 +19,12 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
     //MARK: ReadModel
     private let routineReadModel: RoutineReadModelFacade
     private let repeatReadModel: RepeatReadModelFacade
-    private let recordReadModel: RecordReadModelFacade
     private let reminderReadModel: ReminderReadModelFacade
+    
     private let timerReadModel: TimerReadModelFacade
+    
+    private let routineRecordReadModel: RoutineRecordReadModelFacade
+    private let timerRecordReadModel: TimerRecordReadModelFacade
     
     
     //MAKR: Projection
@@ -32,6 +35,7 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
     //MARK: Repository
     let routineRepository: RoutineRepository
     let timerRepository: TimerRepository
+    let recordRepository: RecordRepository
     
     
     
@@ -70,9 +74,12 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         //ReadModel
         routineReadModel = try! RoutineReadModelFacadeImp()
         repeatReadModel = try! RepeatReadModelFacadeImp()
-        recordReadModel = try! RecordReadModelFacadeImp()
         reminderReadModel = try! ReminderReadModelFacadeImp()
+                        
         timerReadModel = try! TimerReadModelFacadeImp()
+        
+        routineRecordReadModel = try! RoutineRecordReadModelFacadeImp()
+        timerRecordReadModel = try! TimerRecordReadModelFacadeImp()
         
         //ApplicationService
         self.routineApplicationService = RoutineApplicationService(
@@ -98,12 +105,17 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         self.routineRepository = RoutineRepositoryImp(
             routineReadModel: routineReadModel,
             repeatReadModel: repeatReadModel,
-            recordReadModel: recordReadModel,
+            recordReadModel: routineRecordReadModel,
             reminderReadModel: reminderReadModel
         )
                         
         self.timerRepository = TimerRepositoryImp(
-            timerReadModel: timerReadModel
+            timerReadModel: timerReadModel,
+            recordModel: timerRecordReadModel
+        )
+        
+        self.recordRepository = RecordRepositoryImp(
+            timerRecordReadModel: timerRecordReadModel
         )
          
         self.rootViewController = viewController

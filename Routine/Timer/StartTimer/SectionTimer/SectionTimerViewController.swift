@@ -45,14 +45,11 @@ final class SectionTimerViewController: UIViewController, SectionTimerPresentabl
     }
     
     private func setLayout(){
+        view.backgroundColor = .black
         navigationItem.leftBarButtonItem = closeBarButtonItem
-
-        view.backgroundColor = .systemBackground
-        
-        
+                        
         view.addSubview(stackView)
-         
-        
+                 
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

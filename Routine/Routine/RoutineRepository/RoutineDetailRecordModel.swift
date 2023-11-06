@@ -16,7 +16,7 @@ struct RoutineDetailRecordModel{
     public let recordModels: [RecordModel]
     
     
-    init(recordDto: RecordDto?, recordDate: Date ,recordDtos: [RecordDto]) {
+    init(recordDto: RoutineRecordDto?, recordDate: Date ,recordDtos: [RoutineRecordDto]) {
         if recordDto == nil{
             self.recordId = nil
             self.isComplete = false

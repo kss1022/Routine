@@ -14,7 +14,7 @@ final class RecordApplicationService: ApplicationService{
     internal var eventStore: EventStore
     internal var snapshotRepository: SnapshotRepository
     
-    private let recordFactory: RecordFactory
+    private let recordFactory: RecordFactory    
     
     init(
         eventStore: EventStore,
@@ -26,14 +26,14 @@ final class RecordApplicationService: ApplicationService{
         self.recordFactory = recordFactory
     }
     
-    
-    func when(_ command: CreateRecord) async throws{
+    //MARK: RoutineRecord
+    func when(_ command: CreateRoutineRecord) async throws{
         do{
-            Log.v("When (\(CreateRecord.self)):  \(command)")
+            Log.v("When (\(CreateRoutineRecord.self)):  \(command)")
 
             let routindId = RoutineId(command.routineId)
             let recordId = RecordId(UUID())
-            let recordDate = RecordDate(date: command.date)
+            let recordDate = RecordDate(command.date)
             let isComplete = command.isComplete
             
             let record = recordFactory.create(routineId: routindId, recordId: recordId, recordDate: recordDate, isComplete: isComplete)
@@ -46,16 +46,12 @@ final class RecordApplicationService: ApplicationService{
         }
     }
     
-    func when(_ command: SetCompleteRecord) async throws{
+    func when(_ command: SetCompleteRoutineRecord) async throws{
         do{
-            Log.v("When (\(SetCompleteRecord.self)):  \(command)")
+            Log.v("When (\(SetCompleteRoutineRecord.self)):  \(command)")
 
-            
-            let recordId = RecordId(UUID())
             let isComplete = command.isComplete
-            
-            
-            try update(id: command.recordId) { (record: Record) in
+            try update(id: command.recordId) { (record: RoutineRecord) in
                 try record.setComplete(isComplete: isComplete)
                 return ()
             }
@@ -67,5 +63,39 @@ final class RecordApplicationService: ApplicationService{
         }
     }
     
+    //MARK: TimerRecord
+    func when(_ command: CreateTimerRecord) async throws{
+        do{
+            Log.v("When (\(CreateTimerRecord.self)): \(command)")
+            
+            let timerId = TimerId(command.timerId)
+            let recordId = RecordId(UUID())
+            let timeRecord = TimeRecord(command.startAt)
+            
+            let record = recordFactory.create(timeId: timerId, recordId: recordId, timeRecord: timeRecord)
+            try eventStore.appendToStream(id: record.recordId.id, expectedVersion: -1, events: record.changes)
+
+            
+            try Transaction.commit()
+        }catch{
+            try Transaction.rollback()
+            throw error
+        }
+    }
     
+    func when(_ command: SetCompleteTimerRecord) async throws{
+        do{
+            Log.v("When (\(SetCompleteTimerRecord.self)): \(command)")
+            
+            
+            try update(id: command.recordId) { (record: TimerRecord) in
+                try record.setComplete(endAt: command.endAt, duration: command.duration)
+                return ()
+            }
+            
+            try Transaction.commit()
+        }catch{
+            try Transaction.rollback()
+        }
+    }
 }

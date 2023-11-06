@@ -1,5 +1,5 @@
 //
-//  RecordCreated.swift
+//  RoutineRecordCreated.swift
 //  Routine
 //
 //  Created by 한현규 on 10/11/23.
@@ -9,7 +9,7 @@ import Foundation
 
 
 
-final class RecordCreated: DomainEvent{
+final class RoutineRecordCreated: DomainEvent{
     
     let routineId: RoutineId
     let recordId: RecordId

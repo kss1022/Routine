@@ -49,7 +49,7 @@ final class TimerRemainViewController: UIViewController, TimerRemainPresentable,
         let label = UILabel()
         label.setBoldFont(style: .body)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .label
+        label.textColor = .white
         label.text = "Time Remaining"
         return label
     }()
@@ -58,7 +58,7 @@ final class TimerRemainViewController: UIViewController, TimerRemainPresentable,
         let label = UILabel()
         label.setFont(style: .subheadline)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .label
+        label.textColor = .white
         label.text = "00:00"
         return label
     }()

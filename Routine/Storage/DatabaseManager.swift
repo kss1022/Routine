@@ -24,7 +24,11 @@ class DatabaseManager{
     public let routineDetailDao: RoutineDetailDao
     public let repeatDao: RepeatDao
     public let reminderDao: ReminderDao
-    public let recordDao: RecordDao
+        
+    public let routineTotalRecordDao: RoutineTotalRecordDao
+    public let routineMonthRecordDao: RoutineMonthRecordDao
+    public let routineRecordDao: RoutineRecordDao
+    public let timerRecordDao: TimerRecordDao
     
     public let timerListDao: TimerListDao
     public let timerCountdownDao: TimerCountdownDao
@@ -40,26 +44,36 @@ class DatabaseManager{
         
         db = try Connection(path)
         db.foreignKeys = true
-
+        
 #if DEBUG
-//        try RoutineListSQLDao.dropTable(db: db)
-//        try RoutineDetailSQLDao.dropTable(db: db)      
-//        try RepeatSQLDao.dropTable(db: db)
-//        try ReminderSQLDao.dropTable(db: db)
-//        try RecordSQLDao.dropTable(db: db)
-//        try TimerListSQLDao.dropTable(db: db)
+        //        try RoutineListSQLDao.dropTable(db: db)
+        //        try RoutineDetailSQLDao.dropTable(db: db)
+        //        try RepeatSQLDao.dropTable(db: db)
+        //        try ReminderSQLDao.dropTable(db: db)
+        //
+        //        try TimerListSQLDao.dropTable(db: db)
         //        try TimerCountdownSQLDao.dropTable(db: db)
-//        try TimerSectionListSQLDao.dropTable(db: db)
+        //        try TimerSectionListSQLDao.dropTable(db: db)
+        //
+        //        try RoutineTotalRecordSQLDao.dropTable(db: db)
+        //        try RoutineMonthRecordSQLDao.dropTable(db: db)
+        //        try RoutineRecordSQLDao.dropTable(db: db)
+        //        try TimerRecordSQLDao.dropTable(db: db)
 #endif
         
         self.routineListDao = try RoutineListSQLDao(db: db)
-        self.routineDetailDao = try RoutineDetailSQLDao(db: db)        
+        self.routineDetailDao = try RoutineDetailSQLDao(db: db)
         self.repeatDao = try RepeatSQLDao(db: db)
         self.reminderDao = try ReminderSQLDao(db: db)
-        self.recordDao = try RecordSQLDao(db: db)
+        
         self.timerListDao = try TimerListSQLDao(db: db)
         self.timerCountdownDao = try TimerCountdownSQLDao(db: db)
         self.timerSectionListDao = try TimerSectionListSQLDao(db: db)
+
+        self.routineTotalRecordDao = try RoutineTotalRecordSQLDao(db: db)
+        self.routineMonthRecordDao = try RoutineMonthRecordSQLDao(db: db)
+        self.routineRecordDao = try RoutineRecordSQLDao(db: db)
+        self.timerRecordDao = try TimerRecordSQLDao(db: db)
     }
     
 }

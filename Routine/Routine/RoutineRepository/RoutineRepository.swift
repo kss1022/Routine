@@ -90,7 +90,7 @@ final class RoutineRepositoryImp: RoutineRepository{
         }
         
         
-        let recordSet : Set<RecordDto> = Set(
+        let recordSet : Set<RoutineRecordDto> = Set(
             try fetchRecord(date: date)
         )
                 
@@ -116,6 +116,12 @@ final class RoutineRepositoryImp: RoutineRepository{
         let detailRecordModel = RoutineDetailRecordModel(recordDto: record, recordDate: recordDate, recordDtos: records)
         self.detailRecordsSubject.send(detailRecordModel)
         
+        
+        let totalRecord =  try recordReadModel.totalRecord(routineId: routineId)
+        Log.d("Total Record: \(totalRecord!)")
+        
+        let monthRecord = try recordReadModel.monthRecord(routineId: routineId, date: recordDate)
+        Log.d("Month Record: \(monthRecord)")
         
         Log.v("RoutineRepository: fetch detail")
     }
@@ -160,7 +166,7 @@ final class RoutineRepositoryImp: RoutineRepository{
     
     
     
-    private func fetchRecord(date: Date) throws -> [RecordDto] {
+    private func fetchRecord(date: Date) throws -> [RoutineRecordDto] {
         let list = try recordReadModel.records(date: date)
         Log.v("RoutineRepository: fetch Record \(date)")
         return list
@@ -170,7 +176,7 @@ final class RoutineRepositoryImp: RoutineRepository{
     
     private let routineReadModel: RoutineReadModelFacade
     private let repeatReadModel: RepeatReadModelFacade
-    private let recordReadModel: RecordReadModelFacade
+    private let recordReadModel: RoutineRecordReadModelFacade
     private let reminderReadModel: ReminderReadModelFacade
     
     private var cancelables: Set<AnyCancellable>
@@ -178,7 +184,7 @@ final class RoutineRepositoryImp: RoutineRepository{
     init(
         routineReadModel: RoutineReadModelFacade,
         repeatReadModel: RepeatReadModelFacade,
-        recordReadModel: RecordReadModelFacade,
+        recordReadModel: RoutineRecordReadModelFacade,
         reminderReadModel: ReminderReadModelFacade
     ) {
         self.routineReadModel = routineReadModel
@@ -194,14 +200,14 @@ final class RoutineRepositoryImp: RoutineRepository{
 
 }
 
-extension RecordDto: Hashable{
+extension RoutineRecordDto: Hashable{
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.recordId)
     }
     
     
-    public static func == (lhs: RecordDto, rhs: RecordDto) -> Bool {
+    public static func == (lhs: RoutineRecordDto, rhs: RoutineRecordDto) -> Bool {
         lhs.recordId == rhs.recordId
     }
     

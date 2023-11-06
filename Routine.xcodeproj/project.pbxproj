@@ -232,6 +232,7 @@
 		876E959B2AB2FB9400046809 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959A2AB2FB9400046809 /* Transaction.swift */; };
 		876E959D2AB2FBE100046809 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959C2AB2FBE100046809 /* CoreDataUtils.swift */; };
 		876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E959E2AB2FC6800046809 /* EventSourcingError.swift */; };
+		877B2ECF2AF4FD2200D6037B /* RecordBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877B2ECE2AF4FD2200D6037B /* RecordBannerViewModel.swift */; };
 		877DF8BC2AD57A8500F45C10 /* RepeatDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DF8BB2AD57A8500F45C10 /* RepeatDto.swift */; };
 		877DF8BF2AD5998D00F45C10 /* RepeatDto+SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DF8BE2AD5998D00F45C10 /* RepeatDto+SQL.swift */; };
 		877DF8C12AD5A47B00F45C10 /* RepeatValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DF8C02AD5A47B00F45C10 /* RepeatValue.swift */; };
@@ -335,7 +336,7 @@
 		87AD2D5A2AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D592AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift */; };
 		87AD2D5F2AD6D26D00B0E2CF /* RecordApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D5E2AD6D26D00B0E2CF /* RecordApplicationService.swift */; };
 		87AD2D632AD6D31400B0E2CF /* RecordFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D622AD6D31400B0E2CF /* RecordFactory.swift */; };
-		87AD2D652AD6D32700B0E2CF /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D642AD6D32700B0E2CF /* Record.swift */; };
+		87AD2D652AD6D32700B0E2CF /* RoutineRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D642AD6D32700B0E2CF /* RoutineRecord.swift */; };
 		87AD2D672AD6D34100B0E2CF /* RecordId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D662AD6D34100B0E2CF /* RecordId.swift */; };
 		87AD2D692AD6D61B00B0E2CF /* RecordDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD2D682AD6D61B00B0E2CF /* RecordDate.swift */; };
 		87AD312A2ADE586F007DB743 /* TimerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AD31292ADE586F007DB743 /* TimerListCell.swift */; };
@@ -360,6 +361,11 @@
 		87B378A72AEA8F05006F8C22 /* StartTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A42AEA8F05006F8C22 /* StartTimerRouter.swift */; };
 		87B378A82AEA8F05006F8C22 /* StartTimerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A52AEA8F05006F8C22 /* StartTimerBuilder.swift */; };
 		87B378A92AEA8F05006F8C22 /* StartTimerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A62AEA8F05006F8C22 /* StartTimerInteractor.swift */; };
+		87BD92FB2AF3455E0099A0A9 /* RecordBannerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92F72AF3455E0099A0A9 /* RecordBannerRouter.swift */; };
+		87BD92FC2AF3455E0099A0A9 /* RecordBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92F82AF3455E0099A0A9 /* RecordBannerViewController.swift */; };
+		87BD92FD2AF3455E0099A0A9 /* RecordBannerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92F92AF3455E0099A0A9 /* RecordBannerBuilder.swift */; };
+		87BD92FE2AF3455E0099A0A9 /* RecordBannerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92FA2AF3455E0099A0A9 /* RecordBannerInteractor.swift */; };
+		87BD93012AF347440099A0A9 /* RecordBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD93002AF347440099A0A9 /* RecordBannerCell.swift */; };
 		87C815382AD3DBDA0062BEDF /* RoutineEditRepeatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C815342AD3DBDA0062BEDF /* RoutineEditRepeatRouter.swift */; };
 		87C815392AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C815352AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift */; };
 		87C8153A2AD3DBDA0062BEDF /* RoutineEditRepeatBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C815362AD3DBDA0062BEDF /* RoutineEditRepeatBuilder.swift */; };
@@ -417,19 +423,29 @@
 		87DFFE272AF22EA200D2E588 /* TimerCountdownDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE262AF22EA200D2E588 /* TimerCountdownDao.swift */; };
 		87DFFE292AF22EAA00D2E588 /* TimerCountdownDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE282AF22EAA00D2E588 /* TimerCountdownDto.swift */; };
 		87DFFE2C2AF22F1600D2E588 /* TimerCountdownSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE2B2AF22F1600D2E588 /* TimerCountdownSQLDao.swift */; };
+		87DFFE2F2AF2580E00D2E588 /* CreateTimerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE2E2AF2580E00D2E588 /* CreateTimerRecord.swift */; };
+		87DFFE312AF2588D00D2E588 /* TimerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE302AF2588D00D2E588 /* TimerRecord.swift */; };
+		87DFFE332AF258B800D2E588 /* TimeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE322AF258B800D2E588 /* TimeRecord.swift */; };
+		87DFFE382AF25B4B00D2E588 /* TimerRecordCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE372AF25B4B00D2E588 /* TimerRecordCreated.swift */; };
+		87DFFE3A2AF25E3200D2E588 /* TimerRecordDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE392AF25E3200D2E588 /* TimerRecordDao.swift */; };
+		87DFFE3C2AF25E4A00D2E588 /* TimerRecordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE3B2AF25E4A00D2E588 /* TimerRecordDto.swift */; };
+		87DFFE3E2AF25EEE00D2E588 /* TimerRecordSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE3D2AF25EEE00D2E588 /* TimerRecordSQLDao.swift */; };
+		87DFFE402AF2677200D2E588 /* SetCompleteTimerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE3F2AF2677200D2E588 /* SetCompleteTimerRecord.swift */; };
+		87DFFE422AF269E000D2E588 /* TimerRecordCompleteSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE412AF269E000D2E588 /* TimerRecordCompleteSet.swift */; };
+		87DFFE4F2AF2794E00D2E588 /* RecorddRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFFE4E2AF2794E00D2E588 /* RecorddRepository.swift */; };
 		87E375FF2AD6D99000359850 /* RecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E375FE2AD6D99000359850 /* RecordService.swift */; };
-		87E376022AD6DAC300359850 /* RecordCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376012AD6DAC300359850 /* RecordCreated.swift */; };
-		87E376042AD6DAC900359850 /* CreateRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376032AD6DAC900359850 /* CreateRecord.swift */; };
+		87E376022AD6DAC300359850 /* RoutineRecordCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376012AD6DAC300359850 /* RoutineRecordCreated.swift */; };
+		87E376042AD6DAC900359850 /* CreateRoutineRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376032AD6DAC900359850 /* CreateRoutineRecord.swift */; };
 		87E376072AD6E06200359850 /* RecordProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376062AD6E06200359850 /* RecordProjection.swift */; };
 		87E376092AD6E0E000359850 /* RecordReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376082AD6E0E000359850 /* RecordReadModel.swift */; };
-		87E3760D2AD6E12A00359850 /* RecordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3760C2AD6E12A00359850 /* RecordDto.swift */; };
-		87E3760F2AD6E16700359850 /* RecordDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3760E2AD6E16700359850 /* RecordDao.swift */; };
+		87E3760D2AD6E12A00359850 /* RoutineRecordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3760C2AD6E12A00359850 /* RoutineRecordDto.swift */; };
+		87E3760F2AD6E16700359850 /* RoutineRecordDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3760E2AD6E16700359850 /* RoutineRecordDao.swift */; };
 		87E376112AD6E22100359850 /* CDRecordFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376102AD6E22100359850 /* CDRecordFactory.swift */; };
-		87E376142AD6E43D00359850 /* RecordSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376132AD6E43D00359850 /* RecordSQLDao.swift */; };
+		87E376142AD6E43D00359850 /* RoutineRecordSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376132AD6E43D00359850 /* RoutineRecordSQLDao.swift */; };
 		87E376162AD6EA1E00359850 /* RoutineHomeListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376152AD6EA1E00359850 /* RoutineHomeListModel.swift */; };
 		87E3761A2AD704DE00359850 /* RecordFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376192AD704DE00359850 /* RecordFormatter.swift */; };
-		87E3761C2AD70E8B00359850 /* RecordCompleteSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3761B2AD70E8B00359850 /* RecordCompleteSet.swift */; };
-		87E3761E2AD70EA500359850 /* SetCompleteRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3761D2AD70EA500359850 /* SetCompleteRecord.swift */; };
+		87E3761C2AD70E8B00359850 /* RoutineRecordCompleteSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3761B2AD70E8B00359850 /* RoutineRecordCompleteSet.swift */; };
+		87E3761E2AD70EA500359850 /* SetCompleteRoutineRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3761D2AD70EA500359850 /* SetCompleteRoutineRecord.swift */; };
 		87F3A37A2AB3006500A2102D /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A3792AB3006500A2102D /* EventStore.swift */; };
 		87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37B2AB3007100A2102D /* EventStream.swift */; };
 		87F3A37E2AB3008900A2102D /* AppendOnlyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */; };
@@ -437,6 +453,15 @@
 		87F3A3842AB300FA00A2102D /* DomainEventPublihser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A3832AB300FA00A2102D /* DomainEventPublihser.swift */; };
 		87F3A3902AB312AE00A2102D /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F3A38F2AB312AE00A2102D /* EventListener.swift */; };
 		87F7FAA82AD4527500F14831 /* RepeatDoItOnceControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F7FAA72AD4527500F14831 /* RepeatDoItOnceControl.swift */; };
+		87FB8CF82AF8AC80001180EC /* RoutineTotalRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB8CF72AF8AC80001180EC /* RoutineTotalRecord.swift */; };
+		87FB8CFA2AF8AE1E001180EC /* RoutineStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB8CF92AF8AE1E001180EC /* RoutineStreak.swift */; };
+		87FB8D102AF8D09D001180EC /* RoutineMonthRecordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB8D0F2AF8D09D001180EC /* RoutineMonthRecordDto.swift */; };
+		87FB8D122AF8D0CE001180EC /* RoutineTotalRecordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB8D112AF8D0CE001180EC /* RoutineTotalRecordDto.swift */; };
+		87FB8D142AF8D226001180EC /* RoutineTotalRecordDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB8D132AF8D226001180EC /* RoutineTotalRecordDao.swift */; };
+		87FB8D162AF8D270001180EC /* RoutineMonthRecordDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB8D152AF8D270001180EC /* RoutineMonthRecordDao.swift */; };
+		87FB8D182AF8D2A6001180EC /* RoutineTotalRecordSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB8D172AF8D2A6001180EC /* RoutineTotalRecordSQLDao.swift */; };
+		87FB8D1A2AF8D425001180EC /* RoutineMonthRecordSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB8D192AF8D425001180EC /* RoutineMonthRecordSQLDao.swift */; };
+		87FB8D1C2AF8D7CB001180EC /* TimerRecordReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB8D1B2AF8D7CB001180EC /* TimerRecordReadModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -659,6 +684,7 @@
 		876E959A2AB2FB9400046809 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		876E959C2AB2FBE100046809 /* CoreDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
 		876E959E2AB2FC6800046809 /* EventSourcingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSourcingError.swift; sourceTree = "<group>"; };
+		877B2ECE2AF4FD2200D6037B /* RecordBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerViewModel.swift; sourceTree = "<group>"; };
 		877DF8BB2AD57A8500F45C10 /* RepeatDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RepeatDto.swift; path = ../RepeatDto.swift; sourceTree = "<group>"; };
 		877DF8BE2AD5998D00F45C10 /* RepeatDto+SQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatDto+SQL.swift"; sourceTree = "<group>"; };
 		877DF8C02AD5A47B00F45C10 /* RepeatValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatValue.swift; sourceTree = "<group>"; };
@@ -760,7 +786,7 @@
 		87AD2D592AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatMonthlyViewModel.swift; sourceTree = "<group>"; };
 		87AD2D5E2AD6D26D00B0E2CF /* RecordApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordApplicationService.swift; sourceTree = "<group>"; };
 		87AD2D622AD6D31400B0E2CF /* RecordFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordFactory.swift; sourceTree = "<group>"; };
-		87AD2D642AD6D32700B0E2CF /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		87AD2D642AD6D32700B0E2CF /* RoutineRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRecord.swift; sourceTree = "<group>"; };
 		87AD2D662AD6D34100B0E2CF /* RecordId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordId.swift; sourceTree = "<group>"; };
 		87AD2D682AD6D61B00B0E2CF /* RecordDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDate.swift; sourceTree = "<group>"; };
 		87AD31292ADE586F007DB743 /* TimerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerListCell.swift; sourceTree = "<group>"; };
@@ -785,6 +811,11 @@
 		87B378A42AEA8F05006F8C22 /* StartTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerRouter.swift; sourceTree = "<group>"; };
 		87B378A52AEA8F05006F8C22 /* StartTimerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerBuilder.swift; sourceTree = "<group>"; };
 		87B378A62AEA8F05006F8C22 /* StartTimerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerInteractor.swift; sourceTree = "<group>"; };
+		87BD92F72AF3455E0099A0A9 /* RecordBannerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerRouter.swift; sourceTree = "<group>"; };
+		87BD92F82AF3455E0099A0A9 /* RecordBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerViewController.swift; sourceTree = "<group>"; };
+		87BD92F92AF3455E0099A0A9 /* RecordBannerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerBuilder.swift; sourceTree = "<group>"; };
+		87BD92FA2AF3455E0099A0A9 /* RecordBannerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerInteractor.swift; sourceTree = "<group>"; };
+		87BD93002AF347440099A0A9 /* RecordBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerCell.swift; sourceTree = "<group>"; };
 		87C815342AD3DBDA0062BEDF /* RoutineEditRepeatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditRepeatRouter.swift; sourceTree = "<group>"; };
 		87C815352AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditRepeatViewController.swift; sourceTree = "<group>"; };
 		87C815362AD3DBDA0062BEDF /* RoutineEditRepeatBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditRepeatBuilder.swift; sourceTree = "<group>"; };
@@ -842,19 +873,29 @@
 		87DFFE262AF22EA200D2E588 /* TimerCountdownDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountdownDao.swift; sourceTree = "<group>"; };
 		87DFFE282AF22EAA00D2E588 /* TimerCountdownDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountdownDto.swift; sourceTree = "<group>"; };
 		87DFFE2B2AF22F1600D2E588 /* TimerCountdownSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountdownSQLDao.swift; sourceTree = "<group>"; };
+		87DFFE2E2AF2580E00D2E588 /* CreateTimerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTimerRecord.swift; sourceTree = "<group>"; };
+		87DFFE302AF2588D00D2E588 /* TimerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecord.swift; sourceTree = "<group>"; };
+		87DFFE322AF258B800D2E588 /* TimeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRecord.swift; sourceTree = "<group>"; };
+		87DFFE372AF25B4B00D2E588 /* TimerRecordCreated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordCreated.swift; sourceTree = "<group>"; };
+		87DFFE392AF25E3200D2E588 /* TimerRecordDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordDao.swift; sourceTree = "<group>"; };
+		87DFFE3B2AF25E4A00D2E588 /* TimerRecordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordDto.swift; sourceTree = "<group>"; };
+		87DFFE3D2AF25EEE00D2E588 /* TimerRecordSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordSQLDao.swift; sourceTree = "<group>"; };
+		87DFFE3F2AF2677200D2E588 /* SetCompleteTimerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCompleteTimerRecord.swift; sourceTree = "<group>"; };
+		87DFFE412AF269E000D2E588 /* TimerRecordCompleteSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordCompleteSet.swift; sourceTree = "<group>"; };
+		87DFFE4E2AF2794E00D2E588 /* RecorddRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorddRepository.swift; sourceTree = "<group>"; };
 		87E375FE2AD6D99000359850 /* RecordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordService.swift; sourceTree = "<group>"; };
-		87E376012AD6DAC300359850 /* RecordCreated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCreated.swift; sourceTree = "<group>"; };
-		87E376032AD6DAC900359850 /* CreateRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecord.swift; sourceTree = "<group>"; };
+		87E376012AD6DAC300359850 /* RoutineRecordCreated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRecordCreated.swift; sourceTree = "<group>"; };
+		87E376032AD6DAC900359850 /* CreateRoutineRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineRecord.swift; sourceTree = "<group>"; };
 		87E376062AD6E06200359850 /* RecordProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordProjection.swift; sourceTree = "<group>"; };
 		87E376082AD6E0E000359850 /* RecordReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordReadModel.swift; sourceTree = "<group>"; };
-		87E3760C2AD6E12A00359850 /* RecordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDto.swift; sourceTree = "<group>"; };
-		87E3760E2AD6E16700359850 /* RecordDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDao.swift; sourceTree = "<group>"; };
+		87E3760C2AD6E12A00359850 /* RoutineRecordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRecordDto.swift; sourceTree = "<group>"; };
+		87E3760E2AD6E16700359850 /* RoutineRecordDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRecordDao.swift; sourceTree = "<group>"; };
 		87E376102AD6E22100359850 /* CDRecordFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDRecordFactory.swift; sourceTree = "<group>"; };
-		87E376132AD6E43D00359850 /* RecordSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSQLDao.swift; sourceTree = "<group>"; };
+		87E376132AD6E43D00359850 /* RoutineRecordSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRecordSQLDao.swift; sourceTree = "<group>"; };
 		87E376152AD6EA1E00359850 /* RoutineHomeListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeListModel.swift; sourceTree = "<group>"; };
 		87E376192AD704DE00359850 /* RecordFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordFormatter.swift; sourceTree = "<group>"; };
-		87E3761B2AD70E8B00359850 /* RecordCompleteSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCompleteSet.swift; sourceTree = "<group>"; };
-		87E3761D2AD70EA500359850 /* SetCompleteRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCompleteRecord.swift; sourceTree = "<group>"; };
+		87E3761B2AD70E8B00359850 /* RoutineRecordCompleteSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRecordCompleteSet.swift; sourceTree = "<group>"; };
+		87E3761D2AD70EA500359850 /* SetCompleteRoutineRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCompleteRoutineRecord.swift; sourceTree = "<group>"; };
 		87F3A3792AB3006500A2102D /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		87F3A37B2AB3007100A2102D /* EventStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
 		87F3A37D2AB3008900A2102D /* AppendOnlyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendOnlyStore.swift; sourceTree = "<group>"; };
@@ -862,6 +903,15 @@
 		87F3A3832AB300FA00A2102D /* DomainEventPublihser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainEventPublihser.swift; sourceTree = "<group>"; };
 		87F3A38F2AB312AE00A2102D /* EventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListener.swift; sourceTree = "<group>"; };
 		87F7FAA72AD4527500F14831 /* RepeatDoItOnceControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDoItOnceControl.swift; sourceTree = "<group>"; };
+		87FB8CF72AF8AC80001180EC /* RoutineTotalRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTotalRecord.swift; sourceTree = "<group>"; };
+		87FB8CF92AF8AE1E001180EC /* RoutineStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStreak.swift; sourceTree = "<group>"; };
+		87FB8D0F2AF8D09D001180EC /* RoutineMonthRecordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineMonthRecordDto.swift; sourceTree = "<group>"; };
+		87FB8D112AF8D0CE001180EC /* RoutineTotalRecordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTotalRecordDto.swift; sourceTree = "<group>"; };
+		87FB8D132AF8D226001180EC /* RoutineTotalRecordDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTotalRecordDao.swift; sourceTree = "<group>"; };
+		87FB8D152AF8D270001180EC /* RoutineMonthRecordDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineMonthRecordDao.swift; sourceTree = "<group>"; };
+		87FB8D172AF8D2A6001180EC /* RoutineTotalRecordSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTotalRecordSQLDao.swift; sourceTree = "<group>"; };
+		87FB8D192AF8D425001180EC /* RoutineMonthRecordSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineMonthRecordSQLDao.swift; sourceTree = "<group>"; };
+		87FB8D1B2AF8D7CB001180EC /* TimerRecordReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordReadModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1489,10 +1539,9 @@
 		876E94D92AB2CF8400046809 /* Record */ = {
 			isa = PBXGroup;
 			children = (
-				876E95052AB2CFD000046809 /* RecordHomeRouter.swift */,
-				876E95062AB2CFD000046809 /* RecordHomeViewController.swift */,
-				876E95072AB2CFD000046809 /* RecordHomeBuilder.swift */,
-				876E95082AB2CFD000046809 /* RecordHomeInteractor.swift */,
+				87DFFE4D2AF2793B00D2E588 /* RecordRepository */,
+				87BD92F52AF344980099A0A9 /* RecordHome */,
+				87DFFE502AF27BC400D2E588 /* RecordTimer */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -1519,9 +1568,9 @@
 			isa = PBXGroup;
 			children = (
 				876E95152AB2CFE900046809 /* ProfileHomeRouter.swift */,
-				876E95162AB2CFE900046809 /* ProfileHomeViewController.swift */,
 				876E95172AB2CFE900046809 /* ProfileHomeBuilder.swift */,
 				876E95182AB2CFE900046809 /* ProfileHomeInteractor.swift */,
+				876E95162AB2CFE900046809 /* ProfileHomeViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1909,8 +1958,7 @@
 				87AAE65A2AE00B47000A7D4F /* TimerNextSectionRouter.swift */,
 				87AAE65D2AE00B47000A7D4F /* TimerNextSectionInteractor.swift */,
 				87AAE65B2AE00B47000A7D4F /* TimerNextSectionViewController.swift */,
-				87AAE6652AE00FB0000A7D4F /* TimerNextSectionModel.swift */,
-				874FED4B2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift */,
+				87DFFE2D2AF2502C00D2E588 /* Views */,
 			);
 			path = TimerNextSection;
 			sourceTree = "<group>";
@@ -1943,7 +1991,8 @@
 			isa = PBXGroup;
 			children = (
 				87AD2D5E2AD6D26D00B0E2CF /* RecordApplicationService.swift */,
-				87AD2D602AD6D27800B0E2CF /* Record */,
+				87AD2D602AD6D27800B0E2CF /* Routine */,
+				87DFFE342AF258C600D2E588 /* Timer */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1951,31 +2000,34 @@
 		87AD2D5D2AD6D24A00B0E2CF /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				87AD2D612AD6D30B00B0E2CF /* Record */,
+				87AD2D622AD6D31400B0E2CF /* RecordFactory.swift */,
+				87AD2D662AD6D34100B0E2CF /* RecordId.swift */,
+				87AD2D682AD6D61B00B0E2CF /* RecordDate.swift */,
+				87AD2D612AD6D30B00B0E2CF /* Routine */,
+				87DFFE352AF258E000D2E588 /* Timer */,
 				87E375FD2AD6D98900359850 /* Service */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		87AD2D602AD6D27800B0E2CF /* Record */ = {
+		87AD2D602AD6D27800B0E2CF /* Routine */ = {
 			isa = PBXGroup;
 			children = (
-				87E376032AD6DAC900359850 /* CreateRecord.swift */,
-				87E3761D2AD70EA500359850 /* SetCompleteRecord.swift */,
+				87E376032AD6DAC900359850 /* CreateRoutineRecord.swift */,
+				87E3761D2AD70EA500359850 /* SetCompleteRoutineRecord.swift */,
 			);
-			path = Record;
+			path = Routine;
 			sourceTree = "<group>";
 		};
-		87AD2D612AD6D30B00B0E2CF /* Record */ = {
+		87AD2D612AD6D30B00B0E2CF /* Routine */ = {
 			isa = PBXGroup;
 			children = (
-				87AD2D622AD6D31400B0E2CF /* RecordFactory.swift */,
-				87AD2D642AD6D32700B0E2CF /* Record.swift */,
-				87AD2D662AD6D34100B0E2CF /* RecordId.swift */,
-				87AD2D682AD6D61B00B0E2CF /* RecordDate.swift */,
+				87FB8CF72AF8AC80001180EC /* RoutineTotalRecord.swift */,
+				87FB8CF92AF8AE1E001180EC /* RoutineStreak.swift */,
+				87AD2D642AD6D32700B0E2CF /* RoutineRecord.swift */,
 				87E376002AD6DAB000359850 /* Event */,
 			);
-			path = Record;
+			path = Routine;
 			sourceTree = "<group>";
 		};
 		87AD31282ADE5857007DB743 /* Views */ = {
@@ -2045,6 +2097,39 @@
 				8780361A2AF00E5900EBBA5F /* Views */,
 			);
 			path = StartTimer;
+			sourceTree = "<group>";
+		};
+		87BD92F52AF344980099A0A9 /* RecordHome */ = {
+			isa = PBXGroup;
+			children = (
+				87BD92F62AF345500099A0A9 /* RecordBanner */,
+				876E95072AB2CFD000046809 /* RecordHomeBuilder.swift */,
+				876E95052AB2CFD000046809 /* RecordHomeRouter.swift */,
+				876E95082AB2CFD000046809 /* RecordHomeInteractor.swift */,
+				876E95062AB2CFD000046809 /* RecordHomeViewController.swift */,
+			);
+			path = RecordHome;
+			sourceTree = "<group>";
+		};
+		87BD92F62AF345500099A0A9 /* RecordBanner */ = {
+			isa = PBXGroup;
+			children = (
+				87BD92F72AF3455E0099A0A9 /* RecordBannerRouter.swift */,
+				87BD92F92AF3455E0099A0A9 /* RecordBannerBuilder.swift */,
+				87BD92FA2AF3455E0099A0A9 /* RecordBannerInteractor.swift */,
+				87BD92F82AF3455E0099A0A9 /* RecordBannerViewController.swift */,
+				87BD92FF2AF347390099A0A9 /* Views */,
+			);
+			path = RecordBanner;
+			sourceTree = "<group>";
+		};
+		87BD92FF2AF347390099A0A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				877B2ECE2AF4FD2200D6037B /* RecordBannerViewModel.swift */,
+				87BD93002AF347440099A0A9 /* RecordBannerCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		87C815332AD3DBC80062BEDF /* RoutineEditRepeat */ = {
@@ -2193,8 +2278,8 @@
 			isa = PBXGroup;
 			children = (
 				87D5AAFB2AB83F5A00FE712C /* RoutineAggregate */,
-				87D0CAF32ACD649800FE405F /* RecordAggregate */,
 				870B571A2AE11970006579CE /* TimerAggregate */,
+				87D0CAF32ACD649800FE405F /* RecordAggregate */,
 				876E958A2AB2F9CF00046809 /* Share */,
 			);
 			path = Domain;
@@ -2414,6 +2499,58 @@
 			path = TimerCountdown;
 			sourceTree = "<group>";
 		};
+		87DFFE2D2AF2502C00D2E588 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87AAE6652AE00FB0000A7D4F /* TimerNextSectionModel.swift */,
+				874FED4B2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87DFFE342AF258C600D2E588 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				87DFFE2E2AF2580E00D2E588 /* CreateTimerRecord.swift */,
+				87DFFE3F2AF2677200D2E588 /* SetCompleteTimerRecord.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		87DFFE352AF258E000D2E588 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				87DFFE302AF2588D00D2E588 /* TimerRecord.swift */,
+				87DFFE322AF258B800D2E588 /* TimeRecord.swift */,
+				87DFFE362AF2591B00D2E588 /* Event */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		87DFFE362AF2591B00D2E588 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				87DFFE372AF25B4B00D2E588 /* TimerRecordCreated.swift */,
+				87DFFE412AF269E000D2E588 /* TimerRecordCompleteSet.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		87DFFE4D2AF2793B00D2E588 /* RecordRepository */ = {
+			isa = PBXGroup;
+			children = (
+				87DFFE4E2AF2794E00D2E588 /* RecorddRepository.swift */,
+			);
+			path = RecordRepository;
+			sourceTree = "<group>";
+		};
+		87DFFE502AF27BC400D2E588 /* RecordTimer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RecordTimer;
+			sourceTree = "<group>";
+		};
 		87E375FD2AD6D98900359850 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -2425,8 +2562,8 @@
 		87E376002AD6DAB000359850 /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				87E376012AD6DAC300359850 /* RecordCreated.swift */,
-				87E3761B2AD70E8B00359850 /* RecordCompleteSet.swift */,
+				87E376012AD6DAC300359850 /* RoutineRecordCreated.swift */,
+				87E3761B2AD70E8B00359850 /* RoutineRecordCompleteSet.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -2438,6 +2575,7 @@
 				87E3760B2AD6E0E600359850 /* Dto */,
 				87E376062AD6E06200359850 /* RecordProjection.swift */,
 				87E376082AD6E0E000359850 /* RecordReadModel.swift */,
+				87FB8D1B2AF8D7CB001180EC /* TimerRecordReadModel.swift */,
 				87E376192AD704DE00359850 /* RecordFormatter.swift */,
 			);
 			path = Record;
@@ -2446,7 +2584,10 @@
 		87E3760A2AD6E0E200359850 /* Dao */ = {
 			isa = PBXGroup;
 			children = (
-				87E3760E2AD6E16700359850 /* RecordDao.swift */,
+				87FB8D132AF8D226001180EC /* RoutineTotalRecordDao.swift */,
+				87FB8D152AF8D270001180EC /* RoutineMonthRecordDao.swift */,
+				87E3760E2AD6E16700359850 /* RoutineRecordDao.swift */,
+				87DFFE392AF25E3200D2E588 /* TimerRecordDao.swift */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -2454,7 +2595,10 @@
 		87E3760B2AD6E0E600359850 /* Dto */ = {
 			isa = PBXGroup;
 			children = (
-				87E3760C2AD6E12A00359850 /* RecordDto.swift */,
+				87FB8D112AF8D0CE001180EC /* RoutineTotalRecordDto.swift */,
+				87FB8D0F2AF8D09D001180EC /* RoutineMonthRecordDto.swift */,
+				87E3760C2AD6E12A00359850 /* RoutineRecordDto.swift */,
+				87DFFE3B2AF25E4A00D2E588 /* TimerRecordDto.swift */,
 			);
 			path = Dto;
 			sourceTree = "<group>";
@@ -2462,7 +2606,10 @@
 		87E376122AD6E42900359850 /* Record */ = {
 			isa = PBXGroup;
 			children = (
-				87E376132AD6E43D00359850 /* RecordSQLDao.swift */,
+				87FB8D172AF8D2A6001180EC /* RoutineTotalRecordSQLDao.swift */,
+				87FB8D192AF8D425001180EC /* RoutineMonthRecordSQLDao.swift */,
+				87E376132AD6E43D00359850 /* RoutineRecordSQLDao.swift */,
+				87DFFE3D2AF25EEE00D2E588 /* TimerRecordSQLDao.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -2625,7 +2772,7 @@
 				87DEAADA2AD95DC700C94F0A /* RoutineEditReminderRouter.swift in Sources */,
 				878DA7A42ACEA0FF00220653 /* ZoomTransitionController.swift in Sources */,
 				87DEAAE22AD9625E00C94F0A /* RoutineEditToogleView.swift in Sources */,
-				87E3760F2AD6E16700359850 /* RecordDao.swift in Sources */,
+				87E3760F2AD6E16700359850 /* RoutineRecordDao.swift in Sources */,
 				8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */,
 				8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */,
 				876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */,
@@ -2637,6 +2784,7 @@
 				87D5AADA2AB8377100FE712C /* RoutineApplicationService.swift in Sources */,
 				87AAE6662AE00FB0000A7D4F /* TimerNextSectionModel.swift in Sources */,
 				87D5AAF02AB83D1500FE712C /* CreateRoutine.swift in Sources */,
+				87BD92FD2AF3455E0099A0A9 /* RecordBannerBuilder.swift in Sources */,
 				87A2C9C72AEFB413004AE6C1 /* AddTabataTimerInteractor.swift in Sources */,
 				87DEAAD42AD94DF200C94F0A /* ReminderSQLDao.swift in Sources */,
 				876E95572AB2D00F00046809 /* UIFont+Utils.swift in Sources */,
@@ -2647,6 +2795,7 @@
 				8709DEDF2AE8EF020077FBD3 /* TimerStartButton.swift in Sources */,
 				8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */,
 				879D82582AE2689E00F1348E /* TimerSectionListSQLDao.swift in Sources */,
+				87DFFE4F2AF2794E00D2E588 /* RecorddRepository.swift in Sources */,
 				8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */,
 				87AD2D632AD6D31400B0E2CF /* RecordFactory.swift in Sources */,
 				879D82482AE25B9900F1348E /* TimerSectionType.swift in Sources */,
@@ -2658,12 +2807,14 @@
 				87A2C9D02AEFBE26004AE6C1 /* AddRoundTimerInteractor.swift in Sources */,
 				87AD2D672AD6D34100B0E2CF /* RecordId.swift in Sources */,
 				8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */,
+				87DFFE3A2AF25E3200D2E588 /* TimerRecordDao.swift in Sources */,
 				87C815442AD405E20062BEDF /* RepeatMontlyControl.swift in Sources */,
 				87A2C9C62AEFB413004AE6C1 /* AddTabataTimerBuilder.swift in Sources */,
 				879D825D2AE2696B00F1348E /* TimerSectionTypeDto.swift in Sources */,
 				871E6A362ADEADD30051F978 /* TimerSectionEditRouter.swift in Sources */,
 				87A2C9D62AEFC31B004AE6C1 /* AddFocusTimerRouter.swift in Sources */,
 				8751F0922AC7E776000462EC /* RoutineDetailViewController.swift in Sources */,
+				87FB8D1A2AF8D425001180EC /* RoutineMonthRecordSQLDao.swift in Sources */,
 				876E94D32AB2CED800046809 /* AppRootViewController.swift in Sources */,
 				876E95032AB2CFC100046809 /* RoutineHomeBuilder.swift in Sources */,
 				874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */,
@@ -2672,6 +2823,7 @@
 				87AD2D5F2AD6D26D00B0E2CF /* RecordApplicationService.swift in Sources */,
 				87D5AAF42AB83D9D00FE712C /* CDRoutineFactory.swift in Sources */,
 				8712F6592AC2E09A008A02C4 /* RoutineTintInteractor.swift in Sources */,
+				87FB8D162AF8D270001180EC /* RoutineMonthRecordDao.swift in Sources */,
 				876E955D2AB2D00F00046809 /* UILabel+Utils.swift in Sources */,
 				87D0CAEB2ACD594200FE405F /* ChangeRoutineName.swift in Sources */,
 				87A2C9D82AEFC31B004AE6C1 /* AddFocusTimerBuilder.swift in Sources */,
@@ -2679,6 +2831,7 @@
 				874988612AC41F7D004DC64A /* RoutineListViewController.swift in Sources */,
 				871E6A3F2ADEAF490051F978 /* TimerSectionEditTitleRouter.swift in Sources */,
 				87B378942AEA60A8006F8C22 /* CreateFocusTimer.swift in Sources */,
+				877B2ECF2AF4FD2200D6037B /* RecordBannerViewModel.swift in Sources */,
 				8745900D2AB43E780043214E /* EventSerializer.swift in Sources */,
 				876E95522AB2D00F00046809 /* PushModalPresentationController.swift in Sources */,
 				87910D162AEA3DC100CAC1ED /* TimerSectionCount.swift in Sources */,
@@ -2699,8 +2852,9 @@
 				8749884C2AC3FCA5004DC64A /* Category.swift in Sources */,
 				87D0CAE72ACD409000FE405F /* RoutineListCell.swift in Sources */,
 				87AB913A2AEB90640051FB9F /* FocusRoundTimerInteractor.swift in Sources */,
-				87E376142AD6E43D00359850 /* RecordSQLDao.swift in Sources */,
+				87E376142AD6E43D00359850 /* RoutineRecordSQLDao.swift in Sources */,
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
+				87FB8D1C2AF8D7CB001180EC /* TimerRecordReadModel.swift in Sources */,
 				871E6A032ADE9A700051F978 /* TimerSectionListViewController.swift in Sources */,
 				87135AEE2AC9454E006B71D5 /* RoutineEditInteractor.swift in Sources */,
 				8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */,
@@ -2733,6 +2887,7 @@
 				87AB91322AEB901B0051FB9F /* FocusTimerInteractor.swift in Sources */,
 				8780361C2AF00E6000EBBA5F /* RoundTimerView.swift in Sources */,
 				87AD312C2ADE592B007DB743 /* TimerListViewModel.swift in Sources */,
+				87DFFE332AF258B800D2E588 /* TimeRecord.swift in Sources */,
 				87AAE65F2AE00B47000A7D4F /* TimerNextSectionViewController.swift in Sources */,
 				87D5AAE52AB83A2200FE712C /* CDAppendOnlyStore.swift in Sources */,
 				87E376072AD6E06200359850 /* RecordProjection.swift in Sources */,
@@ -2750,6 +2905,7 @@
 				874CAF2F2AB45A580053E021 /* Routine.swift in Sources */,
 				87DFFE292AF22EAA00D2E588 /* TimerCountdownDto.swift in Sources */,
 				87A2C9CF2AEFBE26004AE6C1 /* AddRoundTimerBuilder.swift in Sources */,
+				87FB8CF82AF8AC80001180EC /* RoutineTotalRecord.swift in Sources */,
 				87AB91302AEB901B0051FB9F /* FocusTimerViewController.swift in Sources */,
 				8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */,
 				871D0FB92ADD04060080DEAC /* ReminderReadModel.swift in Sources */,
@@ -2761,6 +2917,7 @@
 				8713D5102ADF83B400735913 /* TimerSectionValueModel.swift in Sources */,
 				874C4DD02AD7C11100734491 /* RecordCalendarViewController.swift in Sources */,
 				8780363F2AF0A74300EBBA5F /* FocusResultBuilder.swift in Sources */,
+				87DFFE422AF269E000D2E588 /* TimerRecordCompleteSet.swift in Sources */,
 				878DA79C2ACE64F500220653 /* RoutineWeekCalendarBuilder.swift in Sources */,
 				8780363E2AF0A74300EBBA5F /* FocusResultViewController.swift in Sources */,
 				870B57292AE11A17006579CE /* SectionTimerCreated.swift in Sources */,
@@ -2804,6 +2961,8 @@
 				8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */,
 				87DEAACD2AD94CD600C94F0A /* ReminderDto.swift in Sources */,
 				874C4DDD2AD80CCA00734491 /* RoutineBasicInfoInteractor.swift in Sources */,
+				87DFFE3C2AF25E4A00D2E588 /* TimerRecordDto.swift in Sources */,
+				87DFFE3E2AF25EEE00D2E588 /* TimerRecordSQLDao.swift in Sources */,
 				8713C7A02ADFB779007CDD33 /* SectionTimerInteractor.swift in Sources */,
 				870B574E2AE13ABB006579CE /* TimerEditTitleViewController.swift in Sources */,
 				8713C7942ADF9E29007CDD33 /* Double+TimeInterval.swift in Sources */,
@@ -2825,6 +2984,7 @@
 				87F3A3842AB300FA00A2102D /* DomainEventPublihser.swift in Sources */,
 				87B378A02AEA79E5006F8C22 /* TimerSelectInteractor.swift in Sources */,
 				8713D50E2ADF7E9800735913 /* TimerSectionListModel.swift in Sources */,
+				87BD92FE2AF3455E0099A0A9 /* RecordBannerInteractor.swift in Sources */,
 				87D5AB092AB867CE00FE712C /* RoutineProjection.swift in Sources */,
 				87B3789D2AEA79E5006F8C22 /* TimerSelectRouter.swift in Sources */,
 				879D824E2AE260BC00F1348E /* TimerSectionDescription.swift in Sources */,
@@ -2847,7 +3007,7 @@
 				87D5AAEE2AB83CD100FE712C /* RoutineCreated.swift in Sources */,
 				8751F0932AC7E776000462EC /* RoutineDetailBuilder.swift in Sources */,
 				876E94D52AB2CED800046809 /* AppRootInteractor.swift in Sources */,
-				87E376042AD6DAC900359850 /* CreateRecord.swift in Sources */,
+				87E376042AD6DAC900359850 /* CreateRoutineRecord.swift in Sources */,
 				87AF756F2AB99DD1001CF7F2 /* EventEntity+CoreDataProperties.swift in Sources */,
 				87DFEC612AC19E2800531EE3 /* CreateRoutineInteractor.swift in Sources */,
 				876E954B2AB2D00F00046809 /* KeychainAccess.swift in Sources */,
@@ -2864,6 +3024,7 @@
 				8780363D2AF0A74300EBBA5F /* FocusResultRouter.swift in Sources */,
 				876E95012AB2CFC100046809 /* RoutineHomeRouter.swift in Sources */,
 				877DF8CD2AD5AB2A00F45C10 /* RepeatValueDto.swift in Sources */,
+				87BD92FC2AF3455E0099A0A9 /* RecordBannerViewController.swift in Sources */,
 				87910D112AEA112A00CAC1ED /* FocusTimer.swift in Sources */,
 				870B57312AE120D3006579CE /* CDTimerFactory.swift in Sources */,
 				8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */,
@@ -2880,7 +3041,8 @@
 				879D82522AE2634900F1348E /* TimerSequence.swift in Sources */,
 				871D0FBB2ADD05440080DEAC /* RecordModel.swift in Sources */,
 				87AAE6562AE006EB000A7D4F /* SectionRoundTimerViewController.swift in Sources */,
-				87E3761C2AD70E8B00359850 /* RecordCompleteSet.swift in Sources */,
+				87BD92FB2AF3455E0099A0A9 /* RecordBannerRouter.swift in Sources */,
+				87E3761C2AD70E8B00359850 /* RoutineRecordCompleteSet.swift in Sources */,
 				876E959B2AB2FB9400046809 /* Transaction.swift in Sources */,
 				87C815392AD3DBDA0062BEDF /* RoutineEditRepeatViewController.swift in Sources */,
 				8703F56F2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift in Sources */,
@@ -2890,6 +3052,7 @@
 				87AD31352ADE615B007DB743 /* CreateTimerInteractor.swift in Sources */,
 				87DEAADC2AD95DC700C94F0A /* RoutineEditReminderBuilder.swift in Sources */,
 				8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */,
+				87FB8D182AF8D2A6001180EC /* RoutineTotalRecordSQLDao.swift in Sources */,
 				878DA79B2ACE64F500220653 /* RoutineWeekCalendarViewController.swift in Sources */,
 				871E6A022ADE9A700051F978 /* TimerSectionListRouter.swift in Sources */,
 				8751F09A2AC7F092000462EC /* RoutineEditTitleRouter.swift in Sources */,
@@ -2901,14 +3064,16 @@
 				87AAE6552AE006EB000A7D4F /* SectionRoundTimerRouter.swift in Sources */,
 				8713C78E2ADF9A9A007CDD33 /* TimerSectionEditValueRouter.swift in Sources */,
 				87AD2D5A2AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift in Sources */,
+				87BD93012AF347440099A0A9 /* RecordBannerCell.swift in Sources */,
 				876E95672AB2D3F700046809 /* Combine+Utils.swift in Sources */,
-				87E3761E2AD70EA500359850 /* SetCompleteRecord.swift in Sources */,
+				87E3761E2AD70EA500359850 /* SetCompleteRoutineRecord.swift in Sources */,
 				874988622AC41F7D004DC64A /* RoutineListBuilder.swift in Sources */,
 				87AB91382AEB90640051FB9F /* FocusRoundTimerViewController.swift in Sources */,
 				8713D4FF2ADF7C0300735913 /* AddTimerType.swift in Sources */,
 				8751F09C2AC7F092000462EC /* RoutineEditTitleBuilder.swift in Sources */,
 				874FED552AE7CF81000E3791 /* TimerRemainInteractor.swift in Sources */,
 				87DFEC602AC19E2800531EE3 /* CreateRoutineBuilder.swift in Sources */,
+				87FB8D142AF8D226001180EC /* RoutineTotalRecordDao.swift in Sources */,
 				87DFFE2C2AF22F1600D2E588 /* TimerCountdownSQLDao.swift in Sources */,
 				87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */,
 				87AAE64F2ADFFABA000A7D4F /* AppTimerManager.swift in Sources */,
@@ -2916,7 +3081,7 @@
 				879D824A2AE25B9F00F1348E /* TimerSectionValue.swift in Sources */,
 				87DEAAAC2AD8FE1000C94F0A /* AppNotificationManager.swift in Sources */,
 				87E376092AD6E0E000359850 /* RecordReadModel.swift in Sources */,
-				87AD2D652AD6D32700B0E2CF /* Record.swift in Sources */,
+				87AD2D652AD6D32700B0E2CF /* RoutineRecord.swift in Sources */,
 				87339E9D2AE18FD50099AA33 /* TimerSection.swift in Sources */,
 				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
 				87B378A82AEA8F05006F8C22 /* StartTimerBuilder.swift in Sources */,
@@ -2944,8 +3109,9 @@
 				87DFFE272AF22EA200D2E588 /* TimerCountdownDao.swift in Sources */,
 				8712F6562AC2E09A008A02C4 /* RoutineTintRouter.swift in Sources */,
 				87AAE6582AE006EB000A7D4F /* SectionRoundTimerInteractor.swift in Sources */,
-				87E3760D2AD6E12A00359850 /* RecordDto.swift in Sources */,
+				87E3760D2AD6E12A00359850 /* RoutineRecordDto.swift in Sources */,
 				876E954C2AB2D00F00046809 /* PreferenceStorage.swift in Sources */,
+				87DFFE382AF25B4B00D2E588 /* TimerRecordCreated.swift in Sources */,
 				8713C79D2ADFB779007CDD33 /* SectionTimerRouter.swift in Sources */,
 				871E6A372ADEADD30051F978 /* TimerSectionEditViewController.swift in Sources */,
 				8713C7902ADF9A9A007CDD33 /* TimerSectionEditValueBuilder.swift in Sources */,
@@ -2955,8 +3121,10 @@
 				870B57262AE119F9006579CE /* SectionTimer.swift in Sources */,
 				874FED532AE7CF81000E3791 /* TimerRemainViewController.swift in Sources */,
 				87A2C9C42AEFB413004AE6C1 /* AddTabataTimerRouter.swift in Sources */,
+				87DFFE402AF2677200D2E588 /* SetCompleteTimerRecord.swift in Sources */,
 				8751F0942AC7E776000462EC /* RoutineDetailInteractor.swift in Sources */,
 				876E951A2AB2CFE900046809 /* ProfileHomeViewController.swift in Sources */,
+				87FB8D102AF8D09D001180EC /* RoutineMonthRecordDto.swift in Sources */,
 				8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */,
 				87A2C9D92AEFC31B004AE6C1 /* AddFocusTimerInteractor.swift in Sources */,
 				876E95512AB2D00F00046809 /* String+Utils.swift in Sources */,
@@ -2968,12 +3136,14 @@
 				876E95092AB2CFD000046809 /* RecordHomeRouter.swift in Sources */,
 				87B3789F2AEA79E5006F8C22 /* TimerSelectBuilder.swift in Sources */,
 				8768E5F02ABC388B00CB35EC /* Tint.swift in Sources */,
+				87DFFE312AF2588D00D2E588 /* TimerRecord.swift in Sources */,
 				8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */,
 				87AD31392ADE6447007DB743 /* CreateTimerButton.swift in Sources */,
 				877DF8D62AD5BA0500F45C10 /* RepeatReadModel.swift in Sources */,
 				870B572B2AE11B73006579CE /* TimerId.swift in Sources */,
 				876662E52AEA09C300390D48 /* PreferenceKeys+Timer.swift in Sources */,
 				874FED4C2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift in Sources */,
+				87FB8CFA2AF8AE1E001180EC /* RoutineStreak.swift in Sources */,
 				87AB913C2AEB931A0051FB9F /* TimerFocusModel.swift in Sources */,
 				876E95432AB2D00F00046809 /* RIBs+Utils.swift in Sources */,
 				87135AE52AC93E30006B71D5 /* RoutineEditButton.swift in Sources */,
@@ -2984,6 +3154,7 @@
 				874988632AC41F7D004DC64A /* RoutineListInteractor.swift in Sources */,
 				876E950B2AB2CFD000046809 /* RecordHomeBuilder.swift in Sources */,
 				87D0CB032ACD83AC00FE405F /* RoutineRepeatChanged.swift in Sources */,
+				87FB8D122AF8D0CE001180EC /* RoutineTotalRecordDto.swift in Sources */,
 				87E375FF2AD6D99000359850 /* RecordService.swift in Sources */,
 				876E951B2AB2CFE900046809 /* ProfileHomeBuilder.swift in Sources */,
 				87E3761A2AD704DE00359850 /* RecordFormatter.swift in Sources */,
@@ -3021,11 +3192,12 @@
 				874C4DE02AD80D7A00734491 /* BasicInfoView.swift in Sources */,
 				871E6A402ADEAF490051F978 /* TimerSectionEditTitleViewController.swift in Sources */,
 				87901EA12ABAFDA9002CA93F /* RoutineDetailDao.swift in Sources */,
+				87DFFE2F2AF2580E00D2E588 /* CreateTimerRecord.swift in Sources */,
 				87D5AB052AB8621A00FE712C /* ApplicationService.swift in Sources */,
 				876E95852AB2E55C00046809 /* Analytics+Events.swift in Sources */,
 				876E94D42AB2CED800046809 /* AppRootBuilder.swift in Sources */,
 				870B574D2AE13ABB006579CE /* TimerEditTitleRouter.swift in Sources */,
-				87E376022AD6DAC300359850 /* RecordCreated.swift in Sources */,
+				87E376022AD6DAC300359850 /* RoutineRecordCreated.swift in Sources */,
 				87157C992AE6E5CE002C8003 /* AppTimer.swift in Sources */,
 				876E95582AB2D00F00046809 /* UITableView+Utils.swift in Sources */,
 				87D9EB8B2AE186ED0026F9DE /* PaddingLabel.swift in Sources */,

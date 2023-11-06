@@ -18,10 +18,10 @@ public struct RoutineHomeListModel{
     public let tint: String
     public let sequence: Int
     public let recordId: UUID?
-    public let recordDate: Date
+    //public let recordDate: Date
     public let isComplete: Bool
     
-    init(routineListDto: RoutineListDto, set: Set<RecordDto>, recordDate: Date) {
+    init(routineListDto: RoutineListDto, set: Set<RoutineRecordDto>, recordDate: Date) {
         self.routineId = routineListDto.routineId
         self.routineName = routineListDto.routineName
         self.routineDescription = routineListDto.routineDescription
@@ -38,7 +38,7 @@ public struct RoutineHomeListModel{
             self.recordId = nil
             self.isComplete = false
         }
-        self.recordDate = recordDate
+        //self.recordDate = recordDate
     }
 }
 
