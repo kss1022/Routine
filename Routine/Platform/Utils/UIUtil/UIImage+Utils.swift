@@ -14,8 +14,8 @@ public extension UIImage {
     self.init(cgImage: cgImage)
   }
     
-    func setSize( pointSize : CGFloat ) -> UIImage?{
-        let config = UIImage.SymbolConfiguration(pointSize: pointSize, weight: .regular, scale: .default)
+    func setSize( pointSize : CGFloat , weight: UIImage.SymbolWeight = .regular, scale: UIImage.SymbolScale = .default) -> UIImage?{
+        let config = UIImage.SymbolConfiguration(pointSize: pointSize, weight: weight, scale: scale)
         return self.withConfiguration(config)
     }
     

@@ -31,7 +31,7 @@ final class RepeatWeeklyControl: UIControl{
         button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .regular)
         button.addTarget(self, action: #selector(weeklyButtonTap), for: .touchUpInside)
         return button
-    };
+    }
     
     
     init() {

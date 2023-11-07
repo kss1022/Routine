@@ -1,23 +1,20 @@
 //
-//  RecordHomeViewController.swift
+//  RoutineDataViewController.swift
 //  Routine
 //
-//  Created by 한현규 on 2023/09/14.
+//  Created by 한현규 on 11/7/23.
 //
 
 import ModernRIBs
 import UIKit
 
-protocol RecordHomePresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+protocol RoutineDataPresentableListener: AnyObject {
+    func didMove()
 }
 
-final class RecordHomeViewController: UIViewController, RecordHomePresentable, RecordHomeViewControllable {
-    
-    weak var listener: RecordHomePresentableListener?
-    
+final class RoutineDataViewController: UIViewController, RoutineDataPresentable, RoutineDataViewControllable {
+
+    weak var listener: RoutineDataPresentableListener?
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -42,6 +39,7 @@ final class RecordHomeViewController: UIViewController, RecordHomePresentable, R
         
         setLayout()
     }
+        
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -51,17 +49,7 @@ final class RecordHomeViewController: UIViewController, RecordHomePresentable, R
     
     
     private func setLayout(){
-        title = "Record"
-        tabBarItem = UITabBarItem(
-            title: "Record",
-            image: UIImage(systemName: "flag"),    //pencil.circle
-            selectedImage: UIImage(systemName: "flag.fill")
-        )
-        
-        view.backgroundColor = .systemBackground
-        
-        
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .secondarySystemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         
@@ -77,22 +65,43 @@ final class RecordHomeViewController: UIViewController, RecordHomePresentable, R
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
-    
-    func setBanner(_ view: ViewControllable) {
-        let vc = view.uiviewController
-        addChild(vc)
-        
-        stackView.addArrangedSubview(vc.view)
-        vc.didMove(toParent: self)
-    }
-    
-    func setRoutineList(_ view: ModernRIBs.ViewControllable) {
-        let vc = view.uiviewController
-        addChild(vc)
-        
-        stackView.addArrangedSubview(vc.view)
-        vc.didMove(toParent: self)
-    }
-    
-}
 
+    
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        if parent == nil{
+            listener?.didMove()
+        }
+    }
+    
+    
+    func setDataOfWeek(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
+    func setDataOfMonth(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
+    func setDataOfYear(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
+    func setTotalRecord(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
+
+}

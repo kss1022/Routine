@@ -118,7 +118,7 @@ final class RoutineRepositoryImp: RoutineRepository{
         
         
         let totalRecord =  try recordReadModel.totalRecord(routineId: routineId)
-        Log.d("Total Record: \(totalRecord!)")
+        Log.d("Total Record: \(totalRecord)")
         
         let monthRecord = try recordReadModel.monthRecord(routineId: routineId, date: recordDate)
         Log.d("Month Record: \(monthRecord)")

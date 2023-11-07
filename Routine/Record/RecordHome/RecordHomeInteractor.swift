@@ -5,10 +5,19 @@
 //  Created by 한현규 on 2023/09/14.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol RecordHomeRouting: ViewableRouting {
-    func appendRecordBanner()
+    
+    func attachRecordRoutineListDetail()
+    func detachRecordRoutineListDetail()
+    
+    func attachRoutineData()
+    func detachRoutineData()
+    
+    func attachRecordBanner()
+    func attachRecordRoutineList()
 }
 
 protocol RecordHomePresentable: Presentable {
@@ -37,11 +46,33 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
         
         
         Log.v("Record Home DidBecome Active 🎥")
-        router?.appendRecordBanner()
+        router?.attachRecordBanner()
+        router?.attachRecordRoutineList()
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    
+    // MARK: RoutineData    
+    func recordRoutineListDidTap(routineId: UUID) {
+        router?.attachRoutineData()
+    }
+    
+    func routineDataDidMove() {
+        router?.detachRoutineData()
+    }
+        
+    
+    // MARK: RecordRoutineListDetail
+    func recordRoutineTitleButtonDidTap() {
+        router?.attachRecordRoutineListDetail()
+    }
+    
+
+    func recordRoutineListDetailDidMove() {
+        router?.detachRecordRoutineListDetail()
     }
 }

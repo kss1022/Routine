@@ -20,6 +20,13 @@ final class RecordBannerCell: UICollectionViewCell{
         return view
     }()
     
+//    private let barChartView: RecordBarChartView = {
+//        let barCharView = RecordBarChartView()
+//        barCharView.translatesAutoresizingMaskIntoConstraints = false
+//        barCharView.bindView(BarChartViewModel())
+//        return barCharView
+//    }()
+//    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,8 +42,16 @@ final class RecordBannerCell: UICollectionViewCell{
     
     
     private func setView(){
-        contentView.backgroundColor = .gray
         contentView.roundCorners()
+        
+//        contentView.addSubview(barChartView)
+//        NSLayoutConstraint.activate([
+//            barChartView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24.0),
+//            barChartView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24.0),
+//            barChartView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24.0),
+//            barChartView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24.0),
+//        ])
+        
 //        contentView.addSubview(cardView)
 //        NSLayoutConstraint.activate([
 //            cardView.topAnchor.constraint(equalTo: contentView.topAnchor),

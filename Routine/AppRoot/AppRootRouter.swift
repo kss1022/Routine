@@ -59,14 +59,19 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
         attachChild(timerHomeRouting)
         attachChild(profileHomeRouting)
         
-        
-        
+        let routineHome = NavigationControllerable(root: routineHomeRouting.viewControllable)
+        let recordHome = NavigationControllerable(root: recordHomeRouting.viewControllable)
+        let timerHome = NavigationControllerable(root: timerHomeRouting.viewControllable)
+        let profileHome = NavigationControllerable(root: profileHomeRouting.viewControllable)
+                    
         let viewControllers = [
-          NavigationControllerable(root: routineHomeRouting.viewControllable),
-          NavigationControllerable(root: recordHomeRouting.viewControllable),
-          NavigationControllerable(root: timerHomeRouting.viewControllable),
-          NavigationControllerable(root: profileHomeRouting.viewControllable)
+          routineHome,
+          recordHome,
+          timerHome,
+          profileHome
         ]
+        
+        recordHome.setLargeTitle()
         
         viewController.setViewControllers(viewControllers)
     }

@@ -87,15 +87,15 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
         ])
         
         let viewModels = [
-            RecordBannerViewModel(id: UUID(), color: .systemRed),
-            RecordBannerViewModel(id: UUID(), color: .systemBlue),
-            RecordBannerViewModel(id: UUID(), color: .systemGreen),
-            RecordBannerViewModel(id: UUID(), color: .systemRed),   //Buffer
-            RecordBannerViewModel(id: UUID(), color: .systemBlue),
-            RecordBannerViewModel(id: UUID(), color: .systemGreen),
-            RecordBannerViewModel(id: UUID(), color: .systemRed),   //Buffer
-            RecordBannerViewModel(id: UUID(), color: .systemBlue),
-            RecordBannerViewModel(id: UUID(), color: .systemGreen)
+            RecordBannerViewModel(id: UUID(), color: .systemGray),
+            RecordBannerViewModel(id: UUID(), color: .label),
+            RecordBannerViewModel(id: UUID(), color: .systemBrown),
+            RecordBannerViewModel(id: UUID(), color: .systemGray),
+            RecordBannerViewModel(id: UUID(), color: .label),
+            RecordBannerViewModel(id: UUID(), color: .systemBrown),
+            RecordBannerViewModel(id: UUID(), color: .systemGray),
+            RecordBannerViewModel(id: UUID(), color: .label),
+            RecordBannerViewModel(id: UUID(), color: .systemBrown),
         ]
         
         setBannerList(viewModels)
@@ -124,7 +124,7 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
     private func setDataSource(){
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: RecordBannerCell.self)
-            cell.contentView.backgroundColor = itemIdentifier.color
+            cell.contentView.backgroundColor = itemIdentifier.color.withAlphaComponent(0.5)
             return cell
         })
         
