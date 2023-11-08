@@ -21,6 +21,14 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
     
     private var dataSource : RoutineListDiffableDataSource!
 
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.setBoldFont(style: .headline)
+        label.textColor = .label
+        label.text = "All time of the day"
+        return label
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -57,10 +65,15 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
     
     
     private func setLayout(){
+        view.addSubview(titleLabel)
         view.addSubview(collectionView)
                 
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
+            
+            collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.0),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

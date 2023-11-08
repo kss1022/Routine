@@ -12,8 +12,10 @@ import Foundation
 
 final class GressCalender{
     
-    //그해의 첫번째 요일을 가져온다.
-    func firstDayOfYear(year: Int) -> Int? {
+    let calendar = Calendar.current
+    
+    // Year's First day -> WeekDay
+    func firstDayToWeekDay(year: Int) -> Int? {
         var components = DateComponents()
         components.year = year
         components.month = 1
@@ -28,8 +30,8 @@ final class GressCalender{
         return nil
     }
     
-    //해당 달이 그해의 몇번재 날자인지 가져온다.
-    func yearOfDay(year: Int, month: Int) -> Int?{
+    // Month's first day -> days of year
+    func dayOfYear(year: Int, month: Int) -> Int?{
         let calendar = Calendar.current
         
         var dateComponents = DateComponents()
@@ -41,4 +43,14 @@ final class GressCalender{
         let dayOfYear = calendar.ordinality(of: .day, in: .year, for: date)
         return dayOfYear
     }
+    
+    // Date -> days of year
+    func dayOfYear(date: Date) -> Int? {
+        if let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: date)) {
+            let days = calendar.dateComponents([.day], from: startOfYear, to: date).day
+            return days
+        }
+        return nil
+    }
+    
 }

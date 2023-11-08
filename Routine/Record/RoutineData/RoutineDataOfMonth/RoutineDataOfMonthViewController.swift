@@ -47,30 +47,18 @@ final class RoutineDataOfMonthViewController: UIViewController, RoutineDataOfMon
         calendar.translatesAutoresizingMaskIntoConstraints = false
         calendar.dataSource = self
         calendar.delegate = self
-        
-        //calendar.locale = Locale(identifier: "ko_KR")
-        
+                
         calendar.setScope(.month, animated: false)
         
         calendar.scrollEnabled = true
         calendar.scrollDirection = .horizontal
         calendar.allowsMultipleSelection = true
-        //calendar.swipeToChooseGesture.isEnabled = true
-        
-//        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
-//        calendar.addGestureRecognizer(scopeGesture)
-        
-        
+
         calendar.today = nil // Hide the today circle
         
         calendar.appearance.headerTitleColor = .label
         calendar.appearance.titleDefaultColor = .label
         calendar.appearance.weekdayTextColor = .gray
-        
-        //calendar.appearance.selectionColor = .primaryColor
-        calendar.appearance.eventDefaultColor = .systemRed
-        calendar.appearance.eventSelectionColor = .systemRed
-        //calendar.appearance.eventOffset = CGPoint(x: 0, y: -7)
         
         calendar.register(RecordCalenderCell.self, forCellReuseIdentifier: RecordCalenderCell.reuseIdentifier)
 
@@ -96,7 +84,6 @@ final class RoutineDataOfMonthViewController: UIViewController, RoutineDataOfMon
 
     
     private func setLayout(){
-        
         view.addSubview(titleLabel)
         view.addSubview(cardView)
         
@@ -135,7 +122,7 @@ final class RoutineDataOfMonthViewController: UIViewController, RoutineDataOfMon
         
         
         addedElements.forEach {
-            calendar.select($0)
+            calendar.select($0, scrollToDate: false)
         }
         
         removedElements.forEach {
@@ -144,6 +131,16 @@ final class RoutineDataOfMonthViewController: UIViewController, RoutineDataOfMon
                 
         completes = dates
         calendar.reloadData()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            guard let self = self else { return }
+            self.calendar.reloadData()            
+            self.calendar.select(self.calendar.selectedDate)
+        }, completion: nil)
     }
     
 }
@@ -156,15 +153,6 @@ extension RoutineDataOfMonthViewController: FSCalendarDataSource{
         view.layoutIfNeeded()
     }
     
-    
-    
-//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//        if self.gregorian.isDateInToday(date){
-//            return 1
-//        }
-//
-//        return 0
-//    }
     
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
@@ -205,15 +193,6 @@ extension RoutineDataOfMonthViewController: FSCalendarDelegate{
 }
 
 
-extension RoutineDataOfMonthViewController: FSCalendarDelegateAppearance{
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-        if self.gregorian.isDateInToday(date) {
-            return [UIColor.orange]
-        }
-        return [appearance.eventDefaultColor]
-    }
-}
-
 private extension RoutineDataOfMonthViewController{
     // MARK: - Private functions
     
@@ -231,7 +210,7 @@ private extension RoutineDataOfMonthViewController{
         // Custom today circle
         //diyCell.circleImageView.isHidden = !self.gregorian.isDateInToday(date)
         diyCell.circleImageView.isHidden = true
-        
+        diyCell.selectionLayer.fillColor = UIColor.systemGreen.cgColor
         // Configure selection layer
         if position == .current {
             

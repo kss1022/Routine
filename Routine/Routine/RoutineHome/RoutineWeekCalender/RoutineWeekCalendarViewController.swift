@@ -106,6 +106,11 @@ extension RoutineWeekCalendarViewController: FSCalendarDataSource{
 
 extension RoutineWeekCalendarViewController: FSCalendarDelegate{
     
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        let currentPageDate = calendar.currentPage
+        Log.v("\(Formatter.recordDateFormatter().string(from: currentPageDate))")        
+    }
+    
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         listener?.weekCalendarDidTap(date: date)
     }

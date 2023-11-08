@@ -7,6 +7,7 @@
 
 import Foundation
 import ModernRIBs
+import Combine
 
 protocol RoutineDataOfWeekRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -14,13 +15,16 @@ protocol RoutineDataOfWeekRouting: ViewableRouting {
 
 protocol RoutineDataOfWeekPresentable: Presentable {
     var listener: RoutineDataOfWeekPresentableListener? { get set }
-    func setWeeks(_ viewModels: [RoutineDataOfWeekViewModel])
+    func setCompletes(_ viewModels: [RoutineDataOfWeekViewModel])
 }
 
 protocol RoutineDataOfWeekListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol RoutineDataOfWeekInteractorDependency{
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
+}
 
 
 final class RoutineDataOfWeekInteractor: PresentableInteractor<RoutineDataOfWeekPresentable>, RoutineDataOfWeekInteractable, RoutineDataOfWeekPresentableListener {
@@ -28,52 +32,46 @@ final class RoutineDataOfWeekInteractor: PresentableInteractor<RoutineDataOfWeek
     weak var router: RoutineDataOfWeekRouting?
     weak var listener: RoutineDataOfWeekListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: RoutineDataOfWeekInteractorDependency
+    private var cancellables: Set<AnyCancellable>
+    
     // in constructor.
-    override init(presenter: RoutineDataOfWeekPresentable) {
+    init(
+        presenter: RoutineDataOfWeekPresentable,
+        dependency: RoutineDataOfWeekInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-
-        presenter.setWeeks(
-            getDatesForThisWeek().map {
-                RoutineDataOfWeekViewModel(
-                    date: $0,
-                    imageName: "checkmark.circle.fill",
-                    done: Bool.random()
-                )
+        
+        
+        dependency.routineRecords
+            .receive(on: DispatchQueue.main)
+            .compactMap{ $0 }
+            .sink { records in
+                let viewModels = RecordCalendar.share.getDatesForThisWeek().map {
+                    RoutineDataOfWeekViewModel(
+                        date: $0,
+                        imageName: "checkmark.circle.fill",
+                        done: records.completes[$0] != nil
+                    )
+                }
+                self.presenter.setCompletes(viewModels)
             }
-        )
+            .store(in: &cancellables)
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        
+        cancellables.forEach{ $0.cancel() }
+        cancellables.removeAll()
     }
     
-    private func getDatesForThisWeek() -> [Date] {
-        let calendar = Calendar.current
-        let now = Date()
-        var beginningOfWeek: Date?
-        var datesInThisWeek: [Date] = []
-        
-        // 현재 날짜를 기준으로 이번 주의 첫 번째 날 (일요일)을 찾기
-        if let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now)) {
-            beginningOfWeek = calendar.date(byAdding: .day, value: 1, to: startOfWeek)
-        }
-        
-        // 이번 주의 첫 번째 날짜부터 월요일까지의 날짜를 배열에 추가
-        if let startDate = beginningOfWeek {
-            for i in 0..<7 {
-                if let date = calendar.date(byAdding: .day, value: i, to: startDate) {
-                    datesInThisWeek.append(date)
-                }
-            }
-        }
-        
-        return datesInThisWeek
-    }
+
 }

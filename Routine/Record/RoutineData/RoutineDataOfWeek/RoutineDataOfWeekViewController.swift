@@ -86,7 +86,7 @@ final class RoutineDataOfWeekViewController: UIViewController, RoutineDataOfWeek
     
     
     
-    func setWeeks(_ viewModels: [RoutineDataOfWeekViewModel]) {
+    func setCompletes(_ viewModels: [RoutineDataOfWeekViewModel]) {
         stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
         
         viewModels.map(RoutineDataOfWeekView.init)

@@ -82,7 +82,13 @@ final class RoutineDataOfYearViewController: UIViewController, RoutineDataOfYear
             gressView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -inset),
         ])
         
-        gressView.bindView(GressViewModel(year: 2022, cellViewModels: [:]))
+        
     }
+    
+    func setComplets(_ dates: Set<Date>) {
+        gressView.bindView(GressViewModel(year: 2023, selects: dates))
+    }
+    
+
 
 }

@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol RecordRoutineListDetailInteractable: Interactable {
+protocol RecordRoutineListDetailInteractable: Interactable, RoutineDataListener{
     var router: RecordRoutineListDetailRouting? { get set }
     var listener: RecordRoutineListDetailListener? { get set }
 }
@@ -18,9 +18,38 @@ protocol RecordRoutineListDetailViewControllable: ViewControllable {
 
 final class RecordRoutineListDetailRouter: ViewableRouter<RecordRoutineListDetailInteractable, RecordRoutineListDetailViewControllable>, RecordRoutineListDetailRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: RecordRoutineListDetailInteractable, viewController: RecordRoutineListDetailViewControllable) {
+    private let routineDataBuildable: RoutineDataBuildable
+    private var routineDataRouting: Routing?
+
+    
+    init(
+        interactor: RecordRoutineListDetailInteractable,
+        viewController: RecordRoutineListDetailViewControllable,
+        routineDataBuildable: RoutineDataBuildable
+    ) {
+        self.routineDataBuildable = routineDataBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    
+    func attachRoutineData() {
+        if routineDataRouting != nil{
+            return
+        }
+        
+        
+        let router = routineDataBuildable.build(withListener: interactor)
+        viewController.pushViewController(router.viewControllable, animated: true)
+        
+        routineDataRouting = router
+        attachChild(router)
+    }
+    
+    func detachRoutineData() {
+        guard let router = routineDataRouting else { return }
+        
+        detachChild(router)
+        routineDataRouting = nil
     }
 }

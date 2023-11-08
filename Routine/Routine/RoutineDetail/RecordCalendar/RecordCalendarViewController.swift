@@ -104,7 +104,7 @@ final class RecordCalendarViewController: UIViewController, RecordCalendarPresen
         
         
         addedElements.forEach {
-            calendar.select($0)
+            calendar.select($0, scrollToDate: false)
         }
         
         removedElements.forEach {
@@ -113,6 +113,18 @@ final class RecordCalendarViewController: UIViewController, RecordCalendarPresen
                 
         completes = dates        
         calendar.reloadData()
+        
+    }
+    
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            guard let self = self else { return }
+            self.calendar.reloadData()
+            self.calendar.select(self.calendar.selectedDate)
+        }, completion: nil)
     }
     
 }

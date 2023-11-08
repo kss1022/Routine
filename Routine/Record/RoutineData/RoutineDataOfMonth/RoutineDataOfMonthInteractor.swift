@@ -5,7 +5,9 @@
 //  Created by 한현규 on 11/7/23.
 //
 
+import Foundation
 import ModernRIBs
+import Combine
 
 protocol RoutineDataOfMonthRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -13,11 +15,15 @@ protocol RoutineDataOfMonthRouting: ViewableRouting {
 
 protocol RoutineDataOfMonthPresentable: Presentable {
     var listener: RoutineDataOfMonthPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setCompletes(_ dates: Set<Date>)
 }
 
 protocol RoutineDataOfMonthListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+}
+
+protocol RoutineDataOfMonthInteractorDependency{
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
 }
 
 final class RoutineDataOfMonthInteractor: PresentableInteractor<RoutineDataOfMonthPresentable>, RoutineDataOfMonthInteractable, RoutineDataOfMonthPresentableListener {
@@ -25,20 +31,37 @@ final class RoutineDataOfMonthInteractor: PresentableInteractor<RoutineDataOfMon
     weak var router: RoutineDataOfMonthRouting?
     weak var listener: RoutineDataOfMonthListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: RoutineDataOfMonthInteractorDependency
+    private var cancellables: Set<AnyCancellable>
+    
     // in constructor.
-    override init(presenter: RoutineDataOfMonthPresentable) {
+    init(
+        presenter: RoutineDataOfMonthPresentable,
+        dependency: RoutineDataOfMonthInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+        
+        dependency.routineRecords
+            .compactMap{ $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { model in
+                self.presenter.setCompletes(Set(model.completes.keys))
+            }
+            .store(in: &cancellables)        
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        
+        
+        cancellables.forEach{ $0.cancel() }
+        cancellables.removeAll()
     }
 }

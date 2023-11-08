@@ -57,13 +57,13 @@ final class GressHeaderView: UIScrollView{
     
     
     func setLabelsConstraint(year: Int){
-        guard let firstDayOfYear = gressCalender.firstDayOfYear(year: year) else { return }
+        guard let firstDayOfYear = gressCalender.firstDayToWeekDay(year: year) else { return }
         
         //self.labelsLeadingLayoutConstraint
         
         for offset in 1...11{
             let constraint = labelsLeadingLayoutConstraint[offset]
-            let yearOfDay = gressCalender.yearOfDay(year: year, month: offset + 1)!
+            let yearOfDay = gressCalender.dayOfYear(year: year, month: offset + 1)!
             
             let firstReactPosition = yearOfDay + firstDayOfYear
             

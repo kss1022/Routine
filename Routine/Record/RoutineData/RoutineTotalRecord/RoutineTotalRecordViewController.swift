@@ -20,7 +20,7 @@ final class RoutineTotalRecordViewController: UIViewController, RoutineTotalReco
     
     private let cardView: UIView = {
         let view = UIView()
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor = .systemBackground
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addShadowWithRoundedCorners()
         return view
@@ -32,7 +32,7 @@ final class RoutineTotalRecordViewController: UIViewController, RoutineTotalReco
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
-        stackView.spacing = 8.0
+        stackView.spacing = 16.0
         return stackView
     }()
     
@@ -52,21 +52,31 @@ final class RoutineTotalRecordViewController: UIViewController, RoutineTotalReco
     private func setLayout(){
         view.addSubview(cardView)
         
-//        cardView.addSubview(stackView)
-//        
-//        let inset: CGFloat = 16.0
-//        
-//        NSLayoutConstraint.activate([
-//            cardView.topAnchor.constraint(equalTo: view.topAnchor),
-//            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            
-//            stackView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: inset),
-//            stackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: inset),
-//            stackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -inset),
-//            stackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -inset),
-//        ])
+        cardView.addSubview(stackView)
+        
+        let inset: CGFloat = 16.0
+        
+        NSLayoutConstraint.activate([
+            cardView.topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
+            cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset),
+            
+            stackView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: inset),
+            stackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: inset),
+            stackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -inset),
+            stackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -inset),
+        ])
+    }
+    
+    
+    func setRecords(viewModels: [RoutineTotalRecordListViewModel]){
+        stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
+        
+        viewModels.map(RoutineTotalRecordListView.init)
+            .forEach {
+                stackView.addArrangedSubview($0)
+            }
     }
 
 }

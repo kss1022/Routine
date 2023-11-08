@@ -5,7 +5,9 @@
 //  Created by 한현규 on 11/7/23.
 //
 
+import Foundation
 import ModernRIBs
+import Combine
 
 protocol RoutineTotalRecordRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -13,11 +15,15 @@ protocol RoutineTotalRecordRouting: ViewableRouting {
 
 protocol RoutineTotalRecordPresentable: Presentable {
     var listener: RoutineTotalRecordPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setRecords(viewModels: [RoutineTotalRecordListViewModel])
 }
 
 protocol RoutineTotalRecordListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+}
+
+protocol RoutineTotalRecordInteractorDependency{
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
 }
 
 final class RoutineTotalRecordInteractor: PresentableInteractor<RoutineTotalRecordPresentable>, RoutineTotalRecordInteractable, RoutineTotalRecordPresentableListener {
@@ -25,9 +31,16 @@ final class RoutineTotalRecordInteractor: PresentableInteractor<RoutineTotalReco
     weak var router: RoutineTotalRecordRouting?
     weak var listener: RoutineTotalRecordListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: RoutineTotalRecordInteractorDependency
+    private var cancellables: Set<AnyCancellable>
+    
     // in constructor.
-    override init(presenter: RoutineTotalRecordPresentable) {
+    init(
+        presenter: RoutineTotalRecordPresentable,
+        dependency: RoutineTotalRecordInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -35,10 +48,44 @@ final class RoutineTotalRecordInteractor: PresentableInteractor<RoutineTotalReco
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
+        
+        dependency.routineRecords
+            .receive(on: DispatchQueue.main)
+            .compactMap{ $0 }
+            .sink { model in
+                let viewModels = [
+                    RoutineTotalRecordListViewModel(
+                        title: "Done this month",
+                        done: "\(model.doneThisMonth)"
+                    ),
+                    RoutineTotalRecordListViewModel(
+                        title: "TotalDone",
+                        done: "\(model.totalDone)"
+                    ),
+                    RoutineTotalRecordListViewModel(
+                        title: "Current Streak",
+                        done: "\(model.currentStreak)"
+                    ),
+                    RoutineTotalRecordListViewModel(
+                        title: "Best Streak",
+                        done: "\(model.bestStreak)"
+                    ),
+                    RoutineTotalRecordListViewModel(
+                        title: "OverallRate",
+                        done: "\(model.bestStreak)%"   //String(format: "%.1f%%", model.overalRate)
+                    ),
+                ]
+                
+                self.presenter.setRecords(viewModels: viewModels)
+            }
+            .store(in: &cancellables)
+        
+        
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        cancellables.forEach{ $0.cancel() }
+        cancellables.removeAll()
     }
 }

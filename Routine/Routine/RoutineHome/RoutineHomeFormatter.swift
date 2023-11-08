@@ -1,18 +1,17 @@
 //
-//  RoutineRepeatFormaater.swift
+//  RoutineHomeFormatter.swift
 //  Routine
 //
-//  Created by 한현규 on 10/10/23.
+//  Created by 한현규 on 11/8/23.
 //
 
 import Foundation
 
 
-
 extension Formatter{
     
             
-    public static func asRecentTimeString(date: Date) -> String{
+    public static func routineHomeTitleFormatter(date: Date) -> String{
         let calendar = Calendar.current
         
         if calendar.isDateInToday(date){
@@ -39,7 +38,7 @@ extension Formatter{
         }
         
         
-        dateFomater.dateFormat =  "yyyy.MM.dd"
+        dateFomater.dateFormat =  "MMM d yyyy"
         return dateFomater.string(from: date)
     }
             

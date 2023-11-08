@@ -10,8 +10,9 @@ import UIKit
 
 final class GressCell: UICollectionViewCell{
     
-    private var cellBackgroundColor = UIColor.systemGreen
-    private let alphas = [ 0.1 , 0.3,  0.5 , 0.7, 0.9]
+    
+    private let alphas = [ 0.1 , 0.3,  0.5 , 0.7, 0.9]    
+    var cellBackgroundColor = UIColor.systemGreen
     
     private let gressView: UIView = {
         let view = UIView()
@@ -46,13 +47,22 @@ final class GressCell: UICollectionViewCell{
             gressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
         
-        if Bool.random(){
-            gressView.backgroundColor = cellBackgroundColor.withAlphaComponent(alphas.randomElement()!)
-        }
+//        if Bool.random(){
+//            gressView.backgroundColor = cellBackgroundColor.withAlphaComponent(alphas.randomElement()!)
+//        }
     }
     
     func bindView(_ viewModel: GressCellViewModel){
-        gressView.backgroundColor = viewModel.color
+        if viewModel.count == 0{
+            gressView.backgroundColor = .tertiaryLabel
+        }else{
+            gressView.backgroundColor = cellBackgroundColor.withAlphaComponent(alphas[4])
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        gressView.backgroundColor = .tertiaryLabel
     }
     
 }

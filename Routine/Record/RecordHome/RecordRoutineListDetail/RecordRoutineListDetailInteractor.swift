@@ -10,7 +10,8 @@ import ModernRIBs
 import Combine
 
 protocol RecordRoutineListDetailRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func attachRoutineData()
+    func detachRoutineData()
 }
 
 protocol RecordRoutineListDetailPresentable: Presentable {
@@ -24,7 +25,9 @@ protocol RecordRoutineListDetailListener: AnyObject {
 
 protocol RecordRoutineListDetailInteractorDependency{
     var routineRepository: RoutineRepository{ get }
+    var recordRepository: RecordRepository{ get }
 }
+
 
 final class RecordRoutineListDetailInteractor: PresentableInteractor<RecordRoutineListDetailPresentable>, RecordRoutineListDetailInteractable, RecordRoutineListDetailPresentableListener {
 
@@ -65,12 +68,27 @@ final class RecordRoutineListDetailInteractor: PresentableInteractor<RecordRouti
         cancellables.removeAll()
     }
     
-    func routineListDidTap(routineId: UUID) {
-        Log.v("routineListDidTap")
-    }
+
     
     func didMove() {
         listener?.recordRoutineListDetailDidMove()
+    }
+    
+    
+    //MARK: RoutineData
+    func routineListDidTap(routineId: UUID) {
+        Task{
+            do{
+                try await dependency.recordRepository.fetchRoutineRecords(routineId: routineId)
+                await MainActor.run { router?.attachRoutineData() }
+            }catch{
+                Log.e("\(error)")
+            }
+        }
+    }
+    
+    func routineDataDidMove() {
+        router?.detachRoutineData()
     }
 
 }

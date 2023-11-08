@@ -18,7 +18,7 @@ enum SelectionType : Int {
     case rightBorder
 }
 
-//
+
 class RecordCalenderCell: FSCalendarCell {
     
     weak var circleImageView: UIImageView!
@@ -63,14 +63,20 @@ class RecordCalenderCell: FSCalendarCell {
         self.backgroundView?.frame = self.bounds.insetBy(dx: 1, dy: 1)
         self.selectionLayer.frame = self.titleLabel.bounds//self.contentView.bounds
         
+        let bounds = self.selectionLayer.bounds
+        
+        
         if selectionType == .middle {
-            self.selectionLayer.path = UIBezierPath(rect: self.selectionLayer.bounds.insetBy(dx: -1, dy: 0)).cgPath
+            let middleReact = CGRect(x: bounds.minX - 1, y: bounds.minY, width: bounds.width + 2, height: bounds.height)
+            self.selectionLayer.path = UIBezierPath(rect: middleReact).cgPath
         }
         else if selectionType == .leftBorder {
-            self.selectionLayer.path = UIBezierPath(roundedRect: self.selectionLayer.bounds, byRoundingCorners: [.topLeft, .bottomLeft], cornerRadii: CGSize(width: self.selectionLayer.frame.width / 2, height: self.selectionLayer.frame.width / 2)).cgPath
+            let leftReact = CGRect(x: bounds.minX, y: bounds.minY, width: bounds.width + 1, height: bounds.height)
+            self.selectionLayer.path = UIBezierPath(roundedRect: leftReact, byRoundingCorners: [.topLeft, .bottomLeft], cornerRadii: CGSize(width: self.selectionLayer.frame.width / 2, height: self.selectionLayer.frame.width / 2)).cgPath
         }
         else if selectionType == .rightBorder {
-            self.selectionLayer.path = UIBezierPath(roundedRect: self.selectionLayer.bounds, byRoundingCorners: [.topRight, .bottomRight], cornerRadii: CGSize(width: self.selectionLayer.frame.width / 2, height: self.selectionLayer.frame.width / 2)).cgPath
+            let rightReact = CGRect(x: bounds.minX - 1, y: bounds.minY, width: bounds.width + 1, height: bounds.height)
+            self.selectionLayer.path = UIBezierPath(roundedRect: rightReact, byRoundingCorners: [.topRight, .bottomRight], cornerRadii: CGSize(width: self.selectionLayer.frame.width / 2, height: self.selectionLayer.frame.width / 2)).cgPath
         }
         else if selectionType == .single {
             let diameter: CGFloat = min(self.selectionLayer.frame.height, self.selectionLayer.frame.width)

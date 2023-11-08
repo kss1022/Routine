@@ -23,7 +23,7 @@ final class RoutineTotalRecordListView: UIView{
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.setBoldFont(style: .subheadline)
+        label.setBoldFont(style: .footnote)
         label.textColor = .label
         return label
     }()
@@ -37,18 +37,18 @@ final class RoutineTotalRecordListView: UIView{
     }()
     
     
-    init(){
+    init(_ viewModel: RoutineTotalRecordListViewModel){
         super.init(frame: .zero)
         
+        
         setView()
+        bindView(viewModel)
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        setView()
+        fatalError("init(coder:) has not been implemented")
     }
-    
+        
     
     private func setView(){
         addSubview(stackView)
@@ -62,6 +62,11 @@ final class RoutineTotalRecordListView: UIView{
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
+    }
+    
+    private func bindView(_ viewModel: RoutineTotalRecordListViewModel){
+        titleLabel.text = viewModel.title
+        doneLabel.text = viewModel.done
     }
     
 }

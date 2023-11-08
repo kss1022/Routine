@@ -8,12 +8,13 @@
 import ModernRIBs
 
 protocol RoutineDataDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var recordRepository: RecordRepository{ get }
 }
 
 final class RoutineDataComponent: Component<RoutineDataDependency>, RoutineDataOfWeekDependency, RoutineDataOfMonthDependency, RoutineDataOfYearDependency, RoutineTotalRecordDependency  {
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var recordRepository: RecordRepository{ dependency.recordRepository }
+    
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ recordRepository.routineRecords }
 }
 
 // MARK: - Builder

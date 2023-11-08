@@ -29,14 +29,23 @@ protocol RecordHomeListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol RecordHomeInteractorDependency{
+    var recordRepository: RecordRepository{ get }
+}
+
 final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, RecordHomeInteractable, RecordHomePresentableListener {
 
     weak var router: RecordHomeRouting?
     weak var listener: RecordHomeListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: RecordHomeInteractorDependency
+    
     // in constructor.
-    override init(presenter: RecordHomePresentable) {
+    init(
+        presenter: RecordHomePresentable,
+        dependency: RecordHomeInteractorDependency
+    ) {
+        self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -58,7 +67,14 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
     
     // MARK: RoutineData    
     func recordRoutineListDidTap(routineId: UUID) {
-        router?.attachRoutineData()
+        Task{
+            do{
+                try await dependency.recordRepository.fetchRoutineRecords(routineId: routineId)
+                await MainActor.run { router?.attachRoutineData() }
+            }catch{
+                Log.e("\(error)")
+            }
+        }
     }
     
     func routineDataDidMove() {

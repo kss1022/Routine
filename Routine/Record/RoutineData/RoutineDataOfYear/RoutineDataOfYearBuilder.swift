@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol RoutineDataOfYearDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
 }
 
-final class RoutineDataOfYearComponent: Component<RoutineDataOfYearDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class RoutineDataOfYearComponent: Component<RoutineDataOfYearDependency>, RoutineDataOfYearInteractorDependency {
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ dependency.routineRecords }    
 }
 
 // MARK: - Builder
@@ -32,7 +30,7 @@ final class RoutineDataOfYearBuilder: Builder<RoutineDataOfYearDependency>, Rout
     func build(withListener listener: RoutineDataOfYearListener) -> RoutineDataOfYearRouting {
         let component = RoutineDataOfYearComponent(dependency: dependency)
         let viewController = RoutineDataOfYearViewController()
-        let interactor = RoutineDataOfYearInteractor(presenter: viewController)
+        let interactor = RoutineDataOfYearInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return RoutineDataOfYearRouter(interactor: interactor, viewController: viewController)
     }

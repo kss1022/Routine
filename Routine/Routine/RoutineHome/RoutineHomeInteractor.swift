@@ -22,6 +22,7 @@ protocol RoutineHomeRouting: ViewableRouting {
 
 protocol RoutineHomePresentable: Presentable {
     var listener: RoutineHomePresentableListener? { get set }
+    func setTitle(title: String)
 }
 
 protocol RoutineHomeListener: AnyObject {
@@ -99,6 +100,11 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
             do{
                 self?.date = date
                 try await self?.dependency.routineRepository.fetchHomeList(date: date)
+                
+                await MainActor.run { [weak self] in 
+                    let date = Formatter.routineHomeTitleFormatter(date: date)
+                    self?.presenter.setTitle(title: date)
+                }
             }catch{
                 Log.e("\(error)")
             }

@@ -63,7 +63,7 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     
     
     private func setLayout(){
-        title = "Routine"
+        title = "Today"
         tabBarItem = UITabBarItem(
             title: "Routine",
             image: UIImage(systemName: "checkmark.seal"),
@@ -107,6 +107,10 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
         vc.view.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor).isActive = true
         
         vc.didMove(toParent: self)        
+    }
+    
+    func setTitle(title: String) {
+        self.title = title
     }
     
     @objc

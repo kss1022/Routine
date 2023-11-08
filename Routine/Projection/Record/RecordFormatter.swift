@@ -25,13 +25,13 @@ extension Formatter{
     
     static func recordDateFormatter() -> DateFormatter{
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-d"
+        formatter.dateFormat = "yyyy-M-d"
         return formatter
     }
     
     static func recordMonthFormatter() -> DateFormatter{
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM"
+        formatter.dateFormat = "yyyy-M"
         return formatter
     }
     

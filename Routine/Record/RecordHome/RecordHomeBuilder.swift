@@ -14,7 +14,7 @@ protocol RecordHomeDependency: Dependency {
     var routineRepository: RoutineRepository{ get }
 }
 
-final class RecordHomeComponent: Component<RecordHomeDependency>,RecordRoutineListDetailDependency, RoutineDataDependency ,RecordBannerDependency, RecordRoutineListDependency {
+final class RecordHomeComponent: Component<RecordHomeDependency>,RecordRoutineListDetailDependency, RoutineDataDependency ,RecordBannerDependency, RecordRoutineListDependency, RecordHomeInteractorDependency {
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     
     var recordRepository: RecordRepository{ dependency.recordRepository }
@@ -36,7 +36,7 @@ final class RecordHomeBuilder: Builder<RecordHomeDependency>, RecordHomeBuildabl
     func build(withListener listener: RecordHomeListener) -> RecordHomeRouting {
         let component = RecordHomeComponent(dependency: dependency)
         let viewController = RecordHomeViewController()
-        let interactor = RecordHomeInteractor(presenter: viewController)
+        let interactor = RecordHomeInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
         let recordRoutineListDetailBuilder = RecordRoutineListDetailBuilder(dependency: component)

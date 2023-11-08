@@ -6,22 +6,25 @@
 //
 
 import Foundation
-
+import UIKit.UIColor
 
 
 struct GressViewModel{
     let year: Int
-    let cellViewModels: [Int: GressCellViewModel]
-    let range: ClosedRange<Int>
+    let select: Set<Date>
+    let range: ClosedRange<Int> //row range
     
+    let cellColor: UIColor
     
-    init(year: Int, cellViewModels: [Int : GressCellViewModel]) {
+    //cellViewModels: [Int : GressCellViewModel]
+    init(year: Int, selects: Set<Date> = []) {
         let calender = GressCalender()
         
         self.year = year
-        self.cellViewModels = cellViewModels
-        
-        let firstWeekdayOfYear = calender.firstDayOfYear(year: year)!
+        self.select = selects                
+        let firstWeekdayOfYear = calender.firstDayToWeekDay(year: year)!
         self.range = firstWeekdayOfYear...(firstWeekdayOfYear + 364)
+        
+        self.cellColor = .systemGreen
     }
 }

@@ -7,14 +7,14 @@
 
 import UIKit
 
-
+//TODO: GressViewModel. GressCellViewModle 수정
 
 final class GressView: UIView{
         
         
     private let gressCalender = GressCalender()
     
-    private var viewModel = GressViewModel(year: 2023, cellViewModels: [:])
+    private var viewModel = GressViewModel(year: 2023)
     
 
     private let itemSize: CGFloat = 10.0
@@ -73,6 +73,11 @@ final class GressView: UIView{
     }
     
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        scrollToToday()
+    }
+    
     
     private func setView(){
         addSubview(gressHeaderView)
@@ -96,18 +101,43 @@ final class GressView: UIView{
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: itemSize * 7 + (spacing * 6))
         ])
+        gressHeaderView.setLabelsConstraint(year: viewModel.year)
     }
-    
     
     
         
     func bindView(_ viewModel: GressViewModel){
         self.viewModel = viewModel
-        gressHeaderView.setLabelsConstraint(year: 2022)
+        gressHeaderView.setLabelsConstraint(year: viewModel.year)
         collectionView.reloadData()
     }
-  
+
     
+    private func scrollToToday(){
+        let today = Date()
+        if Calendar.current.component(.year, from: today) == viewModel.year{
+            let row = getRow(date: today)
+            
+            collectionView.isPagingEnabled = false
+            collectionView.scrollToItem(at: IndexPath(row: row, section: 0), at:  .left, animated: false)
+        }
+    }
+    
+    private func getRow(date : Date) -> Int{
+        if let yearOfDay = gressCalender.dayOfYear(date: Date()){
+            let row = viewModel.range.first! + yearOfDay - 1
+            return row
+        }
+        
+        return 0
+    }
+  
+    private func getDate(row: Int) -> Date?{
+        var dateComponents = DateComponents()
+        dateComponents.year = viewModel.year
+        dateComponents.day = (row + 1) - viewModel.range.first!
+        return Calendar.current.date(from: dateComponents)
+    }
 }
 
 
@@ -126,16 +156,17 @@ extension GressView: UICollectionViewDataSource{
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        
         if !viewModel.range.contains(indexPath.row){
             let emptyCell = collectionView.dequeueReusableCell(for: indexPath, cellType: GressEmptyCell.self)
             return emptyCell
         }
-        
-        
+                
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: GressCell.self)
-        
+        cell.cellBackgroundColor = viewModel.cellColor
+        if let date = getDate(row: indexPath.row),
+           viewModel.select.contains(date){
+            cell.bindView(GressCellViewModel(day: date, count: 1))
+        }
         
         return cell
     }
@@ -146,11 +177,7 @@ extension GressView: UICollectionViewDataSource{
 
 extension GressView: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var dateComponents = DateComponents()
-        dateComponents.year = viewModel.year
-        dateComponents.day = (indexPath.row + 1) - viewModel.range.first!
-
-        if let date = Calendar.current.date(from: dateComponents) {
+        if let date = getDate(row: indexPath.row){
             let formattedDate = DateFormatter()
             formattedDate.dateFormat = "yyyy-MM-dd"
             let dateString = formattedDate.string(from: date)
@@ -164,6 +191,7 @@ extension GressView: UICollectionViewDelegateFlowLayout{
         gressHeaderView.contentOffset =  scrollView.contentOffset
     }
     
+  
     
 }
 

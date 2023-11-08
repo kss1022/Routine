@@ -10,14 +10,13 @@ import Foundation
 
 
 protocol RoutineRecordReadModelFacade{
-    
-    func totalRecord(routineId: UUID) throws -> RoutineTotalRecordDto?
-    func monthRecord(routineId: UUID, date: Date) throws -> RoutineMonthRecordDto?
-            
     func record(routineId: UUID, date: Date) throws -> RoutineRecordDto?
     func records(date: Date) throws -> [RoutineRecordDto]
     func records(routineId: UUID) throws -> [RoutineRecordDto]
-
+    
+    
+    func totalRecord(routineId: UUID) throws -> RoutineTotalRecordDto?
+    func monthRecord(routineId: UUID, date: Date) throws -> RoutineMonthRecordDto?
 }
 
 
@@ -38,14 +37,6 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
         routineRecordDao = dbManager.routineRecordDao
     }
     
-    func totalRecord(routineId: UUID) throws -> RoutineTotalRecordDto? {
-        try routineTotalRecordDao.find(routineId: routineId)
-    }
-    
-    func monthRecord(routineId: UUID, date: Date) throws -> RoutineMonthRecordDto? {
-        let date = Formatter.recordMonthFormatter().string(from: date)
-        return try routineMonthRecordDao.find(routineId: routineId, recordMonth: date)
-    }
     
     func record(routineId: UUID, date: Date) throws -> RoutineRecordDto? {
         let date =  Formatter.recordDateFormatter().string(from: date)
@@ -59,6 +50,15 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
     
     func records(routineId: UUID) throws -> [RoutineRecordDto] {
         try routineRecordDao.findAll(routineId)
+    }
+    
+    func totalRecord(routineId: UUID) throws -> RoutineTotalRecordDto? {
+        try routineTotalRecordDao.find(routineId: routineId)
+    }
+    
+    func monthRecord(routineId: UUID, date: Date) throws -> RoutineMonthRecordDto? {
+        let date = Formatter.recordMonthFormatter().string(from: date)
+        return try routineMonthRecordDao.find(routineId: routineId, recordMonth: date)
     }
 
 }

@@ -14,5 +14,4 @@ import UIKit.UIColor
 struct GressCellViewModel{
     let day: Date
     let count: Int
-    let color: UIColor
 }

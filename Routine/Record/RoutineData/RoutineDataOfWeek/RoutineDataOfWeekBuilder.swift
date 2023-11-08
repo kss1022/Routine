@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol RoutineDataOfWeekDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
 }
 
-final class RoutineDataOfWeekComponent: Component<RoutineDataOfWeekDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class RoutineDataOfWeekComponent: Component<RoutineDataOfWeekDependency>, RoutineDataOfWeekInteractorDependency{
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ dependency.routineRecords }
 }
 
 // MARK: - Builder
@@ -32,7 +30,7 @@ final class RoutineDataOfWeekBuilder: Builder<RoutineDataOfWeekDependency>, Rout
     func build(withListener listener: RoutineDataOfWeekListener) -> RoutineDataOfWeekRouting {
         let component = RoutineDataOfWeekComponent(dependency: dependency)
         let viewController = RoutineDataOfWeekViewController()
-        let interactor = RoutineDataOfWeekInteractor(presenter: viewController)
+        let interactor = RoutineDataOfWeekInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return RoutineDataOfWeekRouter(interactor: interactor, viewController: viewController)
     }
