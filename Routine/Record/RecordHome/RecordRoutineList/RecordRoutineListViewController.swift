@@ -17,10 +17,13 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
 
     weak var listener: RecordRoutineListPresentableListener?
         
-    private var dataSource : UICollectionViewDiffableDataSource<RecordRoutineListSection, RecordRoutineListViewModel>!
+    private var dataSource : UICollectionViewDiffableDataSource<Section, RecordRoutineListViewModel>!
     
-    
-    fileprivate enum RecordRoutineListSection: String , CaseIterable{
+    private let width: CGFloat = UIDevice.frame().width / 2 - 32.0
+    private var height: CGFloat{ width * 0.8 }
+    private let sectionHeight: CGFloat = 54.0
+
+    fileprivate enum Section: String , CaseIterable{
         case routineList
     }
 
@@ -68,11 +71,11 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 180.0),
+            collectionView.heightAnchor.constraint(greaterThanOrEqualToConstant: height + sectionHeight),
         ])
     }
     
-    func setRoutineLists(viewModels: [RecordRoutineListViewModel]) {
+    func setRoutineLists(_ viewModels: [RecordRoutineListViewModel]) {
         if dataSource == nil{
             setDataSource()
         }
@@ -105,8 +108,8 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
             )
         }
         
-        var snapShot = NSDiffableDataSourceSnapshot<RecordRoutineListSection, RecordRoutineListViewModel>()
-        snapShot.appendSections(RecordRoutineListSection.allCases)
+        var snapShot = NSDiffableDataSourceSnapshot<Section, RecordRoutineListViewModel>()
+        snapShot.appendSections(Section.allCases)
         self.dataSource.apply(snapShot, animatingDifferences: false)
     }
     
@@ -123,9 +126,6 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
     }
     
     private func getListTypeSection() -> NSCollectionLayoutSection {
-        let width = UIDevice.frame().width / 2 - 32.0
-        let height = width * 0.8
-        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         //item.contentInsets = .init(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 8.0)
@@ -146,7 +146,7 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
     }
     
     private func getListTypeHeader() -> NSCollectionLayoutBoundarySupplementaryItem{
-        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(54.0))
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(sectionHeight))
 
         // Section Header Layout
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)

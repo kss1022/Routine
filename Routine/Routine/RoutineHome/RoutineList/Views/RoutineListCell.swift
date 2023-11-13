@@ -103,6 +103,7 @@ final class RoutineListCell: UICollectionViewCell{
         descriptionLabel.setContentHuggingPriority(.init(249.0), for: .vertical)
         descriptionLabel.setContentCompressionResistancePriority(.init(752.0), for: .vertical)
         
+        
         self.roundCorners()
     }
 

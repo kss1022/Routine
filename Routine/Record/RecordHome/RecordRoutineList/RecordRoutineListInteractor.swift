@@ -16,7 +16,7 @@ protocol RecordRoutineListRouting: ViewableRouting {
 
 protocol RecordRoutineListPresentable: Presentable {
     var listener: RecordRoutineListPresentableListener? { get set }
-    func setRoutineLists(viewModels : [RecordRoutineListViewModel])
+    func setRoutineLists(_ viewModels : [RecordRoutineListViewModel])
 }
 
 protocol RecordRoutineListListener: AnyObject {
@@ -55,7 +55,7 @@ final class RecordRoutineListInteractor: PresentableInteractor<RecordRoutineList
             .sink { [weak self] lists in
                 guard let self = self else { return }
                 let viewModels = lists.map(RecordRoutineListViewModel.init)
-                self.presenter.setRoutineLists(viewModels: viewModels)
+                self.presenter.setRoutineLists(viewModels)
             }
             .store(in: &cancellables)
     }

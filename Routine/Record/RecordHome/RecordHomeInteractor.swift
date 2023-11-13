@@ -10,14 +10,27 @@ import ModernRIBs
 
 protocol RecordHomeRouting: ViewableRouting {
     
+    func attachRoutineTopAcheive()
+    func detachRoutineTopAcheive()
+    
+    func attachRoutineWeeklyTracker()
+    func detachRoutineWeeklyTracker()
+    
     func attachRecordRoutineListDetail()
     func detachRecordRoutineListDetail()
+    
+    func attachRecordTimerListDetail()
+    func detachRecrodTimerListDetail()
     
     func attachRoutineData()
     func detachRoutineData()
     
+    func attachTimerData()
+    func detachTimerData()
+    
     func attachRecordBanner()
     func attachRecordRoutineList()
+    func attachRecordTimerList()
 }
 
 protocol RecordHomePresentable: Presentable {
@@ -34,6 +47,7 @@ protocol RecordHomeInteractorDependency{
 }
 
 final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, RecordHomeInteractable, RecordHomePresentableListener {
+
 
     weak var router: RecordHomeRouting?
     weak var listener: RecordHomeListener?
@@ -57,11 +71,36 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
         Log.v("Record Home DidBecome Active 🎥")
         router?.attachRecordBanner()
         router?.attachRecordRoutineList()
+        router?.attachRecordTimerList()
     }
 
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    //MARK: Banner
+    func recordBannerDidTap(index: Int) {
+        switch index{
+        case 0:
+            //Top Acheive
+            router?.attachRoutineTopAcheive()
+        case 1:
+            //
+            router?.attachRoutineWeeklyTracker()
+        case 2:
+            //Case 2
+            Log.v("BannerTap: Index 2")
+        default : fatalError()
+        }
+    }
+    
+    func routineTopAcheiveDidMove() {
+        router?.detachRoutineTopAcheive()
+    }
+    
+    func routineWeeklyTrackerDidMove() {
+        router?.detachRoutineWeeklyTracker()
     }
     
     
@@ -81,6 +120,14 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
         router?.detachRoutineData()
     }
         
+    //MARK: TimerData
+    func recordTimerListDidTap(timerId: UUID) {
+        router?.attachTimerData()
+    }
+    
+    func timerDataDidMove() {
+        router?.detachTimerData()
+    }
     
     // MARK: RecordRoutineListDetail
     func recordRoutineTitleButtonDidTap() {
@@ -91,4 +138,15 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
     func recordRoutineListDetailDidMove() {
         router?.detachRecordRoutineListDetail()
     }
+    
+    //MARK: RecrodTimerListDetail
+    func recordTimerListTitleButtonDidTap() {
+        router?.attachRecordTimerListDetail()
+    }
+    
+    
+    func recordTimerListDetailDidMove() {
+        router?.detachRecrodTimerListDetail()
+    }
+
 }

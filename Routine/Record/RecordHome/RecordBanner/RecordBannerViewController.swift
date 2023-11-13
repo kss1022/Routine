@@ -9,9 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol RecordBannerPresentableListener: AnyObject {
-    // TODO: Declare properties and methods that the view controller can invoke to perform
-    // business logic, such as signIn(). This protocol is implemented by the corresponding
-    // interactor class.
+    func bannerCellDidTap(index: Int)
 }
 
 final class RecordBannerViewController: UIViewController, RecordBannerPresentable, RecordBannerViewControllable {
@@ -20,12 +18,12 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
     
     
     private let itemWidth = UIDevice.frame().width - (32.0 + 16.0)
-    private var modelCount = 3
+    private var bannerCount = 2
     
     private lazy var frontPosition: CGFloat =
-        itemWidth * CGFloat (modelCount - 1)
+        itemWidth * CGFloat (bannerCount - 1)
     
-    private lazy var lastPosition: CGFloat = itemWidth * CGFloat (modelCount * 2)
+    private lazy var lastPosition: CGFloat = itemWidth * CGFloat (bannerCount * 2)
     
     
     private var dataSource: UICollectionViewDiffableDataSource<String, RecordBannerViewModel>!
@@ -34,7 +32,10 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(cellType: RecordBannerCell.self)
+        
+        collectionView.register(cellType: RecordTopAcheiveBannerCell.self)
+        collectionView.register(cellType: RecordWeekTableBannerCell.self)
+        
         collectionView.collectionViewLayout = getCollectionViewLayout()
         collectionView.delegate = self
         
@@ -79,7 +80,7 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 180.0),
+            collectionView.heightAnchor.constraint(equalToConstant: 330.0),
             
             pageControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 16.0),
             pageControl.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
@@ -87,25 +88,22 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
         ])
         
         let viewModels = [
-            RecordBannerViewModel(id: UUID(), color: .systemGray),
+            RecordBannerViewModel(id: UUID(), color: .secondarySystemBackground),
             RecordBannerViewModel(id: UUID(), color: .label),
-            RecordBannerViewModel(id: UUID(), color: .systemBrown),
-            RecordBannerViewModel(id: UUID(), color: .systemGray),
+            RecordBannerViewModel(id: UUID(), color: .secondarySystemBackground),
             RecordBannerViewModel(id: UUID(), color: .label),
-            RecordBannerViewModel(id: UUID(), color: .systemBrown),
-            RecordBannerViewModel(id: UUID(), color: .systemGray),
-            RecordBannerViewModel(id: UUID(), color: .label),
-            RecordBannerViewModel(id: UUID(), color: .systemBrown),
+            RecordBannerViewModel(id: UUID(), color: .secondarySystemBackground),
+            RecordBannerViewModel(id: UUID(), color: .label),            
         ]
         
         setBannerList(viewModels)
-        pageControl.numberOfPages = modelCount
+        pageControl.numberOfPages = bannerCount
         pageControl.currentPage = 0
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView.scrollToItem(at: [0, modelCount], at: .left, animated: false)
+        collectionView.scrollToItem(at: [0, bannerCount], at: .left, animated: false)
     }
     
     
@@ -123,9 +121,20 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
     
     private func setDataSource(){
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: RecordBannerCell.self)
-            cell.contentView.backgroundColor = itemIdentifier.color.withAlphaComponent(0.5)
-            return cell
+            
+            let index = indexPath.row % self.bannerCount
+            
+            if  index ==  0{
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: RecordTopAcheiveBannerCell.self)
+                cell.contentView.backgroundColor = .label
+                return cell
+            }else if index == 1{
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: RecordWeekTableBannerCell.self)
+                cell.contentView.backgroundColor = .secondarySystemBackground
+                return cell
+            }
+            
+            fatalError()
         })
         
         var snapshot = NSDiffableDataSourceSnapshot<String, RecordBannerViewModel>()
@@ -161,7 +170,7 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
             let inset = (self.view.bounds.width - itemWidth) / 2
             let realOffset = inset + contentOffset.x
             let bannerIndex = Int(max(0, round( (realOffset) / itemWidth)))
-            self.pageControl.currentPage = bannerIndex % modelCount
+            self.pageControl.currentPage = bannerIndex % bannerCount
             
             
             //            items.forEach { item in
@@ -175,9 +184,9 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
             
             
             if realOffset < frontPosition{
-                collectionView.scrollToItem(at: [0, modelCount * 2 - 1], at: .left, animated: false)
+                collectionView.scrollToItem(at: [0, bannerCount * 2 - 1], at: .left, animated: false)
             }else if realOffset >  lastPosition{
-                collectionView.scrollToItem(at: [0, modelCount], at: .left, animated: false)
+                collectionView.scrollToItem(at: [0, bannerCount], at: .left, animated: false)
             }
         }
         
@@ -190,10 +199,6 @@ final class RecordBannerViewController: UIViewController, RecordBannerPresentabl
 
 extension RecordBannerViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
+        listener?.bannerCellDidTap(index: indexPath.row % bannerCount)
     }
 }

@@ -17,7 +17,7 @@ protocol RecordBannerPresentable: Presentable {
 }
 
 protocol RecordBannerListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    func recordBannerDidTap(index: Int)
 }
 
 final class RecordBannerInteractor: PresentableInteractor<RecordBannerPresentable>, RecordBannerInteractable, RecordBannerPresentableListener {
@@ -40,5 +40,9 @@ final class RecordBannerInteractor: PresentableInteractor<RecordBannerPresentabl
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func bannerCellDidTap(index: Int) {
+        listener?.recordBannerDidTap(index: index)
     }
 }

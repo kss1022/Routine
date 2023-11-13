@@ -210,7 +210,7 @@ private extension RoutineDataOfMonthViewController{
         // Custom today circle
         //diyCell.circleImageView.isHidden = !self.gregorian.isDateInToday(date)
         diyCell.circleImageView.isHidden = true
-        diyCell.selectionLayer.fillColor = UIColor.systemGreen.cgColor
+        diyCell.selectionLayer.fillColor = UIColor.primaryColor.cgColor
         // Configure selection layer
         if position == .current {
             

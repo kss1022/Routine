@@ -94,5 +94,13 @@ final class RecordHomeViewController: UIViewController, RecordHomePresentable, R
         vc.didMove(toParent: self)
     }
     
+    func setTimerList(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)
+        
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
+    }
+    
 }
 

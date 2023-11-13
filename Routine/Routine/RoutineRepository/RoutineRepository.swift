@@ -115,14 +115,6 @@ final class RoutineRepositoryImp: RoutineRepository{
         
         let detailRecordModel = RoutineDetailRecordModel(recordDto: record, recordDate: recordDate, recordDtos: records)
         self.detailRecordsSubject.send(detailRecordModel)
-        
-        
-        let totalRecord =  try recordReadModel.totalRecord(routineId: routineId)
-        Log.d("Total Record: \(totalRecord)")
-        
-        let monthRecord = try recordReadModel.monthRecord(routineId: routineId, date: recordDate)
-        Log.d("Month Record: \(monthRecord)")
-        
         Log.v("RoutineRepository: fetch detail")
     }
     

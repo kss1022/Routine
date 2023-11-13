@@ -26,6 +26,6 @@ struct RoutineDataOfWeekViewModel{
         self.week = dateFormatter.string(from: date)
         
         self.image = UIImage(systemName: imageName)
-        self.imageTintColor = done ? .systemGreen : .secondaryLabel
+        self.imageTintColor = done ? .primaryColor : .secondaryLabel
     }
 }

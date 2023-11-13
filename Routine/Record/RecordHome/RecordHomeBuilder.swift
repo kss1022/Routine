@@ -14,7 +14,7 @@ protocol RecordHomeDependency: Dependency {
     var routineRepository: RoutineRepository{ get }
 }
 
-final class RecordHomeComponent: Component<RecordHomeDependency>,RecordRoutineListDetailDependency, RoutineDataDependency ,RecordBannerDependency, RecordRoutineListDependency, RecordHomeInteractorDependency {
+final class RecordHomeComponent: Component<RecordHomeDependency>,RoutineTopAcheiveDependency, RoutineWeeklyTrackerDependency, RecordRoutineListDetailDependency, RecordTimerListDetailDependency, RoutineDataDependency, TimerDataDependency ,RecordBannerDependency, RecordRoutineListDependency, RecordTimerListDependency, RecordHomeInteractorDependency {
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     
     var recordRepository: RecordRepository{ dependency.recordRepository }
@@ -39,18 +39,31 @@ final class RecordHomeBuilder: Builder<RecordHomeDependency>, RecordHomeBuildabl
         let interactor = RecordHomeInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
+        let routineTopAcheiveBuilder = RoutineTopAcheiveBuilder(dependency: component)
+        let routineWeeklyTrackerBuilder = RoutineWeeklyTrackerBuilder(dependency: component)
+        
         let recordRoutineListDetailBuilder = RecordRoutineListDetailBuilder(dependency: component)
+        let recordTimerListDetailBuilder = RecordTimerListDetailBuilder(dependency: component)
+        
         let routineDataBuilder = RoutineDataBuilder(dependency: component)
+        let timerDataBuilder = TimerDataBuilder(dependency: component)
+        
         let recordBannerBuilder = RecordBannerBuilder(dependency: component)
         let recordRoutineListBuilder = RecordRoutineListBuilder(dependency: component)
+        let recrodTimerListBuilder = RecordTimerListBuilder(dependency: component)
         
         return RecordHomeRouter(
             interactor: interactor,
             viewController: viewController, 
+            routineTopAcheiveBuildable: routineTopAcheiveBuilder,
+            routineWeeklyTrackerBuildable: routineWeeklyTrackerBuilder,
             recordRoutineListDetailBuildable: recordRoutineListDetailBuilder,
+            recordTimerListDetailBuildable: recordTimerListDetailBuilder,
             routineDataBuildable: routineDataBuilder,
+            timerDataBuildable: timerDataBuilder,
             recordBannerBuildable: recordBannerBuilder,
-            recordRoutineListBuildable: recordRoutineListBuilder
+            recordRoutineListBuildable: recordRoutineListBuilder,
+            recordTimerListBuildable: recrodTimerListBuilder
         )
     }
 }

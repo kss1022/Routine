@@ -17,7 +17,7 @@ final class  RecordRoutineListHeaderView : UICollectionReusableView{
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.setImage(UIImage(systemName: "chevron.right")?.setSize(pointSize: 14.0, weight: .bold), for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 24.0, weight: .bold)
+        button.titleLabel?.setBoldFont(style: .title3)
         button.setTitleColor(.label, for: .normal)
         
         button.tintColor = .secondaryLabel
