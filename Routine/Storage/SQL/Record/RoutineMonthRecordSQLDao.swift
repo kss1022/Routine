@@ -78,7 +78,7 @@ final class RoutineMonthRecordSQLDao: RoutineMonthRecordDao{
     }
     
     
-    func updateDone(routineId: UUID, recordMonth: String, increment: Int) throws {
+    func complete(routineId: UUID, recordMonth: String) throws {
         if try find(routineId: routineId, recordMonth: recordMonth) == nil{
             try save(
                 RoutineMonthRecordDto(
@@ -91,10 +91,16 @@ final class RoutineMonthRecordSQLDao: RoutineMonthRecordDao{
         
         let query = table.filter(self.routineId == routineId && self.recordMonth == recordMonth)
             .limit(1)
-        try db.run(query.update(self.done += increment))
-        Log.v("Update Complete \(RoutineMonthRecordDto.self): \(routineId) \(increment)")
+        try db.run(query.update(self.done += 1))
+        Log.v("Complete \(RoutineMonthRecordDto.self): \(routineId)")
     }
     
 
+    func cancel(routineId: UUID, recordMonth: String) throws {
+        let query = table.filter(self.routineId == routineId && self.recordMonth == recordMonth)
+            .limit(1)
+        try db.run(query.update(self.done -= 1))
+        Log.v("Cancel \(RoutineMonthRecordDto.self): \(routineId)")
+    }
     
 }

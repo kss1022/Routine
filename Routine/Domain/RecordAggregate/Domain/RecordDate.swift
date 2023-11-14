@@ -8,8 +8,8 @@
 import Foundation
 
 
-struct RecordDate: ValueObject{
-
+struct RecordDate: ValueObject, Hashable{
+    let startOfDay: Date
     let year: Int
     let month: Int
     let day: Int
@@ -18,6 +18,7 @@ struct RecordDate: ValueObject{
     
     init(_ date: Date){
         let calendar = Calendar.current
+        self.startOfDay = calendar.startOfDay(for: date)
         year = calendar.component(.year, from: date)
         month = calendar.component(.month, from: date)
         day = calendar.component(.day, from: date)
@@ -28,6 +29,7 @@ struct RecordDate: ValueObject{
     
 
     func encode(with coder: NSCoder) {
+        coder.encodeDate(startOfDay, forKey: CodingKeys.startOfDay.rawValue)
         coder.encodeInteger(year, forKey: CodingKeys.year.rawValue)
         coder.encodeInteger(month, forKey: CodingKeys.month.rawValue)
         coder.encodeInteger(day, forKey: CodingKeys.day.rawValue)
@@ -36,6 +38,10 @@ struct RecordDate: ValueObject{
     }
 
     init?(coder: NSCoder) {
+        guard let date = coder.decodeDate(forKey: CodingKeys.startOfDay.rawValue) else{
+            return nil
+        }
+        self.startOfDay = date
         self.year = coder.decodeInteger(forKey: CodingKeys.year.rawValue)
         self.month = coder.decodeInteger(forKey: CodingKeys.month.rawValue)
         self.day = coder.decodeInteger(forKey: CodingKeys.day.rawValue)
@@ -44,6 +50,7 @@ struct RecordDate: ValueObject{
     }
 
     private enum CodingKeys: String{
+        case startOfDay
         case year
         case month
         case day

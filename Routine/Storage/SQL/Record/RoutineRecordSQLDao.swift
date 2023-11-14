@@ -75,20 +75,7 @@ final class RoutineRecordSQLDao: RoutineRecordDao{
 
     }
     
-    func updateComplete(recordId: UUID, isComplete: Bool, completeAt: Date) throws {
-        let query = table.filter(self.recordId == recordId)
-            .limit(1)
-        
-        let update = query.update(
-            self.isComplete <- isComplete,
-            self.completedAt <- completeAt
-        )
-        
-        try db.run(update)
-            
-        Log.v("Update Complete \(RoutineRecordDto.self): \(recordId) \(isComplete)")
-    }
-    
+
     func find(routineId: UUID, date: String) throws -> RoutineRecordDto? {
         let query = table.filter(
             self.routineId == routineId &&
@@ -142,5 +129,34 @@ final class RoutineRecordSQLDao: RoutineRecordDao{
         }
     }
 
+    
+    func complete(recordId: UUID, completeAt: Date) throws {
+        let query = table.filter(self.recordId == recordId)
+            .limit(1)
+        
+        let update = query.update(
+            self.isComplete <- true,
+            self.completedAt <- completeAt
+        )
+        
+        try db.run(update)
+            
+        Log.v("Complete \(RoutineRecordDto.self): \(recordId)")
+    }
+    
+    func cancel(recordId: UUID, completeAt: Date) throws {
+        let query = table.filter(self.recordId == recordId)
+            .limit(1)
+        
+        let update = query.update(
+            self.isComplete <- false,
+            self.completedAt <- completeAt
+        )
+        
+        try db.run(update)
+            
+        Log.v("Cancel \(RoutineRecordDto.self): \(recordId)")
+    }
+    
 }
 

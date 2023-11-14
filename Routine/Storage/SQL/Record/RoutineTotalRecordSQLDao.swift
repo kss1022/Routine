@@ -20,7 +20,6 @@ final class RoutineTotalRecordSQLDao: RoutineTotalRecordDao{
     internal static let tableName = "ROUTINETOTALRECORD"
     private let routineId: Expression<UUID>
     private let totalDone: Expression<Int>
-    private let bestStreak: Expression<Int>
     
     
     init(db: Connection) throws{
@@ -29,9 +28,7 @@ final class RoutineTotalRecordSQLDao: RoutineTotalRecordDao{
         table = Table(RoutineTotalRecordSQLDao.tableName)
         routineId = Expression<UUID>("routineId")
         totalDone = Expression<Int>("totalDone")
-        bestStreak = Expression<Int>("bestStreak")
                 
-        
         try setup()
     }
     
@@ -46,7 +43,6 @@ final class RoutineTotalRecordSQLDao: RoutineTotalRecordDao{
         try db.run(table.create(ifNotExists: true){ table in
             table.column(routineId)
             table.column(totalDone)
-            table.column(bestStreak)
             table.foreignKey(routineId, references: listTable, routineId, delete: .cascade)
         })
         db.userVersion = 0
@@ -56,8 +52,7 @@ final class RoutineTotalRecordSQLDao: RoutineTotalRecordDao{
     func save(_ dto: RoutineTotalRecordDto) throws {
         let insert = table.insert(
             routineId <- dto.routineId,
-            totalDone <- dto.totalDone,
-            bestStreak <- dto.totalDone
+            totalDone <- dto.totalDone
         )
         
         try db.run(insert)
@@ -72,32 +67,35 @@ final class RoutineTotalRecordSQLDao: RoutineTotalRecordDao{
             .map {
                 RoutineTotalRecordDto(
                     routineId: $0[self.routineId],
-                    totalDone: $0[totalDone],
-                    bestStreak: $0[bestStreak]
+                    totalDone: $0[totalDone]
                 )
             }.first
     }
     
     
     
-    func updateTotalDone(routineId: UUID, increment: Int) throws {
+    func complete(routineId: UUID) throws {
         if try find(routineId: routineId) == nil{
             try save(
                 RoutineTotalRecordDto(
                     routineId: routineId,
-                    totalDone: 0,
-                    bestStreak: 0
+                    totalDone: 0
                 )
             )
         }
         
         let query = table.filter(self.routineId == routineId)
             .limit(1)
-        try db.run(query.update(self.totalDone += increment))
-        Log.v("Update Complete \(RoutineTotalRecordDto.self): \(routineId) \(increment)")
+        try db.run(query.update(self.totalDone += 1))
+        Log.v("Complete \(RoutineTotalRecordDto.self): \(routineId)")
     }
     
-    
+    func cancel(routineId: UUID) throws {
+        let query = table.filter(self.routineId == routineId)
+            .limit(1)
+        try db.run(query.update(self.totalDone -= 1))
+        Log.v("Cancel \(RoutineTotalRecordDto.self): \(routineId)")
+    }
     
 }
     

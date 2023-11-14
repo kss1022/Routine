@@ -14,13 +14,11 @@ struct RoutineTopAcheiveModel{
     let emojiIcon: String
     let tint: String
     let totalDone: Int
-    let bestStreak: Int
     
     init(dto: RoutineTopAcheiveDto){
         routineName = dto.routineName
         emojiIcon = dto.emojiIcon
         tint = dto.tint
         totalDone = dto.totalDone
-        bestStreak = dto.bestStreak
     }
 }

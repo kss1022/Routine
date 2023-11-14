@@ -8,72 +8,57 @@
 import Foundation
 
 
+//Streak
 
 
 
 final class RoutineStreak{
-    
+    private(set) var streakId: StreakId!
     private(set) var routineId: RoutineId!
-    private(set) var recentDate: RecordDate!
-    private(set) var streakCount: RecordStreakCount!
+    private(set) var dates: Set<RecordDate>!
+    private(set) var streakCount: StreakCount!
     
-    init(routineId: RoutineId, recentDate: RecordDate, recordStreakCount: RecordStreakCount) {
+    init(streakId: StreakId, routineId: RoutineId, date: RecordDate, steakCount: StreakCount) {
+        self.streakId = streakId
         self.routineId = routineId
-        self.recentDate = recentDate
-        self.streakCount = recordStreakCount
+        self.dates = Set<RecordDate>()
+        self.dates.insert(date)
+        self.streakCount = steakCount
     }
     
-    
-    func update(recentDate: RecordDate) throws{
-        //if self.recentDate >= recentDate{ throw Error}
-        self.streakCount = streakCount + 1
-        self.recentDate = recentDate
-//        if date == nil{
-//            throw ArgumentException("Date should not be nil when completing Streak.")
-//        }
-//        self.recentDate = RecordDate(date!)
-    }
-    
-    func rollBack(recentDate: RecordDate) throws{
-        //if self.recentDate <= recentDate{ throw Error}
-        self.streakCount = try streakCount - 1
-        self.recentDate = recentDate
-    }
-    
-
-    
-    
-}
-
-
-struct RecordStreakCount: ValueObject{
-    let count: Int
-    
-    
-    init(_ count: Int) throws{
-        if count < 0{
-            throw ArgumentException("StreakCount must be greater than 0")
+    func setComplete(isComplete: Bool, recentDate: RecordDate) throws{
+        if isComplete{
+            self.dates.remove(recentDate)
+            
+        }else{
+            self.dates.insert(recentDate)
         }
         
-        self.count = count
-    }
-    
-    func encode(with coder: NSCoder) {
+        
+        
         
     }
     
-    init?(coder: NSCoder) {
-        nil
-    }
     
     
+//    func update(recentDate: RecordDate) throws{
+//        //if self.recentDate >= recentDate{ throw Error}
+//        self.streakCount = streakCount + 1
+//        self.endDate = recentDate
+////        if date == nil{
+////            throw ArgumentException("Date should not be nil when completing Streak.")
+////        }
+////        self.recentDate = RecordDate(date!)
+//    }
+//    
+//    func rollBack(recentDate: RecordDate) throws{
+//        //if self.recentDate <= recentDate{ throw Error}
+//        self.streakCount = try streakCount - 1
+//        self.endDate = recentDate
+//    }
+//    
+
     
-    static func +(left: RecordStreakCount, right: Int) -> RecordStreakCount{
-        return try! RecordStreakCount(left.count + 1)
-    }
-    
-    static func -(left: RecordStreakCount, right: Int) throws -> RecordStreakCount{
-        return try RecordStreakCount(left.count - 1)
-    }
     
 }
+

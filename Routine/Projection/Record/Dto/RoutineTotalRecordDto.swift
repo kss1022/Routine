@@ -12,5 +12,4 @@ import Foundation
 struct RoutineTotalRecordDto{
     let routineId: UUID
     let totalDone: Int
-    let bestStreak: Int
 }

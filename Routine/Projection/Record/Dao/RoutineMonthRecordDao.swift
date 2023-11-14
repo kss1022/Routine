@@ -14,5 +14,6 @@ protocol RoutineMonthRecordDao{
     func save(_ dto: RoutineMonthRecordDto) throws
     func find(routineId: UUID, recordMonth: String) throws -> RoutineMonthRecordDto?
     
-    func updateDone(routineId: UUID, recordMonth: String, increment: Int) throws
+    func complete(routineId: UUID, recordMonth: String) throws
+    func cancel(routineId: UUID, recordMonth: String) throws
 }

@@ -19,6 +19,9 @@ protocol RoutineRecordReadModelFacade{
     func monthRecord(routineId: UUID, date: Date) throws -> RoutineMonthRecordDto?
     func weekRecord(routineId: UUID, date: Date) throws -> RoutineWeekRecordDto?
     
+    func topStreak(routineId: UUID) throws -> RoutineStreakDto?
+    func currentStreak(routineId: UUID, date: Date) throws -> RoutineStreakDto?
+    
     func topAcheive() throws -> [RoutineTopAcheiveDto]
     func weeklyTrackers(date: Date) throws -> [RoutineWeeklyTrackerDto]
 }
@@ -29,6 +32,7 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
     private let routineTotalRecordDao: RoutineTotalRecordDao
     private let routineMonthRecordDao: RoutineMonthRecordDao
     private let routineWeekRecrodDao: RoutineWeekRecordDao
+    private let routineStreakDao: RoutineStreakDao
     
     private let routineTopAcheiveDao: RoutineTopAcheiveDao
     private let routineWeeklyTrackerDao: RoutineWeeklyTrackerDao
@@ -44,6 +48,7 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
         routineTotalRecordDao = dbManager.routineTotalRecordDao
         routineMonthRecordDao = dbManager.routineMonthRecordDao
         routineWeekRecrodDao = dbManager.routineWeekRecordDao
+        routineStreakDao = dbManager.routineStreakDao
         
         routineTopAcheiveDao = dbManager.routineTopAcheiveDao
         routineWeeklyTrackerDao = dbManager.routineWeeklyTrackerDao
@@ -81,6 +86,16 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
         let year = calendar.component(.year, from: date)
         let weekOfYear = calendar.dateComponents([.weekOfYear], from: date).weekOfYear!
         return try routineWeekRecrodDao.find(routineId: routineId, year: year, weekOfYear: weekOfYear)
+    }
+    
+    func topStreak(routineId: UUID) throws -> RoutineStreakDto? {
+        return try routineStreakDao.topStreak(routineId: routineId)
+    }
+    
+    func currentStreak(routineId: UUID, date: Date) throws -> RoutineStreakDto? {
+        let date = Calendar.current.startOfDay(for: date)
+        
+        return try routineStreakDao.currentStreak(routineId: routineId, date: date)
     }
     
     func topAcheive() throws -> [RoutineTopAcheiveDto] {

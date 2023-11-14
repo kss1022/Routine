@@ -16,5 +16,4 @@ struct RoutineTopAcheiveDto{
     let emojiIcon: String
     let tint: String
     let totalDone: Int
-    let bestStreak: Int
 }

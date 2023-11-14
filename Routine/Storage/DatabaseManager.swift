@@ -28,6 +28,7 @@ class DatabaseManager{
     public let routineTotalRecordDao: RoutineTotalRecordDao
     public let routineMonthRecordDao: RoutineMonthRecordDao
     public let routineWeekRecordDao: RoutineWeekRecordDao
+    public let routineStreakDao: RoutineStreakDao
     
     public let routineTopAcheiveDao: RoutineTopAcheiveDao
     public let routineWeeklyTrackerDao: RoutineWeeklyTrackerDao
@@ -63,6 +64,7 @@ class DatabaseManager{
         //        try RoutineTotalRecordSQLDao.dropTable(db: db)
         //        try RoutineMonthRecordSQLDao.dropTable(db: db)
         //        try RoutineWeekRecordSQLDao.dropTable(db: db)
+        //        try RoutineStreakSQLDao.dropTable(db: db)
         //        try RoutineRecordSQLDao.dropTable(db: db)
         //        try TimerRecordSQLDao.dropTable(db: db)
 #endif
@@ -79,6 +81,7 @@ class DatabaseManager{
         self.routineTotalRecordDao = try RoutineTotalRecordSQLDao(db: db)
         self.routineMonthRecordDao = try RoutineMonthRecordSQLDao(db: db)
         self.routineWeekRecordDao = try RoutineWeekRecordSQLDao(db: db)
+        self.routineStreakDao = try RoutineStreakSQLDao(db: db)
         self.routineRecordDao = try RoutineRecordSQLDao(db: db)
         self.timerRecordDao = try TimerRecordSQLDao(db: db)
         

@@ -14,6 +14,7 @@ protocol RoutineTotalRecordDao{
     func save(_ dto: RoutineTotalRecordDto) throws
     func find(routineId: UUID) throws -> RoutineTotalRecordDto?
     
-    func updateTotalDone(routineId: UUID, increment: Int) throws
+    func complete(routineId: UUID) throws
+    func cancel(routineId: UUID) throws
 }
 

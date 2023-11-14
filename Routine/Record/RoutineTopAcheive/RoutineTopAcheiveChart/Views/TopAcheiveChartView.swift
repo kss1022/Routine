@@ -74,7 +74,7 @@ final class TopAcheiveChartView: UIView{
 
         let data = BarChartData(dataSet: set)
         data.setDrawValues(false)
-        data.barWidth = 0.5
+        data.barWidth =  0.05 * Double(viewModels.count)
         barChartView.data = data
         
 

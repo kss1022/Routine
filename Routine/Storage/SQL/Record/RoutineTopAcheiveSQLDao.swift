@@ -20,7 +20,6 @@ final class RoutineTopAcheiveSQLDao: RoutineTopAcheiveDao{
     private let tint: Expression<String>
         
     private let totalDone: Expression<Int?>
-    private let bestStreak: Expression<Int?>
     
     
     
@@ -33,7 +32,6 @@ final class RoutineTopAcheiveSQLDao: RoutineTopAcheiveDao{
         emojiIcon = Expression<String>("emojiIcon")
         tint = Expression<String>("tint")
         totalDone = Expression<Int?>("totalDone")
-        bestStreak = Expression<Int?>("bestStreak")
         
         self.table = routineListTable
             .select([
@@ -42,7 +40,6 @@ final class RoutineTopAcheiveSQLDao: RoutineTopAcheiveDao{
                 routineListTable[emojiIcon],
                 routineListTable[tint],
                 routineTotalRecordTable[totalDone],
-                routineTotalRecordTable[bestStreak],
             ])
             .join(.leftOuter, routineTotalRecordTable, on: routineListTable[routineId] == routineTotalRecordTable[routineId])
     }
@@ -51,14 +48,13 @@ final class RoutineTopAcheiveSQLDao: RoutineTopAcheiveDao{
     func find() throws -> [RoutineTopAcheiveDto] {
         let query = self.table.order(totalDone.desc)
         
-        return try db.prepare(query).map {
+        return try db.prepareRowIterator(query).map {
             RoutineTopAcheiveDto(
                 routineId: $0[routineId],
                 routineName: $0[routineName],
                 emojiIcon: $0[emojiIcon],
                 tint: $0[tint],
-                totalDone: $0[totalDone] ?? 0,
-                bestStreak: $0[bestStreak] ?? 0
+                totalDone: $0[totalDone] ?? 0
             )
         }
     }

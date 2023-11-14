@@ -72,7 +72,9 @@ final class RoutineWeeklyTrackerSQLDao: RoutineWeeklyTrackerDao{
     }
     
     func find(year: Int, weekOfYear: Int) throws -> [RoutineWeeklyTrackerDto] {
-        try db.prepare(table).map {
+        let query = table.filter(self.year == year  && self.weekOfYear == weekOfYear)
+        
+        return try db.prepareRowIterator(query).map {
             RoutineWeeklyTrackerDto(
                 routineId: $0[routineId],
                 routineName: $0[routineName],

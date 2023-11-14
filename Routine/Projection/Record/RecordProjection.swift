@@ -14,6 +14,7 @@ final class RecordProjection{
     private let routineTotalRecordDao: RoutineTotalRecordDao
     private let routineMonthRecordDao: RoutineMonthRecordDao
     private let routineWeekRecordDao: RoutineWeekRecordDao
+    private let routineStreakDao: RoutineStreakDao
     private let routineRecordDao: RoutineRecordDao
     
     
@@ -31,6 +32,7 @@ final class RecordProjection{
         self.routineTotalRecordDao = dbManager.routineTotalRecordDao
         self.routineMonthRecordDao = dbManager.routineMonthRecordDao
         self.routineWeekRecordDao = dbManager.routineWeekRecordDao
+        self.routineStreakDao = dbManager.routineStreakDao
         
         self.timerRecordDao = dbManager.timerRecordDao
         cancellables = .init()
@@ -59,7 +61,7 @@ final class RecordProjection{
 
     
     private func when(event: RoutineRecordCreated){
-        do{
+        do{                        
             let record = RoutineRecordDto(
                 routineId: event.routineId.id,
                 recordId: event.recordId.id,
@@ -69,10 +71,10 @@ final class RecordProjection{
             )
                         
             try routineRecordDao.save(record)
-            try routineTotalRecordDao.updateTotalDone(routineId: event.routineId.id, increment: 1)
-            try routineMonthRecordDao.updateDone(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate), increment: 1)
-            try routineWeekRecordDao.updateDone(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek, done: event.isComplete)
-
+            try routineTotalRecordDao.complete(routineId: event.routineId.id)
+            try routineMonthRecordDao.complete(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate))
+            try routineWeekRecordDao.complete(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek)
+            try routineStreakDao.complete(routineId: event.routineId.id, date: event.recordDate.startOfDay)
         }catch{
             Log.e("EventHandler Error: RecordCreated \(error)")
         }
@@ -80,10 +82,19 @@ final class RecordProjection{
     
     private func when(event: RoutineRecordCompleteSet){
         do{
-            try routineRecordDao.updateComplete(recordId: event.recordId.id, isComplete: event.isComplete, completeAt: event.occurredOn)
-            try routineTotalRecordDao.updateTotalDone(routineId: event.routineId.id, increment: event.isComplete ? 1 : -1)
-            try routineMonthRecordDao.updateDone(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate),increment: event.isComplete ? 1 : -1)
-            try routineWeekRecordDao.updateDone(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek, done: event.isComplete)
+            if event.isComplete{
+                try routineRecordDao.complete(recordId: event.recordId.id, completeAt: event.occurredOn)
+                try routineTotalRecordDao.complete(routineId: event.routineId.id)
+                try routineMonthRecordDao.complete(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate))
+                try routineWeekRecordDao.complete(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek)
+                try routineStreakDao.complete(routineId: event.routineId.id, date: event.recordDate.startOfDay)
+            }else{
+                try routineRecordDao.cancel(recordId: event.recordId.id, completeAt: event.occurredOn)
+                try routineTotalRecordDao.cancel(routineId: event.routineId.id)
+                try routineMonthRecordDao.cancel(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate))
+                try routineWeekRecordDao.cancel(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek)
+                try routineStreakDao.cancel(routineId: event.routineId.id, date: event.recordDate.startOfDay)
+            }
         }catch{
             Log.e("EventHandler Error: RecordCreated \(error)")
         }

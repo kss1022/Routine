@@ -19,7 +19,14 @@ struct RoutineRecordModel{
     let currentStreak: Int
     let overalRate: Int
     
-    init(records: [RoutineRecordDto], totalDto: RoutineTotalRecordDto?, monthDto: RoutineMonthRecordDto?, weekDto: RoutineWeekRecordDto?) {
+    init(
+        records: [RoutineRecordDto],
+        totalDto: RoutineTotalRecordDto?,
+        monthDto: RoutineMonthRecordDto?,
+        weekDto: RoutineWeekRecordDto?,
+        bestStreak: RoutineStreakDto?,
+        currentStreak: RoutineStreakDto?
+    ) {
         var dictionary = [Date: String]()
         let formatter = Formatter.recordDateFormatter()
         
@@ -35,8 +42,8 @@ struct RoutineRecordModel{
         
         self.doneThisMonth = monthDto?.done ?? 0
         self.totalDone = totalDto?.totalDone ?? 0
-        self.bestStreak = totalDto?.bestStreak ?? 0
-        self.currentStreak = 0
+        self.bestStreak = bestStreak?.streakCount ?? 0
+        self.currentStreak = currentStreak?.streakCount ?? 0
         self.overalRate = 0
     }
 }

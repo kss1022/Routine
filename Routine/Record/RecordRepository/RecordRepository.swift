@@ -38,8 +38,18 @@ final class RecordRepositoryImp: RecordRepository{
         let totalRecord = try routineRecordReadModel.totalRecord(routineId: routineId)
         let monthRecord = try routineRecordReadModel.monthRecord(routineId: routineId, date: today)
         let weekRecord = try routineRecordReadModel.weekRecord(routineId: routineId, date: today)
+        let topStreak = try routineRecordReadModel.topStreak(routineId: routineId)
+        let currentStreak = try routineRecordReadModel.currentStreak(routineId: routineId, date: Date()) //Date -> now
         
-        let model = RoutineRecordModel(records: records, totalDto: totalRecord, monthDto: monthRecord, weekDto: weekRecord)
+        let model = RoutineRecordModel(
+            records: records,
+            totalDto: totalRecord,
+            monthDto: monthRecord,
+            weekDto: weekRecord,
+            bestStreak: topStreak,
+            currentStreak: currentStreak
+        )
+                        
         routineRecordsSubject.send(model)
         Log.v("Fetch RoutineRecord: \(model)")
     }

@@ -112,7 +112,7 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
         }.first
     }
     
-    func updateDone(routineId: UUID, year: Int, weekOfYear: Int, dayOfWeek: Int, done: Bool) throws {
+    func complete(routineId: UUID, year: Int, weekOfYear: Int, dayOfWeek: Int) throws {
         if try find(routineId: routineId, year: year, weekOfYear: weekOfYear) == nil{
             try save(
                 RoutineWeekRecordDto(
@@ -128,16 +128,34 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
         
         
         switch dayOfWeek{
-        case 0: try db.run(query.update(self.sunday <- done))
-        case 1: try db.run(query.update(self.monday <- done))
-        case 2: try db.run(query.update(self.tuesday <- done))
-        case 3: try db.run(query.update(self.wednesday <- done))
-        case 4: try db.run(query.update(self.thursday <- done))
-        case 5: try db.run(query.update(self.friday <- done))
-        case 6: try db.run(query.update(self.saturday <- done))
+        case 0: try db.run(query.update(self.sunday <- true))
+        case 1: try db.run(query.update(self.monday <- true))
+        case 2: try db.run(query.update(self.tuesday <- true))
+        case 3: try db.run(query.update(self.wednesday <- true))
+        case 4: try db.run(query.update(self.thursday <- true))
+        case 5: try db.run(query.update(self.friday <- true))
+        case 6: try db.run(query.update(self.saturday <- true))
         default: fatalError("Invalid dayOfWeek: \(dayOfWeek)")
         }
-        Log.v("Update Complete \(RoutineWeekRecordSQLDao.self): \(year) weekOfYear-\(weekOfYear) dayOfWeek-\(dayOfWeek)")
+        Log.v("Complete \(RoutineWeekRecordSQLDao.self): \(year)-\(weekOfYear)-\(dayOfWeek)")
+    }
+    
+    func cancel(routineId: UUID, year: Int, weekOfYear: Int, dayOfWeek: Int) throws {
+        let query = table.filter(self.routineId == routineId && self.year == year && self.weekOfYear == weekOfYear)
+            .limit(1)
+        
+        
+        switch dayOfWeek{
+        case 0: try db.run(query.update(self.sunday <- false))
+        case 1: try db.run(query.update(self.monday <- false))
+        case 2: try db.run(query.update(self.tuesday <- false))
+        case 3: try db.run(query.update(self.wednesday <- false))
+        case 4: try db.run(query.update(self.thursday <- false))
+        case 5: try db.run(query.update(self.friday <- false))
+        case 6: try db.run(query.update(self.saturday <- false))
+        default: fatalError("Invalid dayOfWeek: \(dayOfWeek)")
+        }
+        Log.v("Cancel \(RoutineWeekRecordSQLDao.self): \(year)-\(weekOfYear)-\(dayOfWeek)")
     }
     
 }
