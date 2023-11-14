@@ -84,10 +84,27 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
         switch index{
         case 0:
             //Top Acheive
-            router?.attachRoutineTopAcheive()
+            Task{ [weak self] in
+                guard let self = self else { return }
+                do{
+                    try await dependency.recordRepository.fetchRoutineTopAcheives()
+                    await MainActor.run { self.router?.attachRoutineTopAcheive() }
+                }catch{
+                    Log.e("\(error)")
+                }
+            }
         case 1:
-            //
-            router?.attachRoutineWeeklyTracker()
+            //WeeklyTracker
+            Task{ [weak self] in
+                guard let self = self else { return }
+                do{
+                    let now = Date()                    
+                    try await dependency.recordRepository.fetchRoutineWeeklyTrakers(date: now)
+                    await MainActor.run { self.router?.attachRoutineWeeklyTracker() }
+                }catch{
+                    Log.e("\(error)")
+                }
+            }
         case 2:
             //Case 2
             Log.v("BannerTap: Index 2")

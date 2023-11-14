@@ -13,6 +13,7 @@ final class RecordProjection{
     
     private let routineTotalRecordDao: RoutineTotalRecordDao
     private let routineMonthRecordDao: RoutineMonthRecordDao
+    private let routineWeekRecordDao: RoutineWeekRecordDao
     private let routineRecordDao: RoutineRecordDao
     
     
@@ -29,6 +30,7 @@ final class RecordProjection{
         self.routineRecordDao = dbManager.routineRecordDao
         self.routineTotalRecordDao = dbManager.routineTotalRecordDao
         self.routineMonthRecordDao = dbManager.routineMonthRecordDao
+        self.routineWeekRecordDao = dbManager.routineWeekRecordDao
         
         self.timerRecordDao = dbManager.timerRecordDao
         cancellables = .init()
@@ -38,10 +40,6 @@ final class RecordProjection{
     
     
     private func registerReceiver(){
-        DomainEventPublihser.share
-            .onReceive(RoutineCreated.self, action: when)
-            .store(in: &cancellables)
-        
         DomainEventPublihser.share
             .onReceive(RoutineRecordCreated.self, action: when)
             .store(in: &cancellables)
@@ -58,19 +56,7 @@ final class RecordProjection{
     
     
     //MARK: Routine
-    private func when(event: RoutineCreated){
-        do{
-            let totalRecord = RoutineTotalRecordDto(
-                routineId: event.routineId.id,
-                totalDone: 0,
-                bestStreak: 0
-            )
-           
-            try routineTotalRecordDao.save(totalRecord)
-        }catch{
-            Log.e("EventHandler Error: RecordCreated \(error)")
-        }
-    }
+
     
     private func when(event: RoutineRecordCreated){
         do{
@@ -81,11 +67,12 @@ final class RecordProjection{
                 isComplete: event.isComplete,
                 completedAt: event.occurredOn
             )
-            
                         
             try routineRecordDao.save(record)
             try routineTotalRecordDao.updateTotalDone(routineId: event.routineId.id, increment: 1)
             try routineMonthRecordDao.updateDone(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate), increment: 1)
+            try routineWeekRecordDao.updateDone(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek, done: event.isComplete)
+
         }catch{
             Log.e("EventHandler Error: RecordCreated \(error)")
         }
@@ -96,6 +83,7 @@ final class RecordProjection{
             try routineRecordDao.updateComplete(recordId: event.recordId.id, isComplete: event.isComplete, completeAt: event.occurredOn)
             try routineTotalRecordDao.updateTotalDone(routineId: event.routineId.id, increment: event.isComplete ? 1 : -1)
             try routineMonthRecordDao.updateDone(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate),increment: event.isComplete ? 1 : -1)
+            try routineWeekRecordDao.updateDone(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek, done: event.isComplete)
         }catch{
             Log.e("EventHandler Error: RecordCreated \(error)")
         }

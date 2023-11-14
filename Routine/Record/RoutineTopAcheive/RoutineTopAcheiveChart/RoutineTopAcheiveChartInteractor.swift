@@ -7,6 +7,7 @@
 
 import Foundation
 import ModernRIBs
+import Combine
 
 protocol RoutineTopAcheiveChartRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -21,14 +22,25 @@ protocol RoutineTopAcheiveChartListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol RoutineTopAcheiveChartInteractorDependency{
+    var topAcheives: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ get }
+}
+
 final class RoutineTopAcheiveChartInteractor: PresentableInteractor<RoutineTopAcheiveChartPresentable>, RoutineTopAcheiveChartInteractable, RoutineTopAcheiveChartPresentableListener {
 
     weak var router: RoutineTopAcheiveChartRouting?
     weak var listener: RoutineTopAcheiveChartListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: RoutineTopAcheiveChartInteractorDependency
+    private var cancellables: Set<AnyCancellable>
+    
     // in constructor.
-    override init(presenter: RoutineTopAcheiveChartPresentable) {
+    init(
+        presenter: RoutineTopAcheiveChartPresentable,
+        dependency: RoutineTopAcheiveChartInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -37,63 +49,73 @@ final class RoutineTopAcheiveChartInteractor: PresentableInteractor<RoutineTopAc
         super.didBecomeActive()
         // TODO: Implement business logic here.
         
-        let models = [
-            TopAcheiveChartModel(
-                title: "💊",
-                count: Int.random(in: 20...80),
-                tint: "#FFCCCCFF"
-            ),
-            TopAcheiveChartModel(
-                title: "🏃",
-                count: Int.random(in: 20...80),
-                tint: "#FFFFCCFF"
-            ),
-            TopAcheiveChartModel(
-                title: "💪",
-                count: Int.random(in: 20...80),
-                tint: "#E5CCFFFF"
-            ),
-            TopAcheiveChartModel(
-                title: "✍️",
-                count: Int.random(in: 20...80),
-                tint: "#FFCCE5FF"
-            ),
-            TopAcheiveChartModel(
-                title: "🚗",
-                count: Int.random(in: 20...80),
-                tint: "#CCFFFFFF"
-            ),
-            TopAcheiveChartModel(
-                title: "💧",
-                count: Int.random(in: 20...80),
-                tint: "#FFCCCCFF"
-            ),
-            TopAcheiveChartModel(
-                title: "📖",
-                count: Int.random(in: 20...80),
-                tint: "#C0C0C0FF"
-            ),
-            TopAcheiveChartModel(
-                title: "🏀",
-                count: Int.random(in: 20...80),
-                tint: "#FFE5CCFF"
-            ),
-            TopAcheiveChartModel(
-                title: "🍻",
-                count: Int.random(in: 20...80),
-                tint: "#CCFFCCFF"
-            ),
-        ]
+        dependency.topAcheives
+            .receive(on: DispatchQueue.main)
+            .sink { models in
+                let viewModels = models.enumerated().map { index, model in
+                    TopAcheiveChartViewModel(index: index, model)
+                }
+                
+                self.presenter.setChart(viewModels)
+            }
+            .store(in: &cancellables)
 
-        let viewModels = models.enumerated().map { index, model in
-            TopAcheiveChartViewModel(index: index, model)
-        }
-        
-        presenter.setChart(viewModels)
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        
+        self.cancellables.forEach{ $0.cancel() }
+        self.cancellables.removeAll()
     }
 }
+
+
+
+//let models = [
+//    TopAcheiveChartModel(
+//        title: "💊",
+//        count: Int.random(in: 20...80),
+//        tint: "#FFCCCCFF"
+//    ),
+//    TopAcheiveChartModel(
+//        title: "🏃",
+//        count: Int.random(in: 20...80),
+//        tint: "#FFFFCCFF"
+//    ),
+//    TopAcheiveChartModel(
+//        title: "💪",
+//        count: Int.random(in: 20...80),
+//        tint: "#E5CCFFFF"
+//    ),
+//    TopAcheiveChartModel(
+//        title: "✍️",
+//        count: Int.random(in: 20...80),
+//        tint: "#FFCCE5FF"
+//    ),
+//    TopAcheiveChartModel(
+//        title: "🚗",
+//        count: Int.random(in: 20...80),
+//        tint: "#CCFFFFFF"
+//    ),
+//    TopAcheiveChartModel(
+//        title: "💧",
+//        count: Int.random(in: 20...80),
+//        tint: "#FFCCCCFF"
+//    ),
+//    TopAcheiveChartModel(
+//        title: "📖",
+//        count: Int.random(in: 20...80),
+//        tint: "#C0C0C0FF"
+//    ),
+//    TopAcheiveChartModel(
+//        title: "🏀",
+//        count: Int.random(in: 20...80),
+//        tint: "#FFE5CCFF"
+//    ),
+//    TopAcheiveChartModel(
+//        title: "🍻",
+//        count: Int.random(in: 20...80),
+//        tint: "#CCFFCCFF"
+//    ),
+//]

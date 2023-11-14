@@ -15,7 +15,7 @@ protocol RoutineDataOfWeekRouting: ViewableRouting {
 
 protocol RoutineDataOfWeekPresentable: Presentable {
     var listener: RoutineDataOfWeekPresentableListener? { get set }
-    func setCompletes(_ viewModels: [RoutineDataOfWeekViewModel])
+    func setCompletes(_ viewModels: RoutineDataOfWeekListViewModel)
 }
 
 protocol RoutineDataOfWeekListener: AnyObject {
@@ -50,17 +50,20 @@ final class RoutineDataOfWeekInteractor: PresentableInteractor<RoutineDataOfWeek
         super.didBecomeActive()
         
         
+        
         dependency.routineRecords
             .receive(on: DispatchQueue.main)
             .compactMap{ $0 }
             .sink { records in
-                let viewModels = RecordCalendar.share.getDatesForThisWeek().map {
-                    RoutineDataOfWeekViewModel(
-                        date: $0,
-                        imageName: "checkmark.circle.fill",
-                        done: records.completes[$0] != nil
-                    )
-                }
+                
+                let now = Date()
+                
+                let viewModels = RoutineDataOfWeekListViewModel(
+                    dates: self.getDatesForWeek(date: now),
+                    model: records.doneThisWeek,
+                    imageName: "checkmark.circle.fill", 
+                    imageTintColor: "#3BD2AEff"
+                )
                 self.presenter.setCompletes(viewModels)
             }
             .store(in: &cancellables)
@@ -73,5 +76,26 @@ final class RoutineDataOfWeekInteractor: PresentableInteractor<RoutineDataOfWeek
         cancellables.removeAll()
     }
     
+    
+    private func getDatesForWeek(date: Date) -> [Date] {
+        let calendar = Calendar.current
+        var datesInThisWeek: [Date] = []
+        
+        //First day of the week  ( sunday )
+        //let beginningOfWeek = calendar.date(byAdding: .day, value: 1, to: startOfWeek)
+        if let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)){
+            //Append Weeks
+            for i in 0..<7 {
+                if let date = calendar.date(byAdding: .day, value: i, to: startOfWeek) {
+                    datesInThisWeek.append(date)
+                }
+            }
+        }else{
+            Log.e("Can't get first day of the week")
+        }
+        
+        
+        return datesInThisWeek
+    }
 
 }

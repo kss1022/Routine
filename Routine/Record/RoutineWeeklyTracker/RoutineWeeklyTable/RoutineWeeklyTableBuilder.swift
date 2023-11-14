@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol RoutineWeeklyTableDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var routineWeeklyTrackers: ReadOnlyCurrentValuePublisher<[RoutineWeeklyTrackerModel]>{ get }
 }
 
-final class RoutineWeeklyTableComponent: Component<RoutineWeeklyTableDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class RoutineWeeklyTableComponent: Component<RoutineWeeklyTableDependency>, RoutineWeeklyTableInteractorDependency {
+    var routineWeeklyTrackers: ReadOnlyCurrentValuePublisher<[RoutineWeeklyTrackerModel]>{ dependency.routineWeeklyTrackers }
 }
 
 // MARK: - Builder
@@ -32,7 +30,7 @@ final class RoutineWeeklyTableBuilder: Builder<RoutineWeeklyTableDependency>, Ro
     func build(withListener listener: RoutineWeeklyTableListener) -> RoutineWeeklyTableRouting {
         let component = RoutineWeeklyTableComponent(dependency: dependency)
         let viewController = RoutineWeeklyTableViewController()
-        let interactor = RoutineWeeklyTableInteractor(presenter: viewController)
+        let interactor = RoutineWeeklyTableInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return RoutineWeeklyTableRouter(interactor: interactor, viewController: viewController)
     }

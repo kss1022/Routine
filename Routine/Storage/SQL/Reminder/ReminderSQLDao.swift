@@ -16,7 +16,7 @@ final class ReminderSQLDao: ReminderDao{
     private let table: Table
     
     // MARK: Columns
-    internal static let tableName = "REMINDER"
+    private static let tableName = "REMINDER"
     private let routineId: Expression<UUID>
     private let identifires: Expression<String>
     private let hour: Expression<Int>

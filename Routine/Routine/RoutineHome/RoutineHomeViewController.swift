@@ -63,7 +63,9 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     
     
     private func setLayout(){
-        title = "Today"
+        //title = "Today"
+        navigationItem.title = "Today"
+        
         tabBarItem = UITabBarItem(
             title: "Routine",
             image: UIImage(systemName: "checkmark.seal"),
@@ -110,7 +112,7 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     }
     
     func setTitle(title: String) {
-        self.title = title
+        navigationItem.title = title
     }
     
     @objc

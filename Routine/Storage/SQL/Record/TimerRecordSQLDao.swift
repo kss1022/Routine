@@ -16,7 +16,7 @@ final class TimerRecordSQLDao: TimerRecordDao{
     private let table: Table
     
     // MARK: Columns
-    internal static let tableName = "TIMERRECORD"
+    private static let tableName = "TIMERRECORD"
     private let timerId: Expression<UUID>
     private let recordId: Expression<UUID>
     private let recordDate: Expression<String>

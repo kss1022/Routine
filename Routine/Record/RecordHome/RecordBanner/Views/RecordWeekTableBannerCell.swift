@@ -69,71 +69,132 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
     
     
     func setTableView(){
-        //WeeklyTableModel(datas:
+        
         let models = [
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Take medicine",
                 emoji: "💊",
                 tint: "#FFCCCCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Running",
                 emoji: "🏃",
                 tint: "#FFFFCCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Exercise",
                 emoji: "💪",
                 tint: "#E5CCFFFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Keep a diary",
                 emoji: "✍️",
                 tint: "#FFCCE5FF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Driving",
                 emoji: "🚗",
                 tint: "#CCFFFFFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Drink water",
                 emoji: "💧",
                 tint: "#FFCCCCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Study hard",
                 emoji: "📖",
                 tint: "#C0C0C0FF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Walk a dog",
                 emoji: "🦮",
                 tint: "#E09FFFFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Basketball",
                 emoji: "🏀",
                 tint: "#FFE5CCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
-            WeeklyTableModel(
+            WeeklyTableViewModel(
                 title: "Beer",
                 emoji: "🍻",
                 tint: "#CCFFCCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
+                sunday: Bool.random(),
+                monday: Bool.random(),
+                tuesday: Bool.random(),
+                wednesday: Bool.random(),
+                thursday: Bool.random(),
+                friday: Bool.random(),
+                saturday: Bool.random()
             ),
         ]
-                        
+                
         weeklyTableView.bindView(models.map(WeeklyTableDataEntry.init))
+
     }
 
 }

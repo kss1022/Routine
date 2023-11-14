@@ -161,7 +161,18 @@ extension WeeklyTableView: UICollectionViewDataSource{
         let index = indexPath.row / 7
         if let dataEntry = dataEntrys[safe: index]{
             let row = indexPath.row % 7
-            cell.bindView(done: dataEntry.done[row], fillColor: dataEntry.tint)
+            
+            switch row{
+            case 0: cell.bindView(done: dataEntry.weekDataEntry.sunday, fillColor: dataEntry.tint)
+            case 1: cell.bindView(done: dataEntry.weekDataEntry.monday, fillColor: dataEntry.tint)
+            case 2: cell.bindView(done: dataEntry.weekDataEntry.tuesday, fillColor: dataEntry.tint)
+            case 3: cell.bindView(done: dataEntry.weekDataEntry.wednesday, fillColor: dataEntry.tint)
+            case 4: cell.bindView(done: dataEntry.weekDataEntry.thursday, fillColor: dataEntry.tint)
+            case 5: cell.bindView(done: dataEntry.weekDataEntry.friday, fillColor: dataEntry.tint)
+            case 6: cell.bindView(done: dataEntry.weekDataEntry.saturday, fillColor: dataEntry.tint)
+            default: fatalError()
+            }            
+            
         }
         return cell
     }

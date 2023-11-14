@@ -47,14 +47,12 @@ final class RoutineWeeklyTableViewController: UIViewController, RoutineWeeklyTab
         super.init(nibName: nil, bundle: nil)
         
         setLayout()
-        setTableView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
         setLayout()
-        setTableView()
     }
     
     private func setLayout(){
@@ -73,7 +71,6 @@ final class RoutineWeeklyTableViewController: UIViewController, RoutineWeeklyTab
             periodLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
             periodLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             
-                        
             cardView.topAnchor.constraint(equalTo: periodLabel.bottomAnchor, constant: 32.0),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
@@ -86,74 +83,10 @@ final class RoutineWeeklyTableViewController: UIViewController, RoutineWeeklyTab
         ])
     }
     
+
     
-    func setTableView(){
-        
+    func setWeeklyTable(_ viewModels: [WeeklyTableViewModel]) {
         periodLabel.text = "2023.11.13 ~ 2023.11.17"
-        
-        let models = [
-            WeeklyTableModel(
-                title: "Take medicine",
-                emoji: "💊",
-                tint: "#FFCCCCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-            WeeklyTableModel(
-                title: "Running",
-                emoji: "🏃",
-                tint: "#FFFFCCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-            WeeklyTableModel(
-                title: "Exercise",
-                emoji: "💪",
-                tint: "#E5CCFFFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-            WeeklyTableModel(
-                title: "Keep a diary",
-                emoji: "✍️",
-                tint: "#FFCCE5FF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-            WeeklyTableModel(
-                title: "Driving",
-                emoji: "🚗",
-                tint: "#CCFFFFFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-            WeeklyTableModel(
-                title: "Drink water",
-                emoji: "💧",
-                tint: "#FFCCCCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-            WeeklyTableModel(
-                title: "Study hard",
-                emoji: "📖",
-                tint: "#C0C0C0FF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-            WeeklyTableModel(
-                title: "Walk a dog",
-                emoji: "🦮",
-                tint: "#E09FFFFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-            WeeklyTableModel(
-                title: "Basketball",
-                emoji: "🏀",
-                tint: "#FFE5CCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-            WeeklyTableModel(
-                title: "Beer",
-                emoji: "🍻",
-                tint: "#CCFFCCFF",
-                done: [Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),Bool.random(),]
-            ),
-        ]
-                
-        weeklyTableView.bindView(models.map(WeeklyTableDataEntry.init))
+        weeklyTableView.bindView(viewModels.map(WeeklyTableDataEntry.init))
     }
 }

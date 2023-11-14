@@ -8,13 +8,12 @@
 import ModernRIBs
 
 protocol RoutineWeeklyTrackerDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var recordRepository: RecordRepository{ get }
 }
 
 final class RoutineWeeklyTrackerComponent: Component<RoutineWeeklyTrackerDependency>, RoutineWeeklyTableDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var recordRepository: RecordRepository{ dependency.recordRepository }
+    var routineWeeklyTrackers: ReadOnlyCurrentValuePublisher<[RoutineWeeklyTrackerModel]>{ recordRepository.routineWeeklyTrackers }
 }
 
 // MARK: - Builder

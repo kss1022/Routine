@@ -9,13 +9,37 @@ import Foundation
 import UIKit
 
 
-struct RoutineDataOfWeekViewModel{
-    let date: String
-    let week: String
+struct RoutineDataOfWeekListViewModel{
+    let sun: RoutineDataOfWeekViewModel
+    let mon: RoutineDataOfWeekViewModel
+    let tue: RoutineDataOfWeekViewModel
+    let wed: RoutineDataOfWeekViewModel
+    let thu: RoutineDataOfWeekViewModel
+    let fri: RoutineDataOfWeekViewModel
+    let sat: RoutineDataOfWeekViewModel
     let image: UIImage?
     let imageTintColor: UIColor
     
-    init(date: Date, imageName: String, done: Bool) {
+    init(dates: [Date], model: RoutineRecordWeekModel, imageName: String, imageTintColor: String) {
+        self.image = UIImage(systemName: imageName)
+        self.imageTintColor = UIColor(hex: imageTintColor) ?? UIColor.primaryColor
+                        
+        self.sun = RoutineDataOfWeekViewModel(date: dates[0], done: model.sunday)
+        self.mon = RoutineDataOfWeekViewModel(date: dates[1], done: model.monday)
+        self.tue = RoutineDataOfWeekViewModel(date: dates[2], done: model.tuesday)
+        self.wed = RoutineDataOfWeekViewModel(date: dates[3], done: model.wednesday)
+        self.thu = RoutineDataOfWeekViewModel(date: dates[4], done: model.thursday)
+        self.fri = RoutineDataOfWeekViewModel(date: dates[5], done: model.friday)
+        self.sat = RoutineDataOfWeekViewModel(date: dates[6], done: model.saturday)
+    }
+}
+
+struct RoutineDataOfWeekViewModel{
+    let date: String
+    let week: String
+    let done: Bool
+    
+    init(date: Date, done: Bool) {
         
         let dateFormatter = DateFormatter()
         
@@ -24,8 +48,6 @@ struct RoutineDataOfWeekViewModel{
         
         dateFormatter.dateFormat = "E"
         self.week = dateFormatter.string(from: date)
-        
-        self.image = UIImage(systemName: imageName)
-        self.imageTintColor = done ? .primaryColor : .secondaryLabel
+        self.done = done
     }
 }

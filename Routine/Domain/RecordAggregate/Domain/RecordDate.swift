@@ -13,12 +13,16 @@ struct RecordDate: ValueObject{
     let year: Int
     let month: Int
     let day: Int
+    let weekOfYear: Int
+    let dayOfWeek: Int
     
     init(_ date: Date){
         let calendar = Calendar.current
         year = calendar.component(.year, from: date)
         month = calendar.component(.month, from: date)
         day = calendar.component(.day, from: date)
+        weekOfYear = calendar.dateComponents([.weekOfYear], from: date).weekOfYear!
+        dayOfWeek = calendar.component(.weekday, from: date) - 1
     }
     
     
@@ -27,18 +31,24 @@ struct RecordDate: ValueObject{
         coder.encodeInteger(year, forKey: CodingKeys.year.rawValue)
         coder.encodeInteger(month, forKey: CodingKeys.month.rawValue)
         coder.encodeInteger(day, forKey: CodingKeys.day.rawValue)
+        coder.encodeInteger(weekOfYear, forKey: CodingKeys.weekOfYear.rawValue)
+        coder.encodeInteger(dayOfWeek, forKey: CodingKeys.dayOfWeek.rawValue)
     }
 
     init?(coder: NSCoder) {
         self.year = coder.decodeInteger(forKey: CodingKeys.year.rawValue)
         self.month = coder.decodeInteger(forKey: CodingKeys.month.rawValue)
         self.day = coder.decodeInteger(forKey: CodingKeys.day.rawValue)
+        self.weekOfYear = coder.decodeInteger(forKey: CodingKeys.weekOfYear.rawValue)
+        self.dayOfWeek = coder.decodeInteger(forKey: CodingKeys.dayOfWeek.rawValue)
     }
 
     private enum CodingKeys: String{
         case year
         case month
         case day
+        case weekOfYear
+        case dayOfWeek
     }
 
     

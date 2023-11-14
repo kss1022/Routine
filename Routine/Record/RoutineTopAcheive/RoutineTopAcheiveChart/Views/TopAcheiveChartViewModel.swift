@@ -16,6 +16,12 @@ struct TopAcheiveChartViewModel{
     let tint: UIColor?
         
     
+    init(index: Int, _ model: RoutineTopAcheiveModel){
+        self.title = model.emojiIcon
+        self.chartDataEntry = BarChartDataEntry(x: Double(index), y: Double(model.totalDone))
+        self.tint = UIColor(hex: model.tint)
+    }
+    
     init(index: Int, _ model: TopAcheiveChartModel){
         self.title = model.title
         self.chartDataEntry = BarChartDataEntry(x: Double(index), y: Double(model.count))

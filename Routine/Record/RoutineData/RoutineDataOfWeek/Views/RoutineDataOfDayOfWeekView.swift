@@ -1,5 +1,5 @@
 //
-//  RoutineDataOfWeekView.swift
+//  RoutineDataOfDayOfWeekView.swift
 //  Routine
 //
 //  Created by 한현규 on 11/7/23.
@@ -8,7 +8,11 @@
 import UIKit
 
 
-final class RoutineDataOfWeekView: UIView{
+final class RoutineDataOfDayOfWeekView: UIView{
+    
+    private var doneColor: UIColor = .primaryColor
+    private var baseColor: UIColor = .secondaryLabel
+    private var done: Bool = false
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -34,21 +38,18 @@ final class RoutineDataOfWeekView: UIView{
         return label
     }()
     
-    private let checkImageView: UIImageView = {
+    private lazy var checkImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "checkmark.circle.fill")
+        imageView.tintColor = self.baseColor
         return imageView
     }()
     
     
-    init(_ viewModel: RoutineDataOfWeekViewModel){
+    init(){
         super.init(frame: .zero)
                         
         setView()
-        
-        dateLabel.text = viewModel.date
-        weekLabel.text = viewModel.week
-        checkImageView.image = viewModel.image
-        checkImageView.tintColor = viewModel.imageTintColor
     }
     
     required init?(coder: NSCoder) {
@@ -72,5 +73,18 @@ final class RoutineDataOfWeekView: UIView{
         ])
     }
     
+    func bindView(_ viewModel: RoutineDataOfWeekViewModel){
+        self.done = viewModel.done
+        
+        dateLabel.text = viewModel.date
+        weekLabel.text = viewModel.week
+        checkImageView.tintColor = self.done ? self.doneColor : self.baseColor
+    }
+    
+    func setImage(image: UIImage?, tintColor: UIColor){        
+        self.doneColor = tintColor
+        checkImageView.image = image
+        checkImageView.tintColor = self.done ? self.doneColor : self.baseColor
+    }
     
 }

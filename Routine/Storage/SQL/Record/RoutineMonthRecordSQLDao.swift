@@ -16,7 +16,7 @@ final class RoutineMonthRecordSQLDao: RoutineMonthRecordDao{
     private let table: Table
     
     // MARK: Columns
-    internal static let tableName = "ROUTINEMONTHRECORD"
+    private static let tableName = "ROUTINEMONTHRECORD"
     private let routineId: Expression<UUID>
     private let recordMonth: Expression<String>
     private let done: Expression<Int>

@@ -42,8 +42,7 @@ final class RoutineTotalRecordSQLDao: RoutineTotalRecordDao{
     
     private func setup() throws{
         let listTable = Table(RoutineListSQLDao.tableName)
-        
-        
+                
         try db.run(table.create(ifNotExists: true){ table in
             table.column(routineId)
             table.column(totalDone)
@@ -82,6 +81,16 @@ final class RoutineTotalRecordSQLDao: RoutineTotalRecordDao{
     
     
     func updateTotalDone(routineId: UUID, increment: Int) throws {
+        if try find(routineId: routineId) == nil{
+            try save(
+                RoutineTotalRecordDto(
+                    routineId: routineId,
+                    totalDone: 0,
+                    bestStreak: 0
+                )
+            )
+        }
+        
         let query = table.filter(self.routineId == routineId)
             .limit(1)
         try db.run(query.update(self.totalDone += increment))

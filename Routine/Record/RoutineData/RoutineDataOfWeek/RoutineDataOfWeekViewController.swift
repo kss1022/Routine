@@ -35,14 +35,11 @@ final class RoutineDataOfWeekViewController: UIViewController, RoutineDataOfWeek
         return view
     }()
     
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 16.0
-        return stackView
+
+    private let dataOfWeekView: RoutineDataOfWeeksView = {
+        let weekView = RoutineDataOfWeeksView()
+        weekView.translatesAutoresizingMaskIntoConstraints = false
+        return weekView
     }()
 
     init(){
@@ -63,7 +60,7 @@ final class RoutineDataOfWeekViewController: UIViewController, RoutineDataOfWeek
         view.addSubview(titleLabel)
         view.addSubview(cardView)
         
-        cardView.addSubview(stackView)
+        cardView.addSubview(dataOfWeekView)
                 
         let inset: CGFloat = 16.0
         
@@ -77,20 +74,21 @@ final class RoutineDataOfWeekViewController: UIViewController, RoutineDataOfWeek
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             cardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset),
             
-            stackView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: inset),
-            stackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: inset),
-            stackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -inset),
-            stackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -inset),
+            dataOfWeekView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: inset),
+            dataOfWeekView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: inset),
+            dataOfWeekView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -inset),
+            dataOfWeekView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -inset),
         ])
     }
     
     
     
-    func setCompletes(_ viewModels: [RoutineDataOfWeekViewModel]) {
-        stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
-        
-        viewModels.map(RoutineDataOfWeekView.init)
-            .forEach { stackView.addArrangedSubview($0) }
+    func setCompletes(_ viewModels: RoutineDataOfWeekListViewModel) {
+        dataOfWeekView.bindView(viewModels)
+//        stackView.arrangedSubviews.forEach{ $0.removeFromSuperview() }
+//        
+//        viewModels.map(RoutineDayOfWeekView.init)
+//            .forEach { stackView.addArrangedSubview($0) }
     }
     
     

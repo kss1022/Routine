@@ -8,13 +8,12 @@
 import ModernRIBs
 
 protocol RoutineTopAcheiveDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var recordRepository: RecordRepository{ get }
 }
 
 final class RoutineTopAcheiveComponent: Component<RoutineTopAcheiveDependency>, RoutineTopAcheiveChartDependency, RoutineTopAcheiveTotalRecordDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var recordRepository: RecordRepository{ dependency.recordRepository }
+    var topAcheives: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ recordRepository.routineTopAcheive }
 }
 
 // MARK: - Builder

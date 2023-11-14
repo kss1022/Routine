@@ -17,7 +17,7 @@ final class RoutineRecordSQLDao: RoutineRecordDao{
     private let table: Table
     
     // MARK: Columns
-    internal static let tableName = "ROUTINERECORD"
+    private static let tableName = "ROUTINERECORD"
     private let routineId: Expression<UUID>
     private let recordId: Expression<UUID>
     private let recordDate: Expression<String>
