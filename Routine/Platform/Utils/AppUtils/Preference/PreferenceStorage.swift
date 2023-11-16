@@ -108,6 +108,7 @@ public final class PreferenceStorage {
         }
     }
     
+    
     public subscript<Value : Codable>(dynamicMember keyPath: KeyPath<PreferenceKeys, Key<Value>>) -> Value {
         get {
             let key = prefKeys[keyPath: keyPath]

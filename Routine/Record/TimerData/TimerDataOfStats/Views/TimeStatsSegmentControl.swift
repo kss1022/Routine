@@ -11,7 +11,7 @@ import UIKit
 
 class TimeStatsSegmentControl: UISegmentedControl{
     private let segmentInset: CGFloat = 8       //your inset amount
-    private let segmentImage: UIImage? = UIImage(color: .systemGreen)    //your color
+    private let segmentImage: UIImage? = UIImage(color: .primaryColor)    //your color
 
     override func layoutSubviews(){
         super.layoutSubviews()

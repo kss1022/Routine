@@ -22,10 +22,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScence = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScence)
         
+        AppThemeManager.share.updateTheme()
+        
         let result = AppRootBuilder(dependency: AppComponent()).build()
         self.launchRouter = result.launchRouter
         self.urlHandler = result.urlHandler
-        launchRouter?.launch(from: window!)
+        launchRouter?.launch(from: window!)        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

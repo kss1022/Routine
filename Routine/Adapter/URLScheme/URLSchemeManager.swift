@@ -2,9 +2,10 @@ import UIKit.UIApplication
 
 
 
-
-public final class URLSchemeHelper{
+public final class URLSchemeManager{
     
+    public static let share = URLSchemeManager()
+
     func openSettingApp(){
         if let url = URL(string: UIApplication.openSettingsURLString){
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

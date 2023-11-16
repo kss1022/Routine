@@ -10,8 +10,8 @@ import UIKit
 
 class TimerStartButton: UIControl {
     
-    private var fillLayerStrokeColor: CGColor = UIColor.label.cgColor
-    private var dashLayerStrokeColor: CGColor = UIColor.label.cgColor
+    private var fillLayerStrokeColor: CGColor{ UIColor.label.cgColor }
+    private var dashLayerStrokeColor: CGColor{ UIColor.label.cgColor }
     
     
     private var lineWidth = 16.0
@@ -39,7 +39,7 @@ class TimerStartButton: UIControl {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 44.0, weight: .regular)
+        label.font = .systemFont(ofSize: 44.0, weight: .bold)
         label.textAlignment = .center
         label.textColor = .systemBackground
         label.adjustsFontSizeToFitWidth = true

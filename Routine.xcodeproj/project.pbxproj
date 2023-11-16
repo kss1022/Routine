@@ -105,10 +105,35 @@
 		871E6A402ADEAF490051F978 /* TimerSectionEditTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E6A3C2ADEAF490051F978 /* TimerSectionEditTitleViewController.swift */; };
 		871E6A412ADEAF490051F978 /* TimerSectionEditTitleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E6A3D2ADEAF490051F978 /* TimerSectionEditTitleBuilder.swift */; };
 		871E6A422ADEAF490051F978 /* TimerSectionEditTitleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E6A3E2ADEAF490051F978 /* TimerSectionEditTitleInteractor.swift */; };
+		8724D2D72B05DD0A00DD1AFC /* AppIconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */; };
+		8724D2DA2B05DD8E00DD1AFC /* SettingAppIconViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2D92B05DD8E00DD1AFC /* SettingAppIconViewModel.swift */; };
+		8724D2DC2B05DEA500DD1AFC /* SettingAppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2DB2B05DEA500DD1AFC /* SettingAppIconCell.swift */; };
+		8724D2DF2B05E68D00DD1AFC /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2DE2B05E68D00DD1AFC /* AppFont.swift */; };
+		8724D2EC2B05F20100DD1AFC /* SettingAppFontRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2E82B05F20100DD1AFC /* SettingAppFontRouter.swift */; };
+		8724D2ED2B05F20100DD1AFC /* SettingAppFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2E92B05F20100DD1AFC /* SettingAppFontViewController.swift */; };
+		8724D2EE2B05F20100DD1AFC /* SettingAppFontBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2EA2B05F20100DD1AFC /* SettingAppFontBuilder.swift */; };
+		8724D2EF2B05F20100DD1AFC /* SettingAppFontInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2EB2B05F20100DD1AFC /* SettingAppFontInteractor.swift */; };
+		8724D2F52B05F24000DD1AFC /* SettingAppAlarmRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2F12B05F24000DD1AFC /* SettingAppAlarmRouter.swift */; };
+		8724D2F62B05F24000DD1AFC /* SettingAppAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2F22B05F24000DD1AFC /* SettingAppAlarmViewController.swift */; };
+		8724D2F72B05F24000DD1AFC /* SettingAppAlarmBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2F32B05F24000DD1AFC /* SettingAppAlarmBuilder.swift */; };
+		8724D2F82B05F24000DD1AFC /* SettingAppAlarmInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2F42B05F24000DD1AFC /* SettingAppAlarmInteractor.swift */; };
+		8724D3072B05F2EE00DD1AFC /* AppInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D3032B05F2EE00DD1AFC /* AppInfoRouter.swift */; };
+		8724D3082B05F2EE00DD1AFC /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D3042B05F2EE00DD1AFC /* AppInfoViewController.swift */; };
+		8724D3092B05F2EE00DD1AFC /* AppInfoBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D3052B05F2EE00DD1AFC /* AppInfoBuilder.swift */; };
+		8724D30A2B05F2EE00DD1AFC /* AppInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D3062B05F2EE00DD1AFC /* AppInfoInteractor.swift */; };
+		8724D30F2B05F4D500DD1AFC /* AppGuideRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30B2B05F4D500DD1AFC /* AppGuideRouter.swift */; };
+		8724D3102B05F4D500DD1AFC /* AppGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30C2B05F4D500DD1AFC /* AppGuideViewController.swift */; };
+		8724D3112B05F4D500DD1AFC /* AppGuideBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30D2B05F4D500DD1AFC /* AppGuideBuilder.swift */; };
+		8724D3122B05F4D500DD1AFC /* AppGuideInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30E2B05F4D500DD1AFC /* AppGuideInteractor.swift */; };
 		872DF3C42AF2105D00D18447 /* TimerEditCountdownPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872DF3C32AF2105D00D18447 /* TimerEditCountdownPickerView.swift */; };
 		872DF3C62AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872DF3C52AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift */; };
 		87339E9D2AE18FD50099AA33 /* TimerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87339E9C2AE18FD50099AA33 /* TimerSection.swift */; };
 		8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8735AB532AC18D220092BDF3 /* RoutineDescription.swift */; };
+		8736761F2B03996B0004276B /* ProfileCardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736761B2B03996B0004276B /* ProfileCardRouter.swift */; };
+		873676202B03996B0004276B /* ProfileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736761C2B03996B0004276B /* ProfileCardViewController.swift */; };
+		873676212B03996B0004276B /* ProfileCardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736761D2B03996B0004276B /* ProfileCardBuilder.swift */; };
+		873676222B03996B0004276B /* ProfileCardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736761E2B03996B0004276B /* ProfileCardInteractor.swift */; };
+		873676252B039ACC0004276B /* ProfileBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873676242B039ACC0004276B /* ProfileBarcodeView.swift */; };
 		873879782B01C089004EE7F8 /* RoutineTopAcheiveRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879742B01C089004EE7F8 /* RoutineTopAcheiveRouter.swift */; };
 		873879792B01C089004EE7F8 /* RoutineTopAcheiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879752B01C089004EE7F8 /* RoutineTopAcheiveViewController.swift */; };
 		8738797A2B01C089004EE7F8 /* RoutineTopAcheiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879762B01C089004EE7F8 /* RoutineTopAcheiveBuilder.swift */; };
@@ -240,7 +265,7 @@
 		876E951B2AB2CFE900046809 /* ProfileHomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95172AB2CFE900046809 /* ProfileHomeBuilder.swift */; };
 		876E951C2AB2CFE900046809 /* ProfileHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95182AB2CFE900046809 /* ProfileHomeInteractor.swift */; };
 		876E95432AB2D00F00046809 /* RIBs+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E951E2AB2D00F00046809 /* RIBs+Utils.swift */; };
-		876E95492AB2D00F00046809 /* URLSchemeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95262AB2D00F00046809 /* URLSchemeHelper.swift */; };
+		876E95492AB2D00F00046809 /* URLSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95262AB2D00F00046809 /* URLSchemeManager.swift */; };
 		876E954A2AB2D00F00046809 /* PropertyWrapperSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95282AB2D00F00046809 /* PropertyWrapperSample.swift */; };
 		876E954B2AB2D00F00046809 /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95292AB2D00F00046809 /* KeychainAccess.swift */; };
 		876E954C2AB2D00F00046809 /* PreferenceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E952A2AB2D00F00046809 /* PreferenceStorage.swift */; };
@@ -362,9 +387,6 @@
 		878DA79D2ACE64F500220653 /* RoutineWeekCalendarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7992ACE64F500220653 /* RoutineWeekCalendarInteractor.swift */; };
 		878DA79F2ACE8C6500220653 /* DeleteRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA79E2ACE8C6500220653 /* DeleteRoutine.swift */; };
 		878DA7A12ACE8D2D00220653 /* RoutineDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7A02ACE8D2D00220653 /* RoutineDeleted.swift */; };
-		878DA7A42ACEA0FF00220653 /* ZoomTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7A32ACEA0FF00220653 /* ZoomTransitionController.swift */; };
-		878DA7A62ACEA11200220653 /* ZoomDismissalInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7A52ACEA11200220653 /* ZoomDismissalInteractionController.swift */; };
-		878DA7A82ACEA11F00220653 /* ZoomAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878DA7A72ACEA11F00220653 /* ZoomAnimator.swift */; };
 		878EAD5F2ABB717E00593700 /* RoutineReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878EAD5E2ABB717E00593700 /* RoutineReadModel.swift */; };
 		87901E952ABADBD5002CA93F /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 87901E942ABADBD5002CA93F /* SQLite */; };
 		87901E9D2ABAF7B3002CA93F /* RoutineListDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87901E9C2ABAF7B3002CA93F /* RoutineListDao.swift */; };
@@ -464,6 +486,47 @@
 		87B378A72AEA8F05006F8C22 /* StartTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A42AEA8F05006F8C22 /* StartTimerRouter.swift */; };
 		87B378A82AEA8F05006F8C22 /* StartTimerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A52AEA8F05006F8C22 /* StartTimerBuilder.swift */; };
 		87B378A92AEA8F05006F8C22 /* StartTimerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A62AEA8F05006F8C22 /* StartTimerInteractor.swift */; };
+		87B7086A2B048F9700C95C08 /* ProfileStatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708662B048F9700C95C08 /* ProfileStatRouter.swift */; };
+		87B7086B2B048F9700C95C08 /* ProfileStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708672B048F9700C95C08 /* ProfileStatViewController.swift */; };
+		87B7086C2B048F9700C95C08 /* ProfileStatBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708682B048F9700C95C08 /* ProfileStatBuilder.swift */; };
+		87B7086D2B048F9700C95C08 /* ProfileStatInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708692B048F9700C95C08 /* ProfileStatInteractor.swift */; };
+		87B708702B04901600C95C08 /* ProfileStatSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7086F2B04901600C95C08 /* ProfileStatSegmentControl.swift */; };
+		87B708722B04907900C95C08 /* ProfileStatSegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708712B04907900C95C08 /* ProfileStatSegmentButton.swift */; };
+		87B708782B04927500C95C08 /* ProfileAcheiveRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708742B04927500C95C08 /* ProfileAcheiveRouter.swift */; };
+		87B708792B04927500C95C08 /* ProfileAcheiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708752B04927500C95C08 /* ProfileAcheiveViewController.swift */; };
+		87B7087A2B04927500C95C08 /* ProfileAcheiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708762B04927500C95C08 /* ProfileAcheiveBuilder.swift */; };
+		87B7087B2B04927500C95C08 /* ProfileAcheiveInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708772B04927500C95C08 /* ProfileAcheiveInteractor.swift */; };
+		87B7088A2B04928E00C95C08 /* ProfileRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708862B04928E00C95C08 /* ProfileRecordRouter.swift */; };
+		87B7088B2B04928E00C95C08 /* ProfileRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708872B04928E00C95C08 /* ProfileRecordViewController.swift */; };
+		87B7088C2B04928E00C95C08 /* ProfileRecordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708882B04928E00C95C08 /* ProfileRecordBuilder.swift */; };
+		87B7088D2B04928E00C95C08 /* ProfileRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708892B04928E00C95C08 /* ProfileRecordInteractor.swift */; };
+		87B708922B04939200C95C08 /* ProfileChartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7088E2B04939200C95C08 /* ProfileChartRouter.swift */; };
+		87B708932B04939200C95C08 /* ProfileChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7088F2B04939200C95C08 /* ProfileChartViewController.swift */; };
+		87B708942B04939200C95C08 /* ProfileChartBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708902B04939200C95C08 /* ProfileChartBuilder.swift */; };
+		87B708952B04939200C95C08 /* ProfileChartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708912B04939200C95C08 /* ProfileChartInteractor.swift */; };
+		87B7089D2B04986800C95C08 /* ProfileMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708992B04986800C95C08 /* ProfileMenuRouter.swift */; };
+		87B7089E2B04986800C95C08 /* ProfileMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7089A2B04986800C95C08 /* ProfileMenuViewController.swift */; };
+		87B7089F2B04986800C95C08 /* ProfileMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7089B2B04986800C95C08 /* ProfileMenuBuilder.swift */; };
+		87B708A02B04986800C95C08 /* ProfileMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B7089C2B04986800C95C08 /* ProfileMenuInteractor.swift */; };
+		87B708A32B0498A700C95C08 /* ProfileMenuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708A22B0498A700C95C08 /* ProfileMenuListView.swift */; };
+		87B708A72B04A5D300C95C08 /* ProfileMenuListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708A62B04A5D300C95C08 /* ProfileMenuListViewModel.swift */; };
+		87B708A92B04A8C400C95C08 /* ProfileMenuListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708A82B04A8C400C95C08 /* ProfileMenuListModel.swift */; };
+		87B708AD2B04BC2800C95C08 /* PlaceholerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708AC2B04BC2800C95C08 /* PlaceholerTextView.swift */; };
+		87B708B02B04C28D00C95C08 /* AppMailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708AF2B04C28D00C95C08 /* AppMailManager.swift */; };
+		87B708B52B04C50D00C95C08 /* FeedbackMailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708B12B04C50D00C95C08 /* FeedbackMailRouter.swift */; };
+		87B708B62B04C50D00C95C08 /* FeedbackMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708B22B04C50D00C95C08 /* FeedbackMailViewController.swift */; };
+		87B708B72B04C50D00C95C08 /* FeedbackMailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708B32B04C50D00C95C08 /* FeedbackMailBuilder.swift */; };
+		87B708B82B04C50D00C95C08 /* FeedbackMailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708B42B04C50D00C95C08 /* FeedbackMailInteractor.swift */; };
+		87B708BD2B04DE8E00C95C08 /* Bundle+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708BC2B04DE8E00C95C08 /* Bundle+Utils.swift */; };
+		87B708CF2B04E72300C95C08 /* SettingAppIconRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708CB2B04E72300C95C08 /* SettingAppIconRouter.swift */; };
+		87B708D02B04E72300C95C08 /* SettingAppIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708CC2B04E72300C95C08 /* SettingAppIconViewController.swift */; };
+		87B708D12B04E72300C95C08 /* SettingAppIconBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708CD2B04E72300C95C08 /* SettingAppIconBuilder.swift */; };
+		87B708D22B04E72300C95C08 /* SettingAppIconInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708CE2B04E72300C95C08 /* SettingAppIconInteractor.swift */; };
+		87B708D72B04E78E00C95C08 /* SettingAppThemeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708D32B04E78E00C95C08 /* SettingAppThemeRouter.swift */; };
+		87B708D82B04E78E00C95C08 /* SettingAppThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708D42B04E78E00C95C08 /* SettingAppThemeViewController.swift */; };
+		87B708D92B04E78E00C95C08 /* SettingAppThemeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708D52B04E78E00C95C08 /* SettingAppThemeBuilder.swift */; };
+		87B708DA2B04E78E00C95C08 /* SettingAppThemeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708D62B04E78E00C95C08 /* SettingAppThemeInteractor.swift */; };
+		87B708DE2B04F50F00C95C08 /* AppThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708DD2B04F50F00C95C08 /* AppThemeManager.swift */; };
 		87BD92FB2AF3455E0099A0A9 /* RecordBannerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92F72AF3455E0099A0A9 /* RecordBannerRouter.swift */; };
 		87BD92FC2AF3455E0099A0A9 /* RecordBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92F82AF3455E0099A0A9 /* RecordBannerViewController.swift */; };
 		87BD92FD2AF3455E0099A0A9 /* RecordBannerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92F92AF3455E0099A0A9 /* RecordBannerBuilder.swift */; };
@@ -704,10 +767,35 @@
 		871E6A3C2ADEAF490051F978 /* TimerSectionEditTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionEditTitleViewController.swift; sourceTree = "<group>"; };
 		871E6A3D2ADEAF490051F978 /* TimerSectionEditTitleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionEditTitleBuilder.swift; sourceTree = "<group>"; };
 		871E6A3E2ADEAF490051F978 /* TimerSectionEditTitleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionEditTitleInteractor.swift; sourceTree = "<group>"; };
+		8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconManager.swift; sourceTree = "<group>"; };
+		8724D2D92B05DD8E00DD1AFC /* SettingAppIconViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconViewModel.swift; sourceTree = "<group>"; };
+		8724D2DB2B05DEA500DD1AFC /* SettingAppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconCell.swift; sourceTree = "<group>"; };
+		8724D2DE2B05E68D00DD1AFC /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		8724D2E82B05F20100DD1AFC /* SettingAppFontRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontRouter.swift; sourceTree = "<group>"; };
+		8724D2E92B05F20100DD1AFC /* SettingAppFontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontViewController.swift; sourceTree = "<group>"; };
+		8724D2EA2B05F20100DD1AFC /* SettingAppFontBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontBuilder.swift; sourceTree = "<group>"; };
+		8724D2EB2B05F20100DD1AFC /* SettingAppFontInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontInteractor.swift; sourceTree = "<group>"; };
+		8724D2F12B05F24000DD1AFC /* SettingAppAlarmRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppAlarmRouter.swift; sourceTree = "<group>"; };
+		8724D2F22B05F24000DD1AFC /* SettingAppAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppAlarmViewController.swift; sourceTree = "<group>"; };
+		8724D2F32B05F24000DD1AFC /* SettingAppAlarmBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppAlarmBuilder.swift; sourceTree = "<group>"; };
+		8724D2F42B05F24000DD1AFC /* SettingAppAlarmInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppAlarmInteractor.swift; sourceTree = "<group>"; };
+		8724D3032B05F2EE00DD1AFC /* AppInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoRouter.swift; sourceTree = "<group>"; };
+		8724D3042B05F2EE00DD1AFC /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
+		8724D3052B05F2EE00DD1AFC /* AppInfoBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoBuilder.swift; sourceTree = "<group>"; };
+		8724D3062B05F2EE00DD1AFC /* AppInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoInteractor.swift; sourceTree = "<group>"; };
+		8724D30B2B05F4D500DD1AFC /* AppGuideRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideRouter.swift; sourceTree = "<group>"; };
+		8724D30C2B05F4D500DD1AFC /* AppGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideViewController.swift; sourceTree = "<group>"; };
+		8724D30D2B05F4D500DD1AFC /* AppGuideBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideBuilder.swift; sourceTree = "<group>"; };
+		8724D30E2B05F4D500DD1AFC /* AppGuideInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideInteractor.swift; sourceTree = "<group>"; };
 		872DF3C32AF2105D00D18447 /* TimerEditCountdownPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEditCountdownPickerView.swift; sourceTree = "<group>"; };
 		872DF3C52AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUI_TimerEditCountdownLabelViewModel.swift; sourceTree = "<group>"; };
 		87339E9C2AE18FD50099AA33 /* TimerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSection.swift; sourceTree = "<group>"; };
 		8735AB532AC18D220092BDF3 /* RoutineDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDescription.swift; sourceTree = "<group>"; };
+		8736761B2B03996B0004276B /* ProfileCardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardRouter.swift; sourceTree = "<group>"; };
+		8736761C2B03996B0004276B /* ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardViewController.swift; sourceTree = "<group>"; };
+		8736761D2B03996B0004276B /* ProfileCardBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardBuilder.swift; sourceTree = "<group>"; };
+		8736761E2B03996B0004276B /* ProfileCardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardInteractor.swift; sourceTree = "<group>"; };
+		873676242B039ACC0004276B /* ProfileBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBarcodeView.swift; sourceTree = "<group>"; };
 		873879742B01C089004EE7F8 /* RoutineTopAcheiveRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTopAcheiveRouter.swift; sourceTree = "<group>"; };
 		873879752B01C089004EE7F8 /* RoutineTopAcheiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTopAcheiveViewController.swift; sourceTree = "<group>"; };
 		873879762B01C089004EE7F8 /* RoutineTopAcheiveBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTopAcheiveBuilder.swift; sourceTree = "<group>"; };
@@ -840,7 +928,7 @@
 		876E95172AB2CFE900046809 /* ProfileHomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHomeBuilder.swift; sourceTree = "<group>"; };
 		876E95182AB2CFE900046809 /* ProfileHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHomeInteractor.swift; sourceTree = "<group>"; };
 		876E951E2AB2D00F00046809 /* RIBs+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RIBs+Utils.swift"; sourceTree = "<group>"; };
-		876E95262AB2D00F00046809 /* URLSchemeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSchemeHelper.swift; sourceTree = "<group>"; };
+		876E95262AB2D00F00046809 /* URLSchemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSchemeManager.swift; sourceTree = "<group>"; };
 		876E95282AB2D00F00046809 /* PropertyWrapperSample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyWrapperSample.swift; sourceTree = "<group>"; };
 		876E95292AB2D00F00046809 /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
 		876E952A2AB2D00F00046809 /* PreferenceStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceStorage.swift; sourceTree = "<group>"; };
@@ -954,9 +1042,6 @@
 		878DA7992ACE64F500220653 /* RoutineWeekCalendarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekCalendarInteractor.swift; sourceTree = "<group>"; };
 		878DA79E2ACE8C6500220653 /* DeleteRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRoutine.swift; sourceTree = "<group>"; };
 		878DA7A02ACE8D2D00220653 /* RoutineDeleted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDeleted.swift; sourceTree = "<group>"; };
-		878DA7A32ACEA0FF00220653 /* ZoomTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTransitionController.swift; sourceTree = "<group>"; };
-		878DA7A52ACEA11200220653 /* ZoomDismissalInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomDismissalInteractionController.swift; sourceTree = "<group>"; };
-		878DA7A72ACEA11F00220653 /* ZoomAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomAnimator.swift; sourceTree = "<group>"; };
 		878EAD5E2ABB717E00593700 /* RoutineReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineReadModel.swift; sourceTree = "<group>"; };
 		87901E9C2ABAF7B3002CA93F /* RoutineListDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListDao.swift; sourceTree = "<group>"; };
 		87901E9E2ABAFA69002CA93F /* RoutineListSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListSQLDao.swift; sourceTree = "<group>"; };
@@ -1054,6 +1139,47 @@
 		87B378A42AEA8F05006F8C22 /* StartTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerRouter.swift; sourceTree = "<group>"; };
 		87B378A52AEA8F05006F8C22 /* StartTimerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerBuilder.swift; sourceTree = "<group>"; };
 		87B378A62AEA8F05006F8C22 /* StartTimerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerInteractor.swift; sourceTree = "<group>"; };
+		87B708662B048F9700C95C08 /* ProfileStatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatRouter.swift; sourceTree = "<group>"; };
+		87B708672B048F9700C95C08 /* ProfileStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatViewController.swift; sourceTree = "<group>"; };
+		87B708682B048F9700C95C08 /* ProfileStatBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatBuilder.swift; sourceTree = "<group>"; };
+		87B708692B048F9700C95C08 /* ProfileStatInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatInteractor.swift; sourceTree = "<group>"; };
+		87B7086F2B04901600C95C08 /* ProfileStatSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatSegmentControl.swift; sourceTree = "<group>"; };
+		87B708712B04907900C95C08 /* ProfileStatSegmentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatSegmentButton.swift; sourceTree = "<group>"; };
+		87B708742B04927500C95C08 /* ProfileAcheiveRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAcheiveRouter.swift; sourceTree = "<group>"; };
+		87B708752B04927500C95C08 /* ProfileAcheiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAcheiveViewController.swift; sourceTree = "<group>"; };
+		87B708762B04927500C95C08 /* ProfileAcheiveBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAcheiveBuilder.swift; sourceTree = "<group>"; };
+		87B708772B04927500C95C08 /* ProfileAcheiveInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAcheiveInteractor.swift; sourceTree = "<group>"; };
+		87B708862B04928E00C95C08 /* ProfileRecordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRecordRouter.swift; sourceTree = "<group>"; };
+		87B708872B04928E00C95C08 /* ProfileRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRecordViewController.swift; sourceTree = "<group>"; };
+		87B708882B04928E00C95C08 /* ProfileRecordBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRecordBuilder.swift; sourceTree = "<group>"; };
+		87B708892B04928E00C95C08 /* ProfileRecordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRecordInteractor.swift; sourceTree = "<group>"; };
+		87B7088E2B04939200C95C08 /* ProfileChartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChartRouter.swift; sourceTree = "<group>"; };
+		87B7088F2B04939200C95C08 /* ProfileChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChartViewController.swift; sourceTree = "<group>"; };
+		87B708902B04939200C95C08 /* ProfileChartBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChartBuilder.swift; sourceTree = "<group>"; };
+		87B708912B04939200C95C08 /* ProfileChartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChartInteractor.swift; sourceTree = "<group>"; };
+		87B708992B04986800C95C08 /* ProfileMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuRouter.swift; sourceTree = "<group>"; };
+		87B7089A2B04986800C95C08 /* ProfileMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewController.swift; sourceTree = "<group>"; };
+		87B7089B2B04986800C95C08 /* ProfileMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuBuilder.swift; sourceTree = "<group>"; };
+		87B7089C2B04986800C95C08 /* ProfileMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuInteractor.swift; sourceTree = "<group>"; };
+		87B708A22B0498A700C95C08 /* ProfileMenuListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuListView.swift; sourceTree = "<group>"; };
+		87B708A62B04A5D300C95C08 /* ProfileMenuListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuListViewModel.swift; sourceTree = "<group>"; };
+		87B708A82B04A8C400C95C08 /* ProfileMenuListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuListModel.swift; sourceTree = "<group>"; };
+		87B708AC2B04BC2800C95C08 /* PlaceholerTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholerTextView.swift; sourceTree = "<group>"; };
+		87B708AF2B04C28D00C95C08 /* AppMailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMailManager.swift; sourceTree = "<group>"; };
+		87B708B12B04C50D00C95C08 /* FeedbackMailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackMailRouter.swift; sourceTree = "<group>"; };
+		87B708B22B04C50D00C95C08 /* FeedbackMailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackMailViewController.swift; sourceTree = "<group>"; };
+		87B708B32B04C50D00C95C08 /* FeedbackMailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackMailBuilder.swift; sourceTree = "<group>"; };
+		87B708B42B04C50D00C95C08 /* FeedbackMailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackMailInteractor.swift; sourceTree = "<group>"; };
+		87B708BC2B04DE8E00C95C08 /* Bundle+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Utils.swift"; sourceTree = "<group>"; };
+		87B708CB2B04E72300C95C08 /* SettingAppIconRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconRouter.swift; sourceTree = "<group>"; };
+		87B708CC2B04E72300C95C08 /* SettingAppIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconViewController.swift; sourceTree = "<group>"; };
+		87B708CD2B04E72300C95C08 /* SettingAppIconBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconBuilder.swift; sourceTree = "<group>"; };
+		87B708CE2B04E72300C95C08 /* SettingAppIconInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconInteractor.swift; sourceTree = "<group>"; };
+		87B708D32B04E78E00C95C08 /* SettingAppThemeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppThemeRouter.swift; sourceTree = "<group>"; };
+		87B708D42B04E78E00C95C08 /* SettingAppThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppThemeViewController.swift; sourceTree = "<group>"; };
+		87B708D52B04E78E00C95C08 /* SettingAppThemeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppThemeBuilder.swift; sourceTree = "<group>"; };
+		87B708D62B04E78E00C95C08 /* SettingAppThemeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppThemeInteractor.swift; sourceTree = "<group>"; };
+		87B708DD2B04F50F00C95C08 /* AppThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeManager.swift; sourceTree = "<group>"; };
 		87BD92F72AF3455E0099A0A9 /* RecordBannerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerRouter.swift; sourceTree = "<group>"; };
 		87BD92F82AF3455E0099A0A9 /* RecordBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerViewController.swift; sourceTree = "<group>"; };
 		87BD92F92AF3455E0099A0A9 /* RecordBannerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerBuilder.swift; sourceTree = "<group>"; };
@@ -1575,6 +1701,79 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8724D2D82B05DD7F00DD1AFC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8724D2D92B05DD8E00DD1AFC /* SettingAppIconViewModel.swift */,
+				8724D2DB2B05DEA500DD1AFC /* SettingAppIconCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8724D2DD2B05E68200DD1AFC /* SettingAppFont */ = {
+			isa = PBXGroup;
+			children = (
+				8724D2E82B05F20100DD1AFC /* SettingAppFontRouter.swift */,
+				8724D2E92B05F20100DD1AFC /* SettingAppFontViewController.swift */,
+				8724D2EA2B05F20100DD1AFC /* SettingAppFontBuilder.swift */,
+				8724D2EB2B05F20100DD1AFC /* SettingAppFontInteractor.swift */,
+			);
+			path = SettingAppFont;
+			sourceTree = "<group>";
+		};
+		8724D2F02B05F23000DD1AFC /* SettingAppAlarm */ = {
+			isa = PBXGroup;
+			children = (
+				8724D2F32B05F24000DD1AFC /* SettingAppAlarmBuilder.swift */,
+				8724D2F12B05F24000DD1AFC /* SettingAppAlarmRouter.swift */,
+				8724D2F42B05F24000DD1AFC /* SettingAppAlarmInteractor.swift */,
+				8724D2F22B05F24000DD1AFC /* SettingAppAlarmViewController.swift */,
+			);
+			path = SettingAppAlarm;
+			sourceTree = "<group>";
+		};
+		8724D2F92B05F26E00DD1AFC /* AppGuide */ = {
+			isa = PBXGroup;
+			children = (
+				8724D30B2B05F4D500DD1AFC /* AppGuideRouter.swift */,
+				8724D30D2B05F4D500DD1AFC /* AppGuideBuilder.swift */,
+				8724D30E2B05F4D500DD1AFC /* AppGuideInteractor.swift */,
+				8724D30C2B05F4D500DD1AFC /* AppGuideViewController.swift */,
+			);
+			path = AppGuide;
+			sourceTree = "<group>";
+		};
+		8724D2FA2B05F28C00DD1AFC /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				8724D3032B05F2EE00DD1AFC /* AppInfoRouter.swift */,
+				8724D3052B05F2EE00DD1AFC /* AppInfoBuilder.swift */,
+				8724D3062B05F2EE00DD1AFC /* AppInfoInteractor.swift */,
+				8724D3042B05F2EE00DD1AFC /* AppInfoViewController.swift */,
+			);
+			path = AppInfo;
+			sourceTree = "<group>";
+		};
+		8736761A2B0399580004276B /* ProfileCard */ = {
+			isa = PBXGroup;
+			children = (
+				8736761B2B03996B0004276B /* ProfileCardRouter.swift */,
+				8736761D2B03996B0004276B /* ProfileCardBuilder.swift */,
+				8736761E2B03996B0004276B /* ProfileCardInteractor.swift */,
+				8736761C2B03996B0004276B /* ProfileCardViewController.swift */,
+				873676232B039AC20004276B /* Views */,
+			);
+			path = ProfileCard;
+			sourceTree = "<group>";
+		};
+		873676232B039AC20004276B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				873676242B039ACC0004276B /* ProfileBarcodeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		873879732B01C032004EE7F8 /* RoutineTopAcheive */ = {
 			isa = PBXGroup;
 			children = (
@@ -1857,6 +2056,7 @@
 				876E94D92AB2CF8400046809 /* Record */,
 				876E94DA2AB2CF8700046809 /* Timer */,
 				876E94DB2AB2CF8A00046809 /* Profile */,
+				87B708962B04983100C95C08 /* Setting */,
 				87DFEC622AC1A98D00531EE3 /* Views */,
 				8780366D2AF163E300EBBA5F /* Particle */,
 				874988482AC3FBBA004DC64A /* Resource */,
@@ -1938,8 +2138,11 @@
 		876E94DB2AB2CF8A00046809 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				876E95152AB2CFE900046809 /* ProfileHomeRouter.swift */,
+				8736761A2B0399580004276B /* ProfileCard */,
+				87B708652B048F1500C95C08 /* ProfileStat */,
+				87B708982B04984F00C95C08 /* ProfileMenu */,
 				876E95172AB2CFE900046809 /* ProfileHomeBuilder.swift */,
+				876E95152AB2CFE900046809 /* ProfileHomeRouter.swift */,
 				876E95182AB2CFE900046809 /* ProfileHomeInteractor.swift */,
 				876E95162AB2CFE900046809 /* ProfileHomeViewController.swift */,
 			);
@@ -1971,13 +2174,13 @@
 			isa = PBXGroup;
 			children = (
 				876E95272AB2D00F00046809 /* Preference */,
-				876E95262AB2D00F00046809 /* URLSchemeHelper.swift */,
 				876E952B2AB2D00F00046809 /* Array+Utils.swift */,
 				876E952C2AB2D00F00046809 /* Formatter.swift */,
 				876E952D2AB2D00F00046809 /* AttributedString+Utils.swift */,
 				876E95302AB2D00F00046809 /* String+Utils.swift */,
 				8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */,
 				871962032AEBE63600E17417 /* UIDevice+Utils.swift */,
+				87B708BC2B04DE8E00C95C08 /* Bundle+Utils.swift */,
 			);
 			path = AppUtils;
 			sourceTree = "<group>";
@@ -2285,16 +2488,6 @@
 			path = RoutineWeekCalender;
 			sourceTree = "<group>";
 		};
-		878DA7A22ACEA0F100220653 /* ZoomAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				878DA7A72ACEA11F00220653 /* ZoomAnimator.swift */,
-				878DA7A32ACEA0FF00220653 /* ZoomTransitionController.swift */,
-				878DA7A52ACEA11200220653 /* ZoomDismissalInteractionController.swift */,
-			);
-			path = ZoomAnimation;
-			sourceTree = "<group>";
-		};
 		87901E962ABADC3E002CA93F /* SQL */ = {
 			isa = PBXGroup;
 			children = (
@@ -2573,6 +2766,152 @@
 				8780361A2AF00E5900EBBA5F /* Views */,
 			);
 			path = StartTimer;
+			sourceTree = "<group>";
+		};
+		87B708652B048F1500C95C08 /* ProfileStat */ = {
+			isa = PBXGroup;
+			children = (
+				87B708852B04928600C95C08 /* ProfileRecord */,
+				87B7087C2B04927700C95C08 /* ProfileChart */,
+				87B708732B04926300C95C08 /* ProfileAcheive */,
+				87B708682B048F9700C95C08 /* ProfileStatBuilder.swift */,
+				87B708662B048F9700C95C08 /* ProfileStatRouter.swift */,
+				87B708692B048F9700C95C08 /* ProfileStatInteractor.swift */,
+				87B708672B048F9700C95C08 /* ProfileStatViewController.swift */,
+				87B7086E2B04900600C95C08 /* Views */,
+			);
+			path = ProfileStat;
+			sourceTree = "<group>";
+		};
+		87B7086E2B04900600C95C08 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87B7086F2B04901600C95C08 /* ProfileStatSegmentControl.swift */,
+				87B708712B04907900C95C08 /* ProfileStatSegmentButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87B708732B04926300C95C08 /* ProfileAcheive */ = {
+			isa = PBXGroup;
+			children = (
+				87B708762B04927500C95C08 /* ProfileAcheiveBuilder.swift */,
+				87B708742B04927500C95C08 /* ProfileAcheiveRouter.swift */,
+				87B708772B04927500C95C08 /* ProfileAcheiveInteractor.swift */,
+				87B708752B04927500C95C08 /* ProfileAcheiveViewController.swift */,
+			);
+			path = ProfileAcheive;
+			sourceTree = "<group>";
+		};
+		87B7087C2B04927700C95C08 /* ProfileChart */ = {
+			isa = PBXGroup;
+			children = (
+				87B708902B04939200C95C08 /* ProfileChartBuilder.swift */,
+				87B7088E2B04939200C95C08 /* ProfileChartRouter.swift */,
+				87B708912B04939200C95C08 /* ProfileChartInteractor.swift */,
+				87B7088F2B04939200C95C08 /* ProfileChartViewController.swift */,
+			);
+			path = ProfileChart;
+			sourceTree = "<group>";
+		};
+		87B708852B04928600C95C08 /* ProfileRecord */ = {
+			isa = PBXGroup;
+			children = (
+				87B708882B04928E00C95C08 /* ProfileRecordBuilder.swift */,
+				87B708862B04928E00C95C08 /* ProfileRecordRouter.swift */,
+				87B708892B04928E00C95C08 /* ProfileRecordInteractor.swift */,
+				87B708872B04928E00C95C08 /* ProfileRecordViewController.swift */,
+			);
+			path = ProfileRecord;
+			sourceTree = "<group>";
+		};
+		87B708962B04983100C95C08 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				8724D2DE2B05E68D00DD1AFC /* AppFont.swift */,
+				87B708DD2B04F50F00C95C08 /* AppThemeManager.swift */,
+				8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */,
+				8724D2F02B05F23000DD1AFC /* SettingAppAlarm */,
+				87B708BF2B04E6EF00C95C08 /* SettingAppTheme */,
+				8724D2DD2B05E68200DD1AFC /* SettingAppFont */,
+				87B708CA2B04E71900C95C08 /* SettingAppIcon */,
+				8724D2F92B05F26E00DD1AFC /* AppGuide */,
+				87B708BE2B04E6CF00C95C08 /* Feedback */,
+				8724D2FA2B05F28C00DD1AFC /* AppInfo */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		87B708982B04984F00C95C08 /* ProfileMenu */ = {
+			isa = PBXGroup;
+			children = (
+				87B708992B04986800C95C08 /* ProfileMenuRouter.swift */,
+				87B7089B2B04986800C95C08 /* ProfileMenuBuilder.swift */,
+				87B7089C2B04986800C95C08 /* ProfileMenuInteractor.swift */,
+				87B7089A2B04986800C95C08 /* ProfileMenuViewController.swift */,
+				87B708A82B04A8C400C95C08 /* ProfileMenuListModel.swift */,
+				87B708A12B04989900C95C08 /* Views */,
+			);
+			path = ProfileMenu;
+			sourceTree = "<group>";
+		};
+		87B708A12B04989900C95C08 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87B708A22B0498A700C95C08 /* ProfileMenuListView.swift */,
+				87B708A62B04A5D300C95C08 /* ProfileMenuListViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87B708AE2B04C27E00C95C08 /* Mail */ = {
+			isa = PBXGroup;
+			children = (
+				87B708AF2B04C28D00C95C08 /* AppMailManager.swift */,
+			);
+			path = Mail;
+			sourceTree = "<group>";
+		};
+		87B708B92B04DAB000C95C08 /* URLScheme */ = {
+			isa = PBXGroup;
+			children = (
+				876E95262AB2D00F00046809 /* URLSchemeManager.swift */,
+			);
+			path = URLScheme;
+			sourceTree = "<group>";
+		};
+		87B708BE2B04E6CF00C95C08 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				87B708B12B04C50D00C95C08 /* FeedbackMailRouter.swift */,
+				87B708B32B04C50D00C95C08 /* FeedbackMailBuilder.swift */,
+				87B708B42B04C50D00C95C08 /* FeedbackMailInteractor.swift */,
+				87B708B22B04C50D00C95C08 /* FeedbackMailViewController.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		87B708BF2B04E6EF00C95C08 /* SettingAppTheme */ = {
+			isa = PBXGroup;
+			children = (
+				87B708D32B04E78E00C95C08 /* SettingAppThemeRouter.swift */,
+				87B708D52B04E78E00C95C08 /* SettingAppThemeBuilder.swift */,
+				87B708D62B04E78E00C95C08 /* SettingAppThemeInteractor.swift */,
+				87B708D42B04E78E00C95C08 /* SettingAppThemeViewController.swift */,
+			);
+			path = SettingAppTheme;
+			sourceTree = "<group>";
+		};
+		87B708CA2B04E71900C95C08 /* SettingAppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				87B708CD2B04E72300C95C08 /* SettingAppIconBuilder.swift */,
+				87B708CB2B04E72300C95C08 /* SettingAppIconRouter.swift */,
+				87B708CE2B04E72300C95C08 /* SettingAppIconInteractor.swift */,
+				87B708CC2B04E72300C95C08 /* SettingAppIconViewController.swift */,
+				8724D2D82B05DD7F00DD1AFC /* Views */,
+			);
+			path = SettingAppIcon;
 			sourceTree = "<group>";
 		};
 		87BD92F52AF344980099A0A9 /* RecordHome */ = {
@@ -2912,7 +3251,9 @@
 			isa = PBXGroup;
 			children = (
 				8713C7962ADF9E37007CDD33 /* Timer */,
+				87B708B92B04DAB000C95C08 /* URLScheme */,
 				8713C7952ADF9E2D007CDD33 /* Notification */,
+				87B708AE2B04C27E00C95C08 /* Mail */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -2995,12 +3336,12 @@
 		87DFEC622AC1A98D00531EE3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				878DA7A22ACEA0F100220653 /* ZoomAnimation */,
 				87DFEC632AC1A9A200531EE3 /* TouchesButton.swift */,
 				8709DEE42AE8FCA00077FBD3 /* TouchesRoundButton.swift */,
 				8754D2AA2AC2F6EF00440385 /* BottomLiseTextFeild.swift */,
 				870B57512AE13FA1006579CE /* PaddingTextFeild.swift */,
 				87D9EB8A2AE186ED0026F9DE /* PaddingLabel.swift */,
+				87B708AC2B04BC2800C95C08 /* PlaceholerTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3394,8 +3735,8 @@
 				873879AD2B028486004EE7F8 /* RoutineTopAcheiveModel.swift in Sources */,
 				8779AE032AFA509200176746 /* GressView.swift in Sources */,
 				87D0CAF12ACD627700FE405F /* Repeat.swift in Sources */,
+				8724D2F52B05F24000DD1AFC /* SettingAppAlarmRouter.swift in Sources */,
 				87DEAADA2AD95DC700C94F0A /* RoutineEditReminderRouter.swift in Sources */,
-				878DA7A42ACEA0FF00220653 /* ZoomTransitionController.swift in Sources */,
 				87DEAAE22AD9625E00C94F0A /* RoutineEditToogleView.swift in Sources */,
 				87E3760F2AD6E16700359850 /* RoutineRecordDao.swift in Sources */,
 				873879B12B032CF3004EE7F8 /* RoutineTopAcheiveDao.swift in Sources */,
@@ -3404,7 +3745,10 @@
 				87D34DAA2AFDF64A00C7537D /* TimerDataOfYearBuilder.swift in Sources */,
 				8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */,
 				8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */,
+				873676222B03996B0004276B /* ProfileCardInteractor.swift in Sources */,
 				876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */,
+				8736761F2B03996B0004276B /* ProfileCardRouter.swift in Sources */,
+				87B708792B04927500C95C08 /* ProfileAcheiveViewController.swift in Sources */,
 				87AB913E2AEB934C0051FB9F /* AppFocusTimer.swift in Sources */,
 				87B378A72AEA8F05006F8C22 /* StartTimerRouter.swift in Sources */,
 				871E6A052ADE9A700051F978 /* TimerSectionListInteractor.swift in Sources */,
@@ -3421,14 +3765,18 @@
 				8779ADFA2AFA3A2B00176746 /* RoutineDataOfDayOfWeekView.swift in Sources */,
 				87DEAAB12AD9062400C94F0A /* ApplicationException.swift in Sources */,
 				8751F09B2AC7F092000462EC /* RoutineEditTitleViewController.swift in Sources */,
+				87B7086D2B048F9700C95C08 /* ProfileStatInteractor.swift in Sources */,
 				879D825F2AE2697400F1348E /* TimerSectionValueDto.swift in Sources */,
 				874C4DD42AD7D7F100734491 /* RecordCalenderCell.swift in Sources */,
 				8779ADEC2AFA34A300176746 /* RoutineDataOfYearRouter.swift in Sources */,
+				87B7087A2B04927500C95C08 /* ProfileAcheiveBuilder.swift in Sources */,
 				8709DEDF2AE8EF020077FBD3 /* TimerStartButton.swift in Sources */,
 				8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */,
 				873879962B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordViewController.swift in Sources */,
+				873676212B03996B0004276B /* ProfileCardBuilder.swift in Sources */,
 				879D82582AE2689E00F1348E /* TimerSectionListSQLDao.swift in Sources */,
 				87DFFE4F2AF2794E00D2E588 /* RecordRepository.swift in Sources */,
+				8724D2D72B05DD0A00DD1AFC /* AppIconManager.swift in Sources */,
 				8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */,
 				87AD2D632AD6D31400B0E2CF /* RecordFactory.swift in Sources */,
 				879D82482AE25B9900F1348E /* TimerSectionType.swift in Sources */,
@@ -3437,6 +3785,7 @@
 				87FB8D312AF8EA0C001180EC /* RoutineTotalRecordListView.swift in Sources */,
 				87AAE6572AE006EB000A7D4F /* SectionRoundTimerBuilder.swift in Sources */,
 				87D5AAE72AB83A4A00FE712C /* CDSnapshotRepository.swift in Sources */,
+				87B708D02B04E72300C95C08 /* SettingAppIconViewController.swift in Sources */,
 				8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */,
 				875874D62AECF16A00E03F4F /* TimerCountInfoView.swift in Sources */,
 				873879A52B026F91004EE7F8 /* RoutineWeeklyTrackerDto.swift in Sources */,
@@ -3454,13 +3803,18 @@
 				8779ADDE2AFA348B00176746 /* RoutineDataOfWeekBuilder.swift in Sources */,
 				87FB8D1A2AF8D425001180EC /* RoutineMonthRecordSQLDao.swift in Sources */,
 				876E94D32AB2CED800046809 /* AppRootViewController.swift in Sources */,
+				87B708BD2B04DE8E00C95C08 /* Bundle+Utils.swift in Sources */,
 				876E95032AB2CFC100046809 /* RoutineHomeBuilder.swift in Sources */,
 				874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */,
 				87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */,
 				876E94D72AB2CEE600046809 /* AppComponent.swift in Sources */,
 				87D34DA82AFDF64A00C7537D /* TimerDataOfYearRouter.swift in Sources */,
 				87AD2D5F2AD6D26D00B0E2CF /* RecordApplicationService.swift in Sources */,
+				8724D3092B05F2EE00DD1AFC /* AppInfoBuilder.swift in Sources */,
+				87B708A92B04A8C400C95C08 /* ProfileMenuListModel.swift in Sources */,
+				8724D2EE2B05F20100DD1AFC /* SettingAppFontBuilder.swift in Sources */,
 				87D5AAF42AB83D9D00FE712C /* CDRoutineFactory.swift in Sources */,
+				8724D2F62B05F24000DD1AFC /* SettingAppAlarmViewController.swift in Sources */,
 				8712F6592AC2E09A008A02C4 /* RoutineTintInteractor.swift in Sources */,
 				87FB8D162AF8D270001180EC /* RoutineMonthRecordDao.swift in Sources */,
 				8783E85F2AFDCDC800B596FC /* RecordTimerListDetailViewController.swift in Sources */,
@@ -3479,6 +3833,7 @@
 				8745900D2AB43E780043214E /* EventSerializer.swift in Sources */,
 				873879B52B0336EB004EE7F8 /* TopAcheiveChartModel.swift in Sources */,
 				876E95522AB2D00F00046809 /* PushModalPresentationController.swift in Sources */,
+				87B7087B2B04927500C95C08 /* ProfileAcheiveInteractor.swift in Sources */,
 				87910D162AEA3DC100CAC1ED /* TimerSectionCount.swift in Sources */,
 				87A2C9D72AEFC31B004AE6C1 /* AddFocusTimerViewController.swift in Sources */,
 				870B571E2AE11999006579CE /* TimerApplicationService.swift in Sources */,
@@ -3486,6 +3841,8 @@
 				87DEAAB32AD9071800C94F0A /* DatabaseException.swift in Sources */,
 				87176A4C2AFE26C500C8B1B8 /* TimerLineChart.swift in Sources */,
 				874FED542AE7CF81000E3791 /* TimerRemainBuilder.swift in Sources */,
+				87B708B02B04C28D00C95C08 /* AppMailManager.swift in Sources */,
+				87B708D22B04E72300C95C08 /* SettingAppIconInteractor.swift in Sources */,
 				8783E8542AFBEB8700B596FC /* RecordTimerListViewModel.swift in Sources */,
 				87504A1B2ABB4EA30046EFD5 /* RoutineListDto.swift in Sources */,
 				8795F5972AFDF0A6008AE1DC /* TimerDataBuilder.swift in Sources */,
@@ -3497,8 +3854,10 @@
 				87AF756E2AB99DD1001CF7F2 /* EventEntity+CoreDataClass.swift in Sources */,
 				876E95562AB2D00F00046809 /* UIIMageView+Utils.swift in Sources */,
 				87B378972AEA6DAD006F8C22 /* TimerSetup.swift in Sources */,
+				8724D2ED2B05F20100DD1AFC /* SettingAppFontViewController.swift in Sources */,
 				874C4DCF2AD7C11100734491 /* RecordCalendarRouter.swift in Sources */,
 				87F7FAA82AD4527500F14831 /* RepeatDoItOnceControl.swift in Sources */,
+				8724D3122B05F4D500DD1AFC /* AppGuideInteractor.swift in Sources */,
 				8749884C2AC3FCA5004DC64A /* Category.swift in Sources */,
 				87D0CAE72ACD409000FE405F /* RoutineListCell.swift in Sources */,
 				87AB913A2AEB90640051FB9F /* FocusRoundTimerInteractor.swift in Sources */,
@@ -3506,8 +3865,10 @@
 				876E94D22AB2CED800046809 /* AppRootRouter.swift in Sources */,
 				87FB8D1C2AF8D7CB001180EC /* TimerRecordReadModel.swift in Sources */,
 				871E6A032ADE9A700051F978 /* TimerSectionListViewController.swift in Sources */,
+				87B708702B04901600C95C08 /* ProfileStatSegmentControl.swift in Sources */,
 				87135AEE2AC9454E006B71D5 /* RoutineEditInteractor.swift in Sources */,
 				8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */,
+				8724D3082B05F2EE00DD1AFC /* AppInfoViewController.swift in Sources */,
 				870B573A2AE12B69006579CE /* TimerProjection.swift in Sources */,
 				87DEAAB72AD90D3F00C94F0A /* LocalNotification.swift in Sources */,
 				87AD2D692AD6D61B00B0E2CF /* RecordDate.swift in Sources */,
@@ -3517,12 +3878,14 @@
 				87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */,
 				879D82502AE2628400F1348E /* TimerSectionEmoji.swift in Sources */,
 				87A2C9CE2AEFBE26004AE6C1 /* AddRoundTimerViewController.swift in Sources */,
+				87B7088D2B04928E00C95C08 /* ProfileRecordInteractor.swift in Sources */,
 				87910D1C2AEA414900CAC1ED /* FocusTimerCreated.swift in Sources */,
 				87D34DC72AFDFCC600C7537D /* TimerTotalRecordBuilder.swift in Sources */,
 				8751F0B42AC7F79D000462EC /* RoutineEmojiIconRouter.swift in Sources */,
-				876E95492AB2D00F00046809 /* URLSchemeHelper.swift in Sources */,
+				876E95492AB2D00F00046809 /* URLSchemeManager.swift in Sources */,
 				871E6A042ADE9A700051F978 /* TimerSectionListBuilder.swift in Sources */,
 				8783E85E2AFDCDC800B596FC /* RecordTimerListDetailRouter.swift in Sources */,
+				87B708A32B0498A700C95C08 /* ProfileMenuListView.swift in Sources */,
 				876E955C2AB2D00F00046809 /* UIImage+Utils.swift in Sources */,
 				87AD31332ADE615B007DB743 /* CreateTimerViewController.swift in Sources */,
 				874C4DDA2AD80CCA00734491 /* RoutineBasicInfoRouter.swift in Sources */,
@@ -3540,6 +3903,7 @@
 				87AB91322AEB901B0051FB9F /* FocusTimerInteractor.swift in Sources */,
 				87D01DEC2B03554700211D82 /* StreakCount.swift in Sources */,
 				8780361C2AF00E6000EBBA5F /* RoundTimerView.swift in Sources */,
+				87B7088C2B04928E00C95C08 /* ProfileRecordBuilder.swift in Sources */,
 				87AD312C2ADE592B007DB743 /* TimerListViewModel.swift in Sources */,
 				87DFFE332AF258B800D2E588 /* TimeRecord.swift in Sources */,
 				87AAE65F2AE00B47000A7D4F /* TimerNextSectionViewController.swift in Sources */,
@@ -3554,24 +3918,29 @@
 				87176A662AFE504F00C8B1B8 /* RoutineWeeklyTableViewController.swift in Sources */,
 				8751F09D2AC7F092000462EC /* RoutineEditTitleInteractor.swift in Sources */,
 				87D34DD12AFE02C900C7537D /* TimerBarChartView.swift in Sources */,
+				87B708942B04939200C95C08 /* ProfileChartBuilder.swift in Sources */,
 				87AD31342ADE615B007DB743 /* CreateTimerBuilder.swift in Sources */,
 				871E69EF2ADE82F60051F978 /* TimerSectionListCell.swift in Sources */,
+				87B7086C2B048F9700C95C08 /* ProfileStatBuilder.swift in Sources */,
 				87DEAADB2AD95DC700C94F0A /* RoutineEditReminderViewController.swift in Sources */,
 				878036472AF0DA0000EBBA5F /* SUI_TimerEditCountdownLabel.swift in Sources */,
 				87AAE6602AE00B47000A7D4F /* TimerNextSectionBuilder.swift in Sources */,
 				874CAF2F2AB45A580053E021 /* Routine.swift in Sources */,
+				8724D30F2B05F4D500DD1AFC /* AppGuideRouter.swift in Sources */,
 				87DFFE292AF22EAA00D2E588 /* TimerCountdownDto.swift in Sources */,
 				87176A4A2AFE19EB00C8B1B8 /* TimerBarChartViewModel.swift in Sources */,
 				87A2C9CF2AEFBE26004AE6C1 /* AddRoundTimerBuilder.swift in Sources */,
 				877A7AE52AFA6729002BC722 /* GressHeaderView.swift in Sources */,
 				87AB91302AEB901B0051FB9F /* FocusTimerViewController.swift in Sources */,
 				8779ADD72AFA337B00176746 /* RoutineDataInteractor.swift in Sources */,
+				87B708722B04907900C95C08 /* ProfileStatSegmentButton.swift in Sources */,
 				8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */,
 				871D0FB92ADD04060080DEAC /* ReminderReadModel.swift in Sources */,
 				87DFEC5E2AC19E2800531EE3 /* CreateRoutineRouter.swift in Sources */,
 				87AAE65E2AE00B47000A7D4F /* TimerNextSectionRouter.swift in Sources */,
 				87B3789E2AEA79E5006F8C22 /* TimerSelectViewController.swift in Sources */,
 				8713C79F2ADFB779007CDD33 /* SectionTimerBuilder.swift in Sources */,
+				8724D2DF2B05E68D00DD1AFC /* AppFont.swift in Sources */,
 				87AAE66A2AE011A8000A7D4F /* TimerListModel.swift in Sources */,
 				87176A592AFE4F7D00C8B1B8 /* RoutineWeeklyTrackerRouter.swift in Sources */,
 				8713D5102ADF83B400735913 /* TimerSectionValueModel.swift in Sources */,
@@ -3585,11 +3954,14 @@
 				8712F6572AC2E09A008A02C4 /* RoutineTintViewController.swift in Sources */,
 				87AB912F2AEB901B0051FB9F /* FocusTimerRouter.swift in Sources */,
 				8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */,
+				873676252B039ACC0004276B /* ProfileBarcodeView.swift in Sources */,
 				876E95192AB2CFE900046809 /* ProfileHomeRouter.swift in Sources */,
 				87157C922AE69C31002C8003 /* CustomTimer.swift in Sources */,
 				8713C7A32ADFC3E9007CDD33 /* SectionRoundTimerView.swift in Sources */,
 				87AB91202AEB6EBB0051FB9F /* TimerTypeModel.swift in Sources */,
 				8709DEE52AE8FCA00077FBD3 /* TouchesRoundButton.swift in Sources */,
+				87B708CF2B04E72300C95C08 /* SettingAppIconRouter.swift in Sources */,
+				87B708922B04939200C95C08 /* ProfileChartRouter.swift in Sources */,
 				878EAD5F2ABB717E00593700 /* RoutineReadModel.swift in Sources */,
 				87FB8D482AF8F182001180EC /* RecordRoutineListViewModel.swift in Sources */,
 				873879BB2B0342C6004EE7F8 /* RoutineStreakSQLDao.swift in Sources */,
@@ -3605,6 +3977,8 @@
 				874988502AC40396004DC64A /* TintDto.swift in Sources */,
 				8779ADE62AFA349700176746 /* RoutineDataOfMonthBuilder.swift in Sources */,
 				87D34DC82AFDFCC600C7537D /* TimerTotalRecordInteractor.swift in Sources */,
+				87B708782B04927500C95C08 /* ProfileAcheiveRouter.swift in Sources */,
+				8724D3102B05F4D500DD1AFC /* AppGuideViewController.swift in Sources */,
 				8751F0AD2AC7F2FC000462EC /* RoutineTitleBuilder.swift in Sources */,
 				87D34DC62AFDFCC600C7537D /* TimerTotalRecordViewController.swift in Sources */,
 				871E6A422ADEAF490051F978 /* TimerSectionEditTitleInteractor.swift in Sources */,
@@ -3615,9 +3989,9 @@
 				870B57212AE119BE006579CE /* CreateSectionTimer.swift in Sources */,
 				87F3A3902AB312AE00A2102D /* EventListener.swift in Sources */,
 				870B57452AE12CDB006579CE /* TimerListSQLDao.swift in Sources */,
+				8724D2DC2B05DEA500DD1AFC /* SettingAppIconCell.swift in Sources */,
 				872DF3C42AF2105D00D18447 /* TimerEditCountdownPickerView.swift in Sources */,
 				870B57522AE13FA1006579CE /* PaddingTextFeild.swift in Sources */,
-				878DA7A82ACEA11F00220653 /* ZoomAnimator.swift in Sources */,
 				876E95782AB2E06200046809 /* DDCrashlyticsLogger.swift in Sources */,
 				876E950C2AB2CFD000046809 /* RecordHomeInteractor.swift in Sources */,
 				876E950A2AB2CFD000046809 /* RecordHomeViewController.swift in Sources */,
@@ -3670,10 +4044,12 @@
 				87B3789D2AEA79E5006F8C22 /* TimerSelectRouter.swift in Sources */,
 				879D824E2AE260BC00F1348E /* TimerSectionDescription.swift in Sources */,
 				877DF8C12AD5A47B00F45C10 /* RepeatValue.swift in Sources */,
+				8724D2F72B05F24000DD1AFC /* SettingAppAlarmBuilder.swift in Sources */,
 				87FB8D422AF8ED08001180EC /* RecordRoutineListBuilder.swift in Sources */,
 				8779ADC92AFA1BBC00176746 /* RecordRoutineListDetailRouter.swift in Sources */,
 				876E95762AB2D9B700046809 /* DDLog+Utils.swift in Sources */,
 				878036572AF12AF700EBBA5F /* TimerEditCountdownInteractor.swift in Sources */,
+				87B708D72B04E78E00C95C08 /* SettingAppThemeRouter.swift in Sources */,
 				876E95592AB2D00F00046809 /* UIScroll+Utils.swift in Sources */,
 				8751F0912AC7E776000462EC /* RoutineDetailRouter.swift in Sources */,
 				87A2C9CD2AEFBE26004AE6C1 /* AddRoundTimerRouter.swift in Sources */,
@@ -3681,6 +4057,7 @@
 				874FED522AE7CF81000E3791 /* TimerRemainRouter.swift in Sources */,
 				8751F0AE2AC7F2FC000462EC /* RoutineTitleInteractor.swift in Sources */,
 				87D01DE82B03529800211D82 /* RoutineStreak.swift in Sources */,
+				87B708A72B04A5D300C95C08 /* ProfileMenuListViewModel.swift in Sources */,
 				874988682AC4226D004DC64A /* RoutineListViewModel.swift in Sources */,
 				8783E8512AFBE44300B596FC /* RecordTimerListInteractor.swift in Sources */,
 				876E94AE2AB2CE3D00046809 /* AppDelegate.swift in Sources */,
@@ -3690,6 +4067,7 @@
 				87DEAABD2AD9364300C94F0A /* Reminder.swift in Sources */,
 				8751F0B52AC7F79D000462EC /* RoutineEmojiIconViewController.swift in Sources */,
 				87D5AAFF2AB8415D00FE712C /* AppRootComponent.swift in Sources */,
+				87B708932B04939200C95C08 /* ProfileChartViewController.swift in Sources */,
 				87D5AAEE2AB83CD100FE712C /* RoutineCreated.swift in Sources */,
 				8751F0932AC7E776000462EC /* RoutineDetailBuilder.swift in Sources */,
 				876E94D52AB2CED800046809 /* AppRootInteractor.swift in Sources */,
@@ -3701,7 +4079,9 @@
 				876E95552AB2D00F00046809 /* UIColor+Utils.swift in Sources */,
 				8768E6052ABC541000CB35EC /* CDCheckListFactory.swift in Sources */,
 				87D34DAB2AFDF64A00C7537D /* TimerDataOfYearInteractor.swift in Sources */,
+				87B7088B2B04928E00C95C08 /* ProfileRecordViewController.swift in Sources */,
 				8712F6502AC2DF68008A02C4 /* AddYourRoutineInteractor.swift in Sources */,
+				87B7088A2B04928E00C95C08 /* ProfileRecordRouter.swift in Sources */,
 				871962022AEBDF2200E17417 /* Formatter+Timer.swift in Sources */,
 				876E951C2AB2CFE900046809 /* ProfileHomeInteractor.swift in Sources */,
 				87AB91392AEB90640051FB9F /* FocusRoundTimerBuilder.swift in Sources */,
@@ -3711,13 +4091,16 @@
 				87AB91312AEB901B0051FB9F /* FocusTimerBuilder.swift in Sources */,
 				873879822B01E69A004EE7F8 /* RoutineTopAcheiveChartViewController.swift in Sources */,
 				8780363D2AF0A74300EBBA5F /* FocusResultRouter.swift in Sources */,
+				87B7089E2B04986800C95C08 /* ProfileMenuViewController.swift in Sources */,
 				876E95012AB2CFC100046809 /* RoutineHomeRouter.swift in Sources */,
 				877DF8CD2AD5AB2A00F45C10 /* RepeatValueDto.swift in Sources */,
 				87BD92FC2AF3455E0099A0A9 /* RecordBannerViewController.swift in Sources */,
 				8783E8482AFB89D000B596FC /* RoutineHomeFormatter.swift in Sources */,
 				87910D112AEA112A00CAC1ED /* FocusTimer.swift in Sources */,
+				87B708D12B04E72300C95C08 /* SettingAppIconBuilder.swift in Sources */,
 				870B57312AE120D3006579CE /* CDTimerFactory.swift in Sources */,
 				8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */,
+				87B708D92B04E78E00C95C08 /* SettingAppThemeBuilder.swift in Sources */,
 				876E95982AB2FA6F00046809 /* Specification.swift in Sources */,
 				878036552AF12AF700EBBA5F /* TimerEditCountdownViewController.swift in Sources */,
 				873879A02B02367A004EE7F8 /* RoutineRecordWeekModel.swift in Sources */,
@@ -3727,6 +4110,7 @@
 				877DF8BC2AD57A8500F45C10 /* RepeatDto.swift in Sources */,
 				8779ADF72AFA361900176746 /* RoutineTotalRecordInteractor.swift in Sources */,
 				87504A182ABB4E7B0046EFD5 /* DatabaseManager.swift in Sources */,
+				8724D3072B05F2EE00DD1AFC /* AppInfoRouter.swift in Sources */,
 				8779ADFC2AFA3B2800176746 /* RoutineDataOfWeekViewModel.swift in Sources */,
 				877A7AE72AFA6764002BC722 /* GressLeftAxisView.swift in Sources */,
 				8779ADEE2AFA34A300176746 /* RoutineDataOfYearBuilder.swift in Sources */,
@@ -3736,6 +4120,7 @@
 				871E6A412ADEAF490051F978 /* TimerSectionEditTitleBuilder.swift in Sources */,
 				87176A4E2AFE298D00C8B1B8 /* TimerLineChartViewModel.swift in Sources */,
 				87176A6A2AFE51EC00C8B1B8 /* WeeklyTableCell.swift in Sources */,
+				87B708B62B04C50D00C95C08 /* FeedbackMailViewController.swift in Sources */,
 				879D82522AE2634900F1348E /* TimerSequence.swift in Sources */,
 				871D0FBB2ADD05440080DEAC /* RecordModel.swift in Sources */,
 				87AAE6562AE006EB000A7D4F /* SectionRoundTimerViewController.swift in Sources */,
@@ -3777,6 +4162,7 @@
 				87176A5C2AFE4F7D00C8B1B8 /* RoutineWeeklyTrackerInteractor.swift in Sources */,
 				87AB91382AEB90640051FB9F /* FocusRoundTimerViewController.swift in Sources */,
 				8713D4FF2ADF7C0300735913 /* AddTimerType.swift in Sources */,
+				87B708B72B04C50D00C95C08 /* FeedbackMailBuilder.swift in Sources */,
 				8751F09C2AC7F092000462EC /* RoutineEditTitleBuilder.swift in Sources */,
 				874FED552AE7CF81000E3791 /* TimerRemainInteractor.swift in Sources */,
 				87DFEC602AC19E2800531EE3 /* CreateRoutineBuilder.swift in Sources */,
@@ -3794,14 +4180,15 @@
 				87339E9D2AE18FD50099AA33 /* TimerSection.swift in Sources */,
 				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
 				87B378A82AEA8F05006F8C22 /* StartTimerBuilder.swift in Sources */,
+				87B708A02B04986800C95C08 /* ProfileMenuInteractor.swift in Sources */,
 				87176A5F2AFE4F9700C8B1B8 /* WeeklyXAxisView.swift in Sources */,
 				87DEAADD2AD95DC700C94F0A /* RoutineEditReminderInteractor.swift in Sources */,
 				87D34DA92AFDF64A00C7537D /* TimerDataOfYearViewController.swift in Sources */,
+				87B708DE2B04F50F00C95C08 /* AppThemeManager.swift in Sources */,
 				8779ADD42AFA337B00176746 /* RoutineDataRouter.swift in Sources */,
 				87176A682AFE505000C8B1B8 /* RoutineWeeklyTableInteractor.swift in Sources */,
 				878036682AF1583C00EBBA5F /* FireworkParticle.swift in Sources */,
 				876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */,
-				878DA7A62ACEA11200220653 /* ZoomDismissalInteractionController.swift in Sources */,
 				87DEAAAF2AD9061C00C94F0A /* SystemException.swift in Sources */,
 				870B57422AE12BD7006579CE /* TimerTypeDto.swift in Sources */,
 				873879B32B032D6E004EE7F8 /* RoutineTopAcheiveSQLDao.swift in Sources */,
@@ -3822,6 +4209,7 @@
 				87135AED2AC9454E006B71D5 /* RoutineEditBuilder.swift in Sources */,
 				877DF8D32AD5ABB700F45C10 /* RepeatSQLDao.swift in Sources */,
 				87D0CAE12ACD326500FE405F /* UpdateRoutine.swift in Sources */,
+				8724D30A2B05F2EE00DD1AFC /* AppInfoInteractor.swift in Sources */,
 				878036542AF12AF700EBBA5F /* TimerEditCountdownRouter.swift in Sources */,
 				87FB8D402AF8ED08001180EC /* RecordRoutineListRouter.swift in Sources */,
 				87DFFE272AF22EA200D2E588 /* TimerCountdownDao.swift in Sources */,
@@ -3841,9 +4229,11 @@
 				873879B92B0341BF004EE7F8 /* RoutineStreakDao.swift in Sources */,
 				874FED532AE7CF81000E3791 /* TimerRemainViewController.swift in Sources */,
 				87A2C9C42AEFB413004AE6C1 /* AddTabataTimerRouter.swift in Sources */,
+				87B7086B2B048F9700C95C08 /* ProfileStatViewController.swift in Sources */,
 				87DFFE402AF2677200D2E588 /* SetCompleteTimerRecord.swift in Sources */,
 				8751F0942AC7E776000462EC /* RoutineDetailInteractor.swift in Sources */,
 				876E951A2AB2CFE900046809 /* ProfileHomeViewController.swift in Sources */,
+				87B708AD2B04BC2800C95C08 /* PlaceholerTextView.swift in Sources */,
 				87FB8D102AF8D09D001180EC /* RoutineMonthRecordDto.swift in Sources */,
 				8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */,
 				87A2C9D92AEFC31B004AE6C1 /* AddFocusTimerInteractor.swift in Sources */,
@@ -3862,9 +4252,13 @@
 				87DFFE312AF2588D00D2E588 /* TimerRecord.swift in Sources */,
 				8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */,
 				87AD31392ADE6447007DB743 /* CreateTimerButton.swift in Sources */,
+				8724D2F82B05F24000DD1AFC /* SettingAppAlarmInteractor.swift in Sources */,
 				877DF8D62AD5BA0500F45C10 /* RepeatReadModel.swift in Sources */,
 				8779ADCB2AFA1BBC00176746 /* RecordRoutineListDetailBuilder.swift in Sources */,
+				87B708B82B04C50D00C95C08 /* FeedbackMailInteractor.swift in Sources */,
 				873879892B01EDCF004EE7F8 /* TopAcheiveChartView.swift in Sources */,
+				8724D3112B05F4D500DD1AFC /* AppGuideBuilder.swift in Sources */,
+				8724D2EF2B05F20100DD1AFC /* SettingAppFontInteractor.swift in Sources */,
 				870B572B2AE11B73006579CE /* TimerId.swift in Sources */,
 				876662E52AEA09C300390D48 /* PreferenceKeys+Timer.swift in Sources */,
 				874FED4C2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift in Sources */,
@@ -3875,9 +4269,11 @@
 				87DFEC5F2AC19E2800531EE3 /* CreateRoutineViewController.swift in Sources */,
 				87AB91372AEB90640051FB9F /* FocusRoundTimerRouter.swift in Sources */,
 				8783E8612AFDCDC800B596FC /* RecordTimerListDetailInteractor.swift in Sources */,
+				87B708DA2B04E78E00C95C08 /* SettingAppThemeInteractor.swift in Sources */,
 				87DFEC712AC1B43C00531EE3 /* Keyboard+Utils.swift in Sources */,
 				874988632AC41F7D004DC64A /* RoutineListInteractor.swift in Sources */,
 				876E950B2AB2CFD000046809 /* RecordHomeBuilder.swift in Sources */,
+				87B708B52B04C50D00C95C08 /* FeedbackMailRouter.swift in Sources */,
 				87D0CB032ACD83AC00FE405F /* RoutineRepeatChanged.swift in Sources */,
 				87FB8D122AF8D0CE001180EC /* RoutineTotalRecordDto.swift in Sources */,
 				87E375FF2AD6D99000359850 /* RecordService.swift in Sources */,
@@ -3904,6 +4300,8 @@
 				871E6A392ADEADD30051F978 /* TimerSectionEditInteractor.swift in Sources */,
 				8779ADF52AFA361900176746 /* RoutineTotalRecordViewController.swift in Sources */,
 				87C815422AD3EF820062BEDF /* RepeatTypeViewModel.swift in Sources */,
+				87B7089D2B04986800C95C08 /* ProfileMenuRouter.swift in Sources */,
+				87B708D82B04E78E00C95C08 /* SettingAppThemeViewController.swift in Sources */,
 				87176A672AFE504F00C8B1B8 /* RoutineWeeklyTableBuilder.swift in Sources */,
 				87AAE66E2AE01A1C000A7D4F /* SectionRoundTimerViewModel.swift in Sources */,
 				870B57472AE12CEC006579CE /* TimerListDto+SQL.swift in Sources */,
@@ -3913,15 +4311,19 @@
 				87AF46F02AD46C4800647201 /* RoutineRepeatFormatter.swift in Sources */,
 				870B57352AE12A58006579CE /* TimerUpdated.swift in Sources */,
 				87D34DBA2AFDF7EC00C7537D /* TimerDataOfStatsViewController.swift in Sources */,
+				873676202B03996B0004276B /* ProfileCardViewController.swift in Sources */,
 				8780364B2AF10FDF00EBBA5F /* SUI_TimerEditCountdownView.swift in Sources */,
 				8713C79E2ADFB779007CDD33 /* SectionTimerViewController.swift in Sources */,
 				870B573E2AE12B7A006579CE /* TimerListDao.swift in Sources */,
 				87E376162AD6EA1E00359850 /* RoutineHomeListModel.swift in Sources */,
+				8724D2DA2B05DD8E00DD1AFC /* SettingAppIconViewModel.swift in Sources */,
 				8702610F2AD7B11A00B6A4F4 /* RoutineDetailRecordModel.swift in Sources */,
 				875874D82AECF3FC00E03F4F /* TimerCountInfoViewModel.swift in Sources */,
 				87DFFE222AF21AF400D2E588 /* TimerEditCoundownAlertController.swift in Sources */,
+				87B7086A2B048F9700C95C08 /* ProfileStatRouter.swift in Sources */,
 				877DF8CB2AD5AB2400F45C10 /* RepeatTypeDto.swift in Sources */,
 				87D0CAD52ACD0EE600FE405F /* RoutineRepository.swift in Sources */,
+				87B708952B04939200C95C08 /* ProfileChartInteractor.swift in Sources */,
 				870B57332AE129AE006579CE /* UpdateTimer.swift in Sources */,
 				873879832B01E69A004EE7F8 /* RoutineTopAcheiveChartBuilder.swift in Sources */,
 				8779ADDF2AFA348B00176746 /* RoutineDataOfWeekInteractor.swift in Sources */,
@@ -3932,6 +4334,7 @@
 				8795F5982AFDF0A6008AE1DC /* TimerDataInteractor.swift in Sources */,
 				874C4DE02AD80D7A00734491 /* BasicInfoView.swift in Sources */,
 				871E6A402ADEAF490051F978 /* TimerSectionEditTitleViewController.swift in Sources */,
+				87B7089F2B04986800C95C08 /* ProfileMenuBuilder.swift in Sources */,
 				87901EA12ABAFDA9002CA93F /* RoutineDetailDao.swift in Sources */,
 				87DFFE2F2AF2580E00D2E588 /* CreateTimerRecord.swift in Sources */,
 				87D5AB052AB8621A00FE712C /* ApplicationService.swift in Sources */,
@@ -3950,6 +4353,7 @@
 				876E95582AB2D00F00046809 /* UITableView+Utils.swift in Sources */,
 				87D9EB8B2AE186ED0026F9DE /* PaddingLabel.swift in Sources */,
 				8779AE092AFA511000176746 /* GressCell.swift in Sources */,
+				8724D2EC2B05F20100DD1AFC /* SettingAppFontRouter.swift in Sources */,
 				87AB91412AEB958D0051FB9F /* TimeInterval+Utils.swift in Sources */,
 				8713C7782ADF97BD007CDD33 /* TimerSectionCountdownPickerView.swift in Sources */,
 				870B57502AE13ABB006579CE /* TimerEditTitleInteractor.swift in Sources */,
