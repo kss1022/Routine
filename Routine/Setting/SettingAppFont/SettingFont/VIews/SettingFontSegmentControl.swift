@@ -34,36 +34,32 @@ final class SettingFontSegmentControl : UISegmentedControl{
     }
     
     
-    private func setupSegment( color : UIColor = .darkGray) {
+    private func setupSegment( color : UIColor) {
         DispatchQueue.main.async() {
             
-            self.removeBorder( color: color)
+            self.removeBorder()
             self.addUnderlineForSelectedSegment( color: color)
         }
     }
     
     
     
-    private func removeBorder( color : UIColor = UIColor.label){
+    private func removeBorder(){
         var bgcolor: CGColor
         var textColorNormal: UIColor
         var textColorSelected: UIColor
         
-        bgcolor = UIColor.secondarySystemBackground.cgColor
-        textColorNormal = UIColor.gray
-        textColorSelected = color
+        if self.traitCollection.userInterfaceStyle == .dark {
+            bgcolor = UIColor.black.cgColor
+            textColorNormal = UIColor.gray
+            textColorSelected = UIColor.white
+        } else {
+            bgcolor = UIColor.white.cgColor
+            textColorNormal = UIColor.gray
+            textColorSelected = UIColor.black
+        }
         
-//        if self.traitCollection.userInterfaceStyle == .dark {
-//            bgcolor = UIColor.black.cgColor
-//            textColorNormal = UIColor.gray
-//            textColorSelected = UIColor.white
-//        } else {
-//            bgcolor = UIColor.white.cgColor
-//            textColorNormal = UIColor.gray
-//            textColorSelected = UIColor.black
-//        }
-        
-        let font = UIFont.getFont(style: .caption1)
+        let font = UIFont.getFont(style: .footnote)
 
         let backgroundImage = UIImage.getColoredRectImageWith(color: bgcolor, andSize: self.bounds.size)
         self.setBackgroundImage(backgroundImage, for: .normal, barMetrics: .default)

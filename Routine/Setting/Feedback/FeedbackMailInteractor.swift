@@ -41,12 +41,13 @@ final class FeedbackMailInteractor: PresentableInteractor<FeedbackMailPresentabl
         super.didBecomeActive()
         // TODO: Implement business logic here.
         
-        let appName = Bundle.main.appName()
-        let version = Bundle.main.version()
-        let buildVersion = Bundle.main.buildVersion()
+        let appInfoMananger = AppInfoManager.share
+        let appName = appInfoMananger.appName()
+        let version = appInfoMananger.version()
+        let buildVersion = appInfoMananger.buildVersion()
         
-        let deviceInfo = UIDevice.iOSVersion
-        let iphoneModel = UIDevice.iPhoneModel
+        let deviceInfo = appInfoMananger.iOSVersion
+        let iphoneModel = appInfoMananger.iPhoneModel
         
         presenter.setMailCompose(
             recipients: ["kss1022hhh@gmail.com"],

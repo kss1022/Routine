@@ -87,8 +87,7 @@ final class ProfileMenuInteractor: PresentableInteractor<ProfileMenuPresentable>
                         title: "Info") { [weak self] in
                             self?.listener?.profileMenuAppInfoButtonDidTap()
                         },
-                ]
-                
+                ]                
             )
         ]
         

@@ -7,13 +7,15 @@
 
 import ModernRIBs
 
+
 protocol AppInfoRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol AppInfoPresentable: Presentable {
     var listener: AppInfoPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setMainInfo(_ viewModel: AppInfoMainViewModel)
+    func setContact(_ viewModels: [AppInfoContactViewModel])
 }
 
 protocol AppInfoListener: AnyObject {
@@ -34,7 +36,42 @@ final class AppInfoInteractor: PresentableInteractor<AppInfoPresentable>, AppInf
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+        
+        
+        let appInfoMananger = AppInfoManager.share
+        let appName = appInfoMananger.appName()
+        let version = appInfoMananger.version()
+        let buildVersion = appInfoMananger.buildVersion()
+        
+        let mainModel = AppInfoMainModel(
+            imageName: "AppMainImage",
+            version: "\(appName) \(version)   (\(buildVersion))",
+            copyright: "© HG 🧑🏻‍💻"
+        )
+        
+        
+        presenter.setMainInfo(AppInfoMainViewModel(mainModel))
+        
+        
+        
+        
+        let contanctModels = [
+            AppInfoContactModel(
+                emoji: "✉️",
+                title: "Email contact to me",
+                backgroundColor: "#CCFFCCFF",
+                tapHandler: { URLSchemeManager.share.openMailApp(email: "kss1022hhh@gmail.com") }
+            ),
+            AppInfoContactModel(
+                emoji: "🧑🏻‍💻",
+                title: "My Github link",
+                backgroundColor: "#E5CCFFFF",
+                tapHandler: { URLSchemeManager.share.openLink(url: "https://github.com/kss1022") }
+            )
+        ]
+        
+        
+        presenter.setContact(contanctModels.map(AppInfoContactViewModel.init))
     }
 
     override func willResignActive() {

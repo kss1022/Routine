@@ -5,6 +5,12 @@ import UIKit.UIApplication
 public final class URLSchemeManager{
     
     public static let share = URLSchemeManager()
+    
+    func openLink(url: String){
+        if let url = URL(string: url) {
+            UIApplication.shared.open(url)
+        }
+    }
 
     func openSettingApp(){
         if let url = URL(string: UIApplication.openSettingsURLString){
@@ -20,6 +26,12 @@ public final class URLSchemeManager{
     
     func openMessageApp(phoneNumber : String){
         if let url = URL(string: "sms:\(phoneNumber)") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    func openMailApp(email: String){
+        if let url = URL(string: "mailto:\(email)") {
             UIApplication.shared.open(url)
         }
     }

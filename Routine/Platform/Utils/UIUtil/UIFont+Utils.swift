@@ -7,49 +7,15 @@
 
 import UIKit
 
-
+//TODO: Handling CustomFontSize & Updates the fonts of the added view.
 
 public extension UIFont {
     
-    //MARK: Private
+    
+    //MARK: Public
     static var appFontName = "AppleSDGothicNeo-Regular"
     static var appBoldFontName = "AppleSDGothicNeo-Bold"
     
-    private static var fontDic : [UIFont.TextStyle : UIFont] = {
-        fontDic(fontName: appFontName)
-    }()
-    
-    private static var boldFontDic : [UIFont.TextStyle : UIFont] = {
-        fontDic(fontName: appBoldFontName)
-    }()
-    
-    private static func fontDic(fontName: String) -> [UIFont.TextStyle : UIFont]{
-        var dic = [UIFont.TextStyle : UIFont]()
-                        
-        dic[.largeTitle] = UIFont(name: fontName, size: 34.0)
-        dic[.title1] = UIFont(name: fontName, size: 28.0)
-        dic[.title2] = UIFont(name: fontName, size: 22.0)
-        dic[.title3] = UIFont(name: fontName, size: 20.0)
-        dic[.headline] = UIFont(name: fontName, size: 17.0)
-        dic[.body] = UIFont(name: fontName, size: 17.0)
-        dic[.callout] = UIFont(name: fontName, size: 16.0)
-        dic[.subheadline] = UIFont(name: fontName, size: 15.0)
-        dic[.footnote] = UIFont(name: fontName, size: 13.0)
-        dic[.caption1] = UIFont(name: fontName, size: 12.0)
-        dic[.caption2] = UIFont(name: fontName, size: 11.0)
-        return dic
-    }
-    
-    
-    private static func myCustomFontDic() -> [UIFont.TextStyle : UIFont]{
-        return UIFont.fontDic
-    }
-    
-    private static func myCustomFontBoldDic() -> [UIFont.TextStyle : UIFont]{
-        return UIFont.boldFontDic
-    }
-    
-    //MARK: Public
     static func updateAppFont(fontName: String){
         UIFont.appFontName = fontName
         UIFont.fontDic = UIFont.fontDic(fontName: UIFont.appFontName)
@@ -89,15 +55,39 @@ public extension UIFont {
     }
     
     
-    static func checkFontName(){
-        for family in UIFont.familyNames {
-            
-            let sName: String = family as String
-            Log.v("family: \(sName)")            
-            for name in UIFont.fontNames(forFamilyName: sName) {
-                Log.v("name: \(name as String)")
-            }
-        }
+    //MARK: Private
+    private static var fontDic : [UIFont.TextStyle : UIFont] = {
+        fontDic(fontName: appFontName)
+    }()
+    
+    private static var boldFontDic : [UIFont.TextStyle : UIFont] = {
+        fontDic(fontName: appBoldFontName)
+    }()
+    
+    private static func fontDic(fontName: String) -> [UIFont.TextStyle : UIFont]{
+        var dic = [UIFont.TextStyle : UIFont]()
+                        
+        dic[.largeTitle] = UIFont(name: fontName, size: 34.0)
+        dic[.title1] = UIFont(name: fontName, size: 28.0)
+        dic[.title2] = UIFont(name: fontName, size: 22.0)
+        dic[.title3] = UIFont(name: fontName, size: 20.0)
+        dic[.headline] = UIFont(name: fontName, size: 17.0)
+        dic[.body] = UIFont(name: fontName, size: 17.0)
+        dic[.callout] = UIFont(name: fontName, size: 16.0)
+        dic[.subheadline] = UIFont(name: fontName, size: 15.0)
+        dic[.footnote] = UIFont(name: fontName, size: 13.0)
+        dic[.caption1] = UIFont(name: fontName, size: 12.0)
+        dic[.caption2] = UIFont(name: fontName, size: 11.0)
+        return dic
+    }
+    
+    
+    private static func myCustomFontDic() -> [UIFont.TextStyle : UIFont]{
+        return UIFont.fontDic
+    }
+    
+    private static func myCustomFontBoldDic() -> [UIFont.TextStyle : UIFont]{
+        return UIFont.boldFontDic
     }
     
 }

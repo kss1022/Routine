@@ -23,7 +23,7 @@ final class SettingFontSlider: UISlider{
     init(){
         self.stepCount = 7
         self.lineHeight = 4.0
-        self.strokeColor = .secondaryLabel
+        self.strokeColor = .label
         super.init(frame: .zero)
         
         setView()
@@ -32,7 +32,7 @@ final class SettingFontSlider: UISlider{
     required init?(coder: NSCoder) {
         self.stepCount = 7
         self.lineHeight = 4.0
-        self.strokeColor = .secondaryLabel
+        self.strokeColor = .label
         super.init(coder: coder)
         
         setView()

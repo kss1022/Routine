@@ -15,15 +15,17 @@ final class AppFontManager{
     public static let share = AppFontManager()
     
     private let preferenceStorege = PreferenceStorage.shared
-    public let fontDic: [String: [String]]
     
-    private init(){
-        var fontDic = [String: [String]]()
-        
-        UIFont.familyNames.forEach { familyName in
-            fontDic[familyName] = UIFont.fontNames(forFamilyName: familyName)
-        }
-        self.fontDic = fontDic
+    public var fontName: String{
+        preferenceStorege.appFont
+    }
+    
+    public var isCustomSize : Bool{
+        preferenceStorege.isCustomSize
+    }
+    
+    public var customSize: Float{
+        preferenceStorege.customSize
     }
     
     func setup(){
