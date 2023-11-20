@@ -83,12 +83,9 @@ extension TimerEditCountdownPickerView: UIPickerViewDataSource{
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component{
-        case 0:
-            return "\(countdownHourArray[row]) Hour"
-        case 1:
-            return "\(countdownMinArray[row]) Min"
-        default:
-            fatalError("Invalid Component: \(component)")
+        case 0: return "\(countdownHourArray[row]) Hour"
+        case 1: return "\(countdownMinArray[row]) Min"
+        default: fatalError("Invalid Component: \(component)")
         }
     }
 }
@@ -105,6 +102,25 @@ extension TimerEditCountdownPickerView: UIPickerViewDelegate{
         default:
             fatalError("Invalid Component: \(component)")
         }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+
+        var pickerLabel = view as? UILabel;
+                
+        if (pickerLabel == nil){
+            pickerLabel = UILabel()
+            pickerLabel?.font = .getFont(size: 21.5)
+            pickerLabel?.textAlignment = .center
+        }
+
+        switch component{
+        case 0: pickerLabel?.text = "\(countdownHourArray[row]) Hour"
+        case 1: pickerLabel?.text =  "\(countdownMinArray[row]) Min"
+        default: fatalError("Invalid Component: \(component)")
+        }
+
+        return pickerLabel!
     }
 }
 

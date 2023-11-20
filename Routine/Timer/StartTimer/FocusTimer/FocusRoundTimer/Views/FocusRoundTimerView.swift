@@ -14,7 +14,7 @@ class FocusRoundTimerView: RoundTimerView {
     private let emojiLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 44.0, weight: .bold)
+        label.font = .getBoldFont(size: 44.0)
         label.textAlignment = .center
         label.textColor = .white
         label.adjustsFontSizeToFitWidth = true

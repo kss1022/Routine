@@ -35,7 +35,7 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
         let button = TouchesButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
+        button.titleLabel?.font = .getBoldFont(size: 14.0)
         button.setTitle("Delete", for: .normal)
         button.setTitleColor(.systemBackground, for: .normal)
         button.backgroundColor = .label

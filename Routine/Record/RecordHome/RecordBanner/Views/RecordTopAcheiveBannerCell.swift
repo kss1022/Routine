@@ -24,7 +24,7 @@ final class RecordTopAcheiveBannerCell: UICollectionViewCell{
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Check Your Top Acheive🔥"
-        label.font = .systemFont(ofSize: 18.0, weight: .bold)
+        label.font = .getBoldFont(size: 18.0)
         label.textColor = .systemBackground
         label.numberOfLines = 2
         return label

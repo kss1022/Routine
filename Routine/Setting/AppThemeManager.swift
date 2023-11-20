@@ -14,6 +14,14 @@ public class AppThemeManager{
     
     public var theme: AppTheme{ AppTheme(rawValue:PreferenceStorage.shared.apptheme) ?? .system}
     
+    func setup(){
+        setTheme()
+    }
+    
+    func updateTheme(){
+        setTheme()
+    }
+    
     func setSystemMode(){
         PreferenceStorage.shared.apptheme = AppTheme.system.rawValue
     }
@@ -26,7 +34,15 @@ public class AppThemeManager{
         PreferenceStorage.shared.apptheme = AppTheme.dark.rawValue
     }
     
-    func updateTheme(){
+
+
+    private func window() -> UIWindow?{
+        guard let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+              let window = delegate.window else{ return nil}
+        return window
+    }
+    
+    private func setTheme(){
         guard let window = window() else { return }
         switch theme {
         case .system:
@@ -36,13 +52,6 @@ public class AppThemeManager{
         case .light:
             window.overrideUserInterfaceStyle = .light
         }
-    }
-    
-    
-    private func window() -> UIWindow?{
-        guard let delegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
-              let window = delegate.window else{ return nil}
-        return window
     }
     
 }

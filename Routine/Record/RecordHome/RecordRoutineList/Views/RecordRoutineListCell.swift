@@ -52,7 +52,7 @@ final class RecordRoutineListCell: UICollectionViewCell{
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14.0, weight: .regular)
+        label.font = .getFont(size: 14.0)
         label.textColor = .label
         return label
     }()

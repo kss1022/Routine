@@ -14,7 +14,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Check your weeklyTracker✅"
-        label.font = .systemFont(ofSize: 18.0, weight: .bold)
+        label.font = .getBoldFont(size: 18.0)
         label.textColor = .label
         label.numberOfLines = 2
         return label

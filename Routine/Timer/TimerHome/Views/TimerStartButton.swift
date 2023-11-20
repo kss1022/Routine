@@ -39,7 +39,7 @@ class TimerStartButton: UIControl {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 44.0, weight: .bold)
+        label.font = .getBoldFont(size: 44.0)
         label.textAlignment = .center
         label.textColor = .systemBackground
         label.adjustsFontSizeToFitWidth = true

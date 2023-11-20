@@ -23,7 +23,10 @@ final class SettingAppThemeViewController: UIViewController, SettingAppThemePres
     private lazy var tableView : UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44.0
         tableView.register(cellType: UITableViewCell.self)
+        
         tableView.delegate = self
         tableView.dataSource = self
         return tableView

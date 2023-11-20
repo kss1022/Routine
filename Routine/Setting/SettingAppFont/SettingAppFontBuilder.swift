@@ -12,7 +12,7 @@ protocol SettingAppFontDependency: Dependency {
     // created by this RIB.
 }
 
-final class SettingAppFontComponent: Component<SettingAppFontDependency> {
+final class SettingAppFontComponent: Component<SettingAppFontDependency>,FontPickerDependency, FontPreviewDependency, SettingFontDependency {
 
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
@@ -34,6 +34,18 @@ final class SettingAppFontBuilder: Builder<SettingAppFontDependency>, SettingApp
         let viewController = SettingAppFontViewController()
         let interactor = SettingAppFontInteractor(presenter: viewController)
         interactor.listener = listener
-        return SettingAppFontRouter(interactor: interactor, viewController: viewController)
+        
+        let fontPickerBuilder = FontPickerBuilder(dependency: component)
+        
+        let fontPreviewBuilder = FontPreviewBuilder(dependency: component)
+        let settingFontBuilder = SettingFontBuilder(dependency: component)
+        
+        return SettingAppFontRouter(
+            interactor: interactor,
+            viewController: viewController,
+            fontPickerBuildable: fontPickerBuilder,
+            fontPreviewBuildable: fontPreviewBuilder,
+            settingFontBuildable: settingFontBuilder
+        )
     }
 }

@@ -24,7 +24,7 @@ final class ProfileStatViewController: UIViewController, ProfileStatPresentable,
         return segmentControl
     }()
     
-    private let pageContainer: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -49,7 +49,7 @@ final class ProfileStatViewController: UIViewController, ProfileStatPresentable,
     
     private func setLayout(){
         view.addSubview(statSegmentControl)
-        view.addSubview(pageContainer)
+        view.addSubview(stackView)
         
         let inset: CGFloat = 16.0
         
@@ -57,10 +57,10 @@ final class ProfileStatViewController: UIViewController, ProfileStatPresentable,
             statSegmentControl.topAnchor.constraint(equalTo: view.topAnchor),
             statSegmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             statSegmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            pageContainer.topAnchor.constraint(equalTo: statSegmentControl.bottomAnchor, constant: 16.0),
-            pageContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
-            pageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            pageContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset)
+            stackView.topAnchor.constraint(equalTo: statSegmentControl.bottomAnchor, constant: 16.0),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset)
         ])
     }
     
@@ -69,7 +69,7 @@ final class ProfileStatViewController: UIViewController, ProfileStatPresentable,
         let vc = view.uiviewController
         addChild(vc)
         
-        pageContainer.addArrangedSubview(vc.view)
+        stackView.addArrangedSubview(vc.view)
         
         vc.didMove(toParent: self)
     }
@@ -87,7 +87,7 @@ final class ProfileStatViewController: UIViewController, ProfileStatPresentable,
         let vc = view.uiviewController
         addChild(vc)
         
-        pageContainer.addArrangedSubview(vc.view)
+        stackView.addArrangedSubview(vc.view)
         
         vc.didMove(toParent: self)
     }

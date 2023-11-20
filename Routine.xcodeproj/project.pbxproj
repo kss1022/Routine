@@ -36,6 +36,11 @@
 		870B57502AE13ABB006579CE /* TimerEditTitleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B574C2AE13ABB006579CE /* TimerEditTitleInteractor.swift */; };
 		870B57522AE13FA1006579CE /* PaddingTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B57512AE13FA1006579CE /* PaddingTextFeild.swift */; };
 		870B57542AE143EC006579CE /* TimerSectionTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B57532AE143EC006579CE /* TimerSectionTypeModel.swift */; };
+		870D02412B089A5B00CE207B /* SettingFontRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D023D2B089A5B00CE207B /* SettingFontRouter.swift */; };
+		870D02422B089A5B00CE207B /* SettingFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D023E2B089A5B00CE207B /* SettingFontViewController.swift */; };
+		870D02432B089A5B00CE207B /* SettingFontBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D023F2B089A5B00CE207B /* SettingFontBuilder.swift */; };
+		870D02442B089A5B00CE207B /* SettingFontInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D02402B089A5B00CE207B /* SettingFontInteractor.swift */; };
+		870D02462B089BE800CE207B /* SettingFontSegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D02452B089BE800CE207B /* SettingFontSegmentButton.swift */; };
 		8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */; };
 		8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */; };
 		8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */; };
@@ -108,7 +113,7 @@
 		8724D2D72B05DD0A00DD1AFC /* AppIconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */; };
 		8724D2DA2B05DD8E00DD1AFC /* SettingAppIconViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2D92B05DD8E00DD1AFC /* SettingAppIconViewModel.swift */; };
 		8724D2DC2B05DEA500DD1AFC /* SettingAppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2DB2B05DEA500DD1AFC /* SettingAppIconCell.swift */; };
-		8724D2DF2B05E68D00DD1AFC /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2DE2B05E68D00DD1AFC /* AppFont.swift */; };
+		8724D2DF2B05E68D00DD1AFC /* AppFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2DE2B05E68D00DD1AFC /* AppFontManager.swift */; };
 		8724D2EC2B05F20100DD1AFC /* SettingAppFontRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2E82B05F20100DD1AFC /* SettingAppFontRouter.swift */; };
 		8724D2ED2B05F20100DD1AFC /* SettingAppFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2E92B05F20100DD1AFC /* SettingAppFontViewController.swift */; };
 		8724D2EE2B05F20100DD1AFC /* SettingAppFontBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2EA2B05F20100DD1AFC /* SettingAppFontBuilder.swift */; };
@@ -125,6 +130,11 @@
 		8724D3102B05F4D500DD1AFC /* AppGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30C2B05F4D500DD1AFC /* AppGuideViewController.swift */; };
 		8724D3112B05F4D500DD1AFC /* AppGuideBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30D2B05F4D500DD1AFC /* AppGuideBuilder.swift */; };
 		8724D3122B05F4D500DD1AFC /* AppGuideInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30E2B05F4D500DD1AFC /* AppGuideInteractor.swift */; };
+		8724D31D2B061B4800DD1AFC /* AppFontListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D3192B061B4800DD1AFC /* AppFontListRouter.swift */; };
+		8724D31E2B061B4800DD1AFC /* AppFontListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D31A2B061B4800DD1AFC /* AppFontListViewController.swift */; };
+		8724D31F2B061B4800DD1AFC /* AppFontListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D31B2B061B4800DD1AFC /* AppFontListBuilder.swift */; };
+		8724D3202B061B4800DD1AFC /* AppFontListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D31C2B061B4800DD1AFC /* AppFontListInteractor.swift */; };
+		8724D3232B061D1100DD1AFC /* AppFontViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D3222B061D1100DD1AFC /* AppFontViewModel.swift */; };
 		872DF3C42AF2105D00D18447 /* TimerEditCountdownPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872DF3C32AF2105D00D18447 /* TimerEditCountdownPickerView.swift */; };
 		872DF3C62AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872DF3C52AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift */; };
 		87339E9D2AE18FD50099AA33 /* TimerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87339E9C2AE18FD50099AA33 /* TimerSection.swift */; };
@@ -166,6 +176,7 @@
 		873879B72B03418A004EE7F8 /* RoutineStreakDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879B62B03418A004EE7F8 /* RoutineStreakDto.swift */; };
 		873879B92B0341BF004EE7F8 /* RoutineStreakDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879B82B0341BF004EE7F8 /* RoutineStreakDao.swift */; };
 		873879BB2B0342C6004EE7F8 /* RoutineStreakSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879BA2B0342C6004EE7F8 /* RoutineStreakSQLDao.swift */; };
+		8742BCA12B076803003417B9 /* SettingFontSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8742BCA02B076803003417B9 /* SettingFontSegmentControl.swift */; };
 		8745900D2AB43E780043214E /* EventSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745900C2AB43E780043214E /* EventSerializer.swift */; };
 		8749884A2AC3FBFF004DC64A /* emojis11.0.1.json in Resources */ = {isa = PBXBuildFile; fileRef = 874988492AC3FBFF004DC64A /* emojis11.0.1.json */; };
 		8749884C2AC3FCA5004DC64A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8749884B2AC3FCA5004DC64A /* Category.swift */; };
@@ -406,6 +417,10 @@
 		8795F5962AFDF0A6008AE1DC /* TimerDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795F5922AFDF0A6008AE1DC /* TimerDataViewController.swift */; };
 		8795F5972AFDF0A6008AE1DC /* TimerDataBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795F5932AFDF0A6008AE1DC /* TimerDataBuilder.swift */; };
 		8795F5982AFDF0A6008AE1DC /* TimerDataInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795F5942AFDF0A6008AE1DC /* TimerDataInteractor.swift */; };
+		87994A962B0630FC0021997A /* FontPreviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87994A922B0630FC0021997A /* FontPreviewRouter.swift */; };
+		87994A972B0630FC0021997A /* FontPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87994A932B0630FC0021997A /* FontPreviewViewController.swift */; };
+		87994A982B0630FC0021997A /* FontPreviewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87994A942B0630FC0021997A /* FontPreviewBuilder.swift */; };
+		87994A992B0630FC0021997A /* FontPreviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87994A952B0630FC0021997A /* FontPreviewInteractor.swift */; };
 		879D82482AE25B9900F1348E /* TimerSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879D82472AE25B9900F1348E /* TimerSectionType.swift */; };
 		879D824A2AE25B9F00F1348E /* TimerSectionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879D82492AE25B9F00F1348E /* TimerSectionValue.swift */; };
 		879D824C2AE260B100F1348E /* TimerSectionName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879D824B2AE260B100F1348E /* TimerSectionName.swift */; };
@@ -486,6 +501,10 @@
 		87B378A72AEA8F05006F8C22 /* StartTimerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A42AEA8F05006F8C22 /* StartTimerRouter.swift */; };
 		87B378A82AEA8F05006F8C22 /* StartTimerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A52AEA8F05006F8C22 /* StartTimerBuilder.swift */; };
 		87B378A92AEA8F05006F8C22 /* StartTimerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B378A62AEA8F05006F8C22 /* StartTimerInteractor.swift */; };
+		87B630692B06FE5700BDBCAB /* FontPickerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B630652B06FE5700BDBCAB /* FontPickerRouter.swift */; };
+		87B6306A2B06FE5700BDBCAB /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B630662B06FE5700BDBCAB /* FontPickerViewController.swift */; };
+		87B6306B2B06FE5700BDBCAB /* FontPickerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B630672B06FE5700BDBCAB /* FontPickerBuilder.swift */; };
+		87B6306C2B06FE5700BDBCAB /* FontPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B630682B06FE5700BDBCAB /* FontPickerInteractor.swift */; };
 		87B7086A2B048F9700C95C08 /* ProfileStatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708662B048F9700C95C08 /* ProfileStatRouter.swift */; };
 		87B7086B2B048F9700C95C08 /* ProfileStatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708672B048F9700C95C08 /* ProfileStatViewController.swift */; };
 		87B7086C2B048F9700C95C08 /* ProfileStatBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708682B048F9700C95C08 /* ProfileStatBuilder.swift */; };
@@ -542,6 +561,22 @@
 		87D01DE82B03529800211D82 /* RoutineStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D01DE72B03529800211D82 /* RoutineStreak.swift */; };
 		87D01DEA2B03542F00211D82 /* StreakId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D01DE92B03542F00211D82 /* StreakId.swift */; };
 		87D01DEC2B03554700211D82 /* StreakCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D01DEB2B03554700211D82 /* StreakCount.swift */; };
+		87D0C2CE2B0B0433003DF624 /* SettingFontSizeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2CA2B0B0433003DF624 /* SettingFontSizeRouter.swift */; };
+		87D0C2CF2B0B0433003DF624 /* SettingFontSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2CB2B0B0433003DF624 /* SettingFontSizeViewController.swift */; };
+		87D0C2D02B0B0433003DF624 /* SettingFontSizeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2CC2B0B0433003DF624 /* SettingFontSizeBuilder.swift */; };
+		87D0C2D12B0B0433003DF624 /* SettingFontSizeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2CD2B0B0433003DF624 /* SettingFontSizeInteractor.swift */; };
+		87D0C2DF2B0B07E7003DF624 /* SettingTypefaceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2DB2B0B07E7003DF624 /* SettingTypefaceRouter.swift */; };
+		87D0C2E02B0B07E7003DF624 /* SettingTypefaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2DC2B0B07E7003DF624 /* SettingTypefaceViewController.swift */; };
+		87D0C2E12B0B07E7003DF624 /* SettingTypefaceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2DD2B0B07E7003DF624 /* SettingTypefaceBuilder.swift */; };
+		87D0C2E22B0B07E7003DF624 /* SettingTypefaceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2DE2B0B07E7003DF624 /* SettingTypefaceInteractor.swift */; };
+		87D0C2E52B0B16A9003DF624 /* SettingFontSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2E42B0B16A9003DF624 /* SettingFontSlider.swift */; };
+		87D0C2E72B0B42A7003DF624 /* SettingFontStepLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2E62B0B42A7003DF624 /* SettingFontStepLayer.swift */; };
+		87D0C2EA2B0B45EA003DF624 /* AppTypefaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2E92B0B45EA003DF624 /* AppTypefaceListView.swift */; };
+		87D0C2EC2B0B470D003DF624 /* AppTypefaceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2EB2B0B470D003DF624 /* AppTypefaceListViewModel.swift */; };
+		87D0C2EE2B0B4750003DF624 /* AppTypefaceListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2ED2B0B4750003DF624 /* AppTypefaceListModel.swift */; };
+		87D0C2F22B0B4EE0003DF624 /* OSTypefaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2F12B0B4EE0003DF624 /* OSTypefaceListView.swift */; };
+		87D0C2F42B0B4F2F003DF624 /* OsTypefaceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2F32B0B4F2F003DF624 /* OsTypefaceListViewModel.swift */; };
+		87D0C2F62B0B4F68003DF624 /* OsTypefaceListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2F52B0B4F68003DF624 /* OsTypefaceListModel.swift */; };
 		87D0CACF2ACCFE9B00FE405F /* RoutineTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CACE2ACCFE9B00FE405F /* RoutineTitleViewModel.swift */; };
 		87D0CAD52ACD0EE600FE405F /* RoutineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAD42ACD0EE600FE405F /* RoutineRepository.swift */; };
 		87D0CAE12ACD326500FE405F /* UpdateRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0CAE02ACD326500FE405F /* UpdateRoutine.swift */; };
@@ -698,6 +733,11 @@
 		870B574C2AE13ABB006579CE /* TimerEditTitleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEditTitleInteractor.swift; sourceTree = "<group>"; };
 		870B57512AE13FA1006579CE /* PaddingTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingTextFeild.swift; sourceTree = "<group>"; };
 		870B57532AE143EC006579CE /* TimerSectionTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionTypeModel.swift; sourceTree = "<group>"; };
+		870D023D2B089A5B00CE207B /* SettingFontRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontRouter.swift; sourceTree = "<group>"; };
+		870D023E2B089A5B00CE207B /* SettingFontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontViewController.swift; sourceTree = "<group>"; };
+		870D023F2B089A5B00CE207B /* SettingFontBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontBuilder.swift; sourceTree = "<group>"; };
+		870D02402B089A5B00CE207B /* SettingFontInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontInteractor.swift; sourceTree = "<group>"; };
+		870D02452B089BE800CE207B /* SettingFontSegmentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSegmentButton.swift; sourceTree = "<group>"; };
 		8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineRouter.swift; sourceTree = "<group>"; };
 		8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineViewController.swift; sourceTree = "<group>"; };
 		8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineBuilder.swift; sourceTree = "<group>"; };
@@ -770,7 +810,7 @@
 		8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconManager.swift; sourceTree = "<group>"; };
 		8724D2D92B05DD8E00DD1AFC /* SettingAppIconViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconViewModel.swift; sourceTree = "<group>"; };
 		8724D2DB2B05DEA500DD1AFC /* SettingAppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconCell.swift; sourceTree = "<group>"; };
-		8724D2DE2B05E68D00DD1AFC /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		8724D2DE2B05E68D00DD1AFC /* AppFontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontManager.swift; sourceTree = "<group>"; };
 		8724D2E82B05F20100DD1AFC /* SettingAppFontRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontRouter.swift; sourceTree = "<group>"; };
 		8724D2E92B05F20100DD1AFC /* SettingAppFontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontViewController.swift; sourceTree = "<group>"; };
 		8724D2EA2B05F20100DD1AFC /* SettingAppFontBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontBuilder.swift; sourceTree = "<group>"; };
@@ -787,6 +827,11 @@
 		8724D30C2B05F4D500DD1AFC /* AppGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideViewController.swift; sourceTree = "<group>"; };
 		8724D30D2B05F4D500DD1AFC /* AppGuideBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideBuilder.swift; sourceTree = "<group>"; };
 		8724D30E2B05F4D500DD1AFC /* AppGuideInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideInteractor.swift; sourceTree = "<group>"; };
+		8724D3192B061B4800DD1AFC /* AppFontListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontListRouter.swift; sourceTree = "<group>"; };
+		8724D31A2B061B4800DD1AFC /* AppFontListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontListViewController.swift; sourceTree = "<group>"; };
+		8724D31B2B061B4800DD1AFC /* AppFontListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontListBuilder.swift; sourceTree = "<group>"; };
+		8724D31C2B061B4800DD1AFC /* AppFontListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontListInteractor.swift; sourceTree = "<group>"; };
+		8724D3222B061D1100DD1AFC /* AppFontViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontViewModel.swift; sourceTree = "<group>"; };
 		872DF3C32AF2105D00D18447 /* TimerEditCountdownPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEditCountdownPickerView.swift; sourceTree = "<group>"; };
 		872DF3C52AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUI_TimerEditCountdownLabelViewModel.swift; sourceTree = "<group>"; };
 		87339E9C2AE18FD50099AA33 /* TimerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSection.swift; sourceTree = "<group>"; };
@@ -828,6 +873,7 @@
 		873879B62B03418A004EE7F8 /* RoutineStreakDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStreakDto.swift; sourceTree = "<group>"; };
 		873879B82B0341BF004EE7F8 /* RoutineStreakDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStreakDao.swift; sourceTree = "<group>"; };
 		873879BA2B0342C6004EE7F8 /* RoutineStreakSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStreakSQLDao.swift; sourceTree = "<group>"; };
+		8742BCA02B076803003417B9 /* SettingFontSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSegmentControl.swift; sourceTree = "<group>"; };
 		8745900C2AB43E780043214E /* EventSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSerializer.swift; sourceTree = "<group>"; };
 		874988492AC3FBFF004DC64A /* emojis11.0.1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emojis11.0.1.json; sourceTree = "<group>"; };
 		8749884B2AC3FCA5004DC64A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -1059,6 +1105,10 @@
 		8795F5922AFDF0A6008AE1DC /* TimerDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDataViewController.swift; sourceTree = "<group>"; };
 		8795F5932AFDF0A6008AE1DC /* TimerDataBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDataBuilder.swift; sourceTree = "<group>"; };
 		8795F5942AFDF0A6008AE1DC /* TimerDataInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDataInteractor.swift; sourceTree = "<group>"; };
+		87994A922B0630FC0021997A /* FontPreviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPreviewRouter.swift; sourceTree = "<group>"; };
+		87994A932B0630FC0021997A /* FontPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPreviewViewController.swift; sourceTree = "<group>"; };
+		87994A942B0630FC0021997A /* FontPreviewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPreviewBuilder.swift; sourceTree = "<group>"; };
+		87994A952B0630FC0021997A /* FontPreviewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPreviewInteractor.swift; sourceTree = "<group>"; };
 		879D82472AE25B9900F1348E /* TimerSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionType.swift; sourceTree = "<group>"; };
 		879D82492AE25B9F00F1348E /* TimerSectionValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionValue.swift; sourceTree = "<group>"; };
 		879D824B2AE260B100F1348E /* TimerSectionName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionName.swift; sourceTree = "<group>"; };
@@ -1139,6 +1189,10 @@
 		87B378A42AEA8F05006F8C22 /* StartTimerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerRouter.swift; sourceTree = "<group>"; };
 		87B378A52AEA8F05006F8C22 /* StartTimerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerBuilder.swift; sourceTree = "<group>"; };
 		87B378A62AEA8F05006F8C22 /* StartTimerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerInteractor.swift; sourceTree = "<group>"; };
+		87B630652B06FE5700BDBCAB /* FontPickerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerRouter.swift; sourceTree = "<group>"; };
+		87B630662B06FE5700BDBCAB /* FontPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerViewController.swift; sourceTree = "<group>"; };
+		87B630672B06FE5700BDBCAB /* FontPickerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerBuilder.swift; sourceTree = "<group>"; };
+		87B630682B06FE5700BDBCAB /* FontPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPickerInteractor.swift; sourceTree = "<group>"; };
 		87B708662B048F9700C95C08 /* ProfileStatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatRouter.swift; sourceTree = "<group>"; };
 		87B708672B048F9700C95C08 /* ProfileStatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatViewController.swift; sourceTree = "<group>"; };
 		87B708682B048F9700C95C08 /* ProfileStatBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatBuilder.swift; sourceTree = "<group>"; };
@@ -1195,6 +1249,22 @@
 		87D01DE72B03529800211D82 /* RoutineStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStreak.swift; sourceTree = "<group>"; };
 		87D01DE92B03542F00211D82 /* StreakId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakId.swift; sourceTree = "<group>"; };
 		87D01DEB2B03554700211D82 /* StreakCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCount.swift; sourceTree = "<group>"; };
+		87D0C2CA2B0B0433003DF624 /* SettingFontSizeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSizeRouter.swift; sourceTree = "<group>"; };
+		87D0C2CB2B0B0433003DF624 /* SettingFontSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSizeViewController.swift; sourceTree = "<group>"; };
+		87D0C2CC2B0B0433003DF624 /* SettingFontSizeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSizeBuilder.swift; sourceTree = "<group>"; };
+		87D0C2CD2B0B0433003DF624 /* SettingFontSizeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSizeInteractor.swift; sourceTree = "<group>"; };
+		87D0C2DB2B0B07E7003DF624 /* SettingTypefaceRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTypefaceRouter.swift; sourceTree = "<group>"; };
+		87D0C2DC2B0B07E7003DF624 /* SettingTypefaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTypefaceViewController.swift; sourceTree = "<group>"; };
+		87D0C2DD2B0B07E7003DF624 /* SettingTypefaceBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTypefaceBuilder.swift; sourceTree = "<group>"; };
+		87D0C2DE2B0B07E7003DF624 /* SettingTypefaceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTypefaceInteractor.swift; sourceTree = "<group>"; };
+		87D0C2E42B0B16A9003DF624 /* SettingFontSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSlider.swift; sourceTree = "<group>"; };
+		87D0C2E62B0B42A7003DF624 /* SettingFontStepLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontStepLayer.swift; sourceTree = "<group>"; };
+		87D0C2E92B0B45EA003DF624 /* AppTypefaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTypefaceListView.swift; sourceTree = "<group>"; };
+		87D0C2EB2B0B470D003DF624 /* AppTypefaceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTypefaceListViewModel.swift; sourceTree = "<group>"; };
+		87D0C2ED2B0B4750003DF624 /* AppTypefaceListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTypefaceListModel.swift; sourceTree = "<group>"; };
+		87D0C2F12B0B4EE0003DF624 /* OSTypefaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSTypefaceListView.swift; sourceTree = "<group>"; };
+		87D0C2F32B0B4F2F003DF624 /* OsTypefaceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsTypefaceListViewModel.swift; sourceTree = "<group>"; };
+		87D0C2F52B0B4F68003DF624 /* OsTypefaceListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsTypefaceListModel.swift; sourceTree = "<group>"; };
 		87D0CACE2ACCFE9B00FE405F /* RoutineTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitleViewModel.swift; sourceTree = "<group>"; };
 		87D0CAD42ACD0EE600FE405F /* RoutineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRepository.swift; sourceTree = "<group>"; };
 		87D0CAE02ACD326500FE405F /* UpdateRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRoutine.swift; sourceTree = "<group>"; };
@@ -1713,10 +1783,14 @@
 		8724D2DD2B05E68200DD1AFC /* SettingAppFont */ = {
 			isa = PBXGroup;
 			children = (
-				8724D2E82B05F20100DD1AFC /* SettingAppFontRouter.swift */,
-				8724D2E92B05F20100DD1AFC /* SettingAppFontViewController.swift */,
+				87B630642B06FE4B00BDBCAB /* FontPicker */,
+				8724D3182B061B3A00DD1AFC /* AppFontList */,
+				87994A912B0630E70021997A /* FontPreview */,
+				8742BC962B07574E003417B9 /* SettingFont */,
 				8724D2EA2B05F20100DD1AFC /* SettingAppFontBuilder.swift */,
+				8724D2E82B05F20100DD1AFC /* SettingAppFontRouter.swift */,
 				8724D2EB2B05F20100DD1AFC /* SettingAppFontInteractor.swift */,
+				8724D2E92B05F20100DD1AFC /* SettingAppFontViewController.swift */,
 			);
 			path = SettingAppFont;
 			sourceTree = "<group>";
@@ -1752,6 +1826,26 @@
 				8724D3042B05F2EE00DD1AFC /* AppInfoViewController.swift */,
 			);
 			path = AppInfo;
+			sourceTree = "<group>";
+		};
+		8724D3182B061B3A00DD1AFC /* AppFontList */ = {
+			isa = PBXGroup;
+			children = (
+				8724D31B2B061B4800DD1AFC /* AppFontListBuilder.swift */,
+				8724D3192B061B4800DD1AFC /* AppFontListRouter.swift */,
+				8724D31C2B061B4800DD1AFC /* AppFontListInteractor.swift */,
+				8724D31A2B061B4800DD1AFC /* AppFontListViewController.swift */,
+				8724D3212B061D0400DD1AFC /* Views */,
+			);
+			path = AppFontList;
+			sourceTree = "<group>";
+		};
+		8724D3212B061D0400DD1AFC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8724D3222B061D1100DD1AFC /* AppFontViewModel.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8736761A2B0399580004276B /* ProfileCard */ = {
@@ -1830,6 +1924,29 @@
 				87176A6B2AFE53FA00C8B1B8 /* WeeklyLeftAxisView.swift */,
 			);
 			path = WeeklyTableView;
+			sourceTree = "<group>";
+		};
+		8742BC962B07574E003417B9 /* SettingFont */ = {
+			isa = PBXGroup;
+			children = (
+				87D0C2C92B0B0409003DF624 /* SettingFontSize */,
+				87D0C2D22B0B0438003DF624 /* SettingTypeface */,
+				870D023F2B089A5B00CE207B /* SettingFontBuilder.swift */,
+				870D023D2B089A5B00CE207B /* SettingFontRouter.swift */,
+				870D02402B089A5B00CE207B /* SettingFontInteractor.swift */,
+				870D023E2B089A5B00CE207B /* SettingFontViewController.swift */,
+				8742BC9F2B0767F7003417B9 /* VIews */,
+			);
+			path = SettingFont;
+			sourceTree = "<group>";
+		};
+		8742BC9F2B0767F7003417B9 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				8742BCA02B076803003417B9 /* SettingFontSegmentControl.swift */,
+				870D02452B089BE800CE207B /* SettingFontSegmentButton.swift */,
+			);
+			path = VIews;
 			sourceTree = "<group>";
 		};
 		874988482AC3FBBA004DC64A /* Resource */ = {
@@ -2521,6 +2638,17 @@
 			path = FocusTimer;
 			sourceTree = "<group>";
 		};
+		87994A912B0630E70021997A /* FontPreview */ = {
+			isa = PBXGroup;
+			children = (
+				87994A922B0630FC0021997A /* FontPreviewRouter.swift */,
+				87994A942B0630FC0021997A /* FontPreviewBuilder.swift */,
+				87994A952B0630FC0021997A /* FontPreviewInteractor.swift */,
+				87994A932B0630FC0021997A /* FontPreviewViewController.swift */,
+			);
+			path = FontPreview;
+			sourceTree = "<group>";
+		};
 		879D82462AE25B4400F1348E /* SectionTimer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2768,6 +2896,17 @@
 			path = StartTimer;
 			sourceTree = "<group>";
 		};
+		87B630642B06FE4B00BDBCAB /* FontPicker */ = {
+			isa = PBXGroup;
+			children = (
+				87B630652B06FE5700BDBCAB /* FontPickerRouter.swift */,
+				87B630672B06FE5700BDBCAB /* FontPickerBuilder.swift */,
+				87B630682B06FE5700BDBCAB /* FontPickerInteractor.swift */,
+				87B630662B06FE5700BDBCAB /* FontPickerViewController.swift */,
+			);
+			path = FontPicker;
+			sourceTree = "<group>";
+		};
 		87B708652B048F1500C95C08 /* ProfileStat */ = {
 			isa = PBXGroup;
 			children = (
@@ -2828,8 +2967,8 @@
 		87B708962B04983100C95C08 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				8724D2DE2B05E68D00DD1AFC /* AppFont.swift */,
 				87B708DD2B04F50F00C95C08 /* AppThemeManager.swift */,
+				8724D2DE2B05E68D00DD1AFC /* AppFontManager.swift */,
 				8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */,
 				8724D2F02B05F23000DD1AFC /* SettingAppAlarm */,
 				87B708BF2B04E6EF00C95C08 /* SettingAppTheme */,
@@ -2977,6 +3116,52 @@
 				87C8153F2AD3ED8E0062BEDF /* RepeatWeeklyControl.swift */,
 				87C815432AD405E20062BEDF /* RepeatMontlyControl.swift */,
 				8703F56E2AD4F8AC0062D065 /* RoutineRepeatControlButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87D0C2C92B0B0409003DF624 /* SettingFontSize */ = {
+			isa = PBXGroup;
+			children = (
+				87D0C2CA2B0B0433003DF624 /* SettingFontSizeRouter.swift */,
+				87D0C2CC2B0B0433003DF624 /* SettingFontSizeBuilder.swift */,
+				87D0C2CD2B0B0433003DF624 /* SettingFontSizeInteractor.swift */,
+				87D0C2CB2B0B0433003DF624 /* SettingFontSizeViewController.swift */,
+				87D0C2E32B0B1693003DF624 /* Views */,
+			);
+			path = SettingFontSize;
+			sourceTree = "<group>";
+		};
+		87D0C2D22B0B0438003DF624 /* SettingTypeface */ = {
+			isa = PBXGroup;
+			children = (
+				87D0C2DD2B0B07E7003DF624 /* SettingTypefaceBuilder.swift */,
+				87D0C2DB2B0B07E7003DF624 /* SettingTypefaceRouter.swift */,
+				87D0C2DE2B0B07E7003DF624 /* SettingTypefaceInteractor.swift */,
+				87D0C2DC2B0B07E7003DF624 /* SettingTypefaceViewController.swift */,
+				87D0C2F52B0B4F68003DF624 /* OsTypefaceListModel.swift */,
+				87D0C2ED2B0B4750003DF624 /* AppTypefaceListModel.swift */,
+				87D0C2E82B0B45D1003DF624 /* Views */,
+			);
+			path = SettingTypeface;
+			sourceTree = "<group>";
+		};
+		87D0C2E32B0B1693003DF624 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87D0C2E42B0B16A9003DF624 /* SettingFontSlider.swift */,
+				87D0C2E62B0B42A7003DF624 /* SettingFontStepLayer.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87D0C2E82B0B45D1003DF624 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87D0C2F32B0B4F2F003DF624 /* OsTypefaceListViewModel.swift */,
+				87D0C2F12B0B4EE0003DF624 /* OSTypefaceListView.swift */,
+				87D0C2EB2B0B470D003DF624 /* AppTypefaceListViewModel.swift */,
+				87D0C2E92B0B45EA003DF624 /* AppTypefaceListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3745,6 +3930,7 @@
 				87D34DAA2AFDF64A00C7537D /* TimerDataOfYearBuilder.swift in Sources */,
 				8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */,
 				8751F0B72AC7F79D000462EC /* RoutineEmojiIconInteractor.swift in Sources */,
+				8742BCA12B076803003417B9 /* SettingFontSegmentControl.swift in Sources */,
 				873676222B03996B0004276B /* ProfileCardInteractor.swift in Sources */,
 				876E959F2AB2FC6800046809 /* EventSourcingError.swift in Sources */,
 				8736761F2B03996B0004276B /* ProfileCardRouter.swift in Sources */,
@@ -3778,12 +3964,14 @@
 				87DFFE4F2AF2794E00D2E588 /* RecordRepository.swift in Sources */,
 				8724D2D72B05DD0A00DD1AFC /* AppIconManager.swift in Sources */,
 				8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */,
+				87B6306B2B06FE5700BDBCAB /* FontPickerBuilder.swift in Sources */,
 				87AD2D632AD6D31400B0E2CF /* RecordFactory.swift in Sources */,
 				879D82482AE25B9900F1348E /* TimerSectionType.swift in Sources */,
 				87176A532AFE4BB500C8B1B8 /* RecordWeekTableBannerCell.swift in Sources */,
 				8751F0AC2AC7F2FC000462EC /* RoutineTitleViewController.swift in Sources */,
 				87FB8D312AF8EA0C001180EC /* RoutineTotalRecordListView.swift in Sources */,
 				87AAE6572AE006EB000A7D4F /* SectionRoundTimerBuilder.swift in Sources */,
+				87D0C2F62B0B4F68003DF624 /* OsTypefaceListModel.swift in Sources */,
 				87D5AAE72AB83A4A00FE712C /* CDSnapshotRepository.swift in Sources */,
 				87B708D02B04E72300C95C08 /* SettingAppIconViewController.swift in Sources */,
 				8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */,
@@ -3795,12 +3983,14 @@
 				8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */,
 				87DFFE3A2AF25E3200D2E588 /* TimerRecordDao.swift in Sources */,
 				87C815442AD405E20062BEDF /* RepeatMontlyControl.swift in Sources */,
+				870D02432B089A5B00CE207B /* SettingFontBuilder.swift in Sources */,
 				87A2C9C62AEFB413004AE6C1 /* AddTabataTimerBuilder.swift in Sources */,
 				879D825D2AE2696B00F1348E /* TimerSectionTypeDto.swift in Sources */,
 				871E6A362ADEADD30051F978 /* TimerSectionEditRouter.swift in Sources */,
 				87A2C9D62AEFC31B004AE6C1 /* AddFocusTimerRouter.swift in Sources */,
 				8751F0922AC7E776000462EC /* RoutineDetailViewController.swift in Sources */,
 				8779ADDE2AFA348B00176746 /* RoutineDataOfWeekBuilder.swift in Sources */,
+				87D0C2E02B0B07E7003DF624 /* SettingTypefaceViewController.swift in Sources */,
 				87FB8D1A2AF8D425001180EC /* RoutineMonthRecordSQLDao.swift in Sources */,
 				876E94D32AB2CED800046809 /* AppRootViewController.swift in Sources */,
 				87B708BD2B04DE8E00C95C08 /* Bundle+Utils.swift in Sources */,
@@ -3809,6 +3999,7 @@
 				87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */,
 				876E94D72AB2CEE600046809 /* AppComponent.swift in Sources */,
 				87D34DA82AFDF64A00C7537D /* TimerDataOfYearRouter.swift in Sources */,
+				87B6306A2B06FE5700BDBCAB /* FontPickerViewController.swift in Sources */,
 				87AD2D5F2AD6D26D00B0E2CF /* RecordApplicationService.swift in Sources */,
 				8724D3092B05F2EE00DD1AFC /* AppInfoBuilder.swift in Sources */,
 				87B708A92B04A8C400C95C08 /* ProfileMenuListModel.swift in Sources */,
@@ -3853,11 +4044,13 @@
 				8768E5F82ABC3A6600CB35EC /* CreateCheckList.swift in Sources */,
 				87AF756E2AB99DD1001CF7F2 /* EventEntity+CoreDataClass.swift in Sources */,
 				876E95562AB2D00F00046809 /* UIIMageView+Utils.swift in Sources */,
+				87D0C2F22B0B4EE0003DF624 /* OSTypefaceListView.swift in Sources */,
 				87B378972AEA6DAD006F8C22 /* TimerSetup.swift in Sources */,
 				8724D2ED2B05F20100DD1AFC /* SettingAppFontViewController.swift in Sources */,
 				874C4DCF2AD7C11100734491 /* RecordCalendarRouter.swift in Sources */,
 				87F7FAA82AD4527500F14831 /* RepeatDoItOnceControl.swift in Sources */,
 				8724D3122B05F4D500DD1AFC /* AppGuideInteractor.swift in Sources */,
+				870D02442B089A5B00CE207B /* SettingFontInteractor.swift in Sources */,
 				8749884C2AC3FCA5004DC64A /* Category.swift in Sources */,
 				87D0CAE72ACD409000FE405F /* RoutineListCell.swift in Sources */,
 				87AB913A2AEB90640051FB9F /* FocusRoundTimerInteractor.swift in Sources */,
@@ -3866,9 +4059,11 @@
 				87FB8D1C2AF8D7CB001180EC /* TimerRecordReadModel.swift in Sources */,
 				871E6A032ADE9A700051F978 /* TimerSectionListViewController.swift in Sources */,
 				87B708702B04901600C95C08 /* ProfileStatSegmentControl.swift in Sources */,
+				87D0C2E72B0B42A7003DF624 /* SettingFontStepLayer.swift in Sources */,
 				87135AEE2AC9454E006B71D5 /* RoutineEditInteractor.swift in Sources */,
 				8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */,
 				8724D3082B05F2EE00DD1AFC /* AppInfoViewController.swift in Sources */,
+				8724D31F2B061B4800DD1AFC /* AppFontListBuilder.swift in Sources */,
 				870B573A2AE12B69006579CE /* TimerProjection.swift in Sources */,
 				87DEAAB72AD90D3F00C94F0A /* LocalNotification.swift in Sources */,
 				87AD2D692AD6D61B00B0E2CF /* RecordDate.swift in Sources */,
@@ -3878,6 +4073,7 @@
 				87F3A37C2AB3007100A2102D /* EventStream.swift in Sources */,
 				879D82502AE2628400F1348E /* TimerSectionEmoji.swift in Sources */,
 				87A2C9CE2AEFBE26004AE6C1 /* AddRoundTimerViewController.swift in Sources */,
+				87D0C2EE2B0B4750003DF624 /* AppTypefaceListModel.swift in Sources */,
 				87B7088D2B04928E00C95C08 /* ProfileRecordInteractor.swift in Sources */,
 				87910D1C2AEA414900CAC1ED /* FocusTimerCreated.swift in Sources */,
 				87D34DC72AFDFCC600C7537D /* TimerTotalRecordBuilder.swift in Sources */,
@@ -3887,10 +4083,12 @@
 				8783E85E2AFDCDC800B596FC /* RecordTimerListDetailRouter.swift in Sources */,
 				87B708A32B0498A700C95C08 /* ProfileMenuListView.swift in Sources */,
 				876E955C2AB2D00F00046809 /* UIImage+Utils.swift in Sources */,
+				87D0C2EC2B0B470D003DF624 /* AppTypefaceListViewModel.swift in Sources */,
 				87AD31332ADE615B007DB743 /* CreateTimerViewController.swift in Sources */,
 				874C4DDA2AD80CCA00734491 /* RoutineBasicInfoRouter.swift in Sources */,
 				87AF75732AB99DD1001CF7F2 /* SnapshotEntity+CoreDataProperties.swift in Sources */,
 				87C8153B2AD3DBDA0062BEDF /* RoutineEditRepeatInteractor.swift in Sources */,
+				8724D31D2B061B4800DD1AFC /* AppFontListRouter.swift in Sources */,
 				8738797B2B01C089004EE7F8 /* RoutineTopAcheiveInteractor.swift in Sources */,
 				87DFEC642AC1A9A200531EE3 /* TouchesButton.swift in Sources */,
 				87D0CAE92ACD593900FE405F /* RoutineNameChanged.swift in Sources */,
@@ -3918,6 +4116,7 @@
 				87176A662AFE504F00C8B1B8 /* RoutineWeeklyTableViewController.swift in Sources */,
 				8751F09D2AC7F092000462EC /* RoutineEditTitleInteractor.swift in Sources */,
 				87D34DD12AFE02C900C7537D /* TimerBarChartView.swift in Sources */,
+				87994A962B0630FC0021997A /* FontPreviewRouter.swift in Sources */,
 				87B708942B04939200C95C08 /* ProfileChartBuilder.swift in Sources */,
 				87AD31342ADE615B007DB743 /* CreateTimerBuilder.swift in Sources */,
 				871E69EF2ADE82F60051F978 /* TimerSectionListCell.swift in Sources */,
@@ -3940,7 +4139,7 @@
 				87AAE65E2AE00B47000A7D4F /* TimerNextSectionRouter.swift in Sources */,
 				87B3789E2AEA79E5006F8C22 /* TimerSelectViewController.swift in Sources */,
 				8713C79F2ADFB779007CDD33 /* SectionTimerBuilder.swift in Sources */,
-				8724D2DF2B05E68D00DD1AFC /* AppFont.swift in Sources */,
+				8724D2DF2B05E68D00DD1AFC /* AppFontManager.swift in Sources */,
 				87AAE66A2AE011A8000A7D4F /* TimerListModel.swift in Sources */,
 				87176A592AFE4F7D00C8B1B8 /* RoutineWeeklyTrackerRouter.swift in Sources */,
 				8713D5102ADF83B400735913 /* TimerSectionValueModel.swift in Sources */,
@@ -3951,14 +4150,17 @@
 				878DA79C2ACE64F500220653 /* RoutineWeekCalendarBuilder.swift in Sources */,
 				8780363E2AF0A74300EBBA5F /* FocusResultViewController.swift in Sources */,
 				870B57292AE11A17006579CE /* SectionTimerCreated.swift in Sources */,
+				87D0C2D12B0B0433003DF624 /* SettingFontSizeInteractor.swift in Sources */,
 				8712F6572AC2E09A008A02C4 /* RoutineTintViewController.swift in Sources */,
 				87AB912F2AEB901B0051FB9F /* FocusTimerRouter.swift in Sources */,
 				8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */,
 				873676252B039ACC0004276B /* ProfileBarcodeView.swift in Sources */,
 				876E95192AB2CFE900046809 /* ProfileHomeRouter.swift in Sources */,
 				87157C922AE69C31002C8003 /* CustomTimer.swift in Sources */,
+				87D0C2E12B0B07E7003DF624 /* SettingTypefaceBuilder.swift in Sources */,
 				8713C7A32ADFC3E9007CDD33 /* SectionRoundTimerView.swift in Sources */,
 				87AB91202AEB6EBB0051FB9F /* TimerTypeModel.swift in Sources */,
+				87D0C2EA2B0B45EA003DF624 /* AppTypefaceListView.swift in Sources */,
 				8709DEE52AE8FCA00077FBD3 /* TouchesRoundButton.swift in Sources */,
 				87B708CF2B04E72300C95C08 /* SettingAppIconRouter.swift in Sources */,
 				87B708922B04939200C95C08 /* ProfileChartRouter.swift in Sources */,
@@ -3998,6 +4200,7 @@
 				8795F5962AFDF0A6008AE1DC /* TimerDataViewController.swift in Sources */,
 				8779ADEF2AFA34A300176746 /* RoutineDataOfYearInteractor.swift in Sources */,
 				873879A92B027009004EE7F8 /* RoutineWeeklyTrackerSQLDao.swift in Sources */,
+				87D0C2E22B0B07E7003DF624 /* SettingTypefaceInteractor.swift in Sources */,
 				870B57242AE119EB006579CE /* TimerFactory.swift in Sources */,
 				876E95542AB2D00F00046809 /* UIView+Utils.swift in Sources */,
 				873879842B01E69A004EE7F8 /* RoutineTopAcheiveChartInteractor.swift in Sources */,
@@ -4048,6 +4251,7 @@
 				87FB8D422AF8ED08001180EC /* RecordRoutineListBuilder.swift in Sources */,
 				8779ADC92AFA1BBC00176746 /* RecordRoutineListDetailRouter.swift in Sources */,
 				876E95762AB2D9B700046809 /* DDLog+Utils.swift in Sources */,
+				87994A982B0630FC0021997A /* FontPreviewBuilder.swift in Sources */,
 				878036572AF12AF700EBBA5F /* TimerEditCountdownInteractor.swift in Sources */,
 				87B708D72B04E78E00C95C08 /* SettingAppThemeRouter.swift in Sources */,
 				876E95592AB2D00F00046809 /* UIScroll+Utils.swift in Sources */,
@@ -4099,6 +4303,7 @@
 				87910D112AEA112A00CAC1ED /* FocusTimer.swift in Sources */,
 				87B708D12B04E72300C95C08 /* SettingAppIconBuilder.swift in Sources */,
 				870B57312AE120D3006579CE /* CDTimerFactory.swift in Sources */,
+				870D02462B089BE800CE207B /* SettingFontSegmentButton.swift in Sources */,
 				8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */,
 				87B708D92B04E78E00C95C08 /* SettingAppThemeBuilder.swift in Sources */,
 				876E95982AB2FA6F00046809 /* Specification.swift in Sources */,
@@ -4106,6 +4311,7 @@
 				873879A02B02367A004EE7F8 /* RoutineRecordWeekModel.swift in Sources */,
 				873879972B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordBuilder.swift in Sources */,
 				87901E9D2ABAF7B3002CA93F /* RoutineListDao.swift in Sources */,
+				870D02422B089A5B00CE207B /* SettingFontViewController.swift in Sources */,
 				876E95112AB2CFDB00046809 /* TimerHomeRouter.swift in Sources */,
 				877DF8BC2AD57A8500F45C10 /* RepeatDto.swift in Sources */,
 				8779ADF72AFA361900176746 /* RoutineTotalRecordInteractor.swift in Sources */,
@@ -4113,6 +4319,7 @@
 				8724D3072B05F2EE00DD1AFC /* AppInfoRouter.swift in Sources */,
 				8779ADFC2AFA3B2800176746 /* RoutineDataOfWeekViewModel.swift in Sources */,
 				877A7AE72AFA6764002BC722 /* GressLeftAxisView.swift in Sources */,
+				87D0C2D02B0B0433003DF624 /* SettingFontSizeBuilder.swift in Sources */,
 				8779ADEE2AFA34A300176746 /* RoutineDataOfYearBuilder.swift in Sources */,
 				876E95042AB2CFC100046809 /* RoutineHomeInteractor.swift in Sources */,
 				87615D712AD83495008E983D /* RoutineBasicInfoFormatter.swift in Sources */,
@@ -4120,6 +4327,7 @@
 				871E6A412ADEAF490051F978 /* TimerSectionEditTitleBuilder.swift in Sources */,
 				87176A4E2AFE298D00C8B1B8 /* TimerLineChartViewModel.swift in Sources */,
 				87176A6A2AFE51EC00C8B1B8 /* WeeklyTableCell.swift in Sources */,
+				87994A972B0630FC0021997A /* FontPreviewViewController.swift in Sources */,
 				87B708B62B04C50D00C95C08 /* FeedbackMailViewController.swift in Sources */,
 				879D82522AE2634900F1348E /* TimerSequence.swift in Sources */,
 				871D0FBB2ADD05440080DEAC /* RecordModel.swift in Sources */,
@@ -4134,6 +4342,7 @@
 				87AAE6612AE00B47000A7D4F /* TimerNextSectionInteractor.swift in Sources */,
 				870B574F2AE13ABB006579CE /* TimerEditTitleBuilder.swift in Sources */,
 				87AD31352ADE615B007DB743 /* CreateTimerInteractor.swift in Sources */,
+				87B630692B06FE5700BDBCAB /* FontPickerRouter.swift in Sources */,
 				87DEAADC2AD95DC700C94F0A /* RoutineEditReminderBuilder.swift in Sources */,
 				8783E8562AFBEBC600B596FC /* RecordTimerListCell.swift in Sources */,
 				8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */,
@@ -4153,6 +4362,7 @@
 				87176A6C2AFE53FA00C8B1B8 /* WeeklyLeftAxisView.swift in Sources */,
 				87D34DCB2AFDFCE700C7537D /* TimerTotalRecordListView.swift in Sources */,
 				8713C78E2ADF9A9A007CDD33 /* TimerSectionEditValueRouter.swift in Sources */,
+				87B6306C2B06FE5700BDBCAB /* FontPickerInteractor.swift in Sources */,
 				87AD2D5A2AD6B46D00B0E2CF /* RepeatMonthlyViewModel.swift in Sources */,
 				8795F5952AFDF0A6008AE1DC /* TimerDataRouter.swift in Sources */,
 				873879952B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordRouter.swift in Sources */,
@@ -4178,6 +4388,7 @@
 				87E376092AD6E0E000359850 /* RecordReadModel.swift in Sources */,
 				87AD2D652AD6D32700B0E2CF /* RoutineRecord.swift in Sources */,
 				87339E9D2AE18FD50099AA33 /* TimerSection.swift in Sources */,
+				870D02412B089A5B00CE207B /* SettingFontRouter.swift in Sources */,
 				876E95922AB2FA1F00046809 /* Event.swift in Sources */,
 				87B378A82AEA8F05006F8C22 /* StartTimerBuilder.swift in Sources */,
 				87B708A02B04986800C95C08 /* ProfileMenuInteractor.swift in Sources */,
@@ -4188,6 +4399,7 @@
 				8779ADD42AFA337B00176746 /* RoutineDataRouter.swift in Sources */,
 				87176A682AFE505000C8B1B8 /* RoutineWeeklyTableInteractor.swift in Sources */,
 				878036682AF1583C00EBBA5F /* FireworkParticle.swift in Sources */,
+				87D0C2CE2B0B0433003DF624 /* SettingFontSizeRouter.swift in Sources */,
 				876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */,
 				87DEAAAF2AD9061C00C94F0A /* SystemException.swift in Sources */,
 				870B57422AE12BD7006579CE /* TimerTypeDto.swift in Sources */,
@@ -4212,6 +4424,7 @@
 				8724D30A2B05F2EE00DD1AFC /* AppInfoInteractor.swift in Sources */,
 				878036542AF12AF700EBBA5F /* TimerEditCountdownRouter.swift in Sources */,
 				87FB8D402AF8ED08001180EC /* RecordRoutineListRouter.swift in Sources */,
+				87D0C2DF2B0B07E7003DF624 /* SettingTypefaceRouter.swift in Sources */,
 				87DFFE272AF22EA200D2E588 /* TimerCountdownDao.swift in Sources */,
 				8712F6562AC2E09A008A02C4 /* RoutineTintRouter.swift in Sources */,
 				87AAE6582AE006EB000A7D4F /* SectionRoundTimerInteractor.swift in Sources */,
@@ -4232,6 +4445,7 @@
 				87B7086B2B048F9700C95C08 /* ProfileStatViewController.swift in Sources */,
 				87DFFE402AF2677200D2E588 /* SetCompleteTimerRecord.swift in Sources */,
 				8751F0942AC7E776000462EC /* RoutineDetailInteractor.swift in Sources */,
+				87D0C2F42B0B4F2F003DF624 /* OsTypefaceListViewModel.swift in Sources */,
 				876E951A2AB2CFE900046809 /* ProfileHomeViewController.swift in Sources */,
 				87B708AD2B04BC2800C95C08 /* PlaceholerTextView.swift in Sources */,
 				87FB8D102AF8D09D001180EC /* RoutineMonthRecordDto.swift in Sources */,
@@ -4250,6 +4464,7 @@
 				87B3789F2AEA79E5006F8C22 /* TimerSelectBuilder.swift in Sources */,
 				8768E5F02ABC388B00CB35EC /* Tint.swift in Sources */,
 				87DFFE312AF2588D00D2E588 /* TimerRecord.swift in Sources */,
+				87D0C2CF2B0B0433003DF624 /* SettingFontSizeViewController.swift in Sources */,
 				8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */,
 				87AD31392ADE6447007DB743 /* CreateTimerButton.swift in Sources */,
 				8724D2F82B05F24000DD1AFC /* SettingAppAlarmInteractor.swift in Sources */,
@@ -4273,11 +4488,14 @@
 				87DFEC712AC1B43C00531EE3 /* Keyboard+Utils.swift in Sources */,
 				874988632AC41F7D004DC64A /* RoutineListInteractor.swift in Sources */,
 				876E950B2AB2CFD000046809 /* RecordHomeBuilder.swift in Sources */,
+				87994A992B0630FC0021997A /* FontPreviewInteractor.swift in Sources */,
 				87B708B52B04C50D00C95C08 /* FeedbackMailRouter.swift in Sources */,
 				87D0CB032ACD83AC00FE405F /* RoutineRepeatChanged.swift in Sources */,
 				87FB8D122AF8D0CE001180EC /* RoutineTotalRecordDto.swift in Sources */,
+				8724D31E2B061B4800DD1AFC /* AppFontListViewController.swift in Sources */,
 				87E375FF2AD6D99000359850 /* RecordService.swift in Sources */,
 				8779ADCA2AFA1BBC00176746 /* RecordRoutineListDetailViewController.swift in Sources */,
+				8724D3202B061B4800DD1AFC /* AppFontListInteractor.swift in Sources */,
 				876E951B2AB2CFE900046809 /* ProfileHomeBuilder.swift in Sources */,
 				87E3761A2AD704DE00359850 /* RecordFormatter.swift in Sources */,
 				8779ADCC2AFA1BBC00176746 /* RecordRoutineListDetailInteractor.swift in Sources */,
@@ -4287,10 +4505,12 @@
 				87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */,
 				8751F0B62AC7F79D000462EC /* RoutineEmojiIconBuilder.swift in Sources */,
 				8779ADF42AFA361900176746 /* RoutineTotalRecordRouter.swift in Sources */,
+				8724D3232B061D1100DD1AFC /* AppFontViewModel.swift in Sources */,
 				87135AEB2AC9454E006B71D5 /* RoutineEditRouter.swift in Sources */,
 				8712F6582AC2E09A008A02C4 /* RoutineTintBuilder.swift in Sources */,
 				87AD2D582AD6B44D00B0E2CF /* RepeatWeeklyViewModel.swift in Sources */,
 				87AF75722AB99DD1001CF7F2 /* SnapshotEntity+CoreDataClass.swift in Sources */,
+				87D0C2E52B0B16A9003DF624 /* SettingFontSlider.swift in Sources */,
 				87FB8D4A2AF8F298001180EC /* RecordRoutineListHeaderView.swift in Sources */,
 				87D0CACF2ACCFE9B00FE405F /* RoutineTitleViewModel.swift in Sources */,
 				87176A512AFE3D1C00C8B1B8 /* RecordTopAcheiveBannerCell.swift in Sources */,

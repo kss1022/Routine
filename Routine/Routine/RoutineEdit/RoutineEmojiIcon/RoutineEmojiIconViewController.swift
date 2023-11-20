@@ -100,8 +100,9 @@ final class RoutineEmojiIconViewController: UIViewController, RoutineEmojiIconPr
         button.backgroundColor = .lightGray
         button.setTitle(emoji, for: .normal)
         
-        button.setFont(style: .largeTitle)
+        button.titleLabel?.font = .systemFont(ofSize: 34.0)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
+        
         
         button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
         button.contentEdgeInsets.top = 8.0

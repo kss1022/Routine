@@ -22,7 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScence = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScence)
         
-        AppThemeManager.share.updateTheme()
+        AppThemeManager.share.setup()
+        AppFontManager.share.setup()
         
         let result = AppRootBuilder(dependency: AppComponent()).build()
         self.launchRouter = result.launchRouter

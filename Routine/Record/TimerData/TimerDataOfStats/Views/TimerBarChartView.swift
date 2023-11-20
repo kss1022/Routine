@@ -31,12 +31,13 @@ final class TimerBarChartView: UIView{
         chartView.leftAxis.setLabelCount(7, force: false)
         chartView.leftAxis.labelTextColor = .label
         chartView.leftAxis.axisLineColor = .label
-
+        chartView.leftAxis.labelFont = .getFont(size: 10.0)
 
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.labelFont = .boldSystemFont(ofSize: 6.0)
         chartView.xAxis.labelTextColor = .label
         chartView.xAxis.axisLineColor = .label
+        chartView.xAxis.labelFont = .getFont(size: 10.0)
 
         chartView.isUserInteractionEnabled = false
         chartView.doubleTapToZoomEnabled = false

@@ -59,7 +59,7 @@ final class TimerEditCoundownAlertController: UIViewController{
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14.0, weight: .bold)
+        label.font = .getFont(size: 14.0)
         label.textColor = .label
         label.text = "Set duration"
         return label

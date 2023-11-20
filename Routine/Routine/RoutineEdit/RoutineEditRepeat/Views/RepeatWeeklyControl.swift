@@ -28,7 +28,7 @@ final class RepeatWeeklyControl: UIControl{
     private func weeklyButton() -> UIButton{
         let button = RoutineRepeatControlButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .regular)
+        button.titleLabel?.font = .getFont(size: 12.0)
         button.addTarget(self, action: #selector(weeklyButtonTap), for: .touchUpInside)
         return button
     }

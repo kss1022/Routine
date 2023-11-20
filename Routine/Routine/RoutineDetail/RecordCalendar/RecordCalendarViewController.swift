@@ -50,6 +50,12 @@ final class RecordCalendarViewController: UIViewController, RecordCalendarPresen
         calendar.appearance.titleDefaultColor = .label
         calendar.appearance.weekdayTextColor = .gray
         
+        calendar.appearance.headerTitleFont = .getFont(size: 14.0)
+        calendar.appearance.titleFont = .getFont(size: 14.0)        
+        calendar.appearance.weekdayFont = .getFont(size: 14.0)
+        
+        
+        
         //calendar.appearance.selectionColor = .primaryColor
         calendar.appearance.eventDefaultColor = .systemRed
         calendar.appearance.eventSelectionColor = .systemRed

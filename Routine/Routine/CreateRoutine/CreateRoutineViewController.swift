@@ -39,10 +39,10 @@ final class CreateRoutineViewController: UIViewController, CreateRoutinePresenta
     }()
     
     private lazy var addYourOwnButton: UIButton = {
-        let button = TouchesButton()
+        let button = TouchesRoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
+        button.titleLabel?.font = .getBoldFont(size: 14.0)
         button.setTitle("Add YourOwnButton", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemPurple
@@ -53,9 +53,7 @@ final class CreateRoutineViewController: UIViewController, CreateRoutinePresenta
         button.contentEdgeInsets.bottom = buttonInset
         button.contentEdgeInsets.left = buttonInset
         button.contentEdgeInsets.right = buttonInset
-        
-        button.roundCorners(24.0)
-        
+            
         button.addTarget(self, action: #selector(addYourOwnButtonTap), for: .touchUpInside)
         return button
     }()
@@ -101,9 +99,7 @@ final class CreateRoutineViewController: UIViewController, CreateRoutinePresenta
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             addYourOwnButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addYourOwnButton.heightAnchor.constraint(equalToConstant: 48.0),
-            addYourOwnButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16.0),
-            
+            addYourOwnButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16.0),            
         ])
     }
     

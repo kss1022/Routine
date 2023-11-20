@@ -30,9 +30,18 @@ class TimeStatsSegmentControl: UISegmentedControl{
             foregroundImageView.layer.cornerRadius = foregroundImageView.bounds.height/2
         }
         
-        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-
-        setTitleTextAttributes(titleTextAttributes, for: .selected)
+        
+        let font: UIFont = .getFont(size: 16.0)
+        let normalTextAttributes = [
+            NSAttributedString.Key.font: font
+        ]
+        setTitleTextAttributes(normalTextAttributes, for: .normal)
+        
+        let selectedTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: font
+        ]
+        setTitleTextAttributes(selectedTextAttributes, for: .selected)
         
     }
 }

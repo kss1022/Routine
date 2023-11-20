@@ -8,7 +8,11 @@
 import ModernRIBs
 
 protocol SettingAppFontRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func attachFontPicker()
+    func detachFontPicker()
+    
+    func attachFontPreview()
+    func attachFontSettingFont()
 }
 
 protocol SettingAppFontPresentable: Presentable {
@@ -20,21 +24,27 @@ protocol SettingAppFontListener: AnyObject {
     func settingAppFontDidMove()
 }
 
-final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresentable>, SettingAppFontInteractable, SettingAppFontPresentableListener {
-
+final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresentable>, SettingAppFontInteractable, SettingAppFontPresentableListener, AdaptivePresentationControllerDelegate {
+    
+    
     weak var router: SettingAppFontRouting?
     weak var listener: SettingAppFontListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
+    
     // in constructor.
     override init(presenter: SettingAppFontPresentable) {
+        presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
         super.init(presenter: presenter)
+        presentationDelegateProxy.delegate = self
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+                        
+        router?.attachFontPreview()
+        router?.attachFontSettingFont()
     }
 
     override func willResignActive() {
@@ -42,7 +52,44 @@ final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresen
         // TODO: Pause any business logic.
     }
     
+    func presentationControllerDidDismiss() {
+        router?.detachFontPicker()
+    }
+    
     func didMove() {
         listener?.settingAppFontDidMove()
+    }
+    
+    
+    
+    //MARK: Setting Font Size
+    func settingFontSetOsSize() {
+        Log.v("SettingFont Set OS Size")
+        AppFontManager.share.setOfDynamicSize()
+    }
+    
+    func settingFontSetCustomSize(value: Float) {
+        Log.v("SettingFont Set Custom Size: \(value)")
+        AppFontManager.share.setCustomFontSize(size: value)
+    }
+    
+    //MARK: Setting Font Typeface
+    func settingFontOsTypefaceDidTap() {
+        router?.attachFontPicker()
+    }
+    
+    func settingFontAppTypefaceDidTap(fontName: String) {
+        Log.v("settingFontAppTypefaceDidTap: \(fontName)")
+    }
+    
+    
+    func fontPikcerDidPickFont(familyName: String) {
+        try! AppFontManager.share.updateFont(familyName: familyName)
+        
+        router?.detachFontPicker()
+    }
+    
+    func fontPickerDidTapCancel() {
+        router?.detachFontPicker()
     }
 }

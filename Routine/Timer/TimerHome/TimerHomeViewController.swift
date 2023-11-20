@@ -44,6 +44,7 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .label
         button.setTitleColor(.systemBackground, for: .normal)
+        button.titleLabel?.font = .getBoldFont(size: 16.0)
         button.addTarget(self, action: #selector(selectTimerButtonTap), for: .touchUpInside)
         return button
     }()

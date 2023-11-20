@@ -24,7 +24,7 @@ final class WeeklyXAxisView : UIView{
     
     private func weeklyLabel() -> UILabel{
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12.0, weight: .bold)
+        label.font = .getBoldFont(size: 12.0)
         label.textColor = .label
         label.textAlignment = .center
         return label
@@ -67,7 +67,7 @@ final class WeeklyXAxisView : UIView{
     func setFontSize(size: CGFloat){
         weeklyStackView.arrangedSubviews
             .compactMap { $0 as? UILabel }
-            .forEach { $0.font = .systemFont(ofSize: size, weight: .bold) }            
+            .forEach { $0.font = .getBoldFont(size: size)}            
     }
     
     

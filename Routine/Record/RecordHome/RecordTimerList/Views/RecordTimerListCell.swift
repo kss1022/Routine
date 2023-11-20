@@ -37,7 +37,7 @@ final class RecordTimerListCell: UICollectionViewCell{
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0, weight: .bold)
+        label.font = .getBoldFont(size: 16.0)
         label.textColor = .label
         label.numberOfLines = 2
         return label
@@ -45,7 +45,7 @@ final class RecordTimerListCell: UICollectionViewCell{
     
     private let durationLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14.0, weight: .regular)
+        label.font = .getFont(size: 14.0)
         label.textColor = .systemGray
         return label
     }()
@@ -54,7 +54,7 @@ final class RecordTimerListCell: UICollectionViewCell{
         let button = TouchesRoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .tertiaryLabel
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .regular)
+        button.titleLabel?.font = .getFont(size: 14.0)
         button.setTitleColor(.label, for: .normal)
         
         button.roundCorners()

@@ -34,7 +34,7 @@ class SectionRoundTimerView: RoundTimerView {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 36.0, weight: .regular)
+        label.font = .getFont(size: 36.0)
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.textColor = .white
@@ -53,7 +53,7 @@ class SectionRoundTimerView: RoundTimerView {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18.0, weight: .regular)
+        label.font = .getFont(size: 18.0)
         label.textAlignment = .center
         label.textColor = .white
         label.adjustsFontSizeToFitWidth = true
@@ -62,7 +62,7 @@ class SectionRoundTimerView: RoundTimerView {
     
     private let descriptoinLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16.0, weight: .regular)
+        label.font = .getFont(size: 16.0)
         label.textAlignment = .center
         label.textColor = .white
         label.adjustsFontSizeToFitWidth = true

@@ -24,7 +24,7 @@ final class TimerSectionListViewController: UIViewController, TimerSectionListPr
     private lazy var tableView : UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         tableView.register(cellType: TimerSectionListCell.self)
 //        tableView.separatorInset = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)

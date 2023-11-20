@@ -81,7 +81,7 @@ final class WeekklyLeftAxisColumnView: UIView{
         
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12.0, weight: .bold)
+        label.font = .getBoldFont(size: 12.0)
         label.textColor = .label
         label.textAlignment = .right
         label.adjustsFontSizeToFitWidth = true
@@ -91,7 +91,7 @@ final class WeekklyLeftAxisColumnView: UIView{
     
     private let emojiLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12.0, weight: .bold)
+        label.font = .getBoldFont(size: 12.0)
         return label
     }()
     
@@ -129,8 +129,8 @@ final class WeekklyLeftAxisColumnView: UIView{
     
     
     func setFont(size: CGFloat){
-        titleLabel.font = .systemFont(ofSize: size, weight: .bold)
-        emojiLabel.font = .systemFont(ofSize: size, weight: .bold)
+        titleLabel.font = .getBoldFont(size: size)
+        emojiLabel.font = .getBoldFont(size: size)
     }
     
 }

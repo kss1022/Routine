@@ -44,7 +44,7 @@ final class SectionRoundTimerViewController: UIViewController, SectionRoundTimer
     private lazy var activeButton: UIButton = {
         let button = TouchesRoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .bold)
+        button.titleLabel?.font = .getBoldFont(size: 16.0)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.contentEdgeInsets = .init(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         
@@ -56,7 +56,7 @@ final class SectionRoundTimerViewController: UIViewController, SectionRoundTimer
     private lazy var cancelButton: UIButton = {
         let button = TouchesRoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 16.0, weight: .bold)
+        button.titleLabel?.font = .getBoldFont(size: 16.0)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(.white, for: .normal)
         button.contentEdgeInsets = .init(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)

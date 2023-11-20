@@ -20,7 +20,7 @@ final class WeeklyTableView: UIView{
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12.0, weight: .bold)
+        label.font = .getBoldFont(size: 12.0)
         label.textColor = .label
         label.textAlignment = .right
         label.text = "Weekly Tracker"
@@ -131,7 +131,7 @@ final class WeeklyTableView: UIView{
         self.fontSize = size
         leftAxisView.setFont(size: fontSize)
         xAxisView.setFontSize(size: fontSize)
-        titleLabel.font = .systemFont(ofSize: fontSize, weight: .black)
+        titleLabel.font = .getBoldFont(size: fontSize)
     }
     
     func setItemSize(size: CGFloat){

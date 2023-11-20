@@ -26,14 +26,14 @@ final class RoutineDataOfDayOfWeekView: UIView{
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12.0, weight: .regular)
+        label.font = .getFont(size: 12.0)
         label.textColor = .label
         return label
     }()
     
     private let weekLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 8.0, weight: .regular)
+        label.font = .getFont(size: 8.0)
         label.textColor = .secondaryLabel
         return label
     }()

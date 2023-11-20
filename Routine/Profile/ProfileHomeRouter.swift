@@ -209,7 +209,7 @@ final class ProfileHomeRouter: ViewableRouter<ProfileHomeInteractable, ProfileHo
         
         let navigation = NavigationControllerable(root: router.viewControllable)
         navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
-        viewController.present(navigation, animated: true, completion: nil)        
+        viewController.present(navigation, animated: true, completion: nil)
         
         appInfoRouter = router
         attachChild(router)

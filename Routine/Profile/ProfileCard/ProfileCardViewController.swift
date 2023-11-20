@@ -46,7 +46,7 @@ final class ProfileCardViewController: UIViewController, ProfileCardPresentable,
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 24.0, weight: .bold)
+        label.font = .getBoldFont(size: 24.0)
         label.textColor = .label
         return label
     }()
@@ -54,7 +54,7 @@ final class ProfileCardViewController: UIViewController, ProfileCardPresentable,
     private lazy var introductionTextView: PlaceholerTextView = {
         let textView = PlaceholerTextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = .systemFont(ofSize: 12.0, weight: .regular)
+        textView.font = .getFont(size: 12.0)
         textView.textColor = .secondaryLabel
         textView.backgroundColor = .clear
         let inset: CGFloat = 0.0

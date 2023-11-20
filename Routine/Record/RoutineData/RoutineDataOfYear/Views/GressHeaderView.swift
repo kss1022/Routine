@@ -19,7 +19,7 @@ final class GressHeaderView: UIScrollView{
     private func label() -> UILabel{
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 8.0, weight: .bold)
+        label.font = .getBoldFont(size: 8.0)
         label.textColor =  .label
         return label
     }

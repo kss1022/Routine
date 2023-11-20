@@ -56,10 +56,10 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
     }()
     
     private lazy var completeButton: UIButton = {
-        let button = TouchesButton()
+        let button = TouchesRoundButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
+        button.titleLabel?.font = .getBoldFont(size: 14.0)
         //button.setTitle("Complete", for: .normal)
         button.setTitleColor(.systemBackground, for: .normal)
         button.backgroundColor = .label
@@ -112,9 +112,7 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
             
             completeButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 32.0),
             completeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            completeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16.0),
-            
-            completeButton.heightAnchor.constraint(equalToConstant: 48.0)
+            completeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16.0)
         ])
         
         

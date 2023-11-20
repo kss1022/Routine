@@ -73,12 +73,7 @@ extension TimerSectionCountPickerView: UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch component{
-        case 0:
-            return "\(countNumberArray[row]) Reps"
-        default:
-            fatalError("Invalid Component: \(component)")
-        }
+        "\(countNumberArray[row]) Reps"
     }
 }
 
@@ -91,5 +86,20 @@ extension TimerSectionCountPickerView: UIPickerViewDelegate{
         default:
             fatalError("Invalid Component: \(component)")
         }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+
+        var pickerLabel = view as? UILabel;
+                
+        if (pickerLabel == nil){
+            pickerLabel = UILabel()
+            pickerLabel?.font = .getFont(size: 21.5)
+            pickerLabel?.textAlignment = .center
+        }
+        
+        pickerLabel?.text =  "\(countNumberArray[row]) Reps"
+
+        return pickerLabel!
     }
 }

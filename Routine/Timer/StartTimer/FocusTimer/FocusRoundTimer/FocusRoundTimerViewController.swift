@@ -39,7 +39,7 @@ final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPres
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontSizeToFitWidth = true
-        label.font = .systemFont(ofSize: 48.0, weight: .bold)
+        label.font = .getBoldFont(size: 48.0)
         label.textColor = .white
         label.textAlignment = .center
         return label

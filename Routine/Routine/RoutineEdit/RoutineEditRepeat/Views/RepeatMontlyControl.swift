@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import FSCalendar
+import UIKit
 
 
 final class RepeatMontlyControl: UIControl{
@@ -37,7 +37,7 @@ final class RepeatMontlyControl: UIControl{
     private func dateButton() -> UIButton{
         let button = RoutineRepeatControlButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .regular)        
+        button.titleLabel?.font = .getFont(size: 14.0)
         button.addTarget(self, action: #selector(dateButtonTap), for: .touchUpInside)
         return button
     }
@@ -47,7 +47,7 @@ final class RepeatMontlyControl: UIControl{
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .regular)
+        button.titleLabel?.font = .getFont(size: 12.0)
         
         button.setTitle("Reset", for: .normal)
         button.addTarget(self, action: #selector(resetButtonTap), for: .touchUpInside)
