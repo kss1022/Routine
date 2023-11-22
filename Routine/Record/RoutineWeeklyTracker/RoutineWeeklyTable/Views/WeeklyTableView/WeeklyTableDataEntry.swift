@@ -6,27 +6,11 @@
 //
 
 import Foundation
-import UIKit.UIColor
 
 
 
-struct WeeklyTableDataEntry{
-    let title: String
-    let emoji: String
-    let tint: UIColor?
-    let weekDataEntry: RoutineTableWeekDataEntry
-        
-    init(_ viewModel: WeeklyTableViewModel) {
-        self.title = viewModel.title
-        self.emoji = viewModel.emoji
-        self.tint = viewModel.tint
-        self.weekDataEntry = RoutineTableWeekDataEntry(viewModel)
-    }
-    
-}
-
-
-struct RoutineTableWeekDataEntry{
+struct WeekTableDataEntry{
+    let id: UUID
     let sunday: Bool
     let monday: Bool
     let tuesday: Bool
@@ -35,7 +19,8 @@ struct RoutineTableWeekDataEntry{
     let friday: Bool
     let saturday: Bool
     
-    init(_ viewModel: WeeklyTableViewModel) {
+    init(_ viewModel: RecordWeekTableBannerViewModel) {
+        self.id = viewModel.id
         self.sunday = viewModel.sunday
         self.monday = viewModel.monday
         self.tuesday = viewModel.tuesday
@@ -44,4 +29,17 @@ struct RoutineTableWeekDataEntry{
         self.friday = viewModel.friday
         self.saturday = viewModel.saturday
     }
+    
+    
+    init(_ viewModel: RoutineWeeklyTableDataEntryViewModel) {
+        self.id = viewModel.id
+        self.sunday = viewModel.sunday
+        self.monday = viewModel.monday
+        self.tuesday = viewModel.tuesday
+        self.wednesday = viewModel.wednesday
+        self.thursday = viewModel.thursday
+        self.friday = viewModel.friday
+        self.saturday = viewModel.saturday
+    }
+
 }

@@ -11,8 +11,7 @@ import Foundation
 
 struct RoutineRecordModel{
     let completes: [Date: String]    
-    let doneThisWeek: RoutineRecordWeekModel
-    
+    let doneThisWeek: RoutineWeekRecordModel?
     let doneThisMonth: Int
     let totalDone: Int
     let bestStreak: Int
@@ -38,7 +37,7 @@ struct RoutineRecordModel{
             }
         
         self.completes = dictionary
-        self.doneThisWeek = RoutineRecordWeekModel(weekDto)
+        self.doneThisWeek = weekDto.flatMap(RoutineWeekRecordModel.init)
         
         self.doneThisMonth = monthDto?.done ?? 0
         self.totalDone = totalDto?.totalDone ?? 0

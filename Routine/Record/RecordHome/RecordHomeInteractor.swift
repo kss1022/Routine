@@ -97,9 +97,8 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
             //WeeklyTracker
             Task{ [weak self] in
                 guard let self = self else { return }
-                do{
-                    let now = Date()                    
-                    try await dependency.recordRepository.fetchRoutineWeeklyTrakers(date: now)
+                do{                    
+                    try await dependency.recordRepository.fetchRoutineWeeklyTrakers()
                     await MainActor.run { self.router?.attachRoutineWeeklyTracker() }
                 }catch{
                     Log.e("\(error)")

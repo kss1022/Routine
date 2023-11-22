@@ -56,6 +56,10 @@ final class AppFontManager{
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.getBoldFont(size: 20.0)]
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont.getBoldFont(size: 34.0)]
         
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.getBoldFont(size: 17.0)], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes( [NSAttributedString.Key.font: UIFont.getBoldFont(size: 17.0)], for: .highlighted)
+
+        
         let fontAttributes = [NSAttributedString.Key.font: UIFont.getFont(size: 11.0)]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .selected)

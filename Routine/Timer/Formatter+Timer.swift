@@ -1,5 +1,5 @@
 //
-//  Formatter+Timer.swift
+//  TimerFormatter.swift
 //  Routine
 //
 //  Created by 한현규 on 10/27/23.

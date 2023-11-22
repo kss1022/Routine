@@ -31,7 +31,6 @@ class DatabaseManager{
     public let routineStreakDao: RoutineStreakDao
     
     public let routineTopAcheiveDao: RoutineTopAcheiveDao
-    public let routineWeeklyTrackerDao: RoutineWeeklyTrackerDao
     
     public let routineRecordDao: RoutineRecordDao
     public let timerRecordDao: TimerRecordDao
@@ -88,7 +87,6 @@ class DatabaseManager{
         
         //Join
         self.routineTopAcheiveDao = RoutineTopAcheiveSQLDao(db: db)
-        self.routineWeeklyTrackerDao = RoutineWeeklyTrackerSQLDao(db: db)
     }
     
 }

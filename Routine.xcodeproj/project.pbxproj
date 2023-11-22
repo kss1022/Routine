@@ -154,7 +154,7 @@
 		873879842B01E69A004EE7F8 /* RoutineTopAcheiveChartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879802B01E69A004EE7F8 /* RoutineTopAcheiveChartInteractor.swift */; };
 		873879892B01EDCF004EE7F8 /* TopAcheiveChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879882B01EDCF004EE7F8 /* TopAcheiveChartView.swift */; };
 		8738798B2B01EE78004EE7F8 /* TopAcheiveChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738798A2B01EE78004EE7F8 /* TopAcheiveChartViewModel.swift */; };
-		8738798F2B01F849004EE7F8 /* WeeklyTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738798E2B01F849004EE7F8 /* WeeklyTableViewModel.swift */; };
+		8738798F2B01F849004EE7F8 /* RoutineWeeklyTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738798E2B01F849004EE7F8 /* RoutineWeeklyTableViewModel.swift */; };
 		873879952B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879912B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordRouter.swift */; };
 		873879962B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879922B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordViewController.swift */; };
 		873879972B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879932B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordBuilder.swift */; };
@@ -162,11 +162,8 @@
 		8738799A2B020D20004EE7F8 /* RoutineWeekRecordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879992B020D20004EE7F8 /* RoutineWeekRecordDto.swift */; };
 		8738799C2B020DBD004EE7F8 /* RoutineWeekRecordDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738799B2B020DBD004EE7F8 /* RoutineWeekRecordDao.swift */; };
 		8738799E2B020E9C004EE7F8 /* RoutineWeekRecordSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738799D2B020E9C004EE7F8 /* RoutineWeekRecordSQLDao.swift */; };
-		873879A02B02367A004EE7F8 /* RoutineRecordWeekModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738799F2B02367A004EE7F8 /* RoutineRecordWeekModel.swift */; };
+		873879A02B02367A004EE7F8 /* RoutineWeekRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738799F2B02367A004EE7F8 /* RoutineWeekRecordModel.swift */; };
 		873879A22B023A50004EE7F8 /* RoutineDataOfWeeksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879A12B023A50004EE7F8 /* RoutineDataOfWeeksView.swift */; };
-		873879A52B026F91004EE7F8 /* RoutineWeeklyTrackerDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879A42B026F91004EE7F8 /* RoutineWeeklyTrackerDto.swift */; };
-		873879A72B026FCA004EE7F8 /* RoutineWeeklyTrackerDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879A62B026FCA004EE7F8 /* RoutineWeeklyTrackerDao.swift */; };
-		873879A92B027009004EE7F8 /* RoutineWeeklyTrackerSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879A82B027009004EE7F8 /* RoutineWeeklyTrackerSQLDao.swift */; };
 		873879AB2B027CCF004EE7F8 /* RoutineWeeklyTrackerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879AA2B027CCF004EE7F8 /* RoutineWeeklyTrackerModel.swift */; };
 		873879AD2B028486004EE7F8 /* RoutineTopAcheiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879AC2B028486004EE7F8 /* RoutineTopAcheiveModel.swift */; };
 		873879AF2B032CDD004EE7F8 /* RoutineTopAcheiveDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879AE2B032CDD004EE7F8 /* RoutineTopAcheiveDto.swift */; };
@@ -353,6 +350,7 @@
 		877A7AE92AFA7180002BC722 /* GressCalender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877A7AE82AFA7180002BC722 /* GressCalender.swift */; };
 		877A7AED2AFA7310002BC722 /* GressEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877A7AEC2AFA7310002BC722 /* GressEmptyCell.swift */; };
 		877B2ECF2AF4FD2200D6037B /* RecordBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877B2ECE2AF4FD2200D6037B /* RecordBannerViewModel.swift */; };
+		877C0E362B0C9693006783DC /* RoutineWeeklyTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877C0E352B0C9693006783DC /* RoutineWeeklyTableCell.swift */; };
 		877DF8BC2AD57A8500F45C10 /* RepeatDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DF8BB2AD57A8500F45C10 /* RepeatDto.swift */; };
 		877DF8BF2AD5998D00F45C10 /* RepeatDto+SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DF8BE2AD5998D00F45C10 /* RepeatDto+SQL.swift */; };
 		877DF8C12AD5A47B00F45C10 /* RepeatValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DF8C02AD5A47B00F45C10 /* RepeatValue.swift */; };
@@ -623,6 +621,10 @@
 		87D5AB012AB84FCA00FE712C /* RoutineName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB002AB84FCA00FE712C /* RoutineName.swift */; };
 		87D5AB052AB8621A00FE712C /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB042AB8621A00FE712C /* ApplicationService.swift */; };
 		87D5AB092AB867CE00FE712C /* RoutineProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AB082AB867CE00FE712C /* RoutineProjection.swift */; };
+		87D6F2542B0DED2500E8FB1F /* RecordRoutineListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6F2532B0DED2500E8FB1F /* RecordRoutineListModel.swift */; };
+		87D6F2562B0DFF8800E8FB1F /* Preference+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6F2552B0DFF8800E8FB1F /* Preference+Record.swift */; };
+		87D6F2582B0E124000E8FB1F /* WeeklyTableColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6F2572B0E124000E8FB1F /* WeeklyTableColumn.swift */; };
+		87D6F25A2B0E15B300E8FB1F /* WeekRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6F2592B0E15B300E8FB1F /* WeekRange.swift */; };
 		87D9EB8B2AE186ED0026F9DE /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D9EB8A2AE186ED0026F9DE /* PaddingLabel.swift */; };
 		87DEAAAC2AD8FE1000C94F0A /* AppNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAAB2AD8FE1000C94F0A /* AppNotificationManager.swift */; };
 		87DEAAAF2AD9061C00C94F0A /* SystemException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DEAAAE2AD9061C00C94F0A /* SystemException.swift */; };
@@ -859,7 +861,7 @@
 		873879802B01E69A004EE7F8 /* RoutineTopAcheiveChartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTopAcheiveChartInteractor.swift; sourceTree = "<group>"; };
 		873879882B01EDCF004EE7F8 /* TopAcheiveChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAcheiveChartView.swift; sourceTree = "<group>"; };
 		8738798A2B01EE78004EE7F8 /* TopAcheiveChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAcheiveChartViewModel.swift; sourceTree = "<group>"; };
-		8738798E2B01F849004EE7F8 /* WeeklyTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTableViewModel.swift; sourceTree = "<group>"; };
+		8738798E2B01F849004EE7F8 /* RoutineWeeklyTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeeklyTableViewModel.swift; sourceTree = "<group>"; };
 		873879912B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTopAcheiveTotalRecordRouter.swift; sourceTree = "<group>"; };
 		873879922B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTopAcheiveTotalRecordViewController.swift; sourceTree = "<group>"; };
 		873879932B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTopAcheiveTotalRecordBuilder.swift; sourceTree = "<group>"; };
@@ -867,11 +869,8 @@
 		873879992B020D20004EE7F8 /* RoutineWeekRecordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekRecordDto.swift; sourceTree = "<group>"; };
 		8738799B2B020DBD004EE7F8 /* RoutineWeekRecordDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekRecordDao.swift; sourceTree = "<group>"; };
 		8738799D2B020E9C004EE7F8 /* RoutineWeekRecordSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekRecordSQLDao.swift; sourceTree = "<group>"; };
-		8738799F2B02367A004EE7F8 /* RoutineRecordWeekModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRecordWeekModel.swift; sourceTree = "<group>"; };
+		8738799F2B02367A004EE7F8 /* RoutineWeekRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeekRecordModel.swift; sourceTree = "<group>"; };
 		873879A12B023A50004EE7F8 /* RoutineDataOfWeeksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDataOfWeeksView.swift; sourceTree = "<group>"; };
-		873879A42B026F91004EE7F8 /* RoutineWeeklyTrackerDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeeklyTrackerDto.swift; sourceTree = "<group>"; };
-		873879A62B026FCA004EE7F8 /* RoutineWeeklyTrackerDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeeklyTrackerDao.swift; sourceTree = "<group>"; };
-		873879A82B027009004EE7F8 /* RoutineWeeklyTrackerSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeeklyTrackerSQLDao.swift; sourceTree = "<group>"; };
 		873879AA2B027CCF004EE7F8 /* RoutineWeeklyTrackerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeeklyTrackerModel.swift; sourceTree = "<group>"; };
 		873879AC2B028486004EE7F8 /* RoutineTopAcheiveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTopAcheiveModel.swift; sourceTree = "<group>"; };
 		873879AE2B032CDD004EE7F8 /* RoutineTopAcheiveDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTopAcheiveDto.swift; sourceTree = "<group>"; };
@@ -1052,6 +1051,7 @@
 		877A7AE82AFA7180002BC722 /* GressCalender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GressCalender.swift; sourceTree = "<group>"; };
 		877A7AEC2AFA7310002BC722 /* GressEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GressEmptyCell.swift; sourceTree = "<group>"; };
 		877B2ECE2AF4FD2200D6037B /* RecordBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerViewModel.swift; sourceTree = "<group>"; };
+		877C0E352B0C9693006783DC /* RoutineWeeklyTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWeeklyTableCell.swift; sourceTree = "<group>"; };
 		877DF8BB2AD57A8500F45C10 /* RepeatDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RepeatDto.swift; path = ../RepeatDto.swift; sourceTree = "<group>"; };
 		877DF8BE2AD5998D00F45C10 /* RepeatDto+SQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatDto+SQL.swift"; sourceTree = "<group>"; };
 		877DF8C02AD5A47B00F45C10 /* RepeatValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatValue.swift; sourceTree = "<group>"; };
@@ -1319,6 +1319,10 @@
 		87D5AB002AB84FCA00FE712C /* RoutineName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineName.swift; sourceTree = "<group>"; };
 		87D5AB042AB8621A00FE712C /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		87D5AB082AB867CE00FE712C /* RoutineProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineProjection.swift; sourceTree = "<group>"; };
+		87D6F2532B0DED2500E8FB1F /* RecordRoutineListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRoutineListModel.swift; sourceTree = "<group>"; };
+		87D6F2552B0DFF8800E8FB1F /* Preference+Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Preference+Record.swift"; sourceTree = "<group>"; };
+		87D6F2572B0E124000E8FB1F /* WeeklyTableColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTableColumn.swift; sourceTree = "<group>"; };
+		87D6F2592B0E15B300E8FB1F /* WeekRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRange.swift; sourceTree = "<group>"; };
 		87D9EB8A2AE186ED0026F9DE /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		87DEAAAB2AD8FE1000C94F0A /* AppNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotificationManager.swift; sourceTree = "<group>"; };
 		87DEAAAE2AD9061C00C94F0A /* SystemException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemException.swift; sourceTree = "<group>"; };
@@ -1676,7 +1680,8 @@
 		87176A5D2AFE4F8C00C8B1B8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8738798E2B01F849004EE7F8 /* WeeklyTableViewModel.swift */,
+				8738798E2B01F849004EE7F8 /* RoutineWeeklyTableViewModel.swift */,
+				877C0E352B0C9693006783DC /* RoutineWeeklyTableCell.swift */,
 				873879A32B025022004EE7F8 /* WeeklyTableView */,
 			);
 			path = Views;
@@ -1685,10 +1690,11 @@
 		87176A602AFE502D00C8B1B8 /* RoutineWeeklyTable */ = {
 			isa = PBXGroup;
 			children = (
-				87176A612AFE504F00C8B1B8 /* RoutineWeeklyTableRouter.swift */,
 				87176A632AFE504F00C8B1B8 /* RoutineWeeklyTableBuilder.swift */,
+				87176A612AFE504F00C8B1B8 /* RoutineWeeklyTableRouter.swift */,
 				87176A642AFE504F00C8B1B8 /* RoutineWeeklyTableInteractor.swift */,
 				87176A622AFE504F00C8B1B8 /* RoutineWeeklyTableViewController.swift */,
+				87D6F2592B0E15B300E8FB1F /* WeekRange.swift */,
 				87176A5D2AFE4F8C00C8B1B8 /* Views */,
 			);
 			path = RoutineWeeklyTable;
@@ -1936,6 +1942,7 @@
 		873879A32B025022004EE7F8 /* WeeklyTableView */ = {
 			isa = PBXGroup;
 			children = (
+				87D6F2572B0E124000E8FB1F /* WeeklyTableColumn.swift */,
 				87176A6F2AFF557400C8B1B8 /* WeeklyTableDataEntry.swift */,
 				87176A6D2AFF541F00C8B1B8 /* WeeklyTableView.swift */,
 				87176A692AFE51EC00C8B1B8 /* WeeklyTableCell.swift */,
@@ -2249,6 +2256,7 @@
 				87176A542AFE4F5E00C8B1B8 /* RoutineWeeklyTracker */,
 				87FB8D1D2AF8E85A001180EC /* RoutineData */,
 				87DFFE502AF27BC400D2E588 /* TimerData */,
+				87D6F2552B0DFF8800E8FB1F /* Preference+Record.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -3653,8 +3661,9 @@
 			isa = PBXGroup;
 			children = (
 				87DFFE4E2AF2794E00D2E588 /* RecordRepository.swift */,
+				87D6F2532B0DED2500E8FB1F /* RecordRoutineListModel.swift */,
 				8783E8412AFB386A00B596FC /* RoutineRecordModel.swift */,
-				8738799F2B02367A004EE7F8 /* RoutineRecordWeekModel.swift */,
+				8738799F2B02367A004EE7F8 /* RoutineWeekRecordModel.swift */,
 				873879AC2B028486004EE7F8 /* RoutineTopAcheiveModel.swift */,
 				873879AA2B027CCF004EE7F8 /* RoutineWeeklyTrackerModel.swift */,
 			);
@@ -3713,7 +3722,6 @@
 				8738799B2B020DBD004EE7F8 /* RoutineWeekRecordDao.swift */,
 				873879B82B0341BF004EE7F8 /* RoutineStreakDao.swift */,
 				873879B02B032CF3004EE7F8 /* RoutineTopAcheiveDao.swift */,
-				873879A62B026FCA004EE7F8 /* RoutineWeeklyTrackerDao.swift */,
 				87E3760E2AD6E16700359850 /* RoutineRecordDao.swift */,
 				87DFFE392AF25E3200D2E588 /* TimerRecordDao.swift */,
 			);
@@ -3728,7 +3736,6 @@
 				873879992B020D20004EE7F8 /* RoutineWeekRecordDto.swift */,
 				873879B62B03418A004EE7F8 /* RoutineStreakDto.swift */,
 				873879AE2B032CDD004EE7F8 /* RoutineTopAcheiveDto.swift */,
-				873879A42B026F91004EE7F8 /* RoutineWeeklyTrackerDto.swift */,
 				87E3760C2AD6E12A00359850 /* RoutineRecordDto.swift */,
 				87DFFE3B2AF25E4A00D2E588 /* TimerRecordDto.swift */,
 			);
@@ -3742,7 +3749,6 @@
 				87FB8D192AF8D425001180EC /* RoutineMonthRecordSQLDao.swift */,
 				8738799D2B020E9C004EE7F8 /* RoutineWeekRecordSQLDao.swift */,
 				873879BA2B0342C6004EE7F8 /* RoutineStreakSQLDao.swift */,
-				873879A82B027009004EE7F8 /* RoutineWeeklyTrackerSQLDao.swift */,
 				873879B22B032D6E004EE7F8 /* RoutineTopAcheiveSQLDao.swift */,
 				87E376132AD6E43D00359850 /* RoutineRecordSQLDao.swift */,
 				87DFFE3D2AF25EEE00D2E588 /* TimerRecordSQLDao.swift */,
@@ -3984,6 +3990,7 @@
 				87D0C3002B0B7717003DF624 /* AppInfoMainModel.swift in Sources */,
 				8736761F2B03996B0004276B /* ProfileCardRouter.swift in Sources */,
 				87B708792B04927500C95C08 /* ProfileAcheiveViewController.swift in Sources */,
+				877C0E362B0C9693006783DC /* RoutineWeeklyTableCell.swift in Sources */,
 				87AB913E2AEB934C0051FB9F /* AppFocusTimer.swift in Sources */,
 				87B378A72AEA8F05006F8C22 /* StartTimerRouter.swift in Sources */,
 				871E6A052ADE9A700051F978 /* TimerSectionListInteractor.swift in Sources */,
@@ -4025,7 +4032,6 @@
 				87B708D02B04E72300C95C08 /* SettingAppIconViewController.swift in Sources */,
 				8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */,
 				875874D62AECF16A00E03F4F /* TimerCountInfoView.swift in Sources */,
-				873879A52B026F91004EE7F8 /* RoutineWeeklyTrackerDto.swift in Sources */,
 				87A2C9D02AEFBE26004AE6C1 /* AddRoundTimerInteractor.swift in Sources */,
 				87AD2D672AD6D34100B0E2CF /* RecordId.swift in Sources */,
 				8738799C2B020DBD004EE7F8 /* RoutineWeekRecordDao.swift in Sources */,
@@ -4252,7 +4258,6 @@
 				876E950A2AB2CFD000046809 /* RecordHomeViewController.swift in Sources */,
 				8795F5962AFDF0A6008AE1DC /* TimerDataViewController.swift in Sources */,
 				8779ADEF2AFA34A300176746 /* RoutineDataOfYearInteractor.swift in Sources */,
-				873879A92B027009004EE7F8 /* RoutineWeeklyTrackerSQLDao.swift in Sources */,
 				87D0C2E22B0B07E7003DF624 /* SettingTypefaceInteractor.swift in Sources */,
 				870B57242AE119EB006579CE /* TimerFactory.swift in Sources */,
 				876E95542AB2D00F00046809 /* UIView+Utils.swift in Sources */,
@@ -4271,7 +4276,6 @@
 				870B574E2AE13ABB006579CE /* TimerEditTitleViewController.swift in Sources */,
 				8713C7942ADF9E29007CDD33 /* Double+TimeInterval.swift in Sources */,
 				878036562AF12AF700EBBA5F /* TimerEditCountdownBuilder.swift in Sources */,
-				873879A72B026FCA004EE7F8 /* RoutineWeeklyTrackerDao.swift in Sources */,
 				877DF8D12AD5AB5E00F45C10 /* RepeatDao.swift in Sources */,
 				878036172AF00C7A00EBBA5F /* FocusRoundTimerView.swift in Sources */,
 				8779AE072AFA510A00176746 /* GressCellViewModel.swift in Sources */,
@@ -4322,6 +4326,7 @@
 				8780366C2AF15D3600EBBA5F /* ConfettiParticle.swift in Sources */,
 				876E95942AB2FA2300046809 /* Command.swift in Sources */,
 				87DEAABD2AD9364300C94F0A /* Reminder.swift in Sources */,
+				87D6F25A2B0E15B300E8FB1F /* WeekRange.swift in Sources */,
 				8751F0B52AC7F79D000462EC /* RoutineEmojiIconViewController.swift in Sources */,
 				87D5AAFF2AB8415D00FE712C /* AppRootComponent.swift in Sources */,
 				87B708932B04939200C95C08 /* ProfileChartViewController.swift in Sources */,
@@ -4361,7 +4366,7 @@
 				87B708D92B04E78E00C95C08 /* SettingAppThemeBuilder.swift in Sources */,
 				876E95982AB2FA6F00046809 /* Specification.swift in Sources */,
 				878036552AF12AF700EBBA5F /* TimerEditCountdownViewController.swift in Sources */,
-				873879A02B02367A004EE7F8 /* RoutineRecordWeekModel.swift in Sources */,
+				873879A02B02367A004EE7F8 /* RoutineWeekRecordModel.swift in Sources */,
 				873879972B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordBuilder.swift in Sources */,
 				87901E9D2ABAF7B3002CA93F /* RoutineListDao.swift in Sources */,
 				870D02422B089A5B00CE207B /* SettingFontViewController.swift in Sources */,
@@ -4376,6 +4381,7 @@
 				8779ADEE2AFA34A300176746 /* RoutineDataOfYearBuilder.swift in Sources */,
 				87D0C3022B0B7868003DF624 /* AppInfoContactView.swift in Sources */,
 				876E95042AB2CFC100046809 /* RoutineHomeInteractor.swift in Sources */,
+				87D6F2582B0E124000E8FB1F /* WeeklyTableColumn.swift in Sources */,
 				87615D712AD83495008E983D /* RoutineBasicInfoFormatter.swift in Sources */,
 				87910D1E2AEA46F000CAC1ED /* TimerSections.swift in Sources */,
 				871E6A412ADEAF490051F978 /* TimerSectionEditTitleBuilder.swift in Sources */,
@@ -4400,7 +4406,7 @@
 				87DEAADC2AD95DC700C94F0A /* RoutineEditReminderBuilder.swift in Sources */,
 				8783E8562AFBEBC600B596FC /* RecordTimerListCell.swift in Sources */,
 				8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */,
-				8738798F2B01F849004EE7F8 /* WeeklyTableViewModel.swift in Sources */,
+				8738798F2B01F849004EE7F8 /* RoutineWeeklyTableViewModel.swift in Sources */,
 				87FB8D182AF8D2A6001180EC /* RoutineTotalRecordSQLDao.swift in Sources */,
 				8783E8582AFBEBD000B596FC /* RecordTimerListHeaderView.swift in Sources */,
 				878DA79B2ACE64F500220653 /* RoutineWeekCalendarViewController.swift in Sources */,
@@ -4479,6 +4485,7 @@
 				878036542AF12AF700EBBA5F /* TimerEditCountdownRouter.swift in Sources */,
 				87FB8D402AF8ED08001180EC /* RecordRoutineListRouter.swift in Sources */,
 				87D0C2DF2B0B07E7003DF624 /* SettingTypefaceRouter.swift in Sources */,
+				87D6F2542B0DED2500E8FB1F /* RecordRoutineListModel.swift in Sources */,
 				87DFFE272AF22EA200D2E588 /* TimerCountdownDao.swift in Sources */,
 				8712F6562AC2E09A008A02C4 /* RoutineTintRouter.swift in Sources */,
 				87AAE6582AE006EB000A7D4F /* SectionRoundTimerInteractor.swift in Sources */,
@@ -4568,6 +4575,7 @@
 				87D0C2E52B0B16A9003DF624 /* SettingFontSlider.swift in Sources */,
 				87FB8D4A2AF8F298001180EC /* RecordRoutineListHeaderView.swift in Sources */,
 				87D0CACF2ACCFE9B00FE405F /* RoutineTitleViewModel.swift in Sources */,
+				87D6F2562B0DFF8800E8FB1F /* Preference+Record.swift in Sources */,
 				87176A512AFE3D1C00C8B1B8 /* RecordTopAcheiveBannerCell.swift in Sources */,
 				876E954A2AB2D00F00046809 /* PropertyWrapperSample.swift in Sources */,
 				870B573C2AE12B6E006579CE /* TimerReadModel.swift in Sources */,

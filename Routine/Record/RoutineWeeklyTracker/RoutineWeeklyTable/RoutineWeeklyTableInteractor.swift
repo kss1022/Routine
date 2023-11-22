@@ -15,7 +15,7 @@ protocol RoutineWeeklyTableRouting: ViewableRouting {
 
 protocol RoutineWeeklyTablePresentable: Presentable {
     var listener: RoutineWeeklyTablePresentableListener? { get set }
-    func setWeeklyTable(_ viewModels: [WeeklyTableViewModel])
+    func setTableData(_ columns: [RoutineWeeklyTableColumnViewModel] , dataEntys: [WeeklyRange: [RoutineWeeklyTableDataEntryViewModel]])
 }
 
 protocol RoutineWeeklyTableListener: AnyObject {
@@ -23,7 +23,8 @@ protocol RoutineWeeklyTableListener: AnyObject {
 }
 
 protocol RoutineWeeklyTableInteractorDependency{
-    var routineWeeklyTrackers: ReadOnlyCurrentValuePublisher<[RoutineWeeklyTrackerModel]>{ get }
+    var routines: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ get }
+    var routineWeeks: ReadOnlyCurrentValuePublisher<[RoutineWeekRecordModel]>{ get }
 }
 
 final class RoutineWeeklyTableInteractor: PresentableInteractor<RoutineWeeklyTablePresentable>, RoutineWeeklyTableInteractable, RoutineWeeklyTablePresentableListener {
@@ -47,14 +48,21 @@ final class RoutineWeeklyTableInteractor: PresentableInteractor<RoutineWeeklyTab
 
     override func didBecomeActive() {
         super.didBecomeActive()
+  
+   
         
-        dependency.routineWeeklyTrackers
+        dependency.routines
+            .combineLatest(dependency.routineWeeks)
             .receive(on: DispatchQueue.main)
-            .sink { models in
-                let viewModels = models.map(WeeklyTableViewModel.init)
-                self.presenter.setWeeklyTable(viewModels)
+            .sink { routines, weeks in
+                let columns = routines.map(RoutineWeeklyTableColumnViewModel.init)
+                let dataEntrys = weeks.map(RoutineWeeklyTableDataEntryViewModel.init)
+                let dataDictionary = Dictionary(grouping: dataEntrys) { 
+                    WeeklyRange(startOfWeek: $0.startOfWeek, endOfWeek: $0.endOfWeek)
+                }
+                self.presenter.setTableData(columns, dataEntys: dataDictionary)
             }
-            .store(in: &cancellables)
+            .store(in: &cancellables)        
     }
 
     override func willResignActive() {
@@ -62,128 +70,12 @@ final class RoutineWeeklyTableInteractor: PresentableInteractor<RoutineWeeklyTab
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
     }
+
+    
+//    private func daysBetweenDates(_ startDate: Date, _ endDate: Date) -> Int {
+//        let calendar = Calendar.current
+//        let components = calendar.dateComponents([.day], from: startDate, to: endDate)
+//        return components.day ?? 0
+//    }
+
 }
-
-
-//let viewModels = [
-//    WeeklyTableViewModel(
-//        title: "Take medicine",
-//        emoji: "💊",
-//        tint: "#FFCCCCFF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//    WeeklyTableViewModel(
-//        title: "Running",
-//        emoji: "🏃",
-//        tint: "#FFFFCCFF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//    WeeklyTableViewModel(
-//        title: "Exercise",
-//        emoji: "💪",
-//        tint: "#E5CCFFFF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//    WeeklyTableViewModel(
-//        title: "Keep a diary",
-//        emoji: "✍️",
-//        tint: "#FFCCE5FF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//    WeeklyTableViewModel(
-//        title: "Driving",
-//        emoji: "🚗",
-//        tint: "#CCFFFFFF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//    WeeklyTableViewModel(
-//        title: "Drink water",
-//        emoji: "💧",
-//        tint: "#FFCCCCFF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//    WeeklyTableViewModel(
-//        title: "Study hard",
-//        emoji: "📖",
-//        tint: "#C0C0C0FF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//    WeeklyTableViewModel(
-//        title: "Walk a dog",
-//        emoji: "🦮",
-//        tint: "#E09FFFFF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//    WeeklyTableViewModel(
-//        title: "Basketball",
-//        emoji: "🏀",
-//        tint: "#FFE5CCFF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//    WeeklyTableViewModel(
-//        title: "Beer",
-//        emoji: "🍻",
-//        tint: "#CCFFCCFF",
-//        sunday: Bool.random(),
-//        monday: Bool.random(),
-//        tuesday: Bool.random(),
-//        wednesday: Bool.random(),
-//        thursday: Bool.random(),
-//        friday: Bool.random(),
-//        saturday: Bool.random()
-//    ),
-//]

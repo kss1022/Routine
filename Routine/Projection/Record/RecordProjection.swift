@@ -73,8 +73,8 @@ final class RecordProjection{
             try routineRecordDao.save(record)
             try routineTotalRecordDao.complete(routineId: event.routineId.id)
             try routineMonthRecordDao.complete(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate))
-            try routineWeekRecordDao.complete(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek)
-            try routineStreakDao.complete(routineId: event.routineId.id, date: event.recordDate.startOfDay)
+            try routineWeekRecordDao.complete(dto: RoutineWeekRecordDto(routineId: event.routineId.id, date: event.recordDate.date), dayOfWeek: event.recordDate.dayOfWeek)
+            try routineStreakDao.complete(routineId: event.routineId.id, date: event.recordDate.date)
         }catch{
             Log.e("EventHandler Error: RecordCreated \(error)")
         }
@@ -86,14 +86,14 @@ final class RecordProjection{
                 try routineRecordDao.complete(recordId: event.recordId.id, completeAt: event.occurredOn)
                 try routineTotalRecordDao.complete(routineId: event.routineId.id)
                 try routineMonthRecordDao.complete(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate))
-                try routineWeekRecordDao.complete(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek)
-                try routineStreakDao.complete(routineId: event.routineId.id, date: event.recordDate.startOfDay)
+                try routineWeekRecordDao.complete(dto: RoutineWeekRecordDto(routineId: event.routineId.id, date: event.recordDate.date), dayOfWeek: event.recordDate.dayOfWeek)
+                try routineStreakDao.complete(routineId: event.routineId.id, date: event.recordDate.date)
             }else{
                 try routineRecordDao.cancel(recordId: event.recordId.id, completeAt: event.occurredOn)
                 try routineTotalRecordDao.cancel(routineId: event.routineId.id)
                 try routineMonthRecordDao.cancel(routineId: event.routineId.id, recordMonth: Formatter.recordMonth(event.recordDate))
-                try routineWeekRecordDao.cancel(routineId: event.routineId.id, year: event.recordDate.year, weekOfYear: event.recordDate.weekOfYear, dayOfWeek:event.recordDate.dayOfWeek)
-                try routineStreakDao.cancel(routineId: event.routineId.id, date: event.recordDate.startOfDay)
+                try routineWeekRecordDao.cancel(dto: RoutineWeekRecordDto(routineId: event.routineId.id, date: event.recordDate.date), dayOfWeek: event.recordDate.dayOfWeek)
+                try routineStreakDao.cancel(routineId: event.routineId.id, date: event.recordDate.date)
             }
         }catch{
             Log.e("EventHandler Error: RecordCreated \(error)")

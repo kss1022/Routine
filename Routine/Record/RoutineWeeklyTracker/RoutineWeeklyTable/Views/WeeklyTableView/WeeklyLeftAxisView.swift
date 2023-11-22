@@ -48,11 +48,15 @@ final class WeeklyLeftAxisView: UIScrollView{
     }
     
     
-    func addCell(title: String, emoji: String){
-        let column =  WeekklyLeftAxisColumnView(title: title, emoji: emoji)
-        column.setFont(size: fontSize)
-        stackView.addArrangedSubview(column)
+    func values(_ dataEntrys: [WeeklyTableColumn]){
+        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        dataEntrys.forEach {
+            addCell(title: $0.title, emoji: $0.emoji)
+        }
     }
+    
+    
     
     func setFont(size: CGFloat){
         self.fontSize = size
@@ -63,7 +67,16 @@ final class WeeklyLeftAxisView: UIScrollView{
                 $0.setFont(size: size)
             }
     }
+    
+    private func addCell(title: String, emoji: String){
+        let column =  WeekklyLeftAxisColumnView(title: title, emoji: emoji)
+        column.setFont(size: fontSize)
+        stackView.addArrangedSubview(column)
+    }
 }
+
+
+
 
 final class WeekklyLeftAxisColumnView: UIView{
     

@@ -48,8 +48,8 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     private let dependency : RoutineHomeInteractorDependency
     private var cancellables: Set<AnyCancellable>
     
-    private var list : [RoutineListDto] = []
-    private var date = Date()
+    private var list : [RoutineListDto]
+    private var date: Date
     
     private var isCreate: Bool
     private var isDetail: Bool
@@ -62,6 +62,9 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         self.cancellables = .init()
                 
         self.presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
+        
+        self.list = []
+        self.date = Calendar.current.startOfDay(for: Date()) //Date -> now
         self.isDetail = false
         self.isCreate = false
         super.init(presenter: presenter)
@@ -115,6 +118,10 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     //MARK: RoutineList
     func routineListDidComplete(list: RoutineHomeListModel) {
         if list.recordId == nil{
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            Log.v("CheckDate \(formatter.string(from: self.date))")
+            
             let command = CreateRoutineRecord(routineId: list.routineId, date: self.date)
             createRecord(command)
         }else{

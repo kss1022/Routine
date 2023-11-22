@@ -10,7 +10,8 @@ import Foundation
 
 protocol RoutineWeekRecordDao{
     func save(_ dto: RoutineWeekRecordDto) throws
-    func find(routineId: UUID, year: Int, weekOfYear: Int) throws -> RoutineWeekRecordDto?
-    func complete(routineId: UUID, year: Int, weekOfYear: Int, dayOfWeek: Int) throws
-    func cancel(routineId: UUID, year: Int, weekOfYear: Int, dayOfWeek: Int) throws
+    func find(routineId: UUID, startOfWeek: String , endOfWeek: String) throws -> RoutineWeekRecordDto?
+    func findAll() throws -> [RoutineWeekRecordDto]
+    func complete(dto: RoutineWeekRecordDto, dayOfWeek: Int) throws
+    func cancel(dto: RoutineWeekRecordDto, dayOfWeek: Int) throws
 }

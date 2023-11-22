@@ -20,17 +20,17 @@ struct RoutineDataOfWeekListViewModel{
     let image: UIImage?
     let imageTintColor: UIColor
     
-    init(dates: [Date], model: RoutineRecordWeekModel, imageName: String, imageTintColor: String) {
+    init(dates: [Date], model: RoutineWeekRecordModel?, imageName: String, imageTintColor: String) {
         self.image = UIImage(systemName: imageName)
         self.imageTintColor = UIColor(hex: imageTintColor) ?? UIColor.primaryColor
-                        
-        self.sun = RoutineDataOfWeekViewModel(date: dates[0], done: model.sunday)
-        self.mon = RoutineDataOfWeekViewModel(date: dates[1], done: model.monday)
-        self.tue = RoutineDataOfWeekViewModel(date: dates[2], done: model.tuesday)
-        self.wed = RoutineDataOfWeekViewModel(date: dates[3], done: model.wednesday)
-        self.thu = RoutineDataOfWeekViewModel(date: dates[4], done: model.thursday)
-        self.fri = RoutineDataOfWeekViewModel(date: dates[5], done: model.friday)
-        self.sat = RoutineDataOfWeekViewModel(date: dates[6], done: model.saturday)
+                                        
+        self.sun = RoutineDataOfWeekViewModel(date: dates[0], done: model?.sunday ?? false)
+        self.mon = RoutineDataOfWeekViewModel(date: dates[1], done: model?.monday ?? false)
+        self.tue = RoutineDataOfWeekViewModel(date: dates[2], done: model?.tuesday ?? false)
+        self.wed = RoutineDataOfWeekViewModel(date: dates[3], done: model?.wednesday ?? false)
+        self.thu = RoutineDataOfWeekViewModel(date: dates[4], done: model?.thursday ?? false)
+        self.fri = RoutineDataOfWeekViewModel(date: dates[5], done: model?.friday ?? false)
+        self.sat = RoutineDataOfWeekViewModel(date: dates[6], done: model?.saturday ?? false)
     }
 }
 

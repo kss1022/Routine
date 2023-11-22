@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //setupFirebase()
         setupLogger()
         
+        if PreferenceStorage.shared.installation == nil{
+            PreferenceStorage.shared.installation = Date()
+        }
+        
         UNUserNotificationCenter.current().delegate = self
         return true
     }

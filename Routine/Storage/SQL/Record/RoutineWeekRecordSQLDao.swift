@@ -18,8 +18,8 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
     // MARK: Columns
     internal static let tableName = "ROUTINEWEEKRECORD"
     private let routineId: Expression<UUID>
-    private let year: Expression<Int>
-    private let weekOfYear: Expression<Int>
+    private let startOfWeek: Expression<String>
+    private let endOfWeek: Expression<String>
     private let sunday: Expression<Bool>
     private let monday: Expression<Bool>
     private let tuesday: Expression<Bool>
@@ -35,8 +35,8 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
         
         table = Table(RoutineWeekRecordSQLDao.tableName)
         routineId = Expression<UUID>("routineId")
-        year = Expression<Int>("year")
-        weekOfYear = Expression<Int>("weekOfYear")
+        startOfWeek = Expression<String>("startOfWeek")
+        endOfWeek = Expression<String>("endOfWeek")
         sunday = Expression<Bool>("sunday")
         monday = Expression<Bool>("monday")
         tuesday = Expression<Bool>("tuesday")
@@ -59,8 +59,8 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
         
         try db.run(table.create(ifNotExists: true){ table in
             table.column(routineId)
-            table.column(year)
-            table.column(weekOfYear)
+            table.column(startOfWeek)
+            table.column(endOfWeek)
             table.column(sunday)
             table.column(monday)
             table.column(tuesday)
@@ -77,8 +77,8 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
     func save(_ dto: RoutineWeekRecordDto) throws {
         let insert = table.insert(
             routineId <- dto.routineId,
-            year <- dto.year,
-            weekOfYear <- dto.weekOfYear,
+            startOfWeek <- dto.startOfWeek,
+            endOfWeek <- dto.endOfWeek,
             sunday <- dto.sunday,
             monday <- dto.monday,
             tuesday <- dto.tuesday,
@@ -92,15 +92,15 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
         Log.v("Insert \(RoutineWeekRecordDto.self): \(dto)")
     }
     
-    func find(routineId: UUID, year: Int, weekOfYear: Int) throws -> RoutineWeekRecordDto? {
-        let query = table.filter(self.routineId == routineId && self.year == year && self.weekOfYear == weekOfYear)
+    func find(routineId: UUID, startOfWeek: String, endOfWeek: String) throws -> RoutineWeekRecordDto? {
+        let query = table.filter(self.routineId == routineId && self.startOfWeek == startOfWeek && self.endOfWeek == endOfWeek)
             .limit(1)
         
         return try db.prepare(query).map {
             RoutineWeekRecordDto(
                 routineId: $0[self.routineId],
-                year: $0[self.year],
-                weekOfYear: $0[self.weekOfYear],
+                startOfWeek: $0[self.startOfWeek],
+                endOfWeek: $0[self.endOfWeek],
                 sunday: $0[sunday],
                 monday: $0[monday],
                 tuesday: $0[tuesday],
@@ -112,18 +112,41 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
         }.first
     }
     
-    func complete(routineId: UUID, year: Int, weekOfYear: Int, dayOfWeek: Int) throws {
-        if try find(routineId: routineId, year: year, weekOfYear: weekOfYear) == nil{
-            try save(
-                RoutineWeekRecordDto(
-                    routineId: routineId,
-                    year: year,
-                    weekOfYear: weekOfYear
-                )
+    
+    func findAll() throws -> [RoutineWeekRecordDto]{        
+        try db.prepare(table).map {
+            RoutineWeekRecordDto(
+                routineId: $0[self.routineId],
+                startOfWeek: $0[startOfWeek],
+                endOfWeek: $0[endOfWeek],
+                sunday: $0[sunday],
+                monday: $0[monday],
+                tuesday: $0[tuesday],
+                wednesday: $0[wednesday],
+                thursday: $0[thursday],
+                friday: $0[friday],
+                saturday: $0[saturday]
             )
         }
+    }
+    
+    
+    func complete(dto: RoutineWeekRecordDto, dayOfWeek: Int) throws {
         
-        let query = table.filter(self.routineId == routineId && self.year == year && self.weekOfYear == weekOfYear)
+           
+        if try find(routineId: dto.routineId, startOfWeek: dto.startOfWeek, endOfWeek: dto.endOfWeek) == nil{
+            try save(RoutineWeekRecordDto(
+                routineId: dto.routineId,
+                startOfWeek: dto.startOfWeek,
+                endOfWeek: dto.endOfWeek
+            ))
+        }        
+        
+        let query = table.filter(
+            self.routineId == dto.routineId &&
+            self.startOfWeek == dto.startOfWeek &&
+            self.endOfWeek == dto.endOfWeek
+        )
             .limit(1)
         
         
@@ -137,11 +160,16 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
         case 6: try db.run(query.update(self.saturday <- true))
         default: fatalError("Invalid dayOfWeek: \(dayOfWeek)")
         }
-        Log.v("Complete \(RoutineWeekRecordSQLDao.self): \(year)-\(weekOfYear)-\(dayOfWeek)")
+        Log.v("Complete \(RoutineWeekRecordSQLDao.self): \(startOfWeek)~\(endOfWeek): \(dayOfWeek)")
     }
     
-    func cancel(routineId: UUID, year: Int, weekOfYear: Int, dayOfWeek: Int) throws {
-        let query = table.filter(self.routineId == routineId && self.year == year && self.weekOfYear == weekOfYear)
+    func cancel(dto: RoutineWeekRecordDto, dayOfWeek: Int) throws {
+        
+        let query = table.filter(
+            self.routineId == dto.routineId &&
+            self.startOfWeek == dto.startOfWeek &&
+            self.endOfWeek == dto.endOfWeek
+        )
             .limit(1)
         
         
@@ -155,7 +183,7 @@ final class RoutineWeekRecordSQLDao: RoutineWeekRecordDao{
         case 6: try db.run(query.update(self.saturday <- false))
         default: fatalError("Invalid dayOfWeek: \(dayOfWeek)")
         }
-        Log.v("Cancel \(RoutineWeekRecordSQLDao.self): \(year)-\(weekOfYear)-\(dayOfWeek)")
+        Log.v("Complete \(RoutineWeekRecordSQLDao.self): \(startOfWeek)~\(endOfWeek): \(dayOfWeek)")
     }
-    
+
 }

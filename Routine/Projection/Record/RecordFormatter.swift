@@ -35,4 +35,10 @@ extension Formatter{
         return formatter
     }
     
+    static func weekRecordFormatter() -> DateFormatter{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.M.d"
+        return formatter
+    }
+    
 }

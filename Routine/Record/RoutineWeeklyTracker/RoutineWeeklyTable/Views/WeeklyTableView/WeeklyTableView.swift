@@ -11,9 +11,10 @@ import UIKit
 
 final class WeeklyTableView: UIView{
         
-    private var dataEntrys = [WeeklyTableDataEntry]()
+    private var datas = [UUID: WeekTableDataEntry]()
+    private var columns = [WeeklyTableColumn]()
     
-    private var itemSize: CGFloat = 30.0
+    private var itemSize: CGFloat = 11.0
     private var fontSize: CGFloat = 12.0
     
 
@@ -115,17 +116,20 @@ final class WeeklyTableView: UIView{
     }
     
     
-    func bindView(_ dataEntrys: [WeeklyTableDataEntry]){
-        self.dataEntrys = dataEntrys
+    func columns(columns: [WeeklyTableColumn]){
+        self.columns = columns
         
-        self.dataEntrys.forEach {
-            leftAxisView.addCell(title: $0.title, emoji: $0.emoji)
-        }
-        
-        tableHeightConstraint.constant = CGFloat(dataEntrys.count) * itemSize
-        
+        leftAxisView.values(columns)
+        tableHeightConstraint.constant = CGFloat(columns.count) * itemSize        
+    }
+    
+    func datas(datas: [WeekTableDataEntry]){
+        datas.forEach {
+            self.datas[$0.id] = $0
+        }        
         self.tableCollectionView.reloadData()
     }
+    
     
     func setFont(size: CGFloat){
         self.fontSize = size
@@ -142,7 +146,7 @@ final class WeeklyTableView: UIView{
         layout.invalidateLayout()
         
         tableWidthConstraint.constant = itemSize * 7
-        tableHeightConstraint.constant = CGFloat(dataEntrys.count) * itemSize
+        tableHeightConstraint.constant = CGFloat(datas.count) * itemSize
         
         tableCollectionView.reloadData()
     }
@@ -152,27 +156,29 @@ final class WeeklyTableView: UIView{
 extension WeeklyTableView: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        7 * (dataEntrys.count)
+        7 * (columns.count)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: WeeklyTableCell.self)
                 
         let index = indexPath.row / 7
-        if let dataEntry = dataEntrys[safe: index]{
-            let row = indexPath.row % 7
-            
-            switch row{
-            case 0: cell.bindView(done: dataEntry.weekDataEntry.sunday, fillColor: dataEntry.tint)
-            case 1: cell.bindView(done: dataEntry.weekDataEntry.monday, fillColor: dataEntry.tint)
-            case 2: cell.bindView(done: dataEntry.weekDataEntry.tuesday, fillColor: dataEntry.tint)
-            case 3: cell.bindView(done: dataEntry.weekDataEntry.wednesday, fillColor: dataEntry.tint)
-            case 4: cell.bindView(done: dataEntry.weekDataEntry.thursday, fillColor: dataEntry.tint)
-            case 5: cell.bindView(done: dataEntry.weekDataEntry.friday, fillColor: dataEntry.tint)
-            case 6: cell.bindView(done: dataEntry.weekDataEntry.saturday, fillColor: dataEntry.tint)
-            default: fatalError()
-            }            
-            
+        let columns = columns[index]
+        
+        let tintColor = columns.tint
+        
+        let row = indexPath.row % 7
+        let dataEntry = datas[columns.id]
+        
+        switch row{
+        case 0: cell.bindView(done: dataEntry?.sunday ?? false, fillColor: tintColor)
+        case 1: cell.bindView(done: dataEntry?.monday ?? false, fillColor: tintColor)
+        case 2: cell.bindView(done: dataEntry?.tuesday ?? false, fillColor: tintColor)
+        case 3: cell.bindView(done: dataEntry?.wednesday ?? false, fillColor: tintColor)
+        case 4: cell.bindView(done: dataEntry?.thursday ?? false, fillColor: tintColor)
+        case 5: cell.bindView(done: dataEntry?.friday ?? false, fillColor: tintColor)
+        case 6: cell.bindView(done: dataEntry?.saturday ?? false, fillColor: tintColor)
+        default: fatalError()
         }
         return cell
     }

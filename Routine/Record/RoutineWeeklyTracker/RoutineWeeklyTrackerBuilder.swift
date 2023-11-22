@@ -13,7 +13,9 @@ protocol RoutineWeeklyTrackerDependency: Dependency {
 
 final class RoutineWeeklyTrackerComponent: Component<RoutineWeeklyTrackerDependency>, RoutineWeeklyTableDependency {
     var recordRepository: RecordRepository{ dependency.recordRepository }
-    var routineWeeklyTrackers: ReadOnlyCurrentValuePublisher<[RoutineWeeklyTrackerModel]>{ recordRepository.routineWeeklyTrackers }
+    
+    var routines: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ recordRepository.routineLists }
+    var routineWeeks: ReadOnlyCurrentValuePublisher<[RoutineWeekRecordModel]>{ recordRepository.routineWeeks }
 }
 
 // MARK: - Builder

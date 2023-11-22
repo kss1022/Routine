@@ -71,7 +71,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
     func setTableView(){
         
         let models = [
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Take medicine",
                 emoji: "💊",
                 tint: "#FFCCCCFF",
@@ -83,7 +83,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
                 friday: Bool.random(),
                 saturday: Bool.random()
             ),
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Running",
                 emoji: "🏃",
                 tint: "#FFFFCCFF",
@@ -95,7 +95,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
                 friday: Bool.random(),
                 saturday: Bool.random()
             ),
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Exercise",
                 emoji: "💪",
                 tint: "#E5CCFFFF",
@@ -107,7 +107,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
                 friday: Bool.random(),
                 saturday: Bool.random()
             ),
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Keep a diary",
                 emoji: "✍️",
                 tint: "#FFCCE5FF",
@@ -119,7 +119,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
                 friday: Bool.random(),
                 saturday: Bool.random()
             ),
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Driving",
                 emoji: "🚗",
                 tint: "#CCFFFFFF",
@@ -131,7 +131,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
                 friday: Bool.random(),
                 saturday: Bool.random()
             ),
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Drink water",
                 emoji: "💧",
                 tint: "#FFCCCCFF",
@@ -143,7 +143,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
                 friday: Bool.random(),
                 saturday: Bool.random()
             ),
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Study hard",
                 emoji: "📖",
                 tint: "#C0C0C0FF",
@@ -155,7 +155,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
                 friday: Bool.random(),
                 saturday: Bool.random()
             ),
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Walk a dog",
                 emoji: "🦮",
                 tint: "#E09FFFFF",
@@ -167,7 +167,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
                 friday: Bool.random(),
                 saturday: Bool.random()
             ),
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Basketball",
                 emoji: "🏀",
                 tint: "#FFE5CCFF",
@@ -179,7 +179,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
                 friday: Bool.random(),
                 saturday: Bool.random()
             ),
-            WeeklyTableViewModel(
+            RecordWeekTableBannerViewModel(
                 title: "Beer",
                 emoji: "🍻",
                 tint: "#CCFFCCFF",
@@ -193,8 +193,54 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
             ),
         ]
                 
-        weeklyTableView.bindView(models.map(WeeklyTableDataEntry.init))
+        weeklyTableView.datas(datas: models.map(WeekTableDataEntry.init))
+        weeklyTableView.columns(columns: models.map(WeeklyTableColumn.init))
+        
+        //weeklyTableView.bindView(models.map(WeeklyTableDataEntry.init))
 
     }
 
+}
+
+
+struct RecordWeekTableBannerViewModel{
+    let id: UUID
+    let title: String
+    let emoji: String
+    let tint: UIColor?
+    let sunday: Bool
+    let monday: Bool
+    let tuesday: Bool
+    let wednesday: Bool
+    let thursday: Bool
+    let friday: Bool
+    let saturday: Bool
+    
+    init(title: String, emoji: String, tint: String, sunday: Bool, monday: Bool, tuesday: Bool, wednesday: Bool, thursday: Bool, friday: Bool, saturday: Bool) {
+        self.id = UUID()
+        self.title = title
+        self.emoji = emoji
+        self.tint = UIColor(hex: tint)
+        self.sunday = sunday
+        self.monday = monday
+        self.tuesday = tuesday
+        self.wednesday = wednesday
+        self.thursday = thursday
+        self.friday = friday
+        self.saturday = saturday
+    }
+    
+//    init(_ model: RoutineWeeklyTrackerModel) {
+////        self.title = model.routineName
+//        self.emoji = model.emojiIcon
+//        self.tint = UIColor(hex: model.tint)
+//        self.sunday = model.sunday
+//        self.monday = model.monday
+//        self.tuesday = model.tuesday
+//        self.wednesday = model.wednesday
+//        self.thursday = model.thursday
+//        self.friday = model.friday
+//        self.saturday = model.saturday
+//    }
+    
 }

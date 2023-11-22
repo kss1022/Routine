@@ -10,17 +10,22 @@ import Foundation
 
 
 protocol RecordRepository{
+    func fetchRoutineList() async throws
     func fetchRoutineRecords(routineId: UUID) async throws
     func fetchRoutineTopAcheives() async throws
-    func fetchRoutineWeeklyTrakers(date: Date) async throws
-    
+    func fetchRoutineWeeklyTrakers() async throws
+ 
+    var routineLists: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ get }
     var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?> { get }
     var routineTopAcheive: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ get }
-    var routineWeeklyTrackers: ReadOnlyCurrentValuePublisher<[RoutineWeeklyTrackerModel]>{ get }
+    var routineWeeks: ReadOnlyCurrentValuePublisher<[RoutineWeekRecordModel]>{ get }
 }
 
 
 final class RecordRepositoryImp: RecordRepository{
+    
+    var routineLists: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ routineListsSubject }
+    private let routineListsSubject = CurrentValuePublisher<[RecordRoutineListModel]>([])
     
     var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ routineRecordsSubject }
     private let routineRecordsSubject = CurrentValuePublisher<RoutineRecordModel?>( nil )
@@ -28,8 +33,18 @@ final class RecordRepositoryImp: RecordRepository{
     var routineTopAcheive: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ routineTopAcheiveSubject }
     private let routineTopAcheiveSubject = CurrentValuePublisher<[RoutineTopAcheiveModel]>([])
     
-    var routineWeeklyTrackers: ReadOnlyCurrentValuePublisher<[RoutineWeeklyTrackerModel]>{ routineWeeklyTrackersSubject }
-    private let routineWeeklyTrackersSubject = CurrentValuePublisher<[RoutineWeeklyTrackerModel]>([])
+    var routineWeeks: ReadOnlyCurrentValuePublisher<[RoutineWeekRecordModel]>{ routineWeeksSubject }
+    private let routineWeeksSubject = CurrentValuePublisher<[RoutineWeekRecordModel]>([])
+        
+    
+    func fetchRoutineList() async throws {
+        let routines = try routineReadModel.routineLists()
+            .map(RecordRoutineListModel.init)
+        
+        routineListsSubject.send(routines)
+        
+        Log.v("Fetch RecordRoutines: \(routines)")
+    }
     
     func fetchRoutineRecords(routineId: UUID) async throws{
         let records = try routineRecordReadModel.records(routineId: routineId)
@@ -64,11 +79,13 @@ final class RecordRepositoryImp: RecordRepository{
     }
     
     
-    func fetchRoutineWeeklyTrakers(date: Date) async throws {
-        let weeklyTrackers = try routineRecordReadModel.weeklyTrackers(date: date)
-            .map(RoutineWeeklyTrackerModel.init)
-        routineWeeklyTrackersSubject.send(weeklyTrackers)
-        Log.v("Fetch FetchRoutineWeeklyTrakers: \(weeklyTrackers)")
+    func fetchRoutineWeeklyTrakers() async throws {
+        try await fetchRoutineList()
+        
+        let weeks = try routineRecordReadModel.weekRecords()
+            .map(RoutineWeekRecordModel.init)
+        routineWeeksSubject.send(weeks)
+        Log.v("Fetch Routine WeeksRecord: \(weeks)")
     }
     
     
@@ -77,13 +94,16 @@ final class RecordRepositoryImp: RecordRepository{
         Log.v("Fetch RecordList: \(records)")
     }
     
+    private let routineReadModel: RoutineReadModelFacade
     private let routineRecordReadModel: RoutineRecordReadModelFacade
     private let timerRecordReadModel: TimerRecordReadModelFacade
     
     init(
+        routineReadModel: RoutineReadModelFacade,
         routineRecordReadMoel: RoutineRecordReadModelFacade,
         timerRecordReadModel: TimerRecordReadModelFacade
     ) {
+        self.routineReadModel = routineReadModel
         self.routineRecordReadModel = routineRecordReadMoel
         self.timerRecordReadModel = timerRecordReadModel
         

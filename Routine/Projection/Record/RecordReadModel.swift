@@ -18,24 +18,22 @@ protocol RoutineRecordReadModelFacade{
     func totalRecord(routineId: UUID) throws -> RoutineTotalRecordDto?
     func monthRecord(routineId: UUID, date: Date) throws -> RoutineMonthRecordDto?
     func weekRecord(routineId: UUID, date: Date) throws -> RoutineWeekRecordDto?
-    
+    func weekRecords() throws -> [RoutineWeekRecordDto]
+
     func topStreak(routineId: UUID) throws -> RoutineStreakDto?
     func currentStreak(routineId: UUID, date: Date) throws -> RoutineStreakDto?
     
     func topAcheive() throws -> [RoutineTopAcheiveDto]
-    func weeklyTrackers(date: Date) throws -> [RoutineWeeklyTrackerDto]
 }
 
 
 public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade{
-    
     private let routineTotalRecordDao: RoutineTotalRecordDao
     private let routineMonthRecordDao: RoutineMonthRecordDao
-    private let routineWeekRecrodDao: RoutineWeekRecordDao
+    private let routineWeekRecordDao: RoutineWeekRecordDao
     private let routineStreakDao: RoutineStreakDao
     
     private let routineTopAcheiveDao: RoutineTopAcheiveDao
-    private let routineWeeklyTrackerDao: RoutineWeeklyTrackerDao
     
     private let routineRecordDao: RoutineRecordDao
     
@@ -47,11 +45,10 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
         
         routineTotalRecordDao = dbManager.routineTotalRecordDao
         routineMonthRecordDao = dbManager.routineMonthRecordDao
-        routineWeekRecrodDao = dbManager.routineWeekRecordDao
+        routineWeekRecordDao = dbManager.routineWeekRecordDao
         routineStreakDao = dbManager.routineStreakDao
         
         routineTopAcheiveDao = dbManager.routineTopAcheiveDao
-        routineWeeklyTrackerDao = dbManager.routineWeeklyTrackerDao
         
         routineRecordDao = dbManager.routineRecordDao
     }
@@ -83,9 +80,19 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
     func weekRecord(routineId: UUID, date: Date) throws -> RoutineWeekRecordDto? {
         let calendar = Calendar.current
         
-        let year = calendar.component(.year, from: date)
-        let weekOfYear = calendar.dateComponents([.weekOfYear], from: date).weekOfYear!
-        return try routineWeekRecrodDao.find(routineId: routineId, year: year, weekOfYear: weekOfYear)
+        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+
+        let startOfWeek = calendar.date(from: components)!
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
+                
+        let strStartOfWeek = Formatter.weekRecordFormatter().string(from: startOfWeek)
+        let strEndOfWeek = Formatter.weekRecordFormatter().string(from: endOfWeek)
+        
+        return try routineWeekRecordDao.find(routineId: routineId, startOfWeek: strStartOfWeek, endOfWeek: strEndOfWeek)
+    }
+    
+    func weekRecords() throws -> [RoutineWeekRecordDto] {
+        return try routineWeekRecordDao.findAll()
     }
     
     func topStreak(routineId: UUID) throws -> RoutineStreakDto? {
@@ -100,15 +107,6 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
     
     func topAcheive() throws -> [RoutineTopAcheiveDto] {
         try routineTopAcheiveDao.find()
-    }
-    
-    
-    func weeklyTrackers(date: Date) throws -> [RoutineWeeklyTrackerDto] {
-        let calendar = Calendar.current
-
-        let year = calendar.component(.year, from: date)
-        let weekOfYear = calendar.dateComponents([.weekOfYear], from: date).weekOfYear!
-        return try routineWeeklyTrackerDao.find(year: year, weekOfYear: weekOfYear)
     }
 
 }

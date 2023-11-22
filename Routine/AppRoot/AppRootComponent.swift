@@ -115,6 +115,7 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         )
         
         self.recordRepository = RecordRepositoryImp(
+            routineReadModel: routineReadModel,
             routineRecordReadMoel: routineRecordReadModel,
             timerRecordReadModel: timerRecordReadModel
         )

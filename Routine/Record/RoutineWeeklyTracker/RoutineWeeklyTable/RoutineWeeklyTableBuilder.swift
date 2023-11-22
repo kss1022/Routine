@@ -8,11 +8,13 @@
 import ModernRIBs
 
 protocol RoutineWeeklyTableDependency: Dependency {
-    var routineWeeklyTrackers: ReadOnlyCurrentValuePublisher<[RoutineWeeklyTrackerModel]>{ get }
+    var routines: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ get }
+    var routineWeeks: ReadOnlyCurrentValuePublisher<[RoutineWeekRecordModel]>{ get }
 }
 
 final class RoutineWeeklyTableComponent: Component<RoutineWeeklyTableDependency>, RoutineWeeklyTableInteractorDependency {
-    var routineWeeklyTrackers: ReadOnlyCurrentValuePublisher<[RoutineWeeklyTrackerModel]>{ dependency.routineWeeklyTrackers }
+    var routines: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ dependency.routines }
+    var routineWeeks: ReadOnlyCurrentValuePublisher<[RoutineWeekRecordModel]>{ dependency.routineWeeks }
 }
 
 // MARK: - Builder

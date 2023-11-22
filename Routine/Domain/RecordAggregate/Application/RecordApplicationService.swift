@@ -33,7 +33,7 @@ final class RecordApplicationService: ApplicationService{
 
             let routindId = RoutineId(command.routineId)
             let recordId = RecordId(UUID())
-            let recordDate = RecordDate(command.date)
+            let recordDate = try RecordDate(command.date)
             let isComplete = command.isComplete
             
             let record = recordFactory.create(routineId: routindId, recordId: recordId, recordDate: recordDate, isComplete: isComplete)
