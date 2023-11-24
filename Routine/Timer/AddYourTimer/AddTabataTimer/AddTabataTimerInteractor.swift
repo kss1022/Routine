@@ -13,7 +13,7 @@ protocol AddTabataTimerRouting: ViewableRouting {
     func detachTimerSectionEdit()
     
     func attachTimerEditTitle()
-    func attachTimerSectionListection()
+    func attachTimerSectionList()
 }
 
 protocol AddTabataTimerPresentable: Presentable {
@@ -130,7 +130,7 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
         dependency.sectionListsSubject.send(models)
         
         router?.attachTimerEditTitle()
-        router?.attachTimerSectionListection()
+        router?.attachTimerSectionList()
         presenter.setTitle(title: "Tabata")
     }
 

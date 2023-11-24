@@ -142,7 +142,7 @@ final class TimerDataOfStatsInteractor: PresentableInteractor<TimerDataOfStatsPr
             presenter.showBarChart()
             
             presenter.showYearChart(weekViewModel)
-        default: fatalError("Invalid SegmentIndex")
+        default: fatalError("Invalid Segment Index")
         }
     }
     

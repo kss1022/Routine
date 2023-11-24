@@ -24,8 +24,6 @@ final class AppInfoViewController: UIViewController, AppInfoPresentable, AppInfo
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentInsetAdjustmentBehavior = .always
-        
         return scrollView
     }()
     

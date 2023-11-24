@@ -38,6 +38,8 @@ class DatabaseManager{
     public let timerListDao: TimerListDao
     public let timerCountdownDao: TimerCountdownDao
     public let timerSectionListDao: TimerSectionListDao
+        
+    public let profileDao: ProfileDao
     
     private init() throws {
         guard let directoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else{
@@ -83,7 +85,7 @@ class DatabaseManager{
         self.routineStreakDao = try RoutineStreakSQLDao(db: db)
         self.routineRecordDao = try RoutineRecordSQLDao(db: db)
         self.timerRecordDao = try TimerRecordSQLDao(db: db)
-        
+        self.profileDao = ProfilepPreferencesDao(preferenceStorage: PreferenceStorage.shared)
         
         //Join
         self.routineTopAcheiveDao = RoutineTopAcheiveSQLDao(db: db)

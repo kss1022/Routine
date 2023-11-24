@@ -78,7 +78,7 @@ final class AddTabataTimerRouter: ViewableRouter<AddTabataTimerInteractable, Add
         attachChild(router)
     }
     
-    func attachTimerSectionListection() {
+    func attachTimerSectionList() {
         if timerSectionListRouting != nil{
             return
         }

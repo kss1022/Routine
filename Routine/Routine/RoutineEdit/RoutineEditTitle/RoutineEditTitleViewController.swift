@@ -23,7 +23,7 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBackground
         
-        button.setFont(style: .largeTitle)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .largeTitle)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         
         button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true

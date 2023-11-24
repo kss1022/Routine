@@ -10,7 +10,6 @@ import Foundation
 
 
 enum RepeatType: String, ValueObject{
-
     case doItOnce
     case daliy
     case weekliy

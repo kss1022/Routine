@@ -13,7 +13,7 @@ protocol AddRoundTimerRouting: ViewableRouting {
     func detachTimerSectionEdit()
     
     func attachTimerEditTitle()
-    func attachTimerSectionListection()
+    func attachTimerSectionList()
 }
 
 protocol AddRoundTimerPresentable: Presentable {
@@ -109,7 +109,7 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
         dependency.sectionListsSubject.send(models)
         
         router?.attachTimerEditTitle()
-        router?.attachTimerSectionListection()
+        router?.attachTimerSectionList()
         presenter.setTitle(title: "Round")
     }
 

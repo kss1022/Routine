@@ -8,6 +8,7 @@
 import Foundation
 
 
+//TODO: Repeat Dto -> Model
 
 struct RoutineDetailModel{
     public let routineId: UUID

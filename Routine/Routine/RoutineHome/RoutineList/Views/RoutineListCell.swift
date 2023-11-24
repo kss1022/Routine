@@ -16,7 +16,7 @@ final class RoutineListCell: UICollectionViewCell{
     private let emojiIconLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.setFont(style: .largeTitle)
+        label.font = .preferredFont(forTextStyle: .largeTitle)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         return label

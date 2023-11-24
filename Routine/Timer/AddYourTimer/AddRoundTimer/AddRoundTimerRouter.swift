@@ -78,7 +78,7 @@ final class AddRoundTimerRouter: ViewableRouter<AddRoundTimerInteractable, AddRo
         attachChild(router)
     }
     
-    func attachTimerSectionListection() {
+    func attachTimerSectionList() {
         if timerSectionListRouting != nil{
             return
         }

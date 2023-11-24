@@ -37,8 +37,7 @@ struct RoutineRecordModel{
             }
         
         self.completes = dictionary
-        self.doneThisWeek = weekDto.flatMap(RoutineWeekRecordModel.init)
-        
+        self.doneThisWeek = weekDto.flatMap(RoutineWeekRecordModel.init)        
         self.doneThisMonth = monthDto?.done ?? 0
         self.totalDone = totalDto?.totalDone ?? 0
         self.bestStreak = bestStreak?.streakCount ?? 0

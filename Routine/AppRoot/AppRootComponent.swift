@@ -10,11 +10,15 @@ import ModernRIBs
 
 
 final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependency, RecordHomeDependency, TimerHomeDependency, ProfileHomeDependency, CreateRoutineDependency, AppRootInteractorDependency{
+    
+    
+    
 
     //MARK: ApplicationService
     let routineApplicationService: RoutineApplicationService
     let recordApplicationService: RecordApplicationService
     let timerApplicationService: TimerApplicationService
+    let profileApplicationService: ProfileApplicationService
     
     //MARK: ReadModel
     private let routineReadModel: RoutineReadModelFacade
@@ -26,16 +30,20 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
     private let routineRecordReadModel: RoutineRecordReadModelFacade
     private let timerRecordReadModel: TimerRecordReadModelFacade
     
+    private let profileReadModel: ProfileReadModelFacade
+    
     
     //MAKR: Projection
     private let routineProjection: RoutineProjection
     private let recordProjection: RecordProjection
     private let timerProjection: TimerProjection
+    private let profileProjection: ProfileProjection
     
     //MARK: Repository
     let routineRepository: RoutineRepository
     let timerRepository: TimerRepository
     let recordRepository: RecordRepository
+    let profileRepository: ProfileRepository
     
     
     
@@ -62,6 +70,7 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         let routineFactory = CDRoutineFactory()
         let recordFactory = CDRecordFactory()
         let timerFactory = CDTimerFactory()
+        let profileFactory = CDProfileFactory()
                 
         //Service
         let routineService = RoutineService()
@@ -70,6 +79,7 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         routineProjection = try! RoutineProjection()        
         recordProjection = try! RecordProjection()
         timerProjection = try! TimerProjection()
+        profileProjection = try! ProfileProjection()
         
         //ReadModel
         routineReadModel = try! RoutineReadModelFacadeImp()
@@ -80,6 +90,8 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         
         routineRecordReadModel = try! RoutineRecordReadModelFacadeImp()
         timerRecordReadModel = try! TimerRecordReadModelFacadeImp()
+        
+        profileReadModel = try! ProfileReadModelFacadeImp()
         
         //ApplicationService
         self.routineApplicationService = RoutineApplicationService(
@@ -101,6 +113,12 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
             timerFactory: timerFactory
         )
         
+        self.profileApplicationService = ProfileApplicationService(
+            eventStore: eventStore,
+            snapshotRepository: snapshotRepository,
+            profileFactory: profileFactory
+        )
+        
         //Repository
         self.routineRepository = RoutineRepositoryImp(
             routineReadModel: routineReadModel,
@@ -118,6 +136,10 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
             routineReadModel: routineReadModel,
             routineRecordReadMoel: routineRecordReadModel,
             timerRecordReadModel: timerRecordReadModel
+        )
+    
+        self.profileRepository = ProfileRepositoryImp(
+            profileReadModel: profileReadModel
         )
          
         self.rootViewController = viewController

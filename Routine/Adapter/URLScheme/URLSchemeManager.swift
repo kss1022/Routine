@@ -6,6 +6,10 @@ public final class URLSchemeManager{
     
     public static let share = URLSchemeManager()
     
+    //TODO: Set AppStoreAppID
+    public static let RoutineAppStoreAppId = "6448030847" //나의 앱 -> 앱정보 -> 애플ID
+
+    
     func openLink(url: String){
         if let url = URL(string: url) {
             UIApplication.shared.open(url)
@@ -36,7 +40,7 @@ public final class URLSchemeManager{
         }
     }
     
-    func openAppStore( appStoreAppID : String){
+    func openAppStore(appStoreAppID : String){
         let url = URL(string: "itms-apps://itunes.apple.com/app/id" + appStoreAppID)!
         UIApplication.shared.open(url)
     }    

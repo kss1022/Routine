@@ -24,6 +24,9 @@ protocol AppRootListener: AnyObject {
 protocol AppRootInteractorDependency{
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    
+    var profileApplicationService: ProfileApplicationService{ get }
+    var profileRepository: ProfileRepository{ get }
 }
 
 final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRootInteractable, AppRootPresentableListener , URLHandler{
@@ -48,6 +51,7 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
         
         Task{
             try? await initTimer()
+            try? await initProfile()
         }
         
         router?.attachTabs()
@@ -75,6 +79,20 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
             timerRepository: dependency.timerRepository
         ).initTimer()
         preference.timerSetup = true
+    }
+    
+    func initProfile() async throws{
+        let preference = PreferenceStorage.shared
+        if preference.profileSetup{
+            return
+        }
+        
+        
+        try await ProfileSetup(
+            profileApplicationService: dependency.profileApplicationService,
+            profileRepository: dependency.profileRepository
+        ).initTimer()
+        preference.profileSetup = true
     }
 }
 

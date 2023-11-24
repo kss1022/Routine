@@ -30,6 +30,7 @@ final class TimerSectionListViewController: UIViewController, TimerSectionListPr
 //        tableView.separatorInset = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
         tableView.separatorStyle = .none
         tableView.delegate = self
+        tableView.keyboardDismissMode = .onDrag
         return tableView
     }()
     
@@ -47,7 +48,6 @@ final class TimerSectionListViewController: UIViewController, TimerSectionListPr
     }
     
     private func setLayout(){
-        title = "Select Timer!!!!!!!"
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
