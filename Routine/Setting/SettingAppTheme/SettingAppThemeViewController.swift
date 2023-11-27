@@ -99,7 +99,9 @@ extension SettingAppThemeViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UITableViewCell.self)
         
         var content = cell.defaultContentConfiguration()
-                
+        
+        content.textProperties.font = .getFont(style: .callout)
+        
         switch indexPath.row{
         case 0:
             content.text = "System"

@@ -9,7 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol ProfileEditMemojiPresentableListener: AnyObject {    
-    //func setMemoji(image: UIImage)
+    func setMemoji(memoji: Data?)
     func setEmoji(emoji: String)
     func setText(text: String)
     func didSelectItemAt(row: Int)
@@ -34,14 +34,14 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
         memoji.translatesAutoresizingMaskIntoConstraints = false
         memoji.onChange = { [weak self] image, type in
             switch type{
-            case .memoji : break
+            case .memoji :
+                self?.currentImage = image
+                self?.listener?.setMemoji(memoji: image.pngData())
             case .emoji(let emoji) :
                 self?.listener?.setEmoji(emoji: emoji)
             case .text(let text):
                 self?.listener?.setText(text: text)
             }
-            
-            
             self?.currentImage = image
             self?.collectionView.reloadData()
         }
@@ -66,10 +66,10 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
         button.titleLabel?.font = .getBoldFont(size: 24.0)
         button.setTitleColor(.label, for: .normal)
         
-        button.setImage(UIImage(systemName: "square.and.pencil.circle"), for: .normal)
-        button.semanticContentAttribute = .forceRightToLeft
-        button.tintColor = .secondaryLabel
-        button.imageEdgeInsets.left = 16.0
+//        button.setImage(UIImage(systemName: "square.and.pencil.circle"), for: .normal)
+//        button.semanticContentAttribute = .forceRightToLeft
+//        button.tintColor = .secondaryLabel
+//        button.imageEdgeInsets.left = 16.0
         
         button.addTarget(self, action: #selector(nameButtonTap), for: .touchUpInside)
         return button
@@ -82,10 +82,10 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
         
         button.setTitleColor(.secondaryLabel, for: .normal)
         
-        button.setImage(UIImage(systemName: "square.and.pencil.circle"), for: .normal)
-        button.semanticContentAttribute = .forceRightToLeft
-        button.tintColor = .secondaryLabel
-        button.imageEdgeInsets.left = 16.0
+//        button.setImage(UIImage(systemName: "square.and.pencil.circle"), for: .normal)
+//        button.semanticContentAttribute = .forceRightToLeft
+//        button.tintColor = .secondaryLabel
+//        button.imageEdgeInsets.left = 16.0
         
         
         button.addTarget(self, action: #selector(descriptionButtonTap), for: .touchUpInside)
@@ -212,7 +212,9 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
     }
     
     func setMemoji(memoji: String) {
-        
+        let image = UIImage(fileName: memoji)
+        self.currentImage = image
+        memojiView.setImage(image: image)
     }
     
     func setEmoji(emoji: String) {

@@ -7,34 +7,111 @@
 
 import Foundation
 import UIKit.UIImage
+import UniformTypeIdentifiers
 
+//if Info Plist -> Supports Document Browser -> true : Check File in Apple "Files" App
 
-
-final class AppFileManager{
+class AppFileManager{
     
-    private static let share = AppFileManager()
+    public static let share = AppFileManager()
     
-    private init(){}
     
-    private let fileManager = FileManager.default
     
-    func saveImage(image: UIImage, fileName: String) throws{
-        guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
-            throw AppFileManagerExceptoin("Return image as JPEG is Nil")
-        }
-        let directory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL
-        try data.write(to: directory.appendingPathComponent(fileName)!)
+    private let fileManager: FileManager
+    
+    private let defaultPath: URL
+    let imagePath: URL
+    
+    
+    private init(){
+        fileManager = FileManager.default
+        defaultPath =  try! fileManager.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor:  Bundle.main.bundleURL,
+            create: false
+        )
+        
+        imagePath = defaultPath.appendingPathComponent("image")
+        
+        
+        try! createDirectoryIfNotExists(path: imagePath)
     }
     
-    func getSavedImage(named: String) throws -> UIImage? {
-        if let dir = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
-            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
+    
+    func find(url: URL, fileName: String, type: UTType) -> String?{
+        let url = self.url(url: url, fileName: fileName, type: type)
+        let path = url.path
+        
+        if !fileManager.fileExists(atPath: path){
+            return nil
         }
-        return nil
+        
+        return path
     }
+    
+    func save(data: Data, url: URL, fileName: String, type: UTType) throws{
+        let newPath = self.url(url: url, fileName: fileName, type: type)
+        
+        if fileManager.fileExists(atPath: newPath.path){
+            throw AppFileManagerExceptoin("FileManger file already exists: \(url.appendingPathComponent(fileName))")
+        }
+        
+        try data.write(to: newPath)
+        Log.v("FileManger save file: \(fileName)")
+    }
+        
+    
+    func delete(url: URL, fileName: String, type: UTType) throws{
+        let url = self.url(url: url, fileName: fileName, type: type)
+        let path = url.path
+        
+        if !fileManager.fileExists(atPath: path){
+            throw AppFileManagerExceptoin("FileManger file is no exists: \(url.appendingPathComponent(fileName))")
+        }
+        
+        try FileManager.default.removeItem(atPath: path)
+        Log.v("FileManage delete file: \(path)")
+    }
+    
+    func deleteIfExists(url: URL, fileName: String, type: UTType) throws{
+        let url = self.url(url: url, fileName: fileName, type: type)
+        let path = url.path
+        
+        if fileManager.fileExists(atPath: path){
+            try FileManager.default.removeItem(atPath: path)
+            Log.v("FileManage delete file: \(path)")
+        }
+    }
+    
+    
+    
+    private func url(url: URL, fileName: String, type: UTType) -> URL{
+        URL(fileURLWithPath: url.absoluteString).appendingPathComponent(fileName, conformingTo: type)
+    }
+    
+    
+    private func createDirectoryIfNotExists(path : URL) throws{
+        if !fileManager.fileExists(atPath: path.path) {
+            try fileManager.createDirectory(at: path, withIntermediateDirectories: false, attributes: nil)
+            Log.v("FileManger create directory: \(path)")
+        }
+        
+    }
+    
     
 }
 
+
+extension UIImage{
+    convenience init?(fileName: String){
+        let manager = AppFileManager.share
+        let url = manager.imagePath
+        
+        guard let path = manager.find(url: url, fileName: fileName, type: .png) else { return nil}
+        self.init(contentsOfFile: path)
+    }
+}
 
 
 class AppFileManagerExceptoin: SystemException{

@@ -5,6 +5,7 @@
 //  Created by 한현규 on 11/23/23.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol ProfileEditRouting: ViewableRouting {
@@ -38,16 +39,15 @@ protocol ProfileEditInteractorDependency{
 }
 
 final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>, ProfileEditInteractable, ProfileEditPresentableListener {
-
+    
     weak var router: ProfileEditRouting?
     weak var listener: ProfileEditListener?
-
+    
     
     private let dependency: ProfileEditInteractorDependency
     
         
-    private var profileImageType: ProfilImageTypeModel
-    private var profileImageValue: String
+    private var memoji: ProfileEditMemojiModel
     private var style: ProfileStyleModel
     
     // in constructor.
@@ -58,20 +58,25 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
         self.dependency = dependency
         
         let profile  = dependency.profile!
-        self.profileImageType = profile.profileImage.profileType
-        self.profileImageValue = profile.profileImage.profileValue
+        
+        switch profile.profileImage {
+        case .memoji: self.memoji = .memoji(data: nil)
+        case .emoji(let emoji): self.memoji = .emoji(emoji: emoji)
+        case .text(let text): self.memoji = .text(text: text)
+        }
+                         
         self.style = profile.profileStyle
         
         super.init(presenter: presenter)
         presenter.listener = self
     }
-
+    
     override func didBecomeActive() {
         super.didBecomeActive()
         
-        router?.attchProfileEditMemoji()                    
+        router?.attchProfileEditMemoji()
     }
-
+    
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
@@ -84,12 +89,20 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
     func doneButtonDidTap() {
         Task{
             do{
+                if case let .memoji(data) = memoji, let data = data {
+                    let manager = AppFileManager.share
+                    let fileName = memoji.value()
+                    let imagePath = manager.imagePath
+                    try manager.deleteIfExists(url: imagePath, fileName: fileName, type: .png)
+                    try manager.save(data: data, url: imagePath, fileName: fileName, type: .png)
+                }
+                
                 let update = UpdateProfile(
                     profileId: dependency.profile!.profileId,
                     name: dependency.profileName.value,
                     description: dependency.profileDescription.value,
-                    imageType: profileImageType.rawValue,
-                    imageValue: profileImageValue,
+                    imageType: memoji.type(),
+                    imageValue: memoji.value(),
                     topColor: style.topColor,
                     bottomColor: style.bottomColor
                 )
@@ -116,16 +129,17 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
         router?.attachProfileEditDescription()
     }
     
-
+    
+    func profileEditTitleSetMemoji(memoji: Data?) {
+        self.memoji = .memoji(data: memoji)
+    }
     
     func profileEditTitleSetEmoji(emoji: String) {
-        self.profileImageType = .emoji
-        self.profileImageValue = emoji
+        self.memoji = .emoji(emoji: emoji)
     }
     
     func profileEditTitleSetText(text: String) {
-        self.profileImageType = .text
-        self.profileImageValue = text
+        self.memoji = .text(text: text)
     }
     
     func profileEditTitleSetSyle(style: ProfileStyleModel) {
@@ -137,7 +151,7 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
         router?.detachProfileEditName()
     }
     
-    func prorilfEditNameSetName() {        
+    func prorilfEditNameSetName() {
         router?.popProfileEditName()
     }
     

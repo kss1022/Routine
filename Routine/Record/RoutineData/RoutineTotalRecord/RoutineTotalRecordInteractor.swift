@@ -70,10 +70,10 @@ final class RoutineTotalRecordInteractor: PresentableInteractor<RoutineTotalReco
                         title: "Best Streak",
                         done: "\(model.bestStreak)"
                     ),
-                    RoutineTotalRecordListViewModel(
-                        title: "OverallRate",
-                        done: "\(model.bestStreak)%"   //String(format: "%.1f%%", model.overalRate)
-                    ),
+//                    RoutineTotalRecordListViewModel(
+//                        title: "OverallRate",
+//                        done: "\(model.bestStreak)%"   //String(format: "%.1f%%", model.overalRate)
+//                    ),
                 ]
                 
                 self.presenter.setRecords(viewModels: viewModels)

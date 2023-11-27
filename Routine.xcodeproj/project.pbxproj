@@ -288,6 +288,7 @@
 		8768E6052ABC541000CB35EC /* CDCheckListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */; };
 		8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */; };
 		8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */; };
+		8769B06C2B146C47000D260D /* ProfileEditMemojiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8769B06B2B146C47000D260D /* ProfileEditMemojiModel.swift */; };
 		876E94AE2AB2CE3D00046809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94AD2AB2CE3D00046809 /* AppDelegate.swift */; };
 		876E94B02AB2CE3D00046809 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E94AF2AB2CE3D00046809 /* SceneDelegate.swift */; };
 		876E94B82AB2CE3D00046809 /* EventStream.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 876E94B62AB2CE3D00046809 /* EventStream.xcdatamodeld */; };
@@ -1048,6 +1049,7 @@
 		8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCheckListFactory.swift; sourceTree = "<group>"; };
 		8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListApplicationService.swift; sourceTree = "<group>"; };
 		8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCoder+Utils.swift"; sourceTree = "<group>"; };
+		8769B06B2B146C47000D260D /* ProfileEditMemojiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditMemojiModel.swift; sourceTree = "<group>"; };
 		876E94AA2AB2CE3D00046809 /* Routine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Routine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876E94AD2AB2CE3D00046809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		876E94AF2AB2CE3D00046809 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -4141,6 +4143,7 @@
 				871B2F3D2B1085CE0015E266 /* ProfileEditMemojiRouter.swift */,
 				871B2F402B1085CE0015E266 /* ProfileEditMemojiInteractor.swift */,
 				871B2F3E2B1085CE0015E266 /* ProfileEditMemojiViewController.swift */,
+				8769B06B2B146C47000D260D /* ProfileEditMemojiModel.swift */,
 				871B2F352B1053D60015E266 /* ProfileStyleModel.swift */,
 				875ED93B2B0FABCB003A8944 /* Views */,
 			);
@@ -4377,6 +4380,7 @@
 				874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */,
 				87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */,
 				876E94D72AB2CEE600046809 /* AppComponent.swift in Sources */,
+				8769B06C2B146C47000D260D /* ProfileEditMemojiModel.swift in Sources */,
 				87D34DA82AFDF64A00C7537D /* TimerDataOfYearRouter.swift in Sources */,
 				87B6306A2B06FE5700BDBCAB /* FontPickerViewController.swift in Sources */,
 				87AD2D5F2AD6D26D00B0E2CF /* RecordApplicationService.swift in Sources */,

@@ -28,26 +28,18 @@ struct ProfileModel{
 
 
 
-struct ProfileImageModel{
-    let profileType: ProfilImageTypeModel
-    let profileValue: String
+enum ProfileImageModel{
+    case memoji(memoji: String)
+    case emoji(emoji: String)
+    case text(text: String)
     
-    init(_ dto: ProfileImageDto) {
-        self.profileType = ProfilImageTypeModel(dto.profileImageType)
-        self.profileValue = dto.profileImageValue
-    }
-}
-
-enum ProfilImageTypeModel: String{
-    case memoji
-    case emoji
-    case text
-    
-    init(_ dto: ProfileImageTypeDto){
-        switch dto {
-        case .memoji: self = .memoji
-        case .emoji: self = .emoji
-        case .text: self = .text
+    init(_ dto: ProfileImageDto){
+        let value = dto.profileImageValue
+        switch dto.profileImageType {
+        case .memoji: self = .memoji(memoji: value)
+        case .emoji: self = .emoji(emoji: value)
+        case .text: self = .text(text: value)
         }
     }
+    
 }

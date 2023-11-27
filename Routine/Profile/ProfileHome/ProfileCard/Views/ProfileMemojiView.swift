@@ -87,7 +87,7 @@ final class ProfileMemojiView: UIControl{
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         UIView.animate(withDuration: 0.3) {
-            self.alpha = 0.7
+            self.alpha = 1.0
         }
     }
     

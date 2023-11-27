@@ -22,6 +22,7 @@ final class SettingAppAlarmViewController: UIViewController, SettingAppAlarmPres
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         tableView.register(cellType: UITableViewCell.self)
+        tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "UITableViewHeaderFooterView")
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
@@ -79,8 +80,10 @@ extension SettingAppAlarmViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UITableViewCell.self)
         
         var content = cell.defaultContentConfiguration()
-
+        
         content.text = "Alarm"
+        content.textProperties.font = .getFont(style: .callout)
+        
         content.image = UIImage(systemName: "app.badge")
         
         cell.contentConfiguration = content
@@ -89,9 +92,22 @@ extension SettingAppAlarmViewController: UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "OnOff"
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "UITableViewHeaderFooterView") else{
+            fatalError("Failed to dequeue reusable cell")
+        }
+                
+        var content = headerView.defaultContentConfiguration()
+        content.text = "OnOff"
+        Log.v("\(content.textProperties.font)")
+        content.textProperties.font = .getFont(style: .caption1)
+        
+        headerView.contentConfiguration = content
+        
+        return headerView
     }
+
 }
 
 

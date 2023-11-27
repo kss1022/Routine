@@ -19,11 +19,13 @@ final class ProfileSetup{
     }
     
     func initTimer() async throws{
+        let editModel = ProfileEditMemojiModel.emoji(emoji: "🚀")
+        
         let createProfile = CreateProfile(
             name: "HG",
             description: "Hello~",
-            imageType: ProfilImageTypeModel.emoji.rawValue,
-            imageValue: "🚀",
+            imageType: editModel.type(),
+            imageValue: editModel.value(),
             topColor: "#A8ADBAFF",
             bottomColor: "#878C96FF"
         )

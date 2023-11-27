@@ -39,6 +39,7 @@ protocol ProfileEditMemojiListener: AnyObject {
     func profileEditMemojiNameButtonDidTap()
     func profileEditMemojiDescriptionButtonDidTap()
     
+    func profileEditTitleSetMemoji(memoji: Data?)
     func profileEditTitleSetEmoji(emoji: String)
     func profileEditTitleSetText(text: String)
     func profileEditTitleSetSyle(style: ProfileStyleModel)
@@ -117,10 +118,11 @@ final class ProfileEditMemojiInteractor: PresentableInteractor<ProfileEditMemoji
         
         if let profile = dependency.profile{
             presenter.setStyle(gardient: ProfileStyleViewModel(profile.profileStyle))
-            switch profile.profileImage.profileType{
-            case .memoji: presenter.setMemoji(memoji: profile.profileImage.profileValue)
-            case .emoji: presenter.setEmoji(emoji: profile.profileImage.profileValue)
-            case .text: presenter.setText(title: profile.profileImage.profileValue)
+            
+            switch profile.profileImage {
+            case .memoji(let memoji): presenter.setMemoji(memoji: memoji)
+            case .emoji(let emoji): presenter.setEmoji(emoji: emoji)
+            case .text(let text): presenter.setEmoji(emoji: text)
             }
         }
             
@@ -142,6 +144,9 @@ final class ProfileEditMemojiInteractor: PresentableInteractor<ProfileEditMemoji
         }
     }
     
+    func setMemoji(memoji: Data?) {
+        listener?.profileEditTitleSetMemoji(memoji: memoji)
+    }
     
     func setEmoji(emoji: String) {
         listener?.profileEditTitleSetEmoji(emoji: emoji)
