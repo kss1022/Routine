@@ -36,11 +36,7 @@ final class ProfileRepositoryImp: ProfileRepository{
     private let profileReadModel: ProfileReadModelFacade
     
     init(profileReadModel: ProfileReadModelFacade){
-        self.profileReadModel = profileReadModel
-        
-        Task{
-            try? await fetchProfile()
-        }        
+        self.profileReadModel = profileReadModel        
     }
     
 }

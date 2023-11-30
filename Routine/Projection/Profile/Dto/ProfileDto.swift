@@ -12,15 +12,15 @@ import Foundation
 struct ProfileDto: Codable{
     let profileId: UUID
     let profileName: String
-    let profileDescription: String
+    let profileIntroduction: String
     let profileImage: ProfileImageDto
     let profileStyle: ProfileStyleDto
     
     
-    init(profileId: UUID, profileName: String, profileDescription: String, profileImage: ProfileImage, profileStyle: ProfileStyle) {
+    init(profileId: UUID, profileName: String, profileIntroduction: String, profileImage: ProfileImage, profileStyle: ProfileStyle) {
         self.profileId = profileId
         self.profileName = profileName
-        self.profileDescription = profileDescription
+        self.profileIntroduction = profileIntroduction
         self.profileImage = ProfileImageDto(profileImage)
         self.profileStyle = ProfileStyleDto(profileStyle)
     }

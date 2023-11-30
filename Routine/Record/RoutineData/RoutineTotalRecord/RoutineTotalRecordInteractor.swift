@@ -23,7 +23,7 @@ protocol RoutineTotalRecordListener: AnyObject {
 }
 
 protocol RoutineTotalRecordInteractorDependency{
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ get }
 }
 
 final class RoutineTotalRecordInteractor: PresentableInteractor<RoutineTotalRecordPresentable>, RoutineTotalRecordInteractable, RoutineTotalRecordPresentableListener {

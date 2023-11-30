@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol ProfileHomeInteractable: Interactable,ProfileEditListener, SettingAppAlarmListener, SettingAppThemeListener,  SettingAppFontListener, SettingAppIconListener, AppGuideListener, FeedbackMailListener, AppInfoListener, ProfileCardListener, ProfileStatListener, ProfileMenuListener {
+protocol ProfileHomeInteractable: Interactable,ProfileEditListener, SettingAppNotificationListener, SettingAppThemeListener,  SettingAppFontListener, SettingAppIconListener, AppGuideListener, FeedbackMailListener, AppInfoListener, ProfileCardListener, ProfileStatListener, ProfileMenuListener {
     var router: ProfileHomeRouting? { get set }
     var listener: ProfileHomeListener? { get set }
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy{ get }
@@ -25,7 +25,7 @@ final class ProfileHomeRouter: ViewableRouter<ProfileHomeInteractable, ProfileHo
     private var profileEditRouting: ProfileEditRouting?
     
     
-    private let settingAppAlarmBuildable: SettingAppAlarmBuildable
+    private let settingAppNotificationBuildable: SettingAppNotificationBuildable
     private var settingAppAlarmRouter: Routing?
 
     private let settingAppThemeBuildable: SettingAppThemeBuildable
@@ -59,7 +59,7 @@ final class ProfileHomeRouter: ViewableRouter<ProfileHomeInteractable, ProfileHo
         interactor: ProfileHomeInteractable,
         viewController: ProfileHomeViewControllable,
         profileEditBuildable: ProfileEditBuildable,
-        settingAppAlarmBuildable: SettingAppAlarmBuildable,
+        settingAppNotificationBuildable: SettingAppNotificationBuildable,
         settingAppThemeBuildable: SettingAppThemeBuildable,
         settingAppFontBuildable: SettingAppFontBuildable,
         settingAppIconBuildable: SettingAppIconBuildable,
@@ -71,7 +71,7 @@ final class ProfileHomeRouter: ViewableRouter<ProfileHomeInteractable, ProfileHo
         profileMenuBuildable: ProfileMenuBuildable
     ) {
         self.profileEditBuildable = profileEditBuildable
-        self.settingAppAlarmBuildable =  settingAppAlarmBuildable
+        self.settingAppNotificationBuildable =  settingAppNotificationBuildable
         self.settingAppThemeBuildable = settingAppThemeBuildable
         self.settingAppFontBuildable = settingAppFontBuildable
         self.settingAppIconBuildable = settingAppIconBuildable
@@ -108,19 +108,19 @@ final class ProfileHomeRouter: ViewableRouter<ProfileHomeInteractable, ProfileHo
         profileEditRouting = nil
     }
     
-    func attachSettingAppAlarm() {
+    func attachSettingAppNotification() {
         if settingAppAlarmRouter != nil{
             return
         }
         
-        let router = settingAppAlarmBuildable.build(withListener: interactor)
+        let router = settingAppNotificationBuildable.build(withListener: interactor)
         viewController.pushViewController(router.viewControllable, animated: true)
         
         settingAppAlarmRouter = router
         attachChild(router)
     }
     
-    func detachSettingAppAlarm() {
+    func detachSettingAppNotification() {
         guard let router = settingAppAlarmRouter else { return }
         
         detachChild(router)

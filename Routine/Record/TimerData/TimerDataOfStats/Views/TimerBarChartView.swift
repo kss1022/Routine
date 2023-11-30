@@ -87,7 +87,7 @@ final class TimerBarChartView: UIView{
 
         let set = BarChartDataSet(entries: viewModel.chartDataList, label: "")
         
-        set.colors = [.primaryColor]//ChartColorTemplates.liberty()
+        set.colors = [.primaryGreen]//ChartColorTemplates.liberty()
 
         let data = BarChartData(dataSet: set)
         data.setDrawValues(false)

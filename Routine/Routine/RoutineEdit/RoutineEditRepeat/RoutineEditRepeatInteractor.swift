@@ -28,7 +28,7 @@ protocol RoutineEditRepeatPresentable: Presentable {
     
     func showWeeklyControl()
     func hideWeeklyControl()
-    func setWeeklys(weeklys: Set<WeekliyViewModel>)
+    func setWeeklys(weeklys: Set<WeeklyViewModel>)
     
     func showMonthlyControl()
     func hideMonthlyConrol()
@@ -37,8 +37,7 @@ protocol RoutineEditRepeatPresentable: Presentable {
 }
 
 protocol RoutineEditRepeatListener: AnyObject {
-    func routineEditRepeatSetType(type: RepeatTypeViewModel)
-    func routineEditRepeatSetValue(value: RepeatValueViewModel)
+    func routineEditRepeatDidSetRepeat(repeat: RepeatModel)
 }
 
 protocol RoutineEditRepeatInteractorDependency{
@@ -52,12 +51,12 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
     weak var listener: RoutineEditRepeatListener?
     
     private let dependency: RoutineEditRepeatInteractorDependency
-    private let detail: RoutineDetailModel?
     
-    private var segmentType: SegmentType = .daliy
-    private var doItOnceDate: Date?
-    private var weekly: Set<WeekliyViewModel>?
-    private var monthly: Set<RepeatMonthlyViewModel>?
+    private var segmentType: SegmentType
+    
+    private var doItOnceDate: Date
+    private var weekly: Set<Int>
+    private var monthly: Set<Int>
     
     
     // in constructor.
@@ -66,18 +65,69 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
         dependency: RoutineEditRepeatInteractorDependency
     ) {
         self.dependency = dependency
-        self.detail = dependency.detail
+        
+        let repeatModel = dependency.detail?.repeatModel
+        
+        self.segmentType = repeatModel.flatMap(SegmentType.init) ?? .daliy
+                
+        
+        if case .doitOnce(let date ) = repeatModel {
+            self.doItOnceDate = date
+        }else{
+            self.doItOnceDate = Date()
+        }
+        
+         if case .weekly(let weekly) = repeatModel {
+            self.weekly = weekly
+         } else{
+             self.weekly = .init()
+         }
+        
+        if case .monthly(let monthly) = repeatModel {
+            self.monthly = monthly
+        }else {
+            self.monthly = .init()
+        }
+        
+        
         super.init(presenter: presenter)
         presenter.listener = self
     }
     
     override func didBecomeActive() {
         super.didBecomeActive()
-        let type = detail?.repeatType ?? .doItOnce
-        let value = detail?.repeatValue ?? .empty
-        Log.v("RoutineEditRepaet DidBecome Active🔁: \(type) & \(value)")
-       setRepeatData()
+               
+        let repeatModel = dependency.detail?.repeatModel
+
+        switch repeatModel {
+        case .doitOnce:
+            presenter.showDoItOnceControl()
+            presenter.setDoItOnceDate(date: self.doItOnceDate)
+        case .daliy:
+            presenter.setToogle(on: true)
+            presenter.showRepeatSegmentControl()
+            presenter.showDaliy()
+        case .weekly:
+            presenter.setToogle(on: true)
+            presenter.showRepeatSegmentControl()
+            presenter.showWeeklyControl()
+            
+            let weeklyViewModels = weekly.compactMap(WeeklyViewModel.init)
+            presenter.setWeeklys(weeklys: Set(weeklyViewModels))
+        case .monthly(let monthly):
+            presenter.setToogle(on: true)
+            presenter.showRepeatSegmentControl()
+            presenter.showMonthlyControl()
+            
+            let monthlyViewModels = monthly.compactMap(RepeatMonthlyViewModel.init)
+            presenter.setMonthlyData(monthly: Set(monthlyViewModels))
+        case .none:
+            presenter.setToogle(on: true)
+            presenter.showRepeatSegmentControl()
+            presenter.showDaliy()
+        }
     }
+    
     
     override func willResignActive() {
         super.willResignActive()
@@ -86,14 +136,13 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
         
     func repeatToogleValueChange(isOn: Bool) {
         if isOn{
-            sendTypeValue()
-            sendRepeatValue()
-            
+            didRepeatValueChange()
             presenter.hideDoItOnceControl()
             presenter.showRepeatSegmentControl()
             showControlView()
         }else{
-            listener?.routineEditRepeatSetType(type: .doItOnce)
+            let doItOnceDate = self.doItOnceDate
+            listener?.routineEditRepeatDidSetRepeat(repeat: .doitOnce(date: doItOnceDate))
             
             presenter.hideRepeatSegmentControl()
             hideControlView()
@@ -106,97 +155,44 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
         
         switch segmentIndex{
         case 0:
-            listener?.routineEditRepeatSetType(type: .daliy)
-            listener?.routineEditRepeatSetValue(value: .daliy)
-            
+            segmentType = .daliy
             presenter.showDaliy()
-            self.segmentType = .daliy
         case 1:
-            listener?.routineEditRepeatSetType(type: .weekliy)
-            if let weekly = weekly{ listener?.routineEditRepeatSetValue(value: .weekly(weekly: weekly)) }
-            
+            segmentType = .weekly
             presenter.showWeeklyControl()
-            self.segmentType = .weekliy
         case 2:
-            listener?.routineEditRepeatSetType(type: .monthly)
-            if let monthly = monthly{ listener?.routineEditRepeatSetValue(value: .monhtly(monthly: monthly)) }
+            segmentType = .monthly
             presenter.showMonthlyControl()
-            self.segmentType = .monthly
-        default:
-            fatalError("Invalid SegmentIndex")
+        default: fatalError("Invalid SegmentIndex")
         }
+        
+        didRepeatValueChange()
     }
 
     
     func repeatDoItOnceControlValueChange(date: Date) {
         self.doItOnceDate = date
-        listener?.routineEditRepeatSetValue(value: .doitOnce(date: date))
+        listener?.routineEditRepeatDidSetRepeat(repeat: .doitOnce(date: date))
     }
     
-    func repeatWeeklyControlValueChange(weekly: Set<WeekliyViewModel>) {
-        self.weekly = weekly
-        listener?.routineEditRepeatSetValue(value: .weekly(weekly: weekly))
+    func repeatWeeklyControlValueChange(weekly: Set<WeeklyViewModel>) {
+        self.weekly = Set(weekly.map{ $0.rawValue })
+        listener?.routineEditRepeatDidSetRepeat(repeat: .weekly(weekly: self.weekly ))
     }
     
     func repeatMonthlyControlValueChange(monthly: Set<RepeatMonthlyViewModel>) {
-        self.monthly = monthly
-        listener?.routineEditRepeatSetValue(value: .monhtly(monthly: monthly))
+        self.monthly = Set(monthly.map{ $0.day })
+        listener?.routineEditRepeatDidSetRepeat(repeat: .monthly(monthly: self.monthly) )
     }
     
+    //MARK: Private
     
-    
-    //set initial Data
-    private func setRepeatData(){
-                
-        let type = RepeatTypeViewModel(rawValue: (detail?.repeatType ?? .daliy).rawValue)!
-        let value = RepeatValueViewModel(
-            type: detail?.repeatType ?? .daliy,
-            value: detail?.repeatValue ?? .empty
-        )!.value()
-        
-        
-        switch type {
-        case .doItOnce:
-            presenter.showDoItOnceControl()
-            if let date = value as? Date{
-                self.doItOnceDate = date
-                presenter.setDoItOnceDate(date: date)
-            }
-        case .daliy:
-            presenter.setToogle(on: true)
-            presenter.showRepeatSegmentControl()
-            presenter.showDaliy()
-            self.segmentType = .daliy
-        case .weekliy:
-            presenter.setToogle(on: true)
-            presenter.showRepeatSegmentControl()
-            presenter.showWeeklyControl()
-            
-            if let weekly = value as? Set<WeekliyViewModel>{
-                self.weekly = weekly
-                presenter.setWeeklys(weeklys: weekly)
-            }
-            
-            self.segmentType = .weekliy
-        case .monthly:
-            presenter.setToogle(on: true)
-            presenter.showRepeatSegmentControl()
-            presenter.showMonthlyControl()
 
-            if let monthly = value as? Set<RepeatMonthlyViewModel>{
-                self.monthly = monthly
-                presenter.setMonthlyData(monthly: monthly)
-            }
-            
-            self.segmentType = .monthly
-        }
-    }
-    
     //when toogle On
     private func showControlView(){
         switch self.segmentType {
         case .daliy: presenter.showDaliy()
-        case .weekliy: presenter.showWeeklyControl()
+        case .weekly: presenter.showWeeklyControl()
         case .monthly: presenter.showMonthlyControl()
         }
     }
@@ -204,42 +200,33 @@ final class RoutineEditRepeatInteractor: PresentableInteractor<RoutineEditRepeat
     private func hideControlView(){
         switch segmentType{
         case .daliy: break // nothing to do
-        case .weekliy: presenter.hideWeeklyControl()
+        case .weekly: presenter.hideWeeklyControl()
         case .monthly: presenter.hideMonthlyConrol()
         }
     }
     
     //when toogle On
-    private func sendTypeValue(){
+    private func didRepeatValueChange(){
         switch segmentType {
-        case .daliy:
-            listener?.routineEditRepeatSetType(type: .daliy)
-        case .weekliy:
-            listener?.routineEditRepeatSetType(type: .weekliy)
-        case .monthly:
-            listener?.routineEditRepeatSetType(type: .monthly)
-        }
-    }
-    
-    private func sendRepeatValue(){
-        switch segmentType {
-        case .daliy:
-            listener?.routineEditRepeatSetValue(value: .daliy)
-        case .weekliy:
-            if let weekly = self.weekly{
-                listener?.routineEditRepeatSetValue(value: .weekly(weekly: weekly))
-            }
-        case .monthly:
-            if let monthly = self.monthly{
-                listener?.routineEditRepeatSetValue(value: .monhtly(monthly: monthly))
-            }
+        case .daliy: listener?.routineEditRepeatDidSetRepeat(repeat: .daliy)
+        case .weekly: listener?.routineEditRepeatDidSetRepeat(repeat: .weekly(weekly: weekly ) )
+        case .monthly: listener?.routineEditRepeatDidSetRepeat(repeat: .monthly(monthly: monthly ))
         }
     }
     
     enum SegmentType: String{
         case daliy
-        case weekliy
+        case weekly
         case monthly
+        
+        init(_ model: RepeatModel){
+            switch model {
+            case .doitOnce: self = .daliy
+            case .daliy: self = .daliy
+            case .weekly: self = .weekly
+            case .monthly: self = .monthly
+            }
+        }
     }
     
 }

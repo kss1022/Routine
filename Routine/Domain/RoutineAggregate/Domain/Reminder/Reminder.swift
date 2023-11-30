@@ -46,7 +46,7 @@ struct Reminder: ValueObject{
             self.day = nil
             self.weekDays = nil
             self.monthDays = nil
-        case .weekliy:
+        case .weekly:
             guard let weekDays = data as? Set<Int> else {
                 throw ArgumentException("This is not the right data for your type (weekly): %@ != %@", "Set<Int>", "\(data.self ?? "nil")")
             }

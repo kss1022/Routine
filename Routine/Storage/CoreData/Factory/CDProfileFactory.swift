@@ -10,8 +10,8 @@ import Foundation
 
 
 final class CDProfileFactory: ProfileFactory{
-    func create(profileId: ProfileId, profileName: ProfileName, profileDescription: ProfileDescription, profileImage: ProfileImage, profileStyle: ProfileStyle) -> Profile {
-        Profile(profileId: profileId, profileName: profileName, profileDescription: profileDescription, profileImage: profileImage, profileStyle: profileStyle)
+    func create(profileId: ProfileId, profileName: ProfileName, profileIntroduction: ProfileIntroduction, profileImage: ProfileImage, profileStyle: ProfileStyle) -> Profile {
+        Profile(profileId: profileId, profileName: profileName, profileIntroduction: profileIntroduction, profileImage: profileImage, profileStyle: profileStyle)
     }
     
     

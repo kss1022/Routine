@@ -21,14 +21,14 @@ final class TimerStasDateView: UIView{
     private let leftButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.left.circle.fill"), for: .normal)
-        button.tintColor = .primaryColor
+        button.tintColor = .primaryGreen
         return button
     }()
     
     private let rightButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.right.circle.fill"), for: .normal)
-        button.tintColor = .primaryColor
+        button.tintColor = .primaryGreen
         return button
     }()
     

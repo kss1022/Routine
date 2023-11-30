@@ -23,7 +23,7 @@ protocol RoutineDataOfYearListener: AnyObject {
 }
 
 protocol RoutineDataOfYearInteractorDependency{
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ get }
 }
 
 final class RoutineDataOfYearInteractor: PresentableInteractor<RoutineDataOfYearPresentable>, RoutineDataOfYearInteractable, RoutineDataOfYearPresentableListener {

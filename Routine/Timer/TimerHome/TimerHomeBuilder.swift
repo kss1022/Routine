@@ -13,7 +13,7 @@ protocol TimerHomeDependency: Dependency {
 
     var timerRepository: TimerRepository{ get }
     
-    var startTimerBaseViewController: ViewControllable{ get }
+    var startTimerViewController: ViewControllable{ get }
 }
 
 final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, StartTimerDependency, TimerSelectDependency, TimerHomeInteractorDependency {
@@ -25,7 +25,7 @@ final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDepen
     
     var timerRepository: TimerRepository{ dependency.timerRepository }
     
-    var startTimerBaseViewController: ViewControllable{ dependency.startTimerBaseViewController }
+    var startTimerViewController: ViewControllable{ dependency.startTimerViewController }
 }
 
 // MARK: - Builder

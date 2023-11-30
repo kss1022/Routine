@@ -11,8 +11,8 @@ protocol ProfileHomeRouting: ViewableRouting {
     func attachProfileEdit()
     func detachProfileEdit()
     
-    func attachSettingAppAlarm()
-    func detachSettingAppAlarm()
+    func attachSettingAppNotification()
+    func detachSettingAppNotification()
     
     func attachSettingAppTheme()
     func detachSettingAppTheme()
@@ -46,21 +46,31 @@ protocol ProfileHomeListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol ProfileHomeInteractorDependency{
+    var profileRepository: ProfileRepository{ get }
+}
+
 final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>, ProfileHomeInteractable, ProfileHomePresentableListener, AdaptivePresentationControllerDelegate {
 
     weak var router: ProfileHomeRouting?
     weak var listener: ProfileHomeListener?
 
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
+    
+    private let dependency: ProfileHomeInteractorDependency
 
-    var isEditProfile: Bool
-    var isAppGuide: Bool
-    var isFeedBack: Bool
-    var isAppInfo: Bool
+    private var isEditProfile: Bool
+    private var isAppGuide: Bool
+    private var isFeedBack: Bool
+    private var isAppInfo: Bool
 
     // in constructor.
-    override init(presenter: ProfileHomePresentable) {
+    init(
+        presenter: ProfileHomePresentable,
+        dependency: ProfileHomeInteractorDependency
+    ) {
         presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
+        self.dependency = dependency
         isEditProfile = false
         isAppGuide = false
         isFeedBack = false
@@ -78,6 +88,15 @@ final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>
         router?.attachProfileCard()
         //router?.attachProfileStat()
         router?.attachProfileMenu()
+        
+        Task{
+            do{
+                try await dependency.profileRepository.fetchProfile()
+            }catch{
+                Log.e(error.localizedDescription)
+            }
+        }
+        
     }
 
     override func willResignActive() {
@@ -127,11 +146,11 @@ final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>
     
     //MARK: AppAlarm
     func profileMenuAlarmButtonDidTap() {
-        router?.attachSettingAppAlarm()
+        router?.attachSettingAppNotification()
     }
     
-    func settingAppAlarmDidMove() {
-        router?.detachSettingAppAlarm()
+    func settingAppNotificationDidMove() {
+        router?.detachSettingAppNotification()
     }
     
     //MARK: AppTheme

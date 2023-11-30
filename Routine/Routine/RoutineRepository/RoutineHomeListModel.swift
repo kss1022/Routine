@@ -12,8 +12,8 @@ public struct RoutineHomeListModel{
     public let routineId: UUID
     public let routineName: String
     public let routineDescription: String
-    public let repeatType: RepeatTypeDto
-    public let repeatValue: RepeatValueDto
+//    public let repeatType: RepeatTypeDto
+//    public let repeatValue: RepeatValueDto
     public let emojiIcon: String
     public let tint: String
     public let sequence: Int
@@ -25,8 +25,8 @@ public struct RoutineHomeListModel{
         self.routineId = routineListDto.routineId
         self.routineName = routineListDto.routineName
         self.routineDescription = routineListDto.routineDescription
-        self.repeatType = routineListDto.repeatType
-        self.repeatValue = routineListDto.repeatValue
+//        self.repeatType = routineListDto.repeatType
+//        self.repeatValue = routineListDto.repeatValue
         self.emojiIcon = routineListDto.emojiIcon
         self.tint = routineListDto.tint
         self.sequence = Int(routineListDto.sequence)

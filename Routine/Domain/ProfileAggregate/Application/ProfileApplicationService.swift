@@ -32,11 +32,11 @@ final class ProfileApplicationService: ApplicationService{
 
             let profileId = ProfileId(UUID())
             let profileName = try ProfileName( command.name)
-            let profileDescription = try ProfileDescription(command.description)
+            let profileIntroduction = try ProfileIntroduction(command.description)
             let profileImage = try ProfileImage(imageType: command.imageType, value: command.imageValue)
             let profileStyle = ProfileStyle(topColor: command.topColor, bottomColor: command.bottomColor)
             
-            let profile = profileFactory.create(profileId: profileId, profileName: profileName, profileDescription: profileDescription, profileImage: profileImage, profileStyle: profileStyle)
+            let profile = profileFactory.create(profileId: profileId, profileName: profileName, profileIntroduction: profileIntroduction, profileImage: profileImage, profileStyle: profileStyle)
             
             try eventStore.appendToStream(id: profile.profileId.id, expectedVersion: -1, events: profile.changes)
             
@@ -53,12 +53,12 @@ final class ProfileApplicationService: ApplicationService{
                         
             let profileId = ProfileId(command.profileId)
             let profileName = try ProfileName(command.name)
-            let profileDescription = try ProfileDescription(command.description)
+            let profileIntroduction = try ProfileIntroduction(command.description)
             let profileImage = try ProfileImage(imageType: command.imageType, value: command.imageValue)
             let profileStyle = ProfileStyle(topColor: command.topColor, bottomColor: command.bottomColor)
             
             try update(id: command.profileId) { (profile: Profile) in
-                profile.updateProfile(profileName: profileName, profileDescription: profileDescription, profileImage: profileImage, profileStyle: profileStyle)
+                profile.updateProfile(profileName: profileName, profileIntroduction: profileIntroduction, profileImage: profileImage, profileStyle: profileStyle)
             }
             
             try Transaction.commit()

@@ -41,7 +41,7 @@ final class ProfileProjection{
             let dto = ProfileDto(
                 profileId: event.profileId.id,
                 profileName: event.profileName.name,
-                profileDescription: event.profileDescription.description,
+                profileIntroduction: event.profileIntroduction.introduction,
                 profileImage: event.profileImage,
                 profileStyle: event.profileStyle
             )
@@ -58,7 +58,7 @@ final class ProfileProjection{
             let dto = ProfileDto(
                 profileId: event.profileId.id,
                 profileName: event.profileName.name,
-                profileDescription: event.profileDescription.description,
+                profileIntroduction: event.profileIntroduction.introduction,
                 profileImage: event.profileImage,
                 profileStyle: event.profileStyle
             )

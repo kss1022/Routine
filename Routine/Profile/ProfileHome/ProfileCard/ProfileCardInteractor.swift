@@ -65,7 +65,7 @@ final class ProfileCardInteractor: PresentableInteractor<ProfileCardPresentable>
         cancellables.removeAll()
     }
     
-    func profileMemojiViewDidTap() {
+    func memojiButtonDidTap() {
         self.listener?.profileCardProfileMemojiViewDidTap()
     }
 }

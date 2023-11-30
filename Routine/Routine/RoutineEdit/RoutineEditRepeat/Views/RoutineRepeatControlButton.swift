@@ -20,7 +20,7 @@ final class RoutineRepeatControlButton: UIButton{
             
     //Layer
     private var addedLayer: CAShapeLayer?
-    private var fillColor: CGColor = UIColor.primaryColor.cgColor
+    private var fillColor: CGColor = UIColor.primaryGreen.cgColor
        
     
     //TitleLabel

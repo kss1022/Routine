@@ -22,7 +22,7 @@ final class ProfileEditComponent: Component<ProfileEditDependency>, ProfileEditN
     lazy var profileNameSubject = CurrentValuePublisher<String>(profile?.profileName ?? "")
     
     var profileDescription: ReadOnlyCurrentValuePublisher<String>{ profileDescriptionSubject }
-    lazy var profileDescriptionSubject =  CurrentValuePublisher<String>(profile?.profileDescription ?? "")
+    lazy var profileDescriptionSubject =  CurrentValuePublisher<String>(profile?.profileIntroduction ?? "")
 }
 
 // MARK: - Builder

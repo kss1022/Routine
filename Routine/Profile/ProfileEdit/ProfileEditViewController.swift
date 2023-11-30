@@ -84,7 +84,7 @@ final class ProfileEditViewController: UIViewController, ProfileEditPresentable,
     }
     
     
-    func setTitle(_ view: ViewControllable) {
+    func setEditMemoji(_ view: ViewControllable) {
         let vc = view.uiviewController
         addChild(vc)        
         stackView.addArrangedSubview(vc.view)

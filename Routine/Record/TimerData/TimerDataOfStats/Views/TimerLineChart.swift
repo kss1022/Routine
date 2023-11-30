@@ -89,17 +89,17 @@ final class TimerLineChartView: UIView{
         set.mode = .cubicBezier
         
         //Set Line
-        set.setColor(.primaryColor)
+        set.setColor(.primaryGreen)
         set.lineWidth = 1.0
         
         //Set Circle
         set.circleRadius = 1.0
-        set.setCircleColor(.primaryColor)
+        set.setCircleColor(.primaryGreen)
         set.drawCirclesEnabled = true
         
         
         //set.fill = ColorFill(color: .secondaryColor)
-        let gradientColors = [UIColor.primaryColor.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
+        let gradientColors = [UIColor.primaryGreen.cgColor, UIColor.clear.cgColor] as CFArray // Colors of the gradient
         let colorLocations:[CGFloat] = [1.0, 0.0] // Positioning of the gradient
         
         let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations) // Gradient Object

@@ -12,7 +12,7 @@ import UIKit
 
 class RepeatSegmentControl: UISegmentedControl{
     private let segmentInset: CGFloat = 8       //your inset amount
-    private let segmentImage: UIImage? = UIImage(color: .primaryColor)    //your color
+    private let segmentImage: UIImage? = UIImage(color: .primaryGreen)    //your color
 
     override func layoutSubviews(){
         super.layoutSubviews()

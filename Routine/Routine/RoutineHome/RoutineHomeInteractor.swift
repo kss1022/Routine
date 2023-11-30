@@ -78,6 +78,14 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         Log.v("Routine Home DidBecome Active ✅")
         router?.attachRoutineWeekCalendar()
         router?.attachRoutineList()
+        
+        Task{
+            do{
+                try await dependency.routineRepository.fetchLists()
+            }catch{
+                Log.e(error.localizedDescription)
+            }
+        }
     }
     
     override func willResignActive() {

@@ -9,13 +9,13 @@ import ModernRIBs
 import UIKit
 
 protocol ProfileEditMemojiPresentableListener: AnyObject {    
-    func setMemoji(memoji: Data?)
-    func setEmoji(emoji: String)
-    func setText(text: String)
-    func didSelectItemAt(row: Int)
-    
+
     func nameButtonDidTap()
     func descriptoinButtonDidTap()
+    
+    func didSetType(type: MemojiType)
+    func didSetStyle(style: MemojiStyle)
+    
     func segementControlValueChanged(index: Int)
     func memojiViewDidFocused()
 }
@@ -24,7 +24,6 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
 
     weak var listener: ProfileEditMemojiPresentableListener?
     
-    private var styles =  [ProfileStyleViewModel]()
 
     private var currentImage: UIImage?
         
@@ -33,17 +32,7 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
         let memoji = MemojiView()
         memoji.translatesAutoresizingMaskIntoConstraints = false
         memoji.onChange = { [weak self] image, type in
-            switch type{
-            case .memoji :
-                self?.currentImage = image
-                self?.listener?.setMemoji(memoji: image.pngData())
-            case .emoji(let emoji) :
-                self?.listener?.setEmoji(emoji: emoji)
-            case .text(let text):
-                self?.listener?.setText(text: text)
-            }
-            self?.currentImage = image
-            self?.collectionView.reloadData()
+            self?.listener?.didSetType(type: type)
         }
         memoji.onFocus = { [weak self] in
             self?.listener?.memojiViewDidFocused()
@@ -111,25 +100,15 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
     
     private var collectionViewHeightConstraint: NSLayoutConstraint!
     
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 16.0
-        layout.minimumInteritemSpacing = 0.0
-        layout.sectionInset = .init(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
+    private lazy var collectionView: MemojiStyleCollectionView = {
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = MemojiStyleCollectionView()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(cellType: ProfileEditStyleCell.self)
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-                
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
         collectionView.isHidden = true
-        
+        collectionView.tapHandler = { [weak self] style in
+            self?.listener?.didSetStyle(style: style)
+        }
         collectionViewHeightConstraint = collectionView.heightAnchor.constraint(equalToConstant: 0.0)
-
         return collectionView
     }()
     
@@ -200,41 +179,31 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
     //MARK: Presentable
     
     func setName(name: String) {
+        if name.isEmpty{
+            nameButton.setTitle("Add Your Name!", for: .normal)
+            return
+        }
+        
         nameButton.setTitle(name, for: .normal)
     }
     
     func setDescription(description: String) {
+        if description.isEmpty{
+            descriptoinButton.setTitle("Introduce yourself  ✍️", for: .normal)
+            return
+        }
+        
         descriptoinButton.setTitle(description, for: .normal)
     }
     
-    func setStyle(gardient: ProfileStyleViewModel) {
-        memojiView.setGradientBackground(gardient)
+    func setType(type: MemojiType) {
+        memojiView.setType(type)
+        collectionView.setType(type)
     }
     
-    func setMemoji(memoji: String) {
-        let image = UIImage(fileName: memoji)
-        self.currentImage = image
-        memojiView.setImage(image: image)
+    func setStyle(style: MemojiStyle) {
+        memojiView.setStyle(style)
     }
-    
-    func setEmoji(emoji: String) {
-        let image = emoji.toImage()
-        self.currentImage = image
-        memojiView.setImage(image: image)
-    }
-    
-    func setText(title: String) {
-        let image = title.toImage()
-        self.currentImage = image
-        memojiView.setImage(image: image)
-    }
-    
-    
-    func setStyleLists(_ viewModels: [ProfileStyleViewModel]) {
-        self.styles = viewModels
-        collectionView.reloadData()
-    }
-    
     
     func showMemojiLists() {
         memojiView.focus()
@@ -277,40 +246,4 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
     }
     
     
-}
-
-
-
-extension ProfileEditMemojiViewController: UICollectionViewDataSource{
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        styles.count
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProfileEditStyleCell.self)
-        
-        cell.bindView(style: styles[indexPath.row], image: currentImage)
-        
-        return cell
-    }
-}
-
-
-extension ProfileEditMemojiViewController: UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size =  collectionView.frame
-        let width = size.width / 5
-                        
-        return CGSize(width: width, height: width)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.listener?.didSelectItemAt(row: indexPath.row)
-    }
 }

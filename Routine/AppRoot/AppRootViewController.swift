@@ -18,8 +18,22 @@ final class AppRootViewController: UITabBarController, AppRootPresentable, AppRo
 
     weak var listener: AppRootPresentableListener?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tabBar.isHidden = true
+        view.backgroundColor = .systemBackground
+    }
+}
+
+
+extension AppRootViewController: AppHomeViewControllable{
+    
     func setViewControllers(_ viewControllers: [ViewControllable]) {
+        
+        tabBar.isHidden = false
+        view.backgroundColor = .clear
+        
         super.setViewControllers(viewControllers.map(\.uiviewController), animated: false)
-        //self.selectedIndex = 2
     }
 }

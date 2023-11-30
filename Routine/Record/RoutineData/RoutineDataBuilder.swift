@@ -14,7 +14,7 @@ protocol RoutineDataDependency: Dependency {
 final class RoutineDataComponent: Component<RoutineDataDependency>, RoutineDataOfWeekDependency, RoutineDataOfMonthDependency, RoutineDataOfYearDependency, RoutineTotalRecordDependency  {
     var recordRepository: RecordRepository{ dependency.recordRepository }
     
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ recordRepository.routineRecords }
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ recordRepository.routineRecords }
 }
 
 // MARK: - Builder

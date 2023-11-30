@@ -70,7 +70,7 @@ final class TopAcheiveChartView: UIView{
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: viewModels.map{ $0.title} )
 
         let set = BarChartDataSet(entries: viewModels.map{ $0.chartDataEntry}, label: "")
-        set.colors = viewModels.map{ $0.tint ?? .primaryColor}
+        set.colors = viewModels.map{ $0.tint ?? .primaryGreen}
 
         let data = BarChartData(dataSet: set)
         data.setDrawValues(false)

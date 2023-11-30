@@ -34,11 +34,11 @@ public final class NavigationControllerable: ViewControllable {
 public extension ViewControllable {
     
     func present(_ viewControllable: ViewControllable, animated: Bool, completion: (() -> Void)?) {
-        self.uiviewController.present(viewControllable.uiviewController, animated: true, completion: completion)
+        self.uiviewController.present(viewControllable.uiviewController, animated: animated, completion: completion)
     }
     
-    func dismiss(completion: (() -> Void)?) {
-        self.uiviewController.dismiss(animated: true, completion: completion)
+    func dismiss(animated: Bool = true,  completion: (() -> Void)?) {
+        self.uiviewController.dismiss(animated: animated, completion: completion)
     }
     
     func pushViewController(_ viewControllable: ViewControllable, animated: Bool) {

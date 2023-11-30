@@ -41,7 +41,7 @@ enum RepeatValue: ValueObject{
             self = .doItOne(date: date)
         case .daliy:
             self = .daliy
-        case .weekliy:
+        case .weekly:
             guard let weekly = coder.decodeSet(forKey: CodingKeys.routineRepeatValue.rawValue) else { return nil}
             self = .weekly(weekly: weekly)
         case .monthly:

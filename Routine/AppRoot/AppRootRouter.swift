@@ -7,72 +7,58 @@
 
 import ModernRIBs
 
-protocol AppRootInteractable: Interactable, RoutineHomeListener, RecordHomeListener, TimerHomeListener , ProfileHomeListener{
+protocol AppRootInteractable: Interactable, AppHomeListener, AppTutorialListener{
     var router: AppRootRouting? { get set }
     var listener: AppRootListener? { get set }
 }
 
 protocol AppRootViewControllable: ViewControllable{
-    func setViewControllers(_ viewControllers: [ViewControllable])
 }
 
 final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControllable>, AppRootRouting {
     
     
-    private let routineHomeBuildable : RoutineHomeBuildable
-    private var routineHomeRouter : ViewableRouting?
+    private let appHomeBuildable: AppHomeBuildable
+    private var appHomeRouting: Routing?
     
-    private let recordHomeBuildable : RecordHomeBuildable
-    private var recordHomeRouter : ViewableRouting?
-    
-    private let timerHomeBuildable : TimerHomeBuildable
-    private var timerHomeRouter : ViewableRouting?
-    
-    private let profileHomeBuildable : ProfileHomeBuildable
-    private var profileHomeRouter : ViewableRouting?
+    private let appTutorailBuildable: AppTutorialBuildable
+    private var appTutorialRouting: Routing?
     
     init(
         interactor: AppRootInteractable,
         viewController: AppRootViewControllable,
-        routineHomeBuildable : RoutineHomeBuildable,
-        recordHomeBuildable : RecordHomeBuildable,
-        timerHomeBuildable : TimerHomeBuildable,
-        profileHomeBuildable : ProfileHomeBuildable
+        appHomeBuildable: AppHomeBuildable,
+        appTutorailBuildable: AppTutorialBuildable
     ) {
-        self.routineHomeBuildable = routineHomeBuildable
-        self.recordHomeBuildable = recordHomeBuildable
-        self.timerHomeBuildable = timerHomeBuildable
-        self.profileHomeBuildable = profileHomeBuildable
+        self.appHomeBuildable = appHomeBuildable
+        self.appTutorailBuildable = appTutorailBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
     
- 
-    func attachTabs() {
-        let routineHomeRouting = routineHomeBuildable.build(withListener: interactor)
-        let recordHomeRouting = recordHomeBuildable.build(withListener: interactor)
-        let timerHomeRouting = timerHomeBuildable.build(withListener: interactor)
-        let profileHomeRouting = profileHomeBuildable.build(withListener: interactor)
-        
-        attachChild(routineHomeRouting)
-        attachChild(recordHomeRouting)
-        attachChild(timerHomeRouting)
-        attachChild(profileHomeRouting)
-        
-        let routineHome = NavigationControllerable(root: routineHomeRouting.viewControllable)
-        let recordHome = NavigationControllerable(root: recordHomeRouting.viewControllable)
-        let timerHome = NavigationControllerable(root: timerHomeRouting.viewControllable)
-        let profileHome = NavigationControllerable(root: profileHomeRouting.viewControllable)
-                    
-        let viewControllers = [
-          routineHome,
-          recordHome,
-          timerHome,
-          profileHome
-        ]
-        
-        recordHome.setLargeTitle()
-        
-        viewController.setViewControllers(viewControllers)
+    
+    func attachAppHome() {
+        if let appTutorialRouting = self.appTutorialRouting {
+            detachChild(appTutorialRouting)
+            viewController.dismiss(animated: false, completion: nil)
+            self.appTutorialRouting = nil
+        }
+                
+
+        let router = appHomeBuildable.build(withListener: interactor)
+        appHomeRouting = router
+        attachChild(router)
     }
+    
+    
+    func attachAppTutorial() {
+        if appTutorialRouting != nil{
+            return
+        }
+        
+        let router = appTutorailBuildable.build(withListener: interactor)
+        appTutorialRouting = router
+        attachChild(router)
+    }
+    
 }

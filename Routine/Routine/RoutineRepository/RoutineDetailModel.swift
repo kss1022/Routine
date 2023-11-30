@@ -14,8 +14,9 @@ struct RoutineDetailModel{
     public let routineId: UUID
     public let routineName: String
     public let routineDescription: String
-    public let repeatType: RepeatTypeDto
-    public let repeatValue: RepeatValueDto
+//    public let repeatType: RepeatTypeDto
+//    public let repeatValue: RepeatValueDto
+    public let repeatModel: RepeatModel
     public let reminderIsON: Bool
     public let reminderHour: Int?
     public let reminderMinute: Int?
@@ -23,16 +24,17 @@ struct RoutineDetailModel{
     public let tint: String
     
     
-    init(_ detail: RoutineDetailDto) {
-        self.routineId = detail.routineId
-        self.routineName = detail.routineName
-        self.routineDescription = detail.routineDescription
-        self.repeatType = detail.repeatType
-        self.repeatValue = detail.repeatValue
-        self.reminderIsON = detail.reminderIsOn
-        self.reminderHour = detail.reminderHour
-        self.reminderMinute = detail.reminderMinute
-        self.emojiIcon = detail.emojiIcon
-        self.tint = detail.tint
+    init(_ dto: RoutineDetailDto) {
+        self.routineId = dto.routineId
+        self.routineName = dto.routineName
+        self.routineDescription = dto.routineDescription
+//        self.repeatType = detail.repeatType
+//        self.repeatValue = detail.repeatValue
+        self.repeatModel = RepeatModel(dto)
+        self.reminderIsON = dto.reminderIsOn
+        self.reminderHour = dto.reminderHour
+        self.reminderMinute = dto.reminderMinute
+        self.emojiIcon = dto.emojiIcon
+        self.tint = dto.tint
     }
 }

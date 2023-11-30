@@ -13,7 +13,7 @@ protocol ProfileEditInteractable: Interactable, ProfileEditNameListener, Profile
 }
 
 protocol ProfileEditViewControllable: ViewControllable {
-    func setTitle(_ view: ViewControllable)
+    func setEditMemoji(_ view: ViewControllable)
 }
 
 final class ProfileEditRouter: ViewableRouter<ProfileEditInteractable, ProfileEditViewControllable>, ProfileEditRouting {
@@ -97,7 +97,7 @@ final class ProfileEditRouter: ViewableRouter<ProfileEditInteractable, ProfileEd
         }
         
         let router = profilEditMemojiBuildable.build(withListener: interactor)
-        viewController.setTitle(router.viewControllable)
+        viewController.setEditMemoji(router.viewControllable)
         
         profileEditMemojiRouting = router
         attachChild(router)

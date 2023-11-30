@@ -35,6 +35,7 @@ protocol AddYourRoutineInteractorDependency{
 }
 
 final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresentable>, AddYourRoutineInteractable, AddYourRoutinePresentableListener {
+
     
 
     weak var router: AddYourRoutineRouting?
@@ -47,9 +48,8 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     
     private var name: String? = nil
     private var description: String? = nil
-    
-    private var repeatType: RepeatTypeViewModel = .daliy
-    private var repeatValue: RepeatValueViewModel = .daliy
+        
+    private var repeatModel: RepeatModel = .daliy
     
     private var reminderIsON: Bool = false
     private var reminderHour: Int? = nil
@@ -96,8 +96,8 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         let createRoutine = CreateRoutine(
             name: name ?? "",
             description: description ?? "",
-            repeatType: repeatType.rawValue,
-            repeatValue: repeatValue.rawValue(),
+            repeatType: repeatModel.rawValue(),
+            repeatValue: repeatModel.value(),
             reminderTime: reminderIsON ? (reminderHour!, reminderMinute!) : nil,
             emoji: emoji ?? "",
             tint: tint ?? ""
@@ -133,13 +133,10 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     }
     
     //MARK: RoutineEditRepeat
-    func routineEditRepeatSetType(type: RepeatTypeViewModel) {
-        self.repeatType = type
-    }
     
-    func routineEditRepeatSetValue(value: RepeatValueViewModel) {
-        self.repeatValue = value
-    }
+    func routineEditRepeatDidSetRepeat(repeat: RepeatModel) {
+        self.repeatModel = `repeat`
+    }        
     
     //MARK: RoutineEditReminder
     func routineReminderValueChange(isOn: Bool, hour: Int?, minute: Int?) {

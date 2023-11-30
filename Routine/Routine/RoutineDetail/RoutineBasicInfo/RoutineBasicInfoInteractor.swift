@@ -69,31 +69,23 @@ final class RoutineBasicInfoInteractor: PresentableInteractor<RoutineBasicInfoPr
     }
     
     private func setRepeatInfo(detail: RoutineDetailModel){
-        switch detail.repeatType{
+        switch detail.repeatModel {
+        case .doitOnce(let date):
+            let dateInfo =  Formatter.routineBasicInfoFormatter.string(from: date)
+            self.presenter.repeatInfo(info: "DoItOnce: \(dateInfo)")
         case .daliy:
             self.presenter.repeatInfo(info: "Daliy")
-        case .doItOnce:
-            if let date = detail.repeatValue.date(){
-                let dateInfo =  Formatter.routineBasicInfoFormatter.string(from: date)
-                self.presenter.repeatInfo(info: "DoItOnce: \(dateInfo)")
-            }
-        
-        case .weekliy:
-            if let set = detail.repeatValue.set(){
-                let weeklyInfo =  set.sorted { $0 < $1 }
-                    .compactMap(WeekliyViewModel.init)
-                    .map{ $0.label() }
-                    .joined(separator: ", ")
-                self.presenter.repeatInfo(info: "Weekly: \(weeklyInfo)")
-            }
-            
-        case .monthly:
-            if let set = detail.repeatValue.set(){
-                let monthlyInfo =  set.sorted { $0 < $1 }
-                    .map(String.init)
-                    .joined(separator: ", ")
-                self.presenter.repeatInfo(info: "Monthly: \(monthlyInfo)")
-            }
+        case .weekly(let weekly):
+            let weeklyInfo =  weekly.sorted { $0 < $1 }
+                .compactMap(WeeklyViewModel.init)
+                .map{ $0.label() }
+                .joined(separator: ", ")
+            self.presenter.repeatInfo(info: "Weekly: \(weeklyInfo)")
+        case .monthly(let monthly):
+            let monthlyInfo =  monthly.sorted { $0 < $1 }
+                .map(String.init)
+                .joined(separator: ", ")
+            self.presenter.repeatInfo(info: "Monthly: \(monthlyInfo)")
         }
     }
     

@@ -22,7 +22,7 @@ final class AddYourTimerComponent: Component<AddYourTimerDependency>,AddFocusTim
     
     let timerType: AddTimerType
     
-    fileprivate var addYourTimerBaseViewController: ViewControllable {
+    var addYourTimerBaseViewController: ViewControllable {
         return dependency.addYourTimerBaseViewController
     }
     

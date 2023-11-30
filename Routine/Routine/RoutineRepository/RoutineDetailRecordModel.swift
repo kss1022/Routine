@@ -1,5 +1,5 @@
 //
-//  RoutineRecordModel.swift
+//  RoutineDetailRecordModel.swift
 //  Routine
 //
 //  Created by 한현규 on 10/12/23.
@@ -13,7 +13,7 @@ struct RoutineDetailRecordModel{
     public let recordId: UUID?
     public let recordDate: Date
     public let isComplete: Bool
-    public let recordModels: [RecordModel]
+    public let recordModels: [RoutineRecordModel]
     
     
     init(recordDto: RoutineRecordDto?, recordDate: Date ,recordDtos: [RoutineRecordDto]) {
@@ -26,7 +26,7 @@ struct RoutineDetailRecordModel{
         }
         
         self.recordDate = recordDate
-        self.recordModels = recordDtos.map(RecordModel.init)
+        self.recordModels = recordDtos.map(RoutineRecordModel.init)
     }
 }
 

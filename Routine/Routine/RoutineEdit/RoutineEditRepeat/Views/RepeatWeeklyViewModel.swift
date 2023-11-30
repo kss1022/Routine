@@ -1,5 +1,5 @@
 //
-//  RepeatWeeklyViewModel.swift
+//  WeeklyViewModel.swift
 //  Routine
 //
 //  Created by 한현규 on 10/11/23.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum WeekliyViewModel: Int, CaseIterable{
+enum WeeklyViewModel: Int, CaseIterable{
     case Sun = 0
     case Mon = 1
     case Tue = 2

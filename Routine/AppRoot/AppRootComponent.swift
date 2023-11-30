@@ -9,11 +9,8 @@ import Foundation
 import ModernRIBs
 
 
-final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependency, RecordHomeDependency, TimerHomeDependency, ProfileHomeDependency, CreateRoutineDependency, AppRootInteractorDependency{
+final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, AppTutorialDependency, AppRootInteractorDependency,  CreateRoutineDependency{
     
-    
-    
-
     //MARK: ApplicationService
     let routineApplicationService: RoutineApplicationService
     let recordApplicationService: RecordApplicationService
@@ -51,14 +48,16 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         CreateRoutineBuilder(dependency: self)
     }()
     
-   
-    var startTimerBaseViewController: ViewControllable { rootViewController.topViewControllable } 
-    private let rootViewController: ViewControllable
+    var appHomeViewController: AppHomeViewControllable
+    private let rootViewController: AppRootViewController
+            
+    var appTutorialViewController: ViewControllable
+    var startTimerViewController: ViewControllable
     
     
     init(
         dependency: AppRootDependency,
-        viewController: ViewControllable
+        viewController: AppRootViewController
     ) {
         //Base Domain
         let appendOnlyStore = CDAppendOnlyStore()
@@ -141,8 +140,13 @@ final class AppRootComponent: Component<AppRootDependency> , RoutineHomeDependen
         self.profileRepository = ProfileRepositoryImp(
             profileReadModel: profileReadModel
         )
-         
+
+        self.appHomeViewController = viewController
         self.rootViewController = viewController
+
+        self.appTutorialViewController = rootViewController
+        self.startTimerViewController = rootViewController.topViewControllable
+        
         super.init(dependency: dependency)
     }
     

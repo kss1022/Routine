@@ -10,7 +10,7 @@ import UIKit
 
 final class RoutineDataOfDayOfWeekView: UIView{
     
-    private var doneColor: UIColor = .primaryColor
+    private var doneColor: UIColor = .primaryGreen
     private var baseColor: UIColor = .secondaryLabel
     private var done: Bool = false
     

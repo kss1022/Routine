@@ -76,7 +76,7 @@ final class RoutineRepositoryImp: RoutineRepository{
                 }
             case .daliy:
                 dayOfList.append(list)
-            case .weekliy:
+            case .weekly:
                 guard let set = list.repeatValue.set() else { break }
                 if set.contains(dayOfWeek){
                     dayOfList.append(list)
@@ -184,10 +184,6 @@ final class RoutineRepositoryImp: RoutineRepository{
         self.recordReadModel = recordReadModel
         self.reminderReadModel = reminderReadModel
         self.cancelables = .init()
-        
-        Task{
-            try? await fetchLists()
-        }
     }
 
 }

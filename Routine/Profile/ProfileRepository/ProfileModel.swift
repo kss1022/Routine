@@ -13,16 +13,18 @@ import Foundation
 struct ProfileModel{
     let profileId: UUID
     let profileName: String
-    let profileDescription: String
+    let profileIntroduction: String
     let profileImage: ProfileImageModel
-    let profileStyle: ProfileStyleModel
+    let topColor: String
+    let bottomColor: String
     
     init(_ dto: ProfileDto) {
         self.profileId = dto.profileId
         self.profileName = dto.profileName
-        self.profileDescription = dto.profileDescription
+        self.profileIntroduction = dto.profileIntroduction
         self.profileImage = ProfileImageModel(dto.profileImage)
-        self.profileStyle = ProfileStyleModel(dto.profileStyle)
+        self.topColor = dto.profileStyle.topColor
+        self.bottomColor = dto.profileStyle.bottomColor
     }
 }
 

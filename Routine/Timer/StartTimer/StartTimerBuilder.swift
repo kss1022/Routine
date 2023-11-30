@@ -13,7 +13,7 @@ protocol StartTimerDependency: Dependency {
     var recordApplicationService: RecordApplicationService{ get }
     
     var timerRepository: TimerRepository{ get }
-    var startTimerBaseViewController: ViewControllable { get }
+    var startTimerViewController: ViewControllable { get }
     
 }
 
@@ -23,7 +23,7 @@ final class StartTimerComponent: Component<StartTimerDependency>, FocusTimerDepe
 
     
     var timerRepository: TimerRepository{ dependency.timerRepository }
-    fileprivate var startTimerBaseViewController: ViewControllable { dependency.startTimerBaseViewController }
+    fileprivate var startTimerViewController: ViewControllable { dependency.startTimerViewController }
     
     let timerId: UUID
     
@@ -57,7 +57,7 @@ final class StartTimerBuilder: Builder<StartTimerDependency>, StartTimerBuildabl
         
         return StartTimerRouter(
             interactor: interactor,
-            viewController: component.startTimerBaseViewController, 
+            viewController: component.startTimerViewController, 
             focusTimerBuildable: focusTimerBuilder,
             sectionTimerBuildable: sectionTimerBuilder
         )

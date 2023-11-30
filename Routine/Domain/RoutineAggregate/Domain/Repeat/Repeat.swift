@@ -33,11 +33,15 @@ struct Repeat: ValueObject{
                 throw ArgumentException("This is not the right data for your type (daliy): Daily value is not nli")
             }
             self.repeatValue = .daliy
-        case .weekliy:
+        case .weekly:
             guard let weekly = data as? Set<Int> else {
                 throw ArgumentException("This is not the right data for your type (weekly): %@ != %@", "Set<Int>", "\(data.self ?? "nil")")
             }
             
+            
+            if weekly.isEmpty{
+                throw ArgumentException("Weekly is Empty")
+            }
             
             for weekDay in weekly{
                 if weekDay < 0 || weekDay > 6{
@@ -49,6 +53,10 @@ struct Repeat: ValueObject{
         case .monthly:
             guard let monthly = data as? Set<Int> else {
                 throw ArgumentException("This is not the right data for your type (monthly): %@ != %@", "Set<Int>", "\(data.self ?? "nil")")
+            }
+            
+            if monthly.isEmpty{
+                throw ArgumentException("Monthly is Empty")
             }
             
             for day in monthly{

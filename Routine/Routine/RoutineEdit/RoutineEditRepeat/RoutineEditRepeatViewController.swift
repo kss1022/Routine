@@ -12,7 +12,7 @@ protocol RoutineEditRepeatPresentableListener: AnyObject {
     func repeatToogleValueChange(isOn: Bool)
     func repeatSegmentValueChange(segmentIndex: Int)
     func repeatDoItOnceControlValueChange(date: Date)
-    func repeatWeeklyControlValueChange(weekly: Set<WeekliyViewModel>)
+    func repeatWeeklyControlValueChange(weekly: Set<WeeklyViewModel>)
     func repeatMonthlyControlValueChange(monthly: Set<RepeatMonthlyViewModel>)
 }
 
@@ -169,7 +169,7 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
         repeatWeeklyControl.removeFromSuperview()
     }
     
-    func setWeeklys(weeklys: Set<WeekliyViewModel>) {
+    func setWeeklys(weeklys: Set<WeeklyViewModel>) {
         repeatSegmentControl.selectedSegmentIndex = 1
         repeatWeeklyControl.setWeeklys(weeklys: weeklys)
     }
@@ -217,7 +217,7 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
     private func repeatWeeklyControlValueChange(control: RepeatWeeklyControl) {
         let selected =  control.weeklys.routineWeeklys.filter { $0.isSelected }
             .map { $0.weekly }
-        let weekly = Set<WeekliyViewModel>(selected)
+        let weekly = Set<WeeklyViewModel>(selected)
         listener?.repeatWeeklyControlValueChange(weekly: weekly)
         
         setWeeklySubTitle()

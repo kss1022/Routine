@@ -8,11 +8,11 @@
 import ModernRIBs
 
 protocol RoutineDataOfWeekDependency: Dependency {
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ get }
 }
 
 final class RoutineDataOfWeekComponent: Component<RoutineDataOfWeekDependency>, RoutineDataOfWeekInteractorDependency{
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ dependency.routineRecords }
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ dependency.routineRecords }
 }
 
 // MARK: - Builder

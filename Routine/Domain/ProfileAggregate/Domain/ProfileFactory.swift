@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol ProfileFactory{
-    func create(profileId: ProfileId, profileName: ProfileName, profileDescription: ProfileDescription, profileImage: ProfileImage, profileStyle: ProfileStyle) -> Profile
+    func create(profileId: ProfileId, profileName: ProfileName, profileIntroduction: ProfileIntroduction, profileImage: ProfileImage, profileStyle: ProfileStyle) -> Profile
 }

@@ -12,7 +12,7 @@ import Foundation
 enum RepeatType: String, ValueObject{
     case doItOnce
     case daliy
-    case weekliy
+    case weekly
     case monthly
     
     func encode(with coder: NSCoder) {

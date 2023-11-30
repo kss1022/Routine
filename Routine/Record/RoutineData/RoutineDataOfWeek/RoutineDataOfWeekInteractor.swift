@@ -23,7 +23,7 @@ protocol RoutineDataOfWeekListener: AnyObject {
 }
 
 protocol RoutineDataOfWeekInteractorDependency{
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ get }
 }
 
 

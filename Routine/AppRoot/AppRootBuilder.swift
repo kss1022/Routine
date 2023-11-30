@@ -35,18 +35,14 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
                         
         let interactor = AppRootInteractor(presenter: viewController, dependency: component)
         
-        let routineBuildable = RoutineHomeBuilder(dependency: component)
-        let recordHomeBuildable = RecordHomeBuilder(dependency: component)
-        let timerBuildable = TimerHomeBuilder(dependency: component)
-        let profileBuildable = ProfileHomeBuilder(dependency: component)
+        let appHomeBuilder = AppHomeBuilder(dependency: component)
+        let appTutorailBuilder = AppTutorialBuilder(dependency: component)
         
         let router = AppRootRouter(
             interactor: interactor,
             viewController: viewController,
-            routineHomeBuildable: routineBuildable,
-            recordHomeBuildable: recordHomeBuildable,
-            timerHomeBuildable: timerBuildable,
-            profileHomeBuildable: profileBuildable
+            appHomeBuildable: appHomeBuilder,
+            appTutorailBuildable: appTutorailBuilder
         )
         
         return (router , interactor)

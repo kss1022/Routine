@@ -25,6 +25,6 @@ struct GressViewModel{
         let firstWeekdayOfYear = calender.firstDayToWeekDay(year: year)!
         self.range = firstWeekdayOfYear...(firstWeekdayOfYear + 364)
         
-        self.cellColor = .primaryColor
+        self.cellColor = .primaryGreen
     }
 }

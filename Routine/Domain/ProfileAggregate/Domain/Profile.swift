@@ -14,15 +14,15 @@ final class Profile: DomainEntity{
         
     private(set) var profileId: ProfileId!
     private(set) var profileName: ProfileName!
-    private(set) var profileDescription: ProfileDescription!
+    private(set) var profileIntroduction: ProfileIntroduction!
     private(set) var profileImage: ProfileImage!
     private(set) var profileStyle: ProfileStyle!
     
     
-    init(profileId: ProfileId, profileName: ProfileName, profileDescription: ProfileDescription, profileImage: ProfileImage, profileStyle: ProfileStyle){
+    init(profileId: ProfileId, profileName: ProfileName, profileIntroduction: ProfileIntroduction, profileImage: ProfileImage, profileStyle: ProfileStyle){
         self.profileId = profileId
         self.profileName = profileName
-        self.profileDescription = profileDescription
+        self.profileIntroduction = profileIntroduction
         self.profileImage = profileImage
         self.profileStyle = profileStyle
         
@@ -30,7 +30,7 @@ final class Profile: DomainEntity{
 
         
         changes.append(
-            ProfileCreated(profileId: profileId, profileName: profileName, profileDescription: profileDescription, profileImage: profileImage, profileStyle: profileStyle)
+            ProfileCreated(profileId: profileId, profileName: profileName, profileIntroduction: profileIntroduction, profileImage: profileImage, profileStyle: profileStyle)
         )
     }
     
@@ -49,7 +49,7 @@ final class Profile: DomainEntity{
     private func when(_ event: ProfileCreated){
         self.profileId = event.profileId
         self.profileName = event.profileName
-        self.profileDescription = event.profileDescription
+        self.profileIntroduction = event.profileIntroduction
         self.profileImage = event.profileImage
         self.profileStyle = event.profileStyle
     }
@@ -57,17 +57,17 @@ final class Profile: DomainEntity{
     private func when(_ event: ProfileUpdated){
         self.profileId = event.profileId
         self.profileName = event.profileName
-        self.profileDescription = event.profileDescription
+        self.profileIntroduction = event.profileIntroduction
         self.profileImage = event.profileImage
         self.profileStyle = event.profileStyle
     }
     
-    func updateProfile(profileName: ProfileName, profileDescription: ProfileDescription, profileImage: ProfileImage, profileStyle: ProfileStyle){
+    func updateProfile(profileName: ProfileName, profileIntroduction: ProfileIntroduction, profileImage: ProfileImage, profileStyle: ProfileStyle){
         self.profileName = profileName
-        self.profileDescription = profileDescription
+        self.profileIntroduction = profileIntroduction
         self.profileImage = profileImage
         self.profileStyle = profileStyle
-        changes.append(ProfileUpdated(profileId: self.profileId, profileName: profileName, profileDescription: profileDescription, profileImage: profileImage, profileStyle: profileStyle))
+        changes.append(ProfileUpdated(profileId: self.profileId, profileName: profileName, profileIntroduction: profileIntroduction, profileImage: profileImage, profileStyle: profileStyle))
     }
     
     
@@ -76,7 +76,7 @@ final class Profile: DomainEntity{
         
         profileId.encode(with: coder)
         profileName.encode(with: coder)
-        profileDescription.encode(with: coder)
+        profileIntroduction.encode(with: coder)
         profileImage.encode(with: coder)
         profileStyle.encode(with: coder)
     }
@@ -85,13 +85,13 @@ final class Profile: DomainEntity{
     override init?(coder: NSCoder) {
         guard let profileId = ProfileId(coder: coder),
               let proflieName = ProfileName(coder: coder),
-              let profileDescription = ProfileDescription(coder: coder),
+              let profileIntroduction = ProfileIntroduction(coder: coder),
               let profileImage = ProfileImage(coder: coder),
               let profileStyle = ProfileStyle(coder: coder) else { return nil }
         
         self.profileId = profileId
         self.profileName = proflieName
-        self.profileDescription =  profileDescription
+        self.profileIntroduction =  profileIntroduction
         self.profileImage = profileImage
         self.profileStyle = profileStyle
         

@@ -34,7 +34,7 @@ final class RepeatDoItOnceControl: UIControl{
         calendar.appearance.headerTitleColor = .label
         calendar.appearance.weekdayTextColor = .gray
         calendar.appearance.eventDefaultColor = .red
-        calendar.appearance.selectionColor = .primaryColor
+        calendar.appearance.selectionColor = .primaryGreen
         
         calendar.appearance.headerTitleFont = .getFont(size: 14.0)
         calendar.appearance.titleFont = .getFont(size: 14.0)

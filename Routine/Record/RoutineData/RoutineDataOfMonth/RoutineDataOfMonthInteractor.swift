@@ -23,7 +23,7 @@ protocol RoutineDataOfMonthListener: AnyObject {
 }
 
 protocol RoutineDataOfMonthInteractorDependency{
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ get }
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ get }
 }
 
 final class RoutineDataOfMonthInteractor: PresentableInteractor<RoutineDataOfMonthPresentable>, RoutineDataOfMonthInteractable, RoutineDataOfMonthPresentableListener {

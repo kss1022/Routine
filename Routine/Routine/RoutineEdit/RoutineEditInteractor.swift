@@ -50,8 +50,9 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     private var name: String
     private var description: String
     
-    private var repeatType: RepeatTypeViewModel
-    private var repeatValue: RepeatValueViewModel
+//    private var repeatType: RepeatTypeViewModel
+//    private var repeatValue: RepeatValueViewModel
+    private var repeatModel: RepeatModel
     
     private var reminderIsON: Bool = false
     private var reminderHour: Int?
@@ -72,11 +73,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         let detail = dependency.detail!
         name = detail.routineName
         description = detail.routineName
-        repeatType = RepeatTypeViewModel(rawValue: detail.repeatType.rawValue)!
-        repeatValue = RepeatValueViewModel(
-            type: detail.repeatType,
-            value: detail.repeatValue
-        )!
+        repeatModel = detail.repeatModel
         reminderIsON = detail.reminderIsON
         reminderHour = detail.reminderHour
         reminderMinute = detail.reminderMinute
@@ -113,9 +110,9 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
             routineId: dependency.routineId,
             name: name,
             description: description,
-            repeatType: repeatType.rawValue,
-            reminderTime: reminderIsON ? (reminderHour!, reminderMinute!) : nil,
-            repeatValue: repeatValue.rawValue(),
+            repeatType: repeatModel.rawValue(),
+            repeatValue: repeatModel.value(),
+            reminderTime: reminderIsON ? (reminderHour!, reminderMinute!) : nil,            
             emoji: emoji,
             tint: tint
         )
@@ -161,11 +158,15 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     
     //MARK: RoutineEditRepeat
     func routineEditRepeatSetType(type: RepeatTypeViewModel) {
-        self.repeatType = type
+        //self.repeatType = type
     }
     
     func routineEditRepeatSetValue(value: RepeatValueViewModel) {
-        self.repeatValue = value
+        //self.repeatValue = value
+    }
+    
+    func routineEditRepeatDidSetRepeat(repeat: RepeatModel) {
+        self.repeatModel = `repeat`
     }
             
     //MARK: RoutineEditReminder

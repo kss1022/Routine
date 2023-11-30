@@ -12,7 +12,7 @@ protocol ProfileHomeDependency: Dependency {
     var profileRepository: ProfileRepository{ get }
 }
 
-final class ProfileHomeComponent: Component<ProfileHomeDependency>,ProfileEditDependency, SettingAppAlarmDependency, SettingAppThemeDependency, SettingAppFontDependency, SettingAppIconDependency, AppGuideDependency, FeedbackMailDependency, AppInfoDependency, ProfileCardDependency, ProfileStatDependency, ProfileMenuDependency {
+final class ProfileHomeComponent: Component<ProfileHomeDependency>,ProfileEditDependency, SettingAppNotificationDependency, SettingAppThemeDependency, SettingAppFontDependency, SettingAppIconDependency, AppGuideDependency, FeedbackMailDependency, AppInfoDependency, ProfileCardDependency, ProfileStatDependency, ProfileMenuDependency, ProfileHomeInteractorDependency {
     var profileApplicationService: ProfileApplicationService{ dependency.profileApplicationService }
     var profileRepository: ProfileRepository{ dependency.profileRepository }
     
@@ -34,13 +34,13 @@ final class ProfileHomeBuilder: Builder<ProfileHomeDependency>, ProfileHomeBuild
     func build(withListener listener: ProfileHomeListener) -> ProfileHomeRouting {
         let component = ProfileHomeComponent(dependency: dependency)
         let viewController = ProfileHomeViewController()
-        let interactor = ProfileHomeInteractor(presenter: viewController)
+        let interactor = ProfileHomeInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
         
         let profileEditBuilder = ProfileEditBuilder(dependency: component)
         
-        let settingAppAlarmBuilder = SettingAppAlarmBuilder(dependency: component)
+        let settingAppNotificationBuilder = SettingAppNotificationBuilder(dependency: component)
         let settingAppThemeBuilder = SettingAppThemeBuilder(dependency: component)
         let settingAppFontBuilder = SettingAppFontBuilder(dependency: component)
         let settingAppIconBuilder = SettingAppIconBuilder(dependency: component)
@@ -57,7 +57,7 @@ final class ProfileHomeBuilder: Builder<ProfileHomeDependency>, ProfileHomeBuild
             interactor: interactor,
             viewController: viewController,
             profileEditBuildable: profileEditBuilder,
-            settingAppAlarmBuildable: settingAppAlarmBuilder,
+            settingAppNotificationBuildable: settingAppNotificationBuilder,
             settingAppThemeBuildable: settingAppThemeBuilder,
             settingAppFontBuildable: settingAppFontBuilder,
             settingAppIconBuildable: settingAppIconBuilder,

@@ -9,7 +9,8 @@ import ModernRIBs
 import Foundation
 
 protocol AppRootRouting: ViewableRouting {
-    func attachTabs()
+    func attachAppHome()
+    func attachAppTutorial()
 }
 
 protocol AppRootPresentable: Presentable {
@@ -22,11 +23,6 @@ protocol AppRootListener: AnyObject {
 }
 
 protocol AppRootInteractorDependency{
-    var timerApplicationService: TimerApplicationService{ get }
-    var timerRepository: TimerRepository{ get }
-    
-    var profileApplicationService: ProfileApplicationService{ get }
-    var profileRepository: ProfileRepository{ get }
 }
 
 final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRootInteractable, AppRootPresentableListener , URLHandler{
@@ -35,26 +31,26 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
     weak var listener: AppRootListener?
     
     private let dependency: AppRootInteractorDependency
-    
+    private let prefrenceStorage: PreferenceStorage
     // in constructor.
     init(
         presenter: AppRootPresentable,
         dependency: AppRootInteractorDependency
     ) {
         self.dependency = dependency
+        self.prefrenceStorage = PreferenceStorage.shared
         super.init(presenter: presenter)
         presenter.listener = self
     }
     
     override func didBecomeActive() {
         super.didBecomeActive()
-        
-        Task{
-            try? await initTimer()
-            try? await initProfile()
+    
+        if prefrenceStorage.showAppTutorials{
+            router?.attachAppHome()
+        }else{
+            router?.attachAppTutorial()
         }
-        
-        router?.attachTabs()
     }
     
     override func willResignActive() {
@@ -67,32 +63,9 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
         Log.v("Need To URL Hadle \(url)")
     }
     
-    
-    func initTimer() async throws{
-        let preference = PreferenceStorage.shared
-        if preference.timerSetup{
-            return
-        }
-        
-        try await TimerSetup(
-            timerApplicationService: dependency.timerApplicationService,
-            timerRepository: dependency.timerRepository
-        ).initTimer()
-        preference.timerSetup = true
-    }
-    
-    func initProfile() async throws{
-        let preference = PreferenceStorage.shared
-        if preference.profileSetup{
-            return
-        }
-        
-        
-        try await ProfileSetup(
-            profileApplicationService: dependency.profileApplicationService,
-            profileRepository: dependency.profileRepository
-        ).initTimer()
-        preference.profileSetup = true
+    func appTutorailDidFinish() {
+        prefrenceStorage.showAppTutorials = true
+        router?.attachAppHome()
     }
 }
 

@@ -22,7 +22,7 @@ struct RoutineDataOfWeekListViewModel{
     
     init(dates: [Date], model: RoutineWeekRecordModel?, imageName: String, imageTintColor: String) {
         self.image = UIImage(systemName: imageName)
-        self.imageTintColor = UIColor(hex: imageTintColor) ?? UIColor.primaryColor
+        self.imageTintColor = UIColor(hex: imageTintColor) ?? UIColor.primaryGreen
                                         
         self.sun = RoutineDataOfWeekViewModel(date: dates[0], done: model?.sunday ?? false)
         self.mon = RoutineDataOfWeekViewModel(date: dates[1], done: model?.monday ?? false)

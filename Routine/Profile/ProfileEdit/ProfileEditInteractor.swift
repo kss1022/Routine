@@ -7,6 +7,7 @@
 
 import Foundation
 import ModernRIBs
+import UIKit
 
 protocol ProfileEditRouting: ViewableRouting {
     func attachProfileEditName()
@@ -47,8 +48,8 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
     private let dependency: ProfileEditInteractorDependency
     
         
-    private var memoji: ProfileEditMemojiModel
-    private var style: ProfileStyleModel
+    private var memojiType: MemojiType
+    private var memojiStyle: MemojiStyle
     
     // in constructor.
     init(
@@ -60,12 +61,15 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
         let profile  = dependency.profile!
         
         switch profile.profileImage {
-        case .memoji: self.memoji = .memoji(data: nil)
-        case .emoji(let emoji): self.memoji = .emoji(emoji: emoji)
-        case .text(let text): self.memoji = .text(text: text)
+        case .memoji(let memoji): memojiType = .memoji(image: UIImage(fileName: memoji))
+        case .emoji(let emoji): memojiType = .emoji(emoji)
+        case .text(let text): memojiType = .text(text)
         }
                          
-        self.style = profile.profileStyle
+        self.memojiStyle = MemojiStyle(
+            topColor: profile.topColor,
+            bottomColor: profile.bottomColor
+        )
         
         super.init(presenter: presenter)
         presenter.listener = self
@@ -87,24 +91,32 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
     }
     
     func doneButtonDidTap() {
-        Task{
+        Task{ [weak self] in
             do{
-                if case let .memoji(data) = memoji, let data = data {
+                guard let self = self else { return }
+                //TODO: Handler color nil
+                guard let topColor = memojiStyle.topColor?.toHex(),
+                      let bottomColor = memojiStyle.bottomColor?.toHex() else { return }
+                
+                if case let .memoji(image) = memojiType,
+                        let data = image?.pngData(){
                     let manager = AppFileManager.share
-                    let fileName = memoji.value()
+                    let fileName = memojiType.value()
                     let imagePath = manager.imagePath
                     try manager.deleteIfExists(url: imagePath, fileName: fileName, type: .png)
                     try manager.save(data: data, url: imagePath, fileName: fileName, type: .png)
                 }
                 
+
+                
                 let update = UpdateProfile(
                     profileId: dependency.profile!.profileId,
                     name: dependency.profileName.value,
                     description: dependency.profileDescription.value,
-                    imageType: memoji.type(),
-                    imageValue: memoji.value(),
-                    topColor: style.topColor,
-                    bottomColor: style.bottomColor
+                    imageType: memojiType.type(),
+                    imageValue: memojiType.value(),
+                    topColor: topColor,
+                    bottomColor: bottomColor
                 )
                 
                 try await dependency.profileApplicationService.when(update)
@@ -130,21 +142,14 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
     }
     
     
-    func profileEditTitleSetMemoji(memoji: Data?) {
-        self.memoji = .memoji(data: memoji)
+    func profileEditMemojiDidSetType(type: MemojiType) {
+        self.memojiType = type
     }
     
-    func profileEditTitleSetEmoji(emoji: String) {
-        self.memoji = .emoji(emoji: emoji)
+    func profileEditMemojiDidSetStyle(style: MemojiStyle) {
+        self.memojiStyle = style
     }
     
-    func profileEditTitleSetText(text: String) {
-        self.memoji = .text(text: text)
-    }
-    
-    func profileEditTitleSetSyle(style: ProfileStyleModel) {
-        self.style = style
-    }
     
     //MARK: ProfileEditName
     func profileEditNameDidMove() {

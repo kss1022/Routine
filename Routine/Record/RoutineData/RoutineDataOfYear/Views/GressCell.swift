@@ -12,7 +12,7 @@ final class GressCell: UICollectionViewCell{
     
     
     private let alphas = [ 0.1 , 0.3,  0.5 , 0.7, 0.9]    
-    var cellBackgroundColor = UIColor.primaryColor
+    var cellBackgroundColor = UIColor.primaryGreen
     
     private let gressView: UIView = {
         let view = UIView()

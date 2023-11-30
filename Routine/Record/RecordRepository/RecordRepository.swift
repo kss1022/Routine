@@ -16,7 +16,7 @@ protocol RecordRepository{
     func fetchRoutineWeeklyTrakers() async throws
  
     var routineLists: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ get }
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?> { get }
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?> { get }
     var routineTopAcheive: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ get }
     var routineWeeks: ReadOnlyCurrentValuePublisher<[RoutineWeekRecordModel]>{ get }
 }
@@ -27,8 +27,8 @@ final class RecordRepositoryImp: RecordRepository{
     var routineLists: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ routineListsSubject }
     private let routineListsSubject = CurrentValuePublisher<[RecordRoutineListModel]>([])
     
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordModel?>{ routineRecordsSubject }
-    private let routineRecordsSubject = CurrentValuePublisher<RoutineRecordModel?>( nil )
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ routineRecordsSubject }
+    private let routineRecordsSubject = CurrentValuePublisher<RoutineRecordDatasModel?>( nil )
     
     var routineTopAcheive: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ routineTopAcheiveSubject }
     private let routineTopAcheiveSubject = CurrentValuePublisher<[RoutineTopAcheiveModel]>([])
@@ -56,7 +56,7 @@ final class RecordRepositoryImp: RecordRepository{
         let topStreak = try routineRecordReadModel.topStreak(routineId: routineId)
         let currentStreak = try routineRecordReadModel.currentStreak(routineId: routineId, date: Date()) //Date -> now
         
-        let model = RoutineRecordModel(
+        let model = RoutineRecordDatasModel(
             records: records,
             totalDto: totalRecord,
             monthDto: monthRecord,
@@ -91,7 +91,7 @@ final class RecordRepositoryImp: RecordRepository{
     
     func fetchTimerRecordLists() async throws {
         let records = try timerRecordReadModel.records(date: Date())
-        Log.v("Fetch RecordList: \(records)")
+        Log.v("Fetch Timer RecordList: \(records)")
     }
     
     private let routineReadModel: RoutineReadModelFacade
@@ -106,11 +106,6 @@ final class RecordRepositoryImp: RecordRepository{
         self.routineReadModel = routineReadModel
         self.routineRecordReadModel = routineRecordReadMoel
         self.timerRecordReadModel = timerRecordReadModel
-        
-        Task{
-            try? await fetchTimerRecordLists()
-        }
-        
     }
     
 }

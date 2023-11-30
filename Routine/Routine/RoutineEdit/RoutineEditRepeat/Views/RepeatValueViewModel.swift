@@ -12,7 +12,7 @@ import Foundation
 enum RepeatValueViewModel{
     case doitOnce(date: Date)
     case daliy
-    case weekly(weekly: Set<WeekliyViewModel>)
+    case weekly(weekly: Set<WeeklyViewModel>)
     case monhtly(monthly: Set<RepeatMonthlyViewModel>)
     
     func value() -> Any?{
@@ -42,20 +42,17 @@ enum RepeatValueViewModel{
         }
     }
     
-    init?( type: RepeatTypeDto, value: RepeatValueDto){
-        switch type {
-        case .doItOnce:
-            guard let date = value.date() else { return nil }
+    init(_ model: RepeatModel){
+        switch model {
+        case .doitOnce(let date): 
             self = .doitOnce(date: date)
         case .daliy:
             self = .daliy
-        case .weekliy:
-            guard let set = value.set() else { return nil }
-            let weekly = set.compactMap(WeekliyViewModel.init)
+        case .weekly(let weekly): 
+            let weekly = weekly.compactMap(WeeklyViewModel.init)
             self = .weekly(weekly: Set(weekly))
-        case .monthly:
-            guard let set = value.set()  else { return nil }
-            let monthly = set.compactMap(RepeatMonthlyViewModel.init)
+        case .monthly(let monthly):
+            let monthly = monthly.compactMap(RepeatMonthlyViewModel.init)
             self = .monhtly(monthly: Set(monthly))
         }
     }

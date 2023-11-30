@@ -25,7 +25,7 @@ final class WeeklyTableCell: UICollectionViewCell{
     
     private func setView(){
         let selectionLayer = CAShapeLayer()
-        selectionLayer.fillColor = UIColor.primaryColor.cgColor
+        selectionLayer.fillColor = UIColor.primaryGreen.cgColor
         selectionLayer.actions = ["hidden": NSNull()]
         self.contentView.layer.addSublayer(selectionLayer)
         self.selectionLayer = selectionLayer

@@ -45,7 +45,7 @@ class RecordCalenderCell: FSCalendarCell {
         self.circleImageView = todayCircleImageView
         
         let selectionLayer = CAShapeLayer()
-        selectionLayer.fillColor = UIColor.primaryColor.cgColor
+        selectionLayer.fillColor = UIColor.primaryGreen.cgColor
         selectionLayer.actions = ["hidden": NSNull()]
         self.contentView.layer.insertSublayer(selectionLayer, below: self.titleLabel!.layer)
         self.selectionLayer = selectionLayer

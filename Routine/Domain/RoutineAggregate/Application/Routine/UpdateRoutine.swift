@@ -14,8 +14,8 @@ struct UpdateRoutine: Command{
     let name: String
     let description: String
     let repeatType: String
-    let reminderTime: (Int, Int)?
     let repeatValue: Any?
+    let reminderTime: (Int, Int)?    
     let emoji: String
     let tint: String
 }

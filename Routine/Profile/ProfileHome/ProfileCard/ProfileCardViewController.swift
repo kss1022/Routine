@@ -9,19 +9,17 @@ import ModernRIBs
 import UIKit
 
 protocol ProfileCardPresentableListener: AnyObject {
-    func profileMemojiViewDidTap()
+    func memojiButtonDidTap()
 }
 
 final class ProfileCardViewController: UIViewController, ProfileCardPresentable, ProfileCardViewControllable {
 
     weak var listener: ProfileCardPresentableListener?
         
-    private lazy var profileMemojiView: ProfileMemojiView = {
-        let memoji = ProfileMemojiView()
+    private lazy var memojiButton: MemojiButton = {
+        let memoji = MemojiButton()
         memoji.translatesAutoresizingMaskIntoConstraints = false
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileMemoTap))
-        memoji.addGestureRecognizer(tapGesture)
+        memoji.addTarget(self, action: #selector(memojiButtonTap), for: .touchUpInside)
         return memoji
     }()
     
@@ -67,19 +65,19 @@ final class ProfileCardViewController: UIViewController, ProfileCardPresentable,
     
     private func setLayout(){
         
-        view.addSubview(profileMemojiView)
+        view.addSubview(memojiButton)
         view.addSubview(labelStackView)
         
         labelStackView.addArrangedSubview(nameLable)
         labelStackView.addArrangedSubview(descriptoinLable)
         
         NSLayoutConstraint.activate([
-            profileMemojiView.topAnchor.constraint(equalTo: view.topAnchor, constant: 32.0),
-            profileMemojiView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileMemojiView.widthAnchor.constraint(equalToConstant: 120.0),
-            profileMemojiView.heightAnchor.constraint(equalToConstant: 120.0),
+            memojiButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 32.0),
+            memojiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            memojiButton.widthAnchor.constraint(equalToConstant: 120.0),
+            memojiButton.heightAnchor.constraint(equalToConstant: 120.0),
             
-            labelStackView.topAnchor.constraint(equalTo: profileMemojiView.bottomAnchor, constant: 16.0),
+            labelStackView.topAnchor.constraint(equalTo: memojiButton.bottomAnchor, constant: 16.0),
             labelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             labelStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             labelStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -94,16 +92,33 @@ final class ProfileCardViewController: UIViewController, ProfileCardPresentable,
     
     
     func setProfileCard(_ viewModel: ProfileCardViewModel) {                
-        nameLable.text = viewModel.name
-        descriptoinLable.text = viewModel.description
-        profileMemojiView.setMemoji(image: viewModel.image, topColor: viewModel.style.topColor, bottomColor: viewModel.style.bottomColor)
+        let name = viewModel.name
+        name.isEmpty ? () : (nameLable.text = name)
+        
+        if name.isEmpty{
+            nameLable.text = "Hello ~ 👋"
+        }else{
+            nameLable.text = name
+        }
+        
+        let description = viewModel.description
+        
+        if description.isEmpty{
+            descriptoinLable.isHidden = true
+        }else{
+            descriptoinLable.isHidden = false
+            descriptoinLable.text = description
+        }
+                
+        memojiButton.setType(type: viewModel.type)
+        memojiButton.setStyle(style: viewModel.style)
     }
     
     
     
     @objc
-    private func profileMemoTap(){
-        listener?.profileMemojiViewDidTap()
+    private func memojiButtonTap(){
+        listener?.memojiButtonDidTap()
     }
 
 }

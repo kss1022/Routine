@@ -72,7 +72,7 @@ final class RepeatWeeklyControl: UIControl{
     }
     
     
-    func setWeeklys(weeklys: Set<WeekliyViewModel>){
+    func setWeeklys(weeklys: Set<WeeklyViewModel>){
         weeklys.forEach { weekly in
             self.weeklys.routineWeeklys[weekly.rawValue].isSelected = true
             
@@ -131,17 +131,17 @@ internal struct Repeatweeklys{
     var routineWeeklys: [Repeatweekly]
         
     init() {
-        self.routineWeeklys = WeekliyViewModel.allCases.map(Repeatweekly.init)
+        self.routineWeeklys = WeeklyViewModel.allCases.map(Repeatweekly.init)
     }
 
 }
 
 internal struct Repeatweekly{
     
-    let weekly: WeekliyViewModel
+    let weekly: WeeklyViewModel
     var isSelected: Bool
     
-    init(weekly: WeekliyViewModel) {
+    init(weekly: WeeklyViewModel) {
         self.weekly = weekly
         self.isSelected = false
     }

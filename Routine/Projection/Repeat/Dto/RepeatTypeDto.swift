@@ -12,15 +12,16 @@ import Foundation
 public enum RepeatTypeDto: String{
     case doItOnce
     case daliy
-    case weekliy
+    case weekly
     case monthly
     
     init(_ repeatType: RepeatType) {
         switch repeatType {
         case .doItOnce: self = .doItOnce
         case .daliy: self = .daliy
-        case .weekliy: self = .weekliy
+        case .weekly: self = .weekly
         case .monthly: self = .monthly
         }
     }
 }
+

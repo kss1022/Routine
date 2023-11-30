@@ -12,18 +12,21 @@ import UIKit
 struct ProfileCardViewModel{
     let name: String
     let description: String
-    let image: UIImage?
-    let style: ProfileStyleViewModel
+    let type: MemojiType
+    let style: MemojiStyle
     
     init(_ model: ProfileModel) {
         self.name = model.profileName
-        self.description = model.profileDescription
-        self.style = ProfileStyleViewModel(model.profileStyle)
+        self.description = model.profileIntroduction
+        self.style = MemojiStyle(
+            topColor: model.topColor,
+            bottomColor: model.bottomColor
+        )        
         
         switch model.profileImage {
-        case .memoji(let memoji): self.image = UIImage(fileName: memoji)
-        case .emoji(let emoji): self.image = emoji.toImage()
-        case .text(let text): self.image = text.toImage()
+        case .memoji(let memoji): type = .memoji(image: UIImage(fileName: memoji))
+        case .emoji(let emoji): type = .emoji(emoji)
+        case .text(let text): type = .text(text)
         }
     }
 
