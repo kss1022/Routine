@@ -9,11 +9,17 @@ import ModernRIBs
 
 protocol ProfileHomeDependency: Dependency {
     var profileApplicationService: ProfileApplicationService{ get }
+    
+    var reminderRepository: ReminderRepository{ get }
     var profileRepository: ProfileRepository{ get }
 }
 
 final class ProfileHomeComponent: Component<ProfileHomeDependency>,ProfileEditDependency, SettingAppNotificationDependency, SettingAppThemeDependency, SettingAppFontDependency, SettingAppIconDependency, AppGuideDependency, FeedbackMailDependency, AppInfoDependency, ProfileCardDependency, ProfileStatDependency, ProfileMenuDependency, ProfileHomeInteractorDependency {
+    
+    
     var profileApplicationService: ProfileApplicationService{ dependency.profileApplicationService }
+    
+    var reminderRepository: ReminderRepository{ dependency.reminderRepository }
     var profileRepository: ProfileRepository{ dependency.profileRepository }
     
     var profile: ReadOnlyCurrentValuePublisher<ProfileModel?>{ profileRepository.profile }

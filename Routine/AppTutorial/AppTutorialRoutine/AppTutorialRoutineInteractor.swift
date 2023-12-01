@@ -67,7 +67,7 @@ final class AppTutorialRoutineInteractor: PresentableInteractor<AppTutorialRouti
                 repeatModel: .daliy,
                 reminderTime: nil,
                 emoji: "📖",
-                tint: "#CCFFCCFF"
+                tint: "#D5CCF7FF"
             ),
             
             CreateRoutineModel(
@@ -76,7 +76,7 @@ final class AppTutorialRoutineInteractor: PresentableInteractor<AppTutorialRouti
                 repeatModel: .daliy,
                 reminderTime: nil,
                 emoji: "💪",
-                tint: "#FFCCFFFF"
+                tint: "#F5DAAFFF"
             ),
             CreateRoutineModel(
                 name: "Write",
@@ -84,7 +84,7 @@ final class AppTutorialRoutineInteractor: PresentableInteractor<AppTutorialRouti
                 repeatModel: .daliy,
                 reminderTime: nil,
                 emoji: "✍️",
-                tint: "#C0C0C0FF"
+                tint: "#A8ADBAFF"
             ),
         ]
         

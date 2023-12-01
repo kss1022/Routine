@@ -15,7 +15,7 @@ protocol SettingAppThemeRouting: ViewableRouting {
 protocol SettingAppThemePresentable: Presentable {
     var listener: SettingAppThemePresentableListener? { get set }
     func setSelectedRow(row: Int)
-    func setDeSelectedRow(row: Int)
+    func updateTheme()
 }
 
 protocol SettingAppThemeListener: AnyObject {
@@ -36,7 +36,7 @@ final class SettingAppThemeInteractor: PresentableInteractor<SettingAppThemePres
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+
         switch AppThemeManager.share.theme {
         case .system: presenter.setSelectedRow(row: 0)
         case .light: presenter.setSelectedRow(row: 1)
@@ -59,20 +59,17 @@ final class SettingAppThemeInteractor: PresentableInteractor<SettingAppThemePres
         case 0:
             //system
             themeManager.setSystemMode()
-            presenter.setSelectedRow(row: 0)
+            presenter.updateTheme()
         case 1:
             //light
             themeManager.setLightMode()
-            presenter.setSelectedRow(row: 1)
+            presenter.updateTheme()
         case 2:
             //dark
             themeManager.setDarkMode()            
-            presenter.setSelectedRow(row: 2)
+            presenter.updateTheme()
         default : fatalError("Invalid Selected Row")
         }                
     }
-    
-    func tableViewDidDeSelectedRow(row: Int) {
-        presenter.setDeSelectedRow(row: row)
-    }
+
 }

@@ -76,9 +76,9 @@ final class RoutineBasicInfoInteractor: PresentableInteractor<RoutineBasicInfoPr
         case .daliy:
             self.presenter.repeatInfo(info: "Daliy")
         case .weekly(let weekly):
+            let weekDaySimbols = Calendar.current.shortStandaloneWeekdaySymbols
             let weeklyInfo =  weekly.sorted { $0 < $1 }
-                .compactMap(WeeklyViewModel.init)
-                .map{ $0.label() }
+                .map{ weekDaySimbols[$0] }
                 .joined(separator: ", ")
             self.presenter.repeatInfo(info: "Weekly: \(weeklyInfo)")
         case .monthly(let monthly):

@@ -13,12 +13,7 @@ protocol AddYourRoutineDependency: Dependency {
     var routineRepository : RoutineRepository { get }
 }
 
-final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, RoutineEditRepeatDependency, RoutineEditReminderDependency, AddYourRoutineInteractorDependency{
-    
-        
-    var emoji: ReadOnlyCurrentValuePublisher<String>{ emojiSubject}
-    var emojiSubject = CurrentValuePublisher<String>("⭐️")
-    
+final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, RoutineEditTitleDependency, RoutineEditStyleDependency, RoutineEditRepeatDependency, RoutineEditReminderDependency, AddYourRoutineInteractorDependency{
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
     var routineRepository : RoutineRepository { dependency.routineRepository }
     
@@ -44,8 +39,7 @@ final class AddYourRoutineBuilder: Builder<AddYourRoutineDependency>, AddYourRou
         interactor.listener = listener
         
         let routineEditTitleBuilder = RoutineEditTitleBuilder(dependency: component)
-        let routineTintBuilder = RoutineTintBuilder(dependency: component)
-        let routineEmojiIconBuilder = RoutineEmojiIconBuilder(dependency: component)
+        let routineEditStyleBuilder = RoutineEditStyleBuilder(dependency: component)
         let routineEditRepeatBuilder = RoutineEditRepeatBuilder(dependency: component)
         let routineEditReminderBulider = RoutineEditReminderBuilder(dependency: component)
         
@@ -53,8 +47,7 @@ final class AddYourRoutineBuilder: Builder<AddYourRoutineDependency>, AddYourRou
             interactor: interactor,
             viewController: viewController,
             routineEditTitleBuildable: routineEditTitleBuilder,
-            routineTintBuildable: routineTintBuilder,
-            routineEmojiIconBuildable: routineEmojiIconBuilder,
+            routineEditStyleBuildable: routineEditStyleBuilder,
             routineEditRepeatBuildable: routineEditRepeatBuilder,
             routineEditReminderBuildable: routineEditReminderBulider
         )

@@ -5,9 +5,9 @@
 //  Created by 한현규 on 9/30/23.
 //
 
-import Foundation
+
 import ModernRIBs
-import Combine
+
 
 protocol RoutineEditTitleRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -25,10 +25,10 @@ protocol RoutineEditTitleListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
     func routineEditTitleSetName(name: String)
     func routineEditTitleSetDescription(description: String)
+    func routineEditTitleDidSetEmoji(emoji: String)
 }
 
 protocol RoutineEditTitleInteractorDependency{
-    var emoji: ReadOnlyCurrentValuePublisher<String>{ get }
     var detail: RoutineDetailModel?{ get }
 }
 
@@ -36,8 +36,7 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
 
     weak var router: RoutineEditTitleRouting?
     weak var listener: RoutineEditTitleListener?
-
-    private var cancelables : Set<AnyCancellable>
+    
     private let dependency : RoutineEditTitleInteractorDependency
     private let detail: RoutineDetailModel?
     
@@ -46,7 +45,6 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
         presenter: RoutineEditTitlePresentable,
         dependency: RoutineEditTitleInteractorDependency
     ) {
-        self.cancelables = .init()
         self.dependency = dependency
         self.detail = dependency.detail
         super.init(presenter: presenter)
@@ -60,13 +58,6 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
             routineName: detail?.routineName,
             routineDescription: detail?.routineDescription
         )
-
-        dependency.emoji
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] emoji in
-                self?.presenter.setEmoji(emoji)
-            }
-            .store(in: &cancelables)
     }
 
     override func willResignActive() {
@@ -74,11 +65,16 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
         // TODO: Pause any business logic.
     }
     
-    func setRoutineName(name: String) {
+    func didSetRoutineName(name: String) {
         listener?.routineEditTitleSetName(name: name)
     }
     
-    func setRoutineDescription(description: String) {
+    func didSetRoutineDescription(description: String) {
         listener?.routineEditTitleSetDescription(description: description)
+    }
+    
+    func didSetEmoji(emoji: String) {
+        presenter.setEmoji(emoji)
+        listener?.routineEditTitleDidSetEmoji(emoji: emoji)
     }
 }

@@ -40,7 +40,7 @@ struct LocalNotification{
         func setContent(title: String, body: String) -> Builder{
             let content = UNMutableNotificationContent()
             content.title = title
-            content.body = body
+            content.body = body            
             content.sound = .default
             content.threadIdentifier = "threadIdentifier"
             content.summaryArgument = "summaryArgument"

@@ -15,7 +15,8 @@ struct Reminder: ValueObject{
     let weekDays: Set<Int>?
     let monthDays: Set<Int>?
     let hour: Int
-    let minute: Int
+    let minute: Int    
+    let `repeat`: Bool
     
     init(
         repeatType: String,
@@ -40,12 +41,14 @@ struct Reminder: ValueObject{
             self.day = calendar.component(.day, from: date)
             self.weekDays = nil
             self.monthDays = nil
-        case .daliy: 
+            self.repeat = false
+        case .daliy:
             self.year = nil
             self.month = nil
             self.day = nil
             self.weekDays = nil
             self.monthDays = nil
+            self.repeat = true
         case .weekly:
             guard let weekDays = data as? Set<Int> else {
                 throw ArgumentException("This is not the right data for your type (weekly): %@ != %@", "Set<Int>", "\(data.self ?? "nil")")
@@ -67,6 +70,7 @@ struct Reminder: ValueObject{
             self.day = nil
             self.weekDays = weekDays
             self.monthDays = nil
+            self.repeat = true
         case .monthly:
             guard let monthDays = data as? Set<Int> else {
                 throw ArgumentException("This is not the right data for your type (monthly): %@ != %@", "Set<Int>", "\(data.self ?? "nil")")
@@ -87,6 +91,7 @@ struct Reminder: ValueObject{
             self.day = nil
             self.weekDays = nil
             self.monthDays = monthDays
+            self.repeat = true
         }
         
         
@@ -115,6 +120,7 @@ struct Reminder: ValueObject{
         
         coder.encode(hour, forKey: CodingKeys.hour.rawValue)
         coder.encode(minute, forKey: CodingKeys.minute.rawValue)
+        coder.encode(`repeat`, forKey: CodingKeys.repeat.rawValue)
     }
     
     init?(coder: NSCoder) {
@@ -138,6 +144,7 @@ struct Reminder: ValueObject{
         
         self.hour = coder.decodeInteger(forKey: CodingKeys.hour.rawValue)
         self.minute = coder.decodeInteger(forKey: CodingKeys.minute.rawValue)
+        self.repeat = coder.decodeBool(forKey: CodingKeys.repeat.rawValue)
     }
     
     private enum CodingKeys: String{
@@ -148,6 +155,7 @@ struct Reminder: ValueObject{
         case monthDays
         case hour
         case minute
+        case `repeat`
     }
     
 }

@@ -10,16 +10,15 @@ import ModernRIBs
 import Combine
 
 protocol AddYourRoutineRouting: ViewableRouting {
-    func attachRoutineTitle()
-    func attachRoutineTint()
-    func attachRoutineEmojiIcon()
+    func attachRoutineTitle()    
     func attachRoutineRepeat()
     func attachRoutineReminder()
+    func attachRoutineStyle()
 }
 
 protocol AddYourRoutinePresentable: Presentable {
     var listener: AddYourRoutinePresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+
     func setTint(_ color: String)
 }
 
@@ -31,7 +30,8 @@ protocol AddYourRoutineListener: AnyObject {
 protocol AddYourRoutineInteractorDependency{
     var routineApplicationService: RoutineApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
-    var emojiSubject: CurrentValuePublisher<String>{ get }
+    
+    var detail: RoutineDetailModel?{ get }
 }
 
 final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresentable>, AddYourRoutineInteractable, AddYourRoutinePresentableListener {
@@ -55,8 +55,8 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     private var reminderHour: Int? = nil
     private var reminderMinute: Int? = nil
     
-    private var tint: String? = nil
-    private var emoji: String? = nil
+    private var tint: String
+    private var emoji: String
     
     
     // in constructor.
@@ -64,8 +64,13 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         presenter: AddYourRoutinePresentable,
         dependency: AddYourRoutineInteractorDependency
     ) {
-        self.cancellables = .init()
+        cancellables = .init()
         self.dependency = dependency
+        
+        let detail = dependency.detail
+        tint = detail?.tint ?? "#A8ADBAFF"
+        emoji = detail?.emojiIcon ?? "🍎"
+        
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -75,8 +80,10 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         router?.attachRoutineTitle()
         router?.attachRoutineRepeat()
         router?.attachRoutineReminder()
-        router?.attachRoutineTint()
-        router?.attachRoutineEmojiIcon()
+        router?.attachRoutineStyle()
+        
+                        
+        presenter.setTint(tint)
     }
 
     override func willResignActive() {
@@ -99,8 +106,8 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
             repeatType: repeatModel.rawValue(),
             repeatValue: repeatModel.value(),
             reminderTime: reminderIsON ? (reminderHour!, reminderMinute!) : nil,
-            emoji: emoji ?? "",
-            tint: tint ?? ""
+            emoji: emoji,
+            tint: tint
         )
          
         Task{ [weak self] in
@@ -132,29 +139,28 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
         self.description = description
     }
     
+    func routineEditTitleDidSetEmoji(emoji: String) {
+        self.emoji = emoji
+    }
+    
     //MARK: RoutineEditRepeat
     
     func routineEditRepeatDidSetRepeat(repeat: RepeatModel) {
-        self.repeatModel = `repeat`
+        repeatModel = `repeat`
     }        
     
     //MARK: RoutineEditReminder
     func routineReminderValueChange(isOn: Bool, hour: Int?, minute: Int?) {
-        self.reminderIsON = isOn
-        self.reminderHour = hour
-        self.reminderMinute = minute
+        reminderIsON = isOn
+        reminderHour = hour
+        reminderMinute = minute
     }
     
-    //MARK: RoutineTint
-    func routineTintSetTint(color: String) {
-        self.tint = color
-        self.presenter.setTint(tint!)
+    //MARK: RoutineEditStyle
+
+    func routineEditStyleDidSetStyle(style: EmojiStyle) {
+        tint = style.hex
+        presenter.setTint(tint)
     }
-    
-    //MARK: RoutineEmoji
-    func routineEmojiSetEmoji(emoji: String) {
-        self.emoji = emoji        
-        self.dependency.emojiSubject.send(emoji)
-    }
-    
+
 }

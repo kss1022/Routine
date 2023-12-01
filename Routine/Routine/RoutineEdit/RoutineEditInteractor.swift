@@ -7,14 +7,12 @@
 
 import Foundation
 import ModernRIBs
-import Combine
 
 protocol RoutineEditRouting: ViewableRouting {
     func attachRoutineTitle()
-    func attachRoutineTint()
-    func attachRoutineEmojiIcon()
     func attachRoutineRepeat()
     func attachRoutineReminder()
+    func attachRoutineStyle()
 }
 
 protocol RoutineEditPresentable: Presentable {
@@ -36,22 +34,19 @@ protocol RoutineEditInteractorDependency{
     var routineRepository: RoutineRepository{ get }
     
     var detail: RoutineDetailModel?{ get }
-    var emojiSubject: CurrentValuePublisher<String>{ get }
 }
 
 final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>, RoutineEditInteractable, RoutineEditPresentableListener {
 
+
     weak var router: RoutineEditRouting?
     weak var listener: RoutineEditListener?
-
-    private var cancelables: Set<AnyCancellable>
+    
     private let dependency: RoutineEditInteractorDependency
     
     private var name: String
     private var description: String
     
-//    private var repeatType: RepeatTypeViewModel
-//    private var repeatValue: RepeatValueViewModel
     private var repeatModel: RepeatModel
     
     private var reminderIsON: Bool = false
@@ -67,7 +62,6 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         presenter: RoutineEditPresentable,
         dependency: RoutineEditInteractorDependency
     ) {
-        self.cancelables = .init()
         self.dependency = dependency
         
         let detail = dependency.detail!
@@ -90,15 +84,14 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         router?.attachRoutineTitle()
         router?.attachRoutineRepeat()
         router?.attachRoutineReminder()
-        router?.attachRoutineTint()
-        router?.attachRoutineEmojiIcon()
+        router?.attachRoutineStyle()
+        
+        presenter.setTint(tint)
     }
 
     override func willResignActive() {
         super.willResignActive()
-        
-        cancelables.forEach { $0.cancel() }
-        cancelables.removeAll()
+
     }
     
     func closeButtonDidTap() {
@@ -112,7 +105,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
             description: description,
             repeatType: repeatModel.rawValue(),
             repeatValue: repeatModel.value(),
-            reminderTime: reminderIsON ? (reminderHour!, reminderMinute!) : nil,            
+            reminderTime: reminderIsON ? (reminderHour!, reminderMinute!) : nil,
             emoji: emoji,
             tint: tint
         )
@@ -156,15 +149,12 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         self.description = description
     }
     
+    func routineEditTitleDidSetEmoji(emoji: String) {
+        self.emoji = emoji
+    }
+    
+    
     //MARK: RoutineEditRepeat
-    func routineEditRepeatSetType(type: RepeatTypeViewModel) {
-        //self.repeatType = type
-    }
-    
-    func routineEditRepeatSetValue(value: RepeatValueViewModel) {
-        //self.repeatValue = value
-    }
-    
     func routineEditRepeatDidSetRepeat(repeat: RepeatModel) {
         self.repeatModel = `repeat`
     }
@@ -177,19 +167,10 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     }
     
     
-    //MARK: RoutineTint
-    func routineTintSetTint(color: String) {
-        self.tint = color
+    //MARK: RoutineEditStyle
+    func routineEditStyleDidSetStyle(style: EmojiStyle) {
+        self.tint = style.hex
         self.presenter.setTint(tint)
     }
-    
 
-    //MARK: RoutineEmoji
-    func routineEmojiSetEmoji(emoji: String) {
-        self.emoji = emoji
-        self.dependency.emojiSubject.send(emoji)
-    }
-    
-
-    
 }

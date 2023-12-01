@@ -13,5 +13,6 @@ protocol ReminderDao{
     func save(_ dto: ReminderDto) throws
     func update(_ dto: ReminderDto) throws
     func find(id: UUID) throws -> ReminderDto?
+    func findAll() throws -> [ReminderDto]
     func delete(id: UUID) throws
 }

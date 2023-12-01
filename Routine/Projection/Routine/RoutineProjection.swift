@@ -163,10 +163,13 @@ final class RoutineProjection{
     private func handleReminder(event: RoutineCreated) throws{
         guard let reminder = event.reminder else { return }
         
+        let title = event.routineName.name
+        let body = event.routineDescription.description
+        
         let notification = try LocalNotification.Builder()
             .setContent(
-                title: event.routineName.name,
-                body: event.routineDescription.description
+                title: title,
+                body: body
             ).setTimeTrigger(
                 year: reminder.year,
                 month: reminder.month,
@@ -175,14 +178,24 @@ final class RoutineProjection{
                 monthDays: reminder.monthDays,
                 hour: reminder.hour,
                 minute: reminder.minute,
-                repeats: (reminder.year != nil) && (reminder.month != nil) && (reminder.day != nil)
+                repeats: reminder.repeat
             ).build()
         
         let reminderDto = ReminderDto(
             routineId: event.routineId.id,
+            routineName: event.routineName.name,
+            emoji: event.emoji.emoji,
+            title: title,
+            body: body,
             identifiers: notification.triggers.map{ $0.key.uuidString },
+            year: reminder.year,
+            month: reminder.month,
+            day: reminder.day,
+            weekDays: reminder.weekDays,
+            monthDays: reminder.monthDays,
             hour: reminder.hour,
-            minute: reminder.minute
+            minute: reminder.minute,
+            repeat: reminder.repeat
         )
         
         Task{
@@ -198,6 +211,9 @@ final class RoutineProjection{
     private func handleReminder(event: RoutineUpdated) throws{
         guard let reminder = event.reminder else { return }
         
+        let title = event.routineName.name
+        let body = event.routineDescription.description
+        
         let notification = try LocalNotification.Builder()
             .setContent(
                 title: event.routineName.name,
@@ -210,14 +226,24 @@ final class RoutineProjection{
                 monthDays: reminder.monthDays,
                 hour: reminder.hour,
                 minute: reminder.minute,
-                repeats: (reminder.year != nil) && (reminder.month != nil) && (reminder.day != nil)
+                repeats: reminder.repeat
             ).build()
         
         let reminderDto = ReminderDto(
             routineId: event.routineId.id,
+            routineName: event.routineName.name,
+            emoji: event.emoji.emoji,
+            title: title,
+            body: body,
             identifiers: notification.triggers.map{ $0.key.uuidString },
+            year: reminder.year,
+            month: reminder.month,
+            day: reminder.day,
+            weekDays: reminder.weekDays,
+            monthDays: reminder.monthDays,
             hour: reminder.hour,
-            minute: reminder.minute
+            minute: reminder.minute,
+            repeat: reminder.repeat
         )
         
         guard let remain = try reminderDao.find(id: reminderDto.routineId) else{

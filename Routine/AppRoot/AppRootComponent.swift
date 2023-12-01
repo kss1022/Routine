@@ -41,6 +41,7 @@ final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, 
     let timerRepository: TimerRepository
     let recordRepository: RecordRepository
     let profileRepository: ProfileRepository
+    let reminderRepository: ReminderRepository
     
     
     
@@ -139,6 +140,10 @@ final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, 
     
         self.profileRepository = ProfileRepositoryImp(
             profileReadModel: profileReadModel
+        )
+                
+        self.reminderRepository = ReminderRepositoryImp(
+            reminderReadModel: reminderReadModel
         )
 
         self.appHomeViewController = viewController

@@ -7,13 +7,11 @@
 
 import ModernRIBs
 
-protocol RoutineEditTitleDependency: Dependency {
-    var emoji: ReadOnlyCurrentValuePublisher<String>{ get }
+protocol RoutineEditTitleDependency: Dependency {    
     var detail: RoutineDetailModel?{ get }
 }
 
 final class RoutineEditTitleComponent: Component<RoutineEditTitleDependency> , RoutineEditTitleInteractorDependency{
-    var emoji: ReadOnlyCurrentValuePublisher<String>{ dependency.emoji }
     var detail: RoutineDetailModel?{ dependency.detail }
 }
 

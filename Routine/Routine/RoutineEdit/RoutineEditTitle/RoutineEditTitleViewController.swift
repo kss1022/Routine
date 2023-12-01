@@ -9,8 +9,9 @@ import ModernRIBs
 import UIKit
 
 protocol RoutineEditTitlePresentableListener: AnyObject {
-    func setRoutineName(name : String)
-    func setRoutineDescription(description: String)
+    func didSetRoutineName(name : String)
+    func didSetRoutineDescription(description: String)
+    func didSetEmoji(emoji: String)
 }
 
 final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePresentable, RoutineEditTitleViewControllable {
@@ -18,7 +19,7 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
     weak var listener: RoutineEditTitlePresentableListener?
     
     
-    private let emojiButton : UIButton = {
+    private lazy var emojiButton : UIButton = {
         let button = TouchesButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBackground
@@ -32,6 +33,8 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         button.contentEdgeInsets.right = 8.0
         button.contentEdgeInsets.bottom = 8.0
         button.roundCorners()
+        
+        button.addTarget(self, action: #selector(emojiButtonTap), for: .touchUpInside)
         return button
     }()
     
@@ -171,6 +174,21 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
     }
     
     
+    @objc
+    private func emojiButtonTap(){
+        let viewController = EmojiPickerViewController()
+        viewController.delegate = self
+        viewController.sourceView = emojiButton
+        present(viewController, animated: true)
+    }
+    
+    
+}
+
+extension RoutineEditTitleViewController: EmojiPickerDelegate{
+    func didGetEmoji(emoji: String) {        
+        listener?.didSetEmoji(emoji: emoji)
+    }
 }
 
 
@@ -183,7 +201,7 @@ extension RoutineEditTitleViewController : UITextFieldDelegate{
         }
         
         if let name = textField.text{
-            listener?.setRoutineName(name: name)
+            listener?.didSetRoutineName(name: name)
         }
     }
         
@@ -219,7 +237,7 @@ extension RoutineEditTitleViewController : UITextViewDelegate{
         }
         
         if let description = textView.text{
-            listener?.setRoutineDescription(description: description)
+            listener?.didSetRoutineDescription(description: description)
         }
     }
     

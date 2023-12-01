@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol SettingAppNotificationDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var reminderRepository: ReminderRepository{ get }
 }
 
-final class SettingAppNotificationComponent: Component<SettingAppNotificationDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class SettingAppNotificationComponent: Component<SettingAppNotificationDependency>, SettingAppNotificationInteractorDependency {
+    var reminderRepository: ReminderRepository{ dependency.reminderRepository }
 }
 
 // MARK: - Builder
@@ -24,6 +22,7 @@ protocol SettingAppNotificationBuildable: Buildable {
 }
 
 final class SettingAppNotificationBuilder: Builder<SettingAppNotificationDependency>, SettingAppNotificationBuildable {
+    
 
     override init(dependency: SettingAppNotificationDependency) {
         super.init(dependency: dependency)
@@ -32,7 +31,7 @@ final class SettingAppNotificationBuilder: Builder<SettingAppNotificationDepende
     func build(withListener listener: SettingAppNotificationListener) -> SettingAppNotificationRouting {
         let component = SettingAppNotificationComponent(dependency: dependency)
         let viewController = SettingAppNotificationViewController()
-        let interactor = SettingAppNotificationInteractor(presenter: viewController)
+        let interactor = SettingAppNotificationInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return SettingAppNotificationRouter(interactor: interactor, viewController: viewController)
     }

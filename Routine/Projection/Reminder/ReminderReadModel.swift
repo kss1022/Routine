@@ -11,6 +11,7 @@ import Foundation
 
 protocol ReminderReadModelFacade{
     func reminder(id: UUID) throws -> ReminderDto?
+    func reminders() throws -> [ReminderDto]
 }
 
 
@@ -29,6 +30,10 @@ public final class ReminderReadModelFacadeImp: ReminderReadModelFacade{
     
     func reminder(id: UUID) throws -> ReminderDto? {
         try reminderDao.find(id: id)
+    }
+    
+    func reminders() throws -> [ReminderDto] {
+        try reminderDao.findAll()
     }
     
 }

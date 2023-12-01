@@ -72,16 +72,7 @@ final class CreateRoutineInteractor: PresentableInteractor<CreateRoutinePresenta
 
     // MARK: AddYourOwn
     func addYourOwnButtonDidTap() {
-        Task{ [weak self] in
-            guard let self = self else { return }
-            do{
-                try await dependency.routineRepository.fetchTints()
-                try await dependency.routineRepository.fetchEmojis()                                
-                await MainActor.run { self.router?.attachAddYourRoutine() }
-            }catch{
-                Log.e("\(error)")
-            }
-        }
+        self.router?.attachAddYourRoutine()
     }
     
     func addYourRoutineCloseButtonDidTap() {

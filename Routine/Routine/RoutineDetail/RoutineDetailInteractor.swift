@@ -111,16 +111,7 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
     }
         
     func editButtonDidTap() {
-        Task{ [weak self] in
-            guard let self = self else { return }
-            do{
-                try await dependency.routineRepository.fetchTints()
-                try await dependency.routineRepository.fetchEmojis()
-                await MainActor.run { self.router?.attachRoutineEdit(routineId: self.dependency.routineId) }
-            }catch{
-                Log.e("\(error)")
-            }
-        }
+        self.router?.attachRoutineEdit(routineId: self.dependency.routineId)
     }
         
 

@@ -1,0 +1,174 @@
+//
+//  EmojiPickerView.swift
+//  Routine
+//
+//  Created by 한현규 on 12/1/23.
+//
+
+
+import UIKit
+
+/// Delegate for event handling in `EmojiPickerView`.
+protocol EmojiPickerViewDelegate: AnyObject {
+    
+    //Parameter index: Index of the selected category.
+    func didChoiceEmojiCategory(at index: Int)
+}
+
+final class EmojiPickerView: UIView {
+    
+    // MARK: - Internal Properties
+    
+    weak var delegate: EmojiPickerViewDelegate?
+    
+    var selectedEmojiCategoryTintColor: UIColor = .systemBlue
+    
+    let collectionView: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionHeadersPinToVisibleBounds = true
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.verticalScrollIndicatorInsets.top = 8
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        collectionView.backgroundColor = .clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(cellType: EmojiCollectionViewCell.self)
+        collectionView.register(
+            EmojiHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: "EmojiCollectionViewHeader"
+        )
+        return collectionView
+    }()
+    
+    // MARK: - Private Properties
+    
+    private let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .separatorColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let categoriesStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .fillEqually
+        stackView.backgroundColor = .popoverBackgroundColor
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private var categoryViews = [EmojiCategoryView]()
+    private var selectedCategoryIndex: Int = .zero
+    
+    /// Describes height for `categoriesStackView`.
+    ///
+    /// - Note: The number `0.13` was taken based on the proportion of this element to the width of the EmojiPicker on macOS.
+    private var categoriesStackViewHeight: CGFloat { bounds.width * 0.13 }
+    private var categoriesStackHeightConstraint: NSLayoutConstraint?
+    
+    // MARK: - Init
+    
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        setupCategoryViews()
+    }
+    
+    @available(*, unavailable, message: "init(coder:) has not been implemented")
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Override
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        setView()
+    }
+    
+    /// Passes the index of the selected category to all categoryViews to update the state.
+    ///
+    /// - Parameter categoryIndex: Selected category index.
+    func updateSelectedCategoryIcon(with categoryIndex: Int) {
+        selectedCategoryIndex = categoryIndex
+        categoryViews.forEach {
+            $0.updateCategoryViewState(selectedCategoryIndex: categoryIndex)
+        }
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setView() {
+        addSubview(collectionView)
+        addSubview(categoriesStackView)
+        addSubview(separatorView)
+        
+        let categoriesStackHeightConstraint = categoriesStackView.heightAnchor.constraint(
+            equalToConstant: categoriesStackViewHeight
+        )
+        self.categoriesStackHeightConstraint = categoriesStackHeightConstraint
+        
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: safeAreaInsets.top),
+            collectionView.bottomAnchor.constraint(equalTo: separatorView.topAnchor),
+            
+            categoriesStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            categoriesStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            categoriesStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -safeAreaInsets.bottom),
+            categoriesStackHeightConstraint,
+            
+            separatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            separatorView.topAnchor.constraint(equalTo: categoriesStackView.topAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1)
+        ])
+    }
+    
+    private func setupCategoryViews() {
+        backgroundColor = .popoverBackgroundColor
+        categoriesStackHeightConstraint?.constant = categoriesStackViewHeight
+        categoryViews = []
+        categoriesStackView.subviews.forEach { $0.removeFromSuperview() }
+        
+        var index = 0
+        for type in EmojiCategoryType.allCases {
+            let categoryView = EmojiCategoryView(
+                delegate: self,
+                categoryIndex: index,
+                categoryType: type,
+                selectedEmojiCategoryTintColor: selectedEmojiCategoryTintColor
+            )
+            
+            /// We need to set _selected_ state for the first category (default at the start).
+            categoryView.updateCategoryViewState(selectedCategoryIndex: selectedCategoryIndex)
+            categoryViews.append(categoryView)
+            categoriesStackView.addArrangedSubview(categoryView)
+            index += 1
+        }
+    }
+    
+    /// Scrolls collection view to the header of selected category.
+    ///
+    /// - Parameter section: Selected category index.
+    private func scrollToHeader(for section: Int) {
+        guard let cellFrame = collectionView.collectionViewLayout.layoutAttributesForItem(at: IndexPath(item: 0, section: section))?.frame,
+              let headerFrame = collectionView.collectionViewLayout.layoutAttributesForSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: section))?.frame
+        else { return }
+        
+        let offset = CGPoint(x: -collectionView.contentInset.left, y: cellFrame.minY - headerFrame.height)
+        collectionView.setContentOffset(offset, animated: false)
+    }
+}
+
+// MARK: - EmojiCategoryViewDelegate
+
+extension EmojiPickerView: EmojiCategoryViewDelegate {
+    
+    func didCategoryTap(at index: Int) {
+        scrollToHeader(for: index)
+        updateSelectedCategoryIcon(with: index)
+        delegate?.didChoiceEmojiCategory(at: index)
+    }
+}

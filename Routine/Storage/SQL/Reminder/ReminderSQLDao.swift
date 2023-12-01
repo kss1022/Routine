@@ -18,9 +18,20 @@ final class ReminderSQLDao: ReminderDao{
     // MARK: Columns
     private static let tableName = "REMINDER"
     private let routineId: Expression<UUID>
+    private let routineName: Expression<String>
+    private let emoji: Expression<String>
+    private let title: Expression<String>
+    private let body: Expression<String>
     private let identifires: Expression<String>
+    private let year: Expression<Int?>
+    private let month: Expression<Int?>
+    private let day: Expression<Int?>
+    private let weekDays: Expression<Set<Int>?>
+    private let monthDays: Expression<Set<Int>?>
     private let hour: Expression<Int>
     private let minute: Expression<Int>
+    private let `repeat`: Expression<Bool>
+    
     
     
     init(db: Connection) throws{
@@ -28,9 +39,19 @@ final class ReminderSQLDao: ReminderDao{
         
         table = Table(ReminderSQLDao.tableName)
         routineId = Expression<UUID>("routineId")
+        routineName = Expression<String>("routineName")
+        emoji = Expression<String>("emoji")
+        title = Expression<String>("title")
+        body = Expression<String>("body")
         identifires = Expression<String>("identifires")
+        year = Expression<Int?>("year")
+        month = Expression<Int?>("month")
+        day = Expression<Int?>("day")
+        weekDays = Expression<Set<Int>?>("weekDays")
+        monthDays = Expression<Set<Int>?>("monthDays")
         hour = Expression<Int>("hour")
         minute = Expression<Int>("minute")
+        `repeat` = Expression<Bool>("repeat`")
         
         try setup()
     }
@@ -46,9 +67,19 @@ final class ReminderSQLDao: ReminderDao{
         
         try db.run(table.create(ifNotExists: true){ table in
             table.column(routineId)
+            table.column(routineName)
+            table.column(emoji)
+            table.column(title)
+            table.column(body)
             table.column(identifires)
+            table.column(year)
+            table.column(month)
+            table.column(day)
+            table.column(weekDays)
+            table.column(monthDays)
             table.column(hour)
             table.column(minute)
+            table.column(`repeat`)
             table.foreignKey(routineId, references: listTable, routineId, delete: .cascade)
         })
         db.userVersion = 0
@@ -59,9 +90,19 @@ final class ReminderSQLDao: ReminderDao{
     func save(_ dto: ReminderDto) throws {
         let insert = table.insert(
             routineId <- dto.routineId,
+            routineName <- dto.routineName,
+            emoji <- dto.emoji,
+            title <- dto.title,
+            body <- dto.body,
             identifires <- dto.identifires,
+            year <- dto.year,
+            month <- dto.month,
+            day <- dto.day,
+            weekDays <- dto.weekDays,
+            monthDays <- dto.monthDays,
             hour <- dto.hour,
-            minute <- dto.minute
+            minute <- dto.minute,
+            `repeat` <- dto.repeat
         )
         
         try db.run(insert)
@@ -75,9 +116,19 @@ final class ReminderSQLDao: ReminderDao{
         
         try db.run(
             query.update(
+                routineName <- dto.routineName,
+                emoji <- dto.emoji,
+                title <- dto.title,
+                body <- dto.body,
                 identifires <- dto.identifires,
+                year <- dto.year,
+                month <- dto.month,
+                day <- dto.day,
+                weekDays <- dto.weekDays,
+                monthDays <- dto.monthDays,
                 hour <- dto.hour,
-                minute <- dto.minute
+                minute <- dto.minute,
+                `repeat` <- dto.repeat
             )
         )
         Log.v("Update \(ReminderDto.self): \(hour) \(minute)")
@@ -91,11 +142,44 @@ final class ReminderSQLDao: ReminderDao{
             .map {
                 ReminderDto(
                     routineId: $0[routineId],
+                    routineName: $0[routineName],
+                    emoji: $0[emoji],
+                    title: $0[title],
+                    body: $0[body],
                     identifiers: $0[identifires],
+                    year: $0[year],
+                    month: $0[month],
+                    day: $0[day],
+                    weekDays: Set(),
+                    monthDays: Set(),
                     hour: $0[hour],
-                    minute: $0[minute]
+                    minute: $0[minute],
+                    repeat: $0[`repeat`]
                 )
             }.first
+    }
+    
+    
+    func findAll() throws -> [ReminderDto] {
+        try db.prepareRowIterator(table)
+            .map {
+                ReminderDto(
+                    routineId: $0[routineId],
+                    routineName: $0[routineName],
+                    emoji: $0[emoji],
+                    title: $0[title],
+                    body: $0[body],
+                    identifiers: $0[identifires],
+                    year: $0[year],
+                    month: $0[month],
+                    day: $0[day],
+                    weekDays: $0[weekDays],
+                    monthDays: $0[monthDays],
+                    hour: $0[hour],
+                    minute: $0[minute],
+                    repeat: $0[`repeat`]
+                )
+            }
     }
     
     func delete(id: UUID) throws {

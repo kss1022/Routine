@@ -25,7 +25,7 @@ final class MemojiStyleCollectionView: UICollectionView{
         layout.sectionInset = .init(top: 0.0, left: 16.0, bottom: 0.0, right: 16.0)
         
         self.image = nil
-        self.styles = memojiService.styleModels()
+        self.styles = memojiService.styles()
         
         super.init(frame: .zero, collectionViewLayout: layout)
         

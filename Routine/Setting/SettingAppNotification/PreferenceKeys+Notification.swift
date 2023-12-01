@@ -11,5 +11,5 @@ import Foundation
 
 extension PreferenceKeys {
     var setDaliyReminder: PrefKey<Bool>{ .init(name: "kSetDaliyReminder")}
-    var daliyReminderDate: PrefKey<Date>{ .init(name: "kDaliyReminderDate", defaultValue: Date())}
+    var daliyReminderDate: PrefKey<Date?>{ .init(name: "kDaliyReminderDate", defaultValue: nil)}
 }

@@ -10,19 +10,26 @@ import UIKit
 
 protocol SettingAppNotificationPresentableListener: AnyObject {
     func didMove()
+    func reminderDidTap()
 }
 
 final class SettingAppNotificationViewController: UIViewController, SettingAppNotificationPresentable, SettingAppNotificationViewControllable {
-
+    
+    
     weak var listener: SettingAppNotificationPresentableListener?
     
+    var alarm: SettingAlarmViewModel!
+    var reminder: SettingDaliyReminderViewModel!
+    var routineReminders: [SettingRoutineReminderViewModel]!
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
-        tableView.register(cellType: UITableViewCell.self)
+        tableView.register(cellType: SettingAppNotificationToogleCell.self)
+        tableView.register(cellType: SettingAppNotificationDatePickerCell.self)
+        tableView.register(cellType: SettingRoutineReminderCell.self)
         tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "UITableViewHeaderFooterView")
         tableView.delegate = self
         tableView.dataSource = self
@@ -55,8 +62,8 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
+
     
- 
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         
@@ -64,33 +71,102 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
             listener?.didMove()
         }
     }
+
+ 
+    func setAlarm(_ viewModel: SettingAlarmViewModel) {
+        self.alarm = viewModel
+        tableView.reloadData()
+    }
+    
+    func setReminder(_ viewModel: SettingDaliyReminderViewModel) {
+        self.reminder = viewModel
+        tableView.reloadData()
+    }
+    
+    
+    func setRoutineReminders(_ viewModels: [SettingRoutineReminderViewModel]) {
+        self.routineReminders = viewModels
+        tableView.reloadData()
+    }
+    
+    
+    func updateReminderDate(_ viewModel: SettingDaliyReminderViewModel) {
+        self.reminder = viewModel
+        self.tableView.reloadRows(at: [.init(row: 0, section: 1)], with: .none)
+    }
+    
+    func showReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel) {
+        self.reminder = viewModel
+        self.tableView.insertRows(at: [.init(row: 1, section: 1)], with: .automatic)
+    }
+    
+    func hideReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel) {        
+        self.reminder = viewModel
+        self.tableView.deleteRows(at: [.init(row: 1, section: 1)], with: .automatic)
+    }
 }
 
 extension SettingAppNotificationViewController: UITableViewDataSource{
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        if alarm == nil || reminder == nil || routineReminders == nil {
+            0
+        }else{
+            3
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        switch section{
+        case 0:
+            //MARK: ONFF
+            return 1
+        case 1:
+            //MARK: DALIY REMINDER
+            if reminder.isShow{
+                return 2
+            }else{
+                return 1
+            }
+        case 2:
+            //MARK: ROUTINE REMINDER
+            return routineReminders.count
+        default : fatalError("Invalid IndexPath.row")
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UITableViewCell.self)
         
-        var content = cell.defaultContentConfiguration()
+        let section = indexPath.section
         
-        content.text = "Alarm"
-        content.textProperties.font = .getFont(style: .callout)
         
-        content.image = UIImage(systemName: "app.badge")
-        
-        cell.contentConfiguration = content
-        cell.accessoryView = UISwitch()
-        
-        return cell
+        switch section{
+        case 0 :
+            //MARK: ONFF
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppNotificationToogleCell.self)
+            cell.bindView(alarm)
+            return cell
+        case 1:
+            //MARK: DALIY REMINDER
+            if indexPath.row == 0{
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppNotificationToogleCell.self)
+                cell.bindView(reminder)
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppNotificationDatePickerCell.self)
+                cell.bindView(reminder)
+                return cell
+            }
+        case 2:
+            //MARK: ROUTINE REMINDER
+            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingRoutineReminderCell.self)
+            let reminder = routineReminders[indexPath.row]
+            cell.bindView(reminder)
+            return cell
+        default : fatalError("Invalid IndexPath.row")
+        }
     }
     
     
@@ -100,10 +176,22 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
         }
                 
         var content = headerView.defaultContentConfiguration()
-        content.text = "OnOff"
-        Log.v("\(content.textProperties.font)")
-        content.textProperties.font = .getFont(style: .caption1)
         
+        
+        switch section{
+        case 0 : 
+            //MARK: ONFF
+            content.text = "OnOff"
+        case 1:
+            //MARK: DALIY REMINDER
+            content.text = "Daliy Reminder"
+        case 2:
+            //MARK: ROUTINE REMINDER
+            content.text = "Routine Reminder"
+        default : fatalError("Invalid section")
+        }
+        
+        content.textProperties.font = .getFont(style: .caption1)
         headerView.contentConfiguration = content
         
         return headerView
@@ -113,5 +201,14 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
 
 
 extension SettingAppNotificationViewController: UITableViewDelegate{
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true) // Change from gray again when choosing a cell
+        
+        //Reminder Tap!
+        if indexPath.section == 1 && indexPath.row == 0{
+            listener?.reminderDidTap()
+        }
+        
+    }
+
 }

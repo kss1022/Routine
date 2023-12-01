@@ -11,8 +11,7 @@ import Foundation
 
 final class MemojiService{
     
-    func styleModels() -> [MemojiStyle]{
-        
+    func styles() -> [MemojiStyle]{        
         [
             ("#A8ADBAFF", "#878C96FF"),
             ("#D5CCF7FF", "#B5A4F2FF"),

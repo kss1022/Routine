@@ -27,9 +27,8 @@ final class AppNotificationManager{
             
     private init()  {
         localAdapter = LocalNotificationAdapter(center: center)
-        
 #if DEBUG
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        //UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
 #endif
     }
     

@@ -19,13 +19,6 @@ protocol RoutineRepository{
     func fetchLists() async throws
     func fetchDetail(_ routineId: UUID) async throws
     func fetchHomeList(date: Date) async throws
-
-    
-    var emojis : [EmojiDto]{ get }
-    func fetchEmojis() async throws
-    
-    var tints: [TintDto]{ get }
-    func fetchTints() async throws
 }
 
 
@@ -45,8 +38,6 @@ final class RoutineRepositoryImp: RoutineRepository{
     private let detailRecordsSubject = CurrentValuePublisher<RoutineDetailRecordModel?>(nil)
     
             
-    private(set) var emojis = [EmojiDto]()
-    private(set) var tints = [TintDto]()
     
     func fetchLists() async throws {
         let list = try routineReadModel.routineLists()
@@ -116,46 +107,7 @@ final class RoutineRepositoryImp: RoutineRepository{
         let detailRecordModel = RoutineDetailRecordModel(recordDto: record, recordDate: recordDate, recordDtos: records)
         self.detailRecordsSubject.send(detailRecordModel)
         Log.v("RoutineRepository: fetch detail")
-    }
-    
-    
-    
-    
-    
-    
-    
-    func fetchEmojis() async throws{
-        if emojis.isEmpty{
-            let path = Bundle.main.path(forResource: "emojis", ofType: "json")!
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-            let emojis = try JSONDecoder().decode([EmojiDto].self, from: data)
-                        
-            if emojis.isEmpty{
-                throw RepositoryException("Decode Path from jsonFile: \([EmojiDto].self) is Empty")                
-            }
-            
-            self.emojis = emojis
-        }
-
-        Log.v("Decode Data with the contest of URL (IF NOT EXISTS): \([EmojiDto].self)")
-    }
-    
-    func fetchTints() async throws{
-        if tints.isEmpty{
-            let path = Bundle.main.path(forResource: "tints", ofType: "json")!
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-            let tints = try JSONDecoder().decode([TintDto].self, from: data)
-            
-            if tints.isEmpty{
-                throw RepositoryException("Decode Path from jsonFile: \([TintDto].self) is Empty")
-            }
-            
-            self.tints = tints
-        }
-                        
-        Log.v("Decode Data with the contest of URL (IF NOT EXISTS): \([TintDto].self)")
-    }
-    
+    }            
     
     
     private func fetchRecord(date: Date) throws -> [RoutineRecordDto] {
@@ -200,4 +152,3 @@ extension RoutineRecordDto: Hashable{
     }
     
 }
-

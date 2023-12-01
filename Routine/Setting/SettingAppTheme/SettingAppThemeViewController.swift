@@ -11,21 +11,19 @@ import UIKit
 protocol SettingAppThemePresentableListener: AnyObject {
     func didMove()
     func tableViewDidSelectedRow(row: Int)
-    func tableViewDidDeSelectedRow(row: Int)
 }
 
 final class SettingAppThemeViewController: UIViewController, SettingAppThemePresentable, SettingAppThemeViewControllable {
 
     weak var listener: SettingAppThemePresentableListener?
         
-    private var selectedIndex: Int = 0
     
     private lazy var tableView : UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
-        tableView.register(cellType: UITableViewCell.self)
+        tableView.register(cellType: SettingAppThemeCell.self)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -68,21 +66,15 @@ final class SettingAppThemeViewController: UIViewController, SettingAppThemePres
     
     func setSelectedRow(row: Int) {
         let indexPath = IndexPath(row: row, section: 0)
-        self.selectedIndex = row
-        
-        tableView.deselectRow(at: indexPath, animated: true)
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        
+    }
+    
+    func updateTheme() {
         UIView.animate(withDuration: 0.5, animations: {
             AppThemeManager.share.updateTheme()
         })
     }
-    
-    func setDeSelectedRow(row: Int) {
-        let indexPath = IndexPath(row: row, section: 0)
-        tableView.cellForRow(at: indexPath)?.accessoryType = .none
-    }
+ 
 }
 
 
@@ -96,31 +88,19 @@ extension SettingAppThemeViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: UITableViewCell.self)
+        let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppThemeCell.self)
         
-        var content = cell.defaultContentConfiguration()
-        
-        content.textProperties.font = .getFont(style: .callout)
         
         switch indexPath.row{
         case 0:
-            content.text = "System"
-            content.image = UIImage(systemName: "gearshape")
-            selectedIndex == 0 ? ( cell.accessoryType = .checkmark ) : ( cell.accessoryType = .none )
+            cell.bindView(title: "System", imageName: "gearshape")
         case 1:
-            content.text = "Light"
-            content.image = UIImage(systemName: "sun.max")
-            selectedIndex == 1 ? ( cell.accessoryType = .checkmark ) : ( cell.accessoryType = .none )
+            cell.bindView(title: "Light", imageName: "sun.max")
         case 2:
-            content.text = "Dark"
-            content.image = UIImage(systemName: "moon")
-            selectedIndex == 2 ? ( cell.accessoryType = .checkmark ) : ( cell.accessoryType = .none )
+            cell.bindView(title: "Dark", imageName: "moon")
         default: fatalError("Invalid IndexPath.row")
         }
-        
-        cell.contentConfiguration = content
-        
-        
+                                
         return cell
     }
     
@@ -132,9 +112,5 @@ extension SettingAppThemeViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {                
         listener?.tableViewDidSelectedRow(row: indexPath.row)
     }
-    
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        listener?.tableViewDidDeSelectedRow(row: indexPath.row)
-    }
+
 }

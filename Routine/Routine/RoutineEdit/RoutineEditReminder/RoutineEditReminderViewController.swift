@@ -74,6 +74,7 @@ final class RoutineEditReminderViewController: UIViewController, RoutineEditRemi
         view.addSubview(stackView)
         
         stackView.addArrangedSubview(routineEditToogleView)
+        stackView.addArrangedSubview(timePicker)
         
         let inset: CGFloat = 8.0
         
@@ -81,10 +82,16 @@ final class RoutineEditReminderViewController: UIViewController, RoutineEditRemi
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset)
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset),
+            
+            timePicker.heightAnchor.constraint(greaterThanOrEqualToConstant: 216)
         ])
         
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
+        timePicker.isHidden = true
     }
 
     
@@ -104,11 +111,15 @@ final class RoutineEditReminderViewController: UIViewController, RoutineEditRemi
     
     
     func showTimePikcer() {
-        stackView.addArrangedSubview(timePicker)
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: [.curveEaseInOut ,.showHideTransitionViews]) {
+            self.timePicker.isHidden = false
+        }
     }
     
     func hideTimePicker() {
-        timePicker.removeFromSuperview()
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: [.curveEaseInOut ,.showHideTransitionViews]) {
+            self.timePicker.isHidden = true
+        }
     }
     
     func setSubTitle(subTitle: String) {

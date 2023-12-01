@@ -13,7 +13,7 @@ protocol RoutineEditDependency: Dependency {
     var routineRepository: RoutineRepository{ get }
 }
 
-final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineTintDependency, RoutineEmojiIconDependency, RoutineEditRepeatDependency, RoutineEditReminderDependency, RoutineEditInteractorDependency{
+final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineEditStyleDependency, RoutineEditRepeatDependency, RoutineEditReminderDependency, RoutineEditInteractorDependency{
     
     
     let routineId: UUID
@@ -23,12 +23,7 @@ final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEdit
     
     
     var detail: RoutineDetailModel?{ routineRepository.detail.value }
-
-    var tint: ReadOnlyCurrentValuePublisher<String>{ tintSubject }
-    lazy var  tintSubject = CurrentValuePublisher<String>( routineRepository.detail.value!.tint )
-    
-    var emoji: ReadOnlyCurrentValuePublisher<String>{ emojiSubject }
-    lazy var  emojiSubject = CurrentValuePublisher<String>( routineRepository.detail.value!.emojiIcon )
+        
     
     init(
         dependency: RoutineEditDependency,
@@ -58,8 +53,7 @@ final class RoutineEditBuilder: Builder<RoutineEditDependency>, RoutineEditBuild
         interactor.listener = listener
         
         let routineEditTitleBuilder = RoutineEditTitleBuilder(dependency: component)
-        let routineTintBuilder = RoutineTintBuilder(dependency: component)
-        let routineEmojiIconBuilder = RoutineEmojiIconBuilder(dependency: component)
+        let routineEditStyleBuilder = RoutineEditStyleBuilder(dependency: component)
         let routineEditRepeatBuilder = RoutineEditRepeatBuilder(dependency: component)
         let routineEditReminderBuilder = RoutineEditReminderBuilder(dependency: component)
         
@@ -67,8 +61,7 @@ final class RoutineEditBuilder: Builder<RoutineEditDependency>, RoutineEditBuild
             interactor: interactor,
             viewController: viewController,
             routineEditTitleBuildable: routineEditTitleBuilder,
-            routineTintBuildable: routineTintBuilder,
-            routineEmojiIconBuildable: routineEmojiIconBuilder,
+            routineEditStyleBuildable: routineEditStyleBuilder,            
             routineEditRepeatBuidlable: routineEditRepeatBuilder,
             routineEditReminderBuildable: routineEditReminderBuilder
         )
