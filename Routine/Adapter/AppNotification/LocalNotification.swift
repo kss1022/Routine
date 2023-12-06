@@ -37,7 +37,7 @@ struct LocalNotification{
         }
         
         //알람 내용 구성
-        func setContent(title: String, body: String) -> Builder{
+        func setContent(title: String, body: String, userInfo: [AnyHashable : Any] = [:]) -> Builder{
             let content = UNMutableNotificationContent()
             content.title = title
             content.body = body            
@@ -45,7 +45,7 @@ struct LocalNotification{
             content.threadIdentifier = "threadIdentifier"
             content.summaryArgument = "summaryArgument"
             content.categoryIdentifier = "CategoryIdentifier"
-
+            content.userInfo = userInfo
             self.content = content
             return self
         }    
@@ -114,8 +114,7 @@ struct LocalNotification{
         }
       
         
-        
-        func build() throws -> LocalNotification{
+        func  build() throws -> LocalNotification{
             if content == nil{
                 throw ArgumentException("Content of  NotificationBuilder is not setting")
             }

@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScence)
         
         AppThemeManager.share.setup()
-        AppFontManager.share.setup()
+        AppFontService.share.setup()
         
         let result = AppRootBuilder(dependency: AppComponent()).build()
         self.launchRouter = result.launchRouter

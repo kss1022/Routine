@@ -34,7 +34,7 @@ public enum RepeatModel{
     
     func rawValue() -> String{
         return switch self {
-        case .doitOnce: "doitOnce"
+        case .doitOnce: "doItOnce"
         case .daliy: "daliy"
         case .weekly: "weekly"
         case .monthly: "monthly"

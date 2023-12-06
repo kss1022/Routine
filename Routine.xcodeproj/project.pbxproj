@@ -45,6 +45,7 @@
 		870D02432B089A5B00CE207B /* SettingFontBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D023F2B089A5B00CE207B /* SettingFontBuilder.swift */; };
 		870D02442B089A5B00CE207B /* SettingFontInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D02402B089A5B00CE207B /* SettingFontInteractor.swift */; };
 		870D02462B089BE800CE207B /* SettingFontSegmentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D02452B089BE800CE207B /* SettingFontSegmentButton.swift */; };
+		870E71312B20C2C10010A3A7 /* ReminderProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870E71302B20C2C10010A3A7 /* ReminderProjection.swift */; };
 		8712F64D2AC2DF68008A02C4 /* AddYourRoutineRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */; };
 		8712F64E2AC2DF68008A02C4 /* AddYourRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */; };
 		8712F64F2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */; };
@@ -126,7 +127,7 @@
 		8724D2D72B05DD0A00DD1AFC /* AppIconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */; };
 		8724D2DA2B05DD8E00DD1AFC /* SettingAppIconViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2D92B05DD8E00DD1AFC /* SettingAppIconViewModel.swift */; };
 		8724D2DC2B05DEA500DD1AFC /* SettingAppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2DB2B05DEA500DD1AFC /* SettingAppIconCell.swift */; };
-		8724D2DF2B05E68D00DD1AFC /* AppFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2DE2B05E68D00DD1AFC /* AppFontManager.swift */; };
+		8724D2DF2B05E68D00DD1AFC /* AppFontService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2DE2B05E68D00DD1AFC /* AppFontService.swift */; };
 		8724D2EC2B05F20100DD1AFC /* SettingAppFontRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2E82B05F20100DD1AFC /* SettingAppFontRouter.swift */; };
 		8724D2ED2B05F20100DD1AFC /* SettingAppFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2E92B05F20100DD1AFC /* SettingAppFontViewController.swift */; };
 		8724D2EE2B05F20100DD1AFC /* SettingAppFontBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D2EA2B05F20100DD1AFC /* SettingAppFontBuilder.swift */; };
@@ -156,7 +157,6 @@
 		8726262C2B1757C700C0CD92 /* SettingAppNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872626282B1757C700C0CD92 /* SettingAppNotificationViewController.swift */; };
 		8726262D2B1757C700C0CD92 /* SettingAppNotificationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872626292B1757C700C0CD92 /* SettingAppNotificationBuilder.swift */; };
 		8726262E2B1757C700C0CD92 /* SettingAppNotificationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726262A2B1757C700C0CD92 /* SettingAppNotificationInteractor.swift */; };
-		872626302B1758A800C0CD92 /* PreferenceKeys+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726262F2B1758A800C0CD92 /* PreferenceKeys+Notification.swift */; };
 		872626352B184CE500C0CD92 /* RepeatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872626342B184CE500C0CD92 /* RepeatModel.swift */; };
 		872626372B184CFF00C0CD92 /* EmojiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872626362B184CFF00C0CD92 /* EmojiService.swift */; };
 		872626402B18729600C0CD92 /* EmojiStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726263F2B18729600C0CD92 /* EmojiStyleCell.swift */; };
@@ -272,6 +272,9 @@
 		874C4DE22AD824D800734491 /* UITest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 874C4DE12AD824D800734491 /* UITest.storyboard */; };
 		874CAF2F2AB45A580053E021 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF2E2AB45A580053E021 /* Routine.swift */; };
 		874CAF312AB45B4B0053E021 /* RoutineId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CAF302AB45B4B0053E021 /* RoutineId.swift */; };
+		874DC0C22B1F0EEE000DF49F /* DaliyReminderServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874DC0C12B1F0EEE000DF49F /* DaliyReminderServiceImp.swift */; };
+		874DC0C72B1F1737000DF49F /* AppThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874DC0C62B1F1737000DF49F /* AppThemeManager.swift */; };
+		874DC0C92B1F1904000DF49F /* RoutineReminderServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874DC0C82B1F1904000DF49F /* RoutineReminderServiceImp.swift */; };
 		874FED4C2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FED4B2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift */; };
 		874FED522AE7CF81000E3791 /* TimerRemainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FED4E2AE7CF81000E3791 /* TimerRemainRouter.swift */; };
 		874FED532AE7CF81000E3791 /* TimerRemainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FED4F2AE7CF81000E3791 /* TimerRemainViewController.swift */; };
@@ -299,20 +302,8 @@
 		875ED93D2B0FAC07003A8944 /* MemojiStyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875ED93C2B0FAC07003A8944 /* MemojiStyleCell.swift */; };
 		87615D712AD83495008E983D /* RoutineBasicInfoFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87615D702AD83495008E983D /* RoutineBasicInfoFormatter.swift */; };
 		876662E52AEA09C300390D48 /* PreferenceKeys+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876662E42AEA09C300390D48 /* PreferenceKeys+Timer.swift */; };
-		8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5E72ABC35AE00CB35EC /* CheckList.swift */; };
-		8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5E92ABC37DD00CB35EC /* CheckListId.swift */; };
-		8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5EB2ABC37E300CB35EC /* CheckListName.swift */; };
 		8768E5EE2ABC386500CB35EC /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5ED2ABC386500CB35EC /* Emoji.swift */; };
 		8768E5F02ABC388B00CB35EC /* Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5EF2ABC388B00CB35EC /* Tint.swift */; };
-		8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5F32ABC39C200CB35EC /* Goal.swift */; };
-		8768E5F82ABC3A6600CB35EC /* CreateCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5F72ABC3A6600CB35EC /* CreateCheckList.swift */; };
-		8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5F92ABC3CFC00CB35EC /* Repetition.swift */; };
-		8768E5FC2ABC3D2300CB35EC /* SetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5FB2ABC3D2300CB35EC /* SetCount.swift */; };
-		8768E5FE2ABC3D3C00CB35EC /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E5FD2ABC3D3C00CB35EC /* Weight.swift */; };
-		8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6002ABC3FF000CB35EC /* CheckListCreated.swift */; };
-		8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6022ABC536900CB35EC /* CheckListFactory.swift */; };
-		8768E6052ABC541000CB35EC /* CDCheckListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */; };
-		8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */; };
 		8768E6362ABD7B7B00CB35EC /* NSCoder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */; };
 		8769B06C2B146C47000D260D /* ProfileEditMemojiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8769B06B2B146C47000D260D /* ProfileEditMemojiModel.swift */; };
 		8769B07A2B14B24F000D260D /* AppTutorialHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8769B0762B14B24F000D260D /* AppTutorialHomeRouter.swift */; };
@@ -620,7 +611,6 @@
 		87B708D82B04E78E00C95C08 /* SettingAppThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708D42B04E78E00C95C08 /* SettingAppThemeViewController.swift */; };
 		87B708D92B04E78E00C95C08 /* SettingAppThemeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708D52B04E78E00C95C08 /* SettingAppThemeBuilder.swift */; };
 		87B708DA2B04E78E00C95C08 /* SettingAppThemeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708D62B04E78E00C95C08 /* SettingAppThemeInteractor.swift */; };
-		87B708DE2B04F50F00C95C08 /* AppThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B708DD2B04F50F00C95C08 /* AppThemeManager.swift */; };
 		87BD92FB2AF3455E0099A0A9 /* RecordBannerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92F72AF3455E0099A0A9 /* RecordBannerRouter.swift */; };
 		87BD92FC2AF3455E0099A0A9 /* RecordBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92F82AF3455E0099A0A9 /* RecordBannerViewController.swift */; };
 		87BD92FD2AF3455E0099A0A9 /* RecordBannerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD92F92AF3455E0099A0A9 /* RecordBannerBuilder.swift */; };
@@ -881,6 +871,7 @@
 		870D023F2B089A5B00CE207B /* SettingFontBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontBuilder.swift; sourceTree = "<group>"; };
 		870D02402B089A5B00CE207B /* SettingFontInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontInteractor.swift; sourceTree = "<group>"; };
 		870D02452B089BE800CE207B /* SettingFontSegmentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSegmentButton.swift; sourceTree = "<group>"; };
+		870E71302B20C2C10010A3A7 /* ReminderProjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderProjection.swift; sourceTree = "<group>"; };
 		8712F6492AC2DF68008A02C4 /* AddYourRoutineRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineRouter.swift; sourceTree = "<group>"; };
 		8712F64A2AC2DF68008A02C4 /* AddYourRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineViewController.swift; sourceTree = "<group>"; };
 		8712F64B2AC2DF68008A02C4 /* AddYourRoutineBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourRoutineBuilder.swift; sourceTree = "<group>"; };
@@ -962,7 +953,7 @@
 		8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconManager.swift; sourceTree = "<group>"; };
 		8724D2D92B05DD8E00DD1AFC /* SettingAppIconViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconViewModel.swift; sourceTree = "<group>"; };
 		8724D2DB2B05DEA500DD1AFC /* SettingAppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppIconCell.swift; sourceTree = "<group>"; };
-		8724D2DE2B05E68D00DD1AFC /* AppFontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontManager.swift; sourceTree = "<group>"; };
+		8724D2DE2B05E68D00DD1AFC /* AppFontService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontService.swift; sourceTree = "<group>"; };
 		8724D2E82B05F20100DD1AFC /* SettingAppFontRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontRouter.swift; sourceTree = "<group>"; };
 		8724D2E92B05F20100DD1AFC /* SettingAppFontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontViewController.swift; sourceTree = "<group>"; };
 		8724D2EA2B05F20100DD1AFC /* SettingAppFontBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppFontBuilder.swift; sourceTree = "<group>"; };
@@ -992,7 +983,6 @@
 		872626282B1757C700C0CD92 /* SettingAppNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppNotificationViewController.swift; sourceTree = "<group>"; };
 		872626292B1757C700C0CD92 /* SettingAppNotificationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppNotificationBuilder.swift; sourceTree = "<group>"; };
 		8726262A2B1757C700C0CD92 /* SettingAppNotificationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppNotificationInteractor.swift; sourceTree = "<group>"; };
-		8726262F2B1758A800C0CD92 /* PreferenceKeys+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferenceKeys+Notification.swift"; sourceTree = "<group>"; };
 		872626342B184CE500C0CD92 /* RepeatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatModel.swift; sourceTree = "<group>"; };
 		872626362B184CFF00C0CD92 /* EmojiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiService.swift; sourceTree = "<group>"; };
 		8726263F2B18729600C0CD92 /* EmojiStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiStyleCell.swift; sourceTree = "<group>"; };
@@ -1116,6 +1106,9 @@
 		874C4DE12AD824D800734491 /* UITest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UITest.storyboard; sourceTree = "<group>"; };
 		874CAF2E2AB45A580053E021 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		874CAF302AB45B4B0053E021 /* RoutineId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineId.swift; sourceTree = "<group>"; };
+		874DC0C12B1F0EEE000DF49F /* DaliyReminderServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaliyReminderServiceImp.swift; sourceTree = "<group>"; };
+		874DC0C62B1F1737000DF49F /* AppThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeManager.swift; sourceTree = "<group>"; };
+		874DC0C82B1F1904000DF49F /* RoutineReminderServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineReminderServiceImp.swift; sourceTree = "<group>"; };
 		874FED4B2AE7A4E7000E3791 /* TimerNextSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNextSectionViewModel.swift; sourceTree = "<group>"; };
 		874FED4E2AE7CF81000E3791 /* TimerRemainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRemainRouter.swift; sourceTree = "<group>"; };
 		874FED4F2AE7CF81000E3791 /* TimerRemainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRemainViewController.swift; sourceTree = "<group>"; };
@@ -1143,20 +1136,8 @@
 		875ED93C2B0FAC07003A8944 /* MemojiStyleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemojiStyleCell.swift; sourceTree = "<group>"; };
 		87615D702AD83495008E983D /* RoutineBasicInfoFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineBasicInfoFormatter.swift; sourceTree = "<group>"; };
 		876662E42AEA09C300390D48 /* PreferenceKeys+Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreferenceKeys+Timer.swift"; sourceTree = "<group>"; };
-		8768E5E72ABC35AE00CB35EC /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
-		8768E5E92ABC37DD00CB35EC /* CheckListId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListId.swift; sourceTree = "<group>"; };
-		8768E5EB2ABC37E300CB35EC /* CheckListName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListName.swift; sourceTree = "<group>"; };
 		8768E5ED2ABC386500CB35EC /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		8768E5EF2ABC388B00CB35EC /* Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tint.swift; sourceTree = "<group>"; };
-		8768E5F32ABC39C200CB35EC /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
-		8768E5F72ABC3A6600CB35EC /* CreateCheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckList.swift; sourceTree = "<group>"; };
-		8768E5F92ABC3CFC00CB35EC /* Repetition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repetition.swift; sourceTree = "<group>"; };
-		8768E5FB2ABC3D2300CB35EC /* SetCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCount.swift; sourceTree = "<group>"; };
-		8768E5FD2ABC3D3C00CB35EC /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
-		8768E6002ABC3FF000CB35EC /* CheckListCreated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListCreated.swift; sourceTree = "<group>"; };
-		8768E6022ABC536900CB35EC /* CheckListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListFactory.swift; sourceTree = "<group>"; };
-		8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCheckListFactory.swift; sourceTree = "<group>"; };
-		8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListApplicationService.swift; sourceTree = "<group>"; };
 		8768E6352ABD7B7B00CB35EC /* NSCoder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCoder+Utils.swift"; sourceTree = "<group>"; };
 		8769B06B2B146C47000D260D /* ProfileEditMemojiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditMemojiModel.swift; sourceTree = "<group>"; };
 		8769B0762B14B24F000D260D /* AppTutorialHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTutorialHomeRouter.swift; sourceTree = "<group>"; };
@@ -1454,7 +1435,6 @@
 		87B708D42B04E78E00C95C08 /* SettingAppThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppThemeViewController.swift; sourceTree = "<group>"; };
 		87B708D52B04E78E00C95C08 /* SettingAppThemeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppThemeBuilder.swift; sourceTree = "<group>"; };
 		87B708D62B04E78E00C95C08 /* SettingAppThemeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppThemeInteractor.swift; sourceTree = "<group>"; };
-		87B708DD2B04F50F00C95C08 /* AppThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeManager.swift; sourceTree = "<group>"; };
 		87BD92F72AF3455E0099A0A9 /* RecordBannerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerRouter.swift; sourceTree = "<group>"; };
 		87BD92F82AF3455E0099A0A9 /* RecordBannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerViewController.swift; sourceTree = "<group>"; };
 		87BD92F92AF3455E0099A0A9 /* RecordBannerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBannerBuilder.swift; sourceTree = "<group>"; };
@@ -1896,17 +1876,17 @@
 			path = SectionTimer;
 			sourceTree = "<group>";
 		};
-		8713C7952ADF9E2D007CDD33 /* Notification */ = {
+		8713C7952ADF9E2D007CDD33 /* AppNotification */ = {
 			isa = PBXGroup;
 			children = (
 				87DEAAAB2AD8FE1000C94F0A /* AppNotificationManager.swift */,
 				87DEAAB82AD90D5600C94F0A /* LocalNotificationAdapter.swift */,
 				87DEAAB62AD90D3F00C94F0A /* LocalNotification.swift */,
 			);
-			path = Notification;
+			path = AppNotification;
 			sourceTree = "<group>";
 		};
-		8713C7962ADF9E37007CDD33 /* Timer */ = {
+		8713C7962ADF9E37007CDD33 /* AppTimer */ = {
 			isa = PBXGroup;
 			children = (
 				87AAE64E2ADFFABA000A7D4F /* AppTimerManager.swift */,
@@ -1918,7 +1898,7 @@
 				8713C7932ADF9E29007CDD33 /* Double+TimeInterval.swift */,
 				87AB91402AEB958D0051FB9F /* TimeInterval+Utils.swift */,
 			);
-			path = Timer;
+			path = AppTimer;
 			sourceTree = "<group>";
 		};
 		8713C7A12ADFBC3C007CDD33 /* Views */ = {
@@ -2137,7 +2117,6 @@
 				87FDF2932B1976660046D5FC /* SettingAlarmModel.swift */,
 				87FDF2972B1984940046D5FC /* SettingDaliyReminderModel.swift */,
 				87FDF28C2B18FAD10046D5FC /* Views */,
-				8726262F2B1758A800C0CD92 /* PreferenceKeys+Notification.swift */,
 			);
 			path = SettingAppNotification;
 			sourceTree = "<group>";
@@ -2436,12 +2415,12 @@
 			path = VIews;
 			sourceTree = "<group>";
 		};
-		8748F3002B0F66410081EFA1 /* File */ = {
+		8748F3002B0F66410081EFA1 /* AppFile */ = {
 			isa = PBXGroup;
 			children = (
 				8748F3012B0F66560081EFA1 /* AppFileManager.swift */,
 			);
-			path = File;
+			path = AppFile;
 			sourceTree = "<group>";
 		};
 		8748F3032B0F678F0081EFA1 /* ProfileRepository */ = {
@@ -2627,6 +2606,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		874DC0C42B1F16EF000DF49F /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */,
+			);
+			path = AppIcon;
+			sourceTree = "<group>";
+		};
+		874DC0C52B1F1727000DF49F /* AppTheme */ = {
+			isa = PBXGroup;
+			children = (
+				874DC0C62B1F1737000DF49F /* AppThemeManager.swift */,
+			);
+			path = AppTheme;
+			sourceTree = "<group>";
+		};
 		874FED4D2AE7CF62000E3791 /* TimerRemain */ = {
 			isa = PBXGroup;
 			children = (
@@ -2709,38 +2704,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8768E5E62ABC35A200CB35EC /* CheckList */ = {
-			isa = PBXGroup;
-			children = (
-				8768E6022ABC536900CB35EC /* CheckListFactory.swift */,
-				8768E5E72ABC35AE00CB35EC /* CheckList.swift */,
-				8768E5E92ABC37DD00CB35EC /* CheckListId.swift */,
-				8768E5EB2ABC37E300CB35EC /* CheckListName.swift */,
-				8768E5F32ABC39C200CB35EC /* Goal.swift */,
-				8768E5FB2ABC3D2300CB35EC /* SetCount.swift */,
-				8768E5F92ABC3CFC00CB35EC /* Repetition.swift */,
-				8768E5FD2ABC3D3C00CB35EC /* Weight.swift */,
-				8768E5FF2ABC3FE400CB35EC /* Events */,
-			);
-			path = CheckList;
-			sourceTree = "<group>";
-		};
-		8768E5F62ABC3A5400CB35EC /* CheckList */ = {
-			isa = PBXGroup;
-			children = (
-				8768E5F72ABC3A6600CB35EC /* CreateCheckList.swift */,
-			);
-			path = CheckList;
-			sourceTree = "<group>";
-		};
-		8768E5FF2ABC3FE400CB35EC /* Events */ = {
-			isa = PBXGroup;
-			children = (
-				8768E6002ABC3FF000CB35EC /* CheckListCreated.swift */,
-			);
-			path = Events;
 			sourceTree = "<group>";
 		};
 		8769B06D2B14B1EF000D260D /* AppTutorial */ = {
@@ -3240,7 +3203,6 @@
 			isa = PBXGroup;
 			children = (
 				87D5AAF32AB83D9D00FE712C /* CDRoutineFactory.swift */,
-				8768E6042ABC541000CB35EC /* CDCheckListFactory.swift */,
 				87E376102AD6E22100359850 /* CDRecordFactory.swift */,
 				870B57302AE120D3006579CE /* CDTimerFactory.swift */,
 				8748F3262B0F773A0081EFA1 /* CDProfileFactory.swift */,
@@ -3585,9 +3547,9 @@
 		87B708962B04983100C95C08 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				87B708DD2B04F50F00C95C08 /* AppThemeManager.swift */,
-				8724D2DE2B05E68D00DD1AFC /* AppFontManager.swift */,
-				8724D2D62B05DD0A00DD1AFC /* AppIconManager.swift */,
+				8724D2DE2B05E68D00DD1AFC /* AppFontService.swift */,
+				874DC0C12B1F0EEE000DF49F /* DaliyReminderServiceImp.swift */,
+				874DC0C82B1F1904000DF49F /* RoutineReminderServiceImp.swift */,
 				87FDF2952B19769D0046D5FC /* SettingFormatter.swift */,
 				87FDF29B2B1994D40046D5FC /* Repository */,
 				8724D2F02B05F23000DD1AFC /* SettingAppNotification */,
@@ -3626,12 +3588,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		87B708AE2B04C27E00C95C08 /* Mail */ = {
+		87B708AE2B04C27E00C95C08 /* AppMail */ = {
 			isa = PBXGroup;
 			children = (
 				87B708AF2B04C28D00C95C08 /* AppMailManager.swift */,
 			);
-			path = Mail;
+			path = AppMail;
 			sourceTree = "<group>";
 		};
 		87B708B92B04DAB000C95C08 /* URLScheme */ = {
@@ -3901,9 +3863,7 @@
 			isa = PBXGroup;
 			children = (
 				87D5AAD92AB8377100FE712C /* RoutineApplicationService.swift */,
-				8768E6092ABC571200CB35EC /* CheckListApplicationService.swift */,
 				87D5AAD82AB8376900FE712C /* Routine */,
-				8768E5F62ABC3A5400CB35EC /* CheckList */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -3914,7 +3874,6 @@
 				87D5AAD32AB8371E00FE712C /* Routine */,
 				877DF8C42AD5A55300F45C10 /* Repeat */,
 				87DEAAA62AD8FA6E00C94F0A /* Reminder */,
-				8768E5E62ABC35A200CB35EC /* CheckList */,
 				87D5AAD22AB8371900FE712C /* Service */,
 			);
 			path = Domain;
@@ -4060,6 +4019,7 @@
 				87504A1E2ABB4EC30046EFD5 /* Dao */,
 				87504A192ABB4E880046EFD5 /* Dto */,
 				87D5AB082AB867CE00FE712C /* RoutineProjection.swift */,
+				870E71302B20C2C10010A3A7 /* ReminderProjection.swift */,
 				878EAD5E2ABB717E00593700 /* RoutineReadModel.swift */,
 			);
 			path = Routine;
@@ -4077,12 +4037,12 @@
 			path = Events;
 			sourceTree = "<group>";
 		};
-		87D6F25D2B0E256100E8FB1F /* Review */ = {
+		87D6F25D2B0E256100E8FB1F /* RequestReview */ = {
 			isa = PBXGroup;
 			children = (
 				87D6F25E2B0E258B00E8FB1F /* AppRequestReviewManager.swift */,
 			);
-			path = Review;
+			path = RequestReview;
 			sourceTree = "<group>";
 		};
 		87DEAAA62AD8FA6E00C94F0A /* Reminder */ = {
@@ -4096,13 +4056,15 @@
 		87DEAAAA2AD8FDF900C94F0A /* Adapter */ = {
 			isa = PBXGroup;
 			children = (
-				8713C7962ADF9E37007CDD33 /* Timer */,
-				8713C7952ADF9E2D007CDD33 /* Notification */,
 				87D0C30A2B0B7EAD003DF624 /* AppInfo */,
+				8748F3002B0F66410081EFA1 /* AppFile */,
+				874DC0C42B1F16EF000DF49F /* AppIcon */,
+				874DC0C52B1F1727000DF49F /* AppTheme */,
+				87B708AE2B04C27E00C95C08 /* AppMail */,
+				8713C7962ADF9E37007CDD33 /* AppTimer */,
+				8713C7952ADF9E2D007CDD33 /* AppNotification */,
 				87B708B92B04DAB000C95C08 /* URLScheme */,
-				8748F3002B0F66410081EFA1 /* File */,
-				87D6F25D2B0E256100E8FB1F /* Review */,
-				87B708AE2B04C27E00C95C08 /* Mail */,
+				87D6F25D2B0E256100E8FB1F /* RequestReview */,
 				87D0C3072B0B7E39003DF624 /* UIPasteboard */,
 			);
 			path = Adapter;
@@ -4789,7 +4751,6 @@
 				872626492B18A0FF00C0CD92 /* RoutineEditStyleBuilder.swift in Sources */,
 				87B7087A2B04927500C95C08 /* ProfileAcheiveBuilder.swift in Sources */,
 				8709DEDF2AE8EF020077FBD3 /* TimerStartButton.swift in Sources */,
-				8768E6012ABC3FF000CB35EC /* CheckListCreated.swift in Sources */,
 				8748F3072B0F67B80081EFA1 /* ProfileModel.swift in Sources */,
 				873879962B01FFF0004EE7F8 /* RoutineTopAcheiveTotalRecordViewController.swift in Sources */,
 				873676212B03996B0004276B /* ProfileCardBuilder.swift in Sources */,
@@ -4797,7 +4758,6 @@
 				879D82582AE2689E00F1348E /* TimerSectionListSQLDao.swift in Sources */,
 				87DFFE4F2AF2794E00D2E588 /* RecordRepository.swift in Sources */,
 				8724D2D72B05DD0A00DD1AFC /* AppIconManager.swift in Sources */,
-				8768E5EC2ABC37E300CB35EC /* CheckListName.swift in Sources */,
 				87B6306B2B06FE5700BDBCAB /* FontPickerBuilder.swift in Sources */,
 				87AD2D632AD6D31400B0E2CF /* RecordFactory.swift in Sources */,
 				879D82482AE25B9900F1348E /* TimerSectionType.swift in Sources */,
@@ -4881,7 +4841,6 @@
 				87E376112AD6E22100359850 /* CDRecordFactory.swift in Sources */,
 				8792CC942AE794AA0024CFC2 /* AppTimerState.swift in Sources */,
 				87D0C3042B0B78DC003DF624 /* AppInfoContactViewModel.swift in Sources */,
-				8768E5F82ABC3A6600CB35EC /* CreateCheckList.swift in Sources */,
 				872626242B174ADC00C0CD92 /* AppTutorialTimerViewController.swift in Sources */,
 				87AF756E2AB99DD1001CF7F2 /* EventEntity+CoreDataClass.swift in Sources */,
 				876E95562AB2D00F00046809 /* UIIMageView+Utils.swift in Sources */,
@@ -4996,7 +4955,6 @@
 				87AB91302AEB901B0051FB9F /* FocusTimerViewController.swift in Sources */,
 				8779ADD72AFA337B00176746 /* RoutineDataInteractor.swift in Sources */,
 				87B708722B04907900C95C08 /* ProfileStatSegmentButton.swift in Sources */,
-				8768E5F42ABC39C200CB35EC /* Goal.swift in Sources */,
 				871D0FB92ADD04060080DEAC /* ReminderReadModel.swift in Sources */,
 				87DFEC5E2AC19E2800531EE3 /* CreateRoutineRouter.swift in Sources */,
 				87FDF2982B1984940046D5FC /* SettingDaliyReminderModel.swift in Sources */,
@@ -5005,7 +4963,7 @@
 				87FF66BE2B1597160013DB2A /* CreateRoutineModel.swift in Sources */,
 				872627C32B18B55A00C0CD92 /* EmojiHeaderView.swift in Sources */,
 				8713C79F2ADFB779007CDD33 /* SectionTimerBuilder.swift in Sources */,
-				8724D2DF2B05E68D00DD1AFC /* AppFontManager.swift in Sources */,
+				8724D2DF2B05E68D00DD1AFC /* AppFontService.swift in Sources */,
 				8748F3292B0F784D0081EFA1 /* ProfileCreated.swift in Sources */,
 				871B2F4C2B108A430015E266 /* ProfileEditNameInteractor.swift in Sources */,
 				87D0C3062B0B7965003DF624 /* AppInfoContactModel.swift in Sources */,
@@ -5025,7 +4983,6 @@
 				87FF66CB2B15AB170013DB2A /* AppTutorialRouter.swift in Sources */,
 				87D0C2D12B0B0433003DF624 /* SettingFontSizeInteractor.swift in Sources */,
 				87AB912F2AEB901B0051FB9F /* FocusTimerRouter.swift in Sources */,
-				8768E6032ABC536900CB35EC /* CheckListFactory.swift in Sources */,
 				873676252B039ACC0004276B /* ProfileBarcodeView.swift in Sources */,
 				876E95192AB2CFE900046809 /* ProfileHomeRouter.swift in Sources */,
 				87FF66EA2B160D9F0013DB2A /* AppTutorialSplashView4.swift in Sources */,
@@ -5107,7 +5064,6 @@
 				87AD31322ADE615B007DB743 /* CreateTimerRouter.swift in Sources */,
 				870B572F2AE11D54006579CE /* TimerType.swift in Sources */,
 				877DF8C32AD5A48300F45C10 /* RepeatType.swift in Sources */,
-				872626302B1758A800C0CD92 /* PreferenceKeys+Notification.swift in Sources */,
 				87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */,
 				87FF66A22B158EFF0013DB2A /* AppTutorialRoutineRouter.swift in Sources */,
 				87A2C9C52AEFB413004AE6C1 /* AddTabataTimerViewController.swift in Sources */,
@@ -5171,7 +5127,6 @@
 				87DFEC612AC19E2800531EE3 /* CreateRoutineInteractor.swift in Sources */,
 				876E954B2AB2D00F00046809 /* KeychainAccess.swift in Sources */,
 				876E95552AB2D00F00046809 /* UIColor+Utils.swift in Sources */,
-				8768E6052ABC541000CB35EC /* CDCheckListFactory.swift in Sources */,
 				87D34DAB2AFDF64A00C7537D /* TimerDataOfYearInteractor.swift in Sources */,
 				87FF66D82B15F45D0013DB2A /* AppTutorialSplashRouter.swift in Sources */,
 				87B7088B2B04928E00C95C08 /* ProfileRecordViewController.swift in Sources */,
@@ -5198,7 +5153,6 @@
 				87B708D12B04E72300C95C08 /* SettingAppIconBuilder.swift in Sources */,
 				870B57312AE120D3006579CE /* CDTimerFactory.swift in Sources */,
 				870D02462B089BE800CE207B /* SettingFontSegmentButton.swift in Sources */,
-				8768E60A2ABC571200CB35EC /* CheckListApplicationService.swift in Sources */,
 				87B708D92B04E78E00C95C08 /* SettingAppThemeBuilder.swift in Sources */,
 				876E95982AB2FA6F00046809 /* Specification.swift in Sources */,
 				872626182B17036C00C0CD92 /* MemojiModel.swift in Sources */,
@@ -5249,7 +5203,6 @@
 				87B630692B06FE5700BDBCAB /* FontPickerRouter.swift in Sources */,
 				87DEAADC2AD95DC700C94F0A /* RoutineEditReminderBuilder.swift in Sources */,
 				8783E8562AFBEBC600B596FC /* RecordTimerListCell.swift in Sources */,
-				8768E5FA2ABC3CFC00CB35EC /* Repetition.swift in Sources */,
 				8738798F2B01F849004EE7F8 /* RoutineWeeklyTableViewModel.swift in Sources */,
 				87FB8D182AF8D2A6001180EC /* RoutineTotalRecordSQLDao.swift in Sources */,
 				8783E8582AFBEBD000B596FC /* RecordTimerListHeaderView.swift in Sources */,
@@ -5306,7 +5259,6 @@
 				87176A5F2AFE4F9700C8B1B8 /* WeeklyXAxisView.swift in Sources */,
 				87DEAADD2AD95DC700C94F0A /* RoutineEditReminderInteractor.swift in Sources */,
 				87D34DA92AFDF64A00C7537D /* TimerDataOfYearViewController.swift in Sources */,
-				87B708DE2B04F50F00C95C08 /* AppThemeManager.swift in Sources */,
 				8748F3382B0F7CAC0081EFA1 /* ProfilepPreferencesDao.swift in Sources */,
 				8779ADD42AFA337B00176746 /* RoutineDataRouter.swift in Sources */,
 				87176A682AFE505000C8B1B8 /* RoutineWeeklyTableInteractor.swift in Sources */,
@@ -5324,7 +5276,6 @@
 				874B91532AD55A3A0089FC6E /* RepeatValueViewModel.swift in Sources */,
 				87DEAAB92AD90D5600C94F0A /* LocalNotificationAdapter.swift in Sources */,
 				8738798B2B01EE78004EE7F8 /* TopAcheiveChartViewModel.swift in Sources */,
-				8768E5FC2ABC3D2300CB35EC /* SetCount.swift in Sources */,
 				87FF66E82B160D1B0013DB2A /* AppTutorialSplashView3.swift in Sources */,
 				87FF66AB2B158F0C0013DB2A /* AppTutorialProfileViewController.swift in Sources */,
 				8748F3182B0F6F380081EFA1 /* ProfileImage.swift in Sources */,
@@ -5342,6 +5293,7 @@
 				878036542AF12AF700EBBA5F /* TimerEditCountdownRouter.swift in Sources */,
 				87FB8D402AF8ED08001180EC /* RecordRoutineListRouter.swift in Sources */,
 				87D0C2DF2B0B07E7003DF624 /* SettingTypefaceRouter.swift in Sources */,
+				874DC0C72B1F1737000DF49F /* AppThemeManager.swift in Sources */,
 				871B2F5B2B109A720015E266 /* ProfileEditDescriptionViewController.swift in Sources */,
 				87D6F2542B0DED2500E8FB1F /* RecordRoutineListModel.swift in Sources */,
 				87DFFE272AF22EA200D2E588 /* TimerCountdownDao.swift in Sources */,
@@ -5372,18 +5324,17 @@
 				876E951A2AB2CFE900046809 /* ProfileHomeViewController.swift in Sources */,
 				87B708AD2B04BC2800C95C08 /* PlaceholerTextView.swift in Sources */,
 				87FB8D102AF8D09D001180EC /* RoutineMonthRecordDto.swift in Sources */,
-				8768E5EA2ABC37DD00CB35EC /* CheckListId.swift in Sources */,
 				87FF66D22B15EFB00013DB2A /* AppTutorailSplashView1.swift in Sources */,
 				87A2C9D92AEFC31B004AE6C1 /* AddFocusTimerInteractor.swift in Sources */,
 				876E95512AB2D00F00046809 /* String+Utils.swift in Sources */,
 				8738797A2B01C089004EE7F8 /* RoutineTopAcheiveBuilder.swift in Sources */,
 				872627B42B18B55A00C0CD92 /* PickerArrowDirectionMode.swift in Sources */,
 				8748F33A2B0F7D9F0081EFA1 /* ProfileReadModel.swift in Sources */,
-				8768E5FE2ABC3D3C00CB35EC /* Weight.swift in Sources */,
 				87FDF2922B1975DA0046D5FC /* SettingAlarmViewModel.swift in Sources */,
 				87262A532B18ED2900C0CD92 /* Bundle+EmojiPicker.swift in Sources */,
 				87FC03F82B0F87BA00F0CF77 /* ProfileEditRouter.swift in Sources */,
 				87901EA32ABAFDCC002CA93F /* RoutineDetailSQLDao.swift in Sources */,
+				874DC0C92B1F1904000DF49F /* RoutineReminderServiceImp.swift in Sources */,
 				87DEAAD12AD94D4100C94F0A /* ReminderDao.swift in Sources */,
 				87FF66CD2B15AB170013DB2A /* AppTutorialInteractor.swift in Sources */,
 				87C8153E2AD3E6270062BEDF /* RepeatSegmentControl.swift in Sources */,
@@ -5396,7 +5347,6 @@
 				8768E5F02ABC388B00CB35EC /* Tint.swift in Sources */,
 				87DFFE312AF2588D00D2E588 /* TimerRecord.swift in Sources */,
 				87D0C2CF2B0B0433003DF624 /* SettingFontSizeViewController.swift in Sources */,
-				8768E5E82ABC35AE00CB35EC /* CheckList.swift in Sources */,
 				871B2F422B1085CE0015E266 /* ProfileEditMemojiViewController.swift in Sources */,
 				87AD31392ADE6447007DB743 /* CreateTimerButton.swift in Sources */,
 				877DF8D62AD5BA0500F45C10 /* RepeatReadModel.swift in Sources */,
@@ -5430,6 +5380,7 @@
 				87D0CB032ACD83AC00FE405F /* RoutineRepeatChanged.swift in Sources */,
 				87FB8D122AF8D0CE001180EC /* RoutineTotalRecordDto.swift in Sources */,
 				8724D31E2B061B4800DD1AFC /* AppFontListViewController.swift in Sources */,
+				874DC0C22B1F0EEE000DF49F /* DaliyReminderServiceImp.swift in Sources */,
 				87E375FF2AD6D99000359850 /* RecordService.swift in Sources */,
 				8779ADCA2AFA1BBC00176746 /* RecordRoutineListDetailViewController.swift in Sources */,
 				8724D3202B061B4800DD1AFC /* AppFontListInteractor.swift in Sources */,
@@ -5449,6 +5400,7 @@
 				87D0C3092B0B7E7F003DF624 /* UIPasteboardManager.swift in Sources */,
 				87AD2D582AD6B44D00B0E2CF /* RepeatWeeklyViewModel.swift in Sources */,
 				87FDF28B2B18F6FE0046D5FC /* SettingAppThemeCell.swift in Sources */,
+				870E71312B20C2C10010A3A7 /* ReminderProjection.swift in Sources */,
 				8748F31E2B0F6F740081EFA1 /* ProfileId.swift in Sources */,
 				87AF75722AB99DD1001CF7F2 /* SnapshotEntity+CoreDataClass.swift in Sources */,
 				87D0C2E52B0B16A9003DF624 /* SettingFontSlider.swift in Sources */,

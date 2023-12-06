@@ -27,9 +27,11 @@ final class SettingAppThemeInteractor: PresentableInteractor<SettingAppThemePres
     weak var router: SettingAppThemeRouting?
     weak var listener: SettingAppThemeListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let appThemeManager: AppThemeManager
+    
     // in constructor.
     override init(presenter: SettingAppThemePresentable) {
+        self.appThemeManager = AppThemeManager.share
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -37,7 +39,7 @@ final class SettingAppThemeInteractor: PresentableInteractor<SettingAppThemePres
     override func didBecomeActive() {
         super.didBecomeActive()
 
-        switch AppThemeManager.share.theme {
+        switch appThemeManager.theme {
         case .system: presenter.setSelectedRow(row: 0)
         case .light: presenter.setSelectedRow(row: 1)
         case .dark: presenter.setSelectedRow(row: 2)
@@ -54,19 +56,18 @@ final class SettingAppThemeInteractor: PresentableInteractor<SettingAppThemePres
     }
     
     func tableViewDidSelectedRow(row: Int) {
-        let themeManager = AppThemeManager.share
         switch row{
         case 0:
             //system
-            themeManager.setSystemMode()
+            appThemeManager.setSystemMode()
             presenter.updateTheme()
         case 1:
             //light
-            themeManager.setLightMode()
+            appThemeManager.setLightMode()
             presenter.updateTheme()
         case 2:
             //dark
-            themeManager.setDarkMode()            
+            appThemeManager.setDarkMode()            
             presenter.updateTheme()
         default : fatalError("Invalid Selected Row")
         }                

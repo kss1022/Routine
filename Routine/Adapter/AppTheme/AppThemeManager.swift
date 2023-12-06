@@ -12,7 +12,12 @@ public class AppThemeManager{
     
     public static let share = AppThemeManager()
     
-    public var theme: AppTheme{ AppTheme(rawValue:PreferenceStorage.shared.apptheme) ?? .system}
+    private let userDefaults = UserDefaults.standard
+    
+    public var theme: AppTheme{
+        userDefaults.string(forKey: kAppTheme)
+            .flatMap(AppTheme.init) ?? .system
+    }
     
     func setup(){
         setTheme()
@@ -23,15 +28,18 @@ public class AppThemeManager{
     }
     
     func setSystemMode(){
-        PreferenceStorage.shared.apptheme = AppTheme.system.rawValue
+        userDefaults.set(AppTheme.system.rawValue, forKey: kAppTheme)
+        Log.v("Saved to PreferenceStorage: \(kAppTheme) <- system")
     }
     
     func setLightMode(){
-        PreferenceStorage.shared.apptheme = AppTheme.light.rawValue
+        userDefaults.set(AppTheme.light.rawValue, forKey: kAppTheme)
+        Log.v("Saved to PreferenceStorage: \(kAppTheme) <- light")
     }
     
     func setDarkMode(){
-        PreferenceStorage.shared.apptheme = AppTheme.dark.rawValue
+        userDefaults.set(AppTheme.dark.rawValue, forKey: kAppTheme)
+        Log.v("Saved to PreferenceStorage: \(kAppTheme) <- dark")
     }
     
 
@@ -54,6 +62,9 @@ public class AppThemeManager{
         }
     }
     
+    private let kAppTheme = "kAppTheme"
+    
+
 }
 
 public enum AppTheme: String{
@@ -62,8 +73,3 @@ public enum AppTheme: String{
     case dark
 }
 
-
-
-private extension PreferenceKeys{
-    var apptheme : PrefKey<String>{ .init(name: "kAppTheme", defaultValue: AppTheme.system.rawValue) } //AppTheme
-}

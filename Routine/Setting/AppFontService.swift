@@ -1,5 +1,5 @@
 //
-//  AppFontManager.swift
+//  AppFontService.swift
 //  Routine
 //
 //  Created by 한현규 on 11/16/23.
@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 
-final class AppFontManager{
+final class AppFontService{
     
     
-    public static let share = AppFontManager()
+    public static let share = AppFontService()
     
     private let preferenceStorege = PreferenceStorage.shared
     

@@ -22,12 +22,11 @@ final class ReminderSQLDao: ReminderDao{
     private let emoji: Expression<String>
     private let title: Expression<String>
     private let body: Expression<String>
-    private let identifires: Expression<String>
     private let year: Expression<Int?>
     private let month: Expression<Int?>
     private let day: Expression<Int?>
-    private let weekDays: Expression<Set<Int>?>
-    private let monthDays: Expression<Set<Int>?>
+    private let weekDays: Expression<SET<Int>?>
+    private let monthDays: Expression<SET<Int>?>
     private let hour: Expression<Int>
     private let minute: Expression<Int>
     private let `repeat`: Expression<Bool>
@@ -43,12 +42,11 @@ final class ReminderSQLDao: ReminderDao{
         emoji = Expression<String>("emoji")
         title = Expression<String>("title")
         body = Expression<String>("body")
-        identifires = Expression<String>("identifires")
         year = Expression<Int?>("year")
         month = Expression<Int?>("month")
         day = Expression<Int?>("day")
-        weekDays = Expression<Set<Int>?>("weekDays")
-        monthDays = Expression<Set<Int>?>("monthDays")
+        weekDays = Expression<SET<Int>?>("weekDays")
+        monthDays = Expression<SET<Int>?>("monthDays")
         hour = Expression<Int>("hour")
         minute = Expression<Int>("minute")
         `repeat` = Expression<Bool>("repeat`")
@@ -71,7 +69,6 @@ final class ReminderSQLDao: ReminderDao{
             table.column(emoji)
             table.column(title)
             table.column(body)
-            table.column(identifires)
             table.column(year)
             table.column(month)
             table.column(day)
@@ -94,12 +91,11 @@ final class ReminderSQLDao: ReminderDao{
             emoji <- dto.emoji,
             title <- dto.title,
             body <- dto.body,
-            identifires <- dto.identifires,
             year <- dto.year,
             month <- dto.month,
             day <- dto.day,
-            weekDays <- dto.weekDays,
-            monthDays <- dto.monthDays,
+            weekDays <- dto.weekDays.flatMap(SET.init),
+            monthDays <- dto.monthDays.flatMap(SET.init),
             hour <- dto.hour,
             minute <- dto.minute,
             `repeat` <- dto.repeat
@@ -120,12 +116,11 @@ final class ReminderSQLDao: ReminderDao{
                 emoji <- dto.emoji,
                 title <- dto.title,
                 body <- dto.body,
-                identifires <- dto.identifires,
                 year <- dto.year,
                 month <- dto.month,
                 day <- dto.day,
-                weekDays <- dto.weekDays,
-                monthDays <- dto.monthDays,
+                weekDays <- dto.weekDays.flatMap(SET.init),
+                monthDays <- dto.monthDays.flatMap(SET.init),
                 hour <- dto.hour,
                 minute <- dto.minute,
                 `repeat` <- dto.repeat
@@ -146,12 +141,11 @@ final class ReminderSQLDao: ReminderDao{
                     emoji: $0[emoji],
                     title: $0[title],
                     body: $0[body],
-                    identifiers: $0[identifires],
                     year: $0[year],
                     month: $0[month],
                     day: $0[day],
-                    weekDays: Set(),
-                    monthDays: Set(),
+                    weekDays: $0[weekDays]?.set,
+                    monthDays: $0[monthDays]?.set,
                     hour: $0[hour],
                     minute: $0[minute],
                     repeat: $0[`repeat`]
@@ -169,12 +163,11 @@ final class ReminderSQLDao: ReminderDao{
                     emoji: $0[emoji],
                     title: $0[title],
                     body: $0[body],
-                    identifiers: $0[identifires],
                     year: $0[year],
                     month: $0[month],
                     day: $0[day],
-                    weekDays: $0[weekDays],
-                    monthDays: $0[monthDays],
+                    weekDays: $0[weekDays]?.set,
+                    monthDays: $0[monthDays]?.set,
                     hour: $0[hour],
                     minute: $0[minute],
                     repeat: $0[`repeat`]

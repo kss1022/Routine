@@ -14,13 +14,11 @@ struct SettingAlarmViewModel{
     let title: String
     let image: UIImage?
     let isOn: Bool
-    let valueChanged: (Bool) -> Void
     
     init(_ model: SettingAlarmModel) {
         self.title = model.title
         self.image = UIImage(systemName: model.imageName)
-        self.isOn = model.isOn
-        self.valueChanged = model.valueChanged
+        self.isOn = model.isOn        
     }
 }
 

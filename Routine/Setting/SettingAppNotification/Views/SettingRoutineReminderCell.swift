@@ -11,7 +11,7 @@ import UIKit
 
 final class SettingRoutineReminderCell: UITableViewCell{
     
-    private var valueChanged: ((Bool) -> Void)?
+    var valueChanged: ((Bool) -> Void)?
     
     
     private lazy var toogle: UISwitch = {
@@ -43,13 +43,10 @@ final class SettingRoutineReminderCell: UITableViewCell{
         content.secondaryTextProperties.color = .systemBlue        
         content.image = viewModel.emoji.toImage(size: 24.0)
         content.text = viewModel.routineName
-        content.secondaryText = viewModel.reminderTime
-        
+        content.secondaryText = viewModel.reminderTime        
         contentConfiguration = content
-        
-        //valueChanged = viewModel.onOffChanged
-
-        self.valueChanged = viewModel.valueChanged
+                
+        toogle.isOn = viewModel.isOn
     }
     
     override func prepareForReuse() {

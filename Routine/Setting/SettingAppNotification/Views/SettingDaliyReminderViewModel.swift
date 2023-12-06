@@ -17,17 +17,22 @@ struct SettingDaliyReminderViewModel{
     let isOn: Bool
     let date : Date
     let isShow: Bool
-    let onOffChanged: (Bool) -> Void
-    let dateChanged: (Date) -> Void
     
-    init(_ model: SettingDaliyReminderModel) {
+    init(_ model: SettingDaliyReminderModel, isShow: Bool) {
+        
+        let calender = Calendar.current
+        var dateComponent = DateComponents()
+        dateComponent.hour = model.hour
+        dateComponent.minute = model.minute
+        
+        let date = calender.date(from: dateComponent)!
+        
+        
         self.title = model.title
-        self.subTitle = Formatter.settingReminderDateFormatter().string(from: model.date)
+        self.subTitle = Formatter.settingReminderDateFormatter().string(from: date)
         self.image = UIImage(systemName: model.imageName)
         self.isOn = model.isOn
-        self.date = model.date
-        self.isShow = model.isShow
-        self.onOffChanged = model.onOffChanged
-        self.dateChanged = model.dateChanged
+        self.date = date
+        self.isShow = isShow        
     }
 }

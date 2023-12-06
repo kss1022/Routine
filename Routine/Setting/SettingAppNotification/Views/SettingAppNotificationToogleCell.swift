@@ -11,7 +11,7 @@ import UIKit
 
 final class SettingAppNotificationToogleCell: UITableViewCell{
     
-    private var valueChanged: ((Bool) -> Void)?
+    public var valueChanged: ((Bool) -> Void)?
     
     private lazy var toogle: UISwitch = {
         let toogle = UISwitch()
@@ -42,7 +42,7 @@ final class SettingAppNotificationToogleCell: UITableViewCell{
         content.text = viewModel.title
         contentConfiguration = content
         toogle.isOn = viewModel.isOn
-        valueChanged = viewModel.valueChanged
+        
         selectionStyle = .none
     }
     
@@ -53,18 +53,18 @@ final class SettingAppNotificationToogleCell: UITableViewCell{
         content.secondaryTextProperties.color = .systemBlue
         content.image = viewModel.image
         content.text = viewModel.title
-        content.secondaryText = viewModel.subTitle
-        contentConfiguration = content
-        
-        valueChanged = viewModel.onOffChanged
-        
+
         if viewModel.isOn{
             toogle.isOn = true
+            content.secondaryText = viewModel.subTitle
             selectionStyle = .gray
         }else{
             toogle.isOn = false
+            content.secondaryText = nil
             selectionStyle = .none
-        }                
+        }
+        
+        contentConfiguration = content
     }
     
     

@@ -13,6 +13,5 @@ import Foundation
 struct SettingAlarmModel{
     let title: String
     let imageName: String
-    let isOn: Bool
-    let valueChanged: (Bool) -> Void
+    let isOn: Bool    
 }

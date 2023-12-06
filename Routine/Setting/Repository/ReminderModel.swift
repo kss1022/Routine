@@ -15,7 +15,6 @@ struct ReminderModel{
     let emoji: String
     let title: String
     let body: String
-    let identifires: String
     let year: Int?
     let month: Int?
     let day: Int?
@@ -31,7 +30,6 @@ struct ReminderModel{
         self.emoji = dto.emoji
         self.title = dto.title
         self.body = dto.body
-        self.identifires = dto.identifires
         self.year = dto.year
         self.month = dto.month
         self.day = dto.day

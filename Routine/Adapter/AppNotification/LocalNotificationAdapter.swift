@@ -36,7 +36,7 @@ final class LocalNotificationAdapter: AppNotification{
             try await center.add(request)
         }
         
-        await checkRequest()
+        Log.v("registerNotification: \(requests.map({ $0.identifier }))")
     }
     
     
@@ -44,27 +44,19 @@ final class LocalNotificationAdapter: AppNotification{
     
     // MARK: unRegister
     func unRegisterNotification(id: String) async{
-        let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()                
+        let requests = await center.pendingNotificationRequests()                
         requests.filter { $0.identifier == id }
             .forEach { request in
-                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                center.removePendingNotificationRequests(withIdentifiers: [request.identifier])
             }
-        Log.v("unRegisterNotification")
-        
-        await checkRequest()
+        Log.v("unRegisterNotification: \(id)")
     }
     
     func unRegisterNotifications(ids: [String]) async {
         ids.forEach {
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [$0])
+            center.removePendingNotificationRequests(withIdentifiers: [$0])
         }
-        Log.v("unRegisterNotifications")
-        await checkRequest()
+        Log.v("unRegisterNotifications: \(ids)")
     }
     
-    private func checkRequest() async{
-        let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
-        Log.v("Register Requests count: \(requests.count)")
-    }
-
 }

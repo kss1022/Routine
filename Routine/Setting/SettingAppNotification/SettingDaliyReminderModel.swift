@@ -13,8 +13,6 @@ struct SettingDaliyReminderModel{
     let title: String
     let imageName: String
     let isOn: Bool
-    let date : Date
-    let isShow: Bool
-    let onOffChanged: (Bool) -> Void
-    let dateChanged: (Date) -> Void
+    let hour: Int
+    let minute: Int    
 }

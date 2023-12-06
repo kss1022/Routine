@@ -21,10 +21,9 @@ protocol SettingAppNotificationPresentable: Presentable {
     func setRoutineReminders(_ viewModels: [SettingRoutineReminderViewModel])
     
     
-    func updateReminderDate(_ viewModel: SettingDaliyReminderViewModel)
-    
-    func showReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel)
-    func hideReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel)
+    func updateDaliyReminder(_ viewModel: SettingDaliyReminderViewModel)
+    func showDaliyReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel)
+    func hideDaliyReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel)
 }
 
 protocol SettingAppNotificationListener: AnyObject {
@@ -36,19 +35,21 @@ protocol SettingAppNotificationInteractorDependency{
 }
 
 final class SettingAppNotificationInteractor: PresentableInteractor<SettingAppNotificationPresentable>, SettingAppNotificationInteractable, SettingAppNotificationPresentableListener {
-
     
-
     weak var router: SettingAppNotificationRouting?
     weak var listener: SettingAppNotificationListener?
 
     private let dependency: SettingAppNotificationInteractorDependency
     private var cancellables: Set<AnyCancellable>
     
-    private let preferenceStorage: PreferenceStorage
+    private let daliyReminderService: DaliyReminderService
+    private let routineReminderService: RoutineReminderService
     
     private var alarmModel: SettingAlarmModel!
     private var reminderModel: SettingDaliyReminderModel!
+    
+    
+    private var isDaliyRemindeShow: Bool
     
     // in constructor.
     init(
@@ -57,7 +58,11 @@ final class SettingAppNotificationInteractor: PresentableInteractor<SettingAppNo
     ) {
         self.dependency = dependency
         cancellables = .init()
-        preferenceStorage = PreferenceStorage.shared
+        
+        daliyReminderService = DaliyReminderServiceImp()
+        routineReminderService = RoutineReminderServiceImp()
+        
+        isDaliyRemindeShow = false
 
         super.init(presenter: presenter)
         presenter.listener = self
@@ -78,51 +83,26 @@ final class SettingAppNotificationInteractor: PresentableInteractor<SettingAppNo
             title: "Alarm",
             imageName: "app.badge",
             isOn: false
-        ) { isOn in
-            Log.v("Alarm value Change: \(isOn)")
-        }
+        )
                 
         
         reminderModel = SettingDaliyReminderModel(
             title: "Daliy Reminder",
             imageName: "bell.square.fill",
-            isOn: preferenceStorage.setDaliyReminder,
-            date: preferenceStorage.daliyReminderDate ?? Date(), // or Today
-            isShow: false,
-            onOffChanged: { [weak self] isOn in
-                guard let self = self else { return }
-                if isOn{
-                    self.preferenceStorage.setDaliyReminder = true
-                    self.fetchReminder()
-                    self.showReminder()
-                }else{
-                    self.preferenceStorage.setDaliyReminder = false
-                    self.fetchReminder()
-                    self.hideReminder()
-                }
-            },
-            dateChanged: { [weak self] date in
-                guard let self = self else { return }
-                self.preferenceStorage.daliyReminderDate = date
-                self.fetchReminder()
-                self.presenter.updateReminderDate(SettingDaliyReminderViewModel(self.reminderModel))
-            }
+            isOn: daliyReminderService.isOn,
+            hour: daliyReminderService.hour,
+            minute: daliyReminderService.minute
         )
                 
         dependency.reminderRepository.reminders
             .receive(on: DispatchQueue.main)
             .sink { models in
-                let viewModels =  models.map{ model in
-                    SettingRoutineReminderViewModel(model) { isOn in
-                        Log.v("\(model): change to  \(isOn)")
-                    }
-                }
-                self.presenter.setRoutineReminders(viewModels)
+                self.fetchRoutineReminder()
             }
             .store(in: &cancellables)
         
         presenter.setAlarm(SettingAlarmViewModel(alarmModel))
-        presenter.setReminder(SettingDaliyReminderViewModel(reminderModel))
+        presenter.setReminder(SettingDaliyReminderViewModel(reminderModel, isShow: false))
     }
 
     override func willResignActive() {
@@ -136,69 +116,135 @@ final class SettingAppNotificationInteractor: PresentableInteractor<SettingAppNo
         listener?.settingAppNotificationDidMove()
     }
 
+    func alarmToogleValueChanged(isOn: Bool) {
+        Log.v("alarmToogleValueChanged: \(isOn)")
+    }
+
     
-    func reminderDidTap() {
-        if !reminderModel.isOn{
+    func daliyReminderToolgeValueChanged(isOn: Bool) {
+        Task{ [weak self] in
+            do{
+                guard let self = self else { return }
+                try await self.daliyReminderService.update(isOn: isOn)
+                await MainActor.run { [weak self] in
+                    guard let self = self else { return }
+                    self.fetchDaliyReminder()
+                    if isOn{
+                        self.showDaliyReminder()
+                    }else{
+                        self.hideDaliyReminder()
+                    }
+                }
+            }catch{
+                Log.e(error.localizedDescription)
+            }
+        }
+    }
+    
+    func daliyReminderDateValueChanged(date: Date) {
+        Task{ [weak self] in
+            do{
+                guard let self = self else { return }
+                try await self.daliyReminderService.update(date: date)
+                await MainActor.run { [weak self] in
+                    guard let self = self else { return }
+                    self.fetchDaliyReminder()
+                    self.updateDalitReminder()                    
+                }
+            }catch{
+                Log.e(error.localizedDescription)
+            }
+        }
+    }
+    
+    func daliyReminderDidTap() {
+        if !daliyReminderService.isOn{
             return
         }
         
-        if reminderModel.isShow{
-            hideReminder()
+        if isDaliyRemindeShow{
+            hideDaliyReminder()
         }else{
-            showReminder()
+            showDaliyReminder()
         }
+    }
+    
+    func routineReminderToogleValueChanged(isOn: Bool, routineId: UUID) {
+        guard let reminderModel = dependency.reminderRepository.reminders.value.first(where: { $0.routineId == routineId }) else { return }
+        
+        
+        Task{ [weak self] in
+            guard let self = self else { return }
+            do{
+                if !isOn{
+                    await self.routineReminderService.off(routineId: reminderModel.routineId)
+                }else{
+                    try await self.routineReminderService.on(model: reminderModel)
+                }
+                
+                await MainActor.run { [weak self] in self?.fetchRoutineReminder() }
+            }catch{
+                Log.e(error.localizedDescription)
+            }
+        }
+        
     }
     
     //MARK: Private
     
-    private func fetchReminder(){
+    /// handle daliy
+    private func fetchDaliyReminder(){
         let clone = SettingDaliyReminderModel(
             title: reminderModel.title,
             imageName: reminderModel.imageName,
-            isOn: preferenceStorage.setDaliyReminder,
-            date: preferenceStorage.daliyReminderDate ?? Date(),
-            isShow: reminderModel.isShow,
-            onOffChanged: reminderModel.onOffChanged,
-            dateChanged: reminderModel.dateChanged
+            isOn: daliyReminderService.isOn,
+            hour: daliyReminderService.hour,
+            minute: daliyReminderService.minute
         )
         reminderModel = clone
     }
     
-    
-    private func showReminder(){
-        if reminderModel.isShow{
+
+    private func showDaliyReminder(){
+        if isDaliyRemindeShow{
+            updateDalitReminder()
             return
         }
         
-        let clone = SettingDaliyReminderModel(
-            title: reminderModel.title,
-            imageName: reminderModel.imageName,
-            isOn: reminderModel.isOn,
-            date: reminderModel.date,
-            isShow: true,
-            onOffChanged: reminderModel.onOffChanged,
-            dateChanged: reminderModel.dateChanged
-        )
-        reminderModel = clone
-        presenter.showReminderDatePicker(SettingDaliyReminderViewModel(reminderModel))
+        isDaliyRemindeShow = true
+        presenter.showDaliyReminderDatePicker(SettingDaliyReminderViewModel(reminderModel, isShow: isDaliyRemindeShow))
     }
     
-    private func hideReminder(){
-        if !reminderModel.isShow{
+    private func hideDaliyReminder(){
+        if !isDaliyRemindeShow{
+            self.updateDalitReminder()
             return
         }
         
-        let clone = SettingDaliyReminderModel(
-            title: reminderModel.title,
-            imageName: reminderModel.imageName,
-            isOn: reminderModel.isOn,
-            date: reminderModel.date,
-            isShow: false,
-            onOffChanged: reminderModel.onOffChanged,
-            dateChanged: reminderModel.dateChanged
-        )
-        reminderModel = clone
-        presenter.hideReminderDatePicker(SettingDaliyReminderViewModel(reminderModel))
+        isDaliyRemindeShow = false
+        presenter.hideDaliyReminderDatePicker(SettingDaliyReminderViewModel(reminderModel, isShow: isDaliyRemindeShow))
+    }
+    
+    private func updateDalitReminder(){
+        self.presenter.updateDaliyReminder(SettingDaliyReminderViewModel(self.reminderModel, isShow: self.isDaliyRemindeShow))
+    }
+    
+    
+    /// handle routine
+    private func fetchRoutineReminder(){
+        Task{ [weak self] in
+            guard let self = self else { return }
+            
+            let routineIds = await self.routineReminderService.routineIds
+            let reminders = dependency.reminderRepository.reminders.value
+            
+            let viewModels = reminders.map { reminder in
+                let isOn = routineIds.contains{ $0 == reminder.routineId.uuidString }
+                return SettingRoutineReminderViewModel(reminder, isOn: isOn)
+            }
+
+            await MainActor.run{ [weak self] in  self?.presenter.setRoutineReminders(viewModels) }
+        }
     }
 
 }

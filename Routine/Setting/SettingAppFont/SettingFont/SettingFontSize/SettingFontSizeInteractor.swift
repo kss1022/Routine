@@ -36,8 +36,8 @@ final class SettingFontSizeInteractor: PresentableInteractor<SettingFontSizePres
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: SettingFontSizePresentable) {
-        self.isCustomSize = AppFontManager.share.isCustomSize
-        self.customSize = AppFontManager.share.customSize
+        self.isCustomSize = AppFontService.share.isCustomSize
+        self.customSize = AppFontService.share.customSize
         super.init(presenter: presenter)
         presenter.listener = self
     }

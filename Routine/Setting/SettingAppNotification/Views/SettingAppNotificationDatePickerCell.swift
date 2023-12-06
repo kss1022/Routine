@@ -10,7 +10,7 @@ import UIKit
 
 final class SettingAppNotificationDatePickerCell: UITableViewCell{
     
-    private var valueChanged : ( (Date) -> Void)?
+    var valueChanged : ( (Date) -> Void)?
     
     private lazy var timePikcer: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -46,7 +46,6 @@ final class SettingAppNotificationDatePickerCell: UITableViewCell{
     
     func bindView(_ viewModel: SettingDaliyReminderViewModel){        
         timePikcer.setDate(viewModel.date, animated: false)
-        valueChanged = viewModel.dateChanged
     }
     
     override func prepareForReuse() {

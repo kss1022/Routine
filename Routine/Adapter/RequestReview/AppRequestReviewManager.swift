@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import StoreKit
 
+//MARK:  PreferenceStorage change to  UserDefaults
+
 final class AppRequestReviewManager{
     
     

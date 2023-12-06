@@ -10,18 +10,19 @@ import Foundation
 
 
 struct SettingRoutineReminderViewModel{
+    let id: UUID
     let emoji: String
     let routineName: String
     let reminderTime: String
     let reminderInfo: String
     let isOn: Bool
-    let valueChanged: (Bool) -> Void
     
     
-    
-    init(_ model: ReminderModel, valuechanged: @escaping (Bool) -> Void) {
+    init(_ model: ReminderModel, isOn: Bool) {
+        self.id = model.routineId
         self.emoji = model.emoji
         self.routineName = model.routineName
+        
         
         let calendar = Calendar.current
         let dateComponent = DateComponents(hour: model.hour, minute: model.minute)
@@ -59,8 +60,6 @@ struct SettingRoutineReminderViewModel{
             }
         }
         
-        
-        self.isOn = true
-        self.valueChanged = valuechanged
+        self.isOn = isOn
     }
 }

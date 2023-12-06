@@ -33,6 +33,7 @@ final class AppTutorialTimerInteractor: PresentableInteractor<AppTutorialTimerPr
 
     private let dependency: AppTutorialTimerInteractorDependency
     private let notificationManager: AppNotificationManager
+    private let daliyReminderService: DaliyReminderServiceImp
     
     private var date: Date
     
@@ -43,6 +44,7 @@ final class AppTutorialTimerInteractor: PresentableInteractor<AppTutorialTimerPr
     ) {
         self.dependency = dependency
         self.notificationManager = AppNotificationManager.share
+        self.daliyReminderService = DaliyReminderServiceImp()
         self.date = Date()
         super.init(presenter: presenter)
         presenter.listener = self
@@ -71,19 +73,7 @@ final class AppTutorialTimerInteractor: PresentableInteractor<AppTutorialTimerPr
             
             do{
                 guard let self = self else { return }
-                            
-                let calendar = Calendar.current
-                let hour = calendar.component(.hour, from: self.date)
-                let minute = calendar.component(.minute, from: self.date)
-                
-                let localNotification = try LocalNotification.Builder()
-                    .setContent(title: "Embrace the Start of Your Routine.", body: "A gentle reminder that it's time for your special routine. Enjoy the beginning in a relaxed manner.")
-                    .setTimeTrigger(hour: hour, minute: minute, repeats: true)
-                    .build()
-                                    
-                try await notificationManager.localAdapter.registerNotifcation(notification: localNotification)
-                PreferenceStorage.shared.setDaliyReminder = true
-                PreferenceStorage.shared.daliyReminderDate = self.date                
+                try await self.daliyReminderService.register(date: self.date)
                 try await initTimer()
                 await MainActor.run { [weak self] in self?.listener?.AppTutorialTimerDidFinish() }
             }catch{

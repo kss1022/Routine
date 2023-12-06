@@ -41,7 +41,7 @@ final class AppNotificationManager{
     }
     
     func checkNotificationStatus() async -> Bool{
-        let setttings = await UNUserNotificationCenter.current().notificationSettings()
+        let setttings = await center.notificationSettings()
         let isGranted = setttings.authorizationStatus == .authorized
                 
         Log.v("UNAuthorizationStatus is \(setttings.authorizationStatus)")
@@ -71,6 +71,7 @@ final class AppNotificationManager{
         }
     }
     
+    //MARK: Action
     private func setRoutineAction(){
         let action1 = UNNotificationAction(identifier: "Action1Identifier", title: "Action 1", options: [])
         let action2 = UNNotificationAction(identifier: "Action2Identifier", title: "Action 2", options: [])
@@ -83,9 +84,13 @@ final class AppNotificationManager{
             options: .customDismissAction
         )
         
-        let center = UNUserNotificationCenter.current()
         center.setNotificationCategories([category])
     }
 
 
+    ///Check RegiserNotifications
+    func registereNotifications() async -> [UNNotificationRequest]{
+        let requests = await center.pendingNotificationRequests()                
+        return requests
+    }
 }

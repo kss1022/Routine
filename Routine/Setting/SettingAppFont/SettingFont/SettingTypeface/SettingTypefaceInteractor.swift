@@ -41,7 +41,7 @@ final class SettingTypefaceInteractor: PresentableInteractor<SettingTypefacePres
         
         let osModel = OsTypefaceListModel(
             isSelected: true,
-            fontName: AppFontManager.share.fontName,
+            fontName: AppFontService.share.fontName,
             imageName: "checkmark.circle",
             selectedImageName: "checkmark.circle.fill"
         ){ [weak self] in

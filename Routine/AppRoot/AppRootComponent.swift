@@ -32,6 +32,7 @@ final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, 
     
     //MAKR: Projection
     private let routineProjection: RoutineProjection
+    private let reminderProjection: ReminderProjection
     private let recordProjection: RecordProjection
     private let timerProjection: TimerProjection
     private let profileProjection: ProfileProjection
@@ -76,7 +77,8 @@ final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, 
         let routineService = RoutineService()
                 
         //Projection
-        routineProjection = try! RoutineProjection()        
+        routineProjection = try! RoutineProjection()
+        reminderProjection = try! ReminderProjection()
         recordProjection = try! RecordProjection()
         timerProjection = try! TimerProjection()
         profileProjection = try! ProfileProjection()

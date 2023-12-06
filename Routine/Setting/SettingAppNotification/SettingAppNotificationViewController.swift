@@ -10,7 +10,14 @@ import UIKit
 
 protocol SettingAppNotificationPresentableListener: AnyObject {
     func didMove()
-    func reminderDidTap()
+    
+    func alarmToogleValueChanged(isOn: Bool)
+        
+    func daliyReminderToolgeValueChanged(isOn: Bool)
+    func daliyReminderDateValueChanged(date : Date)
+    func daliyReminderDidTap()
+    
+    func routineReminderToogleValueChanged(isOn: Bool, routineId: UUID)
 }
 
 final class SettingAppNotificationViewController: UIViewController, SettingAppNotificationPresentable, SettingAppNotificationViewControllable {
@@ -90,19 +97,27 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
     }
     
     
-    func updateReminderDate(_ viewModel: SettingDaliyReminderViewModel) {
+    func updateDaliyReminder(_ viewModel: SettingDaliyReminderViewModel) {
         self.reminder = viewModel
         self.tableView.reloadRows(at: [.init(row: 0, section: 1)], with: .none)
     }
     
-    func showReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel) {
+    func showDaliyReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel) {
         self.reminder = viewModel
-        self.tableView.insertRows(at: [.init(row: 1, section: 1)], with: .automatic)
+                        
+        tableView.performBatchUpdates {
+            self.tableView.reloadRows(at: [.init(row: 0, section: 1)], with: .none)
+            self.tableView.insertRows(at: [.init(row: 1, section: 1)], with: .middle)
+        }
     }
     
-    func hideReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel) {        
+    func hideDaliyReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel) {        
         self.reminder = viewModel
-        self.tableView.deleteRows(at: [.init(row: 1, section: 1)], with: .automatic)
+              
+        tableView.performBatchUpdates {
+            self.tableView.reloadRows(at: [.init(row: 0, section: 1)], with: .none)
+            self.tableView.deleteRows(at: [.init(row: 1, section: 1)], with: .middle)
+        }
     }
 }
 
@@ -147,16 +162,25 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
             //MARK: ONFF
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppNotificationToogleCell.self)
             cell.bindView(alarm)
+            cell.valueChanged = { [weak self] isOn in
+                self?.listener?.alarmToogleValueChanged(isOn: isOn)
+            }
             return cell
         case 1:
             //MARK: DALIY REMINDER
             if indexPath.row == 0{
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppNotificationToogleCell.self)
                 cell.bindView(reminder)
+                cell.valueChanged = { [weak self] isOn in
+                    self?.listener?.daliyReminderToolgeValueChanged(isOn: isOn)
+                }
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppNotificationDatePickerCell.self)
                 cell.bindView(reminder)
+                cell.valueChanged = { [weak self] date in
+                    self?.listener?.daliyReminderDateValueChanged(date: date)
+                }
                 return cell
             }
         case 2:
@@ -164,6 +188,9 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingRoutineReminderCell.self)
             let reminder = routineReminders[indexPath.row]
             cell.bindView(reminder)
+            cell.valueChanged = { [weak self] isOn in
+                self?.listener?.routineReminderToogleValueChanged(isOn: isOn, routineId: reminder.id)
+            }
             return cell
         default : fatalError("Invalid IndexPath.row")
         }
@@ -206,7 +233,7 @@ extension SettingAppNotificationViewController: UITableViewDelegate{
         
         //Reminder Tap!
         if indexPath.section == 1 && indexPath.row == 0{
-            listener?.reminderDidTap()
+            listener?.daliyReminderDidTap()
         }
         
     }
