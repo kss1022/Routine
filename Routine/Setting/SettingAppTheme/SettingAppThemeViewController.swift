@@ -71,7 +71,7 @@ final class SettingAppThemeViewController: UIViewController, SettingAppThemePres
     
     func updateTheme() {
         UIView.animate(withDuration: 0.5, animations: {
-            AppThemeManager.share.updateTheme()
+            AppThemeManager.shared.updateTheme()
         })
     }
  

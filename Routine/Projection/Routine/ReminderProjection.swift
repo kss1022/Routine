@@ -31,15 +31,15 @@ final class ReminderProjection{
     
     
     private func registerReceiver(){
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(RoutineCreated.self, action: when)
             .store(in: &cancellables)
         
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(RoutineUpdated.self, action: when)
             .store(in: &cancellables)
         
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(RoutineDeleted.self, action: when)
             .store(in: &cancellables)
     }
@@ -86,7 +86,7 @@ final class ReminderProjection{
             
             Task{
                 do{
-                    try await AppNotificationManager.share.localAdapter.registerNotifcation(notification: notification)
+                    try await AppNotificationManager.shared.localAdapter.registerNotifcation(notification: notification)
                     try reminderDao.save(reminderDto)
                 }catch{
                     Log.e("\(error)")
@@ -104,7 +104,7 @@ final class ReminderProjection{
                 try reminderDao.delete(id: event.routineId.id)
                 
                 Task{
-                    let manager = AppNotificationManager.share
+                    let manager = AppNotificationManager.shared
                     let request = await manager.registereNotifications()
                     
                     let identifiers = request
@@ -161,7 +161,7 @@ final class ReminderProjection{
                 //save
                 Task{
                     do{
-                        try await AppNotificationManager.share.localAdapter.registerNotifcation(notification: notification)
+                        try await AppNotificationManager.shared.localAdapter.registerNotifcation(notification: notification)
                         try reminderDao.save(reminderDto)
                     }catch{
                         Log.e("\(error)")
@@ -175,7 +175,7 @@ final class ReminderProjection{
             //update
             Task{
                 do{
-                    let manager = AppNotificationManager.share
+                    let manager = AppNotificationManager.shared
                     let request = await manager.registereNotifications()
                     
                     let identifiers = request
@@ -203,7 +203,7 @@ final class ReminderProjection{
     
     private func when(event: RoutineDeleted){
         Task{
-            let manager = AppNotificationManager.share
+            let manager = AppNotificationManager.shared
             let request = await manager.registereNotifications()
             
             let identifiers = request

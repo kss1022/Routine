@@ -11,7 +11,7 @@ protocol ProfileEditNameDependency: Dependency {
     var profileNameSubject: CurrentValuePublisher<String>{ get }
 }
 
-final class ProfileEditNameComponent: Component<ProfileEditNameDependency>, ProfileEditTitleInteractorDependency {
+final class ProfileEditNameComponent: Component<ProfileEditNameDependency>, ProfileEditNameInteractorDependency {
     var profileNameSubject: CurrentValuePublisher<String>{ dependency.profileNameSubject }
 }
 

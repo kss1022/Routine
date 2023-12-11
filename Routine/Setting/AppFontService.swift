@@ -12,7 +12,9 @@ import UIKit
 final class AppFontService{
     
     
-    public static let share = AppFontService()
+    public static let shared = AppFontService()
+    
+    private init(){}
     
     private let preferenceStorege = PreferenceStorage.shared
     

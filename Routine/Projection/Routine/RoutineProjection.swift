@@ -36,19 +36,19 @@ final class RoutineProjection{
     
     
     private func registerReceiver(){
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(RoutineCreated.self, action: when)
             .store(in: &cancellables)
         
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(RoutineUpdated.self, action: when)
             .store(in: &cancellables)
         
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(RoutineNameChanged.self, action: when)
             .store(in: &cancellables)
         
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(RoutineDeleted.self, action: when)
             .store(in: &cancellables)
     }

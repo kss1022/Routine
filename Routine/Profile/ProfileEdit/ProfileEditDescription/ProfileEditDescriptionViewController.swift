@@ -114,6 +114,7 @@ final class ProfileEditDescriptionViewController: UIViewController, ProfileEditD
     
     func setDescription(description: String) {
         descriptionTextFeild.text = description
+        descriptionHelpLabel.text = "\(description.count)/50"
     }
     
     override func didMove(toParent parent: UIViewController?) {

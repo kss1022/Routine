@@ -31,7 +31,7 @@ final class SettingAppThemeInteractor: PresentableInteractor<SettingAppThemePres
     
     // in constructor.
     override init(presenter: SettingAppThemePresentable) {
-        self.appThemeManager = AppThemeManager.share
+        self.appThemeManager = AppThemeManager.shared
         super.init(presenter: presenter)
         presenter.listener = self
     }

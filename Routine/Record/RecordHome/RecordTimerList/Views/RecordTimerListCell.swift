@@ -110,6 +110,15 @@ final class RecordTimerListCell: UICollectionViewCell{
         
         doneButton.setTitle("Done", for: .normal)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        emojiIconLabel.text = nil
+        nameLabel.text = nil
+        durationLabel.text = nil        
+        doneButton.setTitle(nil, for: .normal)
+    }
 }
 
 

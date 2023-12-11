@@ -10,7 +10,9 @@ import UIKit.UIApplication
 
 public class AppThemeManager{
     
-    public static let share = AppThemeManager()
+    public static let shared = AppThemeManager()
+    
+    private init(){}
     
     private let userDefaults = UserDefaults.standard
     

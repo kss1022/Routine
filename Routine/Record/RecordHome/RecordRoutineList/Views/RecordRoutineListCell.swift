@@ -109,10 +109,17 @@ final class RecordRoutineListCell: UICollectionViewCell{
 
     func bindView(_ viewModel: RecordRoutineListViewModel){
         cardView.backgroundColor = viewModel.tint
-        
-        self.emojiIconLabel.text = viewModel.emojiIcon
-        self.nameLabel.text = viewModel.name        
+        emojiIconLabel.text = viewModel.emojiIcon
+        nameLabel.text = viewModel.name
     }
 
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        cardView.backgroundColor = .clear
+        emojiIconLabel.text = nil
+        nameLabel.text
+    }
 }
 

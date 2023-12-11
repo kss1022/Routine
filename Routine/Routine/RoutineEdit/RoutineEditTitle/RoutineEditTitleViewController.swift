@@ -166,6 +166,13 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         emojiButton.setTitle(emoji, for: .normal)
         routineNameTextFeild.text = routineName
         routineDescriptionTextView.text = routineDescription
+        
+        if let nameCount = routineName?.count,
+           let descriptionCount = routineDescription?.count{
+            routineNameHelpLabel.text = "\(nameCount)/50"
+            routineDescriptionHelpLabel.text = "\(descriptionCount)/50"
+        }
+        
     }
     
     

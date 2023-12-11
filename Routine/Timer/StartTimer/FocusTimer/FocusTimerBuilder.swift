@@ -24,7 +24,7 @@ final class FocusTimerComponent: Component<FocusTimerDependency>, FocusRoundTime
     
     init(dependency: FocusTimerDependency, model: TimerFocusModel) {
         self.model = model
-        self.timer = AppTimerManager.share.focusTimer(model: AppFocusTimerModel(model), id: model.timerId)
+        self.timer = AppTimerManager.shared.focusTimer(model: AppFocusTimerModel(model), id: model.timerId)
         super.init(dependency: dependency)
     }
     

@@ -37,6 +37,7 @@ final class RecordTimerListViewController: UIViewController, RecordTimerListPres
             
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isScrollEnabled = false
         
         return collectionView
     }()

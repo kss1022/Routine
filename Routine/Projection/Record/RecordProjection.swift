@@ -42,16 +42,16 @@ final class RecordProjection{
     
     
     private func registerReceiver(){
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(RoutineRecordCreated.self, action: when)
             .store(in: &cancellables)
         
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(RoutineRecordCompleteSet.self, action: when)
             .store(in: &cancellables)
         
         
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(TimerRecordCreated.self, action: when)
             .store(in: &cancellables)
     }

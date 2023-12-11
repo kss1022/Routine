@@ -67,7 +67,7 @@ final class AppFontListInteractor: PresentableInteractor<AppFontListPresentable>
     
     func tableViewdidSelectRowAt(viewModel: AppFontViewModel) {
         do{
-            try AppFontService.share.updateFont(familyName: viewModel.fontName)
+            try AppFontService.shared.updateFont(familyName: viewModel.fontName)
             listener?.appFontListDidSelectFont()
         }catch{            
             if let fontManageError = error as? AppFontManagerException{

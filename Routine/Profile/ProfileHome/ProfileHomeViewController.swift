@@ -23,7 +23,6 @@ final class ProfileHomeViewController: UIViewController, ProfileHomePresentable,
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentInsetAdjustmentBehavior = .always
         scrollView.keyboardDismissMode = .onDrag
         return scrollView
     }()

@@ -19,9 +19,7 @@ final class SettingTypefaceViewController: UIViewController, SettingTypefacePres
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentInsetAdjustmentBehavior = .always
-        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false        
         return scrollView
     }()
     

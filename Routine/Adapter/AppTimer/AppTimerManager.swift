@@ -14,7 +14,7 @@ import Combine
 final class AppTimerManager{
     
     
-    public static let share = AppTimerManager()
+    public static let shared = AppTimerManager()
     
     
     private var timers: [UUID: BaseTimer]

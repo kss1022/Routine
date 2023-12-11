@@ -105,7 +105,7 @@ final class AppTutorialProfileInteractor: PresentableInteractor<AppTutorialProfi
                 
                 if case let .memoji(image) = memojiType,
                         let data = image?.pngData(){
-                    let manager = AppFileManager.share
+                    let manager = AppFileManager.shared
                     let fileName = memojiType.value()
                     let imagePath = manager.imagePath
                     try manager.deleteIfExists(url: imagePath, fileName: fileName, type: .png)

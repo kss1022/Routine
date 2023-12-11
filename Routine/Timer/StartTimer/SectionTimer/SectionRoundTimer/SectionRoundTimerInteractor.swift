@@ -188,7 +188,7 @@ final class SectionRoundTimerInteractor: PresentableInteractor<SectionRoundTimer
     }
     
     private func removeTimer(){
-        AppTimerManager.share.removeTimer(id: model.timerId)
+        AppTimerManager.shared.removeTimer(id: model.timerId)
     }
 
 }

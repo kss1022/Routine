@@ -105,7 +105,7 @@ public final class EventStoreImp : EventStore{
         do{
             try appendOnlyStore.append(name: name, datas: datas, expectedVersion: expectedVersion)
             events.forEach { event in
-                DomainEventPublihser.share.publish(event)            
+                DomainEventPublihser.shared.publish(event)            
             }
         }catch ConcurrencyError.AppendOnlyStoreConcurrency(let lastVersion,let expectedVersion,let name){
             Log.e("AppendOnlyStoreConcurrncy\nLastVersion:\(lastVersion)\nexpectedVersion:\(expectedVersion)\name:\(name)")

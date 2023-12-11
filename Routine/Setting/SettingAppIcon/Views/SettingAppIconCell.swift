@@ -42,6 +42,11 @@ final class SettingAppIconCell: UICollectionViewCell{
     func bindView(_ viewModel: SettingAppIconViewModel){
         imageView.image = viewModel.image
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+    }
 }
 
 

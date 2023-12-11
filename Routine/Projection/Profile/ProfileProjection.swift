@@ -27,11 +27,11 @@ final class ProfileProjection{
     }
     
     private func registerReceiver(){
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(ProfileCreated.self, action: when)
             .store(in: &cancellables)
         
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(ProfileUpdated.self, action: when)
             .store(in: &cancellables)
     }

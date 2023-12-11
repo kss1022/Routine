@@ -21,7 +21,7 @@ final class SectionTimerComponent: Component<SectionTimerDependency>, TimerRemai
         
     init(dependency: SectionTimerDependency, model: TimerSectionsModel) {
         self.model = model
-        self.timer = AppTimerManager.share.baseTimer(model: AppTimerModel(model), id: model.timerId )
+        self.timer = AppTimerManager.shared.baseTimer(model: AppTimerModel(model), id: model.timerId )
         super.init(dependency: dependency)
     }
 }

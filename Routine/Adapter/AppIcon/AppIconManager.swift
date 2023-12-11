@@ -12,7 +12,9 @@ import UIKit.UIApplication
 final class AppIconManager{
     
     
-    public static let share = AppIconManager()
+    public static let shared = AppIconManager()
+    
+    private init(){}
     
  
     @MainActor

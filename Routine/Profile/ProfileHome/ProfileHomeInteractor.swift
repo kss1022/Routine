@@ -193,7 +193,7 @@ final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>
     
     //MARK: FeedbackMail
     func profileMenuFeedbackButtonDidTap() {
-        if AppMailManager.share.canSendMail(){
+        if AppMailManager.shared.canSendMail(){
             isFeedBack = true
             router?.attachFeedbackMail()
         }else{

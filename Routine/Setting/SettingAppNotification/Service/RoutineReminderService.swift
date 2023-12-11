@@ -18,7 +18,7 @@ final class RoutineReminderServiceImp: RoutineReminderService{
     
     
     
-    private let notificationManager = AppNotificationManager.share
+    private let notificationManager = AppNotificationManager.shared
 
     
     var routineIds: Set<String>{

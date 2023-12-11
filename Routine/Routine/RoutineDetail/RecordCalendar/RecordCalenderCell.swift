@@ -37,7 +37,7 @@ class RecordCalenderCell: FSCalendarCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let todayCircleImageView = UIImageView(image: UIImage(named: "circle")!)
+        let todayCircleImageView = UIImageView(image: UIImage(named: "circle_check")!)
         todayCircleImageView.tintColor = .darkGray
 
         

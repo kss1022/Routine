@@ -65,12 +65,12 @@ final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresen
     //MARK: Setting Font Size
     func settingFontSetOsSize() {
         Log.v("SettingFont Set OS Size")
-        AppFontService.share.setOfDynamicSize()
+        AppFontService.shared.setOfDynamicSize()
     }
     
     func settingFontSetCustomSize(value: Float) {
         Log.v("SettingFont Set Custom Size: \(value)")
-        AppFontService.share.setCustomFontSize(size: value)
+        AppFontService.shared.setCustomFontSize(size: value)
     }
     
     //MARK: Setting Font Typeface
@@ -84,7 +84,7 @@ final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresen
     
     
     func fontPikcerDidPickFont(familyName: String) {
-        try! AppFontService.share.updateFont(familyName: familyName)
+        try! AppFontService.shared.updateFont(familyName: familyName)
         
         router?.detachFontPicker()
     }

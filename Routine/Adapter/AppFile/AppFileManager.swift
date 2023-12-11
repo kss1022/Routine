@@ -13,7 +13,7 @@ import UniformTypeIdentifiers
 
 class AppFileManager{
     
-    public static let share = AppFileManager()
+    public static let shared = AppFileManager()
     
     
     
@@ -105,7 +105,7 @@ class AppFileManager{
 
 extension UIImage{
     convenience init?(fileName: String){
-        let manager = AppFileManager.share
+        let manager = AppFileManager.shared
         let url = manager.imagePath
         
         guard let path = manager.find(url: url, fileName: fileName, type: .png) else { return nil}

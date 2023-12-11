@@ -12,7 +12,9 @@ import MessageUI
 
 final class AppMailManager: NSObject{
     
-    public static let share = AppMailManager()
+    public static let shared = AppMailManager()
+    
+    private override init(){}
     
     func canSendMail() -> Bool{
         MFMailComposeViewController.canSendMail()

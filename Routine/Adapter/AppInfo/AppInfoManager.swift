@@ -11,7 +11,7 @@ import UIKit
 
 final class AppInfoManager{
     
-    public static var share = AppInfoManager()
+    public static var shared = AppInfoManager()
     
     private init(){}
     

@@ -33,11 +33,11 @@ final class TimerProjection{
     }
     
     private func registerReceiver(){
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(SectionTimerCreated.self, action: when)
             .store(in: &cancellables)
         
-        DomainEventPublihser.share
+        DomainEventPublihser.shared
             .onReceive(FocusTimerCreated.self, action: when)
             .store(in: &cancellables)
     }

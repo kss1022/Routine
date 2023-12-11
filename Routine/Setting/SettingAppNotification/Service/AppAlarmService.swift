@@ -19,7 +19,7 @@ protocol AppAlarmService{
 
 final class AppAlarmServiceImp: AppAlarmService{
     
-    private let notificationManager = AppNotificationManager.share
+    private let notificationManager = AppNotificationManager.shared
     private let preferenceStorage = PreferenceStorage.shared
     
     

@@ -21,7 +21,7 @@ protocol DaliyReminderService{
 
 final class DaliyReminderServiceImp: DaliyReminderService{
         
-    private let notificationManager = AppNotificationManager.share
+    private let notificationManager = AppNotificationManager.shared
     private let preferenceStorage = PreferenceStorage.shared
     
     

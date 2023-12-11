@@ -74,7 +74,7 @@ final class RoutineEditReminderInteractor: PresentableInteractor<RoutineEditRemi
         presenter.setToogle(on: isON)
         
         Task{ [weak self] in
-            let granted = await AppNotificationManager.share.checkNotificationStatus()
+            let granted = await AppNotificationManager.shared.checkNotificationStatus()
             await self?.handleNotificationStatus(granted: granted)
         }
         
@@ -107,7 +107,7 @@ final class RoutineEditReminderInteractor: PresentableInteractor<RoutineEditRemi
     
     func didBecomeActiveNotification() {
         Task{ [weak self] in
-            let granted = await AppNotificationManager.share.checkNotificationStatus()
+            let granted = await AppNotificationManager.shared.checkNotificationStatus()
             await self?.handleNotificationStatus(granted: granted)
         }
     }

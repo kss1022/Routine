@@ -4,7 +4,9 @@ import UIKit.UIApplication
 
 public final class URLSchemeManager{
     
-    public static let share = URLSchemeManager()
+    public static let shared = URLSchemeManager()
+    
+    private init(){}
     
     //TODO: Set AppStoreAppID
     public static let RoutineAppStoreAppId = "6448030847" //나의 앱 -> 앱정보 -> 애플ID

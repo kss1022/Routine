@@ -21,7 +21,7 @@ protocol ProfileEditNameListener: AnyObject {
     func prorilfEditNameSetName()
 }
 
-protocol ProfileEditTitleInteractorDependency{
+protocol ProfileEditNameInteractorDependency{
     var profileNameSubject: CurrentValuePublisher<String>{ get }
 }
 
@@ -30,12 +30,12 @@ final class ProfileEditNameInteractor: PresentableInteractor<ProfileEditNamePres
     weak var router: ProfileEditNameRouting?
     weak var listener: ProfileEditNameListener?
 
-    private let dependency: ProfileEditTitleInteractorDependency
+    private let dependency: ProfileEditNameInteractorDependency
     
     // in constructor.
     init(
         presenter: ProfileEditNamePresentable,
-        dependency: ProfileEditTitleInteractorDependency
+        dependency: ProfileEditNameInteractorDependency
     ) {
         self.dependency = dependency
         super.init(presenter: presenter)

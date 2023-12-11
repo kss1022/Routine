@@ -12,7 +12,7 @@ import UIKit
 
 final class UIPasteboardManager{
     
-    public static let share = UIPasteboardManager()
+    public static let shared = UIPasteboardManager()
     
     private init(){}
     

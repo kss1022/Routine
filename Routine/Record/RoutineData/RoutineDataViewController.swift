@@ -18,9 +18,7 @@ final class RoutineDataViewController: UIViewController, RoutineDataPresentable,
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentInsetAdjustmentBehavior = .always
-        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false        
         return scrollView
     }()
 
@@ -49,6 +47,7 @@ final class RoutineDataViewController: UIViewController, RoutineDataPresentable,
     
     
     private func setLayout(){
+        title = "Your Achieve" // TODO: Set Routine Name
         view.backgroundColor = .secondarySystemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)

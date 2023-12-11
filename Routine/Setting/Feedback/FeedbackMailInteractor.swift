@@ -41,7 +41,7 @@ final class FeedbackMailInteractor: PresentableInteractor<FeedbackMailPresentabl
         super.didBecomeActive()
         // TODO: Implement business logic here.
         
-        let appInfoMananger = AppInfoManager.share
+        let appInfoMananger = AppInfoManager.shared
         let appName = appInfoMananger.appName()
         let version = appInfoMananger.version()
         let buildVersion = appInfoMananger.buildVersion()

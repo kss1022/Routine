@@ -71,6 +71,8 @@ final class RoutineListCell: UICollectionViewCell{
     
     
     private func setView(){
+        self.checkButton.addTarget(self, action: #selector(checkButtonDidTap), for: .touchUpInside)
+        
         contentView.addSubview(emojiIconLabel)
         contentView.addSubview(stackView)
         contentView.addSubview(checkButton)
@@ -127,7 +129,6 @@ final class RoutineListCell: UICollectionViewCell{
 
         
         self.checkButtonTapHandler = viewModel.tapCheckButtonHandler
-        self.checkButton.addTarget(self, action: #selector(checkButtonDidTap), for: .touchUpInside)
     }
     
 
@@ -137,5 +138,13 @@ final class RoutineListCell: UICollectionViewCell{
         checkButtonTapHandler?()
     }
 
-
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.nameLabel.attributedText = nil
+        self.descriptionLabel.attributedText = nil
+        self.checkButton.setImage(nil, for: .normal)
+        self.checkButton.tintColor = .clear
+        self.checkButtonTapHandler = nil
+    }
 }

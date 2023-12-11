@@ -38,7 +38,7 @@ final class AppInfoInteractor: PresentableInteractor<AppInfoPresentable>, AppInf
         super.didBecomeActive()
         
         
-        let appInfoMananger = AppInfoManager.share
+        let appInfoMananger = AppInfoManager.shared
         let appName = appInfoMananger.appName()
         let version = appInfoMananger.version()
         let buildVersion = appInfoMananger.buildVersion()
@@ -60,13 +60,13 @@ final class AppInfoInteractor: PresentableInteractor<AppInfoPresentable>, AppInf
                 emoji: "✉️",
                 title: "Email contact to me",
                 backgroundColor: "#CCFFCCFF",
-                tapHandler: { URLSchemeManager.share.openMailApp(email: "kss1022hhh@gmail.com") }
+                tapHandler: { URLSchemeManager.shared.openMailApp(email: "kss1022hhh@gmail.com") }
             ),
             AppInfoContactModel(
                 emoji: "🧑🏻‍💻",
                 title: "My Github link",
                 backgroundColor: "#E5CCFFFF",
-                tapHandler: { URLSchemeManager.share.openLink(url: "https://github.com/kss1022") }
+                tapHandler: { URLSchemeManager.shared.openLink(url: "https://github.com/kss1022") }
             )
         ]
         

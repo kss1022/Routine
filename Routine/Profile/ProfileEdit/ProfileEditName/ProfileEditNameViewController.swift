@@ -113,6 +113,7 @@ final class ProfileEditNameViewController: UIViewController, ProfileEditNamePres
     
     func setName(name: String) {
         nameTextFeild.text = name
+        nameHelpLabel.text = "\(name.count)/30"
     }
     
     override func didMove(toParent parent: UIViewController?) {

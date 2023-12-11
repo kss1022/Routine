@@ -18,9 +18,7 @@ final class RoutineTopAcheiveViewController: UIViewController, RoutineTopAcheive
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentInsetAdjustmentBehavior = .always
-        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false        
         return scrollView
     }()
 

@@ -14,7 +14,7 @@ public final class DomainEventPublihser{
         DomainEventPublihser(listenersRegistry: EventListenersRegistry())
     }
     
-    static let share = try! eventPublisher.get()
+    static let shared = try! eventPublisher.get()
     
     private let listenersRegistry: EventListenersRegistry
     

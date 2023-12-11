@@ -43,7 +43,7 @@ final class AppTutorialTimerInteractor: PresentableInteractor<AppTutorialTimerPr
         dependency: AppTutorialTimerInteractorDependency
     ) {
         self.dependency = dependency
-        self.notificationManager = AppNotificationManager.share
+        self.notificationManager = AppNotificationManager.shared
         self.daliyReminderService = DaliyReminderServiceImp()
         self.date = Date()
         super.init(presenter: presenter)

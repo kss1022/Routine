@@ -97,11 +97,19 @@ final class TimerListCell: UICollectionViewCell{
 
     func bindView(_ viewModel: TimerListViewModel){
         
-        self.nameLabel.text = viewModel.name
-        self.infoLabel.text = viewModel.info
-        self.tintView.backgroundColor = viewModel.tint
+        nameLabel.text = viewModel.name
+        infoLabel.text = viewModel.info
+        tintView.backgroundColor = viewModel.tint
     }
     
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        nameLabel.text = nil
+        infoLabel.text = nil
+        tintView.backgroundColor = .clear
+    }
 
 }
 

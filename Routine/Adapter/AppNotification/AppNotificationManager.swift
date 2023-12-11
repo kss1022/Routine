@@ -19,7 +19,7 @@ protocol AppNotification{
 
 final class AppNotificationManager{
     
-    public static let share = AppNotificationManager()
+    public static let shared = AppNotificationManager()
         
     private let center = UNUserNotificationCenter.current()
     public let localAdapter: LocalNotificationAdapter
