@@ -30,15 +30,10 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        
-        let inset : CGFloat = 16.0
-        //layout.sectionInset = .init(top: 0.0, left: inset, bottom: inset, right: inset)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+                
+        let collectionView = DynamicCollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(cellType: RecordRoutineListCell.self)
-        
-
         
         collectionView.collectionViewLayout = getCollectionViewLayout()
         collectionView.delegate = self
@@ -47,6 +42,18 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
         collectionView.showsHorizontalScrollIndicator = false
         
         return collectionView
+    }()
+    
+    private lazy var emptyView: UIView = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .getBoldFont(size: 24.0)
+        label.textColor = .secondaryLabel
+        label.text = "You haven't added\n any routines yet."
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
     }()
     
     init(){
@@ -65,6 +72,7 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
     
     private func setLayout(){
         view.addSubview(collectionView)
+        view.addSubview(emptyView)
                 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -72,6 +80,8 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.heightAnchor.constraint(greaterThanOrEqualToConstant: height + sectionHeight),
+            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 16.0),            
         ])
     }
     
@@ -85,6 +95,14 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
         snapShot.deleteItems(beforeItems)
         snapShot.appendItems(viewModels , toSection: .routineList )
         self.dataSource.apply( snapShot , animatingDifferences: false )
+    }
+    
+    func showEmpty() {
+        emptyView.isHidden = false
+    }
+    
+    func hideEmpty() {
+        emptyView.isHidden = true
     }
     
     private func setDataSource(){

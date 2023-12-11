@@ -21,17 +21,17 @@ public struct RoutineHomeListModel{
     //public let recordDate: Date
     public let isComplete: Bool
     
-    init(routineListDto: RoutineListDto, set: Set<RoutineRecordDto>, recordDate: Date) {
-        self.routineId = routineListDto.routineId
-        self.routineName = routineListDto.routineName
-        self.routineDescription = routineListDto.routineDescription
+    init(listModel: RoutineListModel, set: Set<RoutineRecordDto>, recordDate: Date) {
+        self.routineId = listModel.routineId
+        self.routineName = listModel.routineName
+        self.routineDescription = listModel.routineDescription
 //        self.repeatType = routineListDto.repeatType
 //        self.repeatValue = routineListDto.repeatValue
-        self.emojiIcon = routineListDto.emojiIcon
-        self.tint = routineListDto.tint
-        self.sequence = Int(routineListDto.sequence)
+        self.emojiIcon = listModel.emojiIcon
+        self.tint = listModel.tint
+        self.sequence = Int(listModel.sequence)
         
-        if let record =  set.first(where: { $0.routineId == routineListDto.routineId }){
+        if let record =  set.first(where: { $0.routineId == listModel.routineId }){
             self.recordId = record.recordId
             self.isComplete = record.isComplete
         }else{

@@ -27,11 +27,8 @@ final class RecordTimerListViewController: UIViewController, RecordTimerListPres
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        
-        let inset : CGFloat = 16.0
-        //layout.sectionInset = .init(top: 0.0, left: inset, bottom: inset, right: inset)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+                                
+        let collectionView = DynamicCollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(cellType: RecordTimerListCell.self)
                 

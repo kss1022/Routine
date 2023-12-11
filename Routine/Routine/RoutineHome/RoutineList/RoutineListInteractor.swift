@@ -16,6 +16,9 @@ protocol RoutineListRouting: ViewableRouting {
 protocol RoutineListPresentable: Presentable {
     var listener: RoutineListPresentableListener? { get set }
     func setRoutineLists(viewModels : [RoutineListViewModel])
+
+    func showEmpty()
+    func hideEmpty()
 }
 
 protocol RoutineListListener: AnyObject {
@@ -57,7 +60,15 @@ final class RoutineListInteractor: PresentableInteractor<RoutineListPresentable>
                         self.listener?.routineListDidComplete(list: list)
                     }
                 }
+                
+                if viewModels.isEmpty{
+                    self.presenter.showEmpty()
+                }else{
+                    self.presenter.hideEmpty()
+                }
+                
                 self.presenter.setRoutineLists(viewModels: viewModels)
+
             }
             .store(in: &cancelables)
     }

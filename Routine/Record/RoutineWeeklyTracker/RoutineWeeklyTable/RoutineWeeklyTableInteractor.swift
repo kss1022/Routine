@@ -15,7 +15,10 @@ protocol RoutineWeeklyTableRouting: ViewableRouting {
 
 protocol RoutineWeeklyTablePresentable: Presentable {
     var listener: RoutineWeeklyTablePresentableListener? { get set }
+    func setWeeklyRange(installation: Date)
     func setTableData(_ columns: [RoutineWeeklyTableColumnViewModel] , dataEntys: [WeeklyRange: [RoutineWeeklyTableDataEntryViewModel]])
+    func showEmpty()
+    func hideEmpty()
 }
 
 protocol RoutineWeeklyTableListener: AnyObject {
@@ -49,12 +52,20 @@ final class RoutineWeeklyTableInteractor: PresentableInteractor<RoutineWeeklyTab
     override func didBecomeActive() {
         super.didBecomeActive()
   
-   
+        let installation = PreferenceStorage.shared.installation
+        self.presenter.setWeeklyRange(installation: installation)
         
         dependency.routines
             .combineLatest(dependency.routineWeeks)
             .receive(on: DispatchQueue.main)
             .sink { routines, weeks in
+                if routines.isEmpty{
+                    self.presenter.showEmpty()
+                }else{
+                    self.presenter.hideEmpty()
+                }
+                
+                
                 let columns = routines.map(RoutineWeeklyTableColumnViewModel.init)
                 let dataEntrys = weeks.map(RoutineWeeklyTableDataEntryViewModel.init)
                 let dataDictionary = Dictionary(grouping: dataEntrys) { 

@@ -25,9 +25,12 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
     
     weak var listener: SettingAppNotificationPresentableListener?
     
-    var alarm: SettingAlarmViewModel!
-    var reminder: SettingDaliyReminderViewModel!
-    var routineReminders: [SettingRoutineReminderViewModel]!
+    var alarm: SettingAlarmViewModel?
+    var daliyReminder: SettingDaliyReminderViewModel?
+    var routineReminders = [SettingRoutineReminderViewModel]()
+    
+    var isDaliyRemindeDatePickerShow = false
+    
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -81,43 +84,63 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
 
  
     func setAlarm(_ viewModel: SettingAlarmViewModel) {
-        self.alarm = viewModel
-        tableView.reloadData()
+        
+        if let alarm = self.alarm{
+            if alarm.isOn && !viewModel.isOn{
+                self.alarm = viewModel
+                tableView.deleteSections([1, 2], with: .none)
+            }else if !alarm.isOn && viewModel.isOn{
+                self.alarm = viewModel
+                tableView.insertSections([1, 2], with: .none)
+            }else{
+                self.alarm = viewModel
+                tableView.reloadSections([0], with: .none)
+            }                        
+        }else{
+            self.alarm = viewModel
+            tableView.reloadSections([0], with: .none)
+        }
+        
+        
     }
     
-    func setReminder(_ viewModel: SettingDaliyReminderViewModel) {
-        self.reminder = viewModel
-        tableView.reloadData()
+    func setDaliyReminder(_ viewModel: SettingDaliyReminderViewModel) {
+        if self.daliyReminder == nil{
+            self.daliyReminder = viewModel
+            
+            if (self.alarm?.isOn ?? true){
+                tableView.reloadSections([1], with: .none)
+            }
+            
+            return
+        }
+        
+        self.daliyReminder = viewModel
+        
+        if (self.alarm?.isOn ?? true){
+            tableView.reloadRows(at: [.init(row: 0, section: 1)], with: .none)
+        }
     }
     
     
     func setRoutineReminders(_ viewModels: [SettingRoutineReminderViewModel]) {
         self.routineReminders = viewModels
-        tableView.reloadData()
+        
+        if (self.alarm?.isOn ?? true){
+            tableView.reloadSections([2], with: .none)
+        }        
     }
     
+
     
-    func updateDaliyReminder(_ viewModel: SettingDaliyReminderViewModel) {
-        self.reminder = viewModel
-        self.tableView.reloadRows(at: [.init(row: 0, section: 1)], with: .none)
+    func showDaliyReminderDatePicker() {
+        isDaliyRemindeDatePickerShow = true
+        self.tableView.insertRows(at: [.init(row: 1, section: 1)], with: .middle)
     }
     
-    func showDaliyReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel) {
-        self.reminder = viewModel
-                        
-        tableView.performBatchUpdates {
-            self.tableView.reloadRows(at: [.init(row: 0, section: 1)], with: .none)
-            self.tableView.insertRows(at: [.init(row: 1, section: 1)], with: .middle)
-        }
-    }
-    
-    func hideDaliyReminderDatePicker(_ viewModel: SettingDaliyReminderViewModel) {        
-        self.reminder = viewModel
-              
-        tableView.performBatchUpdates {
-            self.tableView.reloadRows(at: [.init(row: 0, section: 1)], with: .none)
-            self.tableView.deleteRows(at: [.init(row: 1, section: 1)], with: .middle)
-        }
+    func hideDaliyReminderDatePicker() {
+        isDaliyRemindeDatePickerShow = false
+        self.tableView.deleteRows(at: [.init(row: 1, section: 1)], with: .middle)
     }
 }
 
@@ -125,11 +148,11 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if alarm == nil || reminder == nil || routineReminders == nil {
-            0
-        }else{
-            3
+        if !(alarm?.isOn ?? true){
+            return 1
         }
+        
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,7 +162,7 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
             return 1
         case 1:
             //MARK: DALIY REMINDER
-            if reminder.isShow{
+            if isDaliyRemindeDatePickerShow{
                 return 2
             }else{
                 return 1
@@ -156,12 +179,14 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
         
         let section = indexPath.section
         
-        
         switch section{
-        case 0 :
+        case 0 :            
             //MARK: ONFF
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppNotificationToogleCell.self)
-            cell.bindView(alarm)
+            if let alarm = alarm{
+                cell.bindView(alarm)
+            }
+            
             cell.valueChanged = { [weak self] isOn in
                 self?.listener?.alarmToogleValueChanged(isOn: isOn)
             }
@@ -170,14 +195,21 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
             //MARK: DALIY REMINDER
             if indexPath.row == 0{
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppNotificationToogleCell.self)
-                cell.bindView(reminder)
+                
+                if let daliyReminder = daliyReminder{
+                    cell.bindView(daliyReminder)
+                }
+                
                 cell.valueChanged = { [weak self] isOn in
                     self?.listener?.daliyReminderToolgeValueChanged(isOn: isOn)
                 }
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SettingAppNotificationDatePickerCell.self)
-                cell.bindView(reminder)
+                if let daliyReminder = daliyReminder{
+                    cell.bindView(daliyReminder)
+                }
+                
                 cell.valueChanged = { [weak self] date in
                     self?.listener?.daliyReminderDateValueChanged(date: date)
                 }
@@ -213,7 +245,11 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
             //MARK: DALIY REMINDER
             content.text = "Daliy Reminder"
         case 2:
-            //MARK: ROUTINE REMINDER
+            //MARK: ROUTINE REMINDER            
+            if routineReminders.count == 0{
+                return nil
+            }
+            
             content.text = "Routine Reminder"
         default : fatalError("Invalid section")
         }

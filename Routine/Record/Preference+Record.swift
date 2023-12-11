@@ -10,5 +10,5 @@ import Foundation
 
 
 extension PreferenceKeys{
-    var installation: PrefKey<Date?>{ .init(name: "kInstallation", defaultValue: nil)}
+    var installation: PrefKey<Date>{ .init(name: "kInstallation", defaultValue: Date())}
 }

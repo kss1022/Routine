@@ -5,6 +5,7 @@
 //  Created by 한현규 on 11/28/23.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol AppTutorialRouting: Routing {
@@ -36,10 +37,10 @@ final class AppTutorialInteractor: Interactor, AppTutorialInteractable{
     override func didBecomeActive() {
         super.didBecomeActive()
         
+        let now = Date()
+        preferenceStorage.installation = now
+        
         router?.attachAppTutorialHome()
-//        router?.attachAppTutorialRoutine()
-//        router?.attachAppTutorialProfile()
-//        router?.attachAppTutorailTimer()
     }
 
     override func willResignActive() {

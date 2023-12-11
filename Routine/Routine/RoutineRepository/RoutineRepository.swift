@@ -11,7 +11,7 @@ import Combine
                       
 protocol RoutineRepository{
 
-    //var lists: ReadOnlyCurrentValuePublisher<[RoutineListDto]> { get }
+    var lists: ReadOnlyCurrentValuePublisher<[RoutineListModel]> { get }
     var homeLists: ReadOnlyCurrentValuePublisher<[RoutineHomeListModel]> { get }
     var detail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?> { get }
     var detailRecords: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ get }
@@ -24,8 +24,8 @@ protocol RoutineRepository{
 
 final class RoutineRepositoryImp: RoutineRepository{
     
-    var lists: ReadOnlyCurrentValuePublisher<[RoutineListDto]>{ listsSubject }
-    private let listsSubject = CurrentValuePublisher<[RoutineListDto]>([])
+    var lists: ReadOnlyCurrentValuePublisher<[RoutineListModel]>{ listsSubject }
+    private let listsSubject = CurrentValuePublisher<[RoutineListModel]>([])
 
     private var recordDate = Date()
     var homeLists: ReadOnlyCurrentValuePublisher<[RoutineHomeListModel]>{ homeListsSubject }
@@ -41,6 +41,7 @@ final class RoutineRepositoryImp: RoutineRepository{
     
     func fetchLists() async throws {
         let list = try routineReadModel.routineLists()
+            .map(RoutineListModel.init)
         self.listsSubject.send(list)
         
         Log.v("RoutineRepository: fetch lists")
@@ -54,7 +55,7 @@ final class RoutineRepositoryImp: RoutineRepository{
         
         let calendar = Calendar.current
                 
-        var dayOfList: [RoutineListDto] = .init()
+        var dayOfList: [RoutineListModel] = .init()
         let dayOfWeek = calendar.component(.weekday, from: date) - 1 // sun = 0 , mon = 1 ...
         let dayOfMonth = calendar.component(.day, from: date)
         
@@ -85,7 +86,7 @@ final class RoutineRepositoryImp: RoutineRepository{
             try fetchRecord(date: date)
         )
                 
-        let homeListModel = dayOfList.map { RoutineHomeListModel(routineListDto: $0, set: recordSet, recordDate: recordDate)}
+        let homeListModel = dayOfList.map { RoutineHomeListModel(listModel: $0, set: recordSet, recordDate: recordDate)}
         
         homeListsSubject.send(homeListModel)
         

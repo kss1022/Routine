@@ -15,7 +15,10 @@ protocol RoutineTopAcheiveChartRouting: ViewableRouting {
 
 protocol RoutineTopAcheiveChartPresentable: Presentable {
     var listener: RoutineTopAcheiveChartPresentableListener? { get set }
+    func setPeriod(period : String)
     func setChart(_ viewModels: [TopAcheiveChartViewModel])
+    func showEmpty()
+    func hideEmpty()
 }
 
 protocol RoutineTopAcheiveChartListener: AnyObject {
@@ -49,9 +52,33 @@ final class RoutineTopAcheiveChartInteractor: PresentableInteractor<RoutineTopAc
         super.didBecomeActive()
         // TODO: Implement business logic here.
         
+        let installation =  PreferenceStorage.shared.installation
+        let now = Date()
+        
+        let periodStart = Formatter.topAcheiveFormatter().string(from: installation)
+        let periodEnd = Formatter.topAcheiveFormatter().string(from: now)
+        presenter.setPeriod(period: "\(periodStart) ~ \(periodEnd)")
+        
         dependency.topAcheives
             .receive(on: DispatchQueue.main)
             .sink { models in
+                             
+                var isEmpty = true
+                for model in models{
+                    if model.totalDone > 0 {
+                        isEmpty = false
+                        break
+                    }
+                }
+                
+                if isEmpty{
+                    self.presenter.showEmpty()
+                    self.presenter.setChart([])
+                    return
+                }else{
+                    self.presenter.hideEmpty()
+                }
+                
                 let viewModels = models.enumerated().map { index, model in
                     TopAcheiveChartViewModel(index: index, model)
                 }

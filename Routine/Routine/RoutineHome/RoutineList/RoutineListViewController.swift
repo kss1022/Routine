@@ -21,14 +21,6 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
     
     private var dataSource : RoutineListDiffableDataSource!
 
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.setBoldFont(style: .headline)
-        label.textColor = .label
-        label.text = "All time of the day"
-        return label
-    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -50,6 +42,16 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
         return collectionView
     }()
     
+    private let emptyView: UIView = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .getBoldFont(size: 24.0)
+        label.textColor = .secondaryLabel
+        label.text = "No tasks"
+        label.isHidden = true
+        return label
+    }()
+    
     init(){
         super.init(nibName: nil, bundle: nil)
         
@@ -65,18 +67,17 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
     
     
     private func setLayout(){
-        view.addSubview(titleLabel)
         view.addSubview(collectionView)
+        view.addSubview(emptyView)
                 
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
-            
-            collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8.0),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8.0),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -45.0),
         ])
     }
     
@@ -86,17 +87,45 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
         }
         
         var snapShot = self.dataSource.snapshot()
+        
         let beforeItems = snapShot.itemIdentifiers(inSection: .routineList)
         snapShot.deleteItems(beforeItems)
         snapShot.appendItems(viewModels , toSection: .routineList )
+        snapShot.reloadSections([.routineList])
         self.dataSource.apply( snapShot , animatingDifferences: false )
     }
+    
+    
+    func showEmpty() {
+        emptyView.isHidden = false
+    }
+    
+    func hideEmpty() {
+        emptyView.isHidden = true
+    }
+    
+    
     
     private func setDataSource(){
         dataSource = RoutineListDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: RoutineListCell.self)
             cell.bindView(itemIdentifier)
             return cell
+        }
+        
+        let headerRegistration = UICollectionView.SupplementaryRegistration
+        <RoutineListHeaderView>(elementKind: UICollectionView.elementKindSectionHeader){ [weak self] (supplementaryView, string, indexPath) in
+            if let self = self{
+                supplementaryView.isHidden = !self.emptyView.isHidden
+            }
+            
+            supplementaryView.setTitle(title: "All time of the day")
+        }
+        
+        dataSource.supplementaryViewProvider = {  [weak self ] (view, kind, index) in
+            self?.collectionView.dequeueConfiguredReusableSupplementary(
+                using: kind == UICollectionView.elementKindSectionHeader ? headerRegistration : headerRegistration, for: index
+            )
         }
         
         var snapShot = NSDiffableDataSourceSnapshot<RoutineListSection, RoutineListViewModel>()
@@ -127,10 +156,21 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
                 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
-        section.contentInsets = .init(top: 0, leading: 16.0, bottom: 0, trailing: 16.0)
+        section.contentInsets = .init(top: 16.0, leading: 16.0, bottom: 16.0, trailing: 16.0)
         section.interGroupSpacing = 8.0
         
+        let sectionHeader = self.getListTypeHeader()
+        section.boundarySupplementaryItems  = [sectionHeader]
+        
         return section
+    }
+    
+    private func getListTypeHeader() -> NSCollectionLayoutBoundarySupplementaryItem{
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(35.0))
+
+        // Section Header Layout
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+        return sectionHeader
     }
     
 }
@@ -138,7 +178,7 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
 
 // MARK: CollectionViewDiffableDataSource
 fileprivate enum RoutineListSection: String , CaseIterable{
-    case routineList = "RoutineList"
+    case routineList = "All time of the day"
 }
 
 fileprivate final class RoutineListDiffableDataSource: UICollectionViewDiffableDataSource<RoutineListSection, RoutineListViewModel>{

@@ -47,6 +47,18 @@ final class RecordRoutineListDetailViewController: UIViewController, RecordRouti
         return collectionView
     }()
     
+    private let emptyView: UIView = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .getBoldFont(size: 24.0)
+        label.textColor = .secondaryLabel
+        label.text = "You haven't added\n any routines yet."
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
+    }()
+    
     init(){
         super.init(nibName: nil, bundle: nil)
         
@@ -65,12 +77,16 @@ final class RecordRoutineListDetailViewController: UIViewController, RecordRouti
         title = "Your Acheive"
         
         view.addSubview(collectionView)
+        view.addSubview(emptyView)
                 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -84,6 +100,14 @@ final class RecordRoutineListDetailViewController: UIViewController, RecordRouti
         snapShot.deleteItems(beforeItems)
         snapShot.appendItems(viewModels , toSection: .routineList )
         self.dataSource.apply( snapShot , animatingDifferences: false )
+    }
+    
+    func showEmpty() {
+        emptyView.isHidden = false
+    }
+    
+    func hideEmpty() {
+        emptyView.isHidden = true
     }
     
     private func setDataSource(){

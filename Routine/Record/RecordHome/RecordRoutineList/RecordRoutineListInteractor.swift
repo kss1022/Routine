@@ -17,6 +17,8 @@ protocol RecordRoutineListRouting: ViewableRouting {
 protocol RecordRoutineListPresentable: Presentable {
     var listener: RecordRoutineListPresentableListener? { get set }
     func setRoutineLists(_ viewModels : [RecordRoutineListViewModel])
+    func showEmpty()
+    func hideEmpty()
 }
 
 protocol RecordRoutineListListener: AnyObject {
@@ -50,11 +52,18 @@ final class RecordRoutineListInteractor: PresentableInteractor<RecordRoutineList
     override func didBecomeActive() {
         super.didBecomeActive()
         
-        dependency.routineRepository.homeLists
+        dependency.routineRepository.lists
             .receive(on: DispatchQueue.main)
             .sink { [weak self] lists in
                 guard let self = self else { return }
                 let viewModels = lists.map(RecordRoutineListViewModel.init)
+                
+                if viewModels.isEmpty{
+                    self.presenter.showEmpty()
+                }else{
+                    self.presenter.hideEmpty()
+                }
+                
                 self.presenter.setRoutineLists(viewModels)
             }
             .store(in: &cancellables)

@@ -54,7 +54,7 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
     override func didBecomeActive() {
         super.didBecomeActive()        
         presenter.setTitle(
-            emoji: detail?.emojiIcon ?? "⭐️",
+            emoji: detail?.emojiIcon ?? "🍎",
             routineName: detail?.routineName,
             routineDescription: detail?.routineDescription
         )

@@ -18,12 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //setupFirebase()
         setupLogger()
-        
-        if PreferenceStorage.shared.installation == nil{
-            PreferenceStorage.shared.installation = Date()
-        }
-        
-        UNUserNotificationCenter.current().delegate = self
+        setupNotification()
         return true
     }
 
@@ -100,6 +95,13 @@ extension AppDelegate{
 }
 
 
+extension AppDelegate{
+    func setupNotification(){
+        UNUserNotificationCenter.current().delegate = self
+    }
+}
+
+
 // MARK: CoreData
 extension AppDelegate{
     //Core Data Saving support
@@ -161,8 +163,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        Log.d("userNotificationCenter willPresent")
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {                
+        if !AppAlarmServiceImp().isOn{
+            completionHandler([])
+            return
+        }
+                
         completionHandler([.list, .banner, .sound, .badge])
     }
 }

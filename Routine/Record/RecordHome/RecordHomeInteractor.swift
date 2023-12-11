@@ -71,7 +71,7 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
         Log.v("Record Home DidBecome Active 🎥")
         router?.attachRecordBanner()
         router?.attachRecordRoutineList()
-        router?.attachRecordTimerList()
+        //router?.attachRecordTimerList() //TODO: Record of Timer
     }
 
     override func willResignActive() {

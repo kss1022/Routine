@@ -9,7 +9,7 @@ import Foundation
 
 
 
-struct SettingDaliyReminderModel{
+struct SettingDaliyReminderModel: Equatable{
     let title: String
     let imageName: String
     let isOn: Bool

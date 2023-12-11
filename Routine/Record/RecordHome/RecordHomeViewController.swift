@@ -59,9 +59,7 @@ final class RecordHomeViewController: UIViewController, RecordHomePresentable, R
         )
         
         view.backgroundColor = .systemBackground
-        
-        
-        view.backgroundColor = .systemBackground
+                
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         

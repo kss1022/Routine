@@ -19,9 +19,7 @@ final class RoutineWeeklyTableViewController: UIViewController, RoutineWeeklyTab
     weak var listener: RoutineWeeklyTablePresentableListener?
 
     
-    private lazy var weeklysRange: [WeeklyRange] = {
-         getWeeklyRange()
-    }()
+    private var weeklysRange: [WeeklyRange]
     
     private var columns =  [WeeklyTableColumn]()
     private var dataEntrys = [WeeklyRange: [RoutineWeeklyTableDataEntryViewModel]]()
@@ -53,14 +51,27 @@ final class RoutineWeeklyTableViewController: UIViewController, RoutineWeeklyTab
         return collectionView
     }()
     
+    private let emptyView: UIView = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .getBoldFont(size: 24.0)
+        label.textColor = .secondaryLabel
+        label.text = "You haven't added\n any routines yet."
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
+    }()
 
     init(){
+        self.weeklysRange = []
         super.init(nibName: nil, bundle: nil)
         
         setLayout()
     }
     
     required init?(coder: NSCoder) {
+        self.weeklysRange = []
         super.init(coder: coder)
         
         setLayout()
@@ -73,15 +84,17 @@ final class RoutineWeeklyTableViewController: UIViewController, RoutineWeeklyTab
     
     
     private func setLayout(){
-        
-        
         view.addSubview(tableCollectionView)
+        view.addSubview(emptyView)
                         
         NSLayoutConstraint.activate([
             tableCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             tableCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
     
@@ -90,6 +103,36 @@ final class RoutineWeeklyTableViewController: UIViewController, RoutineWeeklyTab
     func setTableData(_ columns: [RoutineWeeklyTableColumnViewModel], dataEntys: [WeeklyRange : [RoutineWeeklyTableDataEntryViewModel]]) {
         self.columns = columns.map(WeeklyTableColumn.init)
         self.dataEntrys = dataEntys
+        tableCollectionView.reloadData()
+    }
+    
+    func showEmpty() {
+        tableCollectionView.isHidden = true
+        emptyView.isHidden = false
+    }
+    
+    func hideEmpty() {
+        tableCollectionView.isHidden = false
+        emptyView.isHidden = true
+    }
+    
+    func setWeeklyRange(installation: Date) {
+        let calendar = Calendar.current
+            
+        let startComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: installation)
+        let installtionStartOfWeek = calendar.date(from: startComponents)!
+        
+        let todayComponents = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
+        let todayStartOfWeek = calendar.date(from: todayComponents)!
+        
+        
+        let formatter = Formatter.weekRecordFormatter()
+   
+        let weeklyRanges = getAllStartOfWeekBetweenDates(startDate: installtionStartOfWeek, endDate: todayStartOfWeek).map {
+            let endOfWeek = calendar.date(byAdding: .day, value: 6, to: $0)!
+            return WeeklyRange(startOfWeek: formatter.string(from: $0), endOfWeek: formatter.string(from: endOfWeek))
+        }
+        self.weeklysRange = weeklyRanges
         tableCollectionView.reloadData()
     }
     

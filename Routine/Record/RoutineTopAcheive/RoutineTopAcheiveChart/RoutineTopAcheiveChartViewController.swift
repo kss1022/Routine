@@ -41,6 +41,19 @@ final class RoutineTopAcheiveChartViewController: UIViewController, RoutineTopAc
         return chart
     }()
     
+    private lazy var emptyView: UIView = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .getBoldFont(size: 24.0)
+        label.textColor = .systemBackground
+        label.text = "You don't have any routine\n achievement records yet."
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
+    }()
+    
+    
     init(){
         super.init(nibName: nil, bundle: nil)
         
@@ -60,6 +73,8 @@ final class RoutineTopAcheiveChartViewController: UIViewController, RoutineTopAc
         view.addSubview(cardView)
         cardView.addSubview(topAcheiveChart)
         
+        view.addSubview(emptyView)
+        
 
         let inset: CGFloat = 16.0
         
@@ -78,12 +93,28 @@ final class RoutineTopAcheiveChartViewController: UIViewController, RoutineTopAc
             topAcheiveChart.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: inset),
             topAcheiveChart.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -inset),
             topAcheiveChart.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -inset),
-            topAcheiveChart.heightAnchor.constraint(equalToConstant: 300.0)
+            topAcheiveChart.heightAnchor.constraint(equalToConstant: 300.0),
+            
+            emptyView.centerXAnchor.constraint(equalTo: topAcheiveChart.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: topAcheiveChart.centerYAnchor)
         ])
     }
     
-    func setChart(_ viewModels: [TopAcheiveChartViewModel]){
-        periodLabel.text = "2023.10.13 ~ 2023.11.13"
+
+    func setPeriod(period: String) {
+        periodLabel.text = period
+    }
+    
+    func setChart(_ viewModels: [TopAcheiveChartViewModel]){        
         topAcheiveChart.bindView(viewModels)
     }
+    
+    func showEmpty() {
+        emptyView.isHidden = false
+    }
+    
+    func hideEmpty() {
+        emptyView.isHidden = true
+    }
+    
 }

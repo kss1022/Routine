@@ -9,13 +9,13 @@ import Foundation
 
 
 protocol DaliyReminderService{
-    var isOn: Bool{ get }
-    var hour: Int{ get }
-    var minute: Int{ get }
+    var daliy: ReadOnlyCurrentValuePublisher<SettingDaliyReminderModel>{ get }
     
     func register(date: Date) async throws
     func update(isOn: Bool) async throws
     func update(date: Date) async throws
+    
+    func fetch()
 }
 
 
@@ -25,9 +25,21 @@ final class DaliyReminderServiceImp: DaliyReminderService{
     private let preferenceStorage = PreferenceStorage.shared
     
     
-    var isOn:  Bool{ preferenceStorage.daliyRemidnerIsOn }
-    var hour: Int{ preferenceStorage.daliyReminderHour }
-    var minute : Int{ preferenceStorage.daliyReminderMinute }
+    var daliy: ReadOnlyCurrentValuePublisher<SettingDaliyReminderModel>{ daliySubject}
+    private let daliySubject = CurrentValuePublisher(
+        SettingDaliyReminderModel(
+           title: "Daliy Reminder",
+           imageName: "bell.square.fill",
+           isOn: PreferenceStorage.shared.daliyRemidnerIsOn,
+           hour: PreferenceStorage.shared.daliyReminderHour,
+           minute: PreferenceStorage.shared.daliyReminderMinute
+       )
+    )
+    
+    
+    private var isOn:  Bool{ preferenceStorage.daliyRemidnerIsOn }
+    private var hour: Int{ preferenceStorage.daliyReminderHour }
+    private var minute : Int{ preferenceStorage.daliyReminderMinute }
     
     func register(date: Date) async throws {
         let calendar = Calendar.current
@@ -57,10 +69,26 @@ final class DaliyReminderServiceImp: DaliyReminderService{
         }else{
             try await unregisterDaliyReminder()
         }
+        
+        fetch()
     }
     
     func update(date: Date) async throws {
         try await updateReminderTrigger(date: date)
+        
+        fetch()
+    }
+    
+    func fetch() {
+        let model = SettingDaliyReminderModel(
+            title: "Daliy Reminder",
+            imageName: "bell.square.fill",
+            isOn: isOn,
+            hour: hour,
+            minute: minute
+        )
+        
+        daliySubject.send(model)
     }
     
     private func registerDaliyReminder() async throws{
@@ -92,8 +120,8 @@ final class DaliyReminderServiceImp: DaliyReminderService{
             
             preferenceStorage.daliyRemidnerIsOn = false
             preferenceStorage.daliyReminderIdentifier = nil
-            preferenceStorage.daliyReminderHour = 18
-            preferenceStorage.daliyReminderMinute = 0
+            //preferenceStorage.daliyReminderHour = 18
+            //preferenceStorage.daliyReminderMinute = 0
         }
     }
     

@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol RoutineTopAcheiveTotalRecordDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var topAcheives: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ get }
 }
 
-final class RoutineTopAcheiveTotalRecordComponent: Component<RoutineTopAcheiveTotalRecordDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class RoutineTopAcheiveTotalRecordComponent: Component<RoutineTopAcheiveTotalRecordDependency>, RoutineTopAcheiveTotalRecordInteractorDependency {
+    var topAcheives: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ dependency.topAcheives }
 }
 
 // MARK: - Builder
@@ -32,7 +30,7 @@ final class RoutineTopAcheiveTotalRecordBuilder: Builder<RoutineTopAcheiveTotalR
     func build(withListener listener: RoutineTopAcheiveTotalRecordListener) -> RoutineTopAcheiveTotalRecordRouting {
         let component = RoutineTopAcheiveTotalRecordComponent(dependency: dependency)
         let viewController = RoutineTopAcheiveTotalRecordViewController()
-        let interactor = RoutineTopAcheiveTotalRecordInteractor(presenter: viewController)
+        let interactor = RoutineTopAcheiveTotalRecordInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return RoutineTopAcheiveTotalRecordRouter(interactor: interactor, viewController: viewController)
     }

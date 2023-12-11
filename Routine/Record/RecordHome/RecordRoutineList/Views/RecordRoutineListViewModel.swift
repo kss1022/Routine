@@ -17,7 +17,7 @@ struct RecordRoutineListViewModel: Hashable{
     let emojiIcon: String
     let tint: UIColor?
 
-    init(_ model: RoutineHomeListModel) {
+    init(_ model: RoutineListModel) {
         self.routineId = model.routineId
         self.name = model.routineName
         self.emojiIcon = model.emojiIcon

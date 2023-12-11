@@ -10,7 +10,7 @@ import Foundation
 
 
 
-struct SettingAlarmModel{
+struct SettingAlarmModel: Equatable{
     let title: String
     let imageName: String
     let isOn: Bool    
