@@ -28,8 +28,8 @@ final class RoutineListCell: UICollectionViewCell{
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 8.0
+        stackView.distribution = .fill
+        stackView.spacing = 0.0
         return stackView
     }()
     
@@ -84,19 +84,20 @@ final class RoutineListCell: UICollectionViewCell{
         
         NSLayoutConstraint.activate([
             emojiIconLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0),
-            emojiIconLabel.topAnchor.constraint(equalTo: stackView.topAnchor),
-            emojiIconLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
-            emojiIconLabel.widthAnchor.constraint(equalTo: emojiIconLabel.heightAnchor),
+            emojiIconLabel.centerYAnchor.constraint(equalTo: stackView.centerYAnchor),
+            emojiIconLabel.widthAnchor.constraint(equalToConstant: 50.0),
+            emojiIconLabel.heightAnchor.constraint(equalToConstant: 50.0),
             
             stackView.leadingAnchor.constraint(equalTo: emojiIconLabel.trailingAnchor, constant: 8.0),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
             stackView.trailingAnchor.constraint(equalTo: checkButton.leadingAnchor, constant: -8.0),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
+            stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50.0),
             
             checkButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
-            checkButton.topAnchor.constraint(equalTo: stackView.topAnchor),
-            checkButton.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
-            checkButton.widthAnchor.constraint(equalTo: checkButton.heightAnchor),
+            checkButton.centerYAnchor.constraint(equalTo: stackView.centerYAnchor),
+            checkButton.widthAnchor.constraint(equalToConstant: 40.0),
+            checkButton.heightAnchor.constraint(equalToConstant: 40.0),
         ])
         
         nameLabel.setContentHuggingPriority(.init(249.0), for: .vertical)
@@ -114,6 +115,8 @@ final class RoutineListCell: UICollectionViewCell{
         
         self.emojiIconLabel.text = viewModel.emojiIcon
         //self.checkButton.isSelected = viewModel.isCompleted
+                        
+        descriptionLabel.isHidden = viewModel.description.isEmpty
         
         if viewModel.isCompleted{
             self.nameLabel.attributedText = viewModel.name.getAttributeStrkeString()

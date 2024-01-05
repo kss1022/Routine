@@ -115,7 +115,7 @@ final class RoutineEditReminderInteractor: PresentableInteractor<RoutineEditRemi
     private func handleValueChange(){
         if !isON{
             listener?.routineReminderValueChange(isOn: false, hour: nil, minute: nil)
-            presenter.setSubTitle(subTitle: "Set a reminder")
+            presenter.setSubTitle(subTitle: "set_a_reminder".localized(tableName: "Routine"))
             return
         }
         

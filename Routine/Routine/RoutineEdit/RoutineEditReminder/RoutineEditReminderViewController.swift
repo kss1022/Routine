@@ -33,8 +33,8 @@ final class RoutineEditReminderViewController: UIViewController, RoutineEditRemi
     private lazy var routineEditToogleView: RoutineEditToogleView = {
         let toogleView = RoutineEditToogleView(
             image: UIImage(systemName: "clock.fill"),
-            title: "Reminder",
-            subTitle: "Set a reminder"
+            title: "reminder".localized(tableName: "Routine"),
+            subTitle: "set_a_reminder".localized(tableName: "Routine")
         )
         
         toogleView.toogle.addTarget(self, action: #selector(reminderToogleValueChange(sender:)), for: .valueChanged)

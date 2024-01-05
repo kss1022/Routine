@@ -1,0 +1,32 @@
+
+
+// Record
+"record" = "Aufzeichnen";
+
+// RecordHome
+"check_your_top_acheive" = "Überprüfen Sie Ihr Top -Erreichen 🔥 🔥";
+"check_your_weeklyTracker" = "Überprüfen Sie Ihren WeelyTracker ✅";
+"your_achieve" = "Ihr Erreichen";
+"top_achieve" = "Top erreichen";
+"routine_achieve_isEmpty" = "Sie haben noch keine Routine \ n Leistungsaufzeichnungen.";
+"added_routine_isEmpty" = "Sie haben noch keine Routinen hinzugefügt";
+
+// WeeklyTracker
+"weeklyTracker" = "WeelyTracker";
+
+// YourAchieve
+"your_achieve" = "Ihr Erreichen";
+"date_of_week" = "Woche der Woche";
+"date_of_month" = "Monatsdatum";
+"date_of_year" = "Jahresdatum";
+"done_this_month" = "Diesen Monat getan";
+"totalDone" = "Totaldone";
+"current_streak" = "Aktuelle Streifen";
+"best_streak" = "Beste Serie";
+
+// TopAcheive
+"total_number_of_achievements" = "Gesamtzahl der Erfolge";
+"total_number_of_achievements_0" = "";
+"total_number_of_achievements_1" = "";
+"total_number_of_achievements_2" = "";
+"total_number_of_achievements_3" = "";

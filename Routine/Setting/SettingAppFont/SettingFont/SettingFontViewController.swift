@@ -19,7 +19,7 @@ final class SettingFontViewController: UIViewController, SettingFontPresentable,
     private var viewControllers = [UIViewController]()
 
     private lazy var segmentControl: SettingFontSegmentControl = {
-        let segmentControl = SettingFontSegmentControl(items: ["Font Size","Font Typeface"])
+        let segmentControl = SettingFontSegmentControl(items: ["font_size".localized(tableName: "Profile"),"font_typeface".localized(tableName: "Profile")])
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.addTarget(self, action: #selector(segmentControlTap(control:)), for: .valueChanged)
         return segmentControl

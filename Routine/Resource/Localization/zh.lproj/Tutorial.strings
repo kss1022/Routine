@@ -1,0 +1,30 @@
+
+
+// Common
+"continue" = "继续";
+
+// TutorialMain
+"hello_there" = "你好，👋";
+"embark_on_journey_together" = "让我们一起踏上一段旅程，以形成新的习惯并实现您的目标。";
+
+// TutorialSplash
+"splash_0" = "向自己承诺。";
+"splash_1" = "创建您独特的例程。 🤫";
+"splash_2" = "检查没有压力。";
+"splash_3" = "享受常规的旅程🥳";
+
+// TutorialRoutine
+"choose_habit_start" = "选择一个习惯立即开始！";
+"drink_water" = "喝水";
+"reading" = "阅读";
+"exercise" = "锻炼";
+"write" = "写";
+
+// TutorailProfile
+"set_profile_memoji" = "设置代表您的个人资料备忘录";
+
+// TutorialTimer
+"for_forget_your_routine" = "对于那些可以忘记常规的人";
+"allow_alarm_can_send" = "允许警报以使例程可以向您发送通知。";
+"allow_remidner" = "允许提醒";
+"not_now" = "现在不要";

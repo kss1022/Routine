@@ -132,9 +132,9 @@ extension RoutineWeekCalendarViewController: FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         let day = Calendar.current.component(.weekday, from: date) - 1
         
-        if Calendar.current.shortWeekdaySymbols[day] == "Sun"{  //"일"
+        if day == 0{  //"일"
             return .systemRed
-        } else if Calendar.current.shortWeekdaySymbols[day] == "Sat"{   //"토"
+        } else if day == 6{   //"토"
             return .systemBlue
         } else if date == calendar.today{
             return .white

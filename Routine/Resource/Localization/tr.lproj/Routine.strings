@@ -1,0 +1,42 @@
+
+
+// Routine
+"routine" = "Rutin";
+
+// RoutineHome
+"all_time_of_the_day" = "Rutin liste";
+"today" = "Bugün";
+"yesterDay" = "Dün";
+"tomorrow" = "Yarın";
+"no_tasks" = "Sorma";
+
+// RoutineDetail
+"complete" = "Tamamlamak";
+"completed" = "Tamamlanmış";
+"basic_Info" = "Temel bilgi";
+"basic_info_doItOnce" = "Bir kez yap: %@";
+"basic_info_daliy" = "Daliy";
+"basic_info_weekly" = "Haftalık: %@";
+"basic_info_Monthly" = "Aylık: %@";
+"basic_info_did_not_set_reminder" = "Hatırlatma ayarlamadın";
+"basic_info_reminder_at" = "%@ 'Te hatırlatma";
+
+// CreateRoutine
+"pick_a_new_one" = "Yeni Bir tane Seçin";
+"add_your_own" = "Kendi ekle";
+
+// AddYourRoutine
+"give_it_a_name" = "Bir isim ver";
+"description" = "Tanım";
+"repeat" = "Tekrarlamak";
+"set_a_cycle_for_your_plan" = "Planınız için bir döngü ayarlayın";
+"daliy" = "Daliy";
+"weekly" = "Haftalık";
+"monthly" = "Aylık";
+"reset" = "Sıfırla";
+"reminder" = "Hatırlatma";
+"set_a_reminder" = "Bir Hatırlatma Yap";
+
+// RoutineEdit
+"edit" = "Düzenlemek";
+"delete" = "Silmek";

@@ -47,7 +47,7 @@ final class RoutineDataViewController: UIViewController, RoutineDataPresentable,
     
     
     private func setLayout(){
-        title = "Your Achieve" // TODO: Set Routine Name
+        title = "your_achieve".localized(tableName: "Record") // TODO: Set Routine Name
         view.backgroundColor = .secondarySystemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)

@@ -24,7 +24,7 @@ final class RoutineTopAcheiveTotalRecordViewController: UIViewController, Routin
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setBoldFont(style: .title3)
         label.textColor = .label
-        label.text = "Total number of achievements"
+        label.text = "total_number_of_achievements".localized(tableName: "Record")
         label.numberOfLines = 2
         return label
     }()

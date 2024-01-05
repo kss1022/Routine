@@ -56,7 +56,7 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         textFeild.textColor = .black
         
         textFeild.attributedPlaceholder = NSAttributedString(
-            string: "Give it a name",
+            string: "give_it_a_name".localized(tableName: "Routine"),
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray]
         )
         
@@ -91,7 +91,7 @@ final class RoutineEditTitleViewController: UIViewController, RoutineEditTitlePr
         let label = UILabel()
         label.setBoldFont(style: .headline)
         label.textColor = .black
-        label.text = "Description"
+        label.text = "description".localized(tableName: "Routine")
         return label
     }()
     

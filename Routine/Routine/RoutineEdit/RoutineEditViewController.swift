@@ -36,7 +36,7 @@ final class RoutineEditViewController: UIViewController, RoutineEditPresentable,
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.titleLabel?.font = .getBoldFont(size: 14.0)
-        button.setTitle("Delete", for: .normal)
+        button.setTitle("delete".localized(tableName: "Routine"), for: .normal)
         button.setTitleColor(.systemBackground, for: .normal)
         button.backgroundColor = .label
                                 

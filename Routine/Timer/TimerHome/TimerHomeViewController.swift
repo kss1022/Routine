@@ -65,9 +65,9 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
     
     
     private func setLayout(){
-        title = "Timer"
+        title = "timer".localized(tableName: "Timer")
         tabBarItem = UITabBarItem(
-            title: "Timer",
+            title: "timer".localized(tableName: "Timer"),
             image: UIImage(systemName: "stopwatch"),
             selectedImage: UIImage(systemName: "stopwatch.fill")
         )

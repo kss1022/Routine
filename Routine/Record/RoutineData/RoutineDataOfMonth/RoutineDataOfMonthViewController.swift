@@ -30,7 +30,7 @@ final class RoutineDataOfMonthViewController: UIViewController, RoutineDataOfMon
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setBoldFont(style: .headline)
         label.textColor = .label
-        label.text = "Date Of Month"
+        label.text = "date_of_month".localized(tableName: "Record")
         return label
     }()
         

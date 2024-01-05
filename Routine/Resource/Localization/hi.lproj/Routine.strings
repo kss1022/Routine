@@ -1,0 +1,42 @@
+
+
+// Routine
+"routine" = "दिनचर्या";
+
+// RoutineHome
+"all_time_of_the_day" = "नेमी सूची";
+"today" = "आज";
+"yesterDay" = "कल";
+"tomorrow" = "कल";
+"no_tasks" = "न पूछें";
+
+// RoutineDetail
+"complete" = "पूरा";
+"completed" = "पुरा होना।";
+"basic_Info" = "बुनियादी जानकारी";
+"basic_info_doItOnce" = "यह एक बार करो: %@";
+"basic_info_daliy" = "दालि";
+"basic_info_weekly" = "साप्ताहिक: %@";
+"basic_info_Monthly" = "महीने के: %@";
+"basic_info_did_not_set_reminder" = "आपने अनुस्मारक सेट नहीं किया";
+"basic_info_reminder_at" = "%@ पर अनुस्मारक";
+
+// CreateRoutine
+"pick_a_new_one" = "एक नया चुनें";
+"add_your_own" = "अपना निजी एड करें";
+
+// AddYourRoutine
+"give_it_a_name" = "उसे एक नाम दे दो";
+"description" = "विवरण";
+"repeat" = "दोहराना";
+"set_a_cycle_for_your_plan" = "अपनी योजना के लिए एक चक्र निर्धारित करें";
+"daliy" = "दालि";
+"weekly" = "साप्ताहिक";
+"monthly" = "महीने के";
+"reset" = "रीसेट";
+"reminder" = "अनुस्मारक";
+"set_a_reminder" = "एक अनुस्मारक सेट करें";
+
+// RoutineEdit
+"edit" = "संपादन करना";
+"delete" = "मिटाना";

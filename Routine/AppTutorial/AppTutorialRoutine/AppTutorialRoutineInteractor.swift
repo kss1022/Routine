@@ -54,16 +54,16 @@ final class AppTutorialRoutineInteractor: PresentableInteractor<AppTutorialRouti
         
         let models = [
             CreateRoutineModel(
-                name: "Drink water",
-                description: "Drink water",
+                name: "drink_water".localized(tableName: "Tutorial"),
+                description: "drink_water".localized(tableName: "Tutorial"),
                 repeatModel: .daliy,
                 reminderTime: nil,
                 emoji: "💧",
                 tint: "#82B1FFFF"
             ),
             CreateRoutineModel(
-                name: "Reading",
-                description: "Reading",
+                name: "reading".localized(tableName: "Tutorial"),
+                description: "reading".localized(tableName: "Tutorial"),
                 repeatModel: .daliy,
                 reminderTime: nil,
                 emoji: "📖",
@@ -71,16 +71,16 @@ final class AppTutorialRoutineInteractor: PresentableInteractor<AppTutorialRouti
             ),
             
             CreateRoutineModel(
-                name: "Exercise",
-                description: "Drink water",
+                name: "exercise".localized(tableName: "Tutorial"),
+                description: "exercise".localized(tableName: "Tutorial"),
                 repeatModel: .daliy,
                 reminderTime: nil,
                 emoji: "💪",
                 tint: "#F5DAAFFF"
             ),
             CreateRoutineModel(
-                name: "Write",
-                description: "Write",
+                name: "write".localized(tableName: "Tutorial"),
+                description: "write".localized(tableName: "Tutorial"),
                 repeatModel: .daliy,
                 reminderTime: nil,
                 emoji: "✍️",
@@ -100,26 +100,34 @@ final class AppTutorialRoutineInteractor: PresentableInteractor<AppTutorialRouti
     
     func continueButtonDidTap() {
         Task{ [weak self] in
-            guard let self = self else { return }
-            
-            let commands = self.rows.compactMap{ self.models[safe: $0] }
-                .map {
-                   CreateRoutine(
-                       name: $0.name,
-                       description: $0.description,
-                       repeatType: $0.repeatModel.rawValue(),
-                       repeatValue: $0.repeatModel.value(),
-                       reminderTime: $0.reminderTime,
-                       emoji: $0.emoji,
-                       tint: $0.tint
-                   )
-               }
-            
-            for create in commands {
-                try await self.dependency.routineApplicationService.when(create)
+            do{
+                guard let self = self else { return }
+                
+                let commands = self.rows.compactMap{ self.models[safe: $0] }
+                    .map {
+                       CreateRoutine(
+                           name: $0.name,
+                           description: $0.description,
+                           repeatType: $0.repeatModel.rawValue(),
+                           repeatValue: $0.repeatModel.value(),
+                           reminderTime: $0.reminderTime,
+                           emoji: $0.emoji,
+                           tint: $0.tint
+                       )
+                   }
+                
+                for create in commands {
+                    try await self.dependency.routineApplicationService.when(create)
+                }
+                
+                await MainActor.run { [weak self] in self?.listener?.appTutorailRoutineDidFinish() }
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.message)
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
             }
-            
-            await MainActor.run { [weak self] in self?.listener?.appTutorailRoutineDidFinish() }
         }
     }
     

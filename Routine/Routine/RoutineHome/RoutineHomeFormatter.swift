@@ -17,15 +17,15 @@ extension Formatter{
         if calendar.isDateInToday(date){
             //today
             //dateFommater.dateFormat = "a h:mm"
-            return "Today"
+            return "today".localized(tableName: "Routine")
         }
         
         if calendar.isDateInYesterday(date){
-            return "YestureDay"
+            return "yesterDay".localized(tableName: "Routine")
         }
         
         if calendar.isDateInTomorrow(date){
-            return "Tomorrow"
+            return "tomorrow".localized(tableName: "Routine")
         }
         
         

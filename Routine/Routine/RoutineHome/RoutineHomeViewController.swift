@@ -56,10 +56,10 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
     
     private func setLayout(){
         //title = "Today"
-        navigationItem.title = "Today"
+        navigationItem.title = "today".localized(tableName: "Routine")
         
         tabBarItem = UITabBarItem(
-            title: "Routine",
+            title: "routine".localized(tableName: "Routine"),
             image: UIImage(systemName: "checkmark.seal"),
             selectedImage: UIImage(systemName: "checkmark.seal.fill")
         )

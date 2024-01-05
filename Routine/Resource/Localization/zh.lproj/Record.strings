@@ -1,0 +1,32 @@
+
+
+// Record
+"record" = "记录";
+
+// RecordHome
+"check_your_top_acheive" = "检查您的顶部达到🔥";
+"check_your_weeklyTracker" = "检查您的每周登陆器✅";
+"your_achieve" = "您的成就";
+"top_achieve" = "最高成就";
+"routine_achieve_isEmpty" = "您还没有任何常规\ n成就记录。";
+"added_routine_isEmpty" = "您尚未添加\ n任何例程";
+
+// WeeklyTracker
+"weeklyTracker" = "每周旅行者";
+
+// YourAchieve
+"your_achieve" = "您的成就";
+"date_of_week" = "一周的日期";
+"date_of_month" = "一个月";
+"date_of_year" = "一年的日期";
+"done_this_month" = "本月完成了";
+"totalDone" = "总数";
+"current_streak" = "当前条纹";
+"best_streak" = "最好的连胜";
+
+// TopAcheive
+"total_number_of_achievements" = "成就总数";
+"total_number_of_achievements_0" = "";
+"total_number_of_achievements_1" = "";
+"total_number_of_achievements_2" = "";
+"total_number_of_achievements_3" = "";

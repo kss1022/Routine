@@ -1,0 +1,42 @@
+
+
+// Routine
+"routine" = "Рутина";
+
+// RoutineHome
+"all_time_of_the_day" = "Рутинный список";
+"today" = "Сегодня";
+"yesterDay" = "Вчера";
+"tomorrow" = "Завтра";
+"no_tasks" = "Не спрашивай";
+
+// RoutineDetail
+"complete" = "Полный";
+"completed" = "Завершенный";
+"basic_Info" = "Базовая информация";
+"basic_info_doItOnce" = "Сделай это один раз: %@";
+"basic_info_daliy" = "Дали";
+"basic_info_weekly" = "Еженедельно: %@";
+"basic_info_Monthly" = "Ежемесячно: %@";
+"basic_info_did_not_set_reminder" = "Вы не напоминали напоминание";
+"basic_info_reminder_at" = "Напоминание в %@";
+
+// CreateRoutine
+"pick_a_new_one" = "Выберите новый";
+"add_your_own" = "Добавьте свой собственный";
+
+// AddYourRoutine
+"give_it_a_name" = "Давать ему имя";
+"description" = "Описание";
+"repeat" = "Повторить";
+"set_a_cycle_for_your_plan" = "Установите цикл для вашего плана";
+"daliy" = "Дали";
+"weekly" = "Еженедельно";
+"monthly" = "Ежемесячно";
+"reset" = "Перезагрузить";
+"reminder" = "Напоминание";
+"set_a_reminder" = "Установите напоминание";
+
+// RoutineEdit
+"edit" = "Редактировать";
+"delete" = "Удалить";

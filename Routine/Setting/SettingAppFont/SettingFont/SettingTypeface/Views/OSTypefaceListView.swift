@@ -36,7 +36,7 @@ final class OSTypefaceListView: UIControl{
         let label = UILabel()
         label.setBoldFont(style: .headline)
         label.textColor = .label
-        label.text = "OS Typeface"
+        label.text = "os_typeface".localized(tableName: "Profile")
         return label
     }()
     

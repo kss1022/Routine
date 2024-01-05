@@ -34,7 +34,7 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         let label = UILabel()
         label.setFont(style: .caption1)
         label.textColor = .label
-        label.text = "Hello Routine~👋"
+        label.text = "font_preview".localized(tableName: "Profile")
         return label
     }()
     
@@ -42,7 +42,7 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         let label = UILabel()
         label.setBoldFont(style: .caption1)
         label.textColor = .label
-        label.text = "Hello Routine~👋"
+        label.text = "font_preview".localized(tableName: "Profile")
         return label
     }()
 
@@ -50,7 +50,7 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         let label = UILabel()
         label.setFont(style: .subheadline)
         label.textColor = .label
-        label.text = "Hello Routine~👋"
+        label.text = "font_preview".localized(tableName: "Profile")
         return label
     }()
     
@@ -58,7 +58,7 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         let label = UILabel()
         label.setBoldFont(style: .subheadline)
         label.textColor = .label
-        label.text = "Hello Routine~👋"
+        label.text = "font_preview".localized(tableName: "Profile")
         return label
     }()
     
@@ -66,7 +66,7 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         let label = UILabel()
         label.setFont(style: .title1)
         label.textColor = .label
-        label.text = "Hello Routine~👋"
+        label.text = "font_preview".localized(tableName: "Profile")
         return label
     }()
     
@@ -75,7 +75,7 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         let label = UILabel()
         label.setBoldFont(style: .title1)
         label.textColor = .label
-        label.text = "Hello Routine~👋"
+        label.text = "font_preview".localized(tableName: "Profile")
         return label
     }()
     

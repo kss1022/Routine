@@ -1,0 +1,54 @@
+
+
+// Timer
+"timer" = "タイマー";
+
+// TimerHome
+"focus" = "集中";
+"tabata" = "タバタ";
+"round" = "ラウンド";
+"repeat" = "繰り返す";
+"interval" = "間隔";
+
+// StartTimer
+"finish_timer" = "仕上げタイマー";
+"cancel_timer" = "キャンセルタイマー";
+"dismiss" = "却下する";
+"timer_remaining" = "残りのタイマー";
+"start" = "始める";
+"pause" = "一時停止";
+"cancel" = "キャンセル";
+
+// CreateTimer
+"create_your_timer" = "タイマーを作成します";
+
+// AddYourTimer
+"give_it_a_name" = "名前を付けてください";
+"set_duration" = "設定期間";
+"done" = "終わり";
+"editTimerCountdown_hour" = "%dHour";
+"editTimerCountdown_min" = "%dMin";
+"editTimerCountdown_sec" = "%dSec";
+"editTimerCountdown_rep" = "%dRep";
+
+// TimerSectionEdit
+"edit_section" = "編集セクション";
+"name" = "名前";
+"description" = "説明";
+"ready" = "準備ができて";
+"ready_description" = "カウントダウンを開始する前";
+"take_a_rest" = "休んでください";
+"take_a_rest_description" = "休んでください";
+"exercise" = "エクササイズ";
+"exercise_description" = "あなたはそれをすることができます！";
+"round" = "ラウンド";
+"round_description" = "ルーチンはExcomesise + Restです";
+"cycle" = "サイクル";
+"cycle_description" = "サイクルはNラウンドです";
+"cycle_rest" = "サイクルレスト";
+"cycle_rest_description" = "休んでください";
+"colldown" = "コルダウン";
+"colldown_description" = "運動後、コルダウンします";
+
+// TimerSelect
+"choose_your_time" = "タイマーを選択してください";

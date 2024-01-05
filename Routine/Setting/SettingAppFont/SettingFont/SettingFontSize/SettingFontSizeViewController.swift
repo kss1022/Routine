@@ -32,7 +32,7 @@ final class SettingFontSizeViewController: UIViewController, SettingFontSizePres
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setBoldFont(style: .headline)
         label.textColor = .label
-        label.text = "OS Setting"
+        label.text = "os_setting".localized(tableName: "Profile")
         return label
     }()
     
@@ -50,7 +50,7 @@ final class SettingFontSizeViewController: UIViewController, SettingFontSizePres
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setBoldFont(style: .caption2)
         label.textColor = .secondaryLabel
-        label.text = "You can change OS settings under Settings > Display and Brightness > Texque Size."
+        label.text = "os_setting_help".localized(tableName: "Profile")
         label.numberOfLines = 0
         return label
     }()

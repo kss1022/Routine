@@ -69,7 +69,7 @@ final class TimerRemainInteractor: PresentableInteractor<TimerRemainPresentable>
             presenter.setCycleInfoView(
                 viewModel: TimerCountInfoViewModel(
                     emoji: "🔄",
-                    title: "Title",
+                    title: "cycle".localized(tableName: "Timer"),
                     count: timer.remainCycle!,
                     totalCount: model.cycle!.count
                 )
@@ -77,7 +77,7 @@ final class TimerRemainInteractor: PresentableInteractor<TimerRemainPresentable>
             presenter.setRoundInfoView(
                 viewModel: TimerCountInfoViewModel(
                     emoji: "⛳️",
-                    title: "Round",
+                    title: "round".localized(tableName: "Timer"),
                     count: timer.remainRound,
                     totalCount: model.round.count
                 )
@@ -88,7 +88,7 @@ final class TimerRemainInteractor: PresentableInteractor<TimerRemainPresentable>
             presenter.setRoundInfoView(
                 viewModel: TimerCountInfoViewModel(
                     emoji: "⛳️",
-                    title: "Round",
+                    title: "round".localized(tableName: "Timer"),
                     count: timer.remainRound,
                     totalCount: model.round.count
                 )

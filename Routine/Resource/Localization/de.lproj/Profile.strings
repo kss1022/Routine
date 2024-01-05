@@ -1,0 +1,55 @@
+
+
+// Profile
+"profile" = "Profil";
+
+// ProfileHome
+"profile_name_empty" = "Hallo ~ 👋";
+"system_setting" = "Systemeinstellung";
+"alarm" = "Alram";
+"theme" = "Thema";
+"font" = "Schriftart";
+"appIcon" = "Appicon";
+"team" = "Team";
+"guide" = "Führung";
+"feedback" = "Rückmeldung";
+"info" = "die Info";
+"request_review" = "Routine engagieren? \ N5 Sterne bitte";
+
+// EditProfile
+"add_your_name" = "Fügen Sie Ihren Namen hinzu!";
+"introduce_yourself" = "Stellen Sie sich vor ✍️";
+"emoticon" = "Emoticoin";
+"style" = "Stil";
+"enter_want_to_change_name" = "Geben Sie den Namen ein, den Sie ändern möchten";
+"enter_want_to_change_introduction" = "Geben Sie die Einführung ein, die Sie ändern möchten";
+"name" = "Name";
+"introduction" = "Einführung";
+
+// SettingAlarm
+"onOff" = "AN AUS";
+"daliy_reminder" = "Daliy Erinnerung";
+"routine_reminder" = "Rotuine Erinnerung";
+
+// SettingTheme
+"system" = "System";
+"light" = "Licht";
+"dark" = "Dunkel";
+
+// Setting Font
+"font_preview" = "Hallo Routine ~ 👋";
+"font_size" = "Schriftgröße";
+"font_typeface" = "Schriftart Schrift";
+"os_setting" = "Betriebssystemeinstellung";
+"os_setting_help" = "Sie können die Betriebssystemeinstellungen unter Einstellungen> Anzeige und Helligkeit> Texque -Größe ändern.";
+"os_typeface" = "Betriebssystem Schrift";
+
+// Feedback
+"feedback_title" = "Hallo Rotine!";
+"feedback_message" = "Alle Feedback- oder Fehlerberichte sind willkommen :)";
+"saved_draft_folder" = "Im Entwurfsordner gespeichert";
+"saved_draft_folder_message" = "Die entworfene E -Mail wurde im Entwurfsordner gespeichert.";
+"send_feedback" = "Feedback abschicken";
+"thank_for_feedback" = "Vielen Dank für Ihr Feedback🙏";
+"send_mail_fail" = "E -Mails senden 😰";
+"confirm" = "Bestätigen";

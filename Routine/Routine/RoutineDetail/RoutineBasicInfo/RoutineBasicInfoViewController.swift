@@ -21,7 +21,7 @@ final class RoutineBasicInfoViewController: UIViewController, RoutineBasicInfoPr
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "BasicInfo"
+        label.text = "basic_Info".localized(tableName: "Routine")
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setBoldFont(style: .headline)
         label.textColor = .black

@@ -47,7 +47,7 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getBoldFont(size: 24.0)
         label.textColor = .secondaryLabel
-        label.text = "No tasks"
+        label.text = "no_tasks".localized(tableName: "Routine")
         label.isHidden = true
         return label
     }()
@@ -76,8 +76,8 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emptyView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -45.0),
+            emptyView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
         ])
     }
     
@@ -119,7 +119,7 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
                 supplementaryView.isHidden = !self.emptyView.isHidden
             }
             
-            supplementaryView.setTitle(title: "All time of the day")
+            supplementaryView.setTitle(title: "all_time_of_the_day".localized(tableName: "Routine"))
         }
         
         dataSource.supplementaryViewProvider = {  [weak self ] (view, kind, index) in
@@ -146,10 +146,10 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
     }
     
     private func getListTypeSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(120.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(50.0))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(120.0))
         
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(8.0)

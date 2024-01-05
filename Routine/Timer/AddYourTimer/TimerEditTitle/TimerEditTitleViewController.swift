@@ -27,12 +27,12 @@ final class TimerEditTitleViewController: UIViewController, TimerEditTitlePresen
         textFeild.textColor = .systemBackground
         
         textFeild.attributedPlaceholder = NSAttributedString(
-            string: "Give it a name",
+            string: "give_it_a_name".localized(tableName: "Timer"),
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray]
         )
         
         textFeild.textAlignment = .center
-        textFeild.placeholder = "Give it a name"
+        textFeild.placeholder = "give_it_a_name".localized(tableName: "Timer")
         textFeild.delegate = self
         
         

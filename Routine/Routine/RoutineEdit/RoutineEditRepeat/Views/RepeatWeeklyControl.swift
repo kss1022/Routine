@@ -59,9 +59,8 @@ final class RepeatWeeklyControl: UIControl{
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-
         
-        self.weeklys.routineWeeklys.map{ "\($0.weekly.label().first!)" }
+        self.weeklys.routineWeeklys.map{ $0.weekly.veryShortWeekydaySymbols() }
             .enumerated().forEach { (index, weekly) in
             let button = weeklyButton()
             button.setTitle(weekly, for: .normal)

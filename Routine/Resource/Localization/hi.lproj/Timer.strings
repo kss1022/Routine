@@ -1,0 +1,54 @@
+
+
+// Timer
+"timer" = "घड़ी";
+
+// TimerHome
+"focus" = "केंद्र";
+"tabata" = "तबता";
+"round" = "गोल";
+"repeat" = "दोहराना";
+"interval" = "मध्यान्तर";
+
+// StartTimer
+"finish_timer" = "समय समाप्त करें";
+"cancel_timer" = "रद्द करें टाइमर";
+"dismiss" = "नकार देना";
+"timer_remaining" = "शेष समय";
+"start" = "शुरू";
+"pause" = "विराम";
+"cancel" = "रद्द करना";
+
+// CreateTimer
+"create_your_timer" = "अपना टाइमर बनाएं";
+
+// AddYourTimer
+"give_it_a_name" = "उसे एक नाम दे दो";
+"set_duration" = "अवधि निर्धारित करना";
+"done" = "हो गया";
+"editTimerCountdown_hour" = "%dHour";
+"editTimerCountdown_min" = "%dMin";
+"editTimerCountdown_sec" = "%dSec";
+"editTimerCountdown_rep" = "%dRep";
+
+// TimerSectionEdit
+"edit_section" = "अनुभाग का संपादन";
+"name" = "नाम";
+"description" = "विवरण";
+"ready" = "तैयार";
+"ready_description" = "शुरू होने से पहले उलटी गिनती";
+"take_a_rest" = "आराम करो";
+"take_a_rest_description" = "आराम करो";
+"exercise" = "व्यायाम";
+"exercise_description" = "आप यह कर सकते हैं!";
+"round" = "गोल";
+"round_description" = "रूटीन एक्सर्साइज + रेस्ट है";
+"cycle" = "चक्र";
+"cycle_description" = "चक्र एक एन राउंड है";
+"cycle_rest" = "चक्र आराम";
+"cycle_rest_description" = "आराम करो";
+"colldown" = "नीचे गिरना";
+"colldown_description" = "व्यायाम के बाद नीचे";
+
+// TimerSelect
+"choose_your_time" = "अपना टाइमर चुनें";

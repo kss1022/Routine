@@ -51,9 +51,9 @@ final class RecordHomeViewController: UIViewController, RecordHomePresentable, R
     
     
     private func setLayout(){
-        title = "Record"
+        title = "record".localized(tableName: "Record")
         tabBarItem = UITabBarItem(
-            title: "Record",
+            title: "record".localized(tableName: "Record"),
             image: UIImage(systemName: "flag"),    //pencil.circle
             selectedImage: UIImage(systemName: "flag.fill")
         )

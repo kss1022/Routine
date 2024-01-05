@@ -27,7 +27,7 @@ final class AppTutorailSplashView2: AppTutorailSplashView{
     func setLayout() {
         let titleLabel = self.titleLabel()
         titleLabel.numberOfLines = 2
-        titleLabel.text = "Create Your Unique Routine. 🤫"
+        titleLabel.text = "splash_1".localized(tableName: "Tutorial")
         
         view.addSubview(titleLabel)
                 

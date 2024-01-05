@@ -40,7 +40,7 @@ final class RoutineWeeklyTrackerViewController: UIViewController, RoutineWeeklyT
     
     
     private func setLayout(){
-        title = "WeeklyTracker"
+        title = "weeklyTracker".localized(tableName: "Record")
         view.backgroundColor = .systemBackground
         
         view.addSubview(stackView)                

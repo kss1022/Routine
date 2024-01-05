@@ -1,0 +1,32 @@
+
+
+// Record
+"record" = "Kayıt";
+
+// RecordHome
+"check_your_top_acheive" = "Üstünüzü kontrol edin 🔥";
+"check_your_weeklyTracker" = "WeeklyTracker'ınızı kontrol edin ✅";
+"your_achieve" = "Başarısınız";
+"top_achieve" = "En iyi başarmak";
+"routine_achieve_isEmpty" = "Henüz herhangi bir rutin başarı kaydınız yok.";
+"added_routine_isEmpty" = "Henüz herhangi bir rutin eklemediniz";
+
+// WeeklyTracker
+"weeklyTracker" = "Haftalık";
+
+// YourAchieve
+"your_achieve" = "Başarısınız";
+"date_of_week" = "Haftanın Tarihi";
+"date_of_month" = "Ayın tarihi";
+"date_of_year" = "Yılın tarihi";
+"done_this_month" = "Bu ay bitti";
+"totalDone" = "Totaldone";
+"current_streak" = "Mevcut çizgi";
+"best_streak" = "En iyi çizgi";
+
+// TopAcheive
+"total_number_of_achievements" = "Toplam başarı sayısı";
+"total_number_of_achievements_0" = "";
+"total_number_of_achievements_1" = "";
+"total_number_of_achievements_2" = "";
+"total_number_of_achievements_3" = "";

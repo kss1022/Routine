@@ -43,7 +43,7 @@ final class CreateRoutineViewController: UIViewController, CreateRoutinePresenta
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.titleLabel?.font = .getBoldFont(size: 14.0)
-        button.setTitle("Add YourOwnButton", for: .normal)
+        button.setTitle("add_your_own".localized(tableName: "Routine"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemPurple
         
@@ -73,7 +73,7 @@ final class CreateRoutineViewController: UIViewController, CreateRoutinePresenta
     
 
     private func setLayout(){
-        title = "Pick a new one"
+        title = "pick_a_new_one".localized(tableName: "Routine")
         
         view.backgroundColor = .systemBackground
         

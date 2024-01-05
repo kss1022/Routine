@@ -203,17 +203,26 @@ final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>
     
     func feedbackMailDidFinishWithSaved() {
         router?.detachFeedbackMail()
-        presenter.showMailResult(title: "Saved in Draft Folder", message: "The drafted email has been saved in the draft folder.")
+        presenter.showMailResult(
+            title: "saved_draft_folder".localized(tableName: "Profile"),
+            message: "saved_draft_folder_message".localized(tableName: "Profile")
+        )
     }
     
     func feedbackMailDidFinishWithSent() {
         router?.detachFeedbackMail()
-        presenter.showMailResult(title: "Send Feedback", message: "Thank you for your feedback🙏")
+        presenter.showMailResult(
+            title: "send_feedback".localized(tableName: "Profile"),
+            message: "thank_for_feedback".localized(tableName: "Profile")
+        )
     }
     
     func feedbackMailDidFinishWithFail() {
         router?.detachFeedbackMail()
-        presenter.showMailResult(title: "Send Feedback", message: "Send Mail Fail😰")
+        presenter.showMailResult(
+            title: "send_feedback".localized(tableName: "Profile"),
+            message: "send_mail_fail".localized(tableName: "Profile")
+        )
     }
         
     func feedbackMailDidFinishWithCancel() {

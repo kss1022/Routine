@@ -136,15 +136,15 @@ final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPres
         )
         
         
-        let cancelAction = UIAlertAction(title: "Cancel Timer", style: .default) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: "cancel_timer".localized(tableName: "Timer"), style: .default) { [weak self] _ in
             self?.listener?.cancelButtonDidTap()
         }
         
-        let finishAction = UIAlertAction(title: "Finish Timer", style: .default) { [weak self] _ in
+        let finishAction = UIAlertAction(title: "finish_timer".localized(tableName: "Timer"), style: .default) { [weak self] _ in
             self?.listener?.finishButtonDidTap()
         }
         
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel)
+        let dismissAction = UIAlertAction(title: "dismiss".localized(tableName: "Timer"), style: .cancel)
         
         alertController.addAction(dismissAction)
         alertController.addAction(cancelAction)

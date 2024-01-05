@@ -40,7 +40,23 @@ final class AppTutorialInteractor: Interactor, AppTutorialInteractable{
         let now = Date()
         preferenceStorage.installation = now
         
-        router?.attachAppTutorialHome()
+        
+        if !preferenceStorage.showAppTutorialHome{
+            router?.attachAppTutorialHome()
+            return
+        }
+        
+        if !preferenceStorage.showAppTutorialRoutine{
+            router?.attachAppTutorialRoutine()
+            return
+        }
+        
+        if !preferenceStorage.showAppTutorialProfile{
+            router?.attachAppTutorialProfile()
+            return
+        }
+        
+        router?.attachAppTutorailTimer()
     }
 
     override func willResignActive() {

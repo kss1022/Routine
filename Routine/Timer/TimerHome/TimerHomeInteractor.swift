@@ -192,9 +192,9 @@ extension TimerTypeModel{
     fileprivate func title() -> String{
         switch self {
         case .focus:
-            return "Focus"
+            return "focus".localized(tableName: "Timer")
         case .section:
-            return "Repeat"
+            return "repeat".localized(tableName: "Timer")
         }
     }
 }

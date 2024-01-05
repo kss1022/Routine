@@ -49,12 +49,15 @@ final class FeedbackMailInteractor: PresentableInteractor<FeedbackMailPresentabl
         let deviceInfo = appInfoMananger.iOSVersion
         let iphoneModel = appInfoMananger.iPhoneModel
         
+        let title = "feedback_title".localized(tableName: "Profile")
+        let message = "feedback_message".localized(tableName: "Profile")
+        
         presenter.setMailCompose(
             recipients: ["kss1022hhh@gmail.com"],
-            subject: "Hello Routine",
+            subject: title,
             body:
 """
-Any feedback or bug reports are welcome :)
+\(message)
 
 
 

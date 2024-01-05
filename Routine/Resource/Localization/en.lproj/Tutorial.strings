@@ -1,0 +1,30 @@
+
+
+// Common
+"continue" = "Continue";
+
+// TutorialMain
+"hello_there" = "Hello there 👋";
+"embark_on_journey_together" = "Let's embark on a journey together to form new habits and achieve your goals.";
+
+// TutorialSplash
+"splash_0" = "Promise to myself.";
+"splash_1" = "Create Your Unique Routine. 🤫";
+"splash_2" = "Check without Pressure.";
+"splash_3" = "Enjoy the Journey of Routines 🥳";
+
+// TutorialRoutine
+"choose_habit_start" = "Choose a habbit to start right away!";
+"drink_water" = "Drink water";
+"reading" = "Reading";
+"exercise" = "Exercise";
+"write" = "Write";
+
+// TutorailProfile
+"set_profile_memoji" = "Set a profile memoji that represents you";
+
+// TutorialTimer
+"for_forget_your_routine" = "For you who can forget your routine";
+"allow_alarm_can_send" = "Allow an alarm so that the routine can send you a notification.";
+"allow_remidner" = "Allow Reminder";
+"not_now" = "Not Now";

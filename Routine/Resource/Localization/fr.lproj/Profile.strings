@@ -1,0 +1,55 @@
+
+
+// Profile
+"profile" = "Profil";
+
+// ProfileHome
+"profile_name_empty" = "Bonjour ~ 👋";
+"system_setting" = "Réglage du système";
+"alarm" = "Alram";
+"theme" = "Thème";
+"font" = "Police de caractère";
+"appIcon" = "Appicon";
+"team" = "Équipe";
+"guide" = "Guide";
+"feedback" = "Retour";
+"info" = "Info";
+"request_review" = "En interdisant la routine? \ N5 étoiles s'il vous plaît";
+
+// EditProfile
+"add_your_name" = "Ajoutez votre nom!";
+"introduce_yourself" = "Présentez-vous ✍️";
+"emoticon" = "Émoticoïde";
+"style" = "Style";
+"enter_want_to_change_name" = "Entrez le nom que vous souhaitez modifier";
+"enter_want_to_change_introduction" = "Entrez l'introduction que vous souhaitez modifier";
+"name" = "Nom";
+"introduction" = "Introduction";
+
+// SettingAlarm
+"onOff" = "ALLUMÉ ÉTEINT";
+"daliy_reminder" = "Rappel daliy";
+"routine_reminder" = "Rappel";
+
+// SettingTheme
+"system" = "Système";
+"light" = "Lumière";
+"dark" = "Sombre";
+
+// Setting Font
+"font_preview" = "Bonjour routine ~ 👋";
+"font_size" = "Taille de police";
+"font_typeface" = "Police de police";
+"os_setting" = "Paramètre OS";
+"os_setting_help" = "Vous pouvez modifier les paramètres du système d'exploitation sous Paramètres> Affichage et luminosité> Taille texque.";
+"os_typeface" = "Face de caractères";
+
+// Feedback
+"feedback_title" = "Bonjour la rotine!";
+"feedback_message" = "Tous les commentaires ou les rapports de bogues sont les bienvenus :)";
+"saved_draft_folder" = "Enregistré dans un dossier de projet";
+"saved_draft_folder_message" = "L'e-mail rédigé a été enregistré dans le projet de dossier.";
+"send_feedback" = "Envoyer des commentaires";
+"thank_for_feedback" = "Merci pour vos commentaires🙏";
+"send_mail_fail" = "Envoyer un courrier défaillance😰";
+"confirm" = "Confirmer";

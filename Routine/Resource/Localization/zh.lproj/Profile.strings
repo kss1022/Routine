@@ -1,0 +1,55 @@
+
+
+// Profile
+"profile" = "轮廓";
+
+// ProfileHome
+"profile_name_empty" = "你好〜👋";
+"system_setting" = "系统设置";
+"alarm" = "阿拉姆";
+"theme" = "主题";
+"font" = "字体";
+"appIcon" = "阿皮孔";
+"team" = "团队";
+"guide" = "指导";
+"feedback" = "反馈";
+"info" = "信息";
+"request_review" = "禁止例行吗？\ n5星星请";
+
+// EditProfile
+"add_your_name" = "添加您的名字！";
+"introduce_yourself" = "自我介绍✍️";
+"emoticon" = "情绪蛋白";
+"style" = "风格";
+"enter_want_to_change_name" = "输入您要更改的名称";
+"enter_want_to_change_introduction" = "输入您要更改的简介";
+"name" = "姓名";
+"introduction" = "介绍";
+
+// SettingAlarm
+"onOff" = "开关";
+"daliy_reminder" = "达利提醒";
+"routine_reminder" = "Rotuine提醒";
+
+// SettingTheme
+"system" = "系统";
+"light" = "光";
+"dark" = "黑暗的";
+
+// Setting Font
+"font_preview" = "你好例行〜👋";
+"font_size" = "字体大小";
+"font_typeface" = "字体字体";
+"os_setting" = "操作系统设置";
+"os_setting_help" = "您可以在设置下更改OS设置>显示和亮度> Texque尺寸。";
+"os_typeface" = "OS字体";
+
+// Feedback
+"feedback_title" = "你好烤！";
+"feedback_message" = "欢迎任何反馈或错误报告:)";
+"saved_draft_folder" = "保存在草稿文件夹中";
+"saved_draft_folder_message" = "草稿已保存在草案文件夹中。";
+"send_feedback" = "发送反馈";
+"thank_for_feedback" = "谢谢您的反馈🙏";
+"send_mail_fail" = "发送邮件失败😰";
+"confirm" = "确认";

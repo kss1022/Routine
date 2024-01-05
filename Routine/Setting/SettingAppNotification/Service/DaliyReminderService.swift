@@ -28,7 +28,7 @@ final class DaliyReminderServiceImp: DaliyReminderService{
     var daliy: ReadOnlyCurrentValuePublisher<SettingDaliyReminderModel>{ daliySubject}
     private let daliySubject = CurrentValuePublisher(
         SettingDaliyReminderModel(
-           title: "Daliy Reminder",
+           title: "daliy_reminder".localized(tableName: "Profile"),
            imageName: "bell.square.fill",
            isOn: PreferenceStorage.shared.daliyRemidnerIsOn,
            hour: PreferenceStorage.shared.daliyReminderHour,
@@ -41,6 +41,7 @@ final class DaliyReminderServiceImp: DaliyReminderService{
     private var hour: Int{ preferenceStorage.daliyReminderHour }
     private var minute : Int{ preferenceStorage.daliyReminderMinute }
     
+    //TODO: Localized
     func register(date: Date) async throws {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
@@ -81,7 +82,7 @@ final class DaliyReminderServiceImp: DaliyReminderService{
     
     func fetch() {
         let model = SettingDaliyReminderModel(
-            title: "Daliy Reminder",
+            title: "daliy_reminder".localized(tableName: "Profile"),
             imageName: "bell.square.fill",
             isOn: isOn,
             hour: hour,
@@ -91,6 +92,7 @@ final class DaliyReminderServiceImp: DaliyReminderService{
         daliySubject.send(model)
     }
     
+    //TODO: Localized
     private func registerDaliyReminder() async throws{
         let localNotification = try LocalNotification.Builder()
             .setContent(title: "Embrace the Start of Your Routine.", body: "A gentle reminder that it's time for your special routine. Enjoy the beginning in a relaxed manner.")

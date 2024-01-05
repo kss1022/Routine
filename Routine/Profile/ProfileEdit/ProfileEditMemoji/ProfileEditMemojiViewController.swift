@@ -83,7 +83,12 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
     
     
     private lazy var segmentControl: UISegmentedControl = {
-        let segmentControl = UISegmentedControl(items: ["Emoticon", "Style"])
+        let segmentControl = UISegmentedControl(
+            items: [
+                "emoticon".localized(tableName: "Profile"),
+                "style".localized(tableName: "Profile")
+            ]
+        )
         segmentControl.translatesAutoresizingMaskIntoConstraints  = false
         segmentControl.tintColor = .label
         
@@ -180,7 +185,7 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
     
     func setName(name: String) {
         if name.isEmpty{
-            nameButton.setTitle("Add Your Name!", for: .normal)
+            nameButton.setTitle("add_your_name".localized(tableName: "Profile"), for: .normal)
             return
         }
         
@@ -189,7 +194,7 @@ final class ProfileEditMemojiViewController: UIViewController, ProfileEditMemoji
     
     func setDescription(description: String) {
         if description.isEmpty{
-            descriptoinButton.setTitle("Introduce yourself  ✍️", for: .normal)
+            descriptoinButton.setTitle("introduce_yourself".localized(tableName: "Profile"), for: .normal)
             return
         }
         

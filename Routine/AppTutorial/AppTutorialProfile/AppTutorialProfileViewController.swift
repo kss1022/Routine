@@ -66,7 +66,7 @@ final class AppTutorialProfileViewController: UIViewController, AppTutorialProfi
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .getFont(size: 24.0)
-        button.setTitle("Continue", for: .normal)                        
+        button.setTitle("continue".localized(tableName: "Tutorial"), for: .normal)
         button.contentEdgeInsets = .init(top: 16.0, left: 32.0, bottom: 16.0, right: 32.0)
         button.addTarget(self, action: #selector(continueButtonTap), for: .touchUpInside)
         return button
@@ -117,7 +117,7 @@ final class AppTutorialProfileViewController: UIViewController, AppTutorialProfi
             continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        titleLabel.text = "Set a profile memoji that represents you"
+        titleLabel.text = "set_profile_memoji".localized(tableName: "Tutorial")
     }
     
 

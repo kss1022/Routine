@@ -52,9 +52,9 @@ final class ProfileHomeViewController: UIViewController, ProfileHomePresentable,
     
     
     private func setLayout(){
-        title = "Profile"
+        title = "profile".localized(tableName: "Profile")
         tabBarItem = UITabBarItem(
-            title: "Profile",
+            title: "profile".localized(tableName: "Profile"),
             image: UIImage(systemName: "person"),
             selectedImage: UIImage(systemName: "person.fill")
         )
@@ -109,7 +109,7 @@ final class ProfileHomeViewController: UIViewController, ProfileHomePresentable,
     //MARK: Presentable
     func showMailResult(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "confirm", style: .default)
+        let confirm = UIAlertAction(title: "confirm".localized(tableName: "Profile"), style: .default)
         alert.addAction(confirm)
         present(alert, animated: true, completion: nil)
     }

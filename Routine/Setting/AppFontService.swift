@@ -93,8 +93,8 @@ class AppFontManagerException: SystemException{
 
 
 private extension PreferenceKeys{
-    var appFont : PrefKey<String>{ .init(name: "kAppFont", defaultValue: "AppleSDGothicNeo-Regular") }
-    var appBoldFont : PrefKey<String>{ .init(name: "kAppBoldFont", defaultValue: "AppleSDGothicNeo-Bold") }
+    var appFont : PrefKey<String>{ .init(name: "kAppFont", defaultValue: "Bradley Hand") }
+    var appBoldFont : PrefKey<String>{ .init(name: "kAppBoldFont", defaultValue: "Bradley Hand") }
     
     var isCustomSize: PrefKey<Bool>{ .init(name: "isCustomSize", defaultValue: false)}
     var customSize: PrefKey<Float>{ .init(name: "kCustomSize", defaultValue: 10.0)}

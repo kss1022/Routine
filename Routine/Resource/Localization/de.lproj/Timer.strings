@@ -1,0 +1,54 @@
+
+
+// Timer
+"timer" = "Timer";
+
+// TimerHome
+"focus" = "Fokus";
+"tabata" = "Tabata";
+"round" = "Runden";
+"repeat" = "Wiederholen";
+"interval" = "Intervall";
+
+// StartTimer
+"finish_timer" = "Timer beenden";
+"cancel_timer" = "Timer abbrechen";
+"dismiss" = "Zurückweisen";
+"timer_remaining" = "Timer verbleiben";
+"start" = "Start";
+"pause" = "Pause";
+"cancel" = "Stornieren";
+
+// CreateTimer
+"create_your_timer" = "Erstellen Sie Ihren Timer";
+
+// AddYourTimer
+"give_it_a_name" = "Gib ihm einen Namen";
+"set_duration" = "Dauer festlegen";
+"done" = "Erledigt";
+"editTimerCountdown_hour" = "%dHour";
+"editTimerCountdown_min" = "%dMin";
+"editTimerCountdown_sec" = "%dSec";
+"editTimerCountdown_rep" = "%dRep";
+
+// TimerSectionEdit
+"edit_section" = "Abschnitt bearbeiten";
+"name" = "Name";
+"description" = "Beschreibung";
+"ready" = "Bereit";
+"ready_description" = "Vor dem Countdown";
+"take_a_rest" = "Nimm den Rest";
+"take_a_rest_description" = "Nimm den Rest";
+"exercise" = "Übung";
+"exercise_description" = "Du kannst es schaffen!";
+"round" = "Runden";
+"round_description" = "Routine ist eine Excercise + Ruhe";
+"cycle" = "Zyklus";
+"cycle_description" = "Zyklus ist eine N -Runde";
+"cycle_rest" = "Zyklusruhe";
+"cycle_rest_description" = "Nimm den Rest";
+"colldown" = "Kollieren";
+"colldown_description" = "Nach dem Training kollieren";
+
+// TimerSelect
+"choose_your_time" = "Wählen Sie Ihren Timer";

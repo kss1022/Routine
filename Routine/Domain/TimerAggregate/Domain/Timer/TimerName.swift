@@ -14,7 +14,7 @@ struct TimerName: ValueObject{
     
     init(_ name: String) throws{
         if name.count > 50{ throw ArgumentException("TimerName Length must less then 50")  }
-        if name.count < 3{ throw ArgumentException("TimerName Length must more then 3")  }
+        if name.count < 2{ throw ArgumentException("TimerName Length must more then 2")  }
         self.name = name
     }
     

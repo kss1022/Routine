@@ -50,7 +50,7 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     ) {
         self.dependency = dependency
         //self.name = dependency.timerType.title
-        self.name = "Round"
+        self.name = "round".localized(tableName: "Timer")
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -62,16 +62,16 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
             TimerSectionListModel(
                 id: UUID(),
                 emoji: "🔥",
-                name: "Ready",
-                description: "Before start countdown",
+                name: "ready".localized(tableName: "Timer"),
+                description: "ready_description".localized(tableName: "Timer"),
                 sequence: 0,
                 type: .ready,
                 value: .countdown(min: 0, sec: 5)
             ),TimerSectionListModel(
                 id: UUID(),
                 emoji: "🧘‍♂️",
-                name: "Take a rest",
-                description: "Take a rest",
+                name: "take_a_rest".localized(tableName: "Timer"),
+                description: "take_a_rest_description".localized(tableName: "Timer"),
                 sequence: 1,
                 type: .rest,
                 value: .countdown(min: 1, sec: 10),
@@ -79,8 +79,8 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
             ),TimerSectionListModel(
                 id: UUID(),
                 emoji: "🏃‍♂️",
-                name: "Excercise",
-                description: "You can do it!!!",
+                name: "exercise".localized(tableName: "Timer"),
+                description: "exercise_description".localized(tableName: "Timer"),
                 sequence: 2,
                 type: .exercise,
                 value: .countdown(min: 0, sec: 5),
@@ -89,8 +89,8 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
             TimerSectionListModel(
                 id: UUID(),
                 emoji: "⛳️",
-                name: "Round",
-                description: "Round is excersise + rest",
+                name: "round".localized(tableName: "Timer"),
+                description: "round_description".localized(tableName: "Timer"),
                 sequence: 3,
                 type: .round,
                 value: .count(count: 3)
@@ -98,8 +98,8 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
             TimerSectionListModel(
                 id: UUID(),
                 emoji: "❄️",
-                name: "Cool Down",
-                description: "After excersice cool down",
+                name: "colldown".localized(tableName: "Timer"),
+                description: "colldown_description".localized(tableName: "Timer"),
                 sequence: 6,
                 type: .cooldown,
                 value: .countdown(min: 0, sec: 30)
@@ -110,7 +110,7 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
         
         router?.attachTimerEditTitle()
         router?.attachTimerSectionList()
-        presenter.setTitle(title: "Round")
+        presenter.setTitle(title: "round".localized(tableName: "Timer"))
     }
 
     override func willResignActive() {

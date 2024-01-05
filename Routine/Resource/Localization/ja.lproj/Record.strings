@@ -1,0 +1,32 @@
+
+
+// Record
+"record" = "記録";
+
+// RecordHome
+"check_your_top_acheive" = "あなたのトップを達成する🔥を確認してください";
+"check_your_weeklyTracker" = "weeklytrackerを確認してください";
+"your_achieve" = "あなたの達成";
+"top_achieve" = "トップの達成";
+"routine_achieve_isEmpty" = "ルーチン\ nの達成記録はまだありません。";
+"added_routine_isEmpty" = "まだルーチンを追加していません";
+
+// WeeklyTracker
+"weeklyTracker" = "WeeklyTracker";
+
+// YourAchieve
+"your_achieve" = "あなたの達成";
+"date_of_week" = "週の日付";
+"date_of_month" = "月の日付";
+"date_of_year" = "日付";
+"done_this_month" = "今月行われました";
+"totalDone" = "トータルドーン";
+"current_streak" = "現在のストリーク";
+"best_streak" = "最高のストリーク";
+
+// TopAcheive
+"total_number_of_achievements" = "成果の総数";
+"total_number_of_achievements_0" = "";
+"total_number_of_achievements_1" = "";
+"total_number_of_achievements_2" = "";
+"total_number_of_achievements_3" = "";

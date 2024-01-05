@@ -56,7 +56,7 @@ final class RoutineWeeklyTableViewController: UIViewController, RoutineWeeklyTab
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getBoldFont(size: 24.0)
         label.textColor = .secondaryLabel
-        label.text = "You haven't added\n any routines yet."
+        label.text = "added_routine_isEmpty".localized(tableName: "Record")
         label.numberOfLines = 2
         label.textAlignment = .center
         label.isHidden = true
@@ -93,8 +93,8 @@ final class RoutineWeeklyTableViewController: UIViewController, RoutineWeeklyTab
             tableCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emptyView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
         ])
     }
     

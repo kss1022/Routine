@@ -49,7 +49,7 @@ final class RepeatMontlyControl: UIControl{
         button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = .getFont(size: 12.0)
         
-        button.setTitle("Reset", for: .normal)
+        button.setTitle("reset".localized(tableName: "Routine"), for: .normal)
         button.addTarget(self, action: #selector(resetButtonTap), for: .touchUpInside)
         return button
     }()

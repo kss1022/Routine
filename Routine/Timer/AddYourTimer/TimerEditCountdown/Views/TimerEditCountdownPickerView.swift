@@ -115,8 +115,8 @@ extension TimerEditCountdownPickerView: UIPickerViewDelegate{
         }
 
         switch component{
-        case 0: pickerLabel?.text = "\(countdownHourArray[row]) Hour"
-        case 1: pickerLabel?.text =  "\(countdownMinArray[row]) Min"
+        case 0: pickerLabel?.text = "editTimerCountdown_hour".localizedWithFormat(tableName: "Timer" ,arguments: countdownHourArray[row]) //"\(countdownHourArray[row]) Hour"
+        case 1: pickerLabel?.text =  "editTimerCountdown_min".localizedWithFormat(tableName: "Timer" ,arguments: countdownMinArray[row]) //"\(countdownMinArray[row]) Min"
         default: fatalError("Invalid Component: \(component)")
         }
 

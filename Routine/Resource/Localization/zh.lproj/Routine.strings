@@ -1,0 +1,42 @@
+
+
+// Routine
+"routine" = "常规";
+
+// RoutineHome
+"all_time_of_the_day" = "例程列表";
+"today" = "今天";
+"yesterDay" = "昨天";
+"tomorrow" = "明天";
+"no_tasks" = "没有任务";
+
+// RoutineDetail
+"complete" = "完全的";
+"completed" = "完全的";
+"basic_Info" = "基本信息";
+"basic_info_doItOnce" = "做一次：％@";
+"basic_info_daliy" = "达利";
+"basic_info_weekly" = "每周：％@";
+"basic_info_Monthly" = "每月：％@";
+"basic_info_did_not_set_reminder" = "您没有设置提醒";
+"basic_info_reminder_at" = "提醒以％@";
+
+// CreateRoutine
+"pick_a_new_one" = "选择一个新的";
+"add_your_own" = "添加自己的";
+
+// AddYourRoutine
+"give_it_a_name" = "给它一个名字";
+"description" = "描述";
+"repeat" = "重复";
+"set_a_cycle_for_your_plan" = "为您的计划设置周期";
+"daliy" = "达利";
+"weekly" = "每周";
+"monthly" = "每月";
+"reset" = "重置";
+"reminder" = "提醒";
+"set_a_reminder" = "设置提醒";
+
+// RoutineEdit
+"edit" = "编辑";
+"delete" = "删除";

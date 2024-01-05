@@ -62,14 +62,14 @@ final class RoutineTopAcheiveTotalRecordInteractor: PresentableInteractor<Routin
                 let sub: String
                 switch totalCount{
                 case 0...100:
-                    sub = "Great effort! You may not have enough records yet, but if you continue steadily, you'll achieve significant results. Keep it up!"
+                    sub = "total_number_of_achievements_0".localized(tableName: "Record")
                 case 100...200:
-                    sub = "You've been consistently recording your routines. Shall we aim for higher goals together? Let's create a better version of yourself through new challenges!"
+                    sub = "total_number_of_achievements_1".localized(tableName: "Record")
                 case 200...300:
-                    sub = "Well done on starting to record! What goals would you like to set for the next time? Exciting opportunities for growth are waiting for you through new challenges."
+                    sub = "total_number_of_achievements_2".localized(tableName: "Record")
                 case 300...:
-                    sub = "I can see your effort in recording routines! Try creating even greater achievements with more records. I'm looking forward to what's ahead!"
-                default: sub = ""
+                    sub = "total_number_of_achievements_3".localized(tableName: "Record")
+                default: fatalError("Invalid ToTalCount")
                 }
                 
                 self.presenter.setTotalCount(totalCount: totalCount, sub: sub)

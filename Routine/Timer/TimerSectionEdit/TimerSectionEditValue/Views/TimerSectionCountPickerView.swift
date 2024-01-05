@@ -73,7 +73,8 @@ extension TimerSectionCountPickerView: UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        "\(countNumberArray[row]) Reps"
+        
+        "editTimerCountdown_rep".localizedWithFormat(tableName: "Timer", arguments: countNumberArray[row]) ////"\(countNumberArray[row]) Reps"
     }
 }
 

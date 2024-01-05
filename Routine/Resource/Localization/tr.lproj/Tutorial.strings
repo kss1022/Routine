@@ -1,0 +1,30 @@
+
+
+// Common
+"continue" = "Devam etmek";
+
+// TutorialMain
+"hello_there" = "Merhaba 👋";
+"embark_on_journey_together" = "Yeni alışkanlıklar oluşturmak ve hedeflerinize ulaşmak için birlikte bir yolculuğa çıkalım.";
+
+// TutorialSplash
+"splash_0" = "Kendime söz ver.";
+"splash_1" = "Benzersiz rutininizi oluşturun. 🤫";
+"splash_2" = "Baskı olmadan kontrol edin.";
+"splash_3" = "Rutinlerin Yolculuğunun Keyfini Çıkarın 🥳";
+
+// TutorialRoutine
+"choose_habit_start" = "Hemen başlamak için bir habbit seçin!";
+"drink_water" = "Su iç";
+"reading" = "Okuma";
+"exercise" = "Egzersiz yapmak";
+"write" = "Yazmak";
+
+// TutorailProfile
+"set_profile_memoji" = "Sizi temsil eden bir profil memojisi ayarlayın";
+
+// TutorialTimer
+"for_forget_your_routine" = "Rutininizi unutabilecek olan senin için";
+"allow_alarm_can_send" = "Rutinin size bir bildirim gönderebilmesi için alarm verin.";
+"allow_remidner" = "Hatırlatmaya İzin Ver";
+"not_now" = "Şimdi değil";

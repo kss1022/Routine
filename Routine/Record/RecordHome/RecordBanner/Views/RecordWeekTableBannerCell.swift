@@ -13,7 +13,7 @@ final class RecordWeekTableBannerCell: UICollectionViewCell{
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Check your weeklyTracker✅"
+        label.text = "check_your_top_acheive".localized(tableName: "Record")
         label.font = .getBoldFont(size: 18.0)
         label.textColor = .label
         label.numberOfLines = 2

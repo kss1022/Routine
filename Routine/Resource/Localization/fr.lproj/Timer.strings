@@ -1,0 +1,54 @@
+
+
+// Timer
+"timer" = "Minuteur";
+
+// TimerHome
+"focus" = "Se concentrer";
+"tabata" = "Tabata";
+"round" = "Rond";
+"repeat" = "Répéter";
+"interval" = "Intervalle";
+
+// StartTimer
+"finish_timer" = "Timer de finition";
+"cancel_timer" = "Annuler la minuterie";
+"dismiss" = "Rejeter";
+"timer_remaining" = "Minuterie restante";
+"start" = "Commencer";
+"pause" = "Pause";
+"cancel" = "Annuler";
+
+// CreateTimer
+"create_your_timer" = "Créez votre minuterie";
+
+// AddYourTimer
+"give_it_a_name" = "Donne lui un nom";
+"set_duration" = "Régler la durée";
+"done" = "Fait";
+"editTimerCountdown_hour" = "%dHour";
+"editTimerCountdown_min" = "%dMin";
+"editTimerCountdown_sec" = "%dSec";
+"editTimerCountdown_rep" = "%dRep";
+
+// TimerSectionEdit
+"edit_section" = "Modifier la section";
+"name" = "Nom";
+"description" = "Description";
+"ready" = "Prêt";
+"ready_description" = "Avant le compte à rebours";
+"take_a_rest" = "Repose toi un peu";
+"take_a_rest_description" = "Repose toi un peu";
+"exercise" = "Exercice";
+"exercise_description" = "Tu peux le faire!";
+"round" = "Rond";
+"round_description" = "La routine est l'exercice + repos";
+"cycle" = "Faire du vélo";
+"cycle_description" = "Le cycle est un n rond";
+"cycle_rest" = "Repos de vélo";
+"cycle_rest_description" = "Repose toi un peu";
+"colldown" = "Collier";
+"colldown_description" = "Après l'exercice Coll Down";
+
+// TimerSelect
+"choose_your_time" = "Choisissez votre minuterie";

@@ -21,12 +21,12 @@ final class TimerSetup{
     
     func initTimer() async throws{
         let createFocusTimer = CreateFocusTimer(
-            name: "Focus",
+            name: "focus".localized(tableName: "Timer"),
             min: 60
         )
         
         let createTabataTimer = CreateSectionTimer(
-            name: "Tabata",
+            name: "tabata".localized(tableName: "Timer"),
             createSections: [
                 ready(),
                 rest(),
@@ -51,7 +51,7 @@ final class TimerSetup{
         )
         
         let createRoundTimer = CreateSectionTimer(
-            name: "Round",
+            name: "round".localized(tableName: "Timer"),
             createSections: [
                 ready(),
                 rest(),
@@ -87,8 +87,8 @@ private extension TimerSetup{
         TimerSectionListModel(
             id: UUID(),
             emoji: "🔥",
-            name: "Ready",
-            description: "Before start countdown",
+            name: "ready".localized(tableName: "Timer"),
+            description: "ready_description".localized(tableName: "Timer"),
             sequence: 0,
             type: .ready,
             value: .countdown(min: 0, sec: 5)
@@ -99,8 +99,8 @@ private extension TimerSetup{
         TimerSectionListModel(
             id: UUID(),
             emoji: "🧘‍♂️",
-            name: "Take a rest",
-            description: "Take a rest",
+            name: "take_a_rest".localized(tableName: "Timer"),
+            description: "take_a_rest_description".localized(tableName: "Timer"),
             sequence: 1,
             type: .rest,
             value: .countdown(min: 1, sec: 10),
@@ -112,8 +112,8 @@ private extension TimerSetup{
         TimerSectionListModel(
             id: UUID(),
             emoji: "🏃‍♂️",
-            name: "Excercise",
-            description: "You can do it!!!",
+            name: "exercise".localized(tableName: "Timer"),
+            description: "exercise_description".localized(tableName: "Timer"),
             sequence: 2,
             type: .exercise,
             value: .countdown(min: 0, sec: 5),
@@ -125,8 +125,8 @@ private extension TimerSetup{
         TimerSectionListModel(
             id: UUID(),
             emoji: "⛳️",
-            name: "Round",
-            description: "Round is excersise + rest",
+            name: "round".localized(tableName: "Timer"),
+            description: "round_description".localized(tableName: "Timer"),
             sequence: 3,
             type: .round,
             value: .count(count: 3)
@@ -137,8 +137,8 @@ private extension TimerSetup{
         TimerSectionListModel(
             id: UUID(),
             emoji: "🔄",
-            name: "Cycle",
-            description: "Cycle is \(3) round",
+            name: "cycle".localized(tableName: "Timer"),
+            description: "cycle_description".localized(tableName: "Timer"),
             sequence: 4,
             type: .cycle,
             value: .count(count: 3),
@@ -150,8 +150,8 @@ private extension TimerSetup{
         TimerSectionListModel(
             id: UUID(),
             emoji: "🧘‍♀️",
-            name: "Cycle Rest",
-            description: "Take a rest",
+            name: "cycle_rest".localized(tableName: "Timer"),
+            description: "cycle_rest_description".localized(tableName: "Timer"),
             sequence: 5,
             type: .cycleRest,
             value: .countdown(min: 0, sec: 30),
@@ -163,8 +163,8 @@ private extension TimerSetup{
         TimerSectionListModel(
             id: UUID(),
             emoji: "❄️",
-            name: "Cool Down",
-            description: "After excersice cool down",
+            name: "colldown".localized(tableName: "Timer"),
+            description: "colldown_description".localized(tableName: "Timer"),
             sequence: 6,
             type: .cooldown,
             value: .countdown(min: 0, sec: 30)

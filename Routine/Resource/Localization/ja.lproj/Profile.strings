@@ -1,0 +1,55 @@
+
+
+// Profile
+"profile" = "プロフィール";
+
+// ProfileHome
+"profile_name_empty" = "こんにちは〜👋";
+"system_setting" = "システム設定";
+"alarm" = "アルラム";
+"theme" = "テーマ";
+"font" = "フォント";
+"appIcon" = "Appicon";
+"team" = "チーム";
+"guide" = "ガイド";
+"feedback" = "フィードバック";
+"info" = "情報";
+"request_review" = "エンジンルーチン？\ n5スターをお願いします";
+
+// EditProfile
+"add_your_name" = "あなたの名前を追加してください！";
+"introduce_yourself" = "自己紹介";
+"emoticon" = "絵文字";
+"style" = "スタイル";
+"enter_want_to_change_name" = "変更する名前を入力します";
+"enter_want_to_change_introduction" = "変更する紹介を入力してください";
+"name" = "名前";
+"introduction" = "導入";
+
+// SettingAlarm
+"onOff" = "オンオフ";
+"daliy_reminder" = "daliyリマインダー";
+"routine_reminder" = "Rotuineリマインダー";
+
+// SettingTheme
+"system" = "システム";
+"light" = "ライト";
+"dark" = "暗い";
+
+// Setting Font
+"font_preview" = "こんにちはルーチン〜👋";
+"font_size" = "フォントサイズ";
+"font_typeface" = "フォント書体";
+"os_setting" = "OS設定";
+"os_setting_help" = "[設定]> [ディスプレイと[明]> [テキスト]サイズの下のOS設定を変更できます。";
+"os_typeface" = "OS書体";
+
+// Feedback
+"feedback_title" = "こんにちはロティン！";
+"feedback_message" = "フィードバックまたはバグレポートは大歓迎です:)";
+"saved_draft_folder" = "ドラフトフォルダーに保存されます";
+"saved_draft_folder_message" = "ドラフトされた電子メールは、ドラフトフォルダーに保存されています。";
+"send_feedback" = "フィードバックを送信します";
+"thank_for_feedback" = "フィードバックありがとうございます";
+"send_mail_fail" = "メールフェイルを送信します";
+"confirm" = "確認する";

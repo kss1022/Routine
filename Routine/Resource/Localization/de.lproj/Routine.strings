@@ -1,0 +1,42 @@
+
+
+// Routine
+"routine" = "Routine";
+
+// RoutineHome
+"all_time_of_the_day" = "Routineliste";
+"today" = "Heute";
+"yesterDay" = "Gestern";
+"tomorrow" = "Morgen";
+"no_tasks" = "Nicht fragen";
+
+// RoutineDetail
+"complete" = "Vollständig";
+"completed" = "Vollendet";
+"basic_Info" = "Basisinformation";
+"basic_info_doItOnce" = "Mach es einmal: %@";
+"basic_info_daliy" = "Daliy";
+"basic_info_weekly" = "Wöchentlich: %@";
+"basic_info_Monthly" = "Monatlich: %@";
+"basic_info_did_not_set_reminder" = "Sie haben Erinnerungen nicht gesetzt";
+"basic_info_reminder_at" = "Erinnerung bei %@";
+
+// CreateRoutine
+"pick_a_new_one" = "Wählen Sie eine neue aus";
+"add_your_own" = "Füge dein eigenes hinzu";
+
+// AddYourRoutine
+"give_it_a_name" = "Gib ihm einen Namen";
+"description" = "Beschreibung";
+"repeat" = "Wiederholen";
+"set_a_cycle_for_your_plan" = "Legen Sie einen Zyklus für Ihren Plan ein";
+"daliy" = "Daliy";
+"weekly" = "Wöchentlich";
+"monthly" = "Monatlich";
+"reset" = "Zurücksetzen";
+"reminder" = "Erinnerung";
+"set_a_reminder" = "Stellen Sie eine Erinnerung ein";
+
+// RoutineEdit
+"edit" = "Bearbeiten";
+"delete" = "Löschen";

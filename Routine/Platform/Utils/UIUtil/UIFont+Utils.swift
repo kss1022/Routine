@@ -13,8 +13,8 @@ public extension UIFont {
     
     
     //MARK: Public
-    static var appFontName = "AppleSDGothicNeo-Regular"
-    static var appBoldFontName = "AppleSDGothicNeo-Bold"
+    static var appFontName = "Bradley Hand" //"AppleSDGothicNeo-Regular"
+    static var appBoldFontName = "Bradley Hand" //"AppleSDGothicNeo-Bold"
     
     static func updateAppFont(fontName: String){
         UIFont.appFontName = fontName

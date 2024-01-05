@@ -83,7 +83,7 @@ final class AppTutorialTimerViewController: UIViewController, AppTutorialTimerPr
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .getFont(size: 24.0)
-        button.setTitle("Allow Reminder", for: .normal)
+        button.setTitle("allow_remidner".localized(tableName: "Tutorial"), for: .normal)
         
         
         button.contentEdgeInsets = .init(top: 16.0, left: 32.0, bottom: 16.0, right: 32.0)
@@ -96,7 +96,7 @@ final class AppTutorialTimerViewController: UIViewController, AppTutorialTimerPr
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .getFont(size: 15.0)
-        button.setTitle("Not Now", for: .normal)
+        button.setTitle("not_now".localized(tableName: "Tutorial"), for: .normal)
         
         button.addTarget(self, action: #selector(notNowButtonTap), for: .touchUpInside)
         return button
@@ -139,8 +139,8 @@ final class AppTutorialTimerViewController: UIViewController, AppTutorialTimerPr
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -inset)
         ])
         
-        titleLabel.text = "For you who can forget your routine"
-        subTitleLabel.text = "Allow an alarm so that the routine can send you a notification."
+        titleLabel.text = "for_forget_your_routine".localized(tableName: "Tutorial")
+        subTitleLabel.text = "allow_alarm_can_send".localized(tableName: "Tutorial")
     }
     
     @objc

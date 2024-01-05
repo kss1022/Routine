@@ -52,7 +52,7 @@ final class RecordRoutineListDetailViewController: UIViewController, RecordRouti
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getBoldFont(size: 24.0)
         label.textColor = .secondaryLabel
-        label.text = "You haven't added\n any routines yet."
+        label.text = "added_routine_isEmpty".localized(tableName: "Record")
         label.numberOfLines = 2
         label.textAlignment = .center
         label.isHidden = true
@@ -74,7 +74,7 @@ final class RecordRoutineListDetailViewController: UIViewController, RecordRouti
     
     
     private func setLayout(){
-        title = "Your Acheive"
+        title = "your_achieve".localized(tableName: "Record")
         
         view.addSubview(collectionView)
         view.addSubview(emptyView)

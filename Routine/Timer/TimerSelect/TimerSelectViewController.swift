@@ -69,7 +69,7 @@ final class TimerSelectViewController: UIViewController, TimerSelectPresentable,
     }
     
     private func setLayout(){
-        title = "Choose your timer"
+        title = "choose_your_time".localized(tableName: "Timer")
         navigationItem.leftBarButtonItem = closeBarButtonItem
         navigationItem.rightBarButtonItem = createTimerBarButtonItem
         

@@ -46,7 +46,7 @@ final class RoutineTopAcheiveChartViewController: UIViewController, RoutineTopAc
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getBoldFont(size: 24.0)
         label.textColor = .systemBackground
-        label.text = "You don't have any routine\n achievement records yet."
+        label.text = "routine_achieve_isEmpty".localized(tableName: "Record")
         label.numberOfLines = 2
         label.textAlignment = .center
         label.isHidden = true

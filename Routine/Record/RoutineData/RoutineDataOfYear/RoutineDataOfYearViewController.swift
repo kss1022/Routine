@@ -25,7 +25,7 @@ final class RoutineDataOfYearViewController: UIViewController, RoutineDataOfYear
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setBoldFont(style: .headline)
         label.textColor = .label
-        label.text = "Date Of Year"
+        label.text = "date_of_year".localized(tableName: "Record")
         return label
     }()
     

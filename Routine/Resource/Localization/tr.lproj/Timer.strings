@@ -1,0 +1,54 @@
+
+
+// Timer
+"timer" = "Zamanlayıcı";
+
+// TimerHome
+"focus" = "Odak";
+"tabata" = "Tabata";
+"round" = "Yuvarlak";
+"repeat" = "Tekrarlamak";
+"interval" = "Aralık";
+
+// StartTimer
+"finish_timer" = "Bitirme zamanlayıcısı";
+"cancel_timer" = "Zamanlayıcıyı iptal et";
+"dismiss" = "Azletmek";
+"timer_remaining" = "Kalan zamanlayıcı";
+"start" = "Başlangıç";
+"pause" = "Duraklat";
+"cancel" = "İptal etmek";
+
+// CreateTimer
+"create_your_timer" = "Zamanlayıcınızı Oluşturun";
+
+// AddYourTimer
+"give_it_a_name" = "Bir isim ver";
+"set_duration" = "Set Süre";
+"done" = "Tamamlamak";
+"editTimerCountdown_hour" = "%dHour";
+"editTimerCountdown_min" = "%dMin";
+"editTimerCountdown_sec" = "%dSec";
+"editTimerCountdown_rep" = "%dRep";
+
+// TimerSectionEdit
+"edit_section" = "Bölümü düzenle";
+"name" = "İsim";
+"description" = "Tanım";
+"ready" = "Hazır";
+"ready_description" = "Başlamadan Önce";
+"take_a_rest" = "Dinlenmek";
+"take_a_rest_description" = "Dinlenmek";
+"exercise" = "Egzersiz yapmak";
+"exercise_description" = "Bunu yapabilirsin!";
+"round" = "Yuvarlak";
+"round_description" = "Rutin egzersiz + dinlenme";
+"cycle" = "Döngü";
+"cycle_description" = "Döngü bir n tur";
+"cycle_rest" = "Döngü dinlenmesi";
+"cycle_rest_description" = "Dinlenmek";
+"colldown" = "Toparlamak";
+"colldown_description" = "Egzersiz yaptıktan sonra";
+
+// TimerSelect
+"choose_your_time" = "Zamanlayıcınızı seçin";

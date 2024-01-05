@@ -93,11 +93,11 @@ extension SettingAppThemeViewController: UITableViewDataSource{
         
         switch indexPath.row{
         case 0:
-            cell.bindView(title: "System", imageName: "gearshape")
+            cell.bindView(title: "system".localized(tableName: "Profile"), imageName: "gearshape")
         case 1:
-            cell.bindView(title: "Light", imageName: "sun.max")
+            cell.bindView(title: "light".localized(tableName: "Profile"), imageName: "sun.max")
         case 2:
-            cell.bindView(title: "Dark", imageName: "moon")
+            cell.bindView(title: "dark".localized(tableName: "Profile"), imageName: "moon")
         default: fatalError("Invalid IndexPath.row")
         }
                                 

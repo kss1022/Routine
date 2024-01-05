@@ -54,7 +54,7 @@ final class AppTutorialRoutineViewController: UIViewController, AppTutorialRouti
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .getFont(size: 24.0)
-        button.setTitle("Continue", for: .normal)
+        button.setTitle("continue".localized(tableName: "Tutorial"), for: .normal)
         
                 
         button.contentEdgeInsets = .init(top: 16.0, left: 32.0, bottom: 16.0, right: 32.0)
@@ -99,7 +99,7 @@ final class AppTutorialRoutineViewController: UIViewController, AppTutorialRouti
             continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        titleLabel.text = "Choose a habbit to start right away!"
+        titleLabel.text = "choose_habit_start".localized(tableName: "Tutorial")
         continueButton.isHidden = true
     }
     

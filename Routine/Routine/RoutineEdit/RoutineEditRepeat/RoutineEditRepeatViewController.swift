@@ -35,8 +35,8 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
     private lazy var repeatEditToogleView: RoutineEditToogleView = {
         let toogleView = RoutineEditToogleView(
             image: UIImage(systemName: "repeat.circle.fill"),
-            title: "Repeat",
-            subTitle: "Set a Cycle for Your Plan"
+            title: "repeat".localized(tableName: "Routine"),
+            subTitle: "set_a_cycle_for_your_plan".localized(tableName: "Routine")
         )
         
         toogleView.toogle.addTarget(self, action: #selector(repeatToogleValueChange(sender:)), for: .valueChanged)
@@ -44,7 +44,7 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
     }()
     
     private lazy var repeatSegmentControl: RepeatSegmentControl = {
-        let segmentControl =  RepeatSegmentControl(items: ["Daliy" , "Weekly", "Montly"])
+        let segmentControl =  RepeatSegmentControl(items: ["daliy".localized(tableName: "Routine") , "weekly".localized(tableName: "Routine"), "monthly".localized(tableName: "Routine")])
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
         segmentControl.backgroundColor = .secondarySystemBackground
         
@@ -244,16 +244,17 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
     }
     
     private func setDaliySubTitle(){
-        repeatEditToogleView.setSubTitle("Daily")
+        repeatEditToogleView.setSubTitle("daliy".localized(tableName: "Routine"))
     }
     
     private func setWeeklySubTitle(){
+            
         let selected = repeatWeeklyControl.weeklys.routineWeeklys.filter { $0.isSelected }
-            .map { $0.weekly.label() }
+            .map { $0.weekly.veryShortWeekydaySymbols() }
                     
         var subTitle = selected.joined(separator: ", ")
         if subTitle.isEmpty{
-            subTitle = "Weekly"
+            subTitle = "weekly".localized(tableName: "Routine")
         }
         repeatEditToogleView.setSubTitle(subTitle)
     }
@@ -267,7 +268,7 @@ final class RoutineEditRepeatViewController: UIViewController, RoutineEditRepeat
         var subTitle = selected.map(String.init)
             .joined(separator: ", ")
         if subTitle.isEmpty{
-            subTitle = "Monthly"
+            subTitle = "monthly".localized(tableName: "Routine")
         }
         
         repeatEditToogleView.setSubTitle(subTitle)

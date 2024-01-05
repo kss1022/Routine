@@ -1,0 +1,54 @@
+
+
+// Timer
+"timer" = "타이머";
+
+// TimerHome
+"focus" = "집중";
+"tabata" = "타바타";
+"round" = "라운드";
+"repeat" = "반복";
+"interval" = "인터벌";
+
+// StartTimer
+"finish_timer" = "타이머 완료";
+"cancel_timer" = "타이머 취소";
+"dismiss" = "닫기";
+"timer_remaining" = "남은 시간";
+"start" = "시작";
+"pause" = "일시 정지";
+"cancel" = "취소";
+
+// CreateTimer
+"create_your_timer" = "나만의 타이머 생성";
+
+// AddYourTimer
+"give_it_a_name" = "이름을 지어주세요";
+"set_duration" = "시간 설정";
+"done" = "완료";
+"editTimerCountdown_hour" = "%d시간";
+"editTimerCountdown_min" = "%d분";
+"editTimerCountdown_sec" = "%d초";
+"editTimerCountdown_rep" = "%d회";
+
+// TimerSectionEdit
+"edit_section" = "섹션 수정";
+"name" = "이름";
+"description" = "정보";
+"ready" = "준비";
+"ready_description" = "시작하기 전 카운트다운";
+"take_a_rest" = "휴식";
+"take_a_rest_description" = "휴식";
+"exercise" = "운동";
+"exercise_description" = "할 수 있어요!";
+"round" = "라운드";
+"round_description" = "라운드는 운동+휴식입니다.";
+"cycle" = "사이클";
+"cycle_description" = "사이클은 n 라운드 입니다";
+"cycle_rest" = "사이클 휴식";
+"cycle_rest_description" = "휴식";
+"colldown" = "쿨 다운";
+"colldown_description" = "운동 후 쿨 다운";
+
+// TimerSelect
+"choose_your_time" = "타이머를 선택하세요";

@@ -1,0 +1,32 @@
+
+
+// Record
+"record" = "Record";
+
+// RecordHome
+"check_your_top_acheive" = "Check Your Top Achieve 🔥";
+"check_your_weeklyTracker" = "Check Your WeeklyTracker ✅";
+"your_achieve" = "Your Achieve";
+"top_achieve" = "Top Achieve";
+"routine_achieve_isEmpty" = "You don't have any routine\n achievement records yet.";
+"added_routine_isEmpty" = "You haven't added\n any routines yet";
+
+// WeeklyTracker
+"weeklyTracker" = "WeeklyTracker";
+
+// YourAchieve
+"your_achieve" = "Your Achieve";
+"date_of_week" = "Date of week";
+"date_of_month" = "Date of Month";
+"date_of_year" = "Date Of Year";
+"done_this_month" = "Done this month";
+"totalDone" = "TotalDone";
+"current_streak" = "Current Streak";
+"best_streak" = "Best Streak";
+
+// TopAcheive
+"total_number_of_achievements" = "Total number of achievements";
+"total_number_of_achievements_0" = "Great effort! You may not have enough records yet, but if you continue steadily, you'll achieve significant results. Keep it up!";
+"total_number_of_achievements_1" = "You've been consistently recording your routines. Shall we aim for higher goals together? Let's create a better version of yourself through new challenges!";
+"total_number_of_achievements_2" = "Well done on starting to record! What goals would you like to set for the next time? Exciting opportunities for growth are waiting for you through new challenges.";
+"total_number_of_achievements_3" = "I can see your effort in recording routines! Try creating even greater achievements with more records. I'm looking forward to what's ahead!";

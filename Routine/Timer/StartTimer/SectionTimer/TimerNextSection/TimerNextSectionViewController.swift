@@ -40,7 +40,7 @@ final class TimerNextSectionViewController: UIViewController, TimerNextSectionPr
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.setFont(style: .headline)
-        label.textColor = .label
+        label.textColor = .white
         return label
     }()
     

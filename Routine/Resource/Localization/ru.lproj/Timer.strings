@@ -1,0 +1,54 @@
+
+
+// Timer
+"timer" = "Таймер";
+
+// TimerHome
+"focus" = "Фокус";
+"tabata" = "Табата";
+"round" = "Круглый";
+"repeat" = "Повторить";
+"interval" = "Интервал";
+
+// StartTimer
+"finish_timer" = "Завершить таймер";
+"cancel_timer" = "Отменить таймер";
+"dismiss" = "Увольнять";
+"timer_remaining" = "Таймер остается";
+"start" = "Начинать";
+"pause" = "Пауза";
+"cancel" = "Отмена";
+
+// CreateTimer
+"create_your_timer" = "Создайте свой таймер";
+
+// AddYourTimer
+"give_it_a_name" = "Давать ему имя";
+"set_duration" = "Установка продолжительность";
+"done" = "Сделанный";
+"editTimerCountdown_hour" = "%dHour";
+"editTimerCountdown_min" = "%dMin";
+"editTimerCountdown_sec" = "%dSec";
+"editTimerCountdown_rep" = "%dRep";
+
+// TimerSectionEdit
+"edit_section" = "Редактировать раздел";
+"name" = "Имя";
+"description" = "Описание";
+"ready" = "Готовый";
+"ready_description" = "Перед началом обратного отсчета";
+"take_a_rest" = "Отдохни";
+"take_a_rest_description" = "Отдохни";
+"exercise" = "Упражнение";
+"exercise_description" = "Ты можешь это сделать!";
+"round" = "Круглый";
+"round_description" = "Рутина - это Excircise + отдых";
+"cycle" = "Цикл";
+"cycle_description" = "Цикл - n раунд";
+"cycle_rest" = "Велосипедный отдых";
+"cycle_rest_description" = "Отдохни";
+"colldown" = "СОБЛЮДАТЬ";
+"colldown_description" = "После упражнений Coll Down";
+
+// TimerSelect
+"choose_your_time" = "Выберите свой таймер";

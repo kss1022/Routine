@@ -37,10 +37,11 @@ final class GressHeaderView: UIScrollView{
     }
     
     private func setView(){
-        self.labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct", "Nov", "Dec"].map { week in
+        //["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct", "Nov", "Dec"]
+        self.labels = Calendar.current.shortMonthSymbols.map { month in
             let label = label()
 
-            label.text = week
+            label.text = month
             return label
         }
         

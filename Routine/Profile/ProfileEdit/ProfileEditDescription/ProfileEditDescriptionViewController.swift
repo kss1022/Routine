@@ -27,7 +27,7 @@ final class ProfileEditDescriptionViewController: UIViewController, ProfileEditD
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getBoldFont(size: 34.0)
         label.numberOfLines = 2
-        label.text = "Enter the description you want to change"
+        label.text = "enter_want_to_change_introduction".localized(tableName: "Profile")
         return label
     }()
     
@@ -55,7 +55,7 @@ final class ProfileEditDescriptionViewController: UIViewController, ProfileEditD
         textFeild.returnKeyType = .done
         
         
-        textFeild.placeholder = "Description"
+        textFeild.placeholder = "introduction".localized(tableName: "Profile")
         textFeild.delegate = self
         
         return textFeild

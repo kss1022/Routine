@@ -55,19 +55,19 @@ final class RoutineTotalRecordInteractor: PresentableInteractor<RoutineTotalReco
             .sink { model in
                 let viewModels = [
                     RoutineTotalRecordListViewModel(
-                        title: "Done this month",
+                        title: "done_this_month".localized(tableName: "Record"),
                         done: "\(model.doneThisMonth)"
                     ),
                     RoutineTotalRecordListViewModel(
-                        title: "TotalDone",
+                        title: "totalDone".localized(tableName: "Record"),
                         done: "\(model.totalDone)"
                     ),
                     RoutineTotalRecordListViewModel(
-                        title: "Current Streak",
+                        title: "current_streak".localized(tableName: "Record"),
                         done: "\(model.currentStreak)"
                     ),
                     RoutineTotalRecordListViewModel(
-                        title: "Best Streak",
+                        title: "best_streak".localized(tableName: "Record"),
                         done: "\(model.bestStreak)"
                     ),
 //                    RoutineTotalRecordListViewModel(

@@ -20,9 +20,9 @@ struct TimerListViewModel: Hashable{
         
         switch model.timerType {
         case .focus:
-            self.info = "Focus"
+            self.info = "focus".localized(tableName: "Timer")
         case .section:
-            self.info = "Interval"
+            self.info = "interval".localized(tableName: "Timer")
         }
         
         

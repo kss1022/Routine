@@ -1,0 +1,55 @@
+
+
+// Profile
+"profile" = "Profile";
+
+// ProfileHome
+"profile_name_empty" = "Hello ~  👋";
+"system_setting" = "System Setting";
+"alarm" = "Alram";
+"theme" = "Theme";
+"font" = "Font";
+"appIcon" = "AppIcon";
+"team" = "Team";
+"guide" = "Guide";
+"feedback" = "Feedback";
+"info" = "info";
+"request_review" = "Enjoing Routine?\n5 stars please";
+
+// EditProfile
+"add_your_name" = "Add Your Name!";
+"introduce_yourself" = "Introduce yourself ✍️";
+"emoticon" = "Emoticoin";
+"style" = "Style";
+"enter_want_to_change_name" = "Enter the name you want to change";
+"enter_want_to_change_introduction" = "Enter the introduction you want to change";
+"name" = "Name";
+"introduction" = "Introduction";
+
+// SettingAlarm
+"onOff" = "ONOFF";
+"daliy_reminder" = "Daliy Reminder";
+"routine_reminder" = "Rotuine Reminder";
+
+// SettingTheme
+"system" = "System";
+"light" = "Light";
+"dark" = "Dark";
+
+// Setting Font
+"font_preview" = "Hello Routine~👋";
+"font_size" = "Font Size";
+"font_typeface" = "Font Typeface";
+"os_setting" = "OS Setting";
+"os_setting_help" = "You can change OS settings under Settings > Display and Brightness > Texque Size.";
+"os_typeface" = "OS Typeface";
+
+// Feedback
+"feedback_title" = "Hello Rotine!";
+"feedback_message" = "Any feedback or bug reports are welcome :)";
+"saved_draft_folder" = "Saved in Draft Folder";
+"saved_draft_folder_message" = "The drafted email has been saved in the draft folder.";
+"send_feedback" = "Send Feedback";
+"thank_for_feedback" = "Thank you for your feedback🙏";
+"send_mail_fail" = "Send Mail Fail😰";
+"confirm" = "Confirm";

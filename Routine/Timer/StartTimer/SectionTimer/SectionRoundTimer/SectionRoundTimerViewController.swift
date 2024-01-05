@@ -61,7 +61,7 @@ final class SectionRoundTimerViewController: UIViewController, SectionRoundTimer
         button.setTitleColor(.white, for: .normal)
         button.contentEdgeInsets = .init(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         
-        button.setTitle("Cancle", for: .normal)
+        button.setTitle("cancel".localized(tableName: "Timer"), for: .normal)
         button.backgroundColor = UIColor(hex: "#5B5B5BFF")
         
         button.addTarget(self, action: #selector(cancelButtonTap), for: .touchUpInside)
@@ -166,19 +166,19 @@ final class SectionRoundTimerViewController: UIViewController, SectionRoundTimer
     
     // MARK: Presentable
     func showStartButton() {
-        activeButton.setTitle("Start", for: .normal)
+        activeButton.setTitle("start".localized(tableName: "Timer"), for: .normal)
         activeButton.setTitleColor(.systemGreen, for: .normal)
         activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
     }
     
     func showPauseButton() {
-        activeButton.setTitle("Pause", for: .normal)
+        activeButton.setTitle("pause".localized(tableName: "Timer"), for: .normal)
         activeButton.setTitleColor(.systemOrange, for: .normal)
         activeButton.backgroundColor = .systemOrange.withAlphaComponent(0.5)
     }
     
     func showResumeButton() {
-        activeButton.setTitle("Resume", for: .normal)
+        activeButton.setTitle("resume".localized(tableName: "Timer"), for: .normal)
         activeButton.setTitleColor(.systemGreen, for: .normal)
         activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
     }

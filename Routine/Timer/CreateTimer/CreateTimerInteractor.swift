@@ -46,7 +46,7 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
         
         let models = [
             CreateTimerModel(
-                title: "Focus",
+                title: "focus".localized(tableName: "Timer"),
                 description: "Focus",
                 imageName: "createYourTimer_3",
                 timerType: .focus,
@@ -54,16 +54,16 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
                     self?.router?.attachAddYourTimer(timerType: .focus)
                 }),
             CreateTimerModel(
-                title: "Tabata",
-                description: "Tabata Tabata Tabata Tabata Tabata Tabata Tabata Tabata Tabata Tabata",
+                title: "tabata".localized(tableName: "Timer"),
+                description: "Tabata",
                 imageName: "createYourTimer_1",
                 timerType: .tabata,
                 tapHandler: { [weak self] in
                     self?.router?.attachAddYourTimer(timerType: .tabata)
                 }),
             CreateTimerModel(
-                title: "Round",
-                description: "Round Round Round",
+                title: "round".localized(tableName: "Timer"),
+                description: "Round",
                 imageName: "createYourTimer_2",
                 timerType: .round,
                 tapHandler: { [weak self] in

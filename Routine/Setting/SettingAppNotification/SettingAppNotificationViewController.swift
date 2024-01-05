@@ -60,7 +60,7 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
     
     
     private func setLayout(){
-        title = "Setting Alarm"
+        //title = "Setting Alarm"
         view.backgroundColor = .systemBackground
         
         view.addSubview(tableView)
@@ -83,8 +83,7 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
     }
 
  
-    func setAlarm(_ viewModel: SettingAlarmViewModel) {
-        
+    func setAlarm(_ viewModel: SettingAlarmViewModel) {            
         if let alarm = self.alarm{
             if alarm.isOn && !viewModel.isOn{
                 self.alarm = viewModel
@@ -98,7 +97,8 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
             }                        
         }else{
             self.alarm = viewModel
-            tableView.reloadSections([0], with: .none)
+            tableView.reloadData()
+            //tableView.reloadSections([0], with: .none)
         }
         
         
@@ -108,7 +108,7 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
         if self.daliyReminder == nil{
             self.daliyReminder = viewModel
             
-            if (self.alarm?.isOn ?? true){
+            if (self.alarm?.isOn ?? false){
                 tableView.reloadSections([1], with: .none)
             }
             
@@ -117,7 +117,7 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
         
         self.daliyReminder = viewModel
         
-        if (self.alarm?.isOn ?? true){
+        if (self.alarm?.isOn ?? false){
             tableView.reloadRows(at: [.init(row: 0, section: 1)], with: .none)
         }
     }
@@ -126,7 +126,7 @@ final class SettingAppNotificationViewController: UIViewController, SettingAppNo
     func setRoutineReminders(_ viewModels: [SettingRoutineReminderViewModel]) {
         self.routineReminders = viewModels
         
-        if (self.alarm?.isOn ?? true){
+        if (self.alarm?.isOn ?? false){
             tableView.reloadSections([2], with: .none)
         }        
     }
@@ -148,7 +148,9 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if !(alarm?.isOn ?? true){
+        guard let alarm = self.alarm else { return 0 }
+        
+        if !alarm.isOn{
             return 1
         }
         
@@ -240,17 +242,17 @@ extension SettingAppNotificationViewController: UITableViewDataSource{
         switch section{
         case 0 : 
             //MARK: ONFF
-            content.text = "OnOff"
+            content.text = "onOff".localized(tableName: "Profile")
         case 1:
             //MARK: DALIY REMINDER
-            content.text = "Daliy Reminder"
+            content.text = "daliy_reminder".localized(tableName: "Profile")
         case 2:
             //MARK: ROUTINE REMINDER            
             if routineReminders.count == 0{
                 return nil
             }
             
-            content.text = "Routine Reminder"
+            content.text = "routine_reminder".localized(tableName: "Profile")
         default : fatalError("Invalid section")
         }
         

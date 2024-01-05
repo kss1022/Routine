@@ -27,7 +27,7 @@ final class AppTutorailSplashView3: AppTutorailSplashView{
     func setLayout() {
         let titleLabel = self.titleLabel()
         titleLabel.numberOfLines = 2
-        titleLabel.text = "Check without Pressure."
+        titleLabel.text = "splash_2".localized(tableName: "Tutorial")
 
         let animationView = self.animationView()
         animationView.contentMode = .scaleAspectFit

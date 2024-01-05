@@ -62,12 +62,12 @@ final class AppInfoInteractor: PresentableInteractor<AppInfoPresentable>, AppInf
                 backgroundColor: "#CCFFCCFF",
                 tapHandler: { URLSchemeManager.shared.openMailApp(email: "kss1022hhh@gmail.com") }
             ),
-            AppInfoContactModel(
-                emoji: "🧑🏻‍💻",
-                title: "My Github link",
-                backgroundColor: "#E5CCFFFF",
-                tapHandler: { URLSchemeManager.shared.openLink(url: "https://github.com/kss1022") }
-            )
+//            AppInfoContactModel(
+//                emoji: "🧑🏻‍💻",
+//                title: "My Github link",
+//                backgroundColor: "#E5CCFFFF",
+//                tapHandler: { URLSchemeManager.shared.openLink(url: "https://github.com/kss1022") }
+//            )
         ]
         
         

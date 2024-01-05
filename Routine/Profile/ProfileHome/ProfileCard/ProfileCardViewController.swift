@@ -96,7 +96,7 @@ final class ProfileCardViewController: UIViewController, ProfileCardPresentable,
         name.isEmpty ? () : (nameLable.text = name)
         
         if name.isEmpty{
-            nameLable.text = "Hello ~ 👋"
+            nameLable.text = "profile_name_empty".localized(tableName: "Profile")
         }else{
             nameLable.text = name
         }

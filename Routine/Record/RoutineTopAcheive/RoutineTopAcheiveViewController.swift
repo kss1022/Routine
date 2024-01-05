@@ -45,7 +45,7 @@ final class RoutineTopAcheiveViewController: UIViewController, RoutineTopAcheive
     }
     
     private func setLayout(){
-        title = "Top Acheive"
+        title = "top_achieve".localized(tableName: "Record")
         view.backgroundColor = .systemBackground
         
         view.addSubview(scrollView)

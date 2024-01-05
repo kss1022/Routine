@@ -23,7 +23,7 @@ final class RoutineDataOfWeekViewController: UIViewController, RoutineDataOfWeek
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setBoldFont(style: .headline)
         label.textColor = .label
-        label.text = "Date Of Week"
+        label.text = "date_of_week".localized(tableName: "Record")
         return label
     }()
     

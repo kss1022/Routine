@@ -15,7 +15,7 @@ struct RoutineDescription : ValueObject{
     
     init(description: String) throws {
         if description.count > 50{ throw ArgumentException("RoutineDescription Length must less then 50")  }
-        if description.count < 3{ throw ArgumentException("RoutineDescription Length must more then 3")  }
+        //if description.count < 3{ throw ArgumentException("RoutineDescription Length must more then 3")  }
         self.description = description
     }
     

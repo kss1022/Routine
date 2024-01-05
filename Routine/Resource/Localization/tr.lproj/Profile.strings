@@ -1,0 +1,55 @@
+
+
+// Profile
+"profile" = "Profil";
+
+// ProfileHome
+"profile_name_empty" = "Merhaba ~ 👋";
+"system_setting" = "Sistem ayarı";
+"alarm" = "Alem";
+"theme" = "Tema";
+"font" = "Yazı tipi";
+"appIcon" = "Appicon";
+"team" = "Takım";
+"guide" = "Rehber";
+"feedback" = "Geri bildirim";
+"info" = "bilgi";
+"request_review" = "En kullanan rutini? \ N5 yıldızlar lütfen";
+
+// EditProfile
+"add_your_name" = "Adınızı ekleyin!";
+"introduce_yourself" = "Kendinizi tanıtın ✍️";
+"emoticon" = "İmotoin";
+"style" = "Stil";
+"enter_want_to_change_name" = "Değiştirmek istediğiniz adı girin";
+"enter_want_to_change_introduction" = "Değiştirmek istediğiniz girişi girin";
+"name" = "İsim";
+"introduction" = "giriiş";
+
+// SettingAlarm
+"onOff" = "AÇIK KAPALI";
+"daliy_reminder" = "Daliy hatırlatma";
+"routine_reminder" = "Rotuine hatırlatma";
+
+// SettingTheme
+"system" = "Sistem";
+"light" = "Işık";
+"dark" = "Karanlık";
+
+// Setting Font
+"font_preview" = "Merhaba rutin ~ 👋";
+"font_size" = "Yazı Boyutu";
+"font_typeface" = "Yazı tipi yazı tipi";
+"os_setting" = "İşletim sistemi ayarı";
+"os_setting_help" = "OS ayarlarını ayarlar> Ekran ve Parlaklık> Texque Boyutu altında değiştirebilirsiniz.";
+"os_typeface" = "İşletim sistemi yazı tipi";
+
+// Feedback
+"feedback_title" = "Merhaba Rotine!";
+"feedback_message" = "Herhangi bir geri bildirim veya hata raporu kabul edilir :)";
+"saved_draft_folder" = "Taslak klasörde kaydedildi";
+"saved_draft_folder_message" = "Taslak e -posta taslak klasöre kaydedildi.";
+"send_feedback" = "Geribildirim yolla";
+"thank_for_feedback" = "Geri bildiriminiz için teşekkürler🙏";
+"send_mail_fail" = "Posta Başarısızlığı Gönder😰";
+"confirm" = "Onaylamak";

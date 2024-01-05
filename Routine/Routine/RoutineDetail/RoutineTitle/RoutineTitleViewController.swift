@@ -126,9 +126,9 @@ final class RoutineTitleViewController: UIViewController, RoutineTitlePresentabl
     
     func setIsComplete(_ isComplete: Bool) {
         if isComplete{
-            self.completeButton.setAttributedTitle("Completed".getAttributeStrkeString(), for: .normal)
+            self.completeButton.setAttributedTitle("completed".localized(tableName: "Routine").getAttributeStrkeString(), for: .normal)
         }else{
-            self.completeButton.setAttributedTitle("Complete".getAttributeSting(), for: .normal)
+            self.completeButton.setAttributedTitle("complete".localized(tableName: "Routine").getAttributeSting(), for: .normal)
         }
     }
     

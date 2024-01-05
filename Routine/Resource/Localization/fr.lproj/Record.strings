@@ -1,0 +1,32 @@
+
+
+// Record
+"record" = "Enregistrer";
+
+// RecordHome
+"check_your_top_acheive" = "Vérifiez votre réalisation supérieure 🔥";
+"check_your_weeklyTracker" = "Vérifiez votre WeeklyTracker ✅";
+"your_achieve" = "Votre réalisation";
+"top_achieve" = "Top réaliser";
+"routine_achieve_isEmpty" = "Vous n'avez pas encore de dossiers de réalisation de routine.";
+"added_routine_isEmpty" = "Vous n'avez pas encore ajouté de routines";
+
+// WeeklyTracker
+"weeklyTracker" = "Tracker hebdomadaire";
+
+// YourAchieve
+"your_achieve" = "Votre réalisation";
+"date_of_week" = "Date de la semaine";
+"date_of_month" = "Date du mois";
+"date_of_year" = "Date de l'année";
+"done_this_month" = "Fait ce mois-ci";
+"totalDone" = "Total";
+"current_streak" = "Séquence actuelle";
+"best_streak" = "Meilleure séquence";
+
+// TopAcheive
+"total_number_of_achievements" = "Nombre total de réalisations";
+"total_number_of_achievements_0" = "";
+"total_number_of_achievements_1" = "";
+"total_number_of_achievements_2" = "";
+"total_number_of_achievements_3" = "";

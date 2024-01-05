@@ -1,0 +1,32 @@
+
+
+// Record
+"record" = "Записывать";
+
+// RecordHome
+"check_your_top_acheive" = "Проверьте свою верхушку достижения 🔥";
+"check_your_weeklyTracker" = "Проверьте свой еженедельный";
+"your_achieve" = "Ваше достижение";
+"top_achieve" = "Верхнее достижение";
+"routine_achieve_isEmpty" = "У вас еще нет обычных записей о достижениях.";
+"added_routine_isEmpty" = "Вы еще не добавили \ n никаких процедур";
+
+// WeeklyTracker
+"weeklyTracker" = "WeeklyTracker";
+
+// YourAchieve
+"your_achieve" = "Ваше достижение";
+"date_of_week" = "Дата недели";
+"date_of_month" = "Дата месяца";
+"date_of_year" = "Дата года";
+"done_this_month" = "Сделано в этом месяце";
+"totalDone" = "TotalDone";
+"current_streak" = "Текущая полоса";
+"best_streak" = "Лучшая полоса";
+
+// TopAcheive
+"total_number_of_achievements" = "Общее количество достижений";
+"total_number_of_achievements_0" = "";
+"total_number_of_achievements_1" = "";
+"total_number_of_achievements_2" = "";
+"total_number_of_achievements_3" = "";

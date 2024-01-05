@@ -1,0 +1,54 @@
+
+
+// Timer
+"timer" = "Timer";
+
+// TimerHome
+"focus" = "Focus";
+"tabata" = "Tabata";
+"round" = "Round";
+"repeat" = "Repeat";
+"interval" = "Interval";
+
+// StartTimer
+"finish_timer" = "Finish Timer";
+"cancel_timer" = "Cancel Timer";
+"dismiss" = "Dismiss";
+"timer_remaining" = "Timer Remaining";
+"start" = "Start";
+"pause" = "Pause";
+"cancel" = "Cancel";
+
+// CreateTimer
+"create_your_timer" = "Create Your Timer";
+
+// AddYourTimer
+"give_it_a_name" = "Give it a name";
+"set_duration" = "Set duration";
+"done" = "Done";
+"editTimerCountdown_hour" = "%dHour";
+"editTimerCountdown_min" = "%dMin";
+"editTimerCountdown_sec" = "%dSec";
+"editTimerCountdown_rep" = "%dRep";
+
+// TimerSectionEdit
+"edit_section" = "Edit Section";
+"name" = "Name";
+"description" = "Description";
+"ready" = "Ready";
+"ready_description" = "Before start countdown";
+"take_a_rest" = "Take a rest";
+"take_a_rest_description" = "Take a rest";
+"exercise" = "Exercise";
+"exercise_description" = "You can do it!";
+"round" = "Round";
+"round_description" = "Routine is excercise + rest";
+"cycle" = "Cycle";
+"cycle_description" = "Cycle is a n round";
+"cycle_rest" = "Cycle Rest";
+"cycle_rest_description" = "Take a rest";
+"colldown" = "Coll down";
+"colldown_description" = "After exercise coll down";
+
+// TimerSelect
+"choose_your_time" = "Choose your timer";

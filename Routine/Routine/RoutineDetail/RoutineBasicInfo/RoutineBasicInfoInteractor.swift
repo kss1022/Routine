@@ -72,26 +72,27 @@ final class RoutineBasicInfoInteractor: PresentableInteractor<RoutineBasicInfoPr
         switch detail.repeatModel {
         case .doitOnce(let date):
             let dateInfo =  Formatter.routineBasicInfoFormatter.string(from: date)
-            self.presenter.repeatInfo(info: "DoItOnce: \(dateInfo)")
+            self.presenter.repeatInfo(info: "basic_info_doItOnce".localizedWithFormat(tableName: "Routine", arguments: dateInfo))
         case .daliy:
-            self.presenter.repeatInfo(info: "Daliy")
+            self.presenter.repeatInfo(info: "basic_info_daliy".localized(tableName: "Routine"))
         case .weekly(let weekly):
             let weekDaySimbols = Calendar.current.shortStandaloneWeekdaySymbols
             let weeklyInfo =  weekly.sorted { $0 < $1 }
                 .map{ weekDaySimbols[$0] }
                 .joined(separator: ", ")
-            self.presenter.repeatInfo(info: "Weekly: \(weeklyInfo)")
+            self.presenter.repeatInfo(info: "basic_info_weekly".localizedWithFormat(tableName: "Routine", arguments: weeklyInfo))
         case .monthly(let monthly):
             let monthlyInfo =  monthly.sorted { $0 < $1 }
                 .map(String.init)
                 .joined(separator: ", ")
-            self.presenter.repeatInfo(info: "Monthly: \(monthlyInfo)")
+            
+            self.presenter.repeatInfo(info: "basic_info_Monthly".localizedWithFormat(tableName: "Routine", arguments: monthlyInfo))
         }
     }
     
     private func setReminderInfo(detail: RoutineDetailModel){
         if !detail.reminderIsON{
-            self.presenter.reminderInfo(info: "You didn't set reminder")
+            self.presenter.reminderInfo(info: "basic_info_did_not_set_reminder".localized(tableName: "Routine"))
             return
         }
 
@@ -103,6 +104,7 @@ final class RoutineBasicInfoInteractor: PresentableInteractor<RoutineBasicInfoPr
         let calendar = Calendar.current
         let date = calendar.date(from: dateComponent)!
         
-        self.presenter.reminderInfo(info: "Reminder at \(Formatter.reminderDateFormatter().string(from: date))")
+        let reminders = Formatter.reminderDateFormatter().string(from: date)
+        self.presenter.reminderInfo(info: "basic_info_reminder_at".localizedWithFormat(arguments: reminders))
     }
 }

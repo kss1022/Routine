@@ -14,7 +14,7 @@ protocol AddFocusTimerRouting: ViewableRouting {
 
 protocol AddFocusTimerPresentable: Presentable {
     var listener: AddFocusTimerPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setTitle(title: String)
 }
 
 protocol AddFocusTimerListener: AnyObject {
@@ -43,7 +43,7 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
         dependency: AddFocusTimerInteractorDependency
     ) {
         self.dependency = dependency
-        self.name = "Focus"
+        self.name = "focus".localized(tableName: "Timer")
         self.minute = 30
         super.init(presenter: presenter)
         presenter.listener = self
@@ -54,6 +54,7 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
         
         router?.attachTimerEditTitle()
         router?.attachTimerEditCountdown()
+        presenter.setTitle(title: "focus".localized(tableName: "Timer"))
     }
 
     override func willResignActive() {

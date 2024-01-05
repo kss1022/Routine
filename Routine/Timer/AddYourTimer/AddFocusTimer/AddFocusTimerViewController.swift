@@ -100,6 +100,10 @@ final class AddFocusTimerViewController: UIViewController, AddFocusTimerPresenta
         vc.didMove(toParent: self)
     }
     
+    func setTitle(title: String) {
+        self.title = title
+    }
+    
     @objc
     private func closeBarButtonTap(){
         self.listener?.closeButtonDidTap()

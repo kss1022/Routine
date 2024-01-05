@@ -1,0 +1,55 @@
+
+
+// Profile
+"profile" = "프로필";
+
+// ProfileHome
+"profile_name_empty" = "Hello ~  👋";
+"system_setting" = "시스템 설정";
+"alarm" = "알림";
+"theme" = "테마";
+"font" = "폰트";
+"appIcon" = "앱아이콘";
+"team" = "팀";
+"guide" = "가이드";
+"feedback" = "피드백";
+"info" = "정보";
+"request_review" = "루틴을 즐기셨나요?\n별5개 부탁드려요";
+
+// EditProfile
+"add_your_name" = "이름을 추가해보세요!";
+"introduce_yourself" = "자신을 소개하세요 ✍️";
+"emoticon" = "이모티콘";
+"style" = "스타일";
+"enter_want_to_change_name" = "변경할 이름을 입력하세요";
+"enter_want_to_change_introduction" = "변경할 소개를 입력하세요";
+"name" = "이름";
+"introduction" = "소개";
+
+// SettingAlarm
+"onOff" = "ONOFF";
+"daliy_reminder" = "데일리 리마인더";
+"routine_reminder" = "루틴 알림";
+
+// SettingTheme
+"system" = "시스템";
+"light" = "라이트";
+"dark" = "다크";
+
+// Setting Font
+"font_preview" = "안녕 루틴~👋";
+"font_size" = "폰트 사이즈";
+"font_typeface" = "글씨체";
+"os_setting" = "OS 설정";
+"os_setting_help" = "설정 > 디스플레이 및 밝기 > 텍스트 크기에서 OS 설정을 변경할 수 있습니다.";
+"os_typeface" = "OS 폰트";
+
+// Feedback
+"feedback_title" = "안녕 루틴!";
+"feedback_message" = "어떤 피드백이나 버그 보고 모두 환영합니다 :)";
+"saved_draft_folder" = "임시 폴더에 저장.";
+"saved_draft_folder_message" = "작성된 이메일은 작성된 작성 폴더에 저장되었습니다.";
+"send_feedback" = "피드백 보내기";
+"thank_for_feedback" = "피드백 감사합니다🙏";
+"send_mail_fail" = "메일 보내기에 실패했습니다.😰";
+"confirm" = "확인";

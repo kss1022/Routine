@@ -1,0 +1,32 @@
+
+
+// Record
+"record" = "기록";
+
+// RecordHome
+"check_your_top_acheive" = "최다 달성을 확인하세요 🔥";
+"check_your_weeklyTracker" = "주간 트래커을 확인하세요 ✅";
+"your_achieve" = "나의 달성";
+"top_achieve" = "최다 달성";
+"routine_achieve_isEmpty" = "아직 루틴 달성 기록이 없습니다.";
+"added_routine_isEmpty" = "추가된 루틴이 없습니다";
+
+// WeeklyTracker
+"weeklyTracker" = "위클리트래커";
+
+// YourAchieve
+"your_achieve" = "나의 달성";
+"date_of_week" = "주간";
+"date_of_month" = "월간";
+"date_of_year" = "년간";
+"done_this_month" = "이번달 완료";
+"totalDone" = "전체 완료";
+"current_streak" = "현재 스트릭";
+"best_streak" = "최다 스트릭";
+
+// TopAcheive
+"total_number_of_achievements" = "루틴 달성 횟수";
+"total_number_of_achievements_0" = "수고했어요! 아직 기록이 충분하지 않을 수도 있지만, 꾸준히 계속한다면 상당한 결과를 얻을 수 있을 거예요. 계속하세요!";
+"total_number_of_achievements_1" = "꾸준히  일상을 기록해 왔습니다. 더 높은 목표를 함께 목표로 할까요? 새로운 도전을 통해 여러분의 더 나은 모습을 만들어봅시다!";
+"total_number_of_achievements_2" = "기록을 시작한 것은 잘했어요! 다음 번에는 어떤 목표를 세우고 싶나요? 새로운 도전을 통해 성장을 위한 흥미진진한 기회들이 여러분을 기다리고 있습니다.";
+"total_number_of_achievements_3" = "여러분들의 기록 노력이 눈에 띕니다. 더 많은 기록으로 더 큰 성과를 만들어 보세요. 앞으로가 기대됩니다!";

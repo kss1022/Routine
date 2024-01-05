@@ -27,7 +27,7 @@ final class AppAlarmServiceImp: AppAlarmService{
     var alarm: ReadOnlyCurrentValuePublisher<SettingAlarmModel>{ alarmSubject }
     private let alarmSubject = CurrentValuePublisher<SettingAlarmModel>(
         SettingAlarmModel(
-            title: "Alarm",
+            title: "alarm".localized(tableName: "Profile"),
             imageName: "app.badge",
             isOn: PreferenceStorage.shared.appAlarmIsOn
         )
@@ -40,7 +40,7 @@ final class AppAlarmServiceImp: AppAlarmService{
     
     func fetch() {
         let model =  SettingAlarmModel(
-            title: "Alarm",
+            title: "alarm".localized(tableName: "Profile"),
             imageName: "app.badge",
             isOn: isOn
         )
@@ -59,5 +59,5 @@ final class AppAlarmServiceImp: AppAlarmService{
 
 
 private extension PreferenceKeys{
-    var appAlarmIsOn: PrefKey<Bool>{ .init(name: "appAlarmIsOn", defaultValue: false)}
+    var appAlarmIsOn: PrefKey<Bool>{ .init(name: "appAlarmIsOn", defaultValue: true)}
 }

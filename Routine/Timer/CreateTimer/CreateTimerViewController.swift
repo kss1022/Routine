@@ -50,7 +50,7 @@ final class CreateTimerViewController: UIViewController, CreateTimerPresentable,
     }
     
     private func setLayout(){
-        title = "Create Your Timer"
+        title = "create_your_timer".localized(tableName: "Timer")
         view.backgroundColor = .systemBackground
         
         navigationItem.leftBarButtonItem = closeBarButtonItem

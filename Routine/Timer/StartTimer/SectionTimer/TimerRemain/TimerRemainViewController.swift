@@ -50,7 +50,7 @@ final class TimerRemainViewController: UIViewController, TimerRemainPresentable,
         label.setBoldFont(style: .body)
         label.adjustsFontSizeToFitWidth = true
         label.textColor = .white
-        label.text = "Time Remaining"
+        label.text = "timer_remaining".localized(tableName: "Timer")
         return label
     }()
     

@@ -1,0 +1,54 @@
+
+
+// Timer
+"timer" = "计时器";
+
+// TimerHome
+"focus" = "重点";
+"tabata" = "塔巴塔";
+"round" = "圆形的";
+"repeat" = "重复";
+"interval" = "间隔";
+
+// StartTimer
+"finish_timer" = "完成计时器";
+"cancel_timer" = "取消计时器";
+"dismiss" = "解雇";
+"timer_remaining" = "计时器剩下";
+"start" = "开始";
+"pause" = "暂停";
+"cancel" = "取消";
+
+// CreateTimer
+"create_your_timer" = "创建您的计时器";
+
+// AddYourTimer
+"give_it_a_name" = "给它一个名字";
+"set_duration" = "设置持续时间";
+"done" = "完毕";
+"editTimerCountdown_hour" = "%dHour";
+"editTimerCountdown_min" = "%dMin";
+"editTimerCountdown_sec" = "%dSec";
+"editTimerCountdown_rep" = "%dRep";
+
+// TimerSectionEdit
+"edit_section" = "编辑部分";
+"name" = "姓名";
+"description" = "描述";
+"ready" = "准备好";
+"ready_description" = "开始倒计时之前";
+"take_a_rest" = "休息一下";
+"take_a_rest_description" = "休息一下";
+"exercise" = "锻炼";
+"exercise_description" = "你能行的！";
+"round" = "圆形的";
+"round_description" = "常规是练习 +休息";
+"cycle" = "循环";
+"cycle_description" = "周期是N圆";
+"cycle_rest" = "循环休息";
+"cycle_rest_description" = "休息一下";
+"colldown" = "coll";
+"colldown_description" = "运动后";
+
+// TimerSelect
+"choose_your_time" = "选择您的计时器";

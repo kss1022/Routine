@@ -44,7 +44,12 @@ final class AppTutorialMemojiViewController: UIViewController, AppTutorialMemoji
   
 
     private lazy var segmentControl: UISegmentedControl = {
-        let segmentControl = UISegmentedControl(items: ["Emoticon", "Style"])
+        let segmentControl = UISegmentedControl(
+            items: [
+                "emoticon".localized(tableName: "Profile"),
+                "style".localized(tableName: "Profile")
+            ]
+        )
         segmentControl.translatesAutoresizingMaskIntoConstraints  = false
         segmentControl.tintColor = .label
         

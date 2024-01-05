@@ -61,13 +61,13 @@ final class TimerEditCoundownAlertController: UIViewController{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getFont(size: 14.0)
         label.textColor = .label
-        label.text = "Set duration"
+        label.text = "set_duration".localized(tableName: "Timer")
         return label
     }()
     
     private lazy var doneButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Done", for: .normal)
+        button.setTitle("done".localized(tableName: "Timer"), for: .normal)
         button.setTitleColor(.label, for: .normal)
         button.addTarget(self, action: #selector(doneButtonTap), for: .touchUpInside)
         return button

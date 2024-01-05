@@ -1,0 +1,30 @@
+
+
+// Common
+"continue" = "続く";
+
+// TutorialMain
+"hello_there" = "こんにちは👋";
+"embark_on_journey_together" = "一緒に旅に出て、新しい習慣を形成し、目標を達成しましょう。";
+
+// TutorialSplash
+"splash_0" = "自分に約束します。";
+"splash_1" = "ユニークなルーチンを作成します。 🤫";
+"splash_2" = "圧力なしで確認してください。";
+"splash_3" = "ルーチンの旅をお楽しみください";
+
+// TutorialRoutine
+"choose_habit_start" = "すぐに始めるためにハバットを選択してください！";
+"drink_water" = "水を飲む";
+"reading" = "読む";
+"exercise" = "エクササイズ";
+"write" = "書く";
+
+// TutorailProfile
+"set_profile_memoji" = "あなたを表すプロファイルメモジを設定します";
+
+// TutorialTimer
+"for_forget_your_routine" = "あなたのルーチンを忘れることができるあなたのために";
+"allow_alarm_can_send" = "ルーチンが通知を送信できるようにアラームを許可します。";
+"allow_remidner" = "リマインダーを許可します";
+"not_now" = "今じゃない";

@@ -28,7 +28,7 @@ final class ProfileEditNameViewController: UIViewController, ProfileEditNamePres
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getBoldFont(size: 34.0)
         label.numberOfLines = 2
-        label.text = "Enter the name you want to change"
+        label.text = "add_your_name".localized(tableName: "Profile")
         return label
     }()
     
@@ -56,7 +56,7 @@ final class ProfileEditNameViewController: UIViewController, ProfileEditNamePres
         textFeild.returnKeyType = .done
 
         
-        textFeild.placeholder = "Name"
+        textFeild.placeholder = "name".localized(tableName: "Profile")
         textFeild.delegate = self
         
         return textFeild

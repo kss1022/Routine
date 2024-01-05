@@ -49,7 +49,7 @@ final class TimerSectionEditTitleViewController: UIViewController, TimerSectionE
         let label = UILabel()
         label.setBoldFont(style: .headline)
         label.textColor = .label
-        label.text = "Name"
+        label.text = "name".localized(tableName: "Timer")
         return label
     }()
     
@@ -59,7 +59,7 @@ final class TimerSectionEditTitleViewController: UIViewController, TimerSectionE
         
         textFeild.setFont(style: .title1)
         textFeild.textColor = .label
-        textFeild.placeholder = "Give it a name"
+        textFeild.placeholder = "give_it_a_name".localized(tableName: "Timer")
         textFeild.textAlignment = .center
         textFeild.delegate = self
         return textFeild
@@ -91,7 +91,7 @@ final class TimerSectionEditTitleViewController: UIViewController, TimerSectionE
         let label = UILabel()
         label.setBoldFont(style: .headline)
         label.textColor = .label
-        label.text = "Description"
+        label.text = "description".localized(tableName: "Timer")
         return label
     }()
     
@@ -101,7 +101,7 @@ final class TimerSectionEditTitleViewController: UIViewController, TimerSectionE
         
         textFeild.setFont(style: .title1)
         textFeild.textColor = .label
-        textFeild.placeholder = "Give it a name"
+        textFeild.placeholder = "give_it_a_name".localized(tableName: "Timer")
         textFeild.textAlignment = .center
         textFeild.delegate = self
         return textFeild
@@ -170,6 +170,9 @@ final class TimerSectionEditTitleViewController: UIViewController, TimerSectionE
         emojiButton.setTitle(emoji, for: .normal)
         sectionNameTextFeild.text = name
         sectionDescriptionTextFeild.text = description
+        
+        sectionNameHelpLabel.text = "\(name.count)/50"
+        sectionDescriptionHelpLabel.text = "\(description.count)/50"
     }
         
 

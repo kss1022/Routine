@@ -48,46 +48,46 @@ final class ProfileMenuInteractor: PresentableInteractor<ProfileMenuPresentable>
         
         let listModels = [
             ProfileMenuListModel(
-                title: "System Setting",
+                title: "system_setting".localized(tableName: "Profile"),
                 menus: [
                     ProfileMenuModel(
                         imageName: "app.badge",
-                        title: "Alarm") { [weak self] in
+                        title: "alarm".localized(tableName: "Profile")) { [weak self] in
                             self?.listener?.profileMenuAlarmButtonDidTap()
                         },
                     ProfileMenuModel(
                         imageName: "circle.lefthalf.filled",
-                        title: "Thema") { [weak self] in
+                        title: "theme".localized(tableName: "Profile")) { [weak self] in
                             self?.listener?.profileMenuThemeButtonDidTap()
                         },
                     ProfileMenuModel(
                         imageName: "textformat.size.larger",
-                        title: "Font") { [weak self] in
+                        title: "font".localized(tableName: "Profile")) { [weak self] in
                             self?.listener?.profileMenuFontButtonDidTap()
                         },
                     ProfileMenuModel(
                         imageName: "app.fill",
-                        title: "AppIcon") { [weak self] in
+                        title: "appIcon".localized(tableName: "Profile")) { [weak self] in
                             self?.listener?.profileMenuAppIconButtonDidTap()
                         }
                 ]
             ),
             ProfileMenuListModel(
-                title: "Team",
+                title: "team".localized(tableName: "Profile"),
                 menus:  [
                     ProfileMenuModel(
                         imageName: "map",
-                        title: "Guide") { [weak self] in
+                        title: "guide".localized(tableName: "Profile")) { [weak self] in
                             self?.listener?.profileMenuGuideButtonDidTap()
                         },
                     ProfileMenuModel(
                         imageName: "paperplane",
-                        title: "Feedback") { [weak self] in
+                        title: "feedback".localized(tableName: "Profile")) { [weak self] in
                             self?.listener?.profileMenuFeedbackButtonDidTap()
                         },
                     ProfileMenuModel(
                         imageName: "info",
-                        title: "Info") { [weak self] in
+                        title: "info".localized(tableName: "Profile")) { [weak self] in
                             self?.listener?.profileMenuAppInfoButtonDidTap()
                         },
                 ]                
@@ -95,7 +95,7 @@ final class ProfileMenuInteractor: PresentableInteractor<ProfileMenuPresentable>
         ]
         
         let reqeustReviewModel = ProfileRequestReviewListModel(
-            title: "Enjoing Routine?\n5 stars please",
+            title: "request_review".localized(tableName: "Profile"),
             backgroundColor: "#8898EFFF") { [weak self] in
                 self?.listener?.profileMenuRequestReviewDidTap()
             }

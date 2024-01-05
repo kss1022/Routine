@@ -17,7 +17,7 @@ final class RoutineEditButton : UIControl{
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.alignment = .top
+        stackView.alignment = .center
         stackView.distribution = .equalSpacing
         stackView.spacing = 4.0
         return stackView
@@ -33,7 +33,7 @@ final class RoutineEditButton : UIControl{
        let label = UILabel()
         label.setFont(style: .headline)
         label.textColor = .systemBackground
-        label.text = "Edit"
+        label.text = "edit".localized(tableName: "Routine")
         label.textAlignment = .center
         return label
     }()

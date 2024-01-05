@@ -26,7 +26,7 @@ final class AppTutorailSplashView1: AppTutorailSplashView{
     func setLayout() {
         let titleLabel = self.titleLabel()
         titleLabel.numberOfLines = 2
-        titleLabel.text = "Promise to myself."
+        titleLabel.text = "splash_0".localized(tableName: "Tutorial")
         
         let emojiLabel = self.emojiLabel()
         emojiLabel.text = "🤙"

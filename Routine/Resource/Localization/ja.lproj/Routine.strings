@@ -1,0 +1,42 @@
+
+
+// Routine
+"routine" = "ルーティーン";
+
+// RoutineHome
+"all_time_of_the_day" = "ルーチンリスト";
+"today" = "今日";
+"yesterDay" = "昨日";
+"tomorrow" = "明日";
+"no_tasks" = "聞かない";
+
+// RoutineDetail
+"complete" = "完了";
+"completed" = "完了しました";
+"basic_Info" = "基本情報";
+"basic_info_doItOnce" = "一度やる：％@";
+"basic_info_daliy" = "daliy";
+"basic_info_weekly" = "毎週：％@";
+"basic_info_Monthly" = "毎月：％@";
+"basic_info_did_not_set_reminder" = "リマインダーを設定しませんでした";
+"basic_info_reminder_at" = "％@でリマインダー";
+
+// CreateRoutine
+"pick_a_new_one" = "新しいものを選んでください";
+"add_your_own" = "あなた自身を追加します";
+
+// AddYourRoutine
+"give_it_a_name" = "名前を付けてください";
+"description" = "説明";
+"repeat" = "繰り返す";
+"set_a_cycle_for_your_plan" = "計画のサイクルを設定します";
+"daliy" = "daliy";
+"weekly" = "毎週";
+"monthly" = "毎月";
+"reset" = "リセット";
+"reminder" = "リマインダー";
+"set_a_reminder" = "リマインダーを設定します";
+
+// RoutineEdit
+"edit" = "編集";
+"delete" = "消去";
