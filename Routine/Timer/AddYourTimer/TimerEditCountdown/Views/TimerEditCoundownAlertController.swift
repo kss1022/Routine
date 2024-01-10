@@ -138,6 +138,16 @@ final class TimerEditCoundownAlertController: UIViewController{
     
     @objc
     private func doneButtonTap(){
+        let hour = pickerView.hour
+        let min = pickerView.min
+        
+        if hour == 0 && min == 0{
+            self.delegate?.timerEditCoundownAlertController(hour: 0, min: 5)
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        
         self.delegate?.timerEditCoundownAlertController(hour: pickerView.hour, min: pickerView.min)
         self.dismiss(animated: true, completion: nil)
     }

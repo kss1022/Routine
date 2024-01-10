@@ -10,7 +10,7 @@ import Foundation
 
 
 
-struct CreateSectionTimer{
+struct CreateSectionTimer: Command{
     let name: String    
     let createSections: [CreateSection]
 }

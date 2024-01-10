@@ -15,7 +15,7 @@ protocol RoutineDataOfYearRouting: ViewableRouting {
 
 protocol RoutineDataOfYearPresentable: Presentable {
     var listener: RoutineDataOfYearPresentableListener? { get set }
-    func setComplets(_ dates: Set<Date>)
+    func setComplets(year: Int,  dates: Set<Date>)
 }
 
 protocol RoutineDataOfYearListener: AnyObject {
@@ -35,6 +35,8 @@ final class RoutineDataOfYearInteractor: PresentableInteractor<RoutineDataOfYear
     private let dependency: RoutineDataOfYearInteractorDependency
     private var cancellables: Set<AnyCancellable>
     
+    private var year: Int
+    
     // in constructor.
     init(
         presenter: RoutineDataOfYearPresentable,
@@ -42,6 +44,10 @@ final class RoutineDataOfYearInteractor: PresentableInteractor<RoutineDataOfYear
     ) {
         self.dependency = dependency
         self.cancellables = .init()
+        
+        let today = Date()
+        self.year = Calendar.current.component(.year, from: today)
+        
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -54,7 +60,7 @@ final class RoutineDataOfYearInteractor: PresentableInteractor<RoutineDataOfYear
             .receive(on: DispatchQueue.main)
             .compactMap{ $0 }
             .sink { model in
-                self.presenter.setComplets(Set(model.completes.keys))
+                self.presenter.setComplets(year: self.year, dates: Set(model.completes.keys))
             }
             .store(in: &cancellables)
     }
@@ -64,5 +70,19 @@ final class RoutineDataOfYearInteractor: PresentableInteractor<RoutineDataOfYear
         
         cancellables.forEach{ $0.cancel() }
         cancellables.removeAll()
+    }
+    
+    func leftButtonDidTap() {
+        guard let model = dependency.routineRecords.value else { return }
+        
+        self.year -= 1
+        
+        self.presenter.setComplets(year: self.year, dates: Set(model.completes.keys))
+    }
+    
+    func rightButtonDidTap() {
+        guard let model = dependency.routineRecords.value else { return }        
+        self.year += 1
+        self.presenter.setComplets(year: self.year, dates: Set(model.completes.keys))
     }
 }

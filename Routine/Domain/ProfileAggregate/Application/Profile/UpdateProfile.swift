@@ -9,7 +9,6 @@ import Foundation
 
 
 
-
 struct UpdateProfile: Command{
     let profileId: UUID
     let name: String

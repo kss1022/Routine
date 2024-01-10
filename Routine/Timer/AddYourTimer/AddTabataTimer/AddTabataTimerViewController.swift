@@ -15,6 +15,7 @@ protocol AddTabataTimerPresentableListener: AnyObject {
 
 final class AddTabataTimerViewController: UIViewController, AddTabataTimerPresentable, AddTabataTimerViewControllable {
 
+
     weak var listener: AddTabataTimerPresentableListener?
 
     private lazy var closeBarButtonItem: UIBarButtonItem = {
@@ -91,6 +92,11 @@ final class AddTabataTimerViewController: UIViewController, AddTabataTimerPresen
     func setTitle(title: String) {
         self.title = title
     }
+    
+    func showError(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
+    
     
     @objc
     private func closeBarButtonTap(){

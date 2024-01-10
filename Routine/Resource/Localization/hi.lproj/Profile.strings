@@ -9,7 +9,7 @@
 "alarm" = "अलरम";
 "theme" = "विषय";
 "font" = "फ़ॉन्ट";
-"appIcon" = "एक प्रकार का";
+"appIcon" = "एपिकॉन";
 "team" = "टीम";
 "guide" = "मार्गदर्शक";
 "feedback" = "प्रतिक्रिया";
@@ -51,5 +51,14 @@
 "saved_draft_folder_message" = "ड्राफ्ट किए गए ईमेल को ड्राफ्ट फ़ोल्डर में सहेजा गया है।";
 "send_feedback" = "प्रतिक्रिया भेजें";
 "thank_for_feedback" = "आपकी प्रतिक्रिया के लिए धन्यवाद";
-"send_mail_fail" = "मेल फेल भेजें";
+"send_mail_fail" = "मेल विफल भेजें";
 "confirm" = "पुष्टि करना";
+
+// Error
+"error" = "गलती";
+"try_again_later" = "बाद में फिर से प्रयास करें।";
+"oops" = "उफ़";
+"sorry_there_are_proble_with_request" = "क्षमा करें, आपके अनुरोध के साथ प्रबल हैं";
+"mail_serive_no_available" = "मेल सीरिव कोई उपलब्ध नहीं है";
+"fetch_profile_failed" = "प्रोफ़ाइल प्राप्त करने में एक समस्या थी।";
+"update_failed" = "प्रोफ़ाइल को अपडेट करने में समस्या थी।";

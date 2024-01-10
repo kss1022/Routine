@@ -70,10 +70,10 @@ final class AppTutorialTimerInteractor: PresentableInteractor<AppTutorialTimerPr
     
     func allowReminderButtonDidTap() {
         Task{ [weak self] in
+            guard let self = self else { return }
             
             do{
-                guard let self = self else { return }
-                try await self.daliyReminderService.register(date: self.date)
+                try await daliyReminderService.register(date: self.date)
                 try await initTimer()
                 await MainActor.run { [weak self] in self?.listener?.AppTutorialTimerDidFinish() }
             }catch{
@@ -105,9 +105,7 @@ final class AppTutorialTimerInteractor: PresentableInteractor<AppTutorialTimerPr
             return
         }
         
-        try await TimerSetup(
-            timerApplicationService: dependency.timerApplicationService
-        ).initTimer()
+        try await TimerSetup().initTimer(dependency.timerApplicationService)
         preference.timerSetup = true
     }
     

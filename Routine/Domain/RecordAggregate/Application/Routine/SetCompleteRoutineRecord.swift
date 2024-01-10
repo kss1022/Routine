@@ -10,7 +10,7 @@ import Foundation
 
 
 
-struct SetCompleteRoutineRecord{
+struct SetCompleteRoutineRecord: Command{
     let recordId: UUID
     let isComplete: Bool
 }

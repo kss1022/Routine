@@ -41,6 +41,7 @@ final class EmojiPickerViewModel{
     func sectionHeader(for section: Int) -> String {
         return NSLocalizedString(
             emojiSet.categories[section].type.rawValue,
+            tableName: "Emoji",
             bundle: .module,
             comment: ""
         )

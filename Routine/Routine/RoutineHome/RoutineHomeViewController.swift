@@ -99,6 +99,10 @@ final class RoutineHomeViewController: UIViewController, RoutineHomePresentable,
         navigationItem.title = title
     }
     
+    func showError(title: String, message: String) {
+        self.showAlert( title: title, message: message)
+    }    
+    
     @objc
     private func createRoutineBarButtonTap(){
         listener?.createRoutineBarButtonDidTap()

@@ -154,16 +154,17 @@ final class SettingAppNotificationInteractor: PresentableInteractor<SettingAppNo
     //MARK: DaliyReminder
     func daliyReminderToolgeValueChanged(isOn: Bool) {
         Task{ [weak self] in
+            guard let self = self else { return }
+            
             do{
-                guard let self = self else { return }
-                try await self.daliyReminderService.update(isOn: isOn)
+                try await daliyReminderService.update(isOn: isOn)
                 await MainActor.run { [weak self] in
                     guard let self = self else { return }
                                         
                     if isOn{
-                        self.showDaliyReminderDatePicker()
+                        showDaliyReminderDatePicker()
                     }else{
-                        self.hideDaliyReminderDatePicker()
+                        hideDaliyReminderDatePicker()
                     }
                 }
             }catch{
@@ -222,12 +223,12 @@ final class SettingAppNotificationInteractor: PresentableInteractor<SettingAppNo
             guard let self = self else { return }
             do{
                 if !isOn{
-                    await self.routineReminderService.off(routineId: reminderModel.routineId)
+                    await routineReminderService.off(routineId: reminderModel.routineId)
                 }else{
-                    try await self.routineReminderService.on(model: reminderModel)
+                    try await routineReminderService.on(model: reminderModel)
                 }
                 
-                self.fetchRoutineReminder()
+                fetchRoutineReminder()
             }catch{
                 Log.e(error.localizedDescription)
             }
@@ -239,7 +240,7 @@ final class SettingAppNotificationInteractor: PresentableInteractor<SettingAppNo
         Task{ [weak self] in
             guard let self = self else { return }
             
-            let routineIds = await self.routineReminderService.routineIds
+            let routineIds = await routineReminderService.routineIds
             let reminders = dependency.reminderRepository.reminders.value
             
             let viewModels = reminders.map { reminder in

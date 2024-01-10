@@ -18,6 +18,9 @@ protocol RoutineEditRouting: ViewableRouting {
 protocol RoutineEditPresentable: Presentable {
     var listener: RoutineEditPresentableListener? { get set }
     func setTint(_ color: String)
+    
+    
+    func showError(title: String, message: String)
 }
 
 protocol RoutineEditListener: AnyObject {
@@ -37,8 +40,8 @@ protocol RoutineEditInteractorDependency{
 }
 
 final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>, RoutineEditInteractable, RoutineEditPresentableListener {
-
-
+    
+    
     weak var router: RoutineEditRouting?
     weak var listener: RoutineEditListener?
     
@@ -55,7 +58,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     
     private var tint: String
     private var emoji: String
-
+    
     
     // in constructor.
     init(
@@ -77,7 +80,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         super.init(presenter: presenter)
         presenter.listener = self
     }
-
+    
     override func didBecomeActive() {
         super.didBecomeActive()
         
@@ -88,10 +91,10 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         
         presenter.setTint(tint)
     }
-
+    
     override func willResignActive() {
         super.willResignActive()
-
+        
     }
     
     func closeButtonDidTap() {
@@ -110,17 +113,20 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
             tint: tint
         )
         
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
                 try await dependency.routineApplicationService.when(updateRoutine)
                 try await dependency.routineRepository.fetchLists()
                 try await dependency.routineRepository.fetchDetail(dependency.routineId)
-                await MainActor.run{ listener?.routineEditDoneButtonDidTap() }
+                await MainActor.run{ [weak self] in self?.listener?.routineEditDoneButtonDidTap() }
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
+                    await showUpdateRoutineFailed()
                 }else{
                     Log.e("UnkownError\n\(error)" )
+                    await showSystemFailed()
                 }
             }
         }
@@ -129,13 +135,21 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     func deleteBarButtonDidTap() {
         let deleteRoutine = DeleteRoutine(routineId: dependency.routineId)
         
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
                 try await dependency.routineApplicationService.when(deleteRoutine)
                 try await dependency.routineRepository.fetchLists()
-                await MainActor.run{ listener?.routineEditDeleteButtonDidTap() }
+                await MainActor.run{ [weak self] in self?.listener?.routineEditDeleteButtonDidTap() }
             }catch{
-                Log.e("\(error)")
+                if let error = error as? ArgumentException{
+                    Log.e(error.message)
+                    await showDeleteRoutineFailed()
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                    await showSystemFailed()
+                }
+                
             }
         }
     }
@@ -158,7 +172,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
     func routineEditRepeatDidSetRepeat(repeat: RepeatModel) {
         self.repeatModel = `repeat`
     }
-            
+    
     //MARK: RoutineEditReminder
     func routineReminderValueChange(isOn: Bool, hour: Int?, minute: Int?) {
         self.reminderIsON = isOn
@@ -172,5 +186,30 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
         self.tint = style.hex
         self.presenter.setTint(tint)
     }
+    
+}
 
+private extension RoutineEditInteractor{
+    
+    @MainActor
+    func showUpdateRoutineFailed() {
+        let title = "oops".localized(tableName: "Routine")
+        let message = "update_routine_failed".localized(tableName: "Routine")
+        presenter.showError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showDeleteRoutineFailed() {
+        let title = "oops".localized(tableName: "Routine")
+        let message = "delete_routine_failed".localized(tableName: "Routine")
+        presenter.showError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showSystemFailed(){
+        let title = "error".localized(tableName: "Routine")
+        let message = "sorry_there_are_proble_with_request".localized(tableName: "Routine")
+        presenter.showError(title: title, message: message)
+    }
+    
 }

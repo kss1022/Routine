@@ -97,6 +97,10 @@ extension TimerSectionCountdownPickerView: UIPickerViewDelegate{
         default:
             fatalError("Invalid Component: \(component)")
         }
+        
+        if min == 0 && sec == 0{
+            pickerView.selectRow(10, inComponent: 1, animated: true)
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

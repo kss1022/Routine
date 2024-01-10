@@ -6,16 +6,16 @@
 // RecordHome
 "check_your_top_acheive" = "Überprüfen Sie Ihr Top -Erreichen 🔥 🔥";
 "check_your_weeklyTracker" = "Überprüfen Sie Ihren WeelyTracker ✅";
-"your_achieve" = "Ihr Erreichen";
+"your_achieve" = "Sie erreichen";
 "top_achieve" = "Top erreichen";
 "routine_achieve_isEmpty" = "Sie haben noch keine Routine \ n Leistungsaufzeichnungen.";
 "added_routine_isEmpty" = "Sie haben noch keine Routinen hinzugefügt";
 
 // WeeklyTracker
-"weeklyTracker" = "WeelyTracker";
+"weeklyTracker" = "Weelytracker";
 
 // YourAchieve
-"your_achieve" = "Ihr Erreichen";
+"your_achieve" = "Sie erreichen";
 "date_of_week" = "Woche der Woche";
 "date_of_month" = "Monatsdatum";
 "date_of_year" = "Jahresdatum";
@@ -30,3 +30,6 @@
 "total_number_of_achievements_1" = "";
 "total_number_of_achievements_2" = "";
 "total_number_of_achievements_3" = "";
+
+// Error
+"fetch_record_failed" = "Es gab ein Problem, Aufzeichnungen zu bekommen.";

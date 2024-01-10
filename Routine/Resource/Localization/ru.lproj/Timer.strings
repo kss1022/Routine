@@ -18,6 +18,7 @@
 "start" = "Начинать";
 "pause" = "Пауза";
 "cancel" = "Отмена";
+"resume" = "Резюме";
 
 // CreateTimer
 "create_your_timer" = "Создайте свой таймер";
@@ -31,7 +32,7 @@
 "editTimerCountdown_sec" = "%dSec";
 "editTimerCountdown_rep" = "%dRep";
 
-// TimerSectionEdit
+// TimerSectionEdit
 "edit_section" = "Редактировать раздел";
 "name" = "Имя";
 "description" = "Описание";
@@ -52,3 +53,14 @@
 
 // TimerSelect
 "choose_your_time" = "Выберите свой таймер";
+
+// Error
+"error" = "Ошибка";
+"try_again_later" = "Попробуйте еще раз в позже.";
+"oops" = "Упс";
+"sorry_there_are_proble_with_request" = "Извините, есть Proble с вашим запросом";
+"fetch_list_failed" = "Была проблема с загрузкой списка, попробуйте еще раз через мгновение.";
+"fetch_timer_failed" = "Была проблема с получением таймера.";
+"add_timer_failed" = "Была проблема, добавив таймер.";
+"update_timer_failed" = "Была проблема с изменением таймера.";
+"minumum_chracters" = "Минимальный %d chracters";

@@ -121,7 +121,7 @@ final class AppTutorialProfileInteractor: PresentableInteractor<AppTutorialProfi
                     bottomColor: bottomColor
                 )
                 
-                try await self.dependency.profileApplicationService.when(createProfile)
+                try await dependency.profileApplicationService.when(createProfile)
                 await MainActor.run { [weak self] in self?.listener?.appTutorailProfileDidFinish() }
             }catch{
                 if let error = error as? ArgumentException{

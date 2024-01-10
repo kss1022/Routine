@@ -8,7 +8,7 @@
 "today" = "今天";
 "yesterDay" = "昨天";
 "tomorrow" = "明天";
-"no_tasks" = "没有任务";
+"no_task" = "没有任务";
 
 // RoutineDetail
 "complete" = "完全的";
@@ -40,3 +40,20 @@
 // RoutineEdit
 "edit" = "编辑";
 "delete" = "删除";
+
+// Error
+"error" = "错误";
+"try_again_later" = "稍后再试。";
+"oops" = "糟糕";
+"sorry_there_are_proble_with_request" = "抱歉，有您的要求";
+"fetch_list_failed" = "无法加载列表。";
+"fetch_routine_failed" = "无法加载例程。";
+"add_routine_failed" = "添加例程存在问题。";
+"update_routine_failed" = "有问题更新例程。";
+"delete_routine_failed" = "删除例程存在问题。";
+"record_routine_failed" = "记录例程存在问题。";
+"name_count_less_then" = "名称长度必须少于％d";
+"name_count_more_then" = "名称长度必须超过％d";
+"description_count_less_then" = "描述长度必须计数然后％d";
+"description_count_more_then" = "描述长度必须少于％d";
+"minumum_chracters" = "最低％D Chracter";

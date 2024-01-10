@@ -40,6 +40,22 @@ final class TimerProjection{
         DomainEventPublihser.shared
             .onReceive(FocusTimerCreated.self, action: when)
             .store(in: &cancellables)
+        
+        DomainEventPublihser.shared
+            .onReceive(SectionTimerUpdated.self, action: when)
+            .store(in: &cancellables)
+        
+        DomainEventPublihser.shared
+            .onReceive(FocusTimerUpdated.self, action: when)
+            .store(in: &cancellables)
+        
+        DomainEventPublihser.shared
+            .onReceive(SectionTimerDeleted.self, action: when)
+            .store(in: &cancellables)
+        
+        DomainEventPublihser.shared
+            .onReceive(FocusTimerDeleted.self, action: when)
+            .store(in: &cancellables)
     }
     
     
@@ -64,7 +80,7 @@ final class TimerProjection{
             try timerListDao.save(timerList)
             try timerSectionListDao.save(timerSections)
         }catch{
-            Log.e("EventHandler Error: TimerCreated \(error)")
+            Log.e("EventHandler Error: SectionTimerCreated \(error)")
         }
     }
     
@@ -85,14 +101,83 @@ final class TimerProjection{
             try timerListDao.save(timerList)
             try timerCountdownDao.save(timerCountdown)
         }catch{
-            Log.e("EventHandler Error: TimerCreated \(error)")
+            Log.e("EventHandler Error: FocusTimerCreated \(error)")
+        }
+    }
+    
+    private func when(event: SectionTimerUpdated){
+        do{
+            
+            let timerList = TimerListDto(
+                timerId: event.timerId.id,
+                timerName: event.timerName.name,
+                timerType: event.timerType
+            )
+            
+                                    
+
+            let timerSections = sectionDtos(
+                timerId: event.timerId,
+                sections: event.timerSections
+            )
+            
+            
+               
+            try timerListDao.update(timerList)
+            try timerSectionListDao.update(timerSections)
+        }catch{
+            Log.e("EventHandler Error: SectionTimerUpdated \(error)")
+        }
+    }
+    
+    private func when(event: FocusTimerUpdated){
+        do{
+            let timerList = TimerListDto(
+                timerId: event.timerId.id,
+                timerName: event.timerName.name,
+                timerType: event.timerType
+            )
+            
+            let timerCountdown = TimerCountdownDto(
+                timerId: event.timerId.id,
+                minute: event.timerCountdown.min
+            )
+            
+               
+            try timerListDao.update(timerList)
+            try timerCountdownDao.update(timerCountdown)
+        }catch{
+            Log.e("EventHandler Error: FocusTimerUpdated \(error)")
+        }
+    }
+    
+    private func when(event: SectionTimerDeleted){
+        do{
+            let timerId = event.timerId.id
+            
+            try timerListDao.delete(timerId)
+            try timerSectionListDao.delete(timerId)
+        }catch{
+            Log.e("EventHandler Error: SectionTimerDeleted \(error)")
+        }
+    }
+    
+    private func when(event: FocusTimerDeleted){
+        do{
+            let timerId = event.timerId.id
+            
+            try timerListDao.delete(timerId)
+            try timerCountdownDao.delete(timerId)
+            
+        }catch{
+            Log.e("EventHandler Error: FocusTimerDeleted \(error)")
         }
     }
     
 }
 
 
-extension TimerProjection{
+private extension TimerProjection{
     
     func sectionDtos(timerId: TimerId, sections: TimerSections) -> [TimerSectionListDto]{
         let ready = TimerSectionListDto(timerId: timerId, section: sections.ready)

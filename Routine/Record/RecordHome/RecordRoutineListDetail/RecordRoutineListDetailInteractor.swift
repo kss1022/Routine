@@ -86,10 +86,11 @@ final class RecordRoutineListDetailInteractor: PresentableInteractor<RecordRouti
     
     //MARK: RoutineData
     func routineListDidTap(routineId: UUID) {
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
                 try await dependency.recordRepository.fetchRoutineRecords(routineId: routineId)
-                await MainActor.run { router?.attachRoutineData() }
+                await MainActor.run { [weak self] in self?.router?.attachRoutineData() }
             }catch{
                 Log.e("\(error)")
             }

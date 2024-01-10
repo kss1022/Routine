@@ -9,7 +9,7 @@
 "your_achieve" = "आपकी प्राप्ति";
 "top_achieve" = "शीर्ष प्राप्त करना";
 "routine_achieve_isEmpty" = "आपके पास अभी तक कोई रूटीन \ n उपलब्धि रिकॉर्ड नहीं है।";
-"added_routine_isEmpty" = "आपने अभी तक किसी भी दिनचर्या को नहीं जोड़ा है";
+"added_routine_isEmpty" = "आपने अभी तक कोई दिनचर्या नहीं जोड़ा है";
 
 // WeeklyTracker
 "weeklyTracker" = "साप्ताहिक";
@@ -20,7 +20,7 @@
 "date_of_month" = "महीने की तारीख";
 "date_of_year" = "वर्ष की तारीख";
 "done_this_month" = "इस महीने हो गया";
-"totalDone" = "Totaldone";
+"totalDone" = "कुल मिलाकर";
 "current_streak" = "वर्तमान धारा";
 "best_streak" = "बेस्ट स्ट्रीक";
 
@@ -30,3 +30,6 @@
 "total_number_of_achievements_1" = "";
 "total_number_of_achievements_2" = "";
 "total_number_of_achievements_3" = "";
+
+// Error
+"fetch_record_failed" = "एक समस्या थी कि रिकॉर्ड मिल रही थी।";

@@ -73,14 +73,21 @@ final class TimerApplicationService: ApplicationService{
     }
     
     
-    func when(_ command: UpdateTimer) async throws{
+    func when(_ command: UpdateSectionTimer) async throws{
         do{
-            Log.v("When (\(UpdateTimer.self)):  \(command)")
+            Log.v("When (\(UpdateSectionTimer.self)):  \(command)")
                         
             let timerName = try TimerName(command.name)
+            let timerType = TimerType.section
             
+            let sections = try command.updateSections.map {
+                try TimerSection(command: $0)
+            }
+            let timerSections = try TimerSections(sections: sections)
+            
+
             try update(id: command.timerId) { (timer: SectionTimer) in
-                timer.updateTime(timerName: timerName)
+                timer.updateTimer(timerName: timerName, timerType: timerType, timerSections: timerSections)
             }
             
             try Transaction.commit()
@@ -88,5 +95,56 @@ final class TimerApplicationService: ApplicationService{
             try Transaction.rollback()
             throw error
         }
+    }
+    
+    func when(_ command: UpdateFocusTimer) async throws{
+        do{
+            Log.v("When (\(UpdateFocusTimer.self)):  \(command)")
+            
+            let timerName = try TimerName(command.name)
+            let timerType = TimerType.focus
+            let timerCountdown = try TimerFocusCountdown(min: command.min)
+         
+            try update(id: command.timerId) { (timer: FocusTimer) in
+                timer.updateTimer(timerName: timerName, timerType: timerType, timerCountdown: timerCountdown)
+            }
+            
+            try Transaction.commit()
+        }catch{
+            try Transaction.rollback()
+            throw error
+        }
+    }
+    
+    func when(_ command: DeleteSectionTimer) async throws{
+        do{
+            Log.v("When (\(DeleteSectionTimer.self)):   \(command)")
+            
+            try update(id: command.timerId) { (timer: SectionTimer) in
+                timer.deleteTimer()
+            }
+            
+            try Transaction.commit()
+        }catch{
+            try Transaction.rollback()
+            throw error
+        }
+        
+    }
+    
+    func when(_ command: DeleteFocusTimer) async throws{
+        do{
+            Log.v("When (\(DeleteFocusTimer.self)):   \(command)")
+            
+            try update(id: command.timerId) { (timer: FocusTimer) in
+                timer.deleteTimer()
+            }
+            
+            try Transaction.commit()
+        }catch{
+            try Transaction.rollback()
+            throw error
+        }
+        
     }
 }

@@ -135,6 +135,15 @@ final class RoutineDetailViewController: UIViewController, RoutineDetailPresenta
         view.backgroundColor = UIColor(hex: tint)
     }
     
+    func showRecordRoutineFailed() {
+        let alert = UIAlertController(
+            title: nil,
+            message: "record_routine_failed".localized(tableName: "Routine"),
+            preferredStyle: .alert
+        )
+        let confirm = UIAlertAction(title: "confirm".localized(tableName: "Routine"), style: .default)
+        alert.addAction(confirm)
+    }
     
     @objc
     private func closeBarButtonTap(){

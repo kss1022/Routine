@@ -53,3 +53,12 @@
 "thank_for_feedback" = "피드백 감사합니다🙏";
 "send_mail_fail" = "메일 보내기에 실패했습니다.😰";
 "confirm" = "확인";
+
+// Error
+"error" = "에러";
+"try_again_later" = "잠시후 다시 시도해보세요.";
+"oops" = "이런";
+"sorry_there_are_proble_with_request" = "죄송합니다, 요청에 문제가 발생했어요.";
+"mail_serive_no_available" = "메일 서비스를 사용할수 없습니다.";
+"fetch_profile_failed" = "프로필을 가져오는데 문제가 발생했습니다.";
+"update_failed" = "프로필을 수정하는데 문제가 발생했습니다.";

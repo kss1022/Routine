@@ -18,6 +18,7 @@
 "start" = "始める";
 "pause" = "一時停止";
 "cancel" = "キャンセル";
+"resume" = "再開する";
 
 // CreateTimer
 "create_your_timer" = "タイマーを作成します";
@@ -31,7 +32,7 @@
 "editTimerCountdown_sec" = "%dSec";
 "editTimerCountdown_rep" = "%dRep";
 
-// TimerSectionEdit
+// TimerSectionEdit
 "edit_section" = "編集セクション";
 "name" = "名前";
 "description" = "説明";
@@ -52,3 +53,14 @@
 
 // TimerSelect
 "choose_your_time" = "タイマーを選択してください";
+
+// Error
+"error" = "エラー";
+"try_again_later" = "後でもう一度やり直してください。";
+"oops" = "おっと";
+"sorry_there_are_proble_with_request" = "申し訳ありませんが、あなたの要求に基づいて問題があります";
+"fetch_list_failed" = "リストの読み込みに問題がありました。もう一度やり直してください。";
+"fetch_timer_failed" = "タイマーを取得するのに問題がありました。";
+"add_timer_failed" = "タイマーの追加に問題がありました。";
+"update_timer_failed" = "タイマーの変更に問題がありました。";
+"minumum_chracters" = "最小％dのクラクター";

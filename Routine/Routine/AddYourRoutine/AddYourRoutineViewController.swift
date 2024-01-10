@@ -162,6 +162,9 @@ final class AddYourRoutineViewController: UIViewController, AddYourRoutinePresen
         view.backgroundColor = UIColor(hex: color)
     }
     
+    func showError(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
 
     @objc
     private func closeBarButtonTap(){

@@ -88,7 +88,7 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
                 guard let self = self else { return }
                 do{
                     try await dependency.recordRepository.fetchRoutineTopAcheives()
-                    await MainActor.run { self.router?.attachRoutineTopAcheive() }
+                    await MainActor.run { [weak self] in self?.router?.attachRoutineTopAcheive() }
                 }catch{
                     Log.e("\(error)")
                 }
@@ -99,7 +99,7 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
                 guard let self = self else { return }
                 do{                    
                     try await dependency.recordRepository.fetchRoutineWeeklyTrakers()
-                    await MainActor.run { self.router?.attachRoutineWeeklyTracker() }
+                    await MainActor.run { [weak self] in self?.router?.attachRoutineWeeklyTracker() }
                 }catch{
                     Log.e("\(error)")
                 }
@@ -122,10 +122,11 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
     
     // MARK: RoutineData    
     func recordRoutineListDidTap(routineId: UUID) {
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
                 try await dependency.recordRepository.fetchRoutineRecords(routineId: routineId)
-                await MainActor.run { router?.attachRoutineData() }
+                await MainActor.run { [weak self] in self?.router?.attachRoutineData() }
             }catch{
                 Log.e("\(error)")
             }

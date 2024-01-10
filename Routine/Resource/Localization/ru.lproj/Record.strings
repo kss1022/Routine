@@ -30,3 +30,6 @@
 "total_number_of_achievements_1" = "";
 "total_number_of_achievements_2" = "";
 "total_number_of_achievements_3" = "";
+
+// Error
+"fetch_record_failed" = "Была проблема с получением записей.";

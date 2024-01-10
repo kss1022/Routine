@@ -18,6 +18,7 @@
 "start" = "Başlangıç";
 "pause" = "Duraklat";
 "cancel" = "İptal etmek";
+"resume" = "Sürdürmek";
 
 // CreateTimer
 "create_your_timer" = "Zamanlayıcınızı Oluşturun";
@@ -31,7 +32,7 @@
 "editTimerCountdown_sec" = "%dSec";
 "editTimerCountdown_rep" = "%dRep";
 
-// TimerSectionEdit
+// TimerSectionEdit
 "edit_section" = "Bölümü düzenle";
 "name" = "İsim";
 "description" = "Tanım";
@@ -42,7 +43,7 @@
 "exercise" = "Egzersiz yapmak";
 "exercise_description" = "Bunu yapabilirsin!";
 "round" = "Yuvarlak";
-"round_description" = "Rutin egzersiz + dinlenme";
+"round_description" = "Rutin egzersiz + dinlenir";
 "cycle" = "Döngü";
 "cycle_description" = "Döngü bir n tur";
 "cycle_rest" = "Döngü dinlenmesi";
@@ -52,3 +53,14 @@
 
 // TimerSelect
 "choose_your_time" = "Zamanlayıcınızı seçin";
+
+// Error
+"error" = "Hata";
+"try_again_later" = "Daha sonra tekrar deneyin.";
+"oops" = "Oops";
+"sorry_there_are_proble_with_request" = "Üzgünüm, isteğinizle ilgilendik";
+"fetch_list_failed" = "Listeyi yüklerken bir sorun vardı, lütfen bir anda tekrar deneyin.";
+"fetch_timer_failed" = "Zamanlayıcıyı elde etmekte bir sorun vardı.";
+"add_timer_failed" = "Zamanlayıcıyı ekleyerek bir sorun vardı.";
+"update_timer_failed" = "Zamanlayıcıyı değiştirmede bir sorun vardı.";
+"minumum_chracters" = "Minimum %D Chracters";

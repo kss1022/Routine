@@ -26,15 +26,15 @@ final class TimerSectionCountPickerView: UIControl{
     
     
     init(){
-        self.countNumberArray = Array(0...59)
-        self.count = countNumberArray[0]        
+        self.countNumberArray = Array(1...59)
+        self.count = countNumberArray[0]
         super.init(frame: .zero)
         
         setLayout()
     }
     
     required init?(coder: NSCoder) {
-        self.countNumberArray = Array(0...59)
+        self.countNumberArray = Array(1...59)
         self.count = countNumberArray[0]
         super.init(coder: coder)
         

@@ -101,7 +101,8 @@ final class TimerSectionEditInteractor: PresentableInteractor<TimerSectionEditPr
             description: self.description, 
             sequence: before.sequence,
             type: before.type,
-            value: self.value
+            value: self.value,
+            color: before.color?.toHex()
         )
         
         lists[before.sequence] = newModel

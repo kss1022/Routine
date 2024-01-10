@@ -18,6 +18,7 @@
 "start" = "शुरू";
 "pause" = "विराम";
 "cancel" = "रद्द करना";
+"resume" = "फिर शुरू करना";
 
 // CreateTimer
 "create_your_timer" = "अपना टाइमर बनाएं";
@@ -31,7 +32,7 @@
 "editTimerCountdown_sec" = "%dSec";
 "editTimerCountdown_rep" = "%dRep";
 
-// TimerSectionEdit
+// TimerSectionEdit
 "edit_section" = "अनुभाग का संपादन";
 "name" = "नाम";
 "description" = "विवरण";
@@ -52,3 +53,14 @@
 
 // TimerSelect
 "choose_your_time" = "अपना टाइमर चुनें";
+
+// Error
+"error" = "गलती";
+"try_again_later" = "बाद में फिर से प्रयास करें।";
+"oops" = "उफ़";
+"sorry_there_are_proble_with_request" = "क्षमा करें, आपके अनुरोध के साथ प्रबल हैं";
+"fetch_list_failed" = "सूची को लोड करने में कोई समस्या थी, कृपया एक पल में फिर से प्रयास करें।";
+"fetch_timer_failed" = "टाइमर होने में समस्या थी।";
+"add_timer_failed" = "टाइमर को जोड़ने में एक समस्या थी।";
+"update_timer_failed" = "टाइमर को संशोधित करने में एक समस्या थी।";
+"minumum_chracters" = "न्यूनतम %d chracters";

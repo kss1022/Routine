@@ -76,7 +76,7 @@ final class ProfileHomeViewController: UIViewController, ProfileHomePresentable,
         ])
     }
     
-    //MARK: ViewControllabel
+    //MARK: ViewControllable
     func setProfileCard(_ view: ViewControllable) {
         let vc = view.uiviewController
         addChild(vc)
@@ -107,10 +107,11 @@ final class ProfileHomeViewController: UIViewController, ProfileHomePresentable,
     
     
     //MARK: Presentable
-    func showMailResult(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "confirm".localized(tableName: "Profile"), style: .default)
-        alert.addAction(confirm)
-        present(alert, animated: true, completion: nil)
+    func showError(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
+    
+    func showMailResult(title: String, message: String){
+        showAlert(title: title, message: message)
     }
 }

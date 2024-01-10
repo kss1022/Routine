@@ -33,6 +33,8 @@ final class FocusTimer : DomainEntity{
     override func mutate(_ event: Event) {
         if let created = event as? FocusTimerCreated{
             when(created)
+        }else if let updated = event as? FocusTimerUpdated{
+            when(updated)            
         }else{
             Log.e("Event is not handling")
         }
@@ -43,6 +45,26 @@ final class FocusTimer : DomainEntity{
         self.timerName = event.timerName
         self.timerCountdown = event.timerCountdown
     }
+    
+    private func when(_ event: FocusTimerUpdated){
+        self.timerId = event.timerId
+        self.timerName = event.timerName
+        self.timerCountdown = event.timerCountdown
+    }
+    
+    func updateTimer(timerName: TimerName, timerType: TimerType, timerCountdown: TimerFocusCountdown){
+        
+        self.timerName = timerName
+        self.timerType = timerType
+        self.timerCountdown = timerCountdown
+        
+        changes.append(FocusTimerUpdated(timerId: self.timerId, timerName: timerName, timerType: timerType, timerCountdown: timerCountdown))
+    }
+    
+    func deleteTimer(){
+        changes.append(FocusTimerDeleted(timerId: self.timerId))
+    }
+    
     
     override func encode(with coder: NSCoder) {
         timerId.encode(with: coder)

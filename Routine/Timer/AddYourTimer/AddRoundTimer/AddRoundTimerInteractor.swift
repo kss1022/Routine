@@ -19,6 +19,7 @@ protocol AddRoundTimerRouting: ViewableRouting {
 protocol AddRoundTimerPresentable: Presentable {
     var listener: AddRoundTimerPresentableListener? { get set }
     func setTitle(title: String)
+    func showError(title: String, message: String)
 }
 
 protocol AddRoundTimerListener: AnyObject {
@@ -49,8 +50,7 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
         dependency: AddRoundTimerInteractorDependency
     ) {
         self.dependency = dependency
-        //self.name = dependency.timerType.title
-        self.name = "round".localized(tableName: "Timer")
+        self.name = ""
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -58,53 +58,7 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     override func didBecomeActive() {
         super.didBecomeActive()
   
-        let models = [
-            TimerSectionListModel(
-                id: UUID(),
-                emoji: "🔥",
-                name: "ready".localized(tableName: "Timer"),
-                description: "ready_description".localized(tableName: "Timer"),
-                sequence: 0,
-                type: .ready,
-                value: .countdown(min: 0, sec: 5)
-            ),TimerSectionListModel(
-                id: UUID(),
-                emoji: "🧘‍♂️",
-                name: "take_a_rest".localized(tableName: "Timer"),
-                description: "take_a_rest_description".localized(tableName: "Timer"),
-                sequence: 1,
-                type: .rest,
-                value: .countdown(min: 1, sec: 10),
-                color: "#3BD2AEff"
-            ),TimerSectionListModel(
-                id: UUID(),
-                emoji: "🏃‍♂️",
-                name: "exercise".localized(tableName: "Timer"),
-                description: "exercise_description".localized(tableName: "Timer"),
-                sequence: 2,
-                type: .exercise,
-                value: .countdown(min: 0, sec: 5),
-                color: "#3BD2AEff"
-            ),
-            TimerSectionListModel(
-                id: UUID(),
-                emoji: "⛳️",
-                name: "round".localized(tableName: "Timer"),
-                description: "round_description".localized(tableName: "Timer"),
-                sequence: 3,
-                type: .round,
-                value: .count(count: 3)
-            ),
-            TimerSectionListModel(
-                id: UUID(),
-                emoji: "❄️",
-                name: "colldown".localized(tableName: "Timer"),
-                description: "colldown_description".localized(tableName: "Timer"),
-                sequence: 6,
-                type: .cooldown,
-                value: .countdown(min: 0, sec: 30)
-            )
-        ]
+        let models = TimerSetup().roundSectionLists()
         
         dependency.sectionListsSubject.send(models)
         
@@ -143,11 +97,12 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
         )
         
         
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
                 try await dependency.timerApplicationService.when(createTimer)
                 try await dependency.timerRepository.fetchLists()
-                await MainActor.run { listener?.addRoundTimerDidAddNewTimer() }
+                await MainActor.run { [weak self] in self?.listener?.addRoundTimerDidAddNewTimer() }
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
@@ -175,6 +130,21 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     func timerSectionEditDidMoved() {
         router?.detachTimerSectionEdit()
     }
+}
+
+
+private extension AddRoundTimerInteractor{
+    @MainActor
+    func showAddTimerFailed(){
+        let title = "oops".localized(tableName: "Timer")
+        let message = "add_timer_failed".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
+    }
     
-    
+    @MainActor
+    func showSystemFailed(){
+        let title = "error".localized(tableName: "Timer")
+        let message = "sorry_there_are_proble_with_request".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
+    }
 }

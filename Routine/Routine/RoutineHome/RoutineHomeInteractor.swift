@@ -23,6 +23,7 @@ protocol RoutineHomeRouting: ViewableRouting {
 protocol RoutineHomePresentable: Presentable {
     var listener: RoutineHomePresentableListener? { get set }
     func setTitle(title: String)
+    func showError(title: String, message: String)
 }
 
 protocol RoutineHomeListener: AnyObject {
@@ -79,11 +80,13 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
         router?.attachRoutineWeekCalendar()
         router?.attachRoutineList()
         
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
                 try await dependency.routineRepository.fetchLists()
             }catch{
                 Log.e(error.localizedDescription)
+                await self.showFetchListFailed()
             }
         }
     }
@@ -108,9 +111,10 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     //MARK: RoutineWeekCalendar
     func routineWeekCalendarDidTap(date: Date) {
         Task{ [weak self] in
+            guard let self = self else { return }
             do{
-                self?.date = date
-                try await self?.dependency.routineRepository.fetchHomeList(date: date)
+                self.date = date
+                try await dependency.routineRepository.fetchHomeList(date: date)
                 
                 await MainActor.run { [weak self] in 
                     let date = Formatter.routineHomeTitleFormatter(date: date)
@@ -118,6 +122,7 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
                 }
             }catch{
                 Log.e("\(error)")
+                await showFetchListFailed()
             }
         }
     }
@@ -158,11 +163,12 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
                 try await dependency.routineRepository.fetchDetail(routineId)
                 await MainActor.run { [weak self] in
                     guard let self = self else { return }
-                    self.isDetail = true
-                    self.router?.attachRoutineDetail(routineId: routineId, recordDate: self.date)
+                    isDetail = true
+                    router?.attachRoutineDetail(routineId: routineId, recordDate: self.date)
                 }
             }catch{
                 Log.e("\(error)")
+                await self.showFetchDetailFailed()
             }
             
         }
@@ -180,33 +186,61 @@ final class RoutineHomeInteractor: PresentableInteractor<RoutineHomePresentable>
     
     
     private func createRecord(_ command: CreateRoutineRecord){
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
-                try await self.dependency.recordApplicationService.when(command)
-                try await self.dependency.routineRepository.fetchLists()
+                try await dependency.recordApplicationService.when(command)
+                try await dependency.routineRepository.fetchLists()
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
+                await self.showRecordRoutineFailed()
             }
         }
     }
     
     private func setComplete(_ command: SetCompleteRoutineRecord){
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
-                try await self.dependency.recordApplicationService.when(command)
-                try await self.dependency.routineRepository.fetchLists()
+                try await dependency.recordApplicationService.when(command)
+                try await dependency.routineRepository.fetchLists()
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
+                await self.showRecordRoutineFailed()
             }
         }
     }
 }
 
+// MARK: Error Message
+private extension RoutineHomeInteractor{
+        
+    @MainActor
+    func showFetchListFailed(){
+        let title = "try_again_later".localized(tableName: "Routine")
+        let message = "fetch_list_failed".localized(tableName: "Routine")
+        presenter.showError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showFetchDetailFailed(){
+        let title = "try_again_later".localized(tableName: "Routine")
+        let message = "fetch_routine_failed".localized(tableName: "Routine")
+        presenter.showError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showRecordRoutineFailed(){
+        let title = "oops".localized(tableName: "Routine")
+        let message = "record_routine_failed".localized(tableName: "Routine")
+        presenter.showError(title: title, message: message)
+    }
+}

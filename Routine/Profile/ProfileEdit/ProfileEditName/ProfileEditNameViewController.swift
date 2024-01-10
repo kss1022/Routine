@@ -138,8 +138,9 @@ extension ProfileEditNameViewController: UITextFieldDelegate{
     
  
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let before = textField.text{
-            let textCount = string.count + before.count
+        if let before = textField.text as? NSString{
+            let text = before.replacingCharacters(in: range, with: string)
+            let textCount = text.count
             
             if textCount > 30{
                 return false

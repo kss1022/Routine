@@ -8,7 +8,7 @@
 "today" = "Today";
 "yesterDay" = "Yesterday";
 "tomorrow" = "Tomorrow";
-"no_tasks" = "No task";
+"no_task" = "No task";
 
 // RoutineDetail
 "complete" = "Complete";
@@ -40,3 +40,20 @@
 // RoutineEdit
 "edit" = "Edit";
 "delete" = "Delete";
+
+// Error
+"error" = "Error";
+"try_again_later" = "Try again in a Later.";
+"oops" = "Oops";
+"sorry_there_are_proble_with_request" = "Sorry, there are proble with your request";
+"fetch_list_failed" = "Failed to load the list.";
+"fetch_routine_failed" = "Failed to load the routine.";
+"add_routine_failed" = "There was a problem adding the routine.";
+"update_routine_failed" = "There was a problem update the routine.";
+"delete_routine_failed" = "There was a problem deleting the routine.";
+"record_routine_failed" = "There was a problem recording the routine.";
+"name_count_less_then" = "Name Length must less then %d";
+"name_count_more_then" = "Name Length must more then %d";
+"description_count_less_then" = "Description Length must count then %d";
+"description_count_more_then" = "Description Length must less then %d";
+"minumum_chracters" = "Minimum %d chracters";

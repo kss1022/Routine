@@ -23,7 +23,8 @@ protocol ProfileEditRouting: ViewableRouting {
 
 protocol ProfileEditPresentable: Presentable {
     var listener: ProfileEditPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    
+    func showUpdateProfileFailed()
 }
 
 protocol ProfileEditListener: AnyObject {
@@ -92,8 +93,9 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
     
     func doneButtonDidTap() {
         Task{ [weak self] in
+            guard let self = self else { return }
+            
             do{
-                guard let self = self else { return }
                 //TODO: Handler color nil
                 guard let topColor = memojiStyle.topColor?.toHex(),
                       let bottomColor = memojiStyle.bottomColor?.toHex() else { return }
@@ -125,6 +127,7 @@ final class ProfileEditInteractor: PresentableInteractor<ProfileEditPresentable>
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
+                    presenter.showUpdateProfileFailed()
                 }else{
                     Log.e("UnkownError\n\(error.localizedDescription)" )
                 }

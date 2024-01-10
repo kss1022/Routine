@@ -13,7 +13,6 @@ struct TimerSectionDescription: ValueObject{
     
     init(_ description: String) throws{
         if description.count > 50{ throw ArgumentException("TimerSectionDescription Length must less then 50")  }
-        if description.count < 2{ throw ArgumentException("TimerSectionDescription Length must more then 2")  }
         self.description = description
     }
 

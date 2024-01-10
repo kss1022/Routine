@@ -9,7 +9,7 @@ import Foundation
 
 
 
-struct SetCompleteTimerRecord{
+struct SetCompleteTimerRecord: Command{
     let recordId: UUID
     let endAt: Date
     let duration: Double

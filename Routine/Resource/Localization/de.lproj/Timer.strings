@@ -18,6 +18,7 @@
 "start" = "Start";
 "pause" = "Pause";
 "cancel" = "Stornieren";
+"resume" = "Wieder aufnehmen";
 
 // CreateTimer
 "create_your_timer" = "Erstellen Sie Ihren Timer";
@@ -31,7 +32,7 @@
 "editTimerCountdown_sec" = "%dSec";
 "editTimerCountdown_rep" = "%dRep";
 
-// TimerSectionEdit
+// TimerSectionEdit
 "edit_section" = "Abschnitt bearbeiten";
 "name" = "Name";
 "description" = "Beschreibung";
@@ -42,7 +43,7 @@
 "exercise" = "Übung";
 "exercise_description" = "Du kannst es schaffen!";
 "round" = "Runden";
-"round_description" = "Routine ist eine Excercise + Ruhe";
+"round_description" = "Routine ist excercise + ruht";
 "cycle" = "Zyklus";
 "cycle_description" = "Zyklus ist eine N -Runde";
 "cycle_rest" = "Zyklusruhe";
@@ -52,3 +53,14 @@
 
 // TimerSelect
 "choose_your_time" = "Wählen Sie Ihren Timer";
+
+// Error
+"error" = "Fehler";
+"try_again_later" = "Versuchen Sie es später erneut.";
+"oops" = "Hoppla";
+"sorry_there_are_proble_with_request" = "Entschuldigung, es gibt Proble mit Ihrer Anfrage";
+"fetch_list_failed" = "Es gab ein Problem beim Laden der Liste. Bitte versuchen Sie es einmal erneut.";
+"fetch_timer_failed" = "Es gab ein Problem, den Timer zu bekommen.";
+"add_timer_failed" = "Es gab ein Problem mit dem Hinzufügen des Timers.";
+"update_timer_failed" = "Es gab ein Problem, den Timer zu ändern.";
+"minumum_chracters" = "Mindest %d Chracters";

@@ -53,3 +53,12 @@
 "thank_for_feedback" = "フィードバックありがとうございます";
 "send_mail_fail" = "メールフェイルを送信します";
 "confirm" = "確認する";
+
+// Error
+"error" = "エラー";
+"try_again_later" = "後でもう一度やり直してください。";
+"oops" = "おっと";
+"sorry_there_are_proble_with_request" = "申し訳ありませんが、あなたの要求に基づいて問題があります";
+"mail_serive_no_available" = "メールセリブは利用できません";
+"fetch_profile_failed" = "プロファイルを取得するのに問題がありました。";
+"update_failed" = "プロファイルの更新に問題がありました。";

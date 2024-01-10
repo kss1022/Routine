@@ -8,7 +8,7 @@
 "today" = "आज";
 "yesterDay" = "कल";
 "tomorrow" = "कल";
-"no_tasks" = "न पूछें";
+"no_task" = "न पूछें";
 
 // RoutineDetail
 "complete" = "पूरा";
@@ -40,3 +40,20 @@
 // RoutineEdit
 "edit" = "संपादन करना";
 "delete" = "मिटाना";
+
+// Error
+"error" = "गलती";
+"try_again_later" = "बाद में फिर से प्रयास करें।";
+"oops" = "उफ़";
+"sorry_there_are_proble_with_request" = "क्षमा करें, आपके अनुरोध के साथ प्रबल हैं";
+"fetch_list_failed" = "सूची को लोड करने में विफल रहा।";
+"fetch_routine_failed" = "दिनचर्या को लोड करने में विफल रहा।";
+"add_routine_failed" = "दिनचर्या को जोड़ने में एक समस्या थी।";
+"update_routine_failed" = "एक समस्या थी दिनचर्या को अपडेट करें।";
+"delete_routine_failed" = "दिनचर्या को हटाने में समस्या थी।";
+"record_routine_failed" = "दिनचर्या को रिकॉर्ड करने में एक समस्या थी।";
+"name_count_less_then" = "नाम की लंबाई कम होनी चाहिए तो %d";
+"name_count_more_then" = "नाम की लंबाई अधिक हो तो %d";
+"description_count_less_then" = "विवरण लंबाई की गणना होनी चाहिए तो %d";
+"description_count_more_then" = "विवरण लंबाई कम होनी चाहिए तो %d";
+"minumum_chracters" = "न्यूनतम %d chracters";

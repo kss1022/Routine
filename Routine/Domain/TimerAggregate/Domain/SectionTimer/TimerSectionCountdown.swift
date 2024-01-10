@@ -15,13 +15,17 @@ struct TimerSectionCountdown: ValueObject{
     let min: Int
     let sec: Int
     
-    init(min: Int, sec: Int) throws{
+    init(min: Int, sec: Int) throws{                
         if min < 0{
             throw ArgumentException("Min must be least than 0")
         }
         
-        if sec < 1 || sec > 60{
+        if sec < 0 || sec > 60{
             throw ArgumentException("Sec must be in the range 1 ~ 60")
+        }
+        
+        if min == 0 && sec == 0{
+            throw ArgumentException("Time must be greater than zero.")
         }
         
         self.min = min

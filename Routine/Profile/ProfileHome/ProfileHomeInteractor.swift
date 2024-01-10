@@ -39,6 +39,8 @@ protocol ProfileHomeRouting: ViewableRouting {
 
 protocol ProfileHomePresentable: Presentable {
     var listener: ProfileHomePresentableListener? { get set }
+    
+    func showError(title: String, message: String)
     func showMailResult(title: String, message: String)
 }
 
@@ -89,11 +91,13 @@ final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>
         //router?.attachProfileStat()
         router?.attachProfileMenu()
         
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
                 try await dependency.profileRepository.fetchProfile()
-            }catch{
+            }catch{                
                 Log.e(error.localizedDescription)
+                await showFetchProfileFailed()
             }
         }
         
@@ -198,6 +202,10 @@ final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>
             router?.attachFeedbackMail()
         }else{
             Log.v("Mail Serive is no available")
+            presenter.showError(
+                title: "oops".localized(tableName: "Profile"),
+                message: "mail_serive_no_available".localized(tableName: "Profile")
+            )
         }
     }
     
@@ -247,4 +255,14 @@ final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>
     }
 
    
+}
+
+
+private extension ProfileHomeInteractor{
+    @MainActor
+    func showFetchProfileFailed(){
+        let title = "try_again_later".localized(tableName: "Profile")
+        let message = "fetch_profile_failed".localized(tableName: "Profile")
+        presenter.showError(title: title, message: message)
+    }
 }

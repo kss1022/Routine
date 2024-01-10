@@ -33,7 +33,7 @@ final class SectionTimer : DomainEntity{
     override func mutate(_ event: Event) {
         if let created = event as? SectionTimerCreated{
             when(created)
-        }else if let updated = event as? TimerUpdated{
+        }else if let updated = event as? SectionTimerUpdated{
             when(updated)
         }else{
             Log.e("Event is not handling")
@@ -47,15 +47,23 @@ final class SectionTimer : DomainEntity{
         self.timerSections = event.timerSections
     }
     
-    private func when(_ event: TimerUpdated){
-        self.timerId = event.timerId
+    private func when(_ event: SectionTimerUpdated){        
         self.timerName = event.timerName
+        self.timerType = event.timerType
+        self.timerSections = event.timerSections
     }
     
-    func updateTime(timerName: TimerName){
-        self.timerName = timerName
+    func updateTimer(timerName: TimerName, timerType: TimerType, timerSections: TimerSections){
         
-        changes.append(TimerUpdated(timerId: self.timerId, timerName: timerName))
+        self.timerName = timerName
+        self.timerType = timerType
+        self.timerSections = timerSections
+        
+        changes.append(SectionTimerUpdated(timerId: self.timerId, timerName: timerName, timerType: timerType, timerSecions: timerSections))
+    }
+    
+    func deleteTimer(){
+        changes.append(SectionTimerDeleted(timerId: self.timerId))
     }
     
     

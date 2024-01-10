@@ -18,7 +18,6 @@ protocol RoutineEditTitlePresentable: Presentable {
 
     func setTitle(emoji: String, routineName: String?, routineDescription: String?)
     func setEmoji(_ emoji: String)
-
 }
 
 protocol RoutineEditTitleListener: AnyObject {
@@ -65,7 +64,7 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
         // TODO: Pause any business logic.
     }
     
-    func didSetRoutineName(name: String) {
+    func didSetRoutineName(name: String) {        
         listener?.routineEditTitleSetName(name: name)
     }
     

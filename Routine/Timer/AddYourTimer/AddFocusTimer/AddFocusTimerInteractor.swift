@@ -15,6 +15,7 @@ protocol AddFocusTimerRouting: ViewableRouting {
 protocol AddFocusTimerPresentable: Presentable {
     var listener: AddFocusTimerPresentableListener? { get set }
     func setTitle(title: String)
+    func showError(title: String, message: String)
 }
 
 protocol AddFocusTimerListener: AnyObject {
@@ -43,7 +44,7 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
         dependency: AddFocusTimerInteractorDependency
     ) {
         self.dependency = dependency
-        self.name = "focus".localized(tableName: "Timer")
+        self.name = ""
         self.minute = 30
         super.init(presenter: presenter)
         presenter.listener = self
@@ -70,16 +71,17 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
     
     func doneButtonDidTap() {
         let createTimer = CreateFocusTimer(name: self.name, min: self.minute)
-        
-        
-        Task{
+                
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
                 try await dependency.timerApplicationService.when(createTimer)
                 try await dependency.timerRepository.fetchLists()
-                await MainActor.run { listener?.addfocusTimerDidAddNewTimer() }
+                await MainActor.run { [weak self] in self?.listener?.addfocusTimerDidAddNewTimer() }
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
+                    await showAddTimerFailed()
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
@@ -97,5 +99,22 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
     func timerEditCountdownSetMinute(minute: Int) {
         self.minute = minute
     }
+}
+
+
+private extension AddFocusTimerInteractor{
     
+    @MainActor
+    func showAddTimerFailed(){
+        let title = "oops".localized(tableName: "Timer")
+        let message = "add_timer_failed".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showSystemFailed(){
+        let title = "error".localized(tableName: "Timer")
+        let message = "sorry_there_are_proble_with_request".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
+    }
 }

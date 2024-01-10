@@ -18,6 +18,7 @@
 "start" = "开始";
 "pause" = "暂停";
 "cancel" = "取消";
+"resume" = "恢复";
 
 // CreateTimer
 "create_your_timer" = "创建您的计时器";
@@ -31,12 +32,12 @@
 "editTimerCountdown_sec" = "%dSec";
 "editTimerCountdown_rep" = "%dRep";
 
-// TimerSectionEdit
+// TimerSectionEdit
 "edit_section" = "编辑部分";
 "name" = "姓名";
 "description" = "描述";
 "ready" = "准备好";
-"ready_description" = "开始倒计时之前";
+"ready_description" = "在开始倒计时之前";
 "take_a_rest" = "休息一下";
 "take_a_rest_description" = "休息一下";
 "exercise" = "锻炼";
@@ -52,3 +53,14 @@
 
 // TimerSelect
 "choose_your_time" = "选择您的计时器";
+
+// Error
+"error" = "错误";
+"try_again_later" = "稍后再试。";
+"oops" = "糟糕";
+"sorry_there_are_proble_with_request" = "抱歉，有您的要求";
+"fetch_list_failed" = "加载列表时存在问题，请稍后重试。";
+"fetch_timer_failed" = "获取计时器存在问题。";
+"add_timer_failed" = "添加计时器存在问题。";
+"update_timer_failed" = "修改计时器存在问题。";
+"minumum_chracters" = "最低％D Chracter";

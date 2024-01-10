@@ -20,6 +20,7 @@ protocol AddYourRoutinePresentable: Presentable {
     var listener: AddYourRoutinePresentableListener? { get set }
 
     func setTint(_ color: String)
+    func showError(title: String, message: String)
 }
 
 protocol AddYourRoutineListener: AnyObject {
@@ -120,8 +121,10 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
+                    await self.showAddRoutineFailed()
                 }else{
                     Log.e("UnkownError\n\(error)" )
+                    await self.showSystemFailed()
                 }
             }
         }
@@ -161,6 +164,27 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
     func routineEditStyleDidSetStyle(style: EmojiStyle) {
         tint = style.hex
         presenter.setTint(tint)
+    }
+
+}
+
+
+
+// MARK: Error Message
+private extension AddYourRoutineInteractor{
+    
+    @MainActor
+    func showAddRoutineFailed(){
+        let title = "oops".localized(tableName: "Routine")
+        let message = "add_routine_failed".localized(tableName: "Routine")
+        presenter.showError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showSystemFailed(){
+        let title = "error".localized(tableName: "Routine")
+        let message = "sorry_there_are_proble_with_request".localized(tableName: "Routine")
+        presenter.showError(title: title, message: message)
     }
 
 }

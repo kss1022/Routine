@@ -55,6 +55,42 @@ struct TimerSection: ValueObject{
         self.tint = command.color.flatMap(Tint.init)
     }
     
+    init(command:  UpdateSection) throws{
+        guard let sectionType = TimerSectionType(rawValue: command.type) else{
+            throw ArgumentException("This is not the right data for your type: \(command.type)")
+        }
+        
+        self.timerSectionType = sectionType
+        switch self.timerSectionType {
+        case .ready, .rest, .exercise, .cycleRest, .cooldown:
+            guard let min = command.min, let sec = command.sec else {
+                let minMsg = (command.min == nil) ? "nil" : "\(command.min!)"
+                let secMsg = (command.sec == nil) ? "nil" : "\(command.sec!)"
+                throw ArgumentException("This is not the right data for your type (\(self.timerSectionType.rawValue): min = %d  sec = %d" , minMsg, secMsg)
+            }
+            
+            
+            let timerCountdown = try TimerSectionCountdown(min: min, sec: sec)
+            self.timerSectionValue = .countdown(countdown: timerCountdown)
+            
+        case .round, .cycle:
+            guard let count = command.count else {
+                throw ArgumentException("This is not the right data for your type (\(self.timerSectionType.rawValue): count = nil")
+            }
+            
+            let timerCount = try TimerSectionCount(count: count)
+            self.timerSectionValue = .count(count: timerCount)
+        }
+        
+                    
+        
+        self.emoji = Emoji(command.emoji)
+        self.sectionName = try TimerSectionName(command.name)
+        self.sectionDescription = try TimerSectionDescription(command.description)
+        self.sequence = try TimerSequence(command.sequence)
+        self.tint = command.color.flatMap(Tint.init)
+    }
+    
 
     func encode(with coder: NSCoder) {
         sectionName.encode(with: coder)

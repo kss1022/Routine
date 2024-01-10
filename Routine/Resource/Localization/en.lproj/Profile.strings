@@ -53,3 +53,12 @@
 "thank_for_feedback" = "Thank you for your feedback🙏";
 "send_mail_fail" = "Send Mail Fail😰";
 "confirm" = "Confirm";
+
+// Error
+"error" = "Error";
+"try_again_later" = "Try again in a Later.";
+"oops" = "Oops";
+"sorry_there_are_proble_with_request" = "Sorry, there are proble with your request";
+"mail_serive_no_available" = "Mail Serive is no available";
+"fetch_profile_failed" = "There was a problem getting the profile.";
+"update_failed" = "There was a problem update the profile.";

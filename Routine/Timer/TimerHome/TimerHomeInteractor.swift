@@ -24,6 +24,7 @@ protocol TimerHomePresentable: Presentable {
     var listener: TimerHomePresentableListener? { get set }
     
     func setTimer(title: String, timerName: String)
+    func showError(title: String, message: String)
 }
 
 protocol TimerHomeListener: AnyObject {
@@ -70,8 +71,14 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         
         Log.v("Timer Home DidBecome Active ⏰")
         
-        Task{
-            try? await dependency.timerRepository.fetchLists()
+        Task{ [weak self] in
+            guard let self = self else { return }
+            do{
+                try await self.dependency.timerRepository.fetchLists()
+            }catch{
+                Log.e(error.localizedDescription)
+                await self.showFetchListFailed()
+            }
         }
         
         
@@ -181,12 +188,17 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         self.isSelect = true
         router?.detachSelectTimer()
     }
-
-
-   
 }
 
 
+private extension TimerHomeInteractor{
+    @MainActor
+    func showFetchListFailed(){
+        let title = "try_again_later".localized(tableName: "Timer")
+        let message = "fetch_list_failed".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
+    }
+}
 
 extension TimerTypeModel{
     fileprivate func title() -> String{

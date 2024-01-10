@@ -53,3 +53,12 @@
 "thank_for_feedback" = "Geri bildiriminiz için teşekkürler🙏";
 "send_mail_fail" = "Posta Başarısızlığı Gönder😰";
 "confirm" = "Onaylamak";
+
+// Error
+"error" = "Hata";
+"try_again_later" = "Daha sonra tekrar deneyin.";
+"oops" = "Oops";
+"sorry_there_are_proble_with_request" = "Üzgünüm, isteğinizle ilgilendik";
+"mail_serive_no_available" = "Posta serisi mevcut değil";
+"fetch_profile_failed" = "Profili almakta bir sorun vardı.";
+"update_failed" = "Profilin güncellenmesi bir sorun vardı.";

@@ -51,7 +51,6 @@ final class ProfileApplicationService: ApplicationService{
         do{
             Log.v("When (\(UpdateProfile.self)):  \(command)")
                         
-            let profileId = ProfileId(command.profileId)
             let profileName = try ProfileName(command.name)
             let profileIntroduction = try ProfileIntroduction(command.description)
             let profileImage = try ProfileImage(imageType: command.imageType, value: command.imageValue)

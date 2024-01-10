@@ -22,6 +22,8 @@ protocol RoutineDetailPresentable: Presentable {
     var listener: RoutineDetailPresentableListener? { get set }
     func setTitle(_ title: String)
     func setBackgroundColor(_ tint: String)
+    
+    func showRecordRoutineFailed()
 }
 
 protocol RoutineDetailListener: AnyObject {
@@ -37,19 +39,17 @@ protocol RoutineDetailInteractorDependency{
     var recordApplicationService: RecordApplicationService{ get }
     
     var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?>{ get }
-    var routineDetailRecord: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ get }
-
-    
+    var routineDetailRecord: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ get }    
 }
 
 final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresentable>, RoutineDetailInteractable, RoutineDetailPresentableListener, AdaptivePresentationControllerDelegate {
     
-            
+    
     weak var router: RoutineDetailRouting?
     weak var listener: RoutineDetailListener?
-        
+    
     let presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
-        
+    
     private let dependency : RoutineDetailInteractorDependency
     private var cancelables: Set<AnyCancellable>
     
@@ -74,7 +74,7 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
             Log.e("\(dependency.routineDetail.value!.routineId)(detail.routineId) != \(self.dependency.routineId)(self.dependency.routineId)")
             fatalError()
         }
-                
+        
         //Check SelectedDate
         let detailRecordDate = Formatter.recordDateFormatter().string(from: dependency.routineDetailRecord.value!.recordDate)
         let recordDate = Formatter.recordDateFormatter().string(from: self.dependency.recordDate)
@@ -87,7 +87,7 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
         router?.attachRoutineTitle()
         router?.attachRecordCalendar()
         router?.attachRoutineBasicInfo()
-    
+        
         dependency.routineDetail
             .receive(on: DispatchQueue.main)
             .sink {
@@ -105,16 +105,16 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
         cancelables.removeAll()
     }
     
-
+    
     func closeButtonDidTap() {
         listener?.routineDetailCloseButtonDidTap()
     }
-        
+    
     func editButtonDidTap() {
         self.router?.attachRoutineEdit(routineId: self.dependency.routineId)
     }
-        
-
+    
+    
     func routineTitleCompleteButtonDidTap() {
         let record = dependency.routineDetailRecord.value
         let routineId = dependency.routineId
@@ -151,33 +151,37 @@ final class RoutineDetailInteractor: PresentableInteractor<RoutineDetailPresenta
     
     //MARK: Private
     private func createRecord(_ command: CreateRoutineRecord){
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
-                try await self.dependency.recordApplicationService.when(command)
-                try await self.dependency.routineRepository.fetchLists()
-                try await self.dependency.routineRepository.fetchDetail(self.dependency.routineId)
+                try await dependency.recordApplicationService.when(command)
+                try await dependency.routineRepository.fetchLists()
+                try await dependency.routineRepository.fetchDetail(self.dependency.routineId)
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
+                presenter.showRecordRoutineFailed()
             }
         }
     }
     
     private func setComplete(_ command: SetCompleteRoutineRecord){
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
-                try await self.dependency.recordApplicationService.when(command)
-                try await self.dependency.routineRepository.fetchLists()
-                try await self.dependency.routineRepository.fetchDetail(self.dependency.routineId)
+                try await dependency.recordApplicationService.when(command)
+                try await dependency.routineRepository.fetchLists()
+                try await dependency.routineRepository.fetchDetail(self.dependency.routineId)
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
+                presenter.showRecordRoutineFailed()
             }
         }
     }

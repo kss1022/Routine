@@ -8,7 +8,7 @@
 "today" = "Bugün";
 "yesterDay" = "Dün";
 "tomorrow" = "Yarın";
-"no_tasks" = "Sorma";
+"no_task" = "Sorma";
 
 // RoutineDetail
 "complete" = "Tamamlamak";
@@ -40,3 +40,20 @@
 // RoutineEdit
 "edit" = "Düzenlemek";
 "delete" = "Silmek";
+
+// Error
+"error" = "Hata";
+"try_again_later" = "Daha sonra tekrar deneyin.";
+"oops" = "Oops";
+"sorry_there_are_proble_with_request" = "Üzgünüm, isteğinizle ilgilendik";
+"fetch_list_failed" = "Listeyi yükleyemedi.";
+"fetch_routine_failed" = "Rutini yükleyemedi.";
+"add_routine_failed" = "Rutini ekleyerek bir sorun vardı.";
+"update_routine_failed" = "Rutini güncelleme bir sorun vardı.";
+"delete_routine_failed" = "Rutini silme problemi vardı.";
+"record_routine_failed" = "Rutini kaydetmede bir sorun vardı.";
+"name_count_less_then" = "İsim uzunluğu %d'den az olmalıdır";
+"name_count_more_then" = "İsim uzunluğu %D'den daha fazla olmalıdır";
+"description_count_less_then" = "Açıklama uzunluğu saymalıdır, sonra %D";
+"description_count_more_then" = "Açıklama Uzunluğu %D'den daha az olmalıdır";
+"minumum_chracters" = "Minimum %D Chracters";

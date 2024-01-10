@@ -30,3 +30,6 @@
 "total_number_of_achievements_1" = "You've been consistently recording your routines. Shall we aim for higher goals together? Let's create a better version of yourself through new challenges!";
 "total_number_of_achievements_2" = "Well done on starting to record! What goals would you like to set for the next time? Exciting opportunities for growth are waiting for you through new challenges.";
 "total_number_of_achievements_3" = "I can see your effort in recording routines! Try creating even greater achievements with more records. I'm looking forward to what's ahead!";
+
+// Error
+"fetch_record_failed" = "There was a problem getting records.";

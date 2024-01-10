@@ -10,32 +10,17 @@ import Foundation
 
 
 final class TimerSetup{
+        
     
-    private let timerApplicationService: TimerApplicationService    
-    
-    init(
-        timerApplicationService: TimerApplicationService
-    ) {
-        self.timerApplicationService = timerApplicationService
-    }
-    
-    func initTimer() async throws{
+    func initTimer(_ timerApplicationService: TimerApplicationService) async throws{
         let createFocusTimer = CreateFocusTimer(
             name: "focus".localized(tableName: "Timer"),
-            min: 60
+            min: 30
         )
         
         let createTabataTimer = CreateSectionTimer(
             name: "tabata".localized(tableName: "Timer"),
-            createSections: [
-                ready(),
-                rest(),
-                exercise(),
-                round(),
-                cycle(),
-                cycleRest(),
-                cooldown()
-            ].enumerated().map{ (sequence, section) in
+            createSections: tabataSectionsLists().enumerated().map{ (sequence, section) in
                 CreateSection(
                     name: section.name,
                     description: section.description,
@@ -52,13 +37,7 @@ final class TimerSetup{
         
         let createRoundTimer = CreateSectionTimer(
             name: "round".localized(tableName: "Timer"),
-            createSections: [
-                ready(),
-                rest(),
-                exercise(),
-                round(),
-                cooldown()
-            ].enumerated().map{ (sequence, section) in
+            createSections: roundSectionLists().enumerated().map{ (sequence, section) in
                 CreateSection(
                     name: section.name,
                     description: section.description,
@@ -78,6 +57,28 @@ final class TimerSetup{
         try await timerApplicationService.when(createTabataTimer)
         try await timerApplicationService.when(createRoundTimer)
     }
+    
+    func tabataSectionsLists() -> [TimerSectionListModel]{
+        [
+            ready(),
+            exercise(),
+            rest(),
+            round(),
+            cycle(),
+            cycleRest(),
+            cooldown()
+        ]
+    }
+    
+    func roundSectionLists() -> [TimerSectionListModel]{
+        [
+            ready(),
+            exercise(),
+            rest(),
+            round(),
+            cooldown(sequence: 4)
+        ]
+    }
 }
 
 
@@ -95,18 +96,6 @@ private extension TimerSetup{
         )
     }
     
-    func rest() -> TimerSectionListModel{
-        TimerSectionListModel(
-            id: UUID(),
-            emoji: "🧘‍♂️",
-            name: "take_a_rest".localized(tableName: "Timer"),
-            description: "take_a_rest_description".localized(tableName: "Timer"),
-            sequence: 1,
-            type: .rest,
-            value: .countdown(min: 1, sec: 10),
-            color: "#3BD2AEff"
-        )
-    }
     
     func exercise() -> TimerSectionListModel{
         TimerSectionListModel(
@@ -114,9 +103,22 @@ private extension TimerSetup{
             emoji: "🏃‍♂️",
             name: "exercise".localized(tableName: "Timer"),
             description: "exercise_description".localized(tableName: "Timer"),
-            sequence: 2,
+            sequence: 1,
             type: .exercise,
-            value: .countdown(min: 0, sec: 5),
+            value: .countdown(min: 0, sec: 30),
+            color: "#3BD2AEff"
+        )
+    }
+    
+    func rest() -> TimerSectionListModel{
+        TimerSectionListModel(
+            id: UUID(),
+            emoji: "🧘‍♂️",
+            name: "take_a_rest".localized(tableName: "Timer"),
+            description: "take_a_rest_description".localized(tableName: "Timer"),
+            sequence: 2,
+            type: .rest,
+            value: .countdown(min: 0, sec: 15),
             color: "#3BD2AEff"
         )
     }
@@ -129,7 +131,7 @@ private extension TimerSetup{
             description: "round_description".localized(tableName: "Timer"),
             sequence: 3,
             type: .round,
-            value: .count(count: 3)
+            value: .count(count: 4)
         )
     }
     
@@ -159,13 +161,13 @@ private extension TimerSetup{
         )
     }
     
-    func cooldown() -> TimerSectionListModel{
+    func cooldown(sequence: Int = 6) -> TimerSectionListModel{
         TimerSectionListModel(
             id: UUID(),
             emoji: "❄️",
             name: "colldown".localized(tableName: "Timer"),
             description: "colldown_description".localized(tableName: "Timer"),
-            sequence: 6,
+            sequence: sequence,
             type: .cooldown,
             value: .countdown(min: 0, sec: 30)
         )

@@ -18,6 +18,7 @@
 "start" = "Commencer";
 "pause" = "Pause";
 "cancel" = "Annuler";
+"resume" = "CV";
 
 // CreateTimer
 "create_your_timer" = "Créez votre minuterie";
@@ -31,7 +32,7 @@
 "editTimerCountdown_sec" = "%dSec";
 "editTimerCountdown_rep" = "%dRep";
 
-// TimerSectionEdit
+// TimerSectionEdit
 "edit_section" = "Modifier la section";
 "name" = "Nom";
 "description" = "Description";
@@ -52,3 +53,14 @@
 
 // TimerSelect
 "choose_your_time" = "Choisissez votre minuterie";
+
+// Error
+"error" = "Erreur";
+"try_again_later" = "Réessayez plus tard.";
+"oops" = "Oops";
+"sorry_there_are_proble_with_request" = "Désolé, il y a un problème avec votre demande";
+"fetch_list_failed" = "Il y avait un problème à charger la liste, veuillez réessayer dans un instant.";
+"fetch_timer_failed" = "Il y avait un problème à obtenir la minuterie.";
+"add_timer_failed" = "Il y avait un problème à ajouter la minuterie.";
+"update_timer_failed" = "Il y avait un problème à modifier la minuterie.";
+"minumum_chracters" = "Minimum% d chracters";

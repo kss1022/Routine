@@ -117,7 +117,7 @@ final class AppTutorialRoutineInteractor: PresentableInteractor<AppTutorialRouti
                    }
                 
                 for create in commands {
-                    try await self.dependency.routineApplicationService.when(create)
+                    try await dependency.routineApplicationService.when(create)
                 }
                 
                 await MainActor.run { [weak self] in self?.listener?.appTutorailRoutineDidFinish() }

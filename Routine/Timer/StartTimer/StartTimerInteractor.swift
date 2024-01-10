@@ -73,8 +73,8 @@ final class StartTimerInteractor: Interactor, StartTimerInteractable, AdaptivePr
             Task{ [weak self] in
                 guard let self = self else { return }
                 do{
-                    try await self.dependency.timerRepository.fetchFocus(timerId: timerId)
-                    guard let focus = self.dependency.timerRepository.focus.value else {
+                    try await dependency.timerRepository.fetchFocus(timerId: timerId)
+                    guard let focus = dependency.timerRepository.focus.value else {
                         
                         await MainActor.run { self.listener?.startTimerDidClose() }
                         return

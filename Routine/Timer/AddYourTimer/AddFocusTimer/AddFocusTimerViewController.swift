@@ -104,6 +104,11 @@ final class AddFocusTimerViewController: UIViewController, AddFocusTimerPresenta
         self.title = title
     }
     
+    func showError(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
+    
+    
     @objc
     private func closeBarButtonTap(){
         self.listener?.closeButtonDidTap()

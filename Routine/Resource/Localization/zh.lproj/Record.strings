@@ -17,7 +17,7 @@
 // YourAchieve
 "your_achieve" = "您的成就";
 "date_of_week" = "一周的日期";
-"date_of_month" = "一个月";
+"date_of_month" = "月份";
 "date_of_year" = "一年的日期";
 "done_this_month" = "本月完成了";
 "totalDone" = "总数";
@@ -30,3 +30,6 @@
 "total_number_of_achievements_1" = "";
 "total_number_of_achievements_2" = "";
 "total_number_of_achievements_3" = "";
+
+// Error
+"fetch_record_failed" = "获得记录存在问题。";

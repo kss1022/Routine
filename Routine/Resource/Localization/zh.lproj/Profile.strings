@@ -9,7 +9,7 @@
 "alarm" = "阿拉姆";
 "theme" = "主题";
 "font" = "字体";
-"appIcon" = "阿皮孔";
+"appIcon" = "阿皮康";
 "team" = "团队";
 "guide" = "指导";
 "feedback" = "反馈";
@@ -48,8 +48,17 @@
 "feedback_title" = "你好烤！";
 "feedback_message" = "欢迎任何反馈或错误报告:)";
 "saved_draft_folder" = "保存在草稿文件夹中";
-"saved_draft_folder_message" = "草稿已保存在草案文件夹中。";
+"saved_draft_folder_message" = "起草的电子邮件已保存在草案文件夹中。";
 "send_feedback" = "发送反馈";
 "thank_for_feedback" = "谢谢您的反馈🙏";
 "send_mail_fail" = "发送邮件失败😰";
 "confirm" = "确认";
+
+// Error
+"error" = "错误";
+"try_again_later" = "稍后再试。";
+"oops" = "糟糕";
+"sorry_there_are_proble_with_request" = "抱歉，有您的要求";
+"mail_serive_no_available" = "邮件序列没有可用";
+"fetch_profile_failed" = "获得个人资料存在问题。";
+"update_failed" = "有问题更新配置文件。";

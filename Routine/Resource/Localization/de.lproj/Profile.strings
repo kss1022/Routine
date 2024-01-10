@@ -53,3 +53,12 @@
 "thank_for_feedback" = "Vielen Dank für Ihr Feedback🙏";
 "send_mail_fail" = "E -Mails senden 😰";
 "confirm" = "Bestätigen";
+
+// Error
+"error" = "Fehler";
+"try_again_later" = "Versuchen Sie es später erneut.";
+"oops" = "Hoppla";
+"sorry_there_are_proble_with_request" = "Entschuldigung, es gibt Proble mit Ihrer Anfrage";
+"mail_serive_no_available" = "Mail Serive ist nicht verfügbar";
+"fetch_profile_failed" = "Es gab ein Problem, das Profil zu bekommen.";
+"update_failed" = "Es gab ein Problem, das das Profil aktualisiert.";

@@ -126,6 +126,10 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         selectTimerButton.setTitle(timerName, for: .normal)
     }
     
+    func showError(title: String, message: String) {
+        showAlert(title: title, message: message)
+    }
+    
     
     @objc
     private func createTimerBarButtonTap(){

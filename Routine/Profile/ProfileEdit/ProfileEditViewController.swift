@@ -99,9 +99,21 @@ final class ProfileEditViewController: UIViewController, ProfileEditPresentable,
         }, completion: nil)
     }
     
+    func showUpdateProfileFailed() {
+        let alert = UIAlertController(
+            title: "update_failed".localized(tableName: "Profile"),
+            message: "update_failed".localized(tableName: "Profile"),
+            preferredStyle: .alert
+        )
+        let confirm = UIAlertAction(title: "confirm".localized(tableName: "Profile"), style: .default)
+        alert.addAction(confirm)
+        present(alert, animated: true, completion: nil)
+    }
+    
     private func updateTransition(){
         scrollView.isScrollEnabled = UIDevice.current.orientation.isLandscape
     }
+    
     
     @objc
     private func closeBarButtonTap(){

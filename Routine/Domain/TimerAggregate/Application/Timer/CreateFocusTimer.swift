@@ -9,7 +9,7 @@ import Foundation
 
 
 
-struct CreateFocusTimer{
+struct CreateFocusTimer: Command{
     let name: String
     let min: Int
 }

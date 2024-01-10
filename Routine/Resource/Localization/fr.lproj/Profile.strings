@@ -40,7 +40,7 @@
 "font_preview" = "Bonjour routine ~ 👋";
 "font_size" = "Taille de police";
 "font_typeface" = "Police de police";
-"os_setting" = "Paramètre OS";
+"os_setting" = "Réglage du système d'exploitation";
 "os_setting_help" = "Vous pouvez modifier les paramètres du système d'exploitation sous Paramètres> Affichage et luminosité> Taille texque.";
 "os_typeface" = "Face de caractères";
 
@@ -53,3 +53,12 @@
 "thank_for_feedback" = "Merci pour vos commentaires🙏";
 "send_mail_fail" = "Envoyer un courrier défaillance😰";
 "confirm" = "Confirmer";
+
+// Error
+"error" = "Erreur";
+"try_again_later" = "Réessayez plus tard.";
+"oops" = "Oops";
+"sorry_there_are_proble_with_request" = "Désolé, il y a un problème avec votre demande";
+"mail_serive_no_available" = "Le courrier serive n'est pas disponible";
+"fetch_profile_failed" = "Il y avait un problème à obtenir le profil.";
+"update_failed" = "Il y avait un problème à mettre à jour le profil.";

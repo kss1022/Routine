@@ -6,7 +6,7 @@
 // RecordHome
 "check_your_top_acheive" = "Üstünüzü kontrol edin 🔥";
 "check_your_weeklyTracker" = "WeeklyTracker'ınızı kontrol edin ✅";
-"your_achieve" = "Başarısınız";
+"your_achieve" = "Başarınız";
 "top_achieve" = "En iyi başarmak";
 "routine_achieve_isEmpty" = "Henüz herhangi bir rutin başarı kaydınız yok.";
 "added_routine_isEmpty" = "Henüz herhangi bir rutin eklemediniz";
@@ -15,7 +15,7 @@
 "weeklyTracker" = "Haftalık";
 
 // YourAchieve
-"your_achieve" = "Başarısınız";
+"your_achieve" = "Başarınız";
 "date_of_week" = "Haftanın Tarihi";
 "date_of_month" = "Ayın tarihi";
 "date_of_year" = "Yılın tarihi";
@@ -30,3 +30,6 @@
 "total_number_of_achievements_1" = "";
 "total_number_of_achievements_2" = "";
 "total_number_of_achievements_3" = "";
+
+// Error
+"fetch_record_failed" = "Kayıt almakta bir sorun vardı.";

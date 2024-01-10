@@ -73,9 +73,10 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
             startAt: startAt
         )
         
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
-                try await dependency.recordApplicationService.when(createRecord)
+                try await self.dependency.recordApplicationService.when(createRecord)
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
@@ -105,7 +106,8 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
     
     func focusRoundTimerDidFinish(startAt: Date, endAt: Date, duration: Double) {
     
-        Task{
+        Task{ [weak self] in
+            guard let self = self else { return }
             do{
                 guard let recordId = try await dependency.timerRepository.recordId(timerId: dependency.model.timerId, startAt: startAt) else {
                     Log.e("Can't find RecordId: \(dependency.model.timerId) \(startAt)")
