@@ -20,6 +20,8 @@ final class TimerListSQLDao: TimerListDao{
     internal static let tableName = "TIMERLIST"
     private let timerId: Expression<UUID>
     private let timerName: Expression<String>
+    private let emoji: Expression<String>
+    private let tint: Expression<String>
     private let timerType: Expression<TimerTypeDto>
     
     init(db: Connection) throws{
@@ -27,6 +29,8 @@ final class TimerListSQLDao: TimerListDao{
         table = Table(TimerListSQLDao.tableName)
         timerId = Expression<UUID>("timerId")
         timerName = Expression<String>("timerName")
+        emoji = Expression<String>("emoji")
+        tint = Expression<String>("tint")
         timerType = Expression<TimerTypeDto>("timerType")
         
         try setup()
@@ -42,6 +46,8 @@ final class TimerListSQLDao: TimerListDao{
         try db.run(table.create(ifNotExists: true){ table in
             table.column(timerId, primaryKey: true)
             table.column(timerName)
+            table.column(emoji)
+            table.column(tint)
             table.column(timerType)
         })
         
@@ -54,6 +60,8 @@ final class TimerListSQLDao: TimerListDao{
         let insert = table.insert(
             timerId <- dto.timerId,
             timerName <- dto.timerName,
+            emoji <- dto.emoji,
+            tint <- dto.tint,
             timerType <- dto.timerType
         )
         
@@ -69,6 +77,8 @@ final class TimerListSQLDao: TimerListDao{
         let update = query.update(
             timerId <- dto.timerId,
             timerName <- dto.timerName,
+            emoji <- dto.emoji,
+            tint <- dto.tint,
             timerType <- dto.timerType
         )
         
@@ -84,6 +94,8 @@ final class TimerListSQLDao: TimerListDao{
             TimerListDto(
                 timerId: $0[timerId],
                 timerName: $0[timerName],
+                emoji: $0[emoji],
+                tint: $0[tint],
                 timerType: $0[timerType]
             )
         }.first
@@ -94,6 +106,8 @@ final class TimerListSQLDao: TimerListDao{
             TimerListDto(
                 timerId: $0[timerId],
                 timerName: $0[timerName],
+                emoji: $0[emoji],
+                tint: $0[tint],
                 timerType: $0[timerType]
             )
         }

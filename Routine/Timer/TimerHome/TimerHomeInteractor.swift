@@ -10,20 +10,18 @@ import ModernRIBs
 import Combine
 
 protocol TimerHomeRouting: ViewableRouting {
+    func attachTimerList()
+    
+    
     func attachCreateTimer()
     func detachCreateTimer()
     
     func attachStartTimer(timerId: UUID)
     func detachStartTimer()
-    
-    func attachSelectTimer()
-    func detachSelectTimer()
 }
 
 protocol TimerHomePresentable: Presentable {
     var listener: TimerHomePresentableListener? { get set }
-    
-    func setTimer(title: String, timerName: String)
     func showError(title: String, message: String)
 }
 
@@ -48,7 +46,6 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
     
     private var isCreate: Bool
     private var isStart: Bool
-    private var isSelect: Bool
     
     // in constructor.
     init(
@@ -60,7 +57,6 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         self.presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
         self.isCreate = false
         self.isStart = false
-        self.isSelect = false
         super.init(presenter: presenter)
         presenter.listener = self
         self.presentationDelegateProxy.delegate = self
@@ -71,6 +67,8 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         
         Log.v("Timer Home DidBecome Active ⏰")
         
+        router?.attachTimerList()
+        
         Task{ [weak self] in
             guard let self = self else { return }
             do{
@@ -80,24 +78,6 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
                 await self.showFetchListFailed()
             }
         }
-        
-        
-        dependency.timerRepository.lists
-            .receive(on: DispatchQueue.main)
-            .sink { list  in
-                if PreferenceStorage.shared.timerId.isEmpty{
-                    if let focusTimer = list.first(where: { $0.timerType == .focus }){
-                        PreferenceStorage.shared.timerId = focusTimer.timerId.uuidString
-                    }
-                }
-                
-                let timerId = PreferenceStorage.shared.timerId
-                if let currentTimer = list.first(where: { $0.timerId.uuidString == timerId }){
-                    self.presenter.setTimer(title: currentTimer.timerType.title(), timerName: currentTimer.name)
-                }
-            }
-            .store(in: &cancellables)
-
     }
 
     override func willResignActive() {
@@ -119,12 +99,13 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
             router?.detachStartTimer()
             return
         }
-        
-        if isSelect{
-            isSelect = false
-            router?.detachSelectTimer()
-            return
-        }
+    }
+    
+    
+    //MARK: TimerList
+    func timerListTimerDidTap(timerId: UUID) {        
+        self.isStart = true
+        self.router?.attachStartTimer(timerId: timerId)
     }
     
     
@@ -146,48 +127,11 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
     
 
     //MARK: StartTimer
-    func startTimerButtonDidTap() {
-        let timerId = UUID(uuidString: PreferenceStorage.shared.timerId)!
-        self.isStart = true
-        self.router?.attachStartTimer(timerId: timerId)
-    }
-    
     func startTimerDidClose() {
         self.isStart = false
         router?.detachStartTimer()
     }
     
-    // MARK: SelectTimer
-    func selectTimerButtonDidTap() {
-        self.isSelect = true
-        router?.attachSelectTimer()
-    }
-    
-
-    func timerSelectCloseButtonDidTap() {
-        self.isSelect = false
-        router?.detachSelectTimer()
-    }
-    
-    
-    func timerSelectCreateTimerButtonDidTap() {
-        self.isSelect = false
-        router?.detachSelectTimer()
-        router?.attachCreateTimer()
-    }
-    
-    
-    func timerSelectDidSelectItem(timerId: UUID) {
-        let preference = PreferenceStorage.shared
-        preference.timerId = timerId.uuidString
-                
-        if let currentTimer = dependency.timerRepository.lists.value.first(where: { $0.timerId.uuidString == timerId.uuidString }){
-            self.presenter.setTimer(title: currentTimer.timerType.title(), timerName: currentTimer.name)
-        }
-        
-        self.isSelect = true
-        router?.detachSelectTimer()
-    }
 }
 
 
@@ -197,16 +141,5 @@ private extension TimerHomeInteractor{
         let title = "try_again_later".localized(tableName: "Timer")
         let message = "fetch_list_failed".localized(tableName: "Timer")
         presenter.showError(title: title, message: message)
-    }
-}
-
-extension TimerTypeModel{
-    fileprivate func title() -> String{
-        switch self {
-        case .focus:
-            return "focus".localized(tableName: "Timer")
-        case .section:
-            return "repeat".localized(tableName: "Timer")
-        }
     }
 }

@@ -43,7 +43,9 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
 
 
     private let dependency: AddTabataTimerInteractorDependency
+    
     private var name: String
+    private var emoji: String
     
     // in constructor.
     init(
@@ -53,6 +55,7 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
         self.dependency = dependency
         //self.name = dependency.timerType.title
         self.name = ""
+        self.emoji = "🍅"
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -66,7 +69,6 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
         
         router?.attachTimerEditTitle()
         router?.attachTimerSectionList()
-        presenter.setTitle(title: "tabata".localized(tableName: "Timer"))
     }
 
     override func willResignActive() {
@@ -93,8 +95,14 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
             )
         }
         
+        let styles = EmojiService().styles()
+        var tint = styles[Int.random(in: 0..<(styles.count))]
+        
         let createTimer = CreateSectionTimer(
-            name: self.name,
+            name: name,
+            emoji: emoji,
+            tint: tint.hex,
+            timerType: TimerTypeModel.tabata.rawValue,
             createSections: createSections
         )
         
@@ -120,8 +128,13 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
     
     
     //MARK: TimerEditTitle
-    func timerEditTitleSetName(name: String) {
+    func timerEditTitleDidSetName(name: String) {
         self.name = name
+        presenter.setTitle(title: name)
+    }
+    
+    func timerEditTitleDidSetEmoji(emoji: String) {
+        self.emoji = emoji
     }
     
     

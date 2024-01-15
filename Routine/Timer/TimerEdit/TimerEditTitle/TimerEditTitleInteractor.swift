@@ -13,11 +13,13 @@ protocol TimerEditTitleRouting: ViewableRouting {
 
 protocol TimerEditTitlePresentable: Presentable {
     var listener: TimerEditTitlePresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+    func setName(_ name: String)
+    func setEmoji(_ emoji: String)
 }
 
 protocol TimerEditTitleListener: AnyObject {
-    func timerEditTitleSetName(name: String)
+    func timerEditTitleDidSetEmoji(emoji: String)
+    func timerEditTitleDidSetName(name: String)
 }
 
 final class TimerEditTitleInteractor: PresentableInteractor<TimerEditTitlePresentable>, TimerEditTitleInteractable, TimerEditTitlePresentableListener {
@@ -35,7 +37,9 @@ final class TimerEditTitleInteractor: PresentableInteractor<TimerEditTitlePresen
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
+        
+        presenter.setName("")
+        presenter.setEmoji("🍅")
     }
 
     override func willResignActive() {
@@ -43,8 +47,13 @@ final class TimerEditTitleInteractor: PresentableInteractor<TimerEditTitlePresen
         // TODO: Pause any business logic.
     }
     
-    func setTimerName(name: String) {
-        listener?.timerEditTitleSetName(name: name)
+    func didSetName(name: String) {
+        listener?.timerEditTitleDidSetName(name: name)
+    }
+    
+    func didSetEmoji(emoji: String) {
+        presenter.setEmoji(emoji)
+        listener?.timerEditTitleDidSetEmoji(emoji: emoji)
     }
     
 }

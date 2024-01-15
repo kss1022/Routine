@@ -28,3 +28,6 @@
 "allow_alarm_can_send" = "允许警报以使例程可以向您发送通知。";
 "allow_remidner" = "允许提醒";
 "not_now" = "现在不要";
+"tomato" = "番茄";
+"running" = "跑步";
+"study" = "学习";

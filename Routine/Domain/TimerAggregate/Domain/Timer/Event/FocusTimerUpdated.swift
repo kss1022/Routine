@@ -11,13 +11,17 @@ import Foundation
 final class FocusTimerUpdated: DomainEvent{
     let timerId: TimerId
     let timerName: TimerName
+    let emoji: Emoji
+    let tint: Tint
     let timerCountdown: TimerFocusCountdown!
     let timerType: TimerType
 
 
-    init(timerId: TimerId, timerName: TimerName, timerType: TimerType,timerCountdown: TimerFocusCountdown) {
+    init(timerId: TimerId, timerName: TimerName, emoji: Emoji, tint: Tint, timerType: TimerType,timerCountdown: TimerFocusCountdown) {
         self.timerId = timerId
         self.timerName = timerName
+        self.emoji = emoji
+        self.tint = tint
         self.timerType = timerType
         self.timerCountdown = timerCountdown
         super.init()
@@ -27,6 +31,8 @@ final class FocusTimerUpdated: DomainEvent{
     override func encode(with coder: NSCoder) {
         timerId.encode(with: coder)
         timerName.encode(with: coder)
+        emoji.encode(with: coder)
+        tint.encode(with: coder)
         timerType.encode(with: coder)
         timerCountdown.encode(with: coder)
         super.encode(with: coder)
@@ -36,12 +42,16 @@ final class FocusTimerUpdated: DomainEvent{
     override init?(coder: NSCoder) {
         guard let timerId = TimerId(coder: coder),
               let timerName = TimerName(coder: coder),
+              let emoji = Emoji(coder: coder),
+              let tint = Tint(coder: coder),
               let timerType = TimerType(coder: coder),
               let timerCountdown = TimerFocusCountdown(coder: coder)
         else { return nil}
         
         self.timerId = timerId
         self.timerName = timerName
+        self.emoji = emoji
+        self.tint = tint
         self.timerType = timerType
         self.timerCountdown = timerCountdown
         

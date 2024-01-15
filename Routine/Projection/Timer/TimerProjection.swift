@@ -65,6 +65,8 @@ final class TimerProjection{
             let timerList = TimerListDto(
                 timerId: event.timerId.id,
                 timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
                 timerType: event.timerType
             )
             
@@ -89,6 +91,8 @@ final class TimerProjection{
             let timerList = TimerListDto(
                 timerId: event.timerId.id,
                 timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
                 timerType: event.timerType
             )
             
@@ -111,6 +115,8 @@ final class TimerProjection{
             let timerList = TimerListDto(
                 timerId: event.timerId.id,
                 timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
                 timerType: event.timerType
             )
             
@@ -135,6 +141,8 @@ final class TimerProjection{
             let timerList = TimerListDto(
                 timerId: event.timerId.id,
                 timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
                 timerType: event.timerType
             )
             

@@ -28,3 +28,6 @@
 "allow_alarm_can_send" = "ルーチンが通知を送信できるようにアラームを許可します。";
 "allow_remidner" = "リマインダーを許可します";
 "not_now" = "今じゃない";
+"tomato" = "トマト";
+"running" = "ランニング";
+"study" = "勉強";

@@ -10,12 +10,14 @@ import Foundation
 
 enum TimerTypeDto: String{
     case focus
-    case section
+    case tabata
+    case round
     
     init(_ timerType: TimerType){
         switch timerType {
         case .focus: self = .focus
-        case .section: self = .section
+        case .tabata: self = .tabata
+        case .round: self = .round
         }
     }
 }

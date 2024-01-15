@@ -11,5 +11,7 @@ import Foundation
 
 struct CreateFocusTimer: Command{
     let name: String
+    let emoji: String
+    let tint: String
     let min: Int
 }

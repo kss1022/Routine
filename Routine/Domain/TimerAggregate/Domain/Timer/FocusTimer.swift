@@ -12,18 +12,22 @@ import Foundation
 final class FocusTimer : DomainEntity{
     private(set) var timerId: TimerId!
     private(set) var timerName: TimerName!
+    private(set) var emoji: Emoji!
+    private(set) var tint: Tint!
     private(set) var timerType: TimerType!
     private(set) var timerCountdown: TimerFocusCountdown!
 
     
-    init(timerId: TimerId, timerName: TimerName, timerType: TimerType, timerCountdown: TimerFocusCountdown) {
+    init(timerId: TimerId, timerName: TimerName, emoji: Emoji, tint: Tint, timerType: TimerType, timerCountdown: TimerFocusCountdown) {
         self.timerId = timerId
         self.timerName = timerName
+        self.emoji = emoji
+        self.tint = tint
         self.timerType = timerType
         self.timerCountdown = timerCountdown
         super.init()
         
-        changes.append(FocusTimerCreated(timerId: timerId, timerName: timerName, timerType: timerType, timerCountdown: timerCountdown))
+        changes.append(FocusTimerCreated(timerId: timerId, timerName: timerName, emoji: emoji, tint: tint, timerType: timerType, timerCountdown: timerCountdown))
     }
     
     required init(_ events: [Event]) {
@@ -43,22 +47,28 @@ final class FocusTimer : DomainEntity{
     private func when(_ event: FocusTimerCreated){
         self.timerId = event.timerId
         self.timerName = event.timerName
+        self.emoji = event.emoji
+        self.tint = event.tint
         self.timerCountdown = event.timerCountdown
     }
     
     private func when(_ event: FocusTimerUpdated){
         self.timerId = event.timerId
         self.timerName = event.timerName
+        self.emoji = event.emoji
+        self.tint = event.tint
         self.timerCountdown = event.timerCountdown
     }
     
-    func updateTimer(timerName: TimerName, timerType: TimerType, timerCountdown: TimerFocusCountdown){
+    func updateTimer(timerName: TimerName, emoji: Emoji, tint: Tint, timerType: TimerType, timerCountdown: TimerFocusCountdown){
         
         self.timerName = timerName
+        self.emoji = emoji
+        self.tint = tint
         self.timerType = timerType
         self.timerCountdown = timerCountdown
         
-        changes.append(FocusTimerUpdated(timerId: self.timerId, timerName: timerName, timerType: timerType, timerCountdown: timerCountdown))
+        changes.append(FocusTimerUpdated(timerId: self.timerId, timerName: timerName, emoji: emoji, tint: tint, timerType: timerType, timerCountdown: timerCountdown))
     }
     
     func deleteTimer(){
@@ -69,6 +79,8 @@ final class FocusTimer : DomainEntity{
     override func encode(with coder: NSCoder) {
         timerId.encode(with: coder)
         timerName.encode(with: coder)
+        emoji.encode(with: coder)
+        tint.encode(with: coder)
         timerType.encode(with: coder)
         timerCountdown.encode(with: coder)
         super.encode(with: coder)
@@ -77,12 +89,16 @@ final class FocusTimer : DomainEntity{
     required override init?(coder: NSCoder) {
         guard let timerId = TimerId(coder: coder),
               let timerName = TimerName(coder: coder),
+              let emoji = Emoji(coder: coder),
+              let tint = Tint(coder: coder),
               let timerType = TimerType(coder: coder),
               let timerCountdown = TimerFocusCountdown(coder: coder)
         else { return nil}
         
         self.timerId = timerId
         self.timerName = timerName
+        self.emoji = emoji
+        self.tint = tint
         self.timerType = timerType
         self.timerCountdown = timerCountdown
         

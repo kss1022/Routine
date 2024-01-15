@@ -28,3 +28,6 @@
 "allow_alarm_can_send" = "Lassen Sie einen Alarm zu, damit die Routine eine Benachrichtigung senden kann.";
 "allow_remidner" = "Erinnerung zulassen";
 "not_now" = "Nicht jetzt";
+"tomato" = "Tomate";
+"running" = "Läuft";
+"study" = "Studie";

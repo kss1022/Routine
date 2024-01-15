@@ -11,7 +11,10 @@ import Foundation
 
 
 struct CreateSectionTimer: Command{
-    let name: String    
+    let name: String
+    let emoji: String
+    let tint: String
+    let timerType: String
     let createSections: [CreateSection]
 }
 

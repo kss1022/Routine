@@ -37,7 +37,10 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
     private let dependency: AddFocusTimerInteractorDependency
 
     private var name: String
+    private var emoji: String
     private var minute: Int
+    
+    
     // in constructor.
     init(
         presenter: AddFocusTimerPresentable,
@@ -45,7 +48,10 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
     ) {
         self.dependency = dependency
         self.name = ""
+        self.emoji = "🍅"
         self.minute = 30
+        
+        
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -55,7 +61,6 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
         
         router?.attachTimerEditTitle()
         router?.attachTimerEditCountdown()
-        presenter.setTitle(title: "focus".localized(tableName: "Timer"))
     }
 
     override func willResignActive() {
@@ -70,7 +75,15 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
     }
     
     func doneButtonDidTap() {
-        let createTimer = CreateFocusTimer(name: self.name, min: self.minute)
+        let styles = EmojiService().styles()
+        var tint = styles[Int.random(in: 0..<(styles.count))]
+        
+        let createTimer = CreateFocusTimer(
+            name: name,
+            emoji: emoji,
+            tint: tint.hex,
+            min: minute
+        )
                 
         Task{ [weak self] in
             guard let self = self else { return }
@@ -90,9 +103,15 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
     }
     
     //MARK: TimerEditTitle
-    func timerEditTitleSetName(name: String) {
+    func timerEditTitleDidSetName(name: String) {
         self.name = name
+        presenter.setTitle(title: name)
     }
+    
+    func timerEditTitleDidSetEmoji(emoji: String) {
+        self.emoji = emoji
+    }
+    
     
     //MARK: TimerEditCountdown
     

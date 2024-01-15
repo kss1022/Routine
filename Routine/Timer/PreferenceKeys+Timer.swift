@@ -13,8 +13,6 @@ extension PreferenceKeys {
     
     var showsTimerTutorial : PrefKey<Bool>{ .init(name: "kShowTimerTutorial") }
     
-    var timerSetup: PrefKey<Bool>{ .init(name: "kTimerSetup")}
-    var timerId: PrefKey<String>{ .init(name: "kTimerId")}
-    
+    var timerSetup: PrefKey<Bool>{ .init(name: "kTimerSetup")}    
 }
 

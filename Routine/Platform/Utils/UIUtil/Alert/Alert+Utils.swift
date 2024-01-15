@@ -34,7 +34,7 @@ extension UIViewController{
                     handler: { alertAction in
                         let ouputAction = OutputAction(
                             index: action.type,
-                            textFields: nil,
+                            textFields: alertController.textFields,
                             alertAction: alertAction
                         )
                         

@@ -16,7 +16,7 @@ protocol TimerHomeDependency: Dependency {
     var startTimerViewController: ViewControllable{ get }
 }
 
-final class TimerHomeComponent: Component<TimerHomeDependency>, CreateTimerDependency, StartTimerDependency, TimerSelectDependency, TimerHomeInteractorDependency {
+final class TimerHomeComponent: Component<TimerHomeDependency>, TimerListDependency, CreateTimerDependency, StartTimerDependency, TimerHomeInteractorDependency {
     
     
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
@@ -47,16 +47,16 @@ final class TimerHomeBuilder: Builder<TimerHomeDependency>, TimerHomeBuildable {
         interactor.listener = listener
 
         
+        let timerListBuilder = TimerListBuilder(dependency: component)
         let createTimerBuilder = CreateTimerBuilder(dependency: component)
         let startTimerBuilder = StartTimerBuilder(dependency: component)
-        let timerSelectBuilder = TimerSelectBuilder(dependency: component)
         
         return TimerHomeRouter(
             interactor: interactor,
             viewController: viewController,
+            timerListBuildable: timerListBuilder,
             creatTimerBuildable: createTimerBuilder,
-            startTimerBuildable: startTimerBuilder,
-            timerSelectBuildable: timerSelectBuilder
+            startTimerBuildable: startTimerBuilder            
         )
     }
 }

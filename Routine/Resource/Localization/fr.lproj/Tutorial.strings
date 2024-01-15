@@ -28,3 +28,6 @@
 "allow_alarm_can_send" = "Autorisez une alarme afin que la routine puisse vous envoyer une notification.";
 "allow_remidner" = "Autoriser le rappel";
 "not_now" = "Pas maintenant";
+"tomato" = "Tomate";
+"running" = "En cours d'exécution";
+"study" = "Étude";

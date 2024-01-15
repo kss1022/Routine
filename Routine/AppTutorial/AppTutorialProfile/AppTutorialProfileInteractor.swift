@@ -62,14 +62,14 @@ final class AppTutorialProfileInteractor: PresentableInteractor<AppTutorialProfi
         
         
         dependency.memojiStyle
-            .subscribe(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main)
             .sink {
                 self.presenter.setStyle(style: $0)
             }
             .store(in: &cancellables)
         
         dependency.memojiType
-            .subscribe(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main)
             .sink {
                 self.presenter.setType(type: $0)
             }

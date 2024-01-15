@@ -10,8 +10,6 @@ import UIKit
 
 protocol TimerHomePresentableListener: AnyObject {
     func creatTimerButtonDidTap()
-    func startTimerButtonDidTap()
-    func selectTimerButtonDidTap()
 }
 
 final class TimerHomeViewController: UIViewController, TimerHomePresentable, TimerHomeViewControllable {
@@ -29,27 +27,14 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         return barButtonItem
     }()
     
-    
-    private var startButtonVerticalConstraint: NSLayoutConstraint?
-    
-    private lazy var startTimerButton: TimerStartButton = {
-        let button = TimerStartButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(startTimerButtonTap), for: .touchUpInside)
-        return button
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
     }()
-    
-    private lazy var selectTimerButton: UIButton = {
-        let button = TouchesRoundButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .label
-        button.setTitleColor(.systemBackground, for: .normal)
-        button.titleLabel?.font = .getBoldFont(size: 16.0)
-        button.addTarget(self, action: #selector(selectTimerButtonTap), for: .touchUpInside)
-        return button
-    }()
-    
-    
     
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -76,56 +61,27 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         
         view.backgroundColor = .systemBackground
         
-        
-        view.addSubview(startTimerButton)
-        view.addSubview(selectTimerButton)        
-        
-        let width =  UIDevice.frame().width * 0.6
-        
+        view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            startTimerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startTimerButton.widthAnchor.constraint(equalToConstant: width),
-            startTimerButton.heightAnchor.constraint(equalTo: startTimerButton.widthAnchor),
-            
-            selectTimerButton.topAnchor.constraint(equalTo: startTimerButton.bottomAnchor, constant: 24.0),
-            selectTimerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-        
-        updateTransition() //handle startButton Vertical Constraint
     }
     
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-
-        coordinator.animate(alongsideTransition: { [weak self] _ in
-            self?.updateTransition()
-        }, completion: nil)
+    
+    //MARK: ViewControllerable
+    func setTimerList(_ view: ViewControllable) {
+        let vc = view.uiviewController
+        addChild(vc)        
+        stackView.addArrangedSubview(vc.view)
+        vc.didMove(toParent: self)
     }
-    
-    
-
-    private func updateTransition() {
-        if let before = startButtonVerticalConstraint{
-            before.isActive = false
-        }
-                
-        if !UIDevice.current.orientation.isLandscape{
-            startButtonVerticalConstraint = startTimerButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        }else{
-            startButtonVerticalConstraint = startTimerButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8.0)
-        }
-        startButtonVerticalConstraint!.isActive = true
-    }
-    
     
     // MARK: Presentable
-    func setTimer(title: String, timerName: String) {
-        startTimerButton.setTime(time: title)
-        selectTimerButton.setTitle(timerName, for: .normal)
-    }
-    
     func showError(title: String, message: String) {
         showAlert(title: title, message: message)
     }
@@ -136,16 +92,6 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         listener?.creatTimerButtonDidTap()
     }
     
-    
-    @objc
-    private func startTimerButtonTap(){
-        listener?.startTimerButtonDidTap()
-    }
-    
-    @objc
-    private func selectTimerButtonTap(){
-        listener?.selectTimerButtonDidTap()
-    }
     
     
 }

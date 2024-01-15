@@ -28,3 +28,6 @@
 "allow_alarm_can_send" = "Allow an alarm so that the routine can send you a notification.";
 "allow_remidner" = "Allow Reminder";
 "not_now" = "Not Now";
+"tomato" = "Tomato";
+"running" = "Running";
+"study" = "Study";

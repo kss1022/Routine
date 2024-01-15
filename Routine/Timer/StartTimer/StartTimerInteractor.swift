@@ -54,7 +54,7 @@ final class StartTimerInteractor: Interactor, StartTimerInteractable, AdaptivePr
         let timerId = dependency.timerId
         let find = dependency.timerRepository.lists.value.first { $0.timerId ==  timerId}!
         
-        if find.timerType == .section{
+        if find.timerType != .focus{
             Task{ [weak self] in
                 guard let self = self else { return }
                 do{

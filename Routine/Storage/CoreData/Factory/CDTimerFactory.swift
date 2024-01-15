@@ -11,12 +11,12 @@ import Foundation
 
 final class CDTimerFactory: TimerFactory{
 
-    func create(timerId: TimerId, timerName: TimerName, timerType: TimerType, timerSections: TimerSections) -> SectionTimer{
-        SectionTimer(timerId: timerId, timerName: timerName, timerType: timerType, timerSections: timerSections)
+    func create(timerId: TimerId, timerName: TimerName, emoji: Emoji, tint: Tint,  timerType: TimerType, timerSections: TimerSections) -> SectionTimer{
+        SectionTimer(timerId: timerId, timerName: timerName, emoji: emoji, tint: tint, timerType: timerType, timerSections: timerSections)
     }
     
-    func create(timerId: TimerId, timerName: TimerName, timerType: TimerType, timerCountdown: TimerFocusCountdown) -> FocusTimer {
-        FocusTimer(timerId: timerId, timerName: timerName, timerType: timerType, timerCountdown: timerCountdown)
+    func create(timerId: TimerId, timerName: TimerName, emoji: Emoji, tint: Tint, timerType: TimerType, timerCountdown: TimerFocusCountdown) -> FocusTimer {
+        FocusTimer(timerId: timerId, timerName: timerName, emoji: emoji, tint: tint, timerType: timerType, timerCountdown: timerCountdown)
     }
     
 }

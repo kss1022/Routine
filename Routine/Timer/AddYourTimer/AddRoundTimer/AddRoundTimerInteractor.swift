@@ -42,7 +42,9 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     weak var listener: AddRoundTimerListener?
   
     private let dependency: AddRoundTimerInteractorDependency
+    
     private var name: String
+    private var emoji: String
     
     // in constructor.
     init(
@@ -51,6 +53,7 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     ) {
         self.dependency = dependency
         self.name = ""
+        self.emoji = "🍅"
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -64,7 +67,6 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
         
         router?.attachTimerEditTitle()
         router?.attachTimerSectionList()
-        presenter.setTitle(title: "round".localized(tableName: "Timer"))
     }
 
     override func willResignActive() {
@@ -91,8 +93,15 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
             )
         }
         
+        
+        let styles = EmojiService().styles()
+        var tint = styles[Int.random(in: 0..<(styles.count))]
+        
         let createTimer = CreateSectionTimer(
-            name: self.name,
+            name: name,
+            emoji: emoji,
+            tint: tint.hex,
+            timerType: TimerTypeModel.round.rawValue,
             createSections: createSections
         )
         
@@ -116,8 +125,13 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     
     
     //MARK: TimerEditTitle
-    func timerEditTitleSetName(name: String) {
+    func timerEditTitleDidSetName(name: String) {
         self.name = name
+        presenter.setTitle(title: name)
+    }
+    
+    func timerEditTitleDidSetEmoji(emoji: String) {
+        self.emoji = emoji
     }
     
     

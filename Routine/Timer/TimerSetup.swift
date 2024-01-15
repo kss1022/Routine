@@ -14,12 +14,17 @@ final class TimerSetup{
     
     func initTimer(_ timerApplicationService: TimerApplicationService) async throws{
         let createFocusTimer = CreateFocusTimer(
-            name: "focus".localized(tableName: "Timer"),
+            name: "tomato".localized(tableName: "Tutorial"),
+            emoji: "🍅",
+            tint: "#F5B7CCFF",
             min: 30
         )
         
         let createTabataTimer = CreateSectionTimer(
-            name: "tabata".localized(tableName: "Timer"),
+            name: "running".localized(tableName: "Tutorial"),
+            emoji: "🏃",
+            tint: "#82B1FFFF",
+            timerType: TimerTypeModel.tabata.rawValue,
             createSections: tabataSectionsLists().enumerated().map{ (sequence, section) in
                 CreateSection(
                     name: section.name,
@@ -36,7 +41,10 @@ final class TimerSetup{
         )
         
         let createRoundTimer = CreateSectionTimer(
-            name: "round".localized(tableName: "Timer"),
+            name: "stduy".localized(tableName: "Tutorial"),
+            emoji: "🧐",
+            tint: "#CAF2BDFF",
+            timerType: TimerTypeModel.round.rawValue,
             createSections: roundSectionLists().enumerated().map{ (sequence, section) in
                 CreateSection(
                     name: section.name,

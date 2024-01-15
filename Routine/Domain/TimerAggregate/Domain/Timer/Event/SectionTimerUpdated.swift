@@ -11,12 +11,16 @@ import Foundation
 final class SectionTimerUpdated: DomainEvent{
     let timerId: TimerId
     let timerName: TimerName
+    let emoji: Emoji
+    let tint: Tint
     let timerType: TimerType
     let timerSections: TimerSections
     
-    init(timerId: TimerId, timerName: TimerName, timerType: TimerType, timerSecions: TimerSections) {
+    init(timerId: TimerId, timerName: TimerName, emoji: Emoji, tint: Tint, timerType: TimerType, timerSecions: TimerSections) {
         self.timerId = timerId
         self.timerName = timerName
+        self.emoji = emoji
+        self.tint = tint
         self.timerType = timerType
         self.timerSections = timerSecions
         super.init()
@@ -26,6 +30,8 @@ final class SectionTimerUpdated: DomainEvent{
     override func encode(with coder: NSCoder) {
         timerId.encode(with: coder)
         timerName.encode(with: coder)
+        emoji.encode(with: coder)
+        tint.encode(with: coder)
         timerType.encode(with: coder)
         timerSections.encode(with: coder)
         super.encode(with: coder)
@@ -35,6 +41,8 @@ final class SectionTimerUpdated: DomainEvent{
     override init?(coder: NSCoder) {
         guard let timerId = TimerId(coder: coder),
               let timerName = TimerName(coder: coder),
+              let emoji = Emoji(coder: coder),
+              let tint = Tint(coder: coder),
               let timerType = TimerType(coder: coder),
               let timerSections = TimerSections(coder: coder)
         else { return nil}
@@ -42,6 +50,8 @@ final class SectionTimerUpdated: DomainEvent{
         
         self.timerId = timerId
         self.timerName = timerName
+        self.emoji = emoji
+        self.tint = tint
         self.timerType = timerType
         self.timerSections = timerSections
         

@@ -12,6 +12,8 @@ import Foundation
 struct UpdateSectionTimer: Command{
     let timerId: UUID
     let name: String
+    let emoji: String
+    let tint: String
     let updateSections: [UpdateSection]
 }
 

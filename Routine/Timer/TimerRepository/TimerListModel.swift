@@ -12,13 +12,15 @@ struct TimerListModel{
     let timerId: UUID
     let name: String
     let timerType: TimerTypeModel
+    let emoji: String
     let tint: String
     
     init(_ dto: TimerListDto) {
         self.timerId = dto.timerId
         self.name = dto.timerName
         self.timerType = TimerTypeModel(dto.timerType)
-        self.tint = "#CCFFCCFF"
+        self.emoji = dto.emoji
+        self.tint = dto.tint
     }
 
 }

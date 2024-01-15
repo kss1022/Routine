@@ -8,18 +8,20 @@
 import Foundation
 import ModernRIBs
 
-protocol TimerHomeInteractable: Interactable, CreateTimerListener, StartTimerListener, TimerSelectListener {
+protocol TimerHomeInteractable: Interactable, TimerListListener, CreateTimerListener, StartTimerListener {
     var router: TimerHomeRouting? { get set }
     var listener: TimerHomeListener? { get set }
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy{ get }
 }
 
 protocol TimerHomeViewControllable: ViewControllable {
+    func setTimerList(_ view: ViewControllable)
 }
 
 final class TimerHomeRouter: ViewableRouter<TimerHomeInteractable, TimerHomeViewControllable>, TimerHomeRouting {
 
-    
+    private let timerListBuildable: TimerListBuildable
+    private var timerListRouting: TimerListRouting?
 
     private let createTimerBuildable: CreateTimerBuildable
     private var createTimerRouting: Routing?
@@ -27,24 +29,32 @@ final class TimerHomeRouter: ViewableRouter<TimerHomeInteractable, TimerHomeView
     private let startTimerBuildable: StartTimerBuildable
     private var startTimerRouting: Routing?
     
-    private let timerSelectBuildable: TimerSelectBuildable
-    private var timerSelectRouting: Routing?
-    
     
     init(
         interactor: TimerHomeInteractable,
         viewController: TimerHomeViewControllable,
+        timerListBuildable: TimerListBuildable,
         creatTimerBuildable: CreateTimerBuildable,
-        startTimerBuildable: StartTimerBuildable,
-        timerSelectBuildable: TimerSelectBuildable
+        startTimerBuildable: StartTimerBuildable
     ) {
+        self.timerListBuildable = timerListBuildable
         self.createTimerBuildable = creatTimerBuildable
         self.startTimerBuildable = startTimerBuildable
-        self.timerSelectBuildable = timerSelectBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
     
+    
+    func attachTimerList() {
+        if timerListRouting != nil{
+            return
+        }
+        
+        let router = timerListBuildable.build(withListener: interactor)
+        viewController.setTimerList(router.viewControllable)
+        timerListRouting = router
+        attachChild(router)
+    }
     
     func attachCreateTimer() {
         if createTimerRouting != nil{
@@ -85,26 +95,4 @@ final class TimerHomeRouter: ViewableRouter<TimerHomeInteractable, TimerHomeView
         startTimerRouting = nil
     }
     
-    func attachSelectTimer() {
-        if timerSelectRouting != nil{
-            return
-        }
-        
-        let router = timerSelectBuildable.build(withListener: interactor)
-        
-        let navigation = NavigationControllerable(root: router.viewControllable)
-        navigation.setLargeTitle()        
-        navigation.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
-        viewController.present(navigation, animated: true, completion: nil)
-        timerSelectRouting = router
-        attachChild(router)
-    }
-    
-    func detachSelectTimer() {
-        guard let router = timerSelectRouting else { return }
-        viewController.dismiss(completion: nil)
-        detachChild(router)
-        timerSelectRouting = nil
-    }
-
 }

@@ -28,3 +28,6 @@
 "allow_alarm_can_send" = "Rutinin size bir bildirim gönderebilmesi için alarm verin.";
 "allow_remidner" = "Hatırlatmaya İzin Ver";
 "not_now" = "Şimdi değil";
+"tomato" = "Domates";
+"running" = "Koşma";
+"study" = "Çalışmak";

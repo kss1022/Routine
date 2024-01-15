@@ -11,5 +11,7 @@ import Foundation
 struct UpdateFocusTimer: Command{
     let timerId: UUID
     let name: String
+    let emoji: String
+    let tint: String
     let min: Int
 }
