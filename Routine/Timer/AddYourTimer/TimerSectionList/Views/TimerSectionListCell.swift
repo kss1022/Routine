@@ -52,7 +52,7 @@ final class TimerSectionListCell: UITableViewCell{
         return label
     }()
     
-    private let timerLabel: UILabel = {
+    private let valueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setFont(style: .title3)
@@ -77,7 +77,7 @@ final class TimerSectionListCell: UITableViewCell{
         contentView.addSubview(categoryView)
         
         stackView.addArrangedSubview(titleStackView)
-        stackView.addArrangedSubview(timerLabel)
+        stackView.addArrangedSubview(valueLabel)
         
         titleStackView.addArrangedSubview(nameLabel)
         titleStackView.addArrangedSubview(descriptionLabel)
@@ -100,7 +100,7 @@ final class TimerSectionListCell: UITableViewCell{
     func bindView(_ viewModel: TimerSectionListViewModel){
         nameLabel.text = "\(viewModel.emoji) \(viewModel.name)"
         descriptionLabel.text = viewModel.description
-        timerLabel.text = viewModel.value.rawValue()
+        valueLabel.text = viewModel.value
         
         if viewModel.color != nil{
             categoryView.isHidden = false

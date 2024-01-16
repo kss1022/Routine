@@ -46,7 +46,7 @@ final class AddRoundTimerRouter: ViewableRouter<AddRoundTimerInteractable, AddRo
     }
     
     
-    func attachTimerSectionEdit(sectionList: TimerSectionListViewModel) {
+    func attachTimerSectionEdit(sectionList: TimerSectionListModel) {
         if timerSectionEditRouting != nil{
             return
         }
@@ -65,13 +65,13 @@ final class AddRoundTimerRouter: ViewableRouter<AddRoundTimerInteractable, AddRo
         timerSectionEditRouting = nil
     }
     
-    func attachTimerEditTitle() {
+    func attachTimerEditTitle(name: String, emoji: String) {
         if timerEditTitleRouting != nil{
             return
         }
         
         
-        let router = timerEditTitleBuildable.build(withListener: interactor)
+        let router = timerEditTitleBuildable.build(withListener: interactor,name: name, emoji: emoji)
         viewController.addEditTitle(router.viewControllable)
         
         timerEditTitleRouting = router

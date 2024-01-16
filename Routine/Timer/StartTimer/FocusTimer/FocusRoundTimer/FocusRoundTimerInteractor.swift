@@ -39,7 +39,7 @@ protocol FocusRoundTimerListener: AnyObject {
 }
 
 protocol FocusRoundTimerInteractorDependency{
-    var model: TimerFocusModel{ get }
+    var model: FocusTimerModel{ get }
     var timer: AppFocusTimer{ get }
 }
 
@@ -52,7 +52,7 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
     private var cancellables: Set<AnyCancellable>
 
     private let timer: AppFocusTimer
-    private let model: TimerFocusModel
+    private let model: FocusTimerModel
     
     // in constructor.
     init(
@@ -205,7 +205,7 @@ final class FocusRoundTimerInteractor: PresentableInteractor<FocusRoundTimerPres
     }
     
     private func removeTimer(){
-        AppTimerManager.shared.removeTimer(id: model.timerId)
+        AppTimerManager.shared.removeTimer(id: model.id)
     }
 
 }

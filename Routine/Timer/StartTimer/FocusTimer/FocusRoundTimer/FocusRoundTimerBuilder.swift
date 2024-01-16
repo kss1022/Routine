@@ -8,12 +8,12 @@
 import ModernRIBs
 
 protocol FocusRoundTimerDependency: Dependency {
-    var model: TimerFocusModel{ get }
+    var model: FocusTimerModel{ get }
     var timer: AppFocusTimer{ get }
 }
 
 final class FocusRoundTimerComponent: Component<FocusRoundTimerDependency>, FocusRoundTimerInteractorDependency {
-    var model: TimerFocusModel{ dependency.model}
+    var model: FocusTimerModel{ dependency.model}
     var timer: AppFocusTimer{ dependency.timer}
 }
 

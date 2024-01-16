@@ -18,8 +18,6 @@ final class AddTabataTimerComponent: Component<AddTabataTimerDependency>, TimerS
     
     var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionListsSubject }
     var sectionListsSubject = CurrentValuePublisher<[TimerSectionListModel]>([])
-    
-    
 }
 
 // MARK: - Builder

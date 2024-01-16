@@ -17,10 +17,10 @@ struct FocusRoundTimerViewModel{
     let time: String
     
     
-    init(_ model: TimerFocusModel){
+    init(_ model: FocusTimerModel){
         self.emoji = "🧘"
-        self.name = model.timerName
-        self.time = TimeInterval(model.timerCountdown.minute).time
+        self.name = model.name
+        self.time = TimeInterval(model.minutes).time
     }
     
     init(_ model: TimerTimeIntervalModel){

@@ -36,7 +36,9 @@ class DatabaseManager{
     public let timerRecordDao: TimerRecordDao
     
     public let timerListDao: TimerListDao
-    public let timerCountdownDao: TimerCountdownDao
+    public let focusTimerDao: FocusTimerDao
+    public let tabataTimerDao: TabataTimerDao
+    public let roundTimerDao: RoundTimerDao
     public let timerSectionListDao: TimerSectionListDao
         
     public let profileDao: ProfileDao
@@ -59,6 +61,9 @@ class DatabaseManager{
         //        try ReminderSQLDao.dropTable(db: db)
         //
         //        try TimerListSQLDao.dropTable(db: db)
+        //        try FocusTimerSQLDao.dropTable(db: db)
+        //        try TabataTimerSQLDao.dropTable(db: db)
+        //        try RoundTimerSQLDao.dropTable(db: db)
         //        try TimerCountdownSQLDao.dropTable(db: db)
         //        try TimerSectionListSQLDao.dropTable(db: db)
         //
@@ -76,7 +81,9 @@ class DatabaseManager{
         self.reminderDao = try ReminderSQLDao(db: db)
         
         self.timerListDao = try TimerListSQLDao(db: db)
-        self.timerCountdownDao = try TimerCountdownSQLDao(db: db)
+        self.focusTimerDao = try FocusTimerSQLDao(db: db)
+        self.tabataTimerDao = try TabataTimerSQLDao(db: db)
+        self.roundTimerDao = try RoundTimerSQLDao(db: db)
         self.timerSectionListDao = try TimerSectionListSQLDao(db: db)
 
         self.routineTotalRecordDao = try RoutineTotalRecordSQLDao(db: db)

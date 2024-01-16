@@ -20,167 +20,117 @@ final class TimerSetup{
             min: 30
         )
         
-        let createTabataTimer = CreateSectionTimer(
+        let createTabataTimer = CreateTabataTimer(
             name: "running".localized(tableName: "Tutorial"),
             emoji: "🏃",
             tint: "#82B1FFFF",
-            timerType: TimerTypeModel.tabata.rawValue,
-            createSections: tabataSectionsLists().enumerated().map{ (sequence, section) in
-                CreateSection(
-                    name: section.name,
-                    description: section.description,
-                    sequence: sequence,
-                    type: section.type.rawValue,
-                    min: section.value.min,
-                    sec: section.value.sec,
-                    count: section.value.count,
-                    emoji: section.emoji,
-                    color: section.tint
-                )
-            }
+            ready: TimeSectionCommand(ready()),
+            exercise: TimeSectionCommand(exercise()),
+            rest: TimeSectionCommand(rest()),
+            round: RepeatSectionCommand(round()),
+            cycle: RepeatSectionCommand(cycle()),
+            cycleRest: TimeSectionCommand(cycleRest()),
+            cooldown: TimeSectionCommand(cooldown())
         )
         
-        let createRoundTimer = CreateSectionTimer(
+        
+        let createRoundTimer = CreateRoundTimer(
             name: "stduy".localized(tableName: "Tutorial"),
             emoji: "🧐",
             tint: "#CAF2BDFF",
-            timerType: TimerTypeModel.round.rawValue,
-            createSections: roundSectionLists().enumerated().map{ (sequence, section) in
-                CreateSection(
-                    name: section.name,
-                    description: section.description,
-                    sequence: sequence,
-                    type: section.type.rawValue,
-                    min: section.value.min,
-                    sec: section.value.sec,
-                    count: section.value.count,
-                    emoji: section.emoji,
-                    color: section.tint
-                )
-            }
+            ready: TimeSectionCommand(ready()),
+            exercise: TimeSectionCommand(exercise()),
+            rest: TimeSectionCommand(rest()),
+            round: RepeatSectionCommand(round()),
+            cooldown: TimeSectionCommand(cooldown())
         )
-        
         
         try await timerApplicationService.when(createFocusTimer)
         try await timerApplicationService.when(createTabataTimer)
         try await timerApplicationService.when(createRoundTimer)
     }
-    
-    func tabataSectionsLists() -> [TimerSectionListModel]{
-        [
-            ready(),
-            exercise(),
-            rest(),
-            round(),
-            cycle(),
-            cycleRest(),
-            cooldown()
-        ]
-    }
-    
-    func roundSectionLists() -> [TimerSectionListModel]{
-        [
-            ready(),
-            exercise(),
-            rest(),
-            round(),
-            cooldown(sequence: 4)
-        ]
-    }
+        
+
 }
 
 
-
-private extension TimerSetup{
-    func ready() -> TimerSectionListModel{
-        TimerSectionListModel(
-            id: UUID(),
-            emoji: "🔥",
+extension TimerSetup{
+    
+    func ready() -> TimeSectionModel{
+        TimeSectionModel(
             name: "ready".localized(tableName: "Timer"),
             description: "ready_description".localized(tableName: "Timer"),
-            sequence: 0,
-            type: .ready,
-            value: .countdown(min: 0, sec: 5)
+            min: 0,
+            sec: 5,
+            emoji: "🔥",
+            tint: "#F5B7CCFF"
         )
     }
     
     
-    func exercise() -> TimerSectionListModel{
-        TimerSectionListModel(
-            id: UUID(),
-            emoji: "🏃‍♂️",
+    func exercise() -> TimeSectionModel{
+        TimeSectionModel(
             name: "exercise".localized(tableName: "Timer"),
             description: "exercise_description".localized(tableName: "Timer"),
-            sequence: 1,
-            type: .exercise,
-            value: .countdown(min: 0, sec: 30),
-            color: "#3BD2AEff"
+            min: 0,
+            sec: 30,
+            emoji: "🏃‍♂️",
+            tint: "#3BD2AEff"
         )
     }
     
-    func rest() -> TimerSectionListModel{
-        TimerSectionListModel(
-            id: UUID(),
-            emoji: "🧘‍♂️",
+    func rest() -> TimeSectionModel{
+        TimeSectionModel(
             name: "take_a_rest".localized(tableName: "Timer"),
             description: "take_a_rest_description".localized(tableName: "Timer"),
-            sequence: 2,
-            type: .rest,
-            value: .countdown(min: 0, sec: 15),
-            color: "#3BD2AEff"
+            min: 0,
+            sec: 15,
+            emoji: "🧘‍♂️",
+            tint: "#3BD2AEff"
         )
     }
     
-    func round() -> TimerSectionListModel{
-        TimerSectionListModel(
-            id: UUID(),
-            emoji: "⛳️",
+    func round() -> RepeatSectionModel{
+        RepeatSectionModel(
             name: "round".localized(tableName: "Timer"),
             description: "round_description".localized(tableName: "Timer"),
-            sequence: 3,
-            type: .round,
-            value: .count(count: 4)
+            repeat: 3,
+            emoji: "⛳️",
+            tint: "#F5DAAFFF"
         )
     }
     
-    func cycle() -> TimerSectionListModel{
-        TimerSectionListModel(
-            id: UUID(),
-            emoji: "🔄",
+    func cycle() -> RepeatSectionModel{
+        RepeatSectionModel(
             name: "cycle".localized(tableName: "Timer"),
             description: "cycle_description".localized(tableName: "Timer"),
-            sequence: 4,
-            type: .cycle,
-            value: .count(count: 3),
-            color: "#6200EEFF"
+            repeat: 3,
+            emoji: "🔄",
+            tint: "#6200EEFF"
         )
     }
     
-    func cycleRest() -> TimerSectionListModel{
-        TimerSectionListModel(
-            id: UUID(),
-            emoji: "🧘‍♀️",
+    func cycleRest() -> TimeSectionModel{
+        TimeSectionModel(
             name: "cycle_rest".localized(tableName: "Timer"),
             description: "cycle_rest_description".localized(tableName: "Timer"),
-            sequence: 5,
-            type: .cycleRest,
-            value: .countdown(min: 0, sec: 30),
-            color: "#6200EEFF"
+            min: 0,
+            sec: 30,
+            emoji: "🧘‍♂️",
+            tint: "#6200EEFF"
         )
     }
     
-    func cooldown(sequence: Int = 6) -> TimerSectionListModel{
-        TimerSectionListModel(
-            id: UUID(),
-            emoji: "❄️",
+    func cooldown(sequence: Int = 6) -> TimeSectionModel{
+        TimeSectionModel(
             name: "colldown".localized(tableName: "Timer"),
             description: "colldown_description".localized(tableName: "Timer"),
-            sequence: sequence,
-            type: .cooldown,
-            value: .countdown(min: 0, sec: 30)
+            min: 0,
+            sec: 30,
+            emoji: "❄️",
+            tint: "#82B1FFFF"
         )
     }
     
     
 }
-

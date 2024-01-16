@@ -9,10 +9,10 @@ import Foundation
 import ModernRIBs
 
 protocol AddTabataTimerRouting: ViewableRouting {
-    func attachTimerSectionEdit(sectionList: TimerSectionListViewModel)
+    func attachTimerSectionEdit(sectionList: TimerSectionListModel)
     func detachTimerSectionEdit()
     
-    func attachTimerEditTitle()
+    func attachTimerEditTitle(name: String, emoji: String)
     func attachTimerSectionList()
 }
 
@@ -38,6 +38,7 @@ protocol AddTabataTimerInteractorDependency{
 
 final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresentable>, AddTabataTimerInteractable, AddTabataTimerPresentableListener {
 
+
     weak var router: AddTabataTimerRouting?
     weak var listener: AddTabataTimerListener?
 
@@ -45,29 +46,39 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
     private let dependency: AddTabataTimerInteractorDependency
     
     private var name: String
-    private var emoji: String
-    
+    private var emoji: String    
+    private var tabatSectionListModel: TabataSectionListsModel
+
     // in constructor.
     init(
         presenter: AddTabataTimerPresentable,
         dependency: AddTabataTimerInteractorDependency
     ) {
         self.dependency = dependency
-        //self.name = dependency.timerType.title
         self.name = ""
         self.emoji = "🍅"
+        
+        let timerSetup = TimerSetup()
+        self.tabatSectionListModel = TabataSectionListsModel(
+            ready: timerSetup.ready(),
+            exercise: timerSetup.exercise(),
+            rest: timerSetup.rest(),
+            round: timerSetup.round(),
+            cycle: timerSetup.cycle(),
+            cycleRest: timerSetup.cycleRest(),
+            cooldown: timerSetup.cooldown()
+        )
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
+        
+        let sectionLists =  self.tabatSectionListModel.sectionLists()
+        dependency.sectionListsSubject.send(sectionLists)
   
-        let models = TimerSetup().tabataSectionsLists()
-        
-        dependency.sectionListsSubject.send(models)
-        
-        router?.attachTimerEditTitle()
+        router?.attachTimerEditTitle(name: name, emoji: emoji)
         router?.attachTimerSectionList()
     }
 
@@ -81,36 +92,28 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
     }
     
     func doneButtonDidTap() {
-        let createSections = dependency.sectionLists.value.enumerated().map { (sequence, section) in
-            CreateSection(
-                name: section.name,
-                description: section.description,
-                sequence: sequence,
-                type: section.type.rawValue,
-                min: section.value.min,
-                sec: section.value.sec,
-                count: section.value.count,
-                emoji: section.emoji,
-                color: section.tint
-            )
-        }
-        
         let styles = EmojiService().styles()
-        var tint = styles[Int.random(in: 0..<(styles.count))]
+        let tint = styles[Int.random(in: 0..<(styles.count))]
+                
         
-        let createTimer = CreateSectionTimer(
+        let sectionLists = dependency.sectionLists.value                
+        let command = CreateTabataTimer(
             name: name,
             emoji: emoji,
             tint: tint.hex,
-            timerType: TimerTypeModel.tabata.rawValue,
-            createSections: createSections
+            ready: TimeSectionCommand(sectionLists[0].toTimeSectionModel()),
+            exercise: TimeSectionCommand(sectionLists[1].toTimeSectionModel()),
+            rest: TimeSectionCommand(sectionLists[2].toTimeSectionModel()),
+            round: RepeatSectionCommand(sectionLists[3].toRepeatSectionModel()),
+            cycle: RepeatSectionCommand(sectionLists[4].toRepeatSectionModel()),
+            cycleRest: TimeSectionCommand(sectionLists[5].toTimeSectionModel()),
+            cooldown: TimeSectionCommand(sectionLists[6].toTimeSectionModel())
         )
-        
-        
+               
         Task{ [weak self] in
             guard let self = self else { return }
             do{
-                try await dependency.timerApplicationService.when(createTimer)
+                try await dependency.timerApplicationService.when(command)
                 try await dependency.timerRepository.fetchLists()
                 await MainActor.run { [weak self] in self?.listener?.addTabataTimerDidAddNewTimer() }
             }catch{
@@ -139,7 +142,7 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
     
     
     //MARK: TimerSectionList
-    func timeSectionListDidSelectRowAt(sectionList: TimerSectionListViewModel) {
+    func timeSectionListDidTap(sectionList: TimerSectionListModel) {
         router?.attachTimerSectionEdit(sectionList: sectionList)
     }
     
@@ -150,6 +153,7 @@ final class AddTabataTimerInteractor: PresentableInteractor<AddTabataTimerPresen
     
 
 }
+
 
 
 private extension AddTabataTimerInteractor{

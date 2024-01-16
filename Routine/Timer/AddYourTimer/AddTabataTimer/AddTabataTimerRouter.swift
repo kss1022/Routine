@@ -40,13 +40,12 @@ final class AddTabataTimerRouter: ViewableRouter<AddTabataTimerInteractable, Add
         self.timerEditTitleBuildable = timerEditTitleBuildable
         self.timerSectionListBuildable = timerSectionListBuildable
         self.timerSectionEditBuildable = timerSectionEditBuildable
-        
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
     }
     
     
-    func attachTimerSectionEdit(sectionList: TimerSectionListViewModel) {
+    func attachTimerSectionEdit(sectionList: TimerSectionListModel) {
         if timerSectionEditRouting != nil{
             return
         }
@@ -65,19 +64,19 @@ final class AddTabataTimerRouter: ViewableRouter<AddTabataTimerInteractable, Add
         timerSectionEditRouting = nil
     }
     
-    func attachTimerEditTitle() {
+    func attachTimerEditTitle(name: String, emoji: String) {
         if timerEditTitleRouting != nil{
             return
         }
         
         
-        let router = timerEditTitleBuildable.build(withListener: interactor)
+        let router = timerEditTitleBuildable.build(withListener: interactor, name: name, emoji: emoji)
         viewController.addEditTitle(router.viewControllable)
         
         timerEditTitleRouting = router
         attachChild(router)
     }
-    
+   
     func attachTimerSectionList() {
         if timerSectionListRouting != nil{
             return

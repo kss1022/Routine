@@ -8,12 +8,12 @@
 import ModernRIBs
 
 protocol TimerNextSectionDependency: Dependency {
-    var model: TimerSectionsModel{ get }
+    var model: SectionTimerModel{ get }
     var timer: AppTimer{ get }
 }
 
 final class TimerNextSectionComponent: Component<TimerNextSectionDependency>, TimerNextSectionInteractorDependency {
-    var model: TimerSectionsModel{ dependency.model }
+    var model: SectionTimerModel{ dependency.model }
     var timer: AppTimer{ dependency.timer }    
 }
 

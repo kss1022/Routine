@@ -14,17 +14,17 @@ final class FocusTimerCreated: DomainEvent{
     let timerName: TimerName
     let emoji: Emoji
     let tint: Tint
-    let timerCountdown: TimerFocusCountdown!
+    let minutes: Minutes!
     let timerType: TimerType
 
 
-    init(timerId: TimerId, timerName: TimerName, emoji: Emoji, tint: Tint, timerType: TimerType,timerCountdown: TimerFocusCountdown) {
+    init(timerId: TimerId, timerName: TimerName, emoji: Emoji, tint: Tint, timerType: TimerType, minutes: Minutes) {
         self.timerId = timerId
         self.timerName = timerName
         self.emoji = emoji
         self.tint = tint
         self.timerType = timerType
-        self.timerCountdown = timerCountdown
+        self.minutes = minutes
         super.init()
     }
     
@@ -35,7 +35,7 @@ final class FocusTimerCreated: DomainEvent{
         emoji.encode(with: coder)
         tint.encode(with: coder)
         timerType.encode(with: coder)
-        timerCountdown.encode(with: coder)
+        minutes.encode(with: coder)
         super.encode(with: coder)
     }
     
@@ -46,7 +46,7 @@ final class FocusTimerCreated: DomainEvent{
               let emoji = Emoji(coder: coder),
               let tint = Tint(coder: coder),
               let timerType = TimerType(coder: coder),
-              let timerCountdown = TimerFocusCountdown(coder: coder)
+              let minutes = Minutes(coder: coder)
         else { return nil}
         
         self.timerId = timerId
@@ -54,7 +54,7 @@ final class FocusTimerCreated: DomainEvent{
         self.emoji = emoji
         self.tint = tint
         self.timerType = timerType
-        self.timerCountdown = timerCountdown
+        self.minutes = minutes
         
         super.init(coder: coder)
     }

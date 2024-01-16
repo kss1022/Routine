@@ -49,7 +49,7 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
     }
     
     
-    func attachFocusTimer(model: TimerFocusModel) {
+    func attachFocusTimer(model: FocusTimerModel) {
         if focusTimerRouting != nil{
             return
         }
@@ -62,8 +62,8 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
             presentInsideNavigation(router.viewControllable)
         }
         
-        attachChild(router)
         focusTimerRouting = router
+        attachChild(router)
     }
     
     func detachFocusTimer() {
@@ -75,7 +75,7 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
     }
     
     
-    func attachSectionTimer(model: TimerSectionsModel) {
+    func attachSectionTimer(model: SectionTimerModel) {
         if sectionTimerRouting != nil{
             return
         }
@@ -87,9 +87,9 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
         }else{
             presentInsideNavigation(router.viewControllable)
         }
-        
-        attachChild(router)
+
         sectionTimerRouting = router
+        attachChild(router)
     }
     
     func detachSectionTimer() {

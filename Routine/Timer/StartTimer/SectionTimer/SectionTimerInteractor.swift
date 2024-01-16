@@ -23,7 +23,7 @@ protocol SectionTimerListener: AnyObject {
 }
 
 protocol SectionTimerInteractorDependency{
-    var model: TimerSectionsModel{ get }
+    var model: SectionTimerModel{ get }
 }
 
 final class SectionTimerInteractor: PresentableInteractor<SectionTimerPresentable>, SectionTimerInteractable, SectionTimerPresentableListener {

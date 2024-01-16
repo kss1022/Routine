@@ -36,7 +36,7 @@ protocol SectionRoundTimerListener: AnyObject {
 
 protocol SectionRoundTimerInteractorDependency{
     var timer: AppTimer{ get }
-    var model: TimerSectionsModel{ get }
+    var model: SectionTimerModel{ get }
 }
 
 final class SectionRoundTimerInteractor: PresentableInteractor<SectionRoundTimerPresentable>, SectionRoundTimerInteractable, SectionRoundTimerPresentableListener {
@@ -48,7 +48,7 @@ final class SectionRoundTimerInteractor: PresentableInteractor<SectionRoundTimer
     private var cancellables: Set<AnyCancellable>
 
     private let timer: AppTimer
-    private let model: TimerSectionsModel
+    private let model: SectionTimerModel
     
     // in constructor.
     init(

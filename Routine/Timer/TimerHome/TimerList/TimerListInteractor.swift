@@ -19,7 +19,8 @@ protocol TimerListPresentable: Presentable {
 }
 
 protocol TimerListListener: AnyObject {
-    func timerListTimerDidTap(timerId: UUID)
+    func timerListDidTap(timerId: UUID)
+    func timerListEditTap(timerId: UUID)
 }
 
 protocol TimerListInteractorDependency{
@@ -52,8 +53,9 @@ final class TimerListInteractor: PresentableInteractor<TimerListPresentable>, Ti
             .receive(on: DispatchQueue.main)
             .sink {  lists in
                 let viewModels = lists.map{ model in
-                    TimerListViewModel(model) {
-                        Log.v("Tap: \(model.timerId)")
+                    TimerListViewModel(model) { [weak self] in
+                        //TODO: Show Edit
+                        self?.listener?.timerListEditTap(timerId: model.timerId)                        
                     }
                 }
                 self.presenter.setTimerLists(viewModels)
@@ -69,7 +71,7 @@ final class TimerListInteractor: PresentableInteractor<TimerListPresentable>, Ti
     }
  
     func timerListDidTap(timerId: UUID) {
-        listener?.timerListTimerDidTap(timerId: timerId)
+        listener?.timerListDidTap(timerId: timerId)
     }
 
     

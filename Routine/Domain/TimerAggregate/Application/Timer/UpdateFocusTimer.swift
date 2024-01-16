@@ -9,7 +9,7 @@ import Foundation
 
 
 struct UpdateFocusTimer: Command{
-    let timerId: UUID
+    let id: UUID
     let name: String
     let emoji: String
     let tint: String

@@ -56,8 +56,8 @@ final class RoutineListInteractor: PresentableInteractor<RoutineListPresentable>
             .sink { [weak self] lists in
                 guard let self = self else { return }
                 let viewModels = lists.map{ list in
-                    RoutineListViewModel(list) {
-                        self.listener?.routineListDidComplete(list: list)
+                    RoutineListViewModel(list) { [weak self] in
+                        self?.listener?.routineListDidComplete(list: list)
                     }
                 }
                 

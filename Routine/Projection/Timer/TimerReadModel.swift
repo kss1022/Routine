@@ -13,7 +13,9 @@ protocol TimerReadModelFacade{
     func timer(id: UUID) throws -> TimerListDto?
     func timerLists() throws -> [TimerListDto]
     
-    func timerCountdown(id: UUID) throws -> TimerCountdownDto?
+    func focusTimer(id: UUID) throws -> FocusTimerDto?
+    func tabatTimer(id: UUID) throws -> TabataTimerDto?
+    func roundTimer(id: UUID) throws -> RoundTimerDto?
     func timerSectionLists(id: UUID) throws -> [TimerSectionListDto]
     
 }
@@ -22,7 +24,9 @@ protocol TimerReadModelFacade{
 public final class TimerReadModelFacadeImp: TimerReadModelFacade{
     
     private let timerListDao: TimerListDao
-    private let timerCountdownDao: TimerCountdownDao
+    private let focusTimerDao: FocusTimerDao
+    private let tabatTimerDao: TabataTimerDao
+    private let roundTimerDao: RoundTimerDao
     private let timerSectionListDao: TimerSectionListDao
     
     init() throws{
@@ -31,8 +35,10 @@ public final class TimerReadModelFacadeImp: TimerReadModelFacade{
         }
         
         self.timerListDao = dbManager.timerListDao
-        self.timerCountdownDao = dbManager.timerCountdownDao
-        self.timerSectionListDao = dbManager.timerSectionListDao        
+        self.focusTimerDao = dbManager.focusTimerDao
+        self.tabatTimerDao = dbManager.tabataTimerDao
+        self.roundTimerDao = dbManager.roundTimerDao
+        self.timerSectionListDao = dbManager.timerSectionListDao
     }
     
     func timer(id: UUID) throws -> TimerListDto? {
@@ -43,8 +49,17 @@ public final class TimerReadModelFacadeImp: TimerReadModelFacade{
         try timerListDao.findAll()
     }
     
-    func timerCountdown(id: UUID) throws -> TimerCountdownDto? {
-        try timerCountdownDao.find(id)
+
+    func focusTimer(id: UUID) throws -> FocusTimerDto? {
+        try focusTimerDao.find(id)
+    }
+    
+    func tabatTimer(id: UUID) throws -> TabataTimerDto? {
+        try tabatTimerDao.find(id)
+    }
+    
+    func roundTimer(id: UUID) throws -> RoundTimerDto? {
+        try roundTimerDao.find(id)
     }
     
     func timerSectionLists(id: UUID) throws -> [TimerSectionListDto] {

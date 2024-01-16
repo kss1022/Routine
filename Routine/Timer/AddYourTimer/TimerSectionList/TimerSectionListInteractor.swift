@@ -20,7 +20,7 @@ protocol TimerSectionListPresentable: Presentable {
 }
 
 protocol TimerSectionListListener: AnyObject {    
-    func timeSectionListDidSelectRowAt(sectionList: TimerSectionListViewModel)
+    func timeSectionListDidTap(sectionList: TimerSectionListModel)
 }
 
 protocol TimerSectionListInternalDependency{
@@ -31,17 +31,20 @@ final class TimerSectionListInteractor: PresentableInteractor<TimerSectionListPr
 
     weak var router: TimerSectionListRouting?
     weak var listener: TimerSectionListListener?
-
     
     private let dependency: TimerSectionListInternalDependency
-    private var cancellables: Set<AnyCancellable>
+    private let sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>
+
     
+    private var cancellables: Set<AnyCancellable>
+        
     // in constructor.
     init(
         presenter: TimerSectionListPresentable,
         dependency: TimerSectionListInternalDependency
     ) {
         self.dependency = dependency
+        self.sectionLists = dependency.sectionLists
         self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
@@ -67,8 +70,9 @@ final class TimerSectionListInteractor: PresentableInteractor<TimerSectionListPr
     }
     
     //MARK: Listener
-    func tableViewDidSelectRowAt(sectionList: TimerSectionListViewModel) {
-        listener?.timeSectionListDidSelectRowAt(sectionList: sectionList)
+    func tableViewDidTap(row: Int) {
+        let sectionList = sectionLists.value[row]
+        listener?.timeSectionListDidTap(sectionList: sectionList)
     }
 
 }

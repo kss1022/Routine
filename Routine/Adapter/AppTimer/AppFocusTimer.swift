@@ -10,8 +10,8 @@ import Foundation
 struct AppFocusTimerModel{
     let min: TimeInterval
     
-    init(_ model: TimerFocusModel) {
-        self.min = TimeInterval(model.timerCountdown.minute).minute
+    init(_ model: FocusTimerModel) {
+        self.min = TimeInterval(model.minutes).minute
     }
 }
 

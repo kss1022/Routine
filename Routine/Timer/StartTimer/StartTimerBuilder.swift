@@ -9,20 +9,19 @@ import Foundation
 import ModernRIBs
 
 protocol StartTimerDependency: Dependency {
-    
     var recordApplicationService: RecordApplicationService{ get }
-    
     var timerRepository: TimerRepository{ get }
-    var startTimerViewController: ViewControllable { get }
     
+    
+    var startTimerViewController: ViewControllable { get }
 }
 
 final class StartTimerComponent: Component<StartTimerDependency>, FocusTimerDependency, SectionTimerDependency, StarTimerInteractorDependency {
 
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService}
-
-    
     var timerRepository: TimerRepository{ dependency.timerRepository }
+    
+    
     fileprivate var startTimerViewController: ViewControllable { dependency.startTimerViewController }
     
     let timerId: UUID

@@ -16,7 +16,7 @@ struct TimerSection: ValueObject{
     let timerSectionValue: TimerSectionValue
     let sequence: TimerSequence
     let emoji: Emoji
-    let tint: Tint?
+    let tint: Tint
 
     
     init(command:  CreateSection) throws{
@@ -52,7 +52,7 @@ struct TimerSection: ValueObject{
         self.sectionName = try TimerSectionName(command.name)
         self.sectionDescription = try TimerSectionDescription(command.description)
         self.sequence = try TimerSequence(command.sequence)
-        self.tint = command.color.flatMap(Tint.init)
+        self.tint = Tint(command.color)
     }
     
     init(command:  UpdateSection) throws{
@@ -88,7 +88,7 @@ struct TimerSection: ValueObject{
         self.sectionName = try TimerSectionName(command.name)
         self.sectionDescription = try TimerSectionDescription(command.description)
         self.sequence = try TimerSequence(command.sequence)
-        self.tint = command.color.flatMap(Tint.init)
+        self.tint = Tint(command.tint)
     }
     
 
@@ -99,7 +99,7 @@ struct TimerSection: ValueObject{
         timerSectionValue.encode(with: coder)
         sequence.encode(with: coder)
         emoji.encode(with: coder)
-        tint?.encode(with: coder)
+        tint.encode(with: coder)
     }
     
     init?(coder: NSCoder) {
@@ -108,7 +108,8 @@ struct TimerSection: ValueObject{
               let timerSectionType = TimerSectionType(coder: coder),
               let timerSectionValue = TimerSectionValue(coder: coder, type: timerSectionType),
               let sequence = TimerSequence(coder: coder),
-              let emoji = Emoji(coder: coder)
+              let emoji = Emoji(coder: coder),
+              let tint = Tint(coder: coder)
         else{ return nil }
         
         self.sectionName = sectionName
@@ -117,7 +118,7 @@ struct TimerSection: ValueObject{
         self.timerSectionValue = timerSectionValue
         self.sequence = sequence
         self.emoji = emoji
-        self.tint = Tint(coder: coder)
+        self.tint = tint
     }
 }
 

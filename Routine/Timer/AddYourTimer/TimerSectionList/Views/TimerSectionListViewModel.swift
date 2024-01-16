@@ -10,23 +10,43 @@ import UIKit.UIColor
 
 
 struct TimerSectionListViewModel: Hashable{
-    let emoji: String
+    let id: UUID = UUID()
     let name: String
     let description: String
-    let sequence: Int
-    let type: TimerSectionTypeModel
-    let value: TimerSectionValueModel
+    let value: String
+    let emoji: String
     let color: UIColor?
             
-    init(_ model: TimerSectionListModel) {        
-        self.emoji = model.emoji
+    
+    init(_ model: TimerSectionListModel){
         self.name = model.name
         self.description = model.description
-        self.sequence = model.sequence
-        self.type = model.type        
-        self.value = model.value
-        self.color  = model.tint.flatMap { UIColor(hex: $0) }
+        
+        if case .count(let count) = model.value{
+            self.value = "\(count)"
+        }else if case .countdown(let min,let sec) = model.value{
+            self.value = String(format: "%02d:%02d", min, sec)
+        }else{
+            fatalError()
+        }        
+        
+        self.emoji = model.emoji
+        self.color  = UIColor(hex: model.tint)
     }
 
+    init(_ model: TimeSectionModel){
+        self.name = model.name
+        self.description = model.description
+        self.value = String(format: "%02d:%02d", model.min, model.sec)
+        self.emoji = model.emoji
+        self.color  = UIColor(hex: model.tint)
+    }
     
+    init(_ model: RepeatSectionModel){
+        self.name = model.name
+        self.description = model.description
+        self.value = "\(model.repeat)"
+        self.emoji = model.emoji
+        self.color  = UIColor(hex: model.tint)
+    }
 }

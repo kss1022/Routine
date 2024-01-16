@@ -12,7 +12,7 @@ protocol AddFocusTimerDependency: Dependency {
     var timerRepository: TimerRepository{ get }
 }
 
-final class AddFocusTimerComponent: Component<AddFocusTimerDependency>, TimerEditTitleDependency , TimerEditCountdownDependency, AddFocusTimerInteractorDependency{
+final class AddFocusTimerComponent: Component<AddFocusTimerDependency>, TimerEditTitleDependency , TimerEditMinutesDependency, AddFocusTimerInteractorDependency{
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService}
     var timerRepository: TimerRepository{ dependency.timerRepository }
 }
@@ -36,13 +36,13 @@ final class AddFocusTimerBuilder: Builder<AddFocusTimerDependency>, AddFocusTime
         interactor.listener = listener
 
         let titleEditTitleBuilder = TimerEditTitleBuilder(dependency: component)
-        let timerEditCountdownBuilder = TimerEditCountdownBuilder(dependency: component)
+        let timerEditMinutesBuilder = TimerEditMinutesBuilder(dependency: component)
         
         return AddFocusTimerRouter(
             interactor: interactor,
             viewController: viewController,
             timerEditTitleBuildable: titleEditTitleBuilder,
-            timerEditCountdownBuildable: timerEditCountdownBuilder
+            timerEditMinutesBuildable: timerEditMinutesBuilder
         )
     }
 }

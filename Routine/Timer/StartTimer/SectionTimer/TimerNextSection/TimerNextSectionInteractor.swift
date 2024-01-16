@@ -24,7 +24,7 @@ protocol TimerNextSectionListener: AnyObject {
 }
 
 protocol TimerNextSectionInteractorDependency{
-    var model: TimerSectionsModel{ get }
+    var model: SectionTimerModel{ get }
     var timer: AppTimer{ get }
 }
 
@@ -37,7 +37,7 @@ final class TimerNextSectionInteractor: PresentableInteractor<TimerNextSectionPr
     private var cancellables: Set<AnyCancellable>
     
     private let timer: AppTimer
-    private let model: TimerSectionsModel
+    private let model: SectionTimerModel
     
     // in constructor.
     init(

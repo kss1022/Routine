@@ -20,7 +20,7 @@ final class TimerEditTitleComponent: Component<TimerEditTitleDependency> {
 // MARK: - Builder
 
 protocol TimerEditTitleBuildable: Buildable {
-    func build(withListener listener: TimerEditTitleListener) -> TimerEditTitleRouting
+    func build(withListener listener: TimerEditTitleListener, name: String, emoji: String) -> TimerEditTitleRouting
 }
 
 final class TimerEditTitleBuilder: Builder<TimerEditTitleDependency>, TimerEditTitleBuildable {
@@ -29,10 +29,10 @@ final class TimerEditTitleBuilder: Builder<TimerEditTitleDependency>, TimerEditT
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: TimerEditTitleListener) -> TimerEditTitleRouting {
+    func build(withListener listener: TimerEditTitleListener, name: String, emoji: String) -> TimerEditTitleRouting {
         let component = TimerEditTitleComponent(dependency: dependency)
         let viewController = TimerEditTitleViewController()
-        let interactor = TimerEditTitleInteractor(presenter: viewController)
+        let interactor = TimerEditTitleInteractor(presenter: viewController, name: name, emoji: emoji)
         interactor.listener = listener
         return TimerEditTitleRouter(interactor: interactor, viewController: viewController)
     }

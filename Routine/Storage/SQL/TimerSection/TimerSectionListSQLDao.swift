@@ -24,7 +24,7 @@ final class TimerSectionListSQLDao: TimerSectionListDao{
     private let timerSectionValue: Expression<TimerSectionValueDto>
     private let sequecne: Expression<Int>
     private let emoji: Expression<String>
-    private let tint: Expression<String?>
+    private let tint: Expression<String>
     
     init(db: Connection) throws{
         self.db = db
@@ -36,7 +36,7 @@ final class TimerSectionListSQLDao: TimerSectionListDao{
         timerSectionValue = Expression<TimerSectionValueDto>("timerSectionValue")
         sequecne = Expression<Int>("sequecne")
         emoji = Expression<String>("emoji")
-        tint = Expression<String?>("tint")
+        tint = Expression<String>("tint")
         try setup()
     }
     

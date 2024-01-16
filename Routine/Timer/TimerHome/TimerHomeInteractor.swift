@@ -11,13 +11,16 @@ import Combine
 
 protocol TimerHomeRouting: ViewableRouting {
     func attachTimerList()
-    
-    
-    func attachCreateTimer()
-    func detachCreateTimer()
+        
     
     func attachStartTimer(timerId: UUID)
     func detachStartTimer()
+        
+    func attachCreateTimer()
+    func detachCreateTimer()
+    
+    func attachTimerEdit(timerId: UUID)
+    func detachTimerEdit()
 }
 
 protocol TimerHomePresentable: Presentable {
@@ -34,7 +37,7 @@ protocol TimerHomeInteractorDependency{
 }
 
 final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, TimerHomeInteractable, TimerHomePresentableListener, AdaptivePresentationControllerDelegate {
-    
+        
     weak var router: TimerHomeRouting?
     weak var listener: TimerHomeListener?
     
@@ -46,6 +49,7 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
     
     private var isCreate: Bool
     private var isStart: Bool
+    private var isEdit: Bool
     
     // in constructor.
     init(
@@ -57,6 +61,7 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         self.presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
         self.isCreate = false
         self.isStart = false
+        self.isEdit = false
         super.init(presenter: presenter)
         presenter.listener = self
         self.presentationDelegateProxy.delegate = self
@@ -101,13 +106,17 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         }
     }
     
-    
-    //MARK: TimerList
-    func timerListTimerDidTap(timerId: UUID) {        
+            
+    //MARK: StartTimer
+    func timerListDidTap(timerId: UUID) {
         self.isStart = true
         self.router?.attachStartTimer(timerId: timerId)
     }
     
+    func startTimerDidClose() {
+        self.isStart = false
+        router?.detachStartTimer()
+    }
     
     //MARK: CreateTimer
     func creatTimerButtonDidTap() {
@@ -125,11 +134,20 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         router?.detachCreateTimer()
     }
     
-
-    //MARK: StartTimer
-    func startTimerDidClose() {
-        self.isStart = false
-        router?.detachStartTimer()
+    //MARK: TimerEdit
+    func timerListEditTap(timerId: UUID) {
+        isEdit = true
+        router?.attachTimerEdit(timerId: timerId)
+    }
+    
+    func timerEditDidClose() {
+        isEdit = true
+        router?.detachTimerEdit()
+    }
+    
+    func timerEditDidFinish() {
+        isEdit = true
+        router?.detachTimerEdit()
     }
     
 }

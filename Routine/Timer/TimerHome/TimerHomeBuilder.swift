@@ -10,22 +10,21 @@ import ModernRIBs
 protocol TimerHomeDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
     var recordApplicationService: RecordApplicationService{ get }
-
+    
     var timerRepository: TimerRepository{ get }
     
     var startTimerViewController: ViewControllable{ get }
+    var timerEditViewController: ViewControllable{ get }
 }
 
-final class TimerHomeComponent: Component<TimerHomeDependency>, TimerListDependency, CreateTimerDependency, StartTimerDependency, TimerHomeInteractorDependency {
-    
-    
+final class TimerHomeComponent: Component<TimerHomeDependency>, TimerListDependency, StartTimerDependency, CreateTimerDependency, TimerEditDependency, TimerHomeInteractorDependency {
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
-
     
     var timerRepository: TimerRepository{ dependency.timerRepository }
     
     var startTimerViewController: ViewControllable{ dependency.startTimerViewController }
+    var timerEditViewController: ViewControllable{ dependency.timerEditViewController }
 }
 
 // MARK: - Builder
@@ -48,15 +47,17 @@ final class TimerHomeBuilder: Builder<TimerHomeDependency>, TimerHomeBuildable {
 
         
         let timerListBuilder = TimerListBuilder(dependency: component)
-        let createTimerBuilder = CreateTimerBuilder(dependency: component)
         let startTimerBuilder = StartTimerBuilder(dependency: component)
+        let createTimerBuilder = CreateTimerBuilder(dependency: component)
+        let timerEditBuilder = TimerEditBuilder(dependency: component)
         
         return TimerHomeRouter(
             interactor: interactor,
             viewController: viewController,
             timerListBuildable: timerListBuilder,
+            startTimerBuildable: startTimerBuilder,
             creatTimerBuildable: createTimerBuilder,
-            startTimerBuildable: startTimerBuilder            
+            timerEditBuildable: timerEditBuilder
         )
     }
 }

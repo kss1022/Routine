@@ -20,7 +20,7 @@ struct AppTimerModel{
     let cycleRest: TimeInterval?
     let cooldown: TimeInterval
     
-    init(_ model: TimerSectionsModel) {
+    init(_ model: SectionTimerModel) {
         self.ready = model.ready.time
         self.exercise = model.exercise.time
         self.rest = model.rest.time

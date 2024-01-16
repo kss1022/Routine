@@ -27,7 +27,7 @@ protocol FocusTimerListener: AnyObject {
 protocol FocusTimerInteractorDependency{
     var recordApplicationService: RecordApplicationService{ get }
     var timerRepository: TimerRepository{ get }
-    var model: TimerFocusModel{ get }
+    var model: FocusTimerModel{ get }
 }
 
 final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, FocusTimerInteractable, FocusTimerPresentableListener {
@@ -53,7 +53,7 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
         
         router?.attachFocusRoundTimer()
         
-        presenter.setTitle(title: dependency.model.timerName)
+        presenter.setTitle(title: dependency.model.name)
     }
 
     override func willResignActive() {
@@ -69,7 +69,7 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
     
     func focusRoundTimerDidStartTimer(startAt: Date) {
         let createRecord = CreateTimerRecord(
-            timerId: dependency.model.timerId,
+            timerId: dependency.model.id,
             startAt: startAt
         )
         
@@ -109,8 +109,8 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
         Task{ [weak self] in
             guard let self = self else { return }
             do{
-                guard let recordId = try await dependency.timerRepository.recordId(timerId: dependency.model.timerId, startAt: startAt) else {
-                    Log.e("Can't find RecordId: \(dependency.model.timerId) \(startAt)")
+                guard let recordId = try await dependency.timerRepository.recordId(timerId: dependency.model.id, startAt: startAt) else {
+                    Log.e("Can't find RecordId: \(dependency.model.id) \(startAt)")
                     return
                 }
                 

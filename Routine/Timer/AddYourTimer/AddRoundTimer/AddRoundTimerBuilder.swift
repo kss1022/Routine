@@ -13,12 +13,13 @@ protocol AddRoundTimerDependency: Dependency {
 }
 
 final class AddRoundTimerComponent: Component<AddRoundTimerDependency>,TimerSectionEditDependency, TimerEditTitleDependency, TimerSectionListDependency , AddRoundTimerInteractorDependency  {
-
+    
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
     
     var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionListsSubject }
-    var sectionListsSubject = CurrentValuePublisher<[TimerSectionListModel]>([])}
+    var sectionListsSubject = CurrentValuePublisher<[TimerSectionListModel]>([])
+}
 
 // MARK: - Builder
 

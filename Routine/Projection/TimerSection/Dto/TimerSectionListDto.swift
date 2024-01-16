@@ -17,7 +17,7 @@ struct TimerSectionListDto{
     let timerSectionValue: TimerSectionValueDto
     let sequence: Int
     let emoji: String
-    let tint: String?
+    let tint: String
     
     init(timerId: TimerId, section: TimerSection) {
         self.timerId = timerId.id
@@ -27,7 +27,7 @@ struct TimerSectionListDto{
         self.timerSectionValue = TimerSectionValueDto(section.timerSectionValue)
         self.sequence = section.sequence.sequence
         self.emoji = section.emoji.emoji
-        self.tint = section.tint?.color
+        self.tint = section.tint.color
     }
     
     init(
@@ -38,7 +38,7 @@ struct TimerSectionListDto{
         timerSectionValue: TimerSectionValueDto,
         sequence: Int,
         emoji: String,
-        tint: String?
+        tint: String
     ) {
         self.timerId = timerId
         self.sectionName = sectionName

@@ -9,10 +9,10 @@ import ModernRIBs
 import Foundation
 
 protocol AddRoundTimerRouting: ViewableRouting {
-    func attachTimerSectionEdit(sectionList: TimerSectionListViewModel)
+    func attachTimerSectionEdit(sectionList: TimerSectionListModel)
     func detachTimerSectionEdit()
     
-    func attachTimerEditTitle()
+    func attachTimerEditTitle(name: String, emoji: String)
     func attachTimerSectionList()
 }
 
@@ -45,6 +45,7 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     
     private var name: String
     private var emoji: String
+    private var roundSectionListModel: RoundSectionListsModel
     
     // in constructor.
     init(
@@ -54,6 +55,16 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
         self.dependency = dependency
         self.name = ""
         self.emoji = "🍅"
+        
+        let timerSetup = TimerSetup()
+        self.roundSectionListModel = RoundSectionListsModel(
+            ready: timerSetup.ready(),
+            exercise: timerSetup.exercise(),
+            rest: timerSetup.rest(),
+            round: timerSetup.round(),
+            cooldown: timerSetup.cooldown()
+        )
+        
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -61,11 +72,10 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     override func didBecomeActive() {
         super.didBecomeActive()
   
-        let models = TimerSetup().roundSectionLists()
+        let sectionLists =  self.roundSectionListModel.sectionLists()
+        dependency.sectionListsSubject.send(sectionLists)
         
-        dependency.sectionListsSubject.send(models)
-        
-        router?.attachTimerEditTitle()
+        router?.attachTimerEditTitle(name: name, emoji: emoji)
         router?.attachTimerSectionList()
     }
 
@@ -79,37 +89,26 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     }
     
     func doneButtonDidTap() {
-        let createSections = dependency.sectionLists.value.enumerated().map { (sequence, section) in
-            CreateSection(
-                name: section.name,
-                description: section.description,
-                sequence: sequence,
-                type: section.type.rawValue,
-                min: section.value.min,
-                sec: section.value.sec,
-                count: section.value.count,
-                emoji: section.emoji,
-                color: section.tint
-            )
-        }
-        
-        
         let styles = EmojiService().styles()
-        var tint = styles[Int.random(in: 0..<(styles.count))]
+        let tint = styles[Int.random(in: 0..<(styles.count))]
+                
         
-        let createTimer = CreateSectionTimer(
+        let sectionLists = dependency.sectionLists.value
+        let command = CreateRoundTimer(
             name: name,
             emoji: emoji,
             tint: tint.hex,
-            timerType: TimerTypeModel.round.rawValue,
-            createSections: createSections
+            ready: TimeSectionCommand(sectionLists[0].toTimeSectionModel()),
+            exercise: TimeSectionCommand(sectionLists[1].toTimeSectionModel()),
+            rest: TimeSectionCommand(sectionLists[2].toTimeSectionModel()),
+            round: RepeatSectionCommand(sectionLists[3].toRepeatSectionModel()),
+            cooldown: TimeSectionCommand(sectionLists[4].toTimeSectionModel())
         )
-        
         
         Task{ [weak self] in
             guard let self = self else { return }
             do{
-                try await dependency.timerApplicationService.when(createTimer)
+                try await dependency.timerApplicationService.when(command)
                 try await dependency.timerRepository.fetchLists()
                 await MainActor.run { [weak self] in self?.listener?.addRoundTimerDidAddNewTimer() }
             }catch{
@@ -136,7 +135,7 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
     
     
     //MARK: TimerSectionList
-    func timeSectionListDidSelectRowAt(sectionList: TimerSectionListViewModel) {
+    func timeSectionListDidTap(sectionList: TimerSectionListModel) {
         router?.attachTimerSectionEdit(sectionList: sectionList)
     }
     

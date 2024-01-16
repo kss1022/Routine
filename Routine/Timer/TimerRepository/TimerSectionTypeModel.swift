@@ -11,7 +11,7 @@ import Foundation
 enum TimerSectionTypeModel: String{
     case ready
     case rest
-    case exercise //exercise
+    case exercise
     case round
     case cycle
     case cycleRest

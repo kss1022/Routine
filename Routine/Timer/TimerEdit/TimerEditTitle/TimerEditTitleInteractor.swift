@@ -27,10 +27,18 @@ final class TimerEditTitleInteractor: PresentableInteractor<TimerEditTitlePresen
 
     weak var router: TimerEditTitleRouting?
     weak var listener: TimerEditTitleListener?
-
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    
+    private let name: String
+    private let emoji: String
+        
     // in constructor.
-    override init(presenter: TimerEditTitlePresentable) {
+    init(
+        presenter: TimerEditTitlePresentable,
+        name: String,
+        emoji: String
+    ) {
+        self.name = name
+        self.emoji = emoji
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -38,8 +46,8 @@ final class TimerEditTitleInteractor: PresentableInteractor<TimerEditTitlePresen
     override func didBecomeActive() {
         super.didBecomeActive()
         
-        presenter.setName("")
-        presenter.setEmoji("🍅")
+        presenter.setName(name)
+        presenter.setEmoji(emoji)
     }
 
     override func willResignActive() {

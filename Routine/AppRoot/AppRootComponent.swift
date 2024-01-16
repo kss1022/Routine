@@ -55,7 +55,7 @@ final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, 
             
     var appTutorialViewController: ViewControllable
     var startTimerViewController: ViewControllable
-    
+    var timerEditViewController: ViewControllable
     
     init(
         dependency: AppRootDependency,
@@ -153,6 +153,7 @@ final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, 
 
         self.appTutorialViewController = rootViewController
         self.startTimerViewController = rootViewController.topViewControllable
+        self.timerEditViewController = rootViewController.topViewControllable
         
         super.init(dependency: dependency)
     }

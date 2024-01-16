@@ -8,8 +8,8 @@
 import ModernRIBs
 
 protocol AddFocusTimerRouting: ViewableRouting {
-    func attachTimerEditTitle()
-    func attachTimerEditCountdown()
+    func attachTimerEditTitle(name: String, emoji: String)
+    func attachTimerEditMinutes(minutes: Int)
 }
 
 protocol AddFocusTimerPresentable: Presentable {
@@ -38,7 +38,7 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
 
     private var name: String
     private var emoji: String
-    private var minute: Int
+    private var minutes: Int
     
     
     // in constructor.
@@ -49,7 +49,7 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
         self.dependency = dependency
         self.name = ""
         self.emoji = "🍅"
-        self.minute = 30
+        self.minutes = 30
         
         
         super.init(presenter: presenter)
@@ -59,8 +59,8 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
     override func didBecomeActive() {
         super.didBecomeActive()
         
-        router?.attachTimerEditTitle()
-        router?.attachTimerEditCountdown()
+        router?.attachTimerEditTitle(name: name, emoji: emoji)
+        router?.attachTimerEditMinutes(minutes: minutes)
     }
 
     override func willResignActive() {
@@ -76,13 +76,13 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
     
     func doneButtonDidTap() {
         let styles = EmojiService().styles()
-        var tint = styles[Int.random(in: 0..<(styles.count))]
+        let tint = styles[Int.random(in: 0..<(styles.count))]
         
         let createTimer = CreateFocusTimer(
             name: name,
             emoji: emoji,
             tint: tint.hex,
-            min: minute
+            min: minutes
         )
                 
         Task{ [weak self] in
@@ -115,8 +115,8 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
     
     //MARK: TimerEditCountdown
     
-    func timerEditCountdownSetMinute(minute: Int) {
-        self.minute = minute
+    func timerEditMinutesSetMinutes(minute: Int) {
+        self.minutes = minute
     }
 }
 

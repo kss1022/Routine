@@ -29,6 +29,5 @@ struct CreateSection{
     let sec: Int?
     let count: Int?
     let emoji: String
-    let color: String?
+    let color: String
 }
-

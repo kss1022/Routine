@@ -9,7 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol TimerSectionListPresentableListener: AnyObject {
-    func tableViewDidSelectRowAt(sectionList: TimerSectionListViewModel)
+    func tableViewDidTap(row: Int)
 }
 
 final class TimerSectionListViewController: UIViewController, TimerSectionListPresentable, TimerSectionListViewControllable {
@@ -90,8 +90,6 @@ final class TimerSectionListViewController: UIViewController, TimerSectionListPr
 
 extension TimerSectionListViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let viewModel = self.dataSource.itemIdentifier(for: indexPath){
-            listener?.tableViewDidSelectRowAt(sectionList: viewModel)
-        }
+        listener?.tableViewDidTap(row: indexPath.row)
     }
 }

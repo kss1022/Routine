@@ -12,7 +12,9 @@ import Combine
 final class TimerProjection{
     
     private let timerListDao: TimerListDao
-    private let timerCountdownDao: TimerCountdownDao
+    private let focusTimerDao: FocusTimerDao
+    private let tabataTimerDao: TabataTimerDao
+    private let roundTimerDao: RoundTimerDao
     private let timerSectionListDao: TimerSectionListDao
     
     
@@ -24,7 +26,9 @@ final class TimerProjection{
         }
         
         timerListDao = dbManager.timerListDao
-        timerCountdownDao = dbManager.timerCountdownDao
+        focusTimerDao =  dbManager.focusTimerDao
+        tabataTimerDao = dbManager.tabataTimerDao
+        roundTimerDao = dbManager.roundTimerDao
         timerSectionListDao = dbManager.timerSectionListDao
         
         cancellables = .init()
@@ -33,16 +37,9 @@ final class TimerProjection{
     }
     
     private func registerReceiver(){
-        DomainEventPublihser.shared
-            .onReceive(SectionTimerCreated.self, action: when)
-            .store(in: &cancellables)
-        
+        //FocusTimer
         DomainEventPublihser.shared
             .onReceive(FocusTimerCreated.self, action: when)
-            .store(in: &cancellables)
-        
-        DomainEventPublihser.shared
-            .onReceive(SectionTimerUpdated.self, action: when)
             .store(in: &cancellables)
         
         DomainEventPublihser.shared
@@ -50,15 +47,219 @@ final class TimerProjection{
             .store(in: &cancellables)
         
         DomainEventPublihser.shared
-            .onReceive(SectionTimerDeleted.self, action: when)
+            .onReceive(FocusTimerDeleted.self, action: when)
+            .store(in: &cancellables)
+        
+        //TabataTimer
+        DomainEventPublihser.shared
+            .onReceive(TabataTimerCreated.self, action: when)
             .store(in: &cancellables)
         
         DomainEventPublihser.shared
-            .onReceive(FocusTimerDeleted.self, action: when)
+            .onReceive(TabataTimerUpdated.self, action: when)
+            .store(in: &cancellables)
+        
+        DomainEventPublihser.shared
+            .onReceive(TabataTimerDeleted.self, action: when)
+            .store(in: &cancellables)
+        
+        //RoundTimer
+        DomainEventPublihser.shared
+            .onReceive(RoundTimerCreated.self, action: when)
+            .store(in: &cancellables)
+        
+        DomainEventPublihser.shared
+            .onReceive(RoundTimerUpdated.self, action: when)
+            .store(in: &cancellables)
+        
+        DomainEventPublihser.shared
+            .onReceive(RoundTimerDeleted.self, action: when)
+            .store(in: &cancellables)
+                
+        //SectionTimer
+        DomainEventPublihser.shared
+            .onReceive(SectionTimerCreated.self, action: when)
+            .store(in: &cancellables)
+                
+        DomainEventPublihser.shared
+            .onReceive(SectionTimerUpdated.self, action: when)
+            .store(in: &cancellables)
+                
+        DomainEventPublihser.shared
+            .onReceive(SectionTimerDeleted.self, action: when)
             .store(in: &cancellables)
     }
     
     
+    //MARK: FocusTimer
+    private func when(event: FocusTimerCreated){
+        do{
+            let timerList = TimerListDto(
+                timerId: event.timerId.id,
+                timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
+                timerType: event.timerType
+            )
+            
+            let focusTimer = FocusTimerDto(
+                id: event.timerId.id,
+                name: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
+                minutes: event.minutes.min
+            )
+            
+                  
+            try timerListDao.save(timerList)            
+            try focusTimerDao.save(focusTimer)
+        }catch{
+            Log.e("EventHandler Error: FocusTimerCreated \(error)")
+        }
+    }
+    
+    
+    private func when(event: FocusTimerUpdated){
+        do{
+            let timerList = TimerListDto(
+                timerId: event.timerId.id,
+                timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
+                timerType: event.timerType
+            )
+            
+            let focusTimer = FocusTimerDto(
+                id: event.timerId.id,
+                name: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
+                minutes: event.minutes.min
+            )
+            
+               
+            try timerListDao.update(timerList)
+            try focusTimerDao.update(focusTimer)
+        }catch{
+            Log.e("EventHandler Error: FocusTimerUpdated \(error)")
+        }
+    }
+    
+    
+    private func when(event: FocusTimerDeleted){
+        do{
+            let timerId = event.timerId.id
+            
+            try timerListDao.delete(timerId)
+            //try focusTimerDao.delete(timerId)
+        }catch{
+            Log.e("EventHandler Error: FocusTimerDeleted \(error)")
+        }
+    }
+    
+    
+    //MARK: TabataTimer
+    
+    private func when(event: TabataTimerCreated){
+        do{
+            let timerList = TimerListDto(
+                timerId: event.timerId.id,
+                timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
+                timerType: event.timerType
+            )
+            
+            let tabatTimer = TabataTimerDto(event)
+            
+            try timerListDao.save(timerList)
+            try tabataTimerDao.save(tabatTimer)
+        }catch{
+            Log.e("EventHandler Error: TabataTimerCreated \(error)")
+        }
+    }
+    
+    private func when(event: TabataTimerUpdated){
+        do{
+            let timerList = TimerListDto(
+                timerId: event.timerId.id,
+                timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
+                timerType: event.timerType
+            )
+            
+            let tabatTimer = TabataTimerDto(event)
+            
+            try timerListDao.update(timerList)
+            try tabataTimerDao.update(tabatTimer)
+        }catch{
+            Log.e("EventHandler Error: TabataTimerUpdated \(error)")
+        }
+    }
+    
+    private func when(event: TabataTimerDeleted){
+        do{
+            let id = event.timerId.id
+            try timerListDao.delete(id)
+            //try tabataTimerDao.delete(id)
+        }catch{
+            Log.e("EventHandler Error: TabataTimerDeleted \(error)")
+        }
+    }
+    
+    //MARK: RoundTimer
+    
+    private func when(event: RoundTimerCreated){
+        do{
+            let timerList = TimerListDto(
+                timerId: event.timerId.id,
+                timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
+                timerType: event.timerType
+            )
+            
+            let tabatTimer = RoundTimerDto(event)
+            
+            try timerListDao.save(timerList)
+            try roundTimerDao.save(tabatTimer)
+        }catch{
+            Log.e("EventHandler Error: RoundTimerCreated \(error)")
+        }
+    }
+    
+    private func when(event: RoundTimerUpdated){
+        do{
+            let timerList = TimerListDto(
+                timerId: event.timerId.id,
+                timerName: event.timerName.name,
+                emoji: event.emoji.emoji,
+                tint: event.tint.color,
+                timerType: event.timerType
+            )
+            
+            let tabatTimer = RoundTimerDto(event)
+            
+            try timerListDao.update(timerList)
+            try roundTimerDao.update(tabatTimer)
+        }catch{
+            Log.e("EventHandler Error: RoundTimerUpdated \(error)")
+        }
+    }
+    
+    private func when(event: RoundTimerDeleted){
+        do{
+            let id = event.timerId.id
+            try timerListDao.delete(id)
+            //try roundTimerDao.delete(id)
+        }catch{
+            Log.e("EventHandler Error: RoundTimerDeleted \(error)")
+        }
+    }
+
+    
+    //MARK: SectionTimer
     private func when(event: SectionTimerCreated){
         do{
             
@@ -86,28 +287,6 @@ final class TimerProjection{
         }
     }
     
-    private func when(event: FocusTimerCreated){
-        do{
-            let timerList = TimerListDto(
-                timerId: event.timerId.id,
-                timerName: event.timerName.name,
-                emoji: event.emoji.emoji,
-                tint: event.tint.color,
-                timerType: event.timerType
-            )
-            
-            let timerCountdown = TimerCountdownDto(
-                timerId: event.timerId.id,
-                minute: event.timerCountdown.min
-            )
-            
-               
-            try timerListDao.save(timerList)
-            try timerCountdownDao.save(timerCountdown)
-        }catch{
-            Log.e("EventHandler Error: FocusTimerCreated \(error)")
-        }
-    }
     
     private func when(event: SectionTimerUpdated){
         do{
@@ -135,53 +314,19 @@ final class TimerProjection{
             Log.e("EventHandler Error: SectionTimerUpdated \(error)")
         }
     }
-    
-    private func when(event: FocusTimerUpdated){
-        do{
-            let timerList = TimerListDto(
-                timerId: event.timerId.id,
-                timerName: event.timerName.name,
-                emoji: event.emoji.emoji,
-                tint: event.tint.color,
-                timerType: event.timerType
-            )
-            
-            let timerCountdown = TimerCountdownDto(
-                timerId: event.timerId.id,
-                minute: event.timerCountdown.min
-            )
-            
-               
-            try timerListDao.update(timerList)
-            try timerCountdownDao.update(timerCountdown)
-        }catch{
-            Log.e("EventHandler Error: FocusTimerUpdated \(error)")
-        }
-    }
+   
     
     private func when(event: SectionTimerDeleted){
         do{
             let timerId = event.timerId.id
             
             try timerListDao.delete(timerId)
-            try timerSectionListDao.delete(timerId)
+            //try timerSectionListDao.delete(timerId)
         }catch{
             Log.e("EventHandler Error: SectionTimerDeleted \(error)")
         }
     }
-    
-    private func when(event: FocusTimerDeleted){
-        do{
-            let timerId = event.timerId.id
-            
-            try timerListDao.delete(timerId)
-            try timerCountdownDao.delete(timerId)
-            
-        }catch{
-            Log.e("EventHandler Error: FocusTimerDeleted \(error)")
-        }
-    }
-    
+ 
 }
 
 

@@ -15,11 +15,11 @@ final class SectionTimerComponent: Component<SectionTimerDependency>, TimerRemai
     
     var timerRepository: TimerRepository{ dependency.timerRepository }
     
-    let model: TimerSectionsModel
+    let model: SectionTimerModel
     let timer: AppTimer
     
         
-    init(dependency: SectionTimerDependency, model: TimerSectionsModel) {
+    init(dependency: SectionTimerDependency, model: SectionTimerModel) {
         self.model = model
         self.timer = AppTimerManager.shared.baseTimer(model: AppTimerModel(model), id: model.timerId )
         super.init(dependency: dependency)
@@ -28,7 +28,7 @@ final class SectionTimerComponent: Component<SectionTimerDependency>, TimerRemai
 
 // MARK: - Builder
 protocol SectionTimerBuildable: Buildable {
-    func build(withListener listener: SectionTimerListener, model: TimerSectionsModel) -> SectionTimerRouting
+    func build(withListener listener: SectionTimerListener, model: SectionTimerModel) -> SectionTimerRouting
 }
 
 final class SectionTimerBuilder: Builder<SectionTimerDependency>, SectionTimerBuildable {
@@ -37,7 +37,7 @@ final class SectionTimerBuilder: Builder<SectionTimerDependency>, SectionTimerBu
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: SectionTimerListener, model: TimerSectionsModel) -> SectionTimerRouting {
+    func build(withListener listener: SectionTimerListener, model: SectionTimerModel) -> SectionTimerRouting {
         let component = SectionTimerComponent(dependency: dependency, model: model)
         let viewController = SectionTimerViewController()
         let interactor = SectionTimerInteractor(presenter: viewController, dependency: component)

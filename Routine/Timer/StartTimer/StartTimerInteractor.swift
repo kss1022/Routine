@@ -12,10 +12,10 @@ protocol StartTimerRouting: Routing {
     func cleanupViews()
     
     
-    func attachFocusTimer(model: TimerFocusModel)
+    func attachFocusTimer(model: FocusTimerModel)
     func detachFocusTimer()
     
-    func attachSectionTimer(model: TimerSectionsModel)
+    func attachSectionTimer(model: SectionTimerModel)
     func detachSectionTimer()
 }
 
@@ -58,7 +58,7 @@ final class StartTimerInteractor: Interactor, StartTimerInteractable, AdaptivePr
             Task{ [weak self] in
                 guard let self = self else { return }
                 do{
-                    try await self.dependency.timerRepository.fetchSections(timerId: timerId)
+                    //try await self.dependency.timerRepository.fetchSections(timerId: timerId)
                     
                     guard let sections =  self.dependency.timerRepository.sections.value else {
                         await MainActor.run { self.listener?.startTimerDidClose() }
@@ -76,7 +76,7 @@ final class StartTimerInteractor: Interactor, StartTimerInteractable, AdaptivePr
                     try await dependency.timerRepository.fetchFocus(timerId: timerId)
                     guard let focus = dependency.timerRepository.focus.value else {
                         
-                        await MainActor.run { self.listener?.startTimerDidClose() }
+                        await MainActor.run { [weak self] in   self?.listener?.startTimerDidClose() }
                         return
                     }
                     

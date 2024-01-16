@@ -10,5 +10,5 @@ import Foundation
 
 
 struct DeleteFocusTimer: Command{
-    let timerId: UUID
+    let id: UUID
 }
