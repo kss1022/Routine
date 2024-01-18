@@ -128,9 +128,8 @@ class RoundTimerView: UIControl {
         strokeAnimation.isRemovedOnCompletion = false
         strokeAnimation.duration = remainDuration
                 
-        barLayer.add(strokeAnimation, forKey: "strokeAnimation")
-        
-        suspendProgress()
+        barLayer.add(strokeAnimation, forKey: "strokeAnimation")        
+        //suspendProgress()
     }
     
     func resumeProgress(){

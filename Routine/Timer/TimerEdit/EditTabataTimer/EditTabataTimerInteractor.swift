@@ -54,7 +54,6 @@ final class EditTabataTimerInteractor: PresentableInteractor<EditTabataTimerPres
     private let dependency: EditTabataTimerInteractorDependency
     private let timerApplicationService: TimerApplicationService
     private let timerRepository: TimerRepository
-    private let timerSubject: CurrentValueSubject<TabataTimerModel?, Error>
     
     private var cancellables: Set<AnyCancellable>
     
@@ -72,7 +71,6 @@ final class EditTabataTimerInteractor: PresentableInteractor<EditTabataTimerPres
         self.dependency = dependency
         self.timerApplicationService = dependency.timerApplicationService
         self.timerRepository = dependency.timerRepository
-        self.timerSubject = dependency.tabataTimerSubject
         self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
@@ -83,9 +81,9 @@ final class EditTabataTimerInteractor: PresentableInteractor<EditTabataTimerPres
         
         self.presenter.startLoading()
         
-        timerSubject
-            .receive(on: DispatchQueue.main)
+        dependency.tabataTimerSubject
             .compactMap{ $0 }
+            .receive(on: DispatchQueue.main)            
             .sink { error in
                 Log.e("\(error)")
                 self.showFetchFailed()                

@@ -95,13 +95,18 @@ extension TimerEditCountdownPickerView: UIPickerViewDelegate{
         switch component{
         case 0:
             self.hour = countdownHourArray[row]
-            sendActions(for: .valueChanged)
         case 1:
             self.min = countdownMinArray[row]
-            sendActions(for: .valueChanged)
         default:
             fatalError("Invalid Component: \(component)")
         }
+        
+        if hour == 0 && min == 0{
+            pickerView.selectRow(1, inComponent: 1, animated: true)
+            min = countdownMinArray[1]
+        }
+        
+        sendActions(for: .valueChanged)
     }
 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

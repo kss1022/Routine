@@ -56,7 +56,7 @@ final class TimerSectionCountPickerView: UIControl{
     
     func setCount(count: Int){
         self.count = count
-        countPickerView.selectRow(count, inComponent: 0, animated: false)
+        countPickerView.selectRow(count-1, inComponent: 0, animated: false)
     }
     
 }

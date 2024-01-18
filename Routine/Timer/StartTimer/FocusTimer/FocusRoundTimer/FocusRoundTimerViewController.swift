@@ -9,10 +9,8 @@ import ModernRIBs
 import UIKit
 
 protocol FocusRoundTimerPresentableListener: AnyObject {
-    func roundTimerDidTap()
-    func roundTimerLongPress()
-    func cancelButtonDidTap()
-    func finishButtonDidTap()
+    func timerDidTap()
+    func timerDidLongPress()
 }
 
 final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPresentable, FocusRoundTimerViewControllable {
@@ -109,48 +107,7 @@ final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPres
         }
     }
     
-    // MARK: Presentable
-    func showStartButton() {
-//        activeButton.setTitle("Start", for: .normal)
-//        activeButton.setTitleColor(.systemGreen, for: .normal)
-//        activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
-    }
-    
-    func showPauseButton() {
-//        activeButton.setTitle("Pause", for: .normal)
-//        activeButton.setTitleColor(.systemOrange, for: .normal)
-//        activeButton.backgroundColor = .systemOrange.withAlphaComponent(0.5)
-    }
-    
-    func showResumeButton() {
-//        activeButton.setTitle("Resume", for: .normal)
-//        activeButton.setTitleColor(.systemGreen, for: .normal)
-//        activeButton.backgroundColor = .systemGreen.withAlphaComponent(0.5)
-    }
-    
-    func showTimerActionDialog() {
-        let alertController = UIAlertController(
-            title: nil,
-            message: nil,
-            preferredStyle: UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
-        )
-        
-        
-        let cancelAction = UIAlertAction(title: "cancel_timer".localized(tableName: "Timer"), style: .default) { [weak self] _ in
-            self?.listener?.cancelButtonDidTap()
-        }
-        
-        let finishAction = UIAlertAction(title: "finish_timer".localized(tableName: "Timer"), style: .default) { [weak self] _ in
-            self?.listener?.finishButtonDidTap()
-        }
-        
-        let dismissAction = UIAlertAction(title: "dismiss".localized(tableName: "Timer"), style: .cancel)
-        
-        alertController.addAction(dismissAction)
-        alertController.addAction(cancelAction)
-        alertController.addAction(finishAction)
-        self.present(alertController, animated: true)
-    }
+   
     
     func setTimer(_ viewModel: FocusRoundTimerViewModel) {
         roundTimerView.bindView(viewModel)
@@ -158,7 +115,7 @@ final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPres
     }
     
     
-    func updateRemainTime(time: String) {
+    func setTime(time: String) {
         //timerView.setTimeLabel(time: time)
         timeLabel.text = time
     }
@@ -182,27 +139,14 @@ final class FocusRoundTimerViewController: UIViewController, FocusRoundTimerPres
 
     @objc
     private func roundTimerTap(){
-        listener?.roundTimerDidTap()
+        listener?.timerDidTap()
     }
     
     @objc
     private func roundTimerLongPress(gesture: UILongPressGestureRecognizer){
         if gesture.state == .began {            
-            listener?.roundTimerLongPress()
+            listener?.timerDidLongPress()
         }
     }
-    
-    
-//    @objc
-//    private func activeButtonTap(){
-//        listener?.activeButtonDidTap()
-//    }
-//    
-//    @objc
-//    private func cancelButtonTap(){
-//        listener?.cancelButtonDidTap()
-//    }
-//    
-
     
 }

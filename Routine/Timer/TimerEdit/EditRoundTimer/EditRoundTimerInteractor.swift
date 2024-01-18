@@ -54,7 +54,6 @@ final class EditRoundTimerInteractor: PresentableInteractor<EditRoundTimerPresen
     private let dependency: EditRoundTimerInteractorDependency
     private let timerApplicationService: TimerApplicationService
     private let timerRepository: TimerRepository
-    private let timerSubject: CurrentValueSubject<RoundTimerModel?, Error>
     
     private var cancellables: Set<AnyCancellable>
     
@@ -72,7 +71,6 @@ final class EditRoundTimerInteractor: PresentableInteractor<EditRoundTimerPresen
         self.dependency = dependency
         self.timerApplicationService = dependency.timerApplicationService
         self.timerRepository = dependency.timerRepository
-        self.timerSubject = dependency.roundTimerSubject
         self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
@@ -83,9 +81,9 @@ final class EditRoundTimerInteractor: PresentableInteractor<EditRoundTimerPresen
                 
         self.presenter.startLoading()
         
-        timerSubject
-            .receive(on: DispatchQueue.main)
+        dependency.roundTimerSubject
             .compactMap{ $0 }
+            .receive(on: DispatchQueue.main)            
             .sink { error in
                 Log.e("\(error)")
                 self.showFetchFailed()

@@ -72,16 +72,12 @@ final class TimerEditInteractor: Interactor, TimerEditInteractable, AdaptivePres
         super.didBecomeActive()
                 
         let timer = dependency.timerRepository.lists.value.first{ $0.timerId == self.timerId }!
-        if timer.timerType == .focus{
-            self.showFocus()
-            return
-        }
-        
+
         switch timer.timerType {
         case .focus:
             self.showFocus()
         case .tabata:
-            self.showFocus()
+            self.showTabata()
         case .round:
             self.showRound()
         }

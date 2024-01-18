@@ -10,10 +10,15 @@ import UIKit
 import SpriteKit
 
 protocol FocusTimerPresentableListener: AnyObject {
+    func cancelButtonDidTap()
+    func finishButtonDidTap()
+    
     func closeButtonDidTap()
+    func errorButtonDidTap()
 }
 
 final class FocusTimerViewController: UIViewController, FocusTimerPresentable, FocusTimerViewControllable {
+
     
     
 
@@ -26,6 +31,14 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
     private lazy var closeBarButtonItem: UIBarButtonItem = {
         let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeBarButtonTap))
         return closeButton
+    }()
+    
+    private let loadingIndicator: UIActivityIndicatorView = {
+      let activity = UIActivityIndicatorView(style: .medium)
+      activity.translatesAutoresizingMaskIntoConstraints = false
+      activity.hidesWhenStopped = true
+      activity.stopAnimating()
+      return activity
     }()
     
                   
@@ -42,6 +55,13 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
     private func setLayout(){
         navigationItem.leftBarButtonItem = closeBarButtonItem
         view.backgroundColor = .systemBlue
+        
+        view.addSubview(loadingIndicator)
+
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     //MARK: ViewControllerable
@@ -64,13 +84,13 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
     
     //MARK: Presentable
     
-    func setResumeBaackground() {
+    func setResume() {
         UIView.animate(withDuration: 0.5.second) { [weak self] in
             self?.view.backgroundColor = .black
         }
     }
     
-    func setSuspendBackground() {
+    func setSuspend() {
         UIView.animate(withDuration: 0.5.second) { [weak self] in
             self?.view.backgroundColor = .systemBlue
         }
@@ -80,7 +100,7 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
         self.title = title
     }
     
-    func showFinishTimer() {
+    func setFinish() {
         UIView.animate(withDuration: 0.3.second) { [weak self] in
             self?.view.backgroundColor = .systemBlue
         }
@@ -98,7 +118,57 @@ final class FocusTimerViewController: UIViewController, FocusTimerPresentable, F
         
     }
     
+    // MARK: Presentable
+
+    func showActionDialog() {
+        let alertController = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
+        )
+        
+        
+        let cancelAction = UIAlertAction(title: "cancel_timer".localized(tableName: "Timer"), style: .default) { [weak self] _ in
+            self?.listener?.cancelButtonDidTap()
+        }
+        
+        let finishAction = UIAlertAction(title: "finish_timer".localized(tableName: "Timer"), style: .default) { [weak self] _ in
+            self?.listener?.finishButtonDidTap()
+        }
+        
+        let dismissAction = UIAlertAction(title: "dismiss".localized(tableName: "Timer"), style: .cancel)
+        
+        alertController.addAction(dismissAction)
+        alertController.addAction(cancelAction)
+        alertController.addAction(finishAction)
+        self.present(alertController, animated: true)
+    }
     
+    
+    
+    func startLoading() {
+        loadingIndicator.startAnimating()
+    }
+    
+    func stopLoading() {
+        loadingIndicator.stopAnimating()
+    }
+        
+    
+    func showError(title: String, message: String) {
+        showAlert(
+            title: title,
+            message: message
+        )
+    }
+    
+    func showCacelError(title: String, message: String) {
+        showAlert(
+            title: title,
+            message: message) { [weak self] _ in
+                self?.listener?.errorButtonDidTap()
+            }
+    }
     
     @objc
     private func closeBarButtonTap(){

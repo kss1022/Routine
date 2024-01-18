@@ -26,6 +26,6 @@ struct FocusRoundTimerViewModel{
     init(_ model: TimerTimeIntervalModel){
         self.emoji = model.emoji
         self.name = model.name
-        self.time = model.time.focusTime
+        self.time = model.time.detailTime
     }
 }

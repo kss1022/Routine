@@ -89,18 +89,19 @@ extension TimerSectionCountdownPickerView: UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component{
         case 0:
-            self.min = countDownNumberArray[row]
-            sendActions(for: .valueChanged)
+            min = countDownNumberArray[row]
         case 1:
-            self.sec = countDownNumberArray[row]
-            sendActions(for: .valueChanged)
+            sec = countDownNumberArray[row]
         default:
             fatalError("Invalid Component: \(component)")
         }
         
         if min == 0 && sec == 0{
-            pickerView.selectRow(10, inComponent: 1, animated: true)
+            pickerView.selectRow(1, inComponent: 1, animated: true)
+            sec = countDownNumberArray[1]
         }
+        
+        sendActions(for: .valueChanged)
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

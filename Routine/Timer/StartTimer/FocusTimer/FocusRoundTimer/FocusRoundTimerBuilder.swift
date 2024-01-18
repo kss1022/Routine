@@ -5,16 +5,20 @@
 //  Created by 한현규 on 10/27/23.
 //
 
+import Foundation
 import ModernRIBs
+import Combine
 
 protocol FocusRoundTimerDependency: Dependency {
-    var model: FocusTimerModel{ get }
-    var timer: AppFocusTimer{ get }
+    var focusTimerSubject: CurrentValueSubject<FocusTimerModel?, Error>{ get }
+    var time: ReadOnlyCurrentValuePublisher<TimeInterval>{ get }
+    var state: ReadOnlyCurrentValuePublisher<TimerState>{ get }
 }
 
 final class FocusRoundTimerComponent: Component<FocusRoundTimerDependency>, FocusRoundTimerInteractorDependency {
-    var model: FocusTimerModel{ dependency.model}
-    var timer: AppFocusTimer{ dependency.timer}
+    var focusTimerSubject: CurrentValueSubject<FocusTimerModel?, Error>{ dependency.focusTimerSubject }
+    var time: ReadOnlyCurrentValuePublisher<TimeInterval>{ dependency.time }
+    var state: ReadOnlyCurrentValuePublisher<TimerState>{ dependency.state }
 }
 
 // MARK: - Builder

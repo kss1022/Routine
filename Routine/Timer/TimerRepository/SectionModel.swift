@@ -48,3 +48,10 @@ extension RepeatSectionCommand{
         self.tint = model.tint
     }
 }
+
+
+extension TimeSectionModel{
+    func timeInterval() -> TimeInterval{
+        TimeInterval(self.min * 60 + self.sec).seconds
+    }
+}

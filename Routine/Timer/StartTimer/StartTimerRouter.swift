@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol StartTimerInteractable: Interactable, FocusTimerListener, SectionTimerListener {
+protocol StartTimerInteractable: Interactable, FocusTimerListener, TabataTimerListener, RoundTimerListener {
     var router: StartTimerRouting? { get set }
     var listener: StartTimerListener? { get set }
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy { get }
@@ -25,19 +25,23 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
     private let focusTimerBuildable: FocusTimerBuildable
     private var focusTimerRouting: Routing?
     
-    private let sectionTimerBuildable: SectionTimerBuildable
-    private var sectionTimerRouting: Routing?
-    
+    private let tabataTimerBuildable: TabataTimerBuildable
+    private var tabataTimerRouting: Routing?
+
+    private let roundTimerBuildable: RoundTimerBuildable
+    private var roundTimerRouting: Routing?
     
     init(
         interactor: StartTimerInteractable,
         viewController: ViewControllable,
         focusTimerBuildable: FocusTimerBuildable,
-        sectionTimerBuildable: SectionTimerBuildable
+        tabataTimerBuildable: TabataTimerBuildable,
+        roundTimerBuildable: RoundTimerBuildable
     ) {
         self.viewController = viewController
         self.focusTimerBuildable = focusTimerBuildable
-        self.sectionTimerBuildable = sectionTimerBuildable
+        self.tabataTimerBuildable = tabataTimerBuildable
+        self.roundTimerBuildable = roundTimerBuildable
         super.init(interactor: interactor)
         interactor.router = self
     }
@@ -49,12 +53,12 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
     }
     
     
-    func attachFocusTimer(model: FocusTimerModel) {
+    func attachFocusTimer() {
         if focusTimerRouting != nil{
             return
         }
         
-        let router = focusTimerBuildable.build(withListener: interactor, model: model)
+        let router = focusTimerBuildable.build(withListener: interactor)
         
         if let navigationController = navigationControllable{
             navigationController.pushViewController(router.viewControllable, animated: true)
@@ -75,12 +79,12 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
     }
     
     
-    func attachSectionTimer(model: SectionTimerModel) {
-        if sectionTimerRouting != nil{
+    func attachTabataTimer() {
+        if tabataTimerRouting != nil{
             return
         }
         
-        let router = sectionTimerBuildable.build(withListener: interactor, model: model)
+        let router = tabataTimerBuildable.build(withListener: interactor)
         
         if let navigationController = navigationControllable{
             navigationController.pushViewController(router.viewControllable, animated: true)
@@ -88,18 +92,43 @@ final class StartTimerRouter: Router<StartTimerInteractable>, StartTimerRouting 
             presentInsideNavigation(router.viewControllable)
         }
 
-        sectionTimerRouting = router
+        tabataTimerRouting = router
         attachChild(router)
     }
     
-    func detachSectionTimer() {
-        guard let router = sectionTimerRouting else { return }
+    func detachTabataTimer() {
+        guard let router = tabataTimerRouting else { return }
         
         dismissPresentedNavigation(completion: nil)
         detachChild(router)
-        sectionTimerRouting = nil
+        tabataTimerRouting = nil
     }
     
+    
+    func attachRoundTimer() {
+        if roundTimerRouting != nil{
+            return
+        }
+        
+        let router = roundTimerBuildable.build(withListener: interactor)
+        
+        if let navigationController = navigationControllable{
+            navigationController.pushViewController(router.viewControllable, animated: true)
+        }else{
+            presentInsideNavigation(router.viewControllable)
+        }
+
+        roundTimerRouting = router
+        attachChild(router)
+    }
+    
+    func detachRoundTimer() {
+        guard let router = roundTimerRouting else { return }
+        
+        dismissPresentedNavigation(completion: nil)
+        detachChild(router)
+        roundTimerRouting = nil
+    }
     
     // MARK: - Private
     private func presentInsideNavigation(_ viewControllable: ViewControllable) {

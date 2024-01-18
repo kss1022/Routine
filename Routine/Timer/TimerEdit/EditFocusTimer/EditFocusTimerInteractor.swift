@@ -45,7 +45,6 @@ final class EditFocusTimerInteractor: PresentableInteractor<EditFocusTimerPresen
     private var dependency: EditFocusTimerInteractorDependency
     private let timerApplicatoinService: TimerApplicationService
     private let timerRepository: TimerRepository
-    private let timerSubject: CurrentValueSubject<FocusTimerModel?, Error>
     
     private var cancellables: Set<AnyCancellable>
     
@@ -65,7 +64,6 @@ final class EditFocusTimerInteractor: PresentableInteractor<EditFocusTimerPresen
         self.dependency = dependency
         self.timerApplicatoinService = dependency.timerApplicationService
         self.timerRepository = dependency.timerRepository
-        self.timerSubject = dependency.focusTimerSubject
         self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
@@ -75,13 +73,13 @@ final class EditFocusTimerInteractor: PresentableInteractor<EditFocusTimerPresen
         super.didBecomeActive()
         
         self.presenter.startLoading()
-        timerSubject
-            .receive(on: DispatchQueue.main)
+        
+        dependency.focusTimerSubject
             .compactMap{ $0 }
+            .receive(on: DispatchQueue.main)            
             .sink { error in
                 Log.e("\(error)")
                 self.showFetchFailed()
-                self.listener?.editfocusTimerCancel()
             } receiveValue: { model in
                 self.id = model.id
                 self.name = model.name

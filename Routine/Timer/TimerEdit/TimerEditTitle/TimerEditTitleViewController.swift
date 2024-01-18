@@ -51,7 +51,7 @@ final class TimerEditTitleViewController: UIViewController, TimerEditTitlePresen
         textFeild.setStrokeColor(strokeColor: UIColor.systemGray.cgColor)
         
         textFeild.setFont(style: .title1)
-        textFeild.textColor = .black
+        textFeild.textColor = .label
         
         textFeild.attributedPlaceholder = NSAttributedString(
             string: "give_it_a_name".localized(tableName: "Routine"),

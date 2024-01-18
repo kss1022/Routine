@@ -7,6 +7,7 @@
 
 import Foundation
 import ModernRIBs
+import Combine
 
 protocol StartTimerDependency: Dependency {
     var recordApplicationService: RecordApplicationService{ get }
@@ -16,22 +17,17 @@ protocol StartTimerDependency: Dependency {
     var startTimerViewController: ViewControllable { get }
 }
 
-final class StartTimerComponent: Component<StartTimerDependency>, FocusTimerDependency, SectionTimerDependency, StarTimerInteractorDependency {
+final class StartTimerComponent: Component<StartTimerDependency>, FocusTimerDependency, TabataTimerDependency, RoundTimerDependency, StarTimerInteractorDependency {
 
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService}
     var timerRepository: TimerRepository{ dependency.timerRepository }
     
     
     fileprivate var startTimerViewController: ViewControllable { dependency.startTimerViewController }
-    
-    let timerId: UUID
-    
-    init(dependency: StartTimerDependency, timerId: UUID) {
-        self.timerId = timerId
-        super.init(dependency: dependency)
-    }
 
-    
+    var focusTimerSubject = CurrentValueSubject<FocusTimerModel?, Error>(nil)
+    var tabataTimerSubject = CurrentValueSubject<TabataTimerModel?, Error>(nil)
+    var roundTimerSubject = CurrentValueSubject<RoundTimerModel?, Error>(nil)
 }
 
 // MARK: - Builder
@@ -47,18 +43,20 @@ final class StartTimerBuilder: Builder<StartTimerDependency>, StartTimerBuildabl
     }
 
     func build(withListener listener: StartTimerListener, timerId: UUID) -> StartTimerRouting {
-        let component = StartTimerComponent(dependency: dependency, timerId: timerId)
-        let interactor = StartTimerInteractor(dependency: component)
+        let component = StartTimerComponent(dependency: dependency)
+        let interactor = StartTimerInteractor(dependency: component, timerId: timerId)
         interactor.listener = listener
         
         let focusTimerBuilder = FocusTimerBuilder(dependency: component)
-        let sectionTimerBuilder = SectionTimerBuilder(dependency: component)
+        let tabataTimerBuilder = TabataTimerBuilder(dependency: component)
+        let roundTimerBuilder = RoundTimerBuilder(dependency: component)
         
         return StartTimerRouter(
             interactor: interactor,
             viewController: component.startTimerViewController, 
-            focusTimerBuildable: focusTimerBuilder,
-            sectionTimerBuildable: sectionTimerBuilder
+            focusTimerBuildable: focusTimerBuilder, 
+            tabataTimerBuildable: tabataTimerBuilder,
+            roundTimerBuildable: roundTimerBuilder
         )
     }
 }

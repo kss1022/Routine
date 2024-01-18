@@ -13,8 +13,6 @@ struct TabataTimerModel{
     let name: String
     let emoji: String
     let tint: String
-    
-    
     let ready: TimeSectionModel
     let exercise: TimeSectionModel
     let rest: TimeSectionModel
@@ -28,7 +26,6 @@ struct TabataTimerModel{
         self.name = dto.name
         self.emoji = dto.emoji
         self.tint = dto.tint
-        
         self.ready = TimeSectionModel(
             name: dto.readyName,
             description: dto.readyDescription,
@@ -82,6 +79,6 @@ struct TabataTimerModel{
             sec: dto.cooldownSec,
             emoji: dto.cooldownEmoji,
             tint: dto.cooldownTint
-        )
+        )        
     }
 }

@@ -14,7 +14,7 @@ extension TimeInterval {
         return String(format:"%02d:%02d", Int(self/60), Int(ceil(self.truncatingRemainder(dividingBy: 60))) )
     }
     
-    var focusTime: String {
+    var detailTime: String {
         let hours = Int(self / 3600)
         let minutes = Int((self.truncatingRemainder(dividingBy: 3600)) / 60)
         let seconds = Int(self.truncatingRemainder(dividingBy: 60))

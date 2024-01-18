@@ -30,11 +30,6 @@ protocol TimerSectionEditInteractorDependency{
 final class TimerSectionEditInteractor: PresentableInteractor<TimerSectionEditPresentable>, TimerSectionEditInteractable, TimerSectionEditPresentableListener {
 
     
-
-    
-
-
-
     weak var router: TimerSectionEditRouting?
     weak var listener: TimerSectionEditListener?
     

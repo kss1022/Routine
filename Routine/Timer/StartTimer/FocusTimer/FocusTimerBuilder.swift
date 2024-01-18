@@ -5,12 +5,14 @@
 //  Created by 한현규 on 10/27/23.
 //
 
-import ModernRIBs
 import Foundation
+import ModernRIBs
+import Combine
 
 protocol FocusTimerDependency: Dependency {
     var recordApplicationService: RecordApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var focusTimerSubject: CurrentValueSubject<FocusTimerModel?, Error>{ get }
 }
 
 final class FocusTimerComponent: Component<FocusTimerDependency>, FocusRoundTimerDependency, FocusTimerInteractorDependency {
@@ -18,22 +20,20 @@ final class FocusTimerComponent: Component<FocusTimerDependency>, FocusRoundTime
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
     
-    let model: FocusTimerModel
-    let timer: AppFocusTimer
+    var focusTimerSubject: CurrentValueSubject<FocusTimerModel?, Error>{ dependency.focusTimerSubject }
 
     
-    init(dependency: FocusTimerDependency, model: FocusTimerModel) {
-        self.model = model
-        self.timer = AppTimerManager.shared.focusTimer(model: AppFocusTimerModel(model), id: model.id)
-        super.init(dependency: dependency)
-    }
+    var time: ReadOnlyCurrentValuePublisher<TimeInterval>{ timeSubject }
+    let timeSubject = CurrentValuePublisher<TimeInterval>(0)
     
+    var state: ReadOnlyCurrentValuePublisher<TimerState>{ stateSubject }
+    let stateSubject = CurrentValuePublisher<TimerState>(.initialized)
 }
 
 // MARK: - Builder
 
 protocol FocusTimerBuildable: Buildable {
-    func build(withListener listener: FocusTimerListener, model: FocusTimerModel) -> FocusTimerRouting
+    func build(withListener listener: FocusTimerListener) -> FocusTimerRouting
 }
 
 final class FocusTimerBuilder: Builder<FocusTimerDependency>, FocusTimerBuildable {
@@ -42,8 +42,8 @@ final class FocusTimerBuilder: Builder<FocusTimerDependency>, FocusTimerBuildabl
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: FocusTimerListener, model: FocusTimerModel) -> FocusTimerRouting {
-        let component = FocusTimerComponent(dependency: dependency, model: model)
+    func build(withListener listener: FocusTimerListener) -> FocusTimerRouting {
+        let component = FocusTimerComponent(dependency: dependency)
         let viewController = FocusTimerViewController()
         let interactor = FocusTimerInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener

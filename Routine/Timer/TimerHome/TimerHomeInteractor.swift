@@ -118,6 +118,11 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
         router?.detachStartTimer()
     }
     
+    func startTimerDidFinish() {
+        self.isStart = false
+        router?.detachStartTimer()
+    }
+    
     //MARK: CreateTimer
     func creatTimerButtonDidTap() {
         isCreate = true
