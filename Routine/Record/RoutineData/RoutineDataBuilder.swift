@@ -8,13 +8,13 @@
 import ModernRIBs
 
 protocol RoutineDataDependency: Dependency {
-    var recordRepository: RecordRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class RoutineDataComponent: Component<RoutineDataDependency>, RoutineDataOfWeekDependency, RoutineDataOfMonthDependency, RoutineDataOfYearDependency, RoutineTotalRecordDependency  {
-    var recordRepository: RecordRepository{ dependency.recordRepository }
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
     
-    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ recordRepository.routineRecords }
+    var routineRecords: ReadOnlyCurrentValuePublisher<RoutineRecordDatasModel?>{ routineRecordRepository.records }
 }
 
 // MARK: - Builder

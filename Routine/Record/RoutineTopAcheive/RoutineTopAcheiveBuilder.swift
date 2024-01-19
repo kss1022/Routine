@@ -8,12 +8,12 @@
 import ModernRIBs
 
 protocol RoutineTopAcheiveDependency: Dependency {
-    var recordRepository: RecordRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class RoutineTopAcheiveComponent: Component<RoutineTopAcheiveDependency>, RoutineTopAcheiveChartDependency, RoutineTopAcheiveTotalRecordDependency {
-    var recordRepository: RecordRepository{ dependency.recordRepository }
-    var topAcheives: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ recordRepository.routineTopAcheive }
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
+    var topAcheives: ReadOnlyCurrentValuePublisher<[RoutineTopAcheiveModel]>{ routineRecordRepository.topAcheive }
 }
 
 // MARK: - Builder

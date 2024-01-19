@@ -21,8 +21,8 @@ final class TimerRecordSQLDao: TimerRecordDao{
     private let recordId: Expression<UUID>
     private let recordDate: Expression<String>
     private let startAt: Expression<Date>
-    private let endAt: Expression<Date?>
-    private let duration: Expression<Double?>
+    private let endAt: Expression<Date>
+    private let duration: Expression<TimeInterval>
     
     init(db: Connection) throws{
         self.db = db
@@ -32,8 +32,8 @@ final class TimerRecordSQLDao: TimerRecordDao{
         recordId = Expression<UUID>("recordId")
         recordDate = Expression<String>("recordDate")
         startAt = Expression<Date>("startAt")
-        endAt = Expression<Date?>("endAt")
-        duration = Expression<Double?>("duration")
+        endAt = Expression<Date>("endAt")
+        duration = Expression<Double>("duration")
         
         
         try setup()
@@ -90,20 +90,6 @@ final class TimerRecordSQLDao: TimerRecordDao{
         Log.v("Update \(TimerRecordDto.self): RecordId-\(recordId) EndAt-\(endAt) Duration-\(duration)")
     }
     
-    func find(timerId: UUID, startAt: Date) throws -> TimerRecordDto? {
-        let query = table.filter(self.timerId == timerId && self.startAt == startAt)
-        
-        return try db.prepareRowIterator(query).map {
-            TimerRecordDto(
-                timerId: $0[self.timerId],
-                recordId: $0[recordId],
-                recordDate: $0[recordDate],
-                startAt: $0[self.startAt],
-                endAt: $0[endAt],
-                duration: $0[duration]
-            )
-        }.first
-    }
     
     func findAll(timerId: UUID, date: String) throws -> [TimerRecordDto] {
         let query = table.filter(self.timerId == timerId && recordDate == date)

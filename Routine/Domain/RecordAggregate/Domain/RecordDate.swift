@@ -16,9 +16,6 @@ struct RecordDate: ValueObject, Hashable{
     let dayOfWeek: Int
     
     init(_ date: Date) throws{
-        
-        
-        
         let calendar = Calendar.current
         if calendar.startOfDay(for: date) != date{
             throw ArgumentException("Date is not start of Day")

@@ -10,17 +10,13 @@ import Foundation
 
 
 protocol TimerRepository{
-    
     var lists: ReadOnlyCurrentValuePublisher<[TimerListModel]>{ get }
-    var sections: ReadOnlyCurrentValuePublisher<SectionTimerModel?>{ get }
     
     func focus(timerId: UUID) async throws -> FocusTimerModel?
     func tabata(timerId: UUID) async throws -> TabataTimerModel?
     func round(timerId: UUID) async throws -> RoundTimerModel?
                 
     func fetchLists() async throws
-    
-    func recordId(timerId: UUID, startAt: Date) async throws -> UUID?
 }
 
 
@@ -29,20 +25,6 @@ final class TimerRepositoryImp: TimerRepository{
         
     var lists: ReadOnlyCurrentValuePublisher<[TimerListModel]>{ listsSubject }
     private let listsSubject = CurrentValuePublisher<[TimerListModel]>([])
-    
-    var focus: ReadOnlyCurrentValuePublisher<FocusTimerModel?>{ focusSubject }
-    private let focusSubject = CurrentValuePublisher<FocusTimerModel?>(nil)
-    
-    var sections: ReadOnlyCurrentValuePublisher<SectionTimerModel?>{ sectionsSubject }
-    private let sectionsSubject = CurrentValuePublisher<SectionTimerModel?>(nil)
-    
-    
-    func fetchLists() async throws {
-        let models = try timerReadModel.timerLists()
-            .map(TimerListModel.init)
-        Log.v("TimerRepository: fetch Lists")
-        listsSubject.send(models)
-    }
     
     
     func focus(timerId: UUID) async throws -> FocusTimerModel? {
@@ -63,19 +45,21 @@ final class TimerRepositoryImp: TimerRepository{
         return roundTimer
     }
 
-    func recordId(timerId: UUID, startAt: Date) async throws -> UUID?{
-        try recordReadModel.record(timerId: timerId, startAt: startAt)?.recordId
+    
+    func fetchLists() async throws {
+        let models = try timerReadModel.timerLists()
+            .map(TimerListModel.init)
+        Log.v("TimerRepository: fetch Lists")
+        listsSubject.send(models)
     }
     
+    
     private let timerReadModel: TimerReadModelFacade
-    private let recordReadModel: TimerRecordReadModelFacade
     
     init(
-        timerReadModel: TimerReadModelFacade,
-        recordModel: TimerRecordReadModelFacade
+        timerReadModel: TimerReadModelFacade
     ) {
         self.timerReadModel = timerReadModel
-        self.recordReadModel = recordModel
     }
     
 

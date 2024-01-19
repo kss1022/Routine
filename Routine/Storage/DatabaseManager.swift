@@ -29,11 +29,14 @@ class DatabaseManager{
     public let routineMonthRecordDao: RoutineMonthRecordDao
     public let routineWeekRecordDao: RoutineWeekRecordDao
     public let routineStreakDao: RoutineStreakDao
-    
-    public let routineTopAcheiveDao: RoutineTopAcheiveDao
-    
     public let routineRecordDao: RoutineRecordDao
+    public let routineTopAcheiveDao: RoutineTopAcheiveDao
+            
+    public let timerTotalRecordDao: TimerTotalRecordDao
+    public let timerMonthRecordDao: TimerMonthRecordDao
+    public let timerWeekRecordDao: TimerWeekRecordDao
     public let timerRecordDao: TimerRecordDao
+    public let timerStreakDao: TimerStreakDao
     
     public let timerListDao: TimerListDao
     public let focusTimerDao: FocusTimerDao
@@ -72,6 +75,11 @@ class DatabaseManager{
         //        try RoutineWeekRecordSQLDao.dropTable(db: db)
         //        try RoutineStreakSQLDao.dropTable(db: db)
         //        try RoutineRecordSQLDao.dropTable(db: db)
+        
+        //        try TimerTotalRecordSQLDao.dropTable(db: db)
+        //        try TimerMonthRecordSQLDao.dropTable(db: db)
+        //        try TimerWeekRecordSQLDao.dropTable(db: db)
+        //        try TimerStreakSQLDao.dropTable(db: db)
         //        try TimerRecordSQLDao.dropTable(db: db)
 #endif
         let routineListSQLDao = try RoutineListSQLDao(db: db)
@@ -91,7 +99,13 @@ class DatabaseManager{
         self.routineWeekRecordDao = try RoutineWeekRecordSQLDao(db: db)
         self.routineStreakDao = try RoutineStreakSQLDao(db: db)
         self.routineRecordDao = try RoutineRecordSQLDao(db: db)
-        self.timerRecordDao = try TimerRecordSQLDao(db: db)
+        
+        self.timerTotalRecordDao = try TimerTotalRecordSQLDao(db: db)
+        self.timerMonthRecordDao = try TimerMonthRecordSQLDao(db: db)
+        self.timerWeekRecordDao = try TimerWeekRecordSQLDao(db: db)
+        self.timerStreakDao = try TimerStreakSQLDao(db: db)
+        self.timerRecordDao = try TimerRecordSQLDao(db: db)        
+        
         self.profileDao = ProfilepPreferencesDao(preferenceStorage: PreferenceStorage.shared)
         
         //Join

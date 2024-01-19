@@ -27,7 +27,7 @@ protocol RecordRoutineListDetailListener: AnyObject {
 
 protocol RecordRoutineListDetailInteractorDependency{
     var routineRepository: RoutineRepository{ get }
-    var recordRepository: RecordRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 
@@ -89,7 +89,7 @@ final class RecordRoutineListDetailInteractor: PresentableInteractor<RecordRouti
         Task{ [weak self] in
             guard let self = self else { return }
             do{
-                try await dependency.recordRepository.fetchRoutineRecords(routineId: routineId)
+                try await dependency.routineRecordRepository.fetchRecords(routineId: routineId)
                 await MainActor.run { [weak self] in self?.router?.attachRoutineData() }
             }catch{
                 Log.e("\(error)")

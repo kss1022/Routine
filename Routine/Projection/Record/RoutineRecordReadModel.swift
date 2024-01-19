@@ -32,11 +32,9 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
     private let routineMonthRecordDao: RoutineMonthRecordDao
     private let routineWeekRecordDao: RoutineWeekRecordDao
     private let routineStreakDao: RoutineStreakDao
-    
     private let routineTopAcheiveDao: RoutineTopAcheiveDao
-    
     private let routineRecordDao: RoutineRecordDao
-    
+        
     
     init() throws{
         guard let dbManager = DatabaseManager.default else {
@@ -47,10 +45,8 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
         routineMonthRecordDao = dbManager.routineMonthRecordDao
         routineWeekRecordDao = dbManager.routineWeekRecordDao
         routineStreakDao = dbManager.routineStreakDao
-        
         routineTopAcheiveDao = dbManager.routineTopAcheiveDao
-        
-        routineRecordDao = dbManager.routineRecordDao
+        routineRecordDao = dbManager.routineRecordDao                      
     }
     
     

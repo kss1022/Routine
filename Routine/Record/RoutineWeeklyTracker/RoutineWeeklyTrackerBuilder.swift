@@ -8,14 +8,14 @@
 import ModernRIBs
 
 protocol RoutineWeeklyTrackerDependency: Dependency {
-    var recordRepository: RecordRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class RoutineWeeklyTrackerComponent: Component<RoutineWeeklyTrackerDependency>, RoutineWeeklyTableDependency {
-    var recordRepository: RecordRepository{ dependency.recordRepository }
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
     
-    var routines: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ recordRepository.routineLists }
-    var routineWeeks: ReadOnlyCurrentValuePublisher<[RoutineWeekRecordModel]>{ recordRepository.routineWeeks }
+    var routines: ReadOnlyCurrentValuePublisher<[RecordRoutineListModel]>{ routineRecordRepository.lists }
+    var routineWeeks: ReadOnlyCurrentValuePublisher<[RoutineWeekRecordModel]>{ routineRecordRepository.weeks }
 }
 
 // MARK: - Builder

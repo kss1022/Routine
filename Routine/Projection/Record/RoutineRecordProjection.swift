@@ -1,5 +1,5 @@
 //
-//  RecordProjection.swift
+//  RoutineRecordProjection.swift
 //  Routine
 //
 //  Created by 한현규 on 10/11/23.
@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 
-final class RecordProjection{
+final class RoutineRecordProjection{
     
     private let routineTotalRecordDao: RoutineTotalRecordDao
     private let routineMonthRecordDao: RoutineMonthRecordDao
@@ -17,8 +17,6 @@ final class RecordProjection{
     private let routineStreakDao: RoutineStreakDao
     private let routineRecordDao: RoutineRecordDao
     
-    
-    private let timerRecordDao: TimerRecordDao
     
     private var cancellables: Set<AnyCancellable>
 
@@ -34,7 +32,6 @@ final class RecordProjection{
         self.routineWeekRecordDao = dbManager.routineWeekRecordDao
         self.routineStreakDao = dbManager.routineStreakDao
         
-        self.timerRecordDao = dbManager.timerRecordDao
         cancellables = .init()
         
         registerReceiver()
@@ -49,11 +46,7 @@ final class RecordProjection{
         DomainEventPublihser.shared
             .onReceive(RoutineRecordCompleteSet.self, action: when)
             .store(in: &cancellables)
-        
-        
-        DomainEventPublihser.shared
-            .onReceive(TimerRecordCreated.self, action: when)
-            .store(in: &cancellables)
+
     }
     
     
@@ -95,37 +88,6 @@ final class RecordProjection{
                 try routineWeekRecordDao.cancel(dto: RoutineWeekRecordDto(routineId: event.routineId.id, date: event.recordDate.date), dayOfWeek: event.recordDate.dayOfWeek)
                 try routineStreakDao.cancel(routineId: event.routineId.id, date: event.recordDate.date)
             }
-        }catch{
-            Log.e("EventHandler Error: RecordCreated \(error)")
-        }
-    }
-
-
-    //MARK: TimerRecord
-    private func when(event: TimerRecordCreated){
-        do{
-            let record = TimerRecordDto(
-                timerId: event.timerId.id,
-                recordId: event.recordId.id,
-                recordDate: Formatter.recordDateFormatter().string(from: event.timeRecord.startAt),
-                startAt: event.timeRecord.startAt,
-                endAt: event.timeRecord.endAt,
-                duration: event.timeRecord.duration
-            )
-                        
-            try timerRecordDao.save(record)
-        }catch{
-            Log.e("EventHandler Error: RecordCreated \(error)")
-        }
-    }
-    
-    private func when(event: TimerRecordCompleteSet){
-        do{
-            try timerRecordDao.updateComplete(
-                recordId: event.recordId.id,
-                endAt: event.timeRecord.endAt!,
-                duration: event.timeRecord.duration!
-            )
         }catch{
             Log.e("EventHandler Error: RecordCreated \(error)")
         }

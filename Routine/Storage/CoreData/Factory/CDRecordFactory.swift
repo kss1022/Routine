@@ -16,8 +16,8 @@ final class CDRecordFactory: RecordFactory{
     }
 
     
-    func create(timeId: TimerId, recordId: RecordId, timeRecord: TimeRecord) -> TimerRecord {
-        TimerRecord(timerId: timeId, recordId: recordId, timeRecord: timeRecord)
+    func create(timeId: TimerId, recordId: RecordId, recordDate: RecordDate, timeRecord: TimeRecord) -> TimerRecord {
+        TimerRecord(timerId: timeId, recordId: recordId, recordDate: recordDate, timeRecord: timeRecord)
     }
     
     

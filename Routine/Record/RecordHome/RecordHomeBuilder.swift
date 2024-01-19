@@ -10,14 +10,14 @@ import ModernRIBs
 protocol RecordHomeDependency: Dependency {
     var recordApplicationService: RecordApplicationService{ get }
     
-    var recordRepository: RecordRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
     var routineRepository: RoutineRepository{ get }
 }
 
 final class RecordHomeComponent: Component<RecordHomeDependency>,RoutineTopAcheiveDependency, RoutineWeeklyTrackerDependency, RecordRoutineListDetailDependency, RecordTimerListDetailDependency, RoutineDataDependency, TimerDataDependency ,RecordBannerDependency, RecordRoutineListDependency, RecordTimerListDependency, RecordHomeInteractorDependency {
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     
-    var recordRepository: RecordRepository{ dependency.recordRepository }
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
     var routineRepository: RoutineRepository{ dependency.routineRepository }
 }
 

@@ -43,7 +43,7 @@ protocol RecordHomeListener: AnyObject {
 }
 
 protocol RecordHomeInteractorDependency{
-    var recordRepository: RecordRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, RecordHomeInteractable, RecordHomePresentableListener {
@@ -87,7 +87,7 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
             Task{ [weak self] in
                 guard let self = self else { return }
                 do{
-                    try await dependency.recordRepository.fetchRoutineTopAcheives()
+                    try await dependency.routineRecordRepository.fetchTopAcheives()
                     await MainActor.run { [weak self] in self?.router?.attachRoutineTopAcheive() }
                 }catch{
                     Log.e("\(error)")
@@ -98,7 +98,7 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
             Task{ [weak self] in
                 guard let self = self else { return }
                 do{                    
-                    try await dependency.recordRepository.fetchRoutineWeeklyTrakers()
+                    try await dependency.routineRecordRepository.fetchWeeklyTrakers()
                     await MainActor.run { [weak self] in self?.router?.attachRoutineWeeklyTracker() }
                 }catch{
                     Log.e("\(error)")
@@ -125,7 +125,7 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
         Task{ [weak self] in
             guard let self = self else { return }
             do{
-                try await dependency.recordRepository.fetchRoutineRecords(routineId: routineId)
+                try await dependency.routineRecordRepository.fetchRecords(routineId: routineId)
                 await MainActor.run { [weak self] in self?.router?.attachRoutineData() }
             }catch{
                 Log.e("\(error)")

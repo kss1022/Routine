@@ -10,6 +10,9 @@ import Foundation
 
 
 struct CreateTimerRecord: Command{
-    let timerId: UUID
+    let timerId: UUID    
     let startAt: Date
+    let endAt: Date
+    let recordDate: Date
+    let duration: Double
 }

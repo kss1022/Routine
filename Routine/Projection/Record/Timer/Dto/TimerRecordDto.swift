@@ -13,6 +13,6 @@ public struct TimerRecordDto{
     public let recordId: UUID
     public let recordDate: String
     public let startAt: Date
-    public let endAt: Date?
-    public let duration: Double?
+    public let endAt: Date
+    public let duration: TimeInterval
 }

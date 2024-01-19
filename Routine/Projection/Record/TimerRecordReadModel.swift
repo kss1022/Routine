@@ -11,13 +11,17 @@ import Foundation
 
 
 protocol TimerRecordReadModelFacade{
-    func record(timerId: UUID, startAt: Date) throws -> TimerRecordDto?
     func records(date: Date) throws -> [TimerRecordDto]
+    
 }
 
 
 public final class TimerRecordReadModelFacadeImp: TimerRecordReadModelFacade{
 
+    private let timerTotalRecordDao: TimerTotalRecordDao
+    private let timerMonthRecordDao: TimerMonthRecordDao
+    private let timerWeekRecordDao: TimerWeekRecordDao
+    private let timerStreakDao: TimerStreakDao
     private let timerRecordDao: TimerRecordDao
     
     
@@ -26,14 +30,13 @@ public final class TimerRecordReadModelFacadeImp: TimerRecordReadModelFacade{
             throw DatabaseException.couldNotGetDatabaseManagerInstance
         }
                         
+        timerTotalRecordDao = dbManager.timerTotalRecordDao
+        timerMonthRecordDao = dbManager.timerMonthRecordDao
+        timerWeekRecordDao = dbManager.timerWeekRecordDao
+        timerStreakDao = dbManager.timerStreakDao
         timerRecordDao = dbManager.timerRecordDao
     }
     
-    
-    
-    func record(timerId: UUID, startAt: Date) throws -> TimerRecordDto? {
-        try timerRecordDao.find(timerId: timerId, startAt: startAt)
-    }
     
     func records(date: Date) throws -> [TimerRecordDto] {
         let date = Formatter.recordDateFormatter().string(from: date)

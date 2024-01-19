@@ -64,7 +64,7 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
     private var timer: BaseTimer!
     
     
-    
+    private var startAt: Date?
     
     
     // in constructor.
@@ -155,6 +155,7 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
     func foucsRoundTimerDidTapTimer() {
         switch timer.timerState {
         case .initialized:
+            startAt = Date()
             timer.start()
             presenter.setResume()
         case .suspended:
@@ -178,7 +179,30 @@ final class FocusTimerInteractor: PresentableInteractor<FocusTimerPresentable>, 
     
 
     func timerDidFinish(){
-        // TODO: Record Timer
+        let duration = TimeInterval(model.minutes).minutes
+        
+        let command = CreateTimerRecord(
+            timerId: model.id,
+            startAt: startAt!,
+            endAt: startAt!.addingTimeInterval(duration),
+            recordDate: Calendar.current.startOfDay(for: Date()), //now
+            duration: duration
+        )
+        
+        Task{ [weak self] in
+            guard let self = self else { return }
+            do{
+                try await recordApplicationService.when(command)
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.message)
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
+                await self.showRecordTimerFailed()
+            }
+        }
+        
         presenter.setFinish()
     }
 }
@@ -188,6 +212,14 @@ private extension FocusTimerInteractor{
         let title = "error".localized(tableName: "Timer")
         let message = "fetch_timer_failed".localized(tableName: "Timer")
         presenter.showCacelError(title: title, message: message)
+    }
+    
+    
+    @MainActor
+    func showRecordTimerFailed(){
+        let title = "oops".localized(tableName: "Timer")
+        let message = "record_timer_failed".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
     }
 }
 

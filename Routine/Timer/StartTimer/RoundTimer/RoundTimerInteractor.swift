@@ -33,6 +33,7 @@ protocol RoundTimerListener: AnyObject {
 }
 
 protocol RoundTimerInteractorDependency{
+    var recordApplicationService: RecordApplicationService{ get }
     var roundTimerSubject: CurrentValueSubject<RoundTimerModel?, Error>{ get }
     var timeSubject: CurrentValuePublisher<TimeInterval>{ get }
     var totalSubject: CurrentValuePublisher<TimeInterval>{ get }
@@ -48,6 +49,8 @@ final class RoundTimerInteractor: PresentableInteractor<RoundTimerPresentable>, 
     weak var listener: RoundTimerListener?
     
     private let dependency: RoundTimerInteractorDependency
+    private let recordApplicationService: RecordApplicationService
+    
     private let timeSubject: CurrentValuePublisher<TimeInterval>
     private let totalSubject: CurrentValuePublisher<TimeInterval>
     private let stateSubject: CurrentValuePublisher<TimerState>
@@ -65,6 +68,7 @@ final class RoundTimerInteractor: PresentableInteractor<RoundTimerPresentable>, 
         dependency: RoundTimerInteractorDependency
     ) {
         self.dependency = dependency
+        self.recordApplicationService = dependency.recordApplicationService
         self.timeSubject = dependency.timeSubject
         self.totalSubject = dependency.totalSubject
         self.stateSubject = dependency.stateSubject
@@ -198,5 +202,12 @@ private extension RoundTimerInteractor{
         let title = "error".localized(tableName: "Timer")
         let message = "fetch_timer_failed".localized(tableName: "Timer")
         presenter.showCacelError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showRecordTimerFailed(){
+        let title = "oops".localized(tableName: "Timer")
+        let message = "record_timer_failed".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
     }
 }

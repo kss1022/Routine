@@ -70,9 +70,11 @@ final class RecordApplicationService: ApplicationService{
             
             let timerId = TimerId(command.timerId)
             let recordId = RecordId(UUID())
-            let timeRecord = TimeRecord(command.startAt)
+                                    
+            let recordDate = try RecordDate(command.recordDate)
+            let timeRecord = try TimeRecord(startAt: command.startAt, endAt: command.endAt, duration: command.duration)
             
-            let record = recordFactory.create(timeId: timerId, recordId: recordId, timeRecord: timeRecord)
+            let record = recordFactory.create(timeId: timerId, recordId: recordId, recordDate:  recordDate, timeRecord: timeRecord)
             try eventStore.appendToStream(id: record.recordId.id, expectedVersion: -1, events: record.changes)
 
             
@@ -83,19 +85,5 @@ final class RecordApplicationService: ApplicationService{
         }
     }
     
-    func when(_ command: SetCompleteTimerRecord) async throws{
-        do{
-            Log.v("When (\(SetCompleteTimerRecord.self)): \(command)")
-            
-            
-            try update(id: command.recordId) { (record: TimerRecord) in
-                try record.setComplete(endAt: command.endAt, duration: command.duration)
-                return ()
-            }
-            
-            try Transaction.commit()
-        }catch{
-            try Transaction.rollback()
-        }
-    }
+
 }

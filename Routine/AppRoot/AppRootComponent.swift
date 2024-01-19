@@ -33,14 +33,18 @@ final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, 
     //MAKR: Projection
     private let routineProjection: RoutineProjection
     private let reminderProjection: ReminderProjection
-    private let recordProjection: RecordProjection
+    
     private let timerProjection: TimerProjection
+    
+    private let routineRecordProjection: RoutineRecordProjection
+    private let timerRecordProjection: TimerRecordProjection
+    
     private let profileProjection: ProfileProjection
     
     //MARK: Repository
     let routineRepository: RoutineRepository
     let timerRepository: TimerRepository
-    let recordRepository: RecordRepository
+    let routineRecordRepository: RoutineRecordRepository
     let profileRepository: ProfileRepository
     let reminderRepository: ReminderRepository
     
@@ -79,8 +83,12 @@ final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, 
         //Projection
         routineProjection = try! RoutineProjection()
         reminderProjection = try! ReminderProjection()
-        recordProjection = try! RecordProjection()
+        
         timerProjection = try! TimerProjection()
+        
+        routineRecordProjection = try! RoutineRecordProjection()
+        timerRecordProjection = try! TimerRecordProjection()
+        
         profileProjection = try! ProfileProjection()
         
         //ReadModel
@@ -130,14 +138,12 @@ final class AppRootComponent: Component<AppRootDependency> , AppHomeDependency, 
         )
                         
         self.timerRepository = TimerRepositoryImp(
-            timerReadModel: timerReadModel,
-            recordModel: timerRecordReadModel
+            timerReadModel: timerReadModel
         )
         
-        self.recordRepository = RecordRepositoryImp(
+        self.routineRecordRepository = RoutineRecordRepositoryImp(
             routineReadModel: routineReadModel,
-            routineRecordReadMoel: routineRecordReadModel,
-            timerRecordReadModel: timerRecordReadModel
+            recordReadModel: routineRecordReadModel
         )
     
         self.profileRepository = ProfileRepositoryImp(

@@ -13,5 +13,5 @@ import Foundation
 protocol RecordFactory{
     func create(routineId: RoutineId, recordId: RecordId, recordDate: RecordDate, isComplete: Bool) -> RoutineRecord
     
-    func create(timeId: TimerId, recordId: RecordId, timeRecord: TimeRecord) -> TimerRecord
+    func create(timeId: TimerId, recordId: RecordId, recordDate: RecordDate, timeRecord: TimeRecord) -> TimerRecord
 }
