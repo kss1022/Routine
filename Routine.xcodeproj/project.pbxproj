@@ -94,6 +94,7 @@
 		871B2F5B2B109A720015E266 /* ProfileEditDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B2F572B109A720015E266 /* ProfileEditDescriptionViewController.swift */; };
 		871B2F5C2B109A720015E266 /* ProfileEditDescriptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B2F582B109A720015E266 /* ProfileEditDescriptionBuilder.swift */; };
 		871B2F5D2B109A720015E266 /* ProfileEditDescriptionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871B2F592B109A720015E266 /* ProfileEditDescriptionInteractor.swift */; };
+		871CA6802B5C2F98002E3778 /* BaseTypefaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CA67F2B5C2F98002E3778 /* BaseTypefaceView.swift */; };
 		871D0FB92ADD04060080DEAC /* ReminderReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0FB82ADD04060080DEAC /* ReminderReadModel.swift */; };
 		871D0FBB2ADD05440080DEAC /* RoutineRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0FBA2ADD05440080DEAC /* RoutineRecordModel.swift */; };
 		871D84E92B20D8D80073306B /* RoutineListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D84E82B20D8D80073306B /* RoutineListModel.swift */; };
@@ -128,11 +129,6 @@
 		8724D3102B05F4D500DD1AFC /* AppGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30C2B05F4D500DD1AFC /* AppGuideViewController.swift */; };
 		8724D3112B05F4D500DD1AFC /* AppGuideBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30D2B05F4D500DD1AFC /* AppGuideBuilder.swift */; };
 		8724D3122B05F4D500DD1AFC /* AppGuideInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D30E2B05F4D500DD1AFC /* AppGuideInteractor.swift */; };
-		8724D31D2B061B4800DD1AFC /* AppFontListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D3192B061B4800DD1AFC /* AppFontListRouter.swift */; };
-		8724D31E2B061B4800DD1AFC /* AppFontListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D31A2B061B4800DD1AFC /* AppFontListViewController.swift */; };
-		8724D31F2B061B4800DD1AFC /* AppFontListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D31B2B061B4800DD1AFC /* AppFontListBuilder.swift */; };
-		8724D3202B061B4800DD1AFC /* AppFontListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D31C2B061B4800DD1AFC /* AppFontListInteractor.swift */; };
-		8724D3232B061D1100DD1AFC /* AppFontViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724D3222B061D1100DD1AFC /* AppFontViewModel.swift */; };
 		872626142B1701D200C0CD92 /* MemojiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872626132B1701D200C0CD92 /* MemojiService.swift */; };
 		872626182B17036C00C0CD92 /* MemojiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872626172B17036C00C0CD92 /* MemojiModel.swift */; };
 		8726261A2B17040F00C0CD92 /* MemojiStyleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872626192B17040F00C0CD92 /* MemojiStyleCollectionView.swift */; };
@@ -743,8 +739,6 @@
 		87D0C2EC2B0B470D003DF624 /* AppTypefaceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2EB2B0B470D003DF624 /* AppTypefaceListViewModel.swift */; };
 		87D0C2EE2B0B4750003DF624 /* AppTypefaceListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2ED2B0B4750003DF624 /* AppTypefaceListModel.swift */; };
 		87D0C2F22B0B4EE0003DF624 /* OSTypefaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2F12B0B4EE0003DF624 /* OSTypefaceListView.swift */; };
-		87D0C2F42B0B4F2F003DF624 /* OsTypefaceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2F32B0B4F2F003DF624 /* OsTypefaceListViewModel.swift */; };
-		87D0C2F62B0B4F68003DF624 /* OsTypefaceListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2F52B0B4F68003DF624 /* OsTypefaceListModel.swift */; };
 		87D0C2FC2B0B7295003DF624 /* AppInfoMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2FB2B0B7295003DF624 /* AppInfoMainView.swift */; };
 		87D0C2FE2B0B72FD003DF624 /* AppInfoMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2FD2B0B72FD003DF624 /* AppInfoMainViewModel.swift */; };
 		87D0C3002B0B7717003DF624 /* AppInfoMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0C2FF2B0B7717003DF624 /* AppInfoMainModel.swift */; };
@@ -1020,6 +1014,7 @@
 		871B2F572B109A720015E266 /* ProfileEditDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditDescriptionViewController.swift; sourceTree = "<group>"; };
 		871B2F582B109A720015E266 /* ProfileEditDescriptionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditDescriptionBuilder.swift; sourceTree = "<group>"; };
 		871B2F592B109A720015E266 /* ProfileEditDescriptionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditDescriptionInteractor.swift; sourceTree = "<group>"; };
+		871CA67F2B5C2F98002E3778 /* BaseTypefaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTypefaceView.swift; sourceTree = "<group>"; };
 		871D0FB82ADD04060080DEAC /* ReminderReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderReadModel.swift; sourceTree = "<group>"; };
 		871D0FBA2ADD05440080DEAC /* RoutineRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRecordModel.swift; sourceTree = "<group>"; };
 		871D84E82B20D8D80073306B /* RoutineListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListModel.swift; sourceTree = "<group>"; };
@@ -1054,11 +1049,6 @@
 		8724D30C2B05F4D500DD1AFC /* AppGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideViewController.swift; sourceTree = "<group>"; };
 		8724D30D2B05F4D500DD1AFC /* AppGuideBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideBuilder.swift; sourceTree = "<group>"; };
 		8724D30E2B05F4D500DD1AFC /* AppGuideInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGuideInteractor.swift; sourceTree = "<group>"; };
-		8724D3192B061B4800DD1AFC /* AppFontListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontListRouter.swift; sourceTree = "<group>"; };
-		8724D31A2B061B4800DD1AFC /* AppFontListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontListViewController.swift; sourceTree = "<group>"; };
-		8724D31B2B061B4800DD1AFC /* AppFontListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontListBuilder.swift; sourceTree = "<group>"; };
-		8724D31C2B061B4800DD1AFC /* AppFontListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontListInteractor.swift; sourceTree = "<group>"; };
-		8724D3222B061D1100DD1AFC /* AppFontViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFontViewModel.swift; sourceTree = "<group>"; };
 		872626132B1701D200C0CD92 /* MemojiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemojiService.swift; sourceTree = "<group>"; };
 		872626172B17036C00C0CD92 /* MemojiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemojiModel.swift; sourceTree = "<group>"; };
 		872626192B17040F00C0CD92 /* MemojiStyleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemojiStyleCollectionView.swift; sourceTree = "<group>"; };
@@ -1695,8 +1685,6 @@
 		87D0C2EB2B0B470D003DF624 /* AppTypefaceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTypefaceListViewModel.swift; sourceTree = "<group>"; };
 		87D0C2ED2B0B4750003DF624 /* AppTypefaceListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTypefaceListModel.swift; sourceTree = "<group>"; };
 		87D0C2F12B0B4EE0003DF624 /* OSTypefaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSTypefaceListView.swift; sourceTree = "<group>"; };
-		87D0C2F32B0B4F2F003DF624 /* OsTypefaceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsTypefaceListViewModel.swift; sourceTree = "<group>"; };
-		87D0C2F52B0B4F68003DF624 /* OsTypefaceListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsTypefaceListModel.swift; sourceTree = "<group>"; };
 		87D0C2FB2B0B7295003DF624 /* AppInfoMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoMainView.swift; sourceTree = "<group>"; };
 		87D0C2FD2B0B72FD003DF624 /* AppInfoMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoMainViewModel.swift; sourceTree = "<group>"; };
 		87D0C2FF2B0B7717003DF624 /* AppInfoMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoMainModel.swift; sourceTree = "<group>"; };
@@ -2328,7 +2316,6 @@
 			isa = PBXGroup;
 			children = (
 				87B630642B06FE4B00BDBCAB /* FontPicker */,
-				8724D3182B061B3A00DD1AFC /* AppFontList */,
 				87994A912B0630E70021997A /* FontPreview */,
 				8742BC962B07574E003417B9 /* SettingFont */,
 				8724D2EA2B05F20100DD1AFC /* SettingAppFontBuilder.swift */,
@@ -2375,26 +2362,6 @@
 				87D0C2FA2B0B7277003DF624 /* Views */,
 			);
 			path = AppInfo;
-			sourceTree = "<group>";
-		};
-		8724D3182B061B3A00DD1AFC /* AppFontList */ = {
-			isa = PBXGroup;
-			children = (
-				8724D31B2B061B4800DD1AFC /* AppFontListBuilder.swift */,
-				8724D3192B061B4800DD1AFC /* AppFontListRouter.swift */,
-				8724D31C2B061B4800DD1AFC /* AppFontListInteractor.swift */,
-				8724D31A2B061B4800DD1AFC /* AppFontListViewController.swift */,
-				8724D3212B061D0400DD1AFC /* Views */,
-			);
-			path = AppFontList;
-			sourceTree = "<group>";
-		};
-		8724D3212B061D0400DD1AFC /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				8724D3222B061D1100DD1AFC /* AppFontViewModel.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		872626162B17032200C0CD92 /* Memoji */ = {
@@ -4263,7 +4230,6 @@
 				87D0C2DB2B0B07E7003DF624 /* SettingTypefaceRouter.swift */,
 				87D0C2DE2B0B07E7003DF624 /* SettingTypefaceInteractor.swift */,
 				87D0C2DC2B0B07E7003DF624 /* SettingTypefaceViewController.swift */,
-				87D0C2F52B0B4F68003DF624 /* OsTypefaceListModel.swift */,
 				87D0C2ED2B0B4750003DF624 /* AppTypefaceListModel.swift */,
 				87D0C2E82B0B45D1003DF624 /* Views */,
 			);
@@ -4282,8 +4248,8 @@
 		87D0C2E82B0B45D1003DF624 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				87D0C2F32B0B4F2F003DF624 /* OsTypefaceListViewModel.swift */,
 				87D0C2F12B0B4EE0003DF624 /* OSTypefaceListView.swift */,
+				871CA67F2B5C2F98002E3778 /* BaseTypefaceView.swift */,
 				87D0C2EB2B0B470D003DF624 /* AppTypefaceListViewModel.swift */,
 				87D0C2E92B0B45EA003DF624 /* AppTypefaceListView.swift */,
 			);
@@ -5281,7 +5247,6 @@
 				8751F0AC2AC7F2FC000462EC /* RoutineTitleViewController.swift in Sources */,
 				87FB8D312AF8EA0C001180EC /* RoutineTotalRecordListView.swift in Sources */,
 				871D84E92B20D8D80073306B /* RoutineListModel.swift in Sources */,
-				87D0C2F62B0B4F68003DF624 /* OsTypefaceListModel.swift in Sources */,
 				87FF66E12B15F4B00013DB2A /* AppTutorialMainRouter.swift in Sources */,
 				87D5AAE72AB83A4A00FE712C /* CDSnapshotRepository.swift in Sources */,
 				87B708D02B04E72300C95C08 /* SettingAppIconViewController.swift in Sources */,
@@ -5401,7 +5366,6 @@
 				87135AEE2AC9454E006B71D5 /* RoutineEditInteractor.swift in Sources */,
 				8735AB542AC18D220092BDF3 /* RoutineDescription.swift in Sources */,
 				8724D3082B05F2EE00DD1AFC /* AppInfoViewController.swift in Sources */,
-				8724D31F2B061B4800DD1AFC /* AppFontListBuilder.swift in Sources */,
 				875DC7A12B56E12A0000B1C9 /* TimerSectionCountPickerView.swift in Sources */,
 				872626472B18A0FF00C0CD92 /* RoutineEditStyleRouter.swift in Sources */,
 				87FF66A32B158EFF0013DB2A /* AppTutorialRoutineViewController.swift in Sources */,
@@ -5448,7 +5412,6 @@
 				87AF75732AB99DD1001CF7F2 /* SnapshotEntity+CoreDataProperties.swift in Sources */,
 				87C8153B2AD3DBDA0062BEDF /* RoutineEditRepeatInteractor.swift in Sources */,
 				87C1B3E72B56646F008EC5DA /* Exercise.swift in Sources */,
-				8724D31D2B061B4800DD1AFC /* AppFontListRouter.swift in Sources */,
 				8738797B2B01C089004EE7F8 /* RoutineTopAcheiveInteractor.swift in Sources */,
 				87DFEC642AC1A9A200531EE3 /* TouchesButton.swift in Sources */,
 				87D0CAE92ACD593900FE405F /* RoutineNameChanged.swift in Sources */,
@@ -5541,6 +5504,7 @@
 				876E95192AB2CFE900046809 /* ProfileHomeRouter.swift in Sources */,
 				87FF66EA2B160D9F0013DB2A /* AppTutorialSplashView4.swift in Sources */,
 				8769B07B2B14B24F000D260D /* AppTutorialHomeViewController.swift in Sources */,
+				871CA6802B5C2F98002E3778 /* BaseTypefaceView.swift in Sources */,
 				87FF66A52B158EFF0013DB2A /* AppTutorialRoutineInteractor.swift in Sources */,
 				87C1B3CD2B563B09008EC5DA /* TimerEditMinutesRouter.swift in Sources */,
 				87FF66AC2B158F0C0013DB2A /* AppTutorialProfileBuilder.swift in Sources */,
@@ -5913,7 +5877,6 @@
 				87B7086B2B048F9700C95C08 /* ProfileStatViewController.swift in Sources */,
 				87FF66E22B15F4B00013DB2A /* AppTutorialMainViewController.swift in Sources */,
 				8751F0942AC7E776000462EC /* RoutineDetailInteractor.swift in Sources */,
-				87D0C2F42B0B4F2F003DF624 /* OsTypefaceListViewModel.swift in Sources */,
 				876E951A2AB2CFE900046809 /* ProfileHomeViewController.swift in Sources */,
 				87B708AD2B04BC2800C95C08 /* PlaceholerTextView.swift in Sources */,
 				87FB8D102AF8D09D001180EC /* RoutineMonthRecordDto.swift in Sources */,
@@ -5979,11 +5942,9 @@
 				87A7072C2B4EA7A500EE9BAF /* SectionTimerDeleted.swift in Sources */,
 				87B708B52B04C50D00C95C08 /* FeedbackMailRouter.swift in Sources */,
 				87FB8D122AF8D0CE001180EC /* RoutineTotalRecordDto.swift in Sources */,
-				8724D31E2B061B4800DD1AFC /* AppFontListViewController.swift in Sources */,
 				874DC0C22B1F0EEE000DF49F /* DaliyReminderService.swift in Sources */,
 				87E375FF2AD6D99000359850 /* RecordService.swift in Sources */,
 				8779ADCA2AFA1BBC00176746 /* RecordRoutineListDetailViewController.swift in Sources */,
-				8724D3202B061B4800DD1AFC /* AppFontListInteractor.swift in Sources */,
 				876E951B2AB2CFE900046809 /* ProfileHomeBuilder.swift in Sources */,
 				87E3761A2AD704DE00359850 /* RecordFormatter.swift in Sources */,
 				8779ADCC2AFA1BBC00176746 /* RecordRoutineListDetailInteractor.swift in Sources */,
@@ -5993,7 +5954,6 @@
 				876E95022AB2CFC100046809 /* RoutineHomeViewController.swift in Sources */,
 				87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */,
 				8779ADF42AFA361900176746 /* RoutineTotalRecordRouter.swift in Sources */,
-				8724D3232B061D1100DD1AFC /* AppFontViewModel.swift in Sources */,
 				8748F3222B0F71040081EFA1 /* ProfileImageValue.swift in Sources */,
 				87135AEB2AC9454E006B71D5 /* RoutineEditRouter.swift in Sources */,
 				87FF66AD2B158F0C0013DB2A /* AppTutorialProfileInteractor.swift in Sources */,

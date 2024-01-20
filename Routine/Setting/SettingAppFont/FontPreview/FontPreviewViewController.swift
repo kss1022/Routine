@@ -42,7 +42,7 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         let label = UILabel()
         label.setBoldFont(style: .caption1)
         label.textColor = .label
-        label.text = "font_preview".localized(tableName: "Profile")
+        label.text = "Hello Routine~👋"
         return label
     }()
 
@@ -58,7 +58,7 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         let label = UILabel()
         label.setBoldFont(style: .subheadline)
         label.textColor = .label
-        label.text = "font_preview".localized(tableName: "Profile")
+        label.text = "Hello Routine~👋"
         return label
     }()
     
@@ -75,7 +75,7 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         let label = UILabel()
         label.setBoldFont(style: .title1)
         label.textColor = .label
-        label.text = "font_preview".localized(tableName: "Profile")
+        label.text = "Hello Routine~👋"
         return label
     }()
     
@@ -110,23 +110,5 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32.0),
         ])
-        
     }
-    
-
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        smallLabel.setFont(style: .caption1)
-        smallBoldLabel.setBoldFont(style: .caption1)
-        
-        middleLabel.setFont(style: .headline)
-        middleBoldLabel.setBoldFont(style: .headline)
-        
-        largeLabel.setFont(style: .title1)
-        largeBoldLabel.setBoldFont(style: .title1)
-    }
-    
-    
 }

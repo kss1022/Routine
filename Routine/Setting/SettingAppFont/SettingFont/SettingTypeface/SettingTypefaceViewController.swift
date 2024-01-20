@@ -9,7 +9,8 @@ import ModernRIBs
 import UIKit
 
 protocol SettingTypefacePresentableListener: AnyObject {
-    func selectFontButtonDidTap()
+    func oSTypefaceDidTap()
+    func baseTypefaceDidTap()
 }
 
 final class SettingTypefaceViewController: UIViewController, SettingTypefacePresentable, SettingTypefaceViewControllable {
@@ -50,8 +51,21 @@ final class SettingTypefaceViewController: UIViewController, SettingTypefacePres
     }()
     
     
-    private let osTypefaceListView: OSTypefaceListView = {
+    private lazy var oSTypefaceListView: OSTypefaceListView = {
         let view = OSTypefaceListView()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(oSTypefaceTap))
+        view.addGestureRecognizer(tap)
+        
+        return view
+    }()
+    
+    private lazy var baseTypefaceListView: BaseTypefaceListView = {
+        let view = BaseTypefaceListView()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(baseTypefaceTap))
+        view.addGestureRecognizer(tap)
+        
         return view
     }()
     
@@ -101,12 +115,15 @@ final class SettingTypefaceViewController: UIViewController, SettingTypefacePres
         scrollView.addSubview(stackView)
         
         stackView.addArrangedSubview(osTypefaceTitleLabel)
-        stackView.addArrangedSubview(osTypefaceListView)
+        stackView.addArrangedSubview(oSTypefaceListView)
         
         stackView.addArrangedSubview(divierView)
         
         stackView.addArrangedSubview(appTypefaceTitleLabel)
         stackView.addArrangedSubview(appTypefacestackView)
+        
+        
+        appTypefacestackView.addArrangedSubview(baseTypefaceListView)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -120,19 +137,34 @@ final class SettingTypefaceViewController: UIViewController, SettingTypefacePres
         ])        
     }
     
-    func setOsTypeface(_ viewModel: OsTypefaceListViewModel) {
-        osTypefaceListView.bindView(viewModel)
+    func setOSFontName(_ fontName: String) {
+        oSTypefaceListView.fontName(fontName)
     }
     
-    func setAppTypeface(_ viewModel: [AppTypefaceListViewModel]) {
-        viewModel.map(AppTypefaceListView.init)
-            .forEach { view in
-                appTypefacestackView.addArrangedSubview(view)
-            }
+    func selectOSTypeface() {
+        oSTypefaceListView.select()
+    }
+    
+    func deSelectOSTypeface() {
+        oSTypefaceListView.deSelect()
+    }
+    
+    func selectBaseTypeface() {
+        baseTypefaceListView.select()
+    }
+    
+    func deSelectBaseTypeface() {
+        baseTypefaceListView.deSelect()
+    }
+    
+    
+    @objc
+    private func oSTypefaceTap(){
+        listener?.oSTypefaceDidTap()
     }
     
     @objc
-    private func selectFontButtonTap(){
-        listener?.selectFontButtonDidTap()
+    private func baseTypefaceTap(){
+        listener?.baseTypefaceDidTap()
     }
 }

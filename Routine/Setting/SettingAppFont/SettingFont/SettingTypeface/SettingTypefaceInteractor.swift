@@ -6,6 +6,9 @@
 //
 
 import ModernRIBs
+import Foundation
+import Combine
+
 
 protocol SettingTypefaceRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -14,13 +17,23 @@ protocol SettingTypefaceRouting: ViewableRouting {
 protocol SettingTypefacePresentable: Presentable {
     var listener: SettingTypefacePresentableListener? { get set }
     
-    func setOsTypeface(_ viewModel: OsTypefaceListViewModel)
-    func setAppTypeface(_ viewModel: [AppTypefaceListViewModel])
+    func setOSFontName(_ fontName: String)
+    
+    func selectOSTypeface()
+    func deSelectOSTypeface()
+    
+    func selectBaseTypeface()
+    func deSelectBaseTypeface()
 }
 
 protocol SettingTypefaceListener: AnyObject {
-    func settingTypefaceOsListDidTap()
-    func settingTypefaceAppListDidTap(fontName: String)
+    func settingTypefaceDidTapOS()
+    func settingTypefaceDidTapBaseType()    
+}
+
+protocol SettingTypefaceInteractorDependency{
+    var isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>{ get }
+    var oSFontName: ReadOnlyCurrentValuePublisher<String>{ get }
 }
 
 final class SettingTypefaceInteractor: PresentableInteractor<SettingTypefacePresentable>, SettingTypefaceInteractable, SettingTypefacePresentableListener {
@@ -28,9 +41,22 @@ final class SettingTypefaceInteractor: PresentableInteractor<SettingTypefacePres
     weak var router: SettingTypefaceRouting?
     weak var listener: SettingTypefaceListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: SettingTypefaceInteractorDependency
+    
+    private let isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>
+    private let oSfontName: ReadOnlyCurrentValuePublisher<String>
+    
+    private var cancellables: Set<AnyCancellable>
+    
     // in constructor.
-    override init(presenter: SettingTypefacePresentable) {
+    init(
+        presenter: SettingTypefacePresentable,
+        dependency: SettingTypefaceInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.isOSTypeface = dependency.isOSTypeface
+        self.oSfontName = dependency.oSFontName
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -38,55 +64,39 @@ final class SettingTypefaceInteractor: PresentableInteractor<SettingTypefacePres
     override func didBecomeActive() {
         super.didBecomeActive()
         
+        isOSTypeface
+            .receive(on: DispatchQueue.main)
+            .sink { isOs in
+                if isOs{
+                    self.presenter.selectOSTypeface()
+                    self.presenter.deSelectBaseTypeface()
+                    return
+                }
+                
+                self.presenter.deSelectOSTypeface()
+                self.presenter.selectBaseTypeface()
+            }
+            .store(in: &cancellables)
         
-        let osModel = OsTypefaceListModel(
-            isSelected: true,
-            fontName: AppFontService.shared.fontName,
-            imageName: "checkmark.circle",
-            selectedImageName: "checkmark.circle.fill"
-        ){ [weak self] in
-            self?.listener?.settingTypefaceOsListDidTap()
-        }
-        
-        
-        
-        let appFontModel = [
-            AppTypefaceListModel(
-                title: "Font1",
-                isSelected: false,
-                imageName: "checkmark.circle",
-                selectedImageName: "checkmark.circle.fill"
-            ){ [weak self] in
-                self?.listener?.settingTypefaceAppListDidTap(fontName: "Font1")
-            },
-            AppTypefaceListModel(
-                title: "Font2",
-                isSelected: false,
-                imageName: "checkmark.circle",
-                selectedImageName: "checkmark.circle.fill"
-            ){ [weak self] in
-                self?.listener?.settingTypefaceAppListDidTap(fontName: "Font2")
-            },
-            AppTypefaceListModel(
-                title: "Font2",
-                isSelected: false,
-                imageName: "checkmark.circle",
-                selectedImageName: "checkmark.circle.fill"
-            ){ [weak self] in
-                self?.listener?.settingTypefaceAppListDidTap(fontName: "Font3")
-            },
-        ]
-        
-        presenter.setOsTypeface(OsTypefaceListViewModel(osModel))
-        presenter.setAppTypeface(appFontModel.map(AppTypefaceListViewModel.init))
+        oSfontName
+            .receive(on: DispatchQueue.main)
+            .sink { fontName in
+                self.presenter.setOSFontName(fontName)
+            }
+            .store(in: &cancellables)      
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
     }
     
-    func selectFontButtonDidTap() {
-        listener?.settingTypefaceOsListDidTap()
+    func oSTypefaceDidTap() {
+        listener?.settingTypefaceDidTapOS()
+    }
+    
+    func baseTypefaceDidTap() {
+        listener?.settingTypefaceDidTapBaseType()
     }
 }

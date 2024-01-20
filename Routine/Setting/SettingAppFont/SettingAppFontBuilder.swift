@@ -12,9 +12,12 @@ protocol SettingAppFontDependency: Dependency {
     // created by this RIB.
 }
 
-final class SettingAppFontComponent: Component<SettingAppFontDependency>,FontPickerDependency, FontPreviewDependency, SettingFontDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class SettingAppFontComponent: Component<SettingAppFontDependency>,FontPickerDependency, FontPreviewDependency, SettingFontDependency, SettingAppFontInteractorDependency {
+    var isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>{ isOSTypefcaeSubject }
+    var isOSTypefcaeSubject = CurrentValuePublisher<Bool>(AppFontService.shared.isOSTypeface)
+    
+    var oSFontName: ReadOnlyCurrentValuePublisher<String>{ oSFontNameSubject }
+    var oSFontNameSubject = CurrentValuePublisher<String>(AppFontService.shared.fontName)
 }
 
 // MARK: - Builder
@@ -32,7 +35,7 @@ final class SettingAppFontBuilder: Builder<SettingAppFontDependency>, SettingApp
     func build(withListener listener: SettingAppFontListener) -> SettingAppFontRouting {
         let component = SettingAppFontComponent(dependency: dependency)
         let viewController = SettingAppFontViewController()
-        let interactor = SettingAppFontInteractor(presenter: viewController)
+        let interactor = SettingAppFontInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
         let fontPickerBuilder = FontPickerBuilder(dependency: component)

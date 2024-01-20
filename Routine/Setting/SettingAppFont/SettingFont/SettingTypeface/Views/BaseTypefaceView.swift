@@ -1,14 +1,15 @@
 //
-//  OSTypefaceListView.swift
+//  BaseTypefaceView.swift
 //  Routine
 //
-//  Created by 한현규 on 11/20/23.
+//  Created by 한현규 on 1/21/24.
 //
 
 import UIKit
 
 
-final class OSTypefaceListView: UIControl{
+
+final class BaseTypefaceListView: UIControl{
     
     
     private let stackView: UIStackView = {
@@ -20,29 +21,12 @@ final class OSTypefaceListView: UIControl{
         stackView.spacing = 16.0
         return stackView
     }()
-        
-    private let labelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 8.0
-        return stackView
-    }()
     
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.setBoldFont(style: .headline)
         label.textColor = .label
-        label.text = "os_typeface".localized(tableName: "Profile")
-        return label
-    }()
-    
-    private let fontNameLabel: UILabel = {
-        let label = UILabel()
-        label.setFont(style: .caption2)
-        label.textColor = .secondaryLabel
+        label.text = "base_typeface".localized(tableName: "Profile")
         return label
     }()
     
@@ -54,12 +38,12 @@ final class OSTypefaceListView: UIControl{
         return imageView
     }()
     
+    
     init(){
         super.init(frame: .zero)
         
         setView()
     }
-    
         
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -70,11 +54,8 @@ final class OSTypefaceListView: UIControl{
     private func setView(){
         addSubview(stackView)
         
-        stackView.addArrangedSubview(labelStackView)
+        stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(imageView)
-        
-        labelStackView.addArrangedSubview(titleLabel)
-        labelStackView.addArrangedSubview(fontNameLabel)
         
         let inset: CGFloat = 16.0
         
@@ -89,11 +70,6 @@ final class OSTypefaceListView: UIControl{
         ])
     }
 
-    
-    func fontName(_ fontName: String){
-        fontNameLabel.text = fontName
-    }
-    
     func select(){
         imageView.image = UIImage(systemName: "checkmark.circle.fill")
     }
@@ -101,5 +77,4 @@ final class OSTypefaceListView: UIControl{
     func deSelect(){
         imageView.image = UIImage(systemName: "checkmark.circle")
     }
-    
 }

@@ -8,13 +8,13 @@
 import ModernRIBs
 
 protocol SettingFontDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>{ get }
+    var oSFontName: ReadOnlyCurrentValuePublisher<String>{ get }
 }
 
 final class SettingFontComponent: Component<SettingFontDependency>, SettingFontSizeDependency, SettingTypefaceDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>{ dependency.isOSTypeface}
+    var oSFontName: ReadOnlyCurrentValuePublisher<String>{ dependency.oSFontName }
 }
 
 // MARK: - Builder

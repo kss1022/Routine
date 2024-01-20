@@ -8,13 +8,13 @@
 import ModernRIBs
 
 protocol SettingTypefaceDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>{ get}
+    var oSFontName: ReadOnlyCurrentValuePublisher<String>{ get }
 }
 
-final class SettingTypefaceComponent: Component<SettingTypefaceDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class SettingTypefaceComponent: Component<SettingTypefaceDependency>, SettingTypefaceInteractorDependency {
+    var isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>{ dependency.isOSTypeface }
+    var oSFontName: ReadOnlyCurrentValuePublisher<String>{ dependency.oSFontName }
 }
 
 // MARK: - Builder
@@ -32,7 +32,7 @@ final class SettingTypefaceBuilder: Builder<SettingTypefaceDependency>, SettingT
     func build(withListener listener: SettingTypefaceListener) -> SettingTypefaceRouting {
         let component = SettingTypefaceComponent(dependency: dependency)
         let viewController = SettingTypefaceViewController()
-        let interactor = SettingTypefaceInteractor(presenter: viewController)
+        let interactor = SettingTypefaceInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return SettingTypefaceRouter(interactor: interactor, viewController: viewController)
     }

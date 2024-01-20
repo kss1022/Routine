@@ -22,7 +22,7 @@ protocol SettingFontListener: AnyObject {
     func settingFontSetCustomSize(value: Float)
     
     func settingFontOsTypefaceDidTap()
-    func settingFontAppTypefaceDidTap(fontName: String)
+    func settingFontAppTypefaceDidTapBaseType()
 }
 
 final class SettingFontInteractor: PresentableInteractor<SettingFontPresentable>, SettingFontInteractable, SettingFontPresentableListener {
@@ -64,13 +64,12 @@ final class SettingFontInteractor: PresentableInteractor<SettingFontPresentable>
     }
 
     //MARK: Typeface
-    func settingTypefaceOsListDidTap() {
+    func settingTypefaceDidTapOS() {
         listener?.settingFontOsTypefaceDidTap()
     }
-    
-    
-    func settingTypefaceAppListDidTap(fontName: String) {
-        listener?.settingFontAppTypefaceDidTap(fontName: fontName)
+        
+    func settingTypefaceDidTapBaseType() {
+        listener?.settingFontAppTypefaceDidTapBaseType()
     }
     
 }
