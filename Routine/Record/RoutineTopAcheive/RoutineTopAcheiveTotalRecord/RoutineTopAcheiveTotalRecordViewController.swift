@@ -26,6 +26,7 @@ final class RoutineTopAcheiveTotalRecordViewController: UIViewController, Routin
         label.textColor = .label
         label.text = "total_number_of_achievements".localized(tableName: "Record")
         label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -55,7 +56,8 @@ final class RoutineTopAcheiveTotalRecordViewController: UIViewController, Routin
         label.setBoldFont(style: .footnote)
         label.textColor = .systemBlue
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = 5
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     

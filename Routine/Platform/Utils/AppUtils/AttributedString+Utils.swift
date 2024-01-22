@@ -23,6 +23,16 @@ public extension String{
         return attributeString
     }
     
+    func getAttributeImageString( image : UIImage, font : UIFont) -> NSAttributedString{
+        let attributedString = NSMutableAttributedString(string: "" )
+        let imageAttachment = NSTextAttachment(image: image)
+
+        
+        attributedString.append(NSAttributedString(attachment: imageAttachment))
+        attributedString.append(NSAttributedString(string: " \(self)"))
+        return attributedString
+    }
+        
     func getAttributeImageString( image : UIImage , bounds : CGRect? = nil, font : UIFont? = nil ) -> NSAttributedString{
         let attributedString = NSMutableAttributedString(string: "" )
         let imageAttachment = NSTextAttachment(image: image)
@@ -39,6 +49,7 @@ public extension String{
         return attributedString
     }
     
+
     func getAttributeSting() -> NSAttributedString{
         NSAttributedString(string: self)
     }

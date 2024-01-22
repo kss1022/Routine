@@ -9,21 +9,20 @@ import UIKit
 
 
 
-
 final class SettingFontSlider: UISlider{
     
     var stepCount: Int
     var lineHeight: CGFloat
-    var strokeColor : UIColor
+    var strokeColor : CGColor
     
     private let stepLayer = SettingFontStepLayer()
-    
+    public var valueChanged: ((AppFontSize) -> ())?
     
     
     init(){
         self.stepCount = 7
         self.lineHeight = 4.0
-        self.strokeColor = .label
+        self.strokeColor = UIColor.label.cgColor
         super.init(frame: .zero)
         
         setView()
@@ -32,7 +31,7 @@ final class SettingFontSlider: UISlider{
     required init?(coder: NSCoder) {
         self.stepCount = 7
         self.lineHeight = 4.0
-        self.strokeColor = .label
+        self.strokeColor = UIColor.label.cgColor
         super.init(coder: coder)
         
         setView()
@@ -46,14 +45,15 @@ final class SettingFontSlider: UISlider{
     
     private func setView(){
         stepLayer.slider = self
-                
+        addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+
         layer.sublayers?.first?.addSublayer(stepLayer)
                         
         minimumValue = 10
         maximumValue = 70
         value = 50
         isContinuous = false
-        self.tintColor = strokeColor
+        self.tintColor = UIColor.label
         self.minimumTrackTintColor = .clear
         self.maximumTrackTintColor = .clear
         
@@ -67,6 +67,22 @@ final class SettingFontSlider: UISlider{
         return trackRect
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()                
+        updateLayerFrames()
+    }
+    
+    public func setFontSize(_ appFontSize: AppFontSize){
+        switch appFontSize {
+        case .xSmall: value = 10
+        case .Small: value = 20
+        case .Medium: value = 30
+        case .Large: value = 40
+        case .xLarge: value = 50
+        case .xxLarge: value = 60
+        case .xxxLarge: value = 70
+        }
+    }
     
     private func updateLayerFrames() {
         CATransaction.begin()
@@ -76,17 +92,34 @@ final class SettingFontSlider: UISlider{
         CATransaction.commit()
     }
     
-    func positionForValue(_ value: Float) -> CGFloat {
+    private func positionForValue(_ value: Float) -> CGFloat {
         return bounds.width * CGFloat((  ( value - minimumValue ) / ( maximumValue - minimumValue ) ))
     }
     
-
     
-    func sliderValueChanged(_ sender: UISlider) {
+    @objc
+    private func sliderValueChanged(_ sender: UISlider) {
         let step: Float = 10.0
         let roundedValue = round(sender.value / step) * step
-        sender.value = roundedValue
+        value = roundedValue
+        
+        let fontSize: AppFontSize
+        switch value{
+        case 10: fontSize = .xSmall
+        case 20: fontSize = .Small
+        case 30: fontSize = .Medium
+        case 40: fontSize = .Large
+        case 50: fontSize = .xLarge
+        case 60: fontSize = .xxLarge
+        case 70: fontSize = .xxxLarge
+        default : fatalError("Invalid slider value")
+        }
+        
+        self.valueChanged?(fontSize)
     }
+    
+    
+    
 }
 
 

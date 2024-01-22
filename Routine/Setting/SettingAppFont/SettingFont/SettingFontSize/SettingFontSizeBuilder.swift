@@ -8,13 +8,13 @@
 import ModernRIBs
 
 protocol SettingFontSizeDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var isOsFontSize: ReadOnlyCurrentValuePublisher<Bool>{ get }
+    var fontSize: ReadOnlyCurrentValuePublisher<AppFontSize>{ get }
 }
 
-final class SettingFontSizeComponent: Component<SettingFontSizeDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class SettingFontSizeComponent: Component<SettingFontSizeDependency>, SettingFontSizeInteractorDependency {
+    var isOsFontSize: ReadOnlyCurrentValuePublisher<Bool>{ dependency.isOsFontSize }
+    var fontSize: ReadOnlyCurrentValuePublisher<AppFontSize>{ dependency.fontSize }
 }
 
 // MARK: - Builder
@@ -32,7 +32,7 @@ final class SettingFontSizeBuilder: Builder<SettingFontSizeDependency>, SettingF
     func build(withListener listener: SettingFontSizeListener) -> SettingFontSizeRouting {
         let component = SettingFontSizeComponent(dependency: dependency)
         let viewController = SettingFontSizeViewController()
-        let interactor = SettingFontSizeInteractor(presenter: viewController)
+        let interactor = SettingFontSizeInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return SettingFontSizeRouter(interactor: interactor, viewController: viewController)
     }

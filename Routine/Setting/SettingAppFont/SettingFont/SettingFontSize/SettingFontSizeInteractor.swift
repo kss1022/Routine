@@ -5,7 +5,9 @@
 //  Created by 한현규 on 11/20/23.
 //
 
+import Foundation
 import ModernRIBs
+import Combine
 
 protocol SettingFontSizeRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -14,30 +16,45 @@ protocol SettingFontSizeRouting: ViewableRouting {
 protocol SettingFontSizePresentable: Presentable {
     var listener: SettingFontSizePresentableListener? { get set }
     
-    func setToogleEnable(isOn: Bool)
-    
-    func setSliderEnabel(enable: Bool)
-    func setSliderValue(value: Float)
+    func setOSFontToogle(isOn: Bool)
+        
+    func setFontSizeSliderEnable(enable: Bool)
+    func setFontSize(appfontSize: AppFontSize)
 }
 
 protocol SettingFontSizeListener: AnyObject {
-    func settingFontSizeSetOsSize()
-    func settingFontSizeSetCustomSize(value: Float)
+    func settingFontSizeDidOnOSSize()
+    func settingFontSizeDidOffOSSize()
+    func settingFontSizeDidSetAppFontSize(appFontSize: AppFontSize)
+}
+
+protocol SettingFontSizeInteractorDependency{
+    var isOsFontSize: ReadOnlyCurrentValuePublisher<Bool>{ get }
+    var fontSize: ReadOnlyCurrentValuePublisher<AppFontSize>{ get }
 }
 
 final class SettingFontSizeInteractor: PresentableInteractor<SettingFontSizePresentable>, SettingFontSizeInteractable, SettingFontSizePresentableListener {
 
     weak var router: SettingFontSizeRouting?
     weak var listener: SettingFontSizeListener?
-
-//    private var isCustomSize: Bool
-//    private var customSize: Float
     
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: SettingFontSizeInteractorDependency
+    
+    private let isOsFontSize: ReadOnlyCurrentValuePublisher<Bool>
+    private let fontSize: ReadOnlyCurrentValuePublisher<AppFontSize>
+    
+    private var cancellables: Set<AnyCancellable>
+
+    
     // in constructor.
-    override init(presenter: SettingFontSizePresentable) {
-//        self.isCustomSize = AppFontService.shared.isCustomSize
-//        self.customSize = AppFontService.shared.customSize
+    init(
+        presenter: SettingFontSizePresentable,
+        dependency: SettingFontSizeInteractorDependency
+    ) {
+        self.dependency = dependency
+        self.isOsFontSize = dependency.isOsFontSize
+        self.fontSize = dependency.fontSize
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -46,30 +63,40 @@ final class SettingFontSizeInteractor: PresentableInteractor<SettingFontSizePres
         super.didBecomeActive()
      
         
+        isOsFontSize.receive(on: DispatchQueue.main)
+            .sink { isOSFont in
+                self.presenter.setOSFontToogle(isOn: isOSFont)
+                self.presenter.setFontSizeSliderEnable(enable: !isOSFont)
+            }
+            .store(in: &cancellables)
         
-//        presenter.setToogleEnable(isOn: !isCustomSize)
-//        presenter.setSliderEnabel(enable: isCustomSize)
-//        presenter.setSliderValue(value: customSize)
+        fontSize.receive(on: DispatchQueue.main)
+            .sink { fontSize in
+                self.presenter.setFontSize(appfontSize: fontSize)
+            }
+            .store(in: &cancellables)
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
     }
     
-    func toogleValueChanged(isOn: Bool) {
-//        self.isCustomSize = !isOn
-//        presenter.setSliderEnabel(enable: isCustomSize)
-//        
-//        if isOn{
-//            listener?.settingFontSizeSetOsSize()
-//        }else{
-//            listener?.settingFontSizeSetCustomSize(value: customSize)
-//        }
+
+    
+    func isOSFontToogleDidSetOnOff(isOn: Bool) {
+        if isOn{
+            listener?.settingFontSizeDidOnOSSize()
+            return
+        }
+        
+        listener?.settingFontSizeDidOffOSSize()
     }
     
-    func sliderValueChanged(value: Float) {
-//        self.customSize = value
-//        listener?.settingFontSizeSetCustomSize(value: customSize)
+    func fontSizeSliderDidSetSize(appFontSize: AppFontSize) {
+        listener?.settingFontSizeDidSetAppFontSize(appFontSize: appFontSize)
     }
+
 }

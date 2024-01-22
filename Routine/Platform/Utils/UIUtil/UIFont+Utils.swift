@@ -14,20 +14,43 @@ public extension UIFont {
     //MARK: Public
     static var appFontName = "AppleSDGothicNeo-Regular"
     static var appBoldFontName = "AppleSDGothicNeo-Bold"
-    
-    
-
+    static var isDynamicFont = true
+    static var appFontSize = 0.0
 }
 
 
 //MARK: Setter
 extension UIFont{
+    
+    public static func setFont(fontName: String, boldFontName: String, isDynamicFont: Bool, fontSize: CGFloat){
+        UIFont.appFontName = fontName
+        UIFont.appBoldFontName = boldFontName
+        UIFont.isDynamicFont = isDynamicFont
+        UIFont.appFontSize = fontSize
+        
+        
+        UIFont.fontDic = UIFont.fontDic(fontName: UIFont.appFontName, fontSize: UIFont.appFontSize)
+        UIFont.boldFontDic = UIFont.fontDic(fontName: UIFont.appBoldFontName, fontSize: UIFont.appFontSize)
+    }
+    
     public static func setFont(fontName: String, boldFontName: String){
         UIFont.appFontName = fontName
-        UIFont.fontDic = UIFont.fontDic(fontName: UIFont.appFontName)
+        UIFont.fontDic = UIFont.fontDic(fontName: UIFont.appFontName, fontSize: UIFont.appFontSize)
         
         UIFont.appBoldFontName = boldFontName
-        UIFont.boldFontDic = UIFont.fontDic(fontName: UIFont.appBoldFontName)
+        UIFont.boldFontDic = UIFont.fontDic(fontName: UIFont.appBoldFontName, fontSize: UIFont.appFontSize)
+    }
+    
+    public static func setIsDynamicFont(isDynamicFont: Bool){        
+        UIFont.isDynamicFont = isDynamicFont
+    }
+        
+    
+    public static func setFontSize(fontSize: CGFloat){
+        UIFont.appFontSize = fontSize
+        
+        UIFont.fontDic = UIFont.fontDic(fontName: UIFont.appFontName, fontSize: UIFont.appFontSize)
+        UIFont.boldFontDic = UIFont.fontDic(fontName: UIFont.appBoldFontName, fontSize: UIFont.appFontSize)
     }
 }
 
@@ -35,8 +58,11 @@ extension UIFont{
 extension UIFont{
     public static func getFont(style : UIFont.TextStyle) -> UIFont{
         let fontDic : [UIFont.TextStyle : UIFont] = UIFont.myCustomFontDic()
-        
         if let font = fontDic[style] {
+            if !isDynamicFont{
+                return font
+            }
+
             return UIFontMetrics(forTextStyle: style).scaledFont(for: font)
         }else{
             return UIFont.preferredFont(forTextStyle: style)
@@ -51,6 +77,10 @@ extension UIFont{
         let fontDic : [UIFont.TextStyle : UIFont] = UIFont.myCustomFontBoldDic()
         
         if let font = fontDic[style] {
+            if !isDynamicFont{
+                return font
+            }
+
             return UIFontMetrics(forTextStyle: style).scaledFont(for: font)
         }else{
             return UIFont.preferredFont(forTextStyle: style)
@@ -67,27 +97,27 @@ extension UIFont{
 extension UIFont{
     //MARK: Private
     private static var fontDic : [UIFont.TextStyle : UIFont] = {
-        fontDic(fontName: appFontName)
+        fontDic(fontName: appFontName, fontSize: appFontSize)
     }()
     
     private static var boldFontDic : [UIFont.TextStyle : UIFont] = {
-        fontDic(fontName: appBoldFontName)
+        fontDic(fontName: appBoldFontName, fontSize: appFontSize)
     }()
-    
-    private static func fontDic(fontName: String) -> [UIFont.TextStyle : UIFont]{
+        
+    private static func fontDic(fontName: String, fontSize: CGFloat) -> [UIFont.TextStyle : UIFont]{
         var dic = [UIFont.TextStyle : UIFont]()
                         
-        dic[.largeTitle] = UIFont(name: fontName, size: 34.0)
-        dic[.title1] = UIFont(name: fontName, size: 28.0)
-        dic[.title2] = UIFont(name: fontName, size: 22.0)
-        dic[.title3] = UIFont(name: fontName, size: 20.0)
-        dic[.headline] = UIFont(name: fontName, size: 17.0)
-        dic[.body] = UIFont(name: fontName, size: 17.0)
-        dic[.callout] = UIFont(name: fontName, size: 16.0)
-        dic[.subheadline] = UIFont(name: fontName, size: 15.0)
-        dic[.footnote] = UIFont(name: fontName, size: 13.0)
-        dic[.caption1] = UIFont(name: fontName, size: 12.0)
-        dic[.caption2] = UIFont(name: fontName, size: 11.0)
+        dic[.largeTitle] = UIFont(name: fontName, size: 34.0 + fontSize)
+        dic[.title1] = UIFont(name: fontName, size: 28.0 + fontSize)
+        dic[.title2] = UIFont(name: fontName, size: 22.0 + fontSize)
+        dic[.title3] = UIFont(name: fontName, size: 20.0 + fontSize)
+        dic[.headline] = UIFont(name: fontName, size: 17.0 + fontSize)
+        dic[.body] = UIFont(name: fontName, size: 17.0 + fontSize)
+        dic[.callout] = UIFont(name: fontName, size: 16.0 + fontSize)
+        dic[.subheadline] = UIFont(name: fontName, size: 15.0 + fontSize)
+        dic[.footnote] = UIFont(name: fontName, size: 13.0 + fontSize)
+        dic[.caption1] = UIFont(name: fontName, size: 12.0 + fontSize)
+        dic[.caption2] = UIFont(name: fontName, size: 11.0 + fontSize)
         return dic
     }
     
@@ -151,4 +181,3 @@ extension UIButton{
         self.titleLabel?.adjustsFontForContentSizeCategory = true
     }
 }
-    

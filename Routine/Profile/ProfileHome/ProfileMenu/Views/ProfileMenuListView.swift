@@ -17,6 +17,8 @@ final class ProfileMenuListView: UIView{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setBoldFont(style: .title3)
         label.textColor = . label
+        label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     

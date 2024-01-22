@@ -14,7 +14,7 @@ protocol ProfileHomeDependency: Dependency {
     var profileRepository: ProfileRepository{ get }
 }
 
-final class ProfileHomeComponent: Component<ProfileHomeDependency>,ProfileEditDependency, SettingAppNotificationDependency, SettingAppThemeDependency, SettingAppFontDependency, SettingAppIconDependency, AppGuideDependency, FeedbackMailDependency, AppInfoDependency, ProfileCardDependency, ProfileStatDependency, ProfileMenuDependency, ProfileHomeInteractorDependency {
+final class ProfileHomeComponent: Component<ProfileHomeDependency>,ProfileEditDependency, SettingAppNotificationDependency, SettingAppThemeDependency, SettingAppFontDependency, SettingAppIconDependency, AppGuideDependency, FeedbackMailDependency, AppInfoDependency, ProfileCardDependency, ProfileMenuDependency, ProfileHomeInteractorDependency {
     
     
     var profileApplicationService: ProfileApplicationService{ dependency.profileApplicationService }
@@ -56,7 +56,6 @@ final class ProfileHomeBuilder: Builder<ProfileHomeDependency>, ProfileHomeBuild
         let appInfoBuilder = AppInfoBuilder(dependency: component)
         
         let profileCardBuilder = ProfileCardBuilder(dependency: component)
-        let profileStatBuilder = ProfileStatBuilder(dependency: component)
         let profileMenuBuilder = ProfileMenuBuilder(dependency: component)
         
         return ProfileHomeRouter(
@@ -71,7 +70,6 @@ final class ProfileHomeBuilder: Builder<ProfileHomeDependency>, ProfileHomeBuild
             feedbackMailBuildable: feedbackMailBuilder,
             appInfoBuildable: appInfoBuilder,
             profileCardBuildable: profileCardBuilder,
-            profileStatBuildable: profileStatBuilder,
             profileMenuBuildable: profileMenuBuilder
         )
     }

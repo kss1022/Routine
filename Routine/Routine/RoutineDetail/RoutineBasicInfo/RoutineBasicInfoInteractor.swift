@@ -105,6 +105,6 @@ final class RoutineBasicInfoInteractor: PresentableInteractor<RoutineBasicInfoPr
         let date = calendar.date(from: dateComponent)!
         
         let reminders = Formatter.reminderDateFormatter().string(from: date)
-        self.presenter.reminderInfo(info: "basic_info_reminder_at".localizedWithFormat(arguments: reminders))
+        self.presenter.reminderInfo(info: "basic_info_reminder_at".localizedWithFormat(tableName: "Routine", arguments: reminders))
     }
 }

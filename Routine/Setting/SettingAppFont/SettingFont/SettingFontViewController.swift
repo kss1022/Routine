@@ -9,7 +9,6 @@ import ModernRIBs
 import UIKit
 
 protocol SettingFontPresentableListener: AnyObject {
-    func segmentControlDidTap(index: Int)
 }
 
 final class SettingFontViewController: UIViewController, SettingFontPresentable, SettingFontViewControllable {
@@ -55,6 +54,7 @@ final class SettingFontViewController: UIViewController, SettingFontPresentable,
         NSLayoutConstraint.activate([
             segmentControl.topAnchor.constraint(equalTo: view.topAnchor),
             segmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            segmentControl.heightAnchor.constraint(greaterThanOrEqualToConstant: 60.0),
             segmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pageView.topAnchor.constraint(equalTo: segmentControl.bottomAnchor),
             pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -97,8 +97,6 @@ final class SettingFontViewController: UIViewController, SettingFontPresentable,
     @objc
     private func segmentControlTap(control: UISegmentedControl) {
         segmentControl.changeUnderlinePosition()
-        listener?.segmentControlDidTap(index: control.selectedSegmentIndex)
-        
         if !self.viewControllers.isEmpty{
             pageViewController.setViewControllers([self.viewControllers[control.selectedSegmentIndex]], direction: .forward, animated: false)
         }        

@@ -33,7 +33,6 @@ protocol ProfileHomeRouting: ViewableRouting {
     func detachAppInfo()
     
     func attachProfileCard()
-    func attachProfileStat()
     func attachProfileMenu()
 }
 
@@ -88,7 +87,6 @@ final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>
         Log.v("Profile Home DidBecome Active 🧑🏻‍💻")
         
         router?.attachProfileCard()
-        //router?.attachProfileStat()
         router?.attachProfileMenu()
         
         Task{ [weak self] in

@@ -24,58 +24,29 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fill
         stackView.spacing = 16.0
         return stackView
     }()
     
     
-    private let smallLabel: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
-        label.setFont(style: .caption1)
+        label.setFont(style: .headline)
         label.textColor = .label
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.text = "font_preview".localized(tableName: "Profile")
         return label
     }()
     
-    private let smallBoldLabel: UILabel = {
+    private let boldLabel: UILabel = {
         let label = UILabel()
-        label.setBoldFont(style: .caption1)
+        label.setBoldFont(style: .headline)
         label.textColor = .label
-        label.text = "Hello Routine~👋"
-        return label
-    }()
-
-    private let middleLabel: UILabel = {
-        let label = UILabel()
-        label.setFont(style: .subheadline)
-        label.textColor = .label
-        label.text = "font_preview".localized(tableName: "Profile")
-        return label
-    }()
-    
-    private let middleBoldLabel: UILabel = {
-        let label = UILabel()
-        label.setBoldFont(style: .subheadline)
-        label.textColor = .label
-        label.text = "Hello Routine~👋"
-        return label
-    }()
-    
-    private let largeLabel: UILabel = {
-        let label = UILabel()
-        label.setFont(style: .title1)
-        label.textColor = .label
-        label.text = "font_preview".localized(tableName: "Profile")
-        return label
-    }()
-    
-    
-    private let largeBoldLabel: UILabel = {
-        let label = UILabel()
-        label.setBoldFont(style: .title1)
-        label.textColor = .label
-        label.text = "Hello Routine~👋"
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.text = "Let's embark on a journey together to form new habits and achieve your goals."
         return label
     }()
     
@@ -94,21 +65,23 @@ final class FontPreviewViewController: UIViewController, FontPreviewPresentable,
     
     private func setLayout(){
         view.addSubview(stackView)
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .secondarySystemBackground
-        stackView.addArrangedSubview(smallLabel)
-        stackView.addArrangedSubview(smallBoldLabel)
-        stackView.addArrangedSubview(middleLabel)
-        stackView.addArrangedSubview(middleBoldLabel)
-        stackView.addArrangedSubview(largeLabel)
-        stackView.addArrangedSubview(largeBoldLabel)
+        
+        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(boldLabel)
         
         let inset: CGFloat = 16.0
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 32.0),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 36.0),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32.0),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -36.0),
+            view.heightAnchor.constraint(equalToConstant: 180.0)
         ])
+        
+        label.setContentHuggingPriority(.init(249.0), for: .vertical)
+        label.setContentCompressionResistancePriority(.init(752.0), for: .vertical)
     }
 }

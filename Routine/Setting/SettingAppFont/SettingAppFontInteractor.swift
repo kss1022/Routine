@@ -27,6 +27,9 @@ protocol SettingAppFontListener: AnyObject {
 protocol SettingAppFontInteractorDependency{
     var isOSTypefcaeSubject: CurrentValuePublisher<Bool>{ get }
     var oSFontNameSubject: CurrentValuePublisher<String>{ get }
+    
+    var isOsFontSizeSubject: CurrentValuePublisher<Bool>{ get }
+    var fontSizeSubject: CurrentValuePublisher<AppFontSize>{ get }
 }
 
 final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresentable>, SettingAppFontInteractable, SettingAppFontPresentableListener, AdaptivePresentationControllerDelegate {
@@ -42,6 +45,9 @@ final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresen
     private let isOSTypefcaeSubject: CurrentValuePublisher<Bool>
     private let oSFontNameSubject: CurrentValuePublisher<String>
     
+    private let isOsFontSizeSubject: CurrentValuePublisher<Bool>
+    private let fontSizeSubject: CurrentValuePublisher<AppFontSize>
+    
     
     private let appFontService: AppFontService
     
@@ -55,6 +61,8 @@ final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresen
         self.isOSTypefcaeSubject = dependency.isOSTypefcaeSubject
         self.oSFontNameSubject = dependency.oSFontNameSubject
         self.appFontService = AppFontService.shared
+        self.isOsFontSizeSubject = dependency.isOsFontSizeSubject
+        self.fontSizeSubject = dependency.fontSizeSubject
         super.init(presenter: presenter)
         presentationDelegateProxy.delegate = self
         presenter.listener = self
@@ -83,14 +91,19 @@ final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresen
     
     
     //MARK: Setting Font Size
-    func settingFontSetOsSize() {
-        Log.v("SettingFont Set OS Size")
-        //AppFontService.shared.setOfDynamicSize()
+    func settingFontDidOnOSSize() {
+        appFontService.updateOSFontSize()
+        isOsFontSizeSubject.send(appFontService.isOSFontSize)
     }
     
-    func settingFontSetCustomSize(value: Float) {
-        Log.v("SettingFont Set Custom Size: \(value)")
-        //AppFontService.shared.setCustomFontSize(size: value)
+    func settingFontDidOffOSSize() {
+        appFontService.updateAppFontSize()
+        isOsFontSizeSubject.send(appFontService.isOSFontSize)
+    }
+    
+    func settingFontDidSetAppFontSize(appFontSize: AppFontSize) {
+        appFontService.updateAppFontSize(appFontSize)
+        fontSizeSubject.send(appFontService.fontSize)
     }
     
     //MARK: Setting Font Typeface

@@ -7,7 +7,7 @@
 
 import ModernRIBs
 
-protocol ProfileHomeInteractable: Interactable,ProfileEditListener, SettingAppNotificationListener, SettingAppThemeListener,  SettingAppFontListener, SettingAppIconListener, AppGuideListener, FeedbackMailListener, AppInfoListener, ProfileCardListener, ProfileStatListener, ProfileMenuListener {
+protocol ProfileHomeInteractable: Interactable,ProfileEditListener, SettingAppNotificationListener, SettingAppThemeListener,  SettingAppFontListener, SettingAppIconListener, AppGuideListener, FeedbackMailListener, AppInfoListener, ProfileCardListener, ProfileMenuListener {
     var router: ProfileHomeRouting? { get set }
     var listener: ProfileHomeListener? { get set }
     var presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy{ get }
@@ -49,8 +49,6 @@ final class ProfileHomeRouter: ViewableRouter<ProfileHomeInteractable, ProfileHo
     private let profileCardBuildable: ProfileCardBuildable
     private var profileCardRouter: Routing?
     
-    private let profileStatBuildable: ProfileStatBuildable
-    private var profileStatRouter: Routing?
     
     private let profileMenuBuildable: ProfileMenuBuildable
     private var profileMenuRouter: Routing?
@@ -67,7 +65,6 @@ final class ProfileHomeRouter: ViewableRouter<ProfileHomeInteractable, ProfileHo
         feedbackMailBuildable: FeedbackMailBuildable,
         appInfoBuildable: AppInfoBuildable,
         profileCardBuildable: ProfileCardBuildable,
-        profileStatBuildable: ProfileStatBuildable,
         profileMenuBuildable: ProfileMenuBuildable
     ) {
         self.profileEditBuildable = profileEditBuildable
@@ -79,7 +76,6 @@ final class ProfileHomeRouter: ViewableRouter<ProfileHomeInteractable, ProfileHo
         self.feedbackMailBuildable = feedbackMailBuildable
         self.appInfoBuildable = appInfoBuildable
         self.profileCardBuildable = profileCardBuildable
-        self.profileStatBuildable = profileStatBuildable
         self.profileMenuBuildable = profileMenuBuildable
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
@@ -264,17 +260,6 @@ final class ProfileHomeRouter: ViewableRouter<ProfileHomeInteractable, ProfileHo
         attachChild(router)
     }
     
-    func attachProfileStat() {
-        if profileStatRouter != nil{
-            return
-        }
-        
-        let router = profileStatBuildable.build(withListener: interactor)
-        viewController.setProfileStat(router.viewControllable)
-        
-        profileStatRouter = router
-        attachChild(router)
-    }
     
     func attachProfileMenu() {
         if profileMenuRouter != nil{

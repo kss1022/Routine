@@ -24,6 +24,8 @@ final class RoutineWeeklyTableCell: UICollectionViewCell{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setBoldFont(style: .subheadline)        
         label.textColor = .label
+        label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
 
@@ -78,6 +80,7 @@ final class RoutineWeeklyTableCell: UICollectionViewCell{
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             periodLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 32.0),
+            periodLabel.leadingAnchor.constraint(greaterThanOrEqualTo: cardView.leadingAnchor, constant: inset),
             periodLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -inset),
                         
             cardView.topAnchor.constraint(equalTo: periodLabel.bottomAnchor, constant: 24.0),

@@ -13,11 +13,19 @@ protocol SettingAppFontDependency: Dependency {
 }
 
 final class SettingAppFontComponent: Component<SettingAppFontDependency>,FontPickerDependency, FontPreviewDependency, SettingFontDependency, SettingAppFontInteractorDependency {
+    //typeface
     var isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>{ isOSTypefcaeSubject }
     var isOSTypefcaeSubject = CurrentValuePublisher<Bool>(AppFontService.shared.isOSTypeface)
     
     var oSFontName: ReadOnlyCurrentValuePublisher<String>{ oSFontNameSubject }
     var oSFontNameSubject = CurrentValuePublisher<String>(AppFontService.shared.fontName)
+    
+    //fontsize
+    var isOsFontSize: ReadOnlyCurrentValuePublisher<Bool>{ isOsFontSizeSubject }
+    var isOsFontSizeSubject = CurrentValuePublisher<Bool>(AppFontService.shared.isOSFontSize)
+    
+    var fontSize: ReadOnlyCurrentValuePublisher<AppFontSize>{ fontSizeSubject }
+    var fontSizeSubject = CurrentValuePublisher<AppFontSize>(AppFontService.shared.fontSize)
 }
 
 // MARK: - Builder

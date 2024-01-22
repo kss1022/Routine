@@ -23,6 +23,8 @@ final class RoutineTopAcheiveChartViewController: UIViewController, RoutineTopAc
         label.setBoldFont(style: .subheadline)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
+        label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true        
         return label
     }()
     
@@ -80,8 +82,8 @@ final class RoutineTopAcheiveChartViewController: UIViewController, RoutineTopAc
         
         NSLayoutConstraint.activate([
             periodLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
+            periodLabel.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: inset),
             periodLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            
                         
             cardView.topAnchor.constraint(equalTo: periodLabel.bottomAnchor, constant: 32.0),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),

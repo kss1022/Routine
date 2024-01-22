@@ -18,8 +18,9 @@ protocol SettingFontPresentable: Presentable {
 }
 
 protocol SettingFontListener: AnyObject {
-    func settingFontSetOsSize()
-    func settingFontSetCustomSize(value: Float)
+    func settingFontDidOnOSSize()
+    func settingFontDidOffOSSize()
+    func settingFontDidSetAppFontSize(appFontSize: AppFontSize)
     
     func settingFontOsTypefaceDidTap()
     func settingFontAppTypefaceDidTapBaseType()
@@ -49,18 +50,18 @@ final class SettingFontInteractor: PresentableInteractor<SettingFontPresentable>
         // TODO: Pause any business logic.
     }
     
-    func segmentControlDidTap(index: Int) {
-        
-    }
-    
     
     //MARK: FontSize
-    func settingFontSizeSetOsSize() {
-        listener?.settingFontSetOsSize()
+    func settingFontSizeDidOnOSSize() {
+        listener?.settingFontDidOnOSSize()
     }
     
-    func settingFontSizeSetCustomSize(value: Float) {
-        listener?.settingFontSetCustomSize(value: value)
+    func settingFontSizeDidOffOSSize() {
+        listener?.settingFontDidOffOSSize()
+    }
+    
+    func settingFontSizeDidSetAppFontSize(appFontSize: AppFontSize) {
+        listener?.settingFontDidSetAppFontSize(appFontSize: appFontSize)
     }
 
     //MARK: Typeface

@@ -9,8 +9,8 @@ import ModernRIBs
 import UIKit
 
 protocol SettingFontSizePresentableListener: AnyObject {
-    func toogleValueChanged(isOn: Bool)
-    func sliderValueChanged(value : Float)
+    func isOSFontToogleDidSetOnOff(isOn: Bool)
+    func fontSizeSliderDidSetSize(appFontSize: AppFontSize)
 }
 
 final class SettingFontSizeViewController: UIViewController, SettingFontSizePresentable, SettingFontSizeViewControllable {
@@ -59,7 +59,10 @@ final class SettingFontSizeViewController: UIViewController, SettingFontSizePres
     private lazy var settingFontSlider: SettingFontSlider = {
         let slider = SettingFontSlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+        
+        slider.valueChanged = { [weak self] fontSize in
+            self?.fontSliderValueChanged(fontSize: fontSize)
+        }
 
         return slider
     }()
@@ -110,26 +113,24 @@ final class SettingFontSizeViewController: UIViewController, SettingFontSizePres
     
     
     
-    func setToogleEnable(isOn: Bool) {
+    func setOSFontToogle(isOn: Bool) {
         osSettingToogle.isOn = isOn
     }
     
-    func setSliderEnabel(enable: Bool) {
+    func setFontSizeSliderEnable(enable: Bool) {
         settingFontSlider.isEnabled = enable
     }
     
-    func setSliderValue(value: Float) {
-        settingFontSlider.value = value
+    func setFontSize(appfontSize: AppFontSize) {
+        settingFontSlider.setFontSize(appfontSize)
     }
     
     @objc
     private func toogleValueChanged(sender: UISwitch){
-        listener?.toogleValueChanged(isOn: sender.isOn)
+        listener?.isOSFontToogleDidSetOnOff(isOn: sender.isOn)
     }
     
-    @objc 
-    private func sliderValueChanged(_ sender: SettingFontSlider) {
-        sender.sliderValueChanged(sender)
-        listener?.sliderValueChanged(value: sender.value)
+    private func fontSliderValueChanged(fontSize: AppFontSize){
+        listener?.fontSizeSliderDidSetSize(appFontSize: fontSize)
     }
 }

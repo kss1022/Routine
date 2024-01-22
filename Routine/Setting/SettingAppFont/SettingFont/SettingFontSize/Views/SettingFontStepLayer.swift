@@ -21,7 +21,7 @@ class SettingFontStepLayer: CALayer{
         
         let imageWidth = self.bounds.height
         let lineHeight = slider.lineHeight
-        let strokeColor = slider.strokeColor.cgColor
+        let strokeColor = slider.strokeColor
         
         let x = bounds.minX + imageWidth / 2
         let y = bounds.minY

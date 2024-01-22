@@ -70,6 +70,11 @@ final class RoutineListCell: UICollectionViewCell{
     }
     
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutIfNeeded()
+    }
+    
     private func setView(){
         self.checkButton.addTarget(self, action: #selector(checkButtonDidTap), for: .touchUpInside)
         
@@ -92,7 +97,6 @@ final class RoutineListCell: UICollectionViewCell{
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
             stackView.trailingAnchor.constraint(equalTo: checkButton.leadingAnchor, constant: -8.0),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
-            stackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50.0),
             
             checkButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
             checkButton.centerYAnchor.constraint(equalTo: stackView.centerYAnchor),

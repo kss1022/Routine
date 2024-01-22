@@ -25,8 +25,8 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
-        let inset : CGFloat = 16.0
-        layout.sectionInset = .init(top: 0.0, left: inset, bottom: inset, right: inset)
+        let inset : CGFloat = 16.0    
+        layout.sectionInset = .init(top: 0.0, left: inset, bottom: 0.0, right: inset)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false

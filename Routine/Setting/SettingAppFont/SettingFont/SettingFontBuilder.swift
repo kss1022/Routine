@@ -10,11 +10,17 @@ import ModernRIBs
 protocol SettingFontDependency: Dependency {
     var isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>{ get }
     var oSFontName: ReadOnlyCurrentValuePublisher<String>{ get }
+    
+    var isOsFontSize: ReadOnlyCurrentValuePublisher<Bool>{ get }
+    var fontSize: ReadOnlyCurrentValuePublisher<AppFontSize>{ get }
 }
 
 final class SettingFontComponent: Component<SettingFontDependency>, SettingFontSizeDependency, SettingTypefaceDependency {
     var isOSTypeface: ReadOnlyCurrentValuePublisher<Bool>{ dependency.isOSTypeface}
     var oSFontName: ReadOnlyCurrentValuePublisher<String>{ dependency.oSFontName }
+    
+    var isOsFontSize: ReadOnlyCurrentValuePublisher<Bool>{ dependency.isOsFontSize}
+    var fontSize: ReadOnlyCurrentValuePublisher<AppFontSize>{ dependency.fontSize }
 }
 
 // MARK: - Builder
