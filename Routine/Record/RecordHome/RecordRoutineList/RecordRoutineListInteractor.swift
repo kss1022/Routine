@@ -27,7 +27,7 @@ protocol RecordRoutineListListener: AnyObject {
 }
 
 protocol RecordRoutineListInteractorDependency{
-    var routineRepository: RoutineRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class RecordRoutineListInteractor: PresentableInteractor<RecordRoutineListPresentable>, RecordRoutineListInteractable, RecordRoutineListPresentableListener {
@@ -36,6 +36,8 @@ final class RecordRoutineListInteractor: PresentableInteractor<RecordRoutineList
     weak var listener: RecordRoutineListListener?
 
     private let dependency: RecordRoutineListInteractorDependency
+    private let routineRecordRepository: RoutineRecordRepository
+    
     private var cancellables: Set<AnyCancellable>
     
     // in constructor.
@@ -44,6 +46,7 @@ final class RecordRoutineListInteractor: PresentableInteractor<RecordRoutineList
         dependency: RecordRoutineListInteractorDependency
     ) {
         self.dependency = dependency
+        self.routineRecordRepository = dependency.routineRecordRepository
         self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
@@ -52,7 +55,11 @@ final class RecordRoutineListInteractor: PresentableInteractor<RecordRoutineList
     override func didBecomeActive() {
         super.didBecomeActive()
         
-        dependency.routineRepository.lists
+        Task{ [weak self] in
+            try? await self?.routineRecordRepository.fetchList()
+        }
+        
+        routineRecordRepository.lists
             .receive(on: DispatchQueue.main)
             .sink { [weak self] lists in
                 guard let self = self else { return }

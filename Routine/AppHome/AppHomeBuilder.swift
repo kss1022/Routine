@@ -22,6 +22,7 @@ protocol AppHomeDependency: Dependency {
     var routineRepository: RoutineRepository{ get }
     var timerRepository: TimerRepository{ get }    
     var routineRecordRepository: RoutineRecordRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
     var profileRepository: ProfileRepository{ get }
     var reminderRepository: ReminderRepository{ get }
     
@@ -49,6 +50,7 @@ final class AppHomeComponent: Component<AppHomeDependency>, RoutineHomeDependenc
     var routineRepository: RoutineRepository{ dependency.routineRepository }
     var timerRepository: TimerRepository{ dependency.timerRepository }
     var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
     var profileRepository: ProfileRepository{ dependency.profileRepository }
     var reminderRepository: ReminderRepository{  dependency.reminderRepository }
     

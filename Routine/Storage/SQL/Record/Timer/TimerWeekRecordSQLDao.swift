@@ -132,7 +132,32 @@ final class TimerWeekRecordSQLDao: TimerWeekRecordDao{
                 saturdayTime: $0[saturdayTime]
             )
         }
+    }
+    
+    func findAll(timerId: UUID) throws -> [TimerWeekRecordDto] {
+        let query = table.filter(self.timerId == timerId)
         
+        return try db.prepareRowIterator(query).map {
+            TimerWeekRecordDto(
+                timerId: $0[self.timerId],
+                startOfWeek: $0[startOfWeek],
+                endOfWeek: $0[endOfWeek],
+                sundayDone: $0[sundayDone],
+                sundayTime: $0[sundayTime],
+                mondayDone: $0[mondayDone],
+                mondayTime: $0[mondayTime],
+                tuesdayDone: $0[tuesdayDone],
+                tuesdayTime: $0[tuesdayTime],
+                wednesdayDone: $0[wednesdayDone],
+                wednesdayTime: $0[wednesdayTime],
+                thursdayDone: $0[thursdayDone],
+                thursdayTime: $0[thursdayTime],
+                fridayDone: $0[fridayDone],
+                fridayTime: $0[fridayTime],
+                saturdayDone: $0[saturdayDone],
+                saturdayTime: $0[saturdayTime]
+            )
+        }
     }
     
     func update(timerId: UUID, startOfWeek: String, endOfWeek: String, dayOfWeek: Int, time: TimeInterval) throws {

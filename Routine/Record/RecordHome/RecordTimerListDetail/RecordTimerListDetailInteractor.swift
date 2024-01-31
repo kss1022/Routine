@@ -7,9 +7,10 @@
 
 import Foundation
 import ModernRIBs
+import Combine
 
 protocol RecordTimerListDetailRouting: ViewableRouting {
-    func attachTimerData()
+    func attachTimerData(timerId: UUID)
     func detachTimerData()
 }
 
@@ -22,14 +23,28 @@ protocol RecordTimerListDetailListener: AnyObject {
     func recordTimerListDetailDidMove()
 }
 
+protocol RecordTimerListDetailInteractableDependency{
+    var timerRecordRepository: TimerRecordRepository{ get }
+}
+
 final class RecordTimerListDetailInteractor: PresentableInteractor<RecordTimerListDetailPresentable>, RecordTimerListDetailInteractable, RecordTimerListDetailPresentableListener {
 
     weak var router: RecordTimerListDetailRouting?
     weak var listener: RecordTimerListDetailListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
+    private let dependency: RecordTimerListDetailInteractableDependency
+    private let timerRecordRepository: TimerRecordRepository
+    
+    private var cancellables: Set<AnyCancellable>
+    
     // in constructor.
-    override init(presenter: RecordTimerListDetailPresentable) {
+    init(
+        presenter: RecordTimerListDetailPresentable,
+        dependency: RecordTimerListDetailInteractableDependency
+    ) {
+        self.dependency = dependency
+        self.timerRecordRepository = dependency.timerRecordRepository
+        self.cancellables = .init()
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -37,44 +52,22 @@ final class RecordTimerListDetailInteractor: PresentableInteractor<RecordTimerLi
     override func didBecomeActive() {
         super.didBecomeActive()
      
-        let viewModels = [
-            RecordTimerListViewModel(
-                timerId: UUID(),
-                name: "My Focus Timer",
-                emojiIcon: "📕",
-                duration: "2022.08.21 ~ 2023.11.10",
-                done: Bool.random()
-            ),
-            RecordTimerListViewModel(
-                timerId: UUID(),
-                name: "My Focus Timer",
-                emojiIcon: "📗",
-                duration: "2022.08.21 ~ 2023.11.10",
-                done: Bool.random()
-            ),
-            RecordTimerListViewModel(
-                timerId: UUID(),
-                name: "My Focus Timer",
-                emojiIcon: "📙",
-                duration: "2022.08.21 ~ 2023.11.10",
-                done: Bool.random()
-            ),
-            RecordTimerListViewModel(
-                timerId: UUID(),
-                name: "My Focus Timer",
-                emojiIcon: "📘",
-                duration: "2022.08.21 ~ 2023.11.10",
-                done: Bool.random()
-            ),
-        ]
         
-        presenter.setTimerLists(viewModels)
-        
+        timerRecordRepository.lists
+            .receive(on: DispatchQueue.main)
+            .sink { lists in
+                let viewModels = lists.map(RecordTimerListViewModel.init)
+                self.presenter.setTimerLists(viewModels)
+            }
+            .store(in: &cancellables)
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
+        
+        
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
     }
     
 
@@ -85,8 +78,8 @@ final class RecordTimerListDetailInteractor: PresentableInteractor<RecordTimerLi
     
     
     //MARK: TimerDetail
-    func timerListDidTap(routineId: UUID) {
-        router?.attachTimerData()
+    func timerListDidTap(timerId: UUID) {
+        router?.attachTimerData(timerId: timerId)
     }
     
     func timerDataDidMove() {

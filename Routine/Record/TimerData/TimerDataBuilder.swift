@@ -5,22 +5,34 @@
 //  Created by 한현규 on 11/10/23.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol TimerDataDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var timerRecordRepository: TimerRecordRepository{ get }
 }
 
-final class TimerDataComponent: Component<TimerDataDependency>, TimerDataOfYearDependency, TimerDataOfStatsDependency, TimerTotalRecordDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class TimerDataComponent: Component<TimerDataDependency>, TimerDataOfYearDependency, TimerDataOfStatsDependency, TimerTotalRecordDependency, TimerDataInteractorDependency {
+    
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
+    
+    var timerRecords: ReadOnlyCurrentValuePublisher<[TimerRecordModel]>{ timerRecordsSubject}
+    let timerRecordsSubject = CurrentValuePublisher<[TimerRecordModel]>([])
+        
+    var timerMonthRecords: ReadOnlyCurrentValuePublisher<[TimerMonthRecordModel]>{ timerMonthRecordsSubject }
+    let timerMonthRecordsSubject = CurrentValuePublisher<[TimerMonthRecordModel]>([])
+    
+    var timerWeekRecords: ReadOnlyCurrentValuePublisher<[TimerWeekRecordModel]>{ timerWeekRecordsSubject }
+    let timerWeekRecordsSubject = CurrentValuePublisher<[TimerWeekRecordModel]>([])
+    
+    var timerSummeryModel: ReadOnlyCurrentValuePublisher<TimerSummeryModel?>{ timerSummeryModelSubject }
+    let timerSummeryModelSubject = CurrentValuePublisher<TimerSummeryModel?>(nil)
 }
 
 // MARK: - Builder
 
 protocol TimerDataBuildable: Buildable {
-    func build(withListener listener: TimerDataListener) -> TimerDataRouting
+    func build(withListener listener: TimerDataListener, timerId: UUID) -> TimerDataRouting
 }
 
 final class TimerDataBuilder: Builder<TimerDataDependency>, TimerDataBuildable {
@@ -29,10 +41,10 @@ final class TimerDataBuilder: Builder<TimerDataDependency>, TimerDataBuildable {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: TimerDataListener) -> TimerDataRouting {
+    func build(withListener listener: TimerDataListener, timerId: UUID) -> TimerDataRouting {
         let component = TimerDataComponent(dependency: dependency)
         let viewController = TimerDataViewController()
-        let interactor = TimerDataInteractor(presenter: viewController)
+        let interactor = TimerDataInteractor(presenter: viewController, dependency: component, timerId: timerId)
         interactor.listener = listener
         
         let timerDataOfYearBuilder = TimerDataOfYearBuilder(dependency: component)

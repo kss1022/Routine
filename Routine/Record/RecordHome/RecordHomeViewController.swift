@@ -32,7 +32,7 @@ final class RecordHomeViewController: UIViewController, RecordHomePresentable, R
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fill
         stackView.spacing = 16.0
         return stackView
     }()

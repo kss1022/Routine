@@ -26,7 +26,6 @@ protocol RecordRoutineListDetailListener: AnyObject {
 }
 
 protocol RecordRoutineListDetailInteractorDependency{
-    var routineRepository: RoutineRepository{ get }
     var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
@@ -53,10 +52,9 @@ final class RecordRoutineListDetailInteractor: PresentableInteractor<RecordRouti
     override func didBecomeActive() {
         super.didBecomeActive()
         
-        dependency.routineRepository.lists
+        dependency.routineRecordRepository.lists
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] lists in
-                guard let self = self else { return }
+            .sink { lists in                
                 let viewModels = lists.map(RecordRoutineListViewModel.init)
                 
                 if viewModels.isEmpty{

@@ -11,55 +11,52 @@ import UIKit
 
 final class RecordTimerListCell: UICollectionViewCell{
     
-    private let emojiIconLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 32.0)
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .center
-        
-        label.layer.borderWidth = 1.0
-        label.layer.borderColor = UIColor.tertiaryLabel.cgColor
-        label.roundCorners()
-        
-        return label
-    }()
-    
     private var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 0.0
+        stackView.distribution = .fill
+        stackView.spacing = 4.0
         return stackView
     }()
     
+    private let cardView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.roundCorners()
+        return view
+    }()
+    
+    private var cardStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    
+    private let emojiIconLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 36.0, weight: .regular)
+        //label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        return label
+    }()
+    
+
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .getBoldFont(size: 16.0)
-        label.textColor = .label
-        label.numberOfLines = 2
-        return label
-    }()    
-    
-    private let durationLabel: UILabel = {
-        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getFont(size: 14.0)
-        label.textColor = .systemGray
+        label.textColor = .label
         return label
     }()
     
-    private let doneButton: TouchesRoundButton = {
-        let button = TouchesRoundButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .tertiaryLabel
-        button.titleLabel?.font = .getFont(size: 14.0)
-        button.setTitleColor(.label, for: .normal)
-        
-        button.roundCorners()
-        return button
-    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,57 +65,60 @@ final class RecordTimerListCell: UICollectionViewCell{
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+        super.init(coder: coder)
         
+        setView()
+    }
+    
     
     private func setView(){
-        contentView.addSubview(emojiIconLabel)
-        contentView.addSubview(stackView)
-        contentView.addSubview(doneButton)
         
+        contentView.addSubview(stackView)
+        
+        stackView.addArrangedSubview(cardView)
         stackView.addArrangedSubview(nameLabel)
-        stackView.addArrangedSubview(durationLabel)
-                
+        
+        cardView.addSubview(cardStackView)
+        
+        cardStackView.addArrangedSubview(emojiIconLabel)
+        
         
         NSLayoutConstraint.activate([
-            emojiIconLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            emojiIconLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0),
-            emojiIconLabel.widthAnchor.constraint(equalTo: emojiIconLabel.heightAnchor),
-            emojiIconLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
                         
-            stackView.leadingAnchor.constraint(equalTo: emojiIconLabel.trailingAnchor, constant: 8.0),
-            stackView.trailingAnchor.constraint(equalTo: doneButton.leadingAnchor, constant: -8.0),
-            stackView.centerYAnchor.constraint(equalTo: emojiIconLabel.centerYAnchor),
-            
-            doneButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0),
-            doneButton.centerYAnchor.constraint(equalTo: emojiIconLabel.centerYAnchor)
+            cardStackView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 4.0),
+            cardStackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 4.0),
+            cardStackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -4.0),
+            cardStackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -4.0),
         ])
         
-                
-                
-        doneButton.setContentHuggingPriority(.init(252.0), for: .horizontal)
-                
         
-        self.roundCorners()
+//        cardView.setContentHuggingPriority(.init(240.0), for: .vertical)
+//        cardView.setContentCompressionResistancePriority(.init(800.0), for: .vertical)
+//
+//        emojiIconLabel.setContentHuggingPriority(.init(251.0), for: .horizontal)
+//        emojiIconLabel.setContentCompressionResistancePriority(.init(749.0), for: .horizontal)
+//
+//        nameLabel.setContentHuggingPriority(.init(249.0), for: .vertical)
+//        nameLabel.setContentCompressionResistancePriority(.init(751.0), for: .vertical)
     }
-    
+
     func bindView(_ viewModel: RecordTimerListViewModel){
+        cardView.backgroundColor = viewModel.tint
         emojiIconLabel.text = viewModel.emojiIcon
         nameLabel.text = viewModel.name
-        durationLabel.text = viewModel.duration
-        
-        doneButton.setTitle("Done", for: .normal)
     }
+
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        cardView.backgroundColor = .clear
         emojiIconLabel.text = nil
         nameLabel.text = nil
-        durationLabel.text = nil        
-        doneButton.setTitle(nil, for: .normal)
     }
 }
-
 

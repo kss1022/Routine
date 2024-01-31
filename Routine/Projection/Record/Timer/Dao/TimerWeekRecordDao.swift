@@ -12,5 +12,6 @@ import Foundation
 
 protocol TimerWeekRecordDao{
     func find(timerId: UUID, startOfWeek: String , endOfWeek: String) throws -> TimerWeekRecordDto?
+    func findAll(timerId: UUID) throws -> [TimerWeekRecordDto]
     func update(timerId: UUID, startOfWeek: String , endOfWeek: String, dayOfWeek: Int, time: TimeInterval) throws
 }

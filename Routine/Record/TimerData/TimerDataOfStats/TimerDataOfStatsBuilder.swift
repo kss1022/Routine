@@ -8,13 +8,15 @@
 import ModernRIBs
 
 protocol TimerDataOfStatsDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var timerRecords: ReadOnlyCurrentValuePublisher<[TimerRecordModel]>{ get }
+    var timerMonthRecords: ReadOnlyCurrentValuePublisher<[TimerMonthRecordModel]>{ get }
+    var timerWeekRecords: ReadOnlyCurrentValuePublisher<[TimerWeekRecordModel]>{ get }
 }
 
-final class TimerDataOfStatsComponent: Component<TimerDataOfStatsDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class TimerDataOfStatsComponent: Component<TimerDataOfStatsDependency>, TimerDataOfStatsInteractorDependency {
+    var timerRecords: ReadOnlyCurrentValuePublisher<[TimerRecordModel]>{ dependency.timerRecords }
+    var timerMonthRecords: ReadOnlyCurrentValuePublisher<[TimerMonthRecordModel]>{ dependency.timerMonthRecords }
+    var timerWeekRecords: ReadOnlyCurrentValuePublisher<[TimerWeekRecordModel]>{ dependency.timerWeekRecords }
 }
 
 // MARK: - Builder
@@ -32,7 +34,7 @@ final class TimerDataOfStatsBuilder: Builder<TimerDataOfStatsDependency>, TimerD
     func build(withListener listener: TimerDataOfStatsListener) -> TimerDataOfStatsRouting {
         let component = TimerDataOfStatsComponent(dependency: dependency)
         let viewController = TimerDataOfStatsViewController()
-        let interactor = TimerDataOfStatsInteractor(presenter: viewController)
+        let interactor = TimerDataOfStatsInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return TimerDataOfStatsRouter(interactor: interactor, viewController: viewController)
     }

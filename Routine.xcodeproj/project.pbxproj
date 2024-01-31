@@ -16,6 +16,8 @@
 		87046CA42B14EFAA00C57011 /* AppHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87046CA12B14EFAA00C57011 /* AppHomeInteractor.swift */; };
 		8709DEDF2AE8EF020077FBD3 /* TimerStartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709DEDE2AE8EF020077FBD3 /* TimerStartButton.swift */; };
 		8709DEE52AE8FCA00077FBD3 /* TouchesRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709DEE42AE8FCA00077FBD3 /* TouchesRoundButton.swift */; };
+		870AB3CD2B6A3B3C0054216C /* TImerMonthChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870AB3CC2B6A3B3C0054216C /* TImerMonthChartView.swift */; };
+		870AB3CF2B6A3EB20054216C /* TimerChartViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870AB3CE2B6A3EB20054216C /* TimerChartViewContainer.swift */; };
 		870B571E2AE11999006579CE /* TimerApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B571D2AE11999006579CE /* TimerApplicationService.swift */; };
 		870B57212AE119BE006579CE /* CreateSectionTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B57202AE119BE006579CE /* CreateSectionTimer.swift */; };
 		870B57242AE119EB006579CE /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B57232AE119EB006579CE /* TimerFactory.swift */; };
@@ -62,7 +64,7 @@
 		8713D5102ADF83B400735913 /* TimerSectionValueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8713D50F2ADF83B400735913 /* TimerSectionValueModel.swift */; };
 		87157C992AE6E5CE002C8003 /* TabataBackgroundTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87157C982AE6E5CE002C8003 /* TabataBackgroundTimer.swift */; };
 		87176A4A2AFE19EB00C8B1B8 /* TimerBarChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87176A492AFE19EB00C8B1B8 /* TimerBarChartViewModel.swift */; };
-		87176A4C2AFE26C500C8B1B8 /* TimerLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87176A4B2AFE26C500C8B1B8 /* TimerLineChart.swift */; };
+		87176A4C2AFE26C500C8B1B8 /* TimerDayChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87176A4B2AFE26C500C8B1B8 /* TimerDayChartView.swift */; };
 		87176A4E2AFE298D00C8B1B8 /* TimerLineChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87176A4D2AFE298D00C8B1B8 /* TimerLineChartViewModel.swift */; };
 		87176A512AFE3D1C00C8B1B8 /* RecordTopAcheiveBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87176A502AFE3D1C00C8B1B8 /* RecordTopAcheiveBannerCell.swift */; };
 		87176A532AFE4BB500C8B1B8 /* RecordWeekTableBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87176A522AFE4BB500C8B1B8 /* RecordWeekTableBannerCell.swift */; };
@@ -213,6 +215,17 @@
 		873879B72B03418A004EE7F8 /* RoutineStreakDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879B62B03418A004EE7F8 /* RoutineStreakDto.swift */; };
 		873879B92B0341BF004EE7F8 /* RoutineStreakDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879B82B0341BF004EE7F8 /* RoutineStreakDao.swift */; };
 		873879BB2B0342C6004EE7F8 /* RoutineStreakSQLDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873879BA2B0342C6004EE7F8 /* RoutineStreakSQLDao.swift */; };
+		874134122B5ECF0400EB9C6D /* TimerRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874134112B5ECF0400EB9C6D /* TimerRecordRepository.swift */; };
+		874134142B5ECF6D00EB9C6D /* RecordTimerListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874134132B5ECF6D00EB9C6D /* RecordTimerListModel.swift */; };
+		874134162B5ECF9500EB9C6D /* RecordTimerTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874134152B5ECF9500EB9C6D /* RecordTimerTypeModel.swift */; };
+		874134182B5EE5E500EB9C6D /* TimerWeekRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874134172B5EE5E500EB9C6D /* TimerWeekRecordModel.swift */; };
+		8741341A2B5EE60600EB9C6D /* TimerTotalRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874134192B5EE60600EB9C6D /* TimerTotalRecordModel.swift */; };
+		8741341C2B5EE60F00EB9C6D /* TimerStreakModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8741341B2B5EE60F00EB9C6D /* TimerStreakModel.swift */; };
+		874134202B5EE6A000EB9C6D /* TimerModelRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8741341F2B5EE6A000EB9C6D /* TimerModelRecordModel.swift */; };
+		874134222B5EE75A00EB9C6D /* TimerRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874134212B5EE75A00EB9C6D /* TimerRecordModel.swift */; };
+		874134262B5F9C9500EB9C6D /* TimerSummeryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874134252B5F9C9500EB9C6D /* TimerSummeryModel.swift */; };
+		874134282B5F9F4D00EB9C6D /* TimerTotalRecordListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874134272B5F9F4D00EB9C6D /* TimerTotalRecordListViewModel.swift */; };
+		8741342A2B5FA88600EB9C6D /* TimerRecordForamatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874134292B5FA88600EB9C6D /* TimerRecordForamatter.swift */; };
 		8742BCA12B076803003417B9 /* SettingFontSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8742BCA02B076803003417B9 /* SettingFontSegmentControl.swift */; };
 		8745900D2AB43E780043214E /* EventSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745900C2AB43E780043214E /* EventSerializer.swift */; };
 		8748F2F92B0F18B00081EFA1 /* MemojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8748F2F82B0F18B00081EFA1 /* MemojiView.swift */; };
@@ -382,7 +395,6 @@
 		876E955C2AB2D00F00046809 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E953C2AB2D00F00046809 /* UIImage+Utils.swift */; };
 		876E955D2AB2D00F00046809 /* UILabel+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E953D2AB2D00F00046809 /* UILabel+Utils.swift */; };
 		876E955E2AB2D00F00046809 /* UIColor+Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E953E2AB2D00F00046809 /* UIColor+Routine.swift */; };
-		876E95642AB2D03400046809 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 876E95632AB2D03400046809 /* Kingfisher */; };
 		876E95672AB2D3F700046809 /* Combine+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E95662AB2D3F700046809 /* Combine+Utils.swift */; };
 		876E956A2AB2D40500046809 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 876E95692AB2D40500046809 /* CombineExt */; };
 		876E956C2AB2D84100046809 /* RoutineLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E956B2AB2D84100046809 /* RoutineLogFormatter.swift */; };
@@ -751,8 +763,6 @@
 		87D34DC72AFDFCC600C7537D /* TimerTotalRecordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D34DC32AFDFCC600C7537D /* TimerTotalRecordBuilder.swift */; };
 		87D34DC82AFDFCC600C7537D /* TimerTotalRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D34DC42AFDFCC600C7537D /* TimerTotalRecordInteractor.swift */; };
 		87D34DCB2AFDFCE700C7537D /* TimerTotalRecordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D34DCA2AFDFCE700C7537D /* TimerTotalRecordListView.swift */; };
-		87D34DCD2AFDFD0300C7537D /* TimerTotalRecordListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D34DCC2AFDFD0300C7537D /* TimerTotalRecordListViewModel.swift */; };
-		87D34DCF2AFE010D00C7537D /* TimerStasDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D34DCE2AFE010D00C7537D /* TimerStasDateView.swift */; };
 		87D34DD12AFE02C900C7537D /* TimerBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D34DD02AFE02C900C7537D /* TimerBarChartView.swift */; };
 		87D5AAD52AB8372800FE712C /* RoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD42AB8372800FE712C /* RoutineService.swift */; };
 		87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D5AAD62AB8373400FE712C /* RoutineFactory.swift */; };
@@ -819,6 +829,7 @@
 		87E3761A2AD704DE00359850 /* RecordFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E376192AD704DE00359850 /* RecordFormatter.swift */; };
 		87E3761C2AD70E8B00359850 /* RoutineRecordCompleteSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3761B2AD70E8B00359850 /* RoutineRecordCompleteSet.swift */; };
 		87E3761E2AD70EA500359850 /* SetCompleteRoutineRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3761D2AD70EA500359850 /* SetCompleteRoutineRecord.swift */; };
+		87EB29242B67CDB50062D40A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 87EB29232B67CDB50062D40A /* Kingfisher */; };
 		87F21BD92B16262F005D1E25 /* AppTutorialMemojiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F21BD52B16262F005D1E25 /* AppTutorialMemojiRouter.swift */; };
 		87F21BDA2B16262F005D1E25 /* AppTutorialMemojiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F21BD62B16262F005D1E25 /* AppTutorialMemojiViewController.swift */; };
 		87F21BDB2B16262F005D1E25 /* AppTutorialMemojiBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F21BD72B16262F005D1E25 /* AppTutorialMemojiBuilder.swift */; };
@@ -918,6 +929,8 @@
 		87046CA12B14EFAA00C57011 /* AppHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHomeInteractor.swift; sourceTree = "<group>"; };
 		8709DEDE2AE8EF020077FBD3 /* TimerStartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartButton.swift; sourceTree = "<group>"; };
 		8709DEE42AE8FCA00077FBD3 /* TouchesRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchesRoundButton.swift; sourceTree = "<group>"; };
+		870AB3CC2B6A3B3C0054216C /* TImerMonthChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TImerMonthChartView.swift; sourceTree = "<group>"; };
+		870AB3CE2B6A3EB20054216C /* TimerChartViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerChartViewContainer.swift; sourceTree = "<group>"; };
 		870B571D2AE11999006579CE /* TimerApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApplicationService.swift; sourceTree = "<group>"; };
 		870B57202AE119BE006579CE /* CreateSectionTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSectionTimer.swift; sourceTree = "<group>"; };
 		870B57232AE119EB006579CE /* TimerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerFactory.swift; sourceTree = "<group>"; };
@@ -964,7 +977,7 @@
 		8713D50F2ADF83B400735913 /* TimerSectionValueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSectionValueModel.swift; sourceTree = "<group>"; };
 		87157C982AE6E5CE002C8003 /* TabataBackgroundTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabataBackgroundTimer.swift; sourceTree = "<group>"; };
 		87176A492AFE19EB00C8B1B8 /* TimerBarChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBarChartViewModel.swift; sourceTree = "<group>"; };
-		87176A4B2AFE26C500C8B1B8 /* TimerLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLineChart.swift; sourceTree = "<group>"; };
+		87176A4B2AFE26C500C8B1B8 /* TimerDayChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDayChartView.swift; sourceTree = "<group>"; };
 		87176A4D2AFE298D00C8B1B8 /* TimerLineChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerLineChartViewModel.swift; sourceTree = "<group>"; };
 		87176A502AFE3D1C00C8B1B8 /* RecordTopAcheiveBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTopAcheiveBannerCell.swift; sourceTree = "<group>"; };
 		87176A522AFE4BB500C8B1B8 /* RecordWeekTableBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordWeekTableBannerCell.swift; sourceTree = "<group>"; };
@@ -1129,6 +1142,17 @@
 		873879B62B03418A004EE7F8 /* RoutineStreakDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStreakDto.swift; sourceTree = "<group>"; };
 		873879B82B0341BF004EE7F8 /* RoutineStreakDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStreakDao.swift; sourceTree = "<group>"; };
 		873879BA2B0342C6004EE7F8 /* RoutineStreakSQLDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStreakSQLDao.swift; sourceTree = "<group>"; };
+		874134112B5ECF0400EB9C6D /* TimerRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordRepository.swift; sourceTree = "<group>"; };
+		874134132B5ECF6D00EB9C6D /* RecordTimerListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTimerListModel.swift; sourceTree = "<group>"; };
+		874134152B5ECF9500EB9C6D /* RecordTimerTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTimerTypeModel.swift; sourceTree = "<group>"; };
+		874134172B5EE5E500EB9C6D /* TimerWeekRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWeekRecordModel.swift; sourceTree = "<group>"; };
+		874134192B5EE60600EB9C6D /* TimerTotalRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTotalRecordModel.swift; sourceTree = "<group>"; };
+		8741341B2B5EE60F00EB9C6D /* TimerStreakModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStreakModel.swift; sourceTree = "<group>"; };
+		8741341F2B5EE6A000EB9C6D /* TimerModelRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModelRecordModel.swift; sourceTree = "<group>"; };
+		874134212B5EE75A00EB9C6D /* TimerRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordModel.swift; sourceTree = "<group>"; };
+		874134252B5F9C9500EB9C6D /* TimerSummeryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSummeryModel.swift; sourceTree = "<group>"; };
+		874134272B5F9F4D00EB9C6D /* TimerTotalRecordListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTotalRecordListViewModel.swift; sourceTree = "<group>"; };
+		874134292B5FA88600EB9C6D /* TimerRecordForamatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRecordForamatter.swift; sourceTree = "<group>"; };
 		8742BCA02B076803003417B9 /* SettingFontSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingFontSegmentControl.swift; sourceTree = "<group>"; };
 		8745900C2AB43E780043214E /* EventSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSerializer.swift; sourceTree = "<group>"; };
 		8748F2F82B0F18B00081EFA1 /* MemojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemojiView.swift; sourceTree = "<group>"; };
@@ -1679,8 +1703,6 @@
 		87D34DC32AFDFCC600C7537D /* TimerTotalRecordBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTotalRecordBuilder.swift; sourceTree = "<group>"; };
 		87D34DC42AFDFCC600C7537D /* TimerTotalRecordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTotalRecordInteractor.swift; sourceTree = "<group>"; };
 		87D34DCA2AFDFCE700C7537D /* TimerTotalRecordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTotalRecordListView.swift; sourceTree = "<group>"; };
-		87D34DCC2AFDFD0300C7537D /* TimerTotalRecordListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTotalRecordListViewModel.swift; sourceTree = "<group>"; };
-		87D34DCE2AFE010D00C7537D /* TimerStasDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStasDateView.swift; sourceTree = "<group>"; };
 		87D34DD02AFE02C900C7537D /* TimerBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBarChartView.swift; sourceTree = "<group>"; };
 		87D5AAD42AB8372800FE712C /* RoutineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineService.swift; sourceTree = "<group>"; };
 		87D5AAD62AB8373400FE712C /* RoutineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFactory.swift; sourceTree = "<group>"; };
@@ -1846,8 +1868,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87EB29242B67CDB50062D40A /* Kingfisher in Frameworks */,
 				876E95722AB2D98700046809 /* CocoaLumberjack in Frameworks */,
-				876E95642AB2D03400046809 /* Kingfisher in Frameworks */,
 				876E957B2AB2E20700046809 /* FirebaseAnalytics in Frameworks */,
 				878DA7942ACE64D300220653 /* FSCalendar in Frameworks */,
 				876E956A2AB2D40500046809 /* CombineExt in Frameworks */,
@@ -1893,6 +1915,18 @@
 				8709DEDE2AE8EF020077FBD3 /* TimerStartButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		870AB3D02B6A3EB60054216C /* ChartViews */ = {
+			isa = PBXGroup;
+			children = (
+				87176A4B2AFE26C500C8B1B8 /* TimerDayChartView.swift */,
+				87D34DD02AFE02C900C7537D /* TimerBarChartView.swift */,
+				870AB3CC2B6A3B3C0054216C /* TImerMonthChartView.swift */,
+				87176A492AFE19EB00C8B1B8 /* TimerBarChartViewModel.swift */,
+				87176A4D2AFE298D00C8B1B8 /* TimerLineChartViewModel.swift */,
+			);
+			path = ChartViews;
 			sourceTree = "<group>";
 		};
 		870B571A2AE11970006579CE /* TimerAggregate */ = {
@@ -2565,6 +2599,21 @@
 			path = WeeklyTableView;
 			sourceTree = "<group>";
 		};
+		874134102B5ECEF500EB9C6D /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				874134112B5ECF0400EB9C6D /* TimerRecordRepository.swift */,
+				874134132B5ECF6D00EB9C6D /* RecordTimerListModel.swift */,
+				874134152B5ECF9500EB9C6D /* RecordTimerTypeModel.swift */,
+				874134192B5EE60600EB9C6D /* TimerTotalRecordModel.swift */,
+				8741341F2B5EE6A000EB9C6D /* TimerModelRecordModel.swift */,
+				874134172B5EE5E500EB9C6D /* TimerWeekRecordModel.swift */,
+				8741341B2B5EE60F00EB9C6D /* TimerStreakModel.swift */,
+				874134212B5EE75A00EB9C6D /* TimerRecordModel.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 		8742BC962B07574E003417B9 /* SettingFont */ = {
 			isa = PBXGroup;
 			children = (
@@ -3026,6 +3075,7 @@
 				87FB8D1D2AF8E85A001180EC /* RoutineData */,
 				87DFFE502AF27BC400D2E588 /* TimerData */,
 				87D6F2552B0DFF8800E8FB1F /* Preference+Record.swift */,
+				874134292B5FA88600EB9C6D /* TimerRecordForamatter.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -4216,8 +4266,8 @@
 		87D34DA32AFDF60500C7537D /* TimerDataOfYear */ = {
 			isa = PBXGroup;
 			children = (
-				87D34DA42AFDF64A00C7537D /* TimerDataOfYearRouter.swift */,
 				87D34DA62AFDF64A00C7537D /* TimerDataOfYearBuilder.swift */,
+				87D34DA42AFDF64A00C7537D /* TimerDataOfYearRouter.swift */,
 				87D34DA72AFDF64A00C7537D /* TimerDataOfYearInteractor.swift */,
 				87D34DA52AFDF64A00C7537D /* TimerDataOfYearViewController.swift */,
 			);
@@ -4227,8 +4277,8 @@
 		87D34DAC2AFDF66500C7537D /* TimerDataOfStats */ = {
 			isa = PBXGroup;
 			children = (
-				87D34DB52AFDF7EC00C7537D /* TimerDataOfStatsRouter.swift */,
 				87D34DB72AFDF7EC00C7537D /* TimerDataOfStatsBuilder.swift */,
+				87D34DB52AFDF7EC00C7537D /* TimerDataOfStatsRouter.swift */,
 				87D34DB82AFDF7EC00C7537D /* TimerDataOfStatsInteractor.swift */,
 				87D34DB62AFDF7EC00C7537D /* TimerDataOfStatsViewController.swift */,
 				87D34DBD2AFDF81F00C7537D /* Views */,
@@ -4239,12 +4289,9 @@
 		87D34DBD2AFDF81F00C7537D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				870AB3D02B6A3EB60054216C /* ChartViews */,
 				87D34DBE2AFDF83600C7537D /* TimeStatsSegmentControl.swift */,
-				87D34DCE2AFE010D00C7537D /* TimerStasDateView.swift */,
-				87D34DD02AFE02C900C7537D /* TimerBarChartView.swift */,
-				87176A4B2AFE26C500C8B1B8 /* TimerLineChart.swift */,
-				87176A492AFE19EB00C8B1B8 /* TimerBarChartViewModel.swift */,
-				87176A4D2AFE298D00C8B1B8 /* TimerLineChartViewModel.swift */,
+				870AB3CE2B6A3EB20054216C /* TimerChartViewContainer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4252,10 +4299,11 @@
 		87D34DC02AFDFC9700C7537D /* TImerTotalRecord */ = {
 			isa = PBXGroup;
 			children = (
-				87D34DC12AFDFCC600C7537D /* TimerTotalRecordRouter.swift */,
 				87D34DC32AFDFCC600C7537D /* TimerTotalRecordBuilder.swift */,
+				87D34DC12AFDFCC600C7537D /* TimerTotalRecordRouter.swift */,
 				87D34DC42AFDFCC600C7537D /* TimerTotalRecordInteractor.swift */,
 				87D34DC22AFDFCC600C7537D /* TimerTotalRecordViewController.swift */,
+				874134252B5F9C9500EB9C6D /* TimerSummeryModel.swift */,
 				87D34DC92AFDFCD200C7537D /* Views */,
 			);
 			path = TImerTotalRecord;
@@ -4264,8 +4312,8 @@
 		87D34DC92AFDFCD200C7537D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				874134272B5F9F4D00EB9C6D /* TimerTotalRecordListViewModel.swift */,
 				87D34DCA2AFDFCE700C7537D /* TimerTotalRecordListView.swift */,
-				87D34DCC2AFDFD0300C7537D /* TimerTotalRecordListViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4622,6 +4670,7 @@
 			isa = PBXGroup;
 			children = (
 				8797E9E12B5A714600DECFE2 /* Routine */,
+				874134102B5ECEF500EB9C6D /* Timer */,
 			);
 			path = RecordRepository;
 			sourceTree = "<group>";
@@ -4943,7 +4992,6 @@
 			name = Routine;
 			packageProductDependencies = (
 				876E94CA2AB2CE8500046809 /* ModernRIBs */,
-				876E95632AB2D03400046809 /* Kingfisher */,
 				876E95692AB2D40500046809 /* CombineExt */,
 				876E95712AB2D98700046809 /* CocoaLumberjack */,
 				876E95732AB2D98700046809 /* CocoaLumberjackSwift */,
@@ -4954,6 +5002,7 @@
 				878DA7932ACE64D300220653 /* FSCalendar */,
 				8794C1E12AFE0CDA00B92B47 /* DGCharts */,
 				8769B07F2B14B62A000D260D /* Lottie */,
+				87EB29232B67CDB50062D40A /* Kingfisher */,
 			);
 			productName = Routine;
 			productReference = 876E94AA2AB2CE3D00046809 /* Routine.app */;
@@ -4993,7 +5042,6 @@
 			mainGroup = 876E94A12AB2CE3D00046809;
 			packageReferences = (
 				876E94C92AB2CE8500046809 /* XCRemoteSwiftPackageReference "ModernRIBs" */,
-				876E95622AB2D03400046809 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				876E95682AB2D40500046809 /* XCRemoteSwiftPackageReference "CombineExt" */,
 				876E95702AB2D98700046809 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
 				876E95792AB2E20700046809 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
@@ -5001,6 +5049,7 @@
 				878DA7922ACE64D300220653 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				8794C1E02AFE0CDA00B92B47 /* XCRemoteSwiftPackageReference "Charts" */,
 				8769B07E2B14B62A000D260D /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				87EB29222B67CDB50062D40A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 876E94AB2AB2CE3D00046809 /* Products */;
 			projectDirPath = "";
@@ -5194,7 +5243,9 @@
 				87A72DA32B0E69F900165412 /* ProfileRequestReviewListModel.swift in Sources */,
 				875DC7A72B56E3B00000B1C9 /* UpdateTabataTimer.swift in Sources */,
 				8783E85F2AFDCDC800B596FC /* RecordTimerListDetailViewController.swift in Sources */,
+				874134262B5F9C9500EB9C6D /* TimerSummeryModel.swift in Sources */,
 				876E955D2AB2D00F00046809 /* UILabel+Utils.swift in Sources */,
+				874134282B5F9F4D00EB9C6D /* TimerTotalRecordListViewModel.swift in Sources */,
 				87FDF29A2B1984A80046D5FC /* SettingDaliyReminderViewModel.swift in Sources */,
 				87A707242B4EA3A700EE9BAF /* UpdateSectionTimer.swift in Sources */,
 				87D0CAEB2ACD594200FE405F /* ChangeRoutineName.swift in Sources */,
@@ -5219,7 +5270,7 @@
 				8754D2AB2AC2F6EF00440385 /* BottomLiseTextFeild.swift in Sources */,
 				87DEAAB32AD9071800C94F0A /* DatabaseException.swift in Sources */,
 				8726262E2B1757C700C0CD92 /* SettingAppNotificationInteractor.swift in Sources */,
-				87176A4C2AFE26C500C8B1B8 /* TimerLineChart.swift in Sources */,
+				87176A4C2AFE26C500C8B1B8 /* TimerDayChartView.swift in Sources */,
 				87B708B02B04C28D00C95C08 /* AppMailManager.swift in Sources */,
 				87B708D22B04E72300C95C08 /* SettingAppIconInteractor.swift in Sources */,
 				8783E8542AFBEB8700B596FC /* RecordTimerListViewModel.swift in Sources */,
@@ -5253,6 +5304,7 @@
 				8724D3122B05F4D500DD1AFC /* AppGuideInteractor.swift in Sources */,
 				870D02442B089A5B00CE207B /* SettingFontInteractor.swift in Sources */,
 				875DC7BA2B56EE0D0000B1C9 /* RoundTimerDao.swift in Sources */,
+				8741341C2B5EE60F00EB9C6D /* TimerStreakModel.swift in Sources */,
 				8726261D2B1711CE00C0CD92 /* MemojiButton.swift in Sources */,
 				87D0CAE72ACD409000FE405F /* RoutineListCell.swift in Sources */,
 				875DC7BE2B56EFCB0000B1C9 /* RoundTimerModel.swift in Sources */,
@@ -5378,10 +5430,12 @@
 				87AAE66A2AE011A8000A7D4F /* TimerListModel.swift in Sources */,
 				87176A592AFE4F7D00C8B1B8 /* RoutineWeeklyTrackerRouter.swift in Sources */,
 				8713D5102ADF83B400735913 /* TimerSectionValueModel.swift in Sources */,
+				874134222B5EE75A00EB9C6D /* TimerRecordModel.swift in Sources */,
 				87CB18952B57CA1F006B3565 /* TabataProgressBuilder.swift in Sources */,
 				879E228B2B5943B300FF9CEE /* RoundRoundTimerViewController.swift in Sources */,
 				87FDF2A12B1998230046D5FC /* SettingRoutineReminderViewModel.swift in Sources */,
 				8756EA8C2B5A643600E4247F /* TimerTotalRecordDao.swift in Sources */,
+				8741341A2B5EE60600EB9C6D /* TimerTotalRecordModel.swift in Sources */,
 				874C4DD02AD7C11100734491 /* RecordCalendarViewController.swift in Sources */,
 				8748F2FF2B0F19240081EFA1 /* Memoji+Utils.swift in Sources */,
 				8780363F2AF0A74300EBBA5F /* FocusResultBuilder.swift in Sources */,
@@ -5461,6 +5515,7 @@
 				876E95542AB2D00F00046809 /* UIView+Utils.swift in Sources */,
 				873879842B01E69A004EE7F8 /* RoutineTopAcheiveChartInteractor.swift in Sources */,
 				87C8153A2AD3DBDA0062BEDF /* RoutineEditRepeatBuilder.swift in Sources */,
+				874134122B5ECF0400EB9C6D /* TimerRecordRepository.swift in Sources */,
 				874C4DDC2AD80CCA00734491 /* RoutineBasicInfoBuilder.swift in Sources */,
 				87176A652AFE504F00C8B1B8 /* RoutineWeeklyTableRouter.swift in Sources */,
 				8748F3052B0F679B0081EFA1 /* ProfileRepository.swift in Sources */,
@@ -5485,6 +5540,7 @@
 				870B572F2AE11D54006579CE /* TimerType.swift in Sources */,
 				877DF8C32AD5A48300F45C10 /* RepeatType.swift in Sources */,
 				87D5AAD72AB8373400FE712C /* RoutineFactory.swift in Sources */,
+				874134182B5EE5E500EB9C6D /* TimerWeekRecordModel.swift in Sources */,
 				87FF66A22B158EFF0013DB2A /* AppTutorialRoutineRouter.swift in Sources */,
 				87A2C9C52AEFB413004AE6C1 /* AddTabataTimerViewController.swift in Sources */,
 				87D0CAE52ACD337D00FE405F /* RoutineUpdated.swift in Sources */,
@@ -5523,6 +5579,7 @@
 				87D01DEA2B03542F00211D82 /* StreakId.swift in Sources */,
 				872627C42B18B55A00C0CD92 /* EmojiPickerView.swift in Sources */,
 				8751F0AE2AC7F2FC000462EC /* RoutineTitleInteractor.swift in Sources */,
+				874134202B5EE6A000EB9C6D /* TimerModelRecordModel.swift in Sources */,
 				87D01DE82B03529800211D82 /* RoutineStreak.swift in Sources */,
 				87B708A72B04A5D300C95C08 /* ProfileMenuListViewModel.swift in Sources */,
 				874988682AC4226D004DC64A /* RoutineListViewModel.swift in Sources */,
@@ -5657,6 +5714,8 @@
 				872DF3C62AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift in Sources */,
 				879E22692B58F92700FF9CEE /* TabataRoundTimerViewModel.swift in Sources */,
 				875DC79B2B56DFF00000B1C9 /* TimerSectionEditRepeatInteractor.swift in Sources */,
+				874134142B5ECF6D00EB9C6D /* RecordTimerListModel.swift in Sources */,
+				874134162B5ECF9500EB9C6D /* RecordTimerTypeModel.swift in Sources */,
 				877A7AED2AFA7310002BC722 /* GressEmptyCell.swift in Sources */,
 				87176A6C2AFE53FA00C8B1B8 /* WeeklyLeftAxisView.swift in Sources */,
 				87A707282B4EA65A00EE9BAF /* DeleteSectionTimer.swift in Sources */,
@@ -5687,6 +5746,7 @@
 				87C1B3F82B566C64008EC5DA /* TabataTimerSQLDao.swift in Sources */,
 				874C4DD12AD7C11100734491 /* RecordCalendarBuilder.swift in Sources */,
 				879D824A2AE25B9F00F1348E /* TimerSectionValue.swift in Sources */,
+				870AB3CD2B6A3B3C0054216C /* TImerMonthChartView.swift in Sources */,
 				8748F31C2B0F6F540081EFA1 /* ProfileIntroduction.swift in Sources */,
 				87DEAAAC2AD8FE1000C94F0A /* AppNotificationManager.swift in Sources */,
 				8779AE052AFA510200176746 /* GressViewModel.swift in Sources */,
@@ -5732,7 +5792,7 @@
 				871962042AEBE63600E17417 /* UIDevice+Utils.swift in Sources */,
 				87D34DBB2AFDF7EC00C7537D /* TimerDataOfStatsBuilder.swift in Sources */,
 				870B57402AE12B7F006579CE /* TimerListDto.swift in Sources */,
-				87D34DCF2AFE010D00C7537D /* TimerStasDateView.swift in Sources */,
+				870AB3CF2B6A3EB20054216C /* TimerChartViewContainer.swift in Sources */,
 				87DEAAE42AD96FB100C94F0A /* RoutineEditReminderViewModel.swift in Sources */,
 				8751F0AB2AC7F2FC000462EC /* RoutineTitleRouter.swift in Sources */,
 				875DC7982B56DFF00000B1C9 /* TimerSectionEditRepeatRouter.swift in Sources */,
@@ -5839,7 +5899,6 @@
 				87E3761A2AD704DE00359850 /* RecordFormatter.swift in Sources */,
 				8779ADCC2AFA1BBC00176746 /* RecordRoutineListDetailInteractor.swift in Sources */,
 				87D34DBF2AFDF83600C7537D /* TimeStatsSegmentControl.swift in Sources */,
-				87D34DCD2AFDFD0300C7537D /* TimerTotalRecordListViewModel.swift in Sources */,
 				871B2F4B2B108A430015E266 /* ProfileEditNameBuilder.swift in Sources */,
 				876E95022AB2CFC100046809 /* RoutineHomeViewController.swift in Sources */,
 				87504A1D2ABB4EAC0046EFD5 /* RoutineDetailDto.swift in Sources */,
@@ -5894,6 +5953,7 @@
 				872626372B184CFF00C0CD92 /* EmojiService.swift in Sources */,
 				8779ADDF2AFA348B00176746 /* RoutineDataOfWeekInteractor.swift in Sources */,
 				87FB8D462AF8F15F001180EC /* RecordRoutineListCell.swift in Sources */,
+				8741342A2B5FA88600EB9C6D /* TimerRecordForamatter.swift in Sources */,
 				87135AEC2AC9454E006B71D5 /* RoutineEditViewController.swift in Sources */,
 				879E22822B5943AA00FF9CEE /* RoundProgressRouter.swift in Sources */,
 				876E95902AB2FA1A00046809 /* Entity.swift in Sources */,
@@ -6283,14 +6343,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		876E95622AB2D03400046809 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 		876E95682AB2D40500046809 /* XCRemoteSwiftPackageReference "CombineExt" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineExt";
@@ -6339,6 +6391,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		87EB29222B67CDB50062D40A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -6351,11 +6411,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 876E94C92AB2CE8500046809 /* XCRemoteSwiftPackageReference "ModernRIBs" */;
 			productName = ModernRIBs;
-		};
-		876E95632AB2D03400046809 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 876E95622AB2D03400046809 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 		876E95692AB2D40500046809 /* CombineExt */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -6401,6 +6456,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8794C1E02AFE0CDA00B92B47 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = DGCharts;
+		};
+		87EB29232B67CDB50062D40A /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 87EB29222B67CDB50062D40A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 

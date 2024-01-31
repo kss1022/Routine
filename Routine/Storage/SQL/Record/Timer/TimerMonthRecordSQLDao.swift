@@ -12,7 +12,7 @@ import SQLite
 
 final class TimerMonthRecordSQLDao: TimerMonthRecordDao{
     
-
+    
     private let db: Connection
     private let table: Table
     
@@ -54,22 +54,7 @@ final class TimerMonthRecordSQLDao: TimerMonthRecordDao{
         db.userVersion = 0
         Log.v("Create Table (If Not Exists): \(TimerMonthRecordSQLDao.tableName)")
     }
-
-    
-    func find(timerId: UUID, month: String) throws -> TimerMonthRecordDto?{
-        let query = table.filter(self.timerId == timerId && self.month == month)
-            .limit(1)
-        
-        return try db.pluck(query)
-            .map {
-                TimerMonthRecordDto(
-                    timerId: $0[self.timerId],
-                    month: $0[self.month],
-                    done: $0[done],
-                    time: $0[time]
-                )
-            }
-    }
+         
     
     func update(timerId: UUID, month: String, time: TimeInterval) throws{
         let query = table.filter(self.timerId == timerId && self.month == month)
@@ -87,8 +72,33 @@ final class TimerMonthRecordSQLDao: TimerMonthRecordDao{
         Log.v("Update \(TimerMonthRecordDto.self): \(timerId): \(month) +\(time)")
     }
     
+    func find(timerId: UUID, month: String) throws -> TimerMonthRecordDto?{
+        let query = table.filter(self.timerId == timerId && self.month == month)
+            .limit(1)
+
+        return try db.pluck(query)
+            .map {
+                TimerMonthRecordDto(
+                    timerId: $0[self.timerId],
+                    month: $0[self.month],
+                    done: $0[done],
+                    time: $0[time]
+                )
+            }
+    }
     
-    
+    func findAll(timerId: UUID) throws -> [TimerMonthRecordDto] {
+        let query = table.filter(self.timerId == timerId)
+        
+        return try db.prepareRowIterator(query).map {
+            TimerMonthRecordDto(
+                timerId: $0[self.timerId],
+                month: $0[month],
+                done: $0[done],
+                time: $0[time]
+            )
+        }
+    }
     
     //MARK: Private
     private func save(timerId: UUID, month: String) throws {

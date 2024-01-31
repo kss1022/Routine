@@ -8,11 +8,11 @@
 import ModernRIBs
 
 protocol RecordRoutineListDependency: Dependency {
-    var routineRepository: RoutineRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class RecordRoutineListComponent: Component<RecordRoutineListDependency>, RecordRoutineListInteractorDependency {
-    var routineRepository: RoutineRepository{ dependency.routineRepository}
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
 }
 
 // MARK: - Builder

@@ -9,7 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol RecordTimerListDetailPresentableListener: AnyObject {
-    func timerListDidTap(routineId: UUID)
+    func timerListDidTap(timerId: UUID)
     func didMove()
 }
 
@@ -59,7 +59,7 @@ final class RecordTimerListDetailViewController: UIViewController, RecordTimerLi
     
     
     private func setLayout(){
-        title = "Your Acheive"
+        title = "your_focus".localized(tableName: "Record")
         
         view.addSubview(collectionView)
                 
@@ -107,20 +107,20 @@ final class RecordTimerListDetailViewController: UIViewController, RecordTimerLi
     }
     
     private func getListTypeSection() -> NSCollectionLayoutSection {        
-        let height = (UIDevice.frame().width - 32.0) * 0.6 * 0.3
-                 
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let width = UIDevice.frame().width / 2 - (16.0)
+        let height = width * 0.8
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(width), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 8.0, leading: 8.0, bottom: 8.0, trailing: 8.0)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(height))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                        
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
         section.contentInsets = .init(top: 0.0, leading: 16.0, bottom: 0.0, trailing: 16.0)
-        section.interGroupSpacing = 16.0
-    
-          
+        
         return section
     }
     
@@ -138,7 +138,7 @@ final class RecordTimerListDetailViewController: UIViewController, RecordTimerLi
 extension RecordTimerListDetailViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let viewModel =  dataSource.itemIdentifier(for: indexPath){
-            listener?.timerListDidTap(routineId: viewModel.timerId)
+            listener?.timerListDidTap(timerId: viewModel.timerId)
         }
     }
     

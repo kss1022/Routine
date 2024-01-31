@@ -10,6 +10,8 @@ import UIKit
 
 protocol TimerDataOfStatsPresentableListener: AnyObject {
     func statsSegmentControlValueChange(index: Int)
+    func leftButtonDidTap()
+    func rightButtonDidTap()
 }
 
 final class TimerDataOfStatsViewController: UIViewController, TimerDataOfStatsPresentable, TimerDataOfStatsViewControllable {
@@ -40,32 +42,71 @@ final class TimerDataOfStatsViewController: UIViewController, TimerDataOfStatsPr
     }()
     
     
-    private let timrStasDateView: TimerStasDateView = {
-        let dateView = TimerStasDateView()
-        return dateView
+    private let dateStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private lazy var leftButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.left.circle.fill"), for: .normal)
+        button.tintColor = .primaryGreen
+        button.addTarget(self, action: #selector(leftButtonTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var rightButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.right.circle.fill"), for: .normal)
+        button.tintColor = .primaryGreen
+        button.addTarget(self, action: #selector(rightButtonTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.setBoldFont(style: .headline)
+        label.textColor = .label
+        label.text = "00.00 0000"
+        return label
     }()
     
     
-    private let chartCardView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemBackground
+    
+    private let chartContainerView: TimerChartViewContainer = {
+        let view = TimerChartViewContainer()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addShadowWithRoundedCorners()
         return view
     }()
     
-    private let lineChartView: TimerLineChartView = {
-        let charView = TimerLineChartView()
+    private let dayChartView: TimerDayChartView = {
+        let charView = TimerDayChartView()
         charView.translatesAutoresizingMaskIntoConstraints = false
-        charView.isHidden = true
+        return charView
+    }()
+    
+    private let weekChartView: TimerBarChartView = {
+        let charView = TimerBarChartView()
+        charView.translatesAutoresizingMaskIntoConstraints = false
+        return charView
+    }()
+    
+    
+    private let monthChartView: TimerMonthChartView = {
+        let charView = TimerMonthChartView()
+        charView.translatesAutoresizingMaskIntoConstraints = false
         return charView
     }()
  
     
-    private let barChartView: TimerBarChartView = {
+    private let yearChartView: TimerBarChartView = {
         let charView = TimerBarChartView()
         charView.translatesAutoresizingMaskIntoConstraints = false
-        charView.isHidden = true
         return charView
     }()
     
@@ -88,14 +129,16 @@ final class TimerDataOfStatsViewController: UIViewController, TimerDataOfStatsPr
         view.addSubview(stackView)
         
         stackView.addArrangedSubview(statsSegmentControl)
-        stackView.addArrangedSubview(timrStasDateView)
-        stackView.addArrangedSubview(chartCardView)
+        stackView.addArrangedSubview(dateStackView)
+        stackView.addArrangedSubview(chartContainerView)
         
+        dateStackView.addArrangedSubview(leftButton)
+        dateStackView.addArrangedSubview(dateLabel)
+        dateStackView.addArrangedSubview(rightButton)
         
-        chartCardView.addSubview(barChartView)
-        chartCardView.addSubview(lineChartView)
-        
-        
+        [dayChartView, weekChartView, monthChartView, yearChartView].forEach {
+            chartContainerView.setCharView($0)
+        }
                 
         let inset: CGFloat = 16.0
         
@@ -104,56 +147,76 @@ final class TimerDataOfStatsViewController: UIViewController, TimerDataOfStatsPr
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            barChartView.topAnchor.constraint(equalTo: chartCardView.topAnchor, constant: 16.0),
-            barChartView.leadingAnchor.constraint(equalTo: chartCardView.leadingAnchor, constant: 16.0),
-            barChartView.trailingAnchor.constraint(equalTo: chartCardView.trailingAnchor, constant: -16.0),
-            barChartView.bottomAnchor.constraint(equalTo: chartCardView.bottomAnchor, constant: -16.0),
-            barChartView.heightAnchor.constraint(equalToConstant: UIDevice.frame().width * 0.5),
-            
-            lineChartView.topAnchor.constraint(equalTo: chartCardView.topAnchor, constant: 16.0),
-            lineChartView.leadingAnchor.constraint(equalTo: chartCardView.leadingAnchor, constant: 16.0),
-            lineChartView.trailingAnchor.constraint(equalTo: chartCardView.trailingAnchor, constant: -16.0),
-            lineChartView.bottomAnchor.constraint(equalTo: chartCardView.bottomAnchor, constant: -16.0),
-            lineChartView.heightAnchor.constraint(equalToConstant: UIDevice.frame().width * 0.5)
+            chartContainerView.heightAnchor.constraint(equalToConstant: UIDevice.frame().width * 0.5),
         ])
+        
+
     }
     
-    
-    func showLineChart() {
-        lineChartView.isHidden = false
+    func showDayCharView() {
+        dayChartView.isHidden = false
     }
     
-    func hideLineChart() {
-        lineChartView.isHidden = true
+    func hideDayCharView() {
+        dayChartView.isHidden = true
     }
     
-    func showBarChart() {
-        barChartView.isHidden = false
+    func showWeekChartView() {
+        weekChartView.isHidden = false
     }
     
-    func hideBarChart() {
-        barChartView.isHidden = true
+    func hideWeekChartView() {
+        weekChartView.isHidden = true
+    }
+    
+    func showMonthChartView() {
+        monthChartView.isHidden = false
+    }
+    
+    func hideMonthChartView() {
+        monthChartView.isHidden = true
+    }
+    
+    func showYearCartView() {
+        yearChartView.isHidden = false
+    }
+    
+    func hideYearCharView() {
+        yearChartView.isHidden = true
+    }
+    
+    func setDates(date: String) {
+        dateLabel.text = date
     }
     
     func showDayChartData(_ viewModel: TimerLineChartViewModel) {
-        lineChartView.bindView(viewModel)
+        dayChartView.bindView(viewModel)
     }
     
     func showWeekChartData(_ viewModel: TimerBarChartViewModel) {
-        barChartView.bindView(viewModel)
+        weekChartView.bindView(viewModel)
     }
     
     func showMonthChart(_ viewModel: TimerLineChartViewModel) {
-        lineChartView.bindView(viewModel)
+        monthChartView.bindView(viewModel)
     }
     
     func showYearChart(_ viewModel: TimerBarChartViewModel) {
-        barChartView.bindView(viewModel)
+        yearChartView.bindView(viewModel)
     }
     
     @objc
     private func statsSegmentControlValueChange(control: UISegmentedControl){
         listener?.statsSegmentControlValueChange(index: control.selectedSegmentIndex)
+    }
+    
+    @objc
+    private func leftButtonTap(){
+        listener?.leftButtonDidTap()
+    }
+    
+    @objc
+    private func rightButtonTap(){
+        listener?.rightButtonDidTap()
     }
 }

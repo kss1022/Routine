@@ -5,6 +5,7 @@
 //  Created by 한현규 on 2023/09/14.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol RecordHomeInteractable: Interactable, RoutineTopAcheiveListener, RoutineWeeklyTrackerListener, RecordRoutineListDetailListener, RecordTimerListDetailListener, RoutineDataListener, TimerDataListener, RecordBannerListener, RecordRoutineListListener, RecordTimerListListener {
@@ -171,12 +172,12 @@ final class RecordHomeRouter: ViewableRouter<RecordHomeInteractable, RecordHomeV
     }
     
     
-    func attachTimerData() {
+    func attachTimerData(timerId: UUID) {
         if timerDataRouting != nil{
             return
         }
         
-        let router = timerDataBuildable.build(withListener: interactor)
+        let router = timerDataBuildable.build(withListener: interactor, timerId: timerId)
         viewController.pushViewController(router.viewControllable, animated: true)
         
         timerDataRouting = router

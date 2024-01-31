@@ -25,7 +25,7 @@ protocol RecordHomeRouting: ViewableRouting {
     func attachRoutineData()
     func detachRoutineData()
     
-    func attachTimerData()
+    func attachTimerData(timerId: UUID)
     func detachTimerData()
     
     func attachRecordBanner()
@@ -71,7 +71,7 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
         Log.v("Record Home DidBecome Active 🎥")
         router?.attachRecordBanner()
         router?.attachRecordRoutineList()
-        //router?.attachRecordTimerList() //TODO: Record of Timer
+        router?.attachRecordTimerList()
     }
 
     override func willResignActive() {
@@ -139,7 +139,7 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
         
     //MARK: TimerData
     func recordTimerListDidTap(timerId: UUID) {
-        router?.attachTimerData()
+        router?.attachTimerData(timerId: timerId)
     }
     
     func timerDataDidMove() {

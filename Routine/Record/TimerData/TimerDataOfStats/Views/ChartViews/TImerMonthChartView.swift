@@ -1,8 +1,8 @@
 //
-//  TimerLineChart.swift
+//  TImerMonthChartView.swift
 //  Routine
 //
-//  Created by 한현규 on 11/10/23.
+//  Created by 한현규 on 1/31/24.
 //
 
 
@@ -10,7 +10,7 @@ import UIKit
 import DGCharts
 
 
-final class TimerLineChartView: UIView{
+final class TimerMonthChartView: UIView{
 
     weak var chartViewDelegate : ChartViewDelegate?
 
@@ -27,11 +27,10 @@ final class TimerLineChartView: UIView{
         chartView.leftAxis.labelTextColor = .label
         chartView.leftAxis.axisLineColor = .label
         chartView.leftAxis.labelFont = .getFont(size: 10.0)
-
-
+        chartView.leftAxis.axisMinimum = 0.0
 
         chartView.xAxis.labelPosition = .bottom
-        chartView.xAxis.labelFont = .boldSystemFont(ofSize: 6.0)        
+        chartView.xAxis.labelFont = .boldSystemFont(ofSize: 6.0)
         chartView.xAxis.labelTextColor = .label
         chartView.xAxis.axisLineColor = .label
         chartView.xAxis.labelFont = .getFont(size: 10.0)
@@ -78,9 +77,9 @@ final class TimerLineChartView: UIView{
     func bindView(_ viewModel: TimerLineChartViewModel){
         lineChartView.leftAxis.setLabelCount(viewModel.yAxisCount, force: false)
         
-        
         lineChartView.xAxis.setLabelCount(viewModel.xAxisValues.count, force: false)
         lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: viewModel.xAxisValues)
+        
         let set = LineChartDataSet(
             entries: viewModel.chartDataList,
             label: ""
@@ -91,7 +90,7 @@ final class TimerLineChartView: UIView{
         //Set Line
         set.setColor(.primaryGreen)
         set.lineWidth = 1.0
-        
+                
         //Set Circle
         set.circleRadius = 1.0
         set.setCircleColor(.primaryGreen)
@@ -120,7 +119,7 @@ final class TimerLineChartView: UIView{
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)
         lineChartView.data = data
-        
+        //lineChartView.min
         
         //Set Marker
 //        markerView.chartView = lineChartView

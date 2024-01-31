@@ -12,4 +12,5 @@ import Foundation
 protocol TimerMonthRecordDao{
     func update(timerId: UUID, month: String, time: TimeInterval) throws
     func find(timerId: UUID, month: String) throws -> TimerMonthRecordDto?
+    func findAll(timerId: UUID) throws ->[TimerMonthRecordDto]
 }

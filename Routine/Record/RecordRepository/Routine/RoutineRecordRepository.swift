@@ -43,7 +43,7 @@ final class RoutineRecordRepositoryImp: RoutineRecordRepository{
         
         listsSubject.send(routines)
         
-        Log.v("Fetch RecordRoutines: \(routines)")
+        Log.v("RoutineRecordRepository: fetch lists")
     }
     
     func fetchRecords(routineId: UUID) async throws{
@@ -54,7 +54,7 @@ final class RoutineRecordRepositoryImp: RoutineRecordRepository{
         let monthRecord = try recordReadModel.monthRecord(routineId: routineId, date: today)
         let weekRecord = try recordReadModel.weekRecord(routineId: routineId, date: today)
         let topStreak = try recordReadModel.topStreak(routineId: routineId)
-        let currentStreak = try recordReadModel.currentStreak(routineId: routineId, date: Date()) //Date -> now
+        let currentStreak = try recordReadModel.streak(routineId: routineId, date: Date()) //Date -> now
         
         let model = RoutineRecordDatasModel(
             records: records,

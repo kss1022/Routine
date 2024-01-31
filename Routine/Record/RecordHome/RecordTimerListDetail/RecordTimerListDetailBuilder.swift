@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol RecordTimerListDetailDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var timerRecordRepository: TimerRecordRepository{ get }
 }
 
-final class RecordTimerListDetailComponent: Component<RecordTimerListDetailDependency>, TimerDataDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class RecordTimerListDetailComponent: Component<RecordTimerListDetailDependency>, TimerDataDependency, RecordTimerListDetailInteractableDependency {
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
 }
 
 // MARK: - Builder
@@ -32,7 +30,7 @@ final class RecordTimerListDetailBuilder: Builder<RecordTimerListDetailDependenc
     func build(withListener listener: RecordTimerListDetailListener) -> RecordTimerListDetailRouting {
         let component = RecordTimerListDetailComponent(dependency: dependency)
         let viewController = RecordTimerListDetailViewController()
-        let interactor = RecordTimerListDetailInteractor(presenter: viewController)
+        let interactor = RecordTimerListDetailInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         
         let timerDataBuilder = TimerDataBuilder(dependency: component)

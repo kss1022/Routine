@@ -18,7 +18,6 @@ struct RoutineRecordDatasModel{
     let totalDone: Int
     let bestStreak: Int
     let currentStreak: Int
-    let overalRate: Int
     
     init(
         records: [RoutineRecordDto],
@@ -44,6 +43,5 @@ struct RoutineRecordDatasModel{
         self.totalDone = totalDto?.totalDone ?? 0
         self.bestStreak = bestStreak?.streakCount ?? 0
         self.currentStreak = currentStreak?.streakCount ?? 0
-        self.overalRate = 0
     }
 }

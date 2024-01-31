@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol TimerTotalRecordDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var timerSummeryModel: ReadOnlyCurrentValuePublisher<TimerSummeryModel?>{ get }
 }
 
-final class TimerTotalRecordComponent: Component<TimerTotalRecordDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class TimerTotalRecordComponent: Component<TimerTotalRecordDependency>, TimerTotalRecordInteractorDependency {
+    var timerSummeryModel: ReadOnlyCurrentValuePublisher<TimerSummeryModel?>{ dependency.timerSummeryModel }
 }
 
 // MARK: - Builder
@@ -32,7 +30,7 @@ final class TimerTotalRecordBuilder: Builder<TimerTotalRecordDependency>, TimerT
     func build(withListener listener: TimerTotalRecordListener) -> TimerTotalRecordRouting {
         let component = TimerTotalRecordComponent(dependency: dependency)
         let viewController = TimerTotalRecordViewController()
-        let interactor = TimerTotalRecordInteractor(presenter: viewController)
+        let interactor = TimerTotalRecordInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return TimerTotalRecordRouter(interactor: interactor, viewController: viewController)
     }

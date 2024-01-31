@@ -5,6 +5,7 @@
 //  Created by 한현규 on 11/10/23.
 //
 
+import Foundation
 import ModernRIBs
 
 protocol RecordTimerListDetailInteractable: Interactable, TimerDataListener {
@@ -31,12 +32,12 @@ final class RecordTimerListDetailRouter: ViewableRouter<RecordTimerListDetailInt
         interactor.router = self
     }
     
-    func attachTimerData() {
+    func attachTimerData(timerId: UUID) {
         if timerDataRouting != nil{
             return
         }
         
-        let router = timerDataBuildable.build(withListener: interactor)
+        let router = timerDataBuildable.build(withListener: interactor, timerId: timerId)
         viewController.pushViewController(router.viewControllable, animated: true)
         
         timerDataRouting = router

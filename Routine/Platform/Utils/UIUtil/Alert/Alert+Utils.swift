@@ -11,8 +11,8 @@ import UIKit
 
 extension UIViewController{
     
-    func showAlert(title: String, message: String, completeHandler: ((OutputAction) -> ())? = nil){
-        let alert = Alert(title: title, message: message)
+    func showAlert(title: String, message: String, actions: [AlertAction] = [], completeHandler: ((OutputAction) -> ())? = nil){
+        let alert = Alert(title: title, message: message, actions: actions)
         let alertController = UIAlertController( title: alert.title, message: alert.message, preferredStyle: alert.style )
         presentAlertViewController(alertController, actions: alert.actions, completeHandler: completeHandler)
     }

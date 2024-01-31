@@ -8,13 +8,11 @@
 import ModernRIBs
 
 protocol TimerDataOfYearDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var timerRecords: ReadOnlyCurrentValuePublisher<[TimerRecordModel]>{ get }
 }
 
-final class TimerDataOfYearComponent: Component<TimerDataOfYearDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class TimerDataOfYearComponent: Component<TimerDataOfYearDependency>, TimerDataOfYearInteractorDependency {
+    var timerRecords: ReadOnlyCurrentValuePublisher<[TimerRecordModel]>{ dependency.timerRecords }
 }
 
 // MARK: - Builder
@@ -32,7 +30,7 @@ final class TimerDataOfYearBuilder: Builder<TimerDataOfYearDependency>, TimerDat
     func build(withListener listener: TimerDataOfYearListener) -> TimerDataOfYearRouting {
         let component = TimerDataOfYearComponent(dependency: dependency)
         let viewController = TimerDataOfYearViewController()
-        let interactor = TimerDataOfYearInteractor(presenter: viewController)
+        let interactor = TimerDataOfYearInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return TimerDataOfYearRouter(interactor: interactor, viewController: viewController)
     }

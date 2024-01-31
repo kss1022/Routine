@@ -21,7 +21,7 @@ protocol RoutineRecordReadModelFacade{
     func weekRecords() throws -> [RoutineWeekRecordDto]
 
     func topStreak(routineId: UUID) throws -> RoutineStreakDto?
-    func currentStreak(routineId: UUID, date: Date) throws -> RoutineStreakDto?
+    func streak(routineId: UUID, date: Date) throws -> RoutineStreakDto?
     
     func topAcheive() throws -> [RoutineTopAcheiveDto]
 }
@@ -69,8 +69,8 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
     }
     
     func monthRecord(routineId: UUID, date: Date) throws -> RoutineMonthRecordDto? {
-        let date = Formatter.recordMonthFormatter().string(from: date)
-        return try routineMonthRecordDao.find(routineId: routineId, recordMonth: date)
+        let month = Formatter.recordMonthFormatter().string(from: date)
+        return try routineMonthRecordDao.find(routineId: routineId, recordMonth: month)
     }
     
     func weekRecord(routineId: UUID, date: Date) throws -> RoutineWeekRecordDto? {
@@ -88,17 +88,16 @@ public final class RoutineRecordReadModelFacadeImp: RoutineRecordReadModelFacade
     }
     
     func weekRecords() throws -> [RoutineWeekRecordDto] {
-        return try routineWeekRecordDao.findAll()
+        try routineWeekRecordDao.findAll()
     }
     
     func topStreak(routineId: UUID) throws -> RoutineStreakDto? {
-        return try routineStreakDao.topStreak(routineId: routineId)
+        try routineStreakDao.topStreak(routineId: routineId)
     }
     
-    func currentStreak(routineId: UUID, date: Date) throws -> RoutineStreakDto? {
+    func streak(routineId: UUID, date: Date) throws -> RoutineStreakDto? {
         let date = Calendar.current.startOfDay(for: date)
-        
-        return try routineStreakDao.currentStreak(routineId: routineId, date: date)
+        return try routineStreakDao.findCurrentStreak(routineId: routineId, date: date)
     }
     
     func topAcheive() throws -> [RoutineTopAcheiveDto] {

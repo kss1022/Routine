@@ -19,12 +19,6 @@ final class TimerBarChartView: UIView{
         chartView.translatesAutoresizingMaskIntoConstraints = false
         chartView.backgroundColor = .clear
 
-//        chartView.leftAxis.enabled = false
-
-//        chartView.rightAxis.labelFont = .boldSystemFont(ofSize: 6.0)
-//        chartView.rightAxis.setLabelCount(7, force: false)
-//        chartView.rightAxis.labelTextColor = .label
-//        chartView.rightAxis.axisLineColor = .label
         chartView.rightAxis.enabled = false
         
         chartView.leftAxis.labelFont = .boldSystemFont(ofSize: 6.0)
@@ -32,6 +26,9 @@ final class TimerBarChartView: UIView{
         chartView.leftAxis.labelTextColor = .label
         chartView.leftAxis.axisLineColor = .label
         chartView.leftAxis.labelFont = .getFont(size: 10.0)
+        
+        chartView.leftAxis.axisMinimum = 0.0
+        //chartView.leftAxis.axisMaximum = 0.0
 
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.labelFont = .boldSystemFont(ofSize: 6.0)

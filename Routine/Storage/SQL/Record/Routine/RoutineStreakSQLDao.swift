@@ -81,19 +81,7 @@ final class RoutineStreakSQLDao: RoutineStreakDao{
         }
     }
     
-    func currentStreak(routineId: UUID, date: Date) throws -> RoutineStreakDto? {
-        let query = table.filter(self.routineId == routineId && self.endDate == date )
-        
-        return try db.pluck(query).flatMap {
-            RoutineStreakDto(
-                routineId: $0[self.routineId],
-                startDate: $0[startDate],
-                endDate: $0[endDate],
-                streakCount: $0[streakCount]
-            )
-        }
-    }
-    
+
     func find(routineId: UUID, date: Date) throws -> RoutineStreakDto? {
         let query = table.filter(self.routineId == routineId && self.startDate <= date && self.endDate >= date )
         
@@ -107,6 +95,18 @@ final class RoutineStreakSQLDao: RoutineStreakDao{
         }
     }
     
+    func findCurrentStreak(routineId: UUID, date: Date) throws -> RoutineStreakDto? {
+        let query = table.filter(self.routineId == routineId && self.endDate == date )
+        
+        return try db.pluck(query).flatMap {
+            RoutineStreakDto(
+                routineId: $0[self.routineId],
+                startDate: $0[startDate],
+                endDate: $0[endDate],
+                streakCount: $0[streakCount]
+            )
+        }
+    }
     
     
     func complete(routineId: UUID, date: Date) throws{

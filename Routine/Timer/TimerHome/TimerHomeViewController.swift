@@ -32,7 +32,7 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fill
         return stackView
     }()
     
@@ -60,13 +60,12 @@ final class TimerHomeViewController: UIViewController, TimerHomePresentable, Tim
         navigationItem.rightBarButtonItems = [ createTimerBarButtonItem]
         
         view.backgroundColor = .systemBackground
-        
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }

@@ -11,14 +11,22 @@ protocol RecordHomeDependency: Dependency {
     var recordApplicationService: RecordApplicationService{ get }
     
     var routineRecordRepository: RoutineRecordRepository{ get }
-    var routineRepository: RoutineRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
+    
+    //var routineRepository: RoutineRepository{ get }
 }
 
 final class RecordHomeComponent: Component<RecordHomeDependency>,RoutineTopAcheiveDependency, RoutineWeeklyTrackerDependency, RecordRoutineListDetailDependency, RecordTimerListDetailDependency, RoutineDataDependency, TimerDataDependency ,RecordBannerDependency, RecordRoutineListDependency, RecordTimerListDependency, RecordHomeInteractorDependency {
+        
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     
     var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
-    var routineRepository: RoutineRepository{ dependency.routineRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
+    
+            
+    //var routineRepository: RoutineRepository{ dependency.routineRepository }
+    
+    
 }
 
 // MARK: - Builder

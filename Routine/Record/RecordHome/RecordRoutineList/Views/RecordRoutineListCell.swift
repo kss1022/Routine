@@ -119,7 +119,7 @@ final class RecordRoutineListCell: UICollectionViewCell{
         
         cardView.backgroundColor = .clear
         emojiIconLabel.text = nil
-        nameLabel.text
+        nameLabel.text = nil
     }
 }
 

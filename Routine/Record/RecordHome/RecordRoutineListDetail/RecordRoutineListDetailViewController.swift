@@ -36,8 +36,6 @@ final class RecordRoutineListDetailViewController: UIViewController, RecordRouti
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(cellType: RecordRoutineListCell.self)
         
-
-        
         collectionView.collectionViewLayout = getCollectionViewLayout()
         collectionView.delegate = self
             
