@@ -60,7 +60,8 @@
 "oops" = "उफ़";
 "sorry_there_are_proble_with_request" = "क्षमा करें, आपके अनुरोध के साथ प्रबल हैं";
 "fetch_list_failed" = "सूची को लोड करने में कोई समस्या थी, कृपया एक पल में फिर से प्रयास करें।";
-"fetch_timer_failed" = "टाइमर होने में समस्या थी।";
+"fetch_timer_failed" = "टाइमर मिलने में समस्या थी।";
 "add_timer_failed" = "टाइमर को जोड़ने में एक समस्या थी।";
 "update_timer_failed" = "टाइमर को संशोधित करने में एक समस्या थी।";
+"record_timer_failed" = "टाइमर को रिकॉर्ड करने में एक समस्या थी।";
 "minumum_chracters" = "न्यूनतम %d chracters";

@@ -13,7 +13,6 @@ protocol AppHomeRouting: Routing {
 }
 
 protocol AppHomeListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 final class AppHomeInteractor: Interactor, AppHomeInteractable {
@@ -21,7 +20,6 @@ final class AppHomeInteractor: Interactor, AppHomeInteractable {
     weak var router: AppHomeRouting?
     weak var listener: AppHomeListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init() {}
 
@@ -34,6 +32,5 @@ final class AppHomeInteractor: Interactor, AppHomeInteractable {
         super.willResignActive()
 
         router?.cleanupViews()
-        // TODO: Pause any business logic.
     }
 }

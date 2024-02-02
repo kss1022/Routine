@@ -11,7 +11,6 @@ import Combine
 
 
 protocol SettingTypefaceRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol SettingTypefacePresentable: Presentable {

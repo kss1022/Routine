@@ -13,12 +13,10 @@ protocol SettingFontSizeInteractable: Interactable {
 }
 
 protocol SettingFontSizeViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class SettingFontSizeRouter: ViewableRouter<SettingFontSizeInteractable, SettingFontSizeViewControllable>, SettingFontSizeRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: SettingFontSizeInteractable, viewController: SettingFontSizeViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

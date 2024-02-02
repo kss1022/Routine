@@ -13,12 +13,10 @@ protocol RoutineEditStyleInteractable: Interactable {
 }
 
 protocol RoutineEditStyleViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RoutineEditStyleRouter: ViewableRouter<RoutineEditStyleInteractable, RoutineEditStyleViewControllable>, RoutineEditStyleRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: RoutineEditStyleInteractable, viewController: RoutineEditStyleViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

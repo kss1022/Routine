@@ -16,11 +16,13 @@
 
 // YourAchieve
 "your_achieve" = "Ваше достижение";
+"your_focus" = "Ваш фокус";
 "date_of_week" = "Дата недели";
 "date_of_month" = "Дата месяца";
 "date_of_year" = "Дата года";
 "done_this_month" = "Сделано в этом месяце";
 "totalDone" = "TotalDone";
+"totalTime" = "Общее время";
 "current_streak" = "Текущая полоса";
 "best_streak" = "Лучшая полоса";
 

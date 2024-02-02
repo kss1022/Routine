@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol RoundProgressRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoundProgressPresentable: Presentable {
@@ -21,7 +20,6 @@ protocol RoundProgressPresentable: Presentable {
 }
 
 protocol RoundProgressListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol RoundProgressInteractorDependency{

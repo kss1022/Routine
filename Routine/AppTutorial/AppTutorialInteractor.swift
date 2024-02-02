@@ -63,7 +63,6 @@ final class AppTutorialInteractor: Interactor, AppTutorialInteractable{
         super.willResignActive()
 
         router?.cleanupViews()
-        // TODO: Pause any business logic.
     }
     
     

@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol RoutineTotalRecordRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoutineTotalRecordPresentable: Presentable {
@@ -19,7 +18,6 @@ protocol RoutineTotalRecordPresentable: Presentable {
 }
 
 protocol RoutineTotalRecordListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol RoutineTotalRecordInteractorDependency{
@@ -47,7 +45,6 @@ final class RoutineTotalRecordInteractor: PresentableInteractor<RoutineTotalReco
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         
         dependency.routineRecords
             .receive(on: DispatchQueue.main)

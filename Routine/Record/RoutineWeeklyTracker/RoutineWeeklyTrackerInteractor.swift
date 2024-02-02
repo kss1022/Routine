@@ -13,7 +13,6 @@ protocol RoutineWeeklyTrackerRouting: ViewableRouting {
 
 protocol RoutineWeeklyTrackerPresentable: Presentable {
     var listener: RoutineWeeklyTrackerPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol RoutineWeeklyTrackerListener: AnyObject {
@@ -25,7 +24,6 @@ final class RoutineWeeklyTrackerInteractor: PresentableInteractor<RoutineWeeklyT
     weak var router: RoutineWeeklyTrackerRouting?
     weak var listener: RoutineWeeklyTrackerListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: RoutineWeeklyTrackerPresentable) {
         super.init(presenter: presenter)
@@ -39,7 +37,6 @@ final class RoutineWeeklyTrackerInteractor: PresentableInteractor<RoutineWeeklyT
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     

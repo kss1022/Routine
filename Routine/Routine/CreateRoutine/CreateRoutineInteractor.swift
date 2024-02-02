@@ -15,7 +15,6 @@ protocol CreateRoutineRouting: ViewableRouting {
 
 protocol CreateRoutinePresentable: Presentable {
     var listener: CreateRoutinePresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol CreateRoutineListener: AnyObject {
@@ -53,12 +52,10 @@ final class CreateRoutineInteractor: PresentableInteractor<CreateRoutinePresenta
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func presentationControllerDidDismiss() {

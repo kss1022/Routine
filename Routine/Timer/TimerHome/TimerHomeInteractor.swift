@@ -29,7 +29,6 @@ protocol TimerHomePresentable: Presentable {
 }
 
 protocol TimerHomeListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol TimerHomeInteractorDependency{
@@ -87,7 +86,6 @@ final class TimerHomeInteractor: PresentableInteractor<TimerHomePresentable>, Ti
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
     }

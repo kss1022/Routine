@@ -87,7 +87,6 @@ final class StartTimerInteractor: Interactor, StartTimerInteractable, AdaptivePr
         super.willResignActive()
         
         router?.cleanupViews()
-        // TODO: Pause any business logic.
     }
     
     func presentationControllerDidDismiss() {

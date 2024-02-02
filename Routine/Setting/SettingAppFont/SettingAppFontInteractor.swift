@@ -17,7 +17,6 @@ protocol SettingAppFontRouting: ViewableRouting {
 
 protocol SettingAppFontPresentable: Presentable {
     var listener: SettingAppFontPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol SettingAppFontListener: AnyObject {
@@ -77,7 +76,6 @@ final class SettingAppFontInteractor: PresentableInteractor<SettingAppFontPresen
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func presentationControllerDidDismiss() {

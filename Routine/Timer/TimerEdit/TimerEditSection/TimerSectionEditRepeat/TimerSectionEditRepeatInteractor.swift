@@ -8,7 +8,6 @@
 import ModernRIBs
 
 protocol TimerSectionEditRepeatRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol TimerSectionEditRepeatPresentable: Presentable {
@@ -47,7 +46,6 @@ final class TimerSectionEditRepeatInteractor: PresentableInteractor<TimerSection
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func countPickerDidValueChange(count: Int) {

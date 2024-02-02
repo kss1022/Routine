@@ -52,8 +52,4 @@
 "update_routine_failed" = "루틴을 수정하는데 문제가 발생했습니다.";
 "delete_routine_failed" = "루틴을 삭제하는데 문제가 발생했습니다.";
 "record_routine_failed" = "루틴을 기록하는데 문제가 발생했습니다.";
-"name_count_less_then" = "이름은 %d글자보다 작아야합니다.";
-"name_count_more_then" = "이름의 %d글자보다 길어야합니다.";
-"description_count_less_then" = "정보는 %d글자보다 작아야합니다.";
-"description_count_more_then" = "정보는 %d글자보다 길어야합니다.";
 "minumum_chracters" = "최소 %d 글자입니다.";

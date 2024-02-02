@@ -42,7 +42,6 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         
         let models = [
             CreateTimerModel(
@@ -76,7 +75,6 @@ final class CreateTimerInteractor: PresentableInteractor<CreateTimerPresentable>
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func presentationControllerDidDismiss() {     

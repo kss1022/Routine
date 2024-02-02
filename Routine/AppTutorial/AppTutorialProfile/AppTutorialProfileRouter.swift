@@ -14,7 +14,6 @@ protocol AppTutorialProfileInteractable: Interactable, AppTutorialMemojiListener
 }
 
 protocol AppTutorialProfileViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class AppTutorialProfileRouter: ViewableRouter<AppTutorialProfileInteractable, AppTutorialProfileViewControllable>, AppTutorialProfileRouting {

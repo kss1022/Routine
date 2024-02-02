@@ -13,12 +13,10 @@ protocol RoutineBasicInfoInteractable: Interactable {
 }
 
 protocol RoutineBasicInfoViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RoutineBasicInfoRouter: ViewableRouter<RoutineBasicInfoInteractable, RoutineBasicInfoViewControllable>, RoutineBasicInfoRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: RoutineBasicInfoInteractable, viewController: RoutineBasicInfoViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

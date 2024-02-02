@@ -13,12 +13,10 @@ protocol TabataRoundTimerInteractable: Interactable {
 }
 
 protocol TabataRoundTimerViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class TabataRoundTimerRouter: ViewableRouter<TabataRoundTimerInteractable, TabataRoundTimerViewControllable>, TabataRoundTimerRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: TabataRoundTimerInteractable, viewController: TabataRoundTimerViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

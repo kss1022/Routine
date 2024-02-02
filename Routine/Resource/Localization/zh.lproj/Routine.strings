@@ -52,8 +52,4 @@
 "update_routine_failed" = "有问题更新例程。";
 "delete_routine_failed" = "删除例程存在问题。";
 "record_routine_failed" = "记录例程存在问题。";
-"name_count_less_then" = "名称长度必须少于％d";
-"name_count_more_then" = "名称长度必须超过％d";
-"description_count_less_then" = "描述长度必须计数然后％d";
-"description_count_more_then" = "描述长度必须少于％d";
 "minumum_chracters" = "最低％D Chracter";

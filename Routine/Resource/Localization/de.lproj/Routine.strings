@@ -22,7 +22,7 @@
 "basic_info_reminder_at" = "Erinnerung bei %@";
 
 // CreateRoutine
-"pick_a_new_one" = "Wählen Sie einen neuen aus";
+"pick_a_new_one" = "Wählen Sie eine neue aus";
 "add_your_own" = "Füge dein eigenes hinzu";
 
 // AddYourRoutine
@@ -50,10 +50,6 @@
 "fetch_routine_failed" = "Die Routine nicht laden.";
 "add_routine_failed" = "Es gab ein Problem mit dem Hinzufügen der Routine.";
 "update_routine_failed" = "Es gab ein Problem, das die Routine aktualisiert.";
-"delete_routine_failed" = "Es gab ein Problem, die Routine zu löschen.";
+"delete_routine_failed" = "Es gab ein Problem beim Löschen der Routine.";
 "record_routine_failed" = "Es gab ein Problem bei der Aufzeichnung der Routine.";
-"name_count_less_then" = "Name Länge muss weniger als %d";
-"name_count_more_then" = "Name Länge muss mehr als %d";
-"description_count_less_then" = "Beschreibung Länge muss dann %d zählen";
-"description_count_more_then" = "Beschreibung Länge muss weniger als %d";
 "minumum_chracters" = "Mindest %d Chracters";

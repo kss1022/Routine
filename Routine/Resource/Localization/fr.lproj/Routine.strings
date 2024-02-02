@@ -22,7 +22,7 @@
 "basic_info_reminder_at" = "Rappel à% @";
 
 // CreateRoutine
-"pick_a_new_one" = "Choisissez-en un nouveau";
+"pick_a_new_one" = "Choisissez un nouveau";
 "add_your_own" = "Ajouter votre propre";
 
 // AddYourRoutine
@@ -49,11 +49,7 @@
 "fetch_list_failed" = "Impossible de charger la liste.";
 "fetch_routine_failed" = "Échec pour charger la routine.";
 "add_routine_failed" = "Il y a eu un problème ajoutant la routine.";
-"update_routine_failed" = "Il y avait un problème à jour la routine.";
+"update_routine_failed" = "Il y avait un problème à mettre à jour la routine.";
 "delete_routine_failed" = "Il y avait un problème à supprimer la routine.";
 "record_routine_failed" = "Il y avait un problème à enregistrer la routine.";
-"name_count_less_then" = "La longueur du nom doit être inférieure à% D";
-"name_count_more_then" = "La longueur du nom doit plus que% D";
-"description_count_less_then" = "La longueur de description doit compter alors% d";
-"description_count_more_then" = "La longueur de description doit être inférieure à% D";
 "minumum_chracters" = "Minimum% d chracters";

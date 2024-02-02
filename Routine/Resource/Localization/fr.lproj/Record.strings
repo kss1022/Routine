@@ -16,11 +16,13 @@
 
 // YourAchieve
 "your_achieve" = "Votre réalisation";
+"your_focus" = "Votre concentration";
 "date_of_week" = "Date de la semaine";
 "date_of_month" = "Date du mois";
 "date_of_year" = "Date de l'année";
 "done_this_month" = "Fait ce mois-ci";
 "totalDone" = "Total";
+"totalTime" = "Temps total";
 "current_streak" = "Séquence actuelle";
 "best_streak" = "Meilleure séquence";
 

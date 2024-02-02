@@ -52,8 +52,4 @@
 "update_routine_failed" = "ルーチンの更新に問題がありました。";
 "delete_routine_failed" = "ルーチンを削除する問題がありました。";
 "record_routine_failed" = "ルーチンの記録に問題がありました。";
-"name_count_less_then" = "名前の長さは％dよりも少ない必要があります";
-"name_count_more_then" = "名前の長さは％dを超える必要があります";
-"description_count_less_then" = "説明の長さは、％dをカウントする必要があります";
-"description_count_more_then" = "説明の長さは％dより少ない必要があります";
 "minumum_chracters" = "最小％dのクラクター";

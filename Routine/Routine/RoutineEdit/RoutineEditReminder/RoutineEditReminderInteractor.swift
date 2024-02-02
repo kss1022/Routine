@@ -9,7 +9,6 @@ import Foundation
 import ModernRIBs
 
 protocol RoutineEditReminderRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoutineEditReminderPresentable: Presentable {
@@ -87,7 +86,6 @@ final class RoutineEditReminderInteractor: PresentableInteractor<RoutineEditRemi
     
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     

@@ -13,12 +13,10 @@ protocol TimerTotalRecordInteractable: Interactable {
 }
 
 protocol TimerTotalRecordViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class TimerTotalRecordRouter: ViewableRouter<TimerTotalRecordInteractable, TimerTotalRecordViewControllable>, TimerTotalRecordRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: TimerTotalRecordInteractable, viewController: TimerTotalRecordViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

@@ -16,11 +16,13 @@
 
 // YourAchieve
 "your_achieve" = "您的成就";
+"your_focus" = "您的重点";
 "date_of_week" = "一周的日期";
-"date_of_month" = "月份";
+"date_of_month" = "一个月";
 "date_of_year" = "一年的日期";
 "done_this_month" = "本月完成了";
 "totalDone" = "总数";
+"totalTime" = "总时间";
 "current_streak" = "当前条纹";
 "best_streak" = "最好的连胜";
 

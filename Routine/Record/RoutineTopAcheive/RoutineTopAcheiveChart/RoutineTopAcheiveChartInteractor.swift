@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol RoutineTopAcheiveChartRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoutineTopAcheiveChartPresentable: Presentable {
@@ -22,7 +21,6 @@ protocol RoutineTopAcheiveChartPresentable: Presentable {
 }
 
 protocol RoutineTopAcheiveChartListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol RoutineTopAcheiveChartInteractorDependency{
@@ -50,7 +48,6 @@ final class RoutineTopAcheiveChartInteractor: PresentableInteractor<RoutineTopAc
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         
         let installation =  PreferenceStorage.shared.installation
         let now = Date()

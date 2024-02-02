@@ -13,12 +13,10 @@ protocol RoutineWeekCalendarInteractable: Interactable {
 }
 
 protocol RoutineWeekCalendarViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RoutineWeekCalendarRouter: ViewableRouter<RoutineWeekCalendarInteractable, RoutineWeekCalendarViewControllable>, RoutineWeekCalendarRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: RoutineWeekCalendarInteractable, viewController: RoutineWeekCalendarViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

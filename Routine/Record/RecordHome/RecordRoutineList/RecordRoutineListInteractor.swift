@@ -11,7 +11,6 @@ import Combine
 
 
 protocol RecordRoutineListRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RecordRoutineListPresentable: Presentable {

@@ -47,6 +47,7 @@ final class TimerDataViewController: UIViewController, TimerDataPresentable, Tim
     
     
     private func setLayout(){
+        title = "your_focus".localized(tableName: "Record")
         view.backgroundColor = .secondarySystemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)

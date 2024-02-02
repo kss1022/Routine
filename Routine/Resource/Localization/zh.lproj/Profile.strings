@@ -9,7 +9,7 @@
 "alarm" = "阿拉姆";
 "theme" = "主题";
 "font" = "字体";
-"appIcon" = "阿皮康";
+"appIcon" = "阿皮孔";
 "team" = "团队";
 "guide" = "指导";
 "feedback" = "反馈";
@@ -30,6 +30,8 @@
 "onOff" = "开关";
 "daliy_reminder" = "达利提醒";
 "routine_reminder" = "Rotuine提醒";
+"daliy_reminder_title" = "拥抱常规的开始。";
+"daliy_reminder_body" = "温和提醒您是时候进行特殊的例行工作了。以轻松的方式享受起点。";
 
 // SettingTheme
 "system" = "系统";
@@ -43,12 +45,13 @@
 "os_setting" = "操作系统设置";
 "os_setting_help" = "您可以在设置下更改OS设置>显示和亮度> Texque尺寸。";
 "os_typeface" = "OS字体";
+"base_typeface" = "基本字体";
 
 // Feedback
 "feedback_title" = "你好烤！";
 "feedback_message" = "欢迎任何反馈或错误报告:)";
 "saved_draft_folder" = "保存在草稿文件夹中";
-"saved_draft_folder_message" = "起草的电子邮件已保存在草案文件夹中。";
+"saved_draft_folder_message" = "草稿已保存在草案文件夹中。";
 "send_feedback" = "发送反馈";
 "thank_for_feedback" = "谢谢您的反馈🙏";
 "send_mail_fail" = "发送邮件失败😰";

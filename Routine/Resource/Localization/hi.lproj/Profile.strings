@@ -9,7 +9,7 @@
 "alarm" = "अलरम";
 "theme" = "विषय";
 "font" = "फ़ॉन्ट";
-"appIcon" = "एपिकॉन";
+"appIcon" = "एक प्रकार का";
 "team" = "टीम";
 "guide" = "मार्गदर्शक";
 "feedback" = "प्रतिक्रिया";
@@ -30,6 +30,8 @@
 "onOff" = "बंद";
 "daliy_reminder" = "दालि रिमाइंडर";
 "routine_reminder" = "रोटुइन रिमाइंडर";
+"daliy_reminder_title" = "अपनी दिनचर्या की शुरुआत को गले लगाओ।";
+"daliy_reminder_body" = "एक सौम्य अनुस्मारक कि यह आपकी विशेष दिनचर्या के लिए समय है। आराम से शुरुआत का आनंद लें।";
 
 // SettingTheme
 "system" = "प्रणाली";
@@ -43,6 +45,7 @@
 "os_setting" = "ओएस सेटिंग";
 "os_setting_help" = "आप सेटिंग्स> डिस्प्ले और ब्राइटनेस> टेक्सक आकार के तहत ओएस सेटिंग्स बदल सकते हैं।";
 "os_typeface" = "ओएस टाइपफेस";
+"base_typeface" = "आधार टाइपफेस";
 
 // Feedback
 "feedback_title" = "हैलो रोटेन!";
@@ -51,7 +54,7 @@
 "saved_draft_folder_message" = "ड्राफ्ट किए गए ईमेल को ड्राफ्ट फ़ोल्डर में सहेजा गया है।";
 "send_feedback" = "प्रतिक्रिया भेजें";
 "thank_for_feedback" = "आपकी प्रतिक्रिया के लिए धन्यवाद";
-"send_mail_fail" = "मेल विफल भेजें";
+"send_mail_fail" = "मेल फेल भेजें";
 "confirm" = "पुष्टि करना";
 
 // Error

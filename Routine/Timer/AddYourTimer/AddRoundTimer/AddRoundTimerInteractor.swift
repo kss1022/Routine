@@ -81,7 +81,6 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func closeButtonDidTap() {

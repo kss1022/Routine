@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol TimerListRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol TimerListPresentable: Presentable {

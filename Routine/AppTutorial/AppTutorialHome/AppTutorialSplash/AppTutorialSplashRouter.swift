@@ -13,12 +13,10 @@ protocol AppTutorialSplashInteractable: Interactable {
 }
 
 protocol AppTutorialSplashViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class AppTutorialSplashRouter: ViewableRouter<AppTutorialSplashInteractable, AppTutorialSplashViewControllable>, AppTutorialSplashRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: AppTutorialSplashInteractable, viewController: AppTutorialSplashViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol TimerDataOfYearRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol TimerDataOfYearPresentable: Presentable {
@@ -19,7 +18,6 @@ protocol TimerDataOfYearPresentable: Presentable {
 }
 
 protocol TimerDataOfYearListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol TimerDataOfYearInteractorDependency{

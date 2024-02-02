@@ -8,7 +8,6 @@
 import ModernRIBs
 
 protocol AppTutorialRoutineRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol AppTutorialRoutinePresentable: Presentable {
@@ -95,7 +94,6 @@ final class AppTutorialRoutineInteractor: PresentableInteractor<AppTutorialRouti
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func continueButtonDidTap() {

@@ -14,7 +14,6 @@ protocol SettingFontRouting: ViewableRouting {
 
 protocol SettingFontPresentable: Presentable {
     var listener: SettingFontPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol SettingFontListener: AnyObject {
@@ -31,7 +30,6 @@ final class SettingFontInteractor: PresentableInteractor<SettingFontPresentable>
     weak var router: SettingFontRouting?
     weak var listener: SettingFontListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: SettingFontPresentable) {
         super.init(presenter: presenter)
@@ -47,7 +45,6 @@ final class SettingFontInteractor: PresentableInteractor<SettingFontPresentable>
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     

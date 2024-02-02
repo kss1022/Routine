@@ -16,11 +16,13 @@
 
 // YourAchieve
 "your_achieve" = "Başarınız";
+"your_focus" = "Odaklanın";
 "date_of_week" = "Haftanın Tarihi";
 "date_of_month" = "Ayın tarihi";
 "date_of_year" = "Yılın tarihi";
 "done_this_month" = "Bu ay bitti";
 "totalDone" = "Totaldone";
+"totalTime" = "Toplam zaman";
 "current_streak" = "Mevcut çizgi";
 "best_streak" = "En iyi çizgi";
 

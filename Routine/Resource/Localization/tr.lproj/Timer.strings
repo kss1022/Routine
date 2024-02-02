@@ -43,7 +43,7 @@
 "exercise" = "Egzersiz yapmak";
 "exercise_description" = "Bunu yapabilirsin!";
 "round" = "Yuvarlak";
-"round_description" = "Rutin egzersiz + dinlenir";
+"round_description" = "Rutin egzersiz + dinlenme";
 "cycle" = "Döngü";
 "cycle_description" = "Döngü bir n tur";
 "cycle_rest" = "Döngü dinlenmesi";
@@ -63,4 +63,5 @@
 "fetch_timer_failed" = "Zamanlayıcıyı elde etmekte bir sorun vardı.";
 "add_timer_failed" = "Zamanlayıcıyı ekleyerek bir sorun vardı.";
 "update_timer_failed" = "Zamanlayıcıyı değiştirmede bir sorun vardı.";
+"record_timer_failed" = "Zamanlayıcıyı kaydetmede bir sorun vardı.";
 "minumum_chracters" = "Minimum %D Chracters";

@@ -15,7 +15,6 @@ protocol CreateTimerInteractable: Interactable, AddYourTimerListener {
 }
 
 protocol CreateTimerViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class CreateTimerRouter: ViewableRouter<CreateTimerInteractable, CreateTimerViewControllable>, CreateTimerRouting {

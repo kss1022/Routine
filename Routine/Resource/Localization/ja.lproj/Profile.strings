@@ -9,7 +9,7 @@
 "alarm" = "アルラム";
 "theme" = "テーマ";
 "font" = "フォント";
-"appIcon" = "Appicon";
+"appIcon" = "アプリコン";
 "team" = "チーム";
 "guide" = "ガイド";
 "feedback" = "フィードバック";
@@ -30,6 +30,8 @@
 "onOff" = "オンオフ";
 "daliy_reminder" = "daliyリマインダー";
 "routine_reminder" = "Rotuineリマインダー";
+"daliy_reminder_title" = "あなたのルーチンの始まりを受け入れます。";
+"daliy_reminder_body" = "あなたの特別なルーチンの時間であることを穏やかに思い出させてください。リラックスした方法で始まりをお楽しみください。";
 
 // SettingTheme
 "system" = "システム";
@@ -43,6 +45,7 @@
 "os_setting" = "OS設定";
 "os_setting_help" = "[設定]> [ディスプレイと[明]> [テキスト]サイズの下のOS設定を変更できます。";
 "os_typeface" = "OS書体";
+"base_typeface" = "ベース書体";
 
 // Feedback
 "feedback_title" = "こんにちはロティン！";

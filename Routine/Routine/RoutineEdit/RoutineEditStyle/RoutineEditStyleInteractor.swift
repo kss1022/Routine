@@ -8,7 +8,6 @@
 import ModernRIBs
 
 protocol RoutineEditStyleRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoutineEditStylePresentable: Presentable {
@@ -55,7 +54,6 @@ final class RoutineEditStyleInteractor: PresentableInteractor<RoutineEditStylePr
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didSetStyle(style: EmojiStyle) {

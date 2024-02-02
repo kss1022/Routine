@@ -37,7 +37,7 @@
 "name" = "姓名";
 "description" = "描述";
 "ready" = "准备好";
-"ready_description" = "在开始倒计时之前";
+"ready_description" = "开始倒计时之前";
 "take_a_rest" = "休息一下";
 "take_a_rest_description" = "休息一下";
 "exercise" = "锻炼";
@@ -63,4 +63,5 @@
 "fetch_timer_failed" = "获取计时器存在问题。";
 "add_timer_failed" = "添加计时器存在问题。";
 "update_timer_failed" = "修改计时器存在问题。";
+"record_timer_failed" = "记录计时器时存在问题。";
 "minumum_chracters" = "最低％D Chracter";

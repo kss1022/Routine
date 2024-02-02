@@ -8,13 +8,9 @@
 import ModernRIBs
 
 protocol SettingAppThemeDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
 }
 
 final class SettingAppThemeComponent: Component<SettingAppThemeDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
 // MARK: - Builder

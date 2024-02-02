@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol TabataRoundTimerRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol TabataRoundTimerPresentable: Presentable {

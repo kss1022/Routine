@@ -13,12 +13,10 @@ protocol RoundProgressInteractable: Interactable {
 }
 
 protocol RoundProgressViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RoundProgressRouter: ViewableRouter<RoundProgressInteractable, RoundProgressViewControllable>, RoundProgressRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: RoundProgressInteractable, viewController: RoundProgressViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

@@ -14,7 +14,6 @@ protocol RoutineTopAcheiveRouting: ViewableRouting {
 
 protocol RoutineTopAcheivePresentable: Presentable {
     var listener: RoutineTopAcheivePresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol RoutineTopAcheiveListener: AnyObject {
@@ -26,7 +25,6 @@ final class RoutineTopAcheiveInteractor: PresentableInteractor<RoutineTopAcheive
     weak var router: RoutineTopAcheiveRouting?
     weak var listener: RoutineTopAcheiveListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: RoutineTopAcheivePresentable) {
         super.init(presenter: presenter)
@@ -41,7 +39,6 @@ final class RoutineTopAcheiveInteractor: PresentableInteractor<RoutineTopAcheive
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     

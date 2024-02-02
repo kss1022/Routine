@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol RecordCalendarRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RecordCalendarPresentable: Presentable {
@@ -19,7 +18,6 @@ protocol RecordCalendarPresentable: Presentable {
 }
 
 protocol RecordCalendarListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol RecordCalendarInteractorDependency{

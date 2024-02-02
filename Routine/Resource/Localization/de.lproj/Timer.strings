@@ -43,7 +43,7 @@
 "exercise" = "Übung";
 "exercise_description" = "Du kannst es schaffen!";
 "round" = "Runden";
-"round_description" = "Routine ist excercise + ruht";
+"round_description" = "Routine ist eine Excercise + Ruhe";
 "cycle" = "Zyklus";
 "cycle_description" = "Zyklus ist eine N -Runde";
 "cycle_rest" = "Zyklusruhe";
@@ -63,4 +63,5 @@
 "fetch_timer_failed" = "Es gab ein Problem, den Timer zu bekommen.";
 "add_timer_failed" = "Es gab ein Problem mit dem Hinzufügen des Timers.";
 "update_timer_failed" = "Es gab ein Problem, den Timer zu ändern.";
+"record_timer_failed" = "Es gab ein Problem, den Timer aufzunehmen.";
 "minumum_chracters" = "Mindest %d Chracters";

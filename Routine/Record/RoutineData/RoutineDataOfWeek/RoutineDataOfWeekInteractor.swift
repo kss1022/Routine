@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol RoutineDataOfWeekRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoutineDataOfWeekPresentable: Presentable {
@@ -19,7 +18,6 @@ protocol RoutineDataOfWeekPresentable: Presentable {
 }
 
 protocol RoutineDataOfWeekListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol RoutineDataOfWeekInteractorDependency{

@@ -9,12 +9,10 @@ import Foundation
 import ModernRIBs
 
 protocol AppTutorialTimerRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol AppTutorialTimerPresentable: Presentable {
     var listener: AppTutorialTimerPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol AppTutorialTimerListener: AnyObject {
@@ -52,7 +50,6 @@ final class AppTutorialTimerInteractor: PresentableInteractor<AppTutorialTimerPr
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         
         Task{
             try await notificationManager.setupNotification()
@@ -61,7 +58,6 @@ final class AppTutorialTimerInteractor: PresentableInteractor<AppTutorialTimerPr
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func reminderTimePickerValueChange(date: Date) {

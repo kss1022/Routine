@@ -8,7 +8,6 @@
 import ModernRIBs
 
 protocol ProfileEditNameRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol ProfileEditNamePresentable: Presentable {
@@ -51,7 +50,6 @@ final class ProfileEditNameInteractor: PresentableInteractor<ProfileEditNamePres
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didMove() {

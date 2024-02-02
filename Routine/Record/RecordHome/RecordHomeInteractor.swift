@@ -35,11 +35,9 @@ protocol RecordHomeRouting: ViewableRouting {
 
 protocol RecordHomePresentable: Presentable {
     var listener: RecordHomePresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol RecordHomeListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol RecordHomeInteractorDependency{
@@ -76,7 +74,6 @@ final class RecordHomeInteractor: PresentableInteractor<RecordHomePresentable>, 
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     //MARK: Banner

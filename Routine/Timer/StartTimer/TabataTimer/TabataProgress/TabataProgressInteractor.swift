@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol TabataProgressRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol TabataProgressPresentable: Presentable {
@@ -22,7 +21,6 @@ protocol TabataProgressPresentable: Presentable {
 }
 
 protocol TabataProgressListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol TabataProgressInteractorDependency{

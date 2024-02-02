@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol RoutineDataOfYearRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoutineDataOfYearPresentable: Presentable {
@@ -19,7 +18,6 @@ protocol RoutineDataOfYearPresentable: Presentable {
 }
 
 protocol RoutineDataOfYearListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol RoutineDataOfYearInteractorDependency{

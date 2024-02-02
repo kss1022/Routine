@@ -15,9 +15,6 @@ protocol TimerEditInteractable: Interactable, EditFocusTimerListener , EditTabat
 }
 
 protocol TimerEditViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy. Since
-    // this RIB does not own its own view, this protocol is conformed to by one of this
-    // RIB's ancestor RIBs' view.
 }
 
 final class TimerEditRouter: Router<TimerEditInteractable>, TimerEditRouting {

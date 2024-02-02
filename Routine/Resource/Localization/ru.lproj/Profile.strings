@@ -30,6 +30,8 @@
 "onOff" = "ВКЛ ВЫКЛ";
 "daliy_reminder" = "DALIY напоминание";
 "routine_reminder" = "Вращение напоминания";
+"daliy_reminder_title" = "Примите начало вашей рутины.";
+"daliy_reminder_body" = "Нежное напоминание о том, что пришло время для вашей специальной рутины. Наслаждайтесь началом расслабленным образом.";
 
 // SettingTheme
 "system" = "Система";
@@ -43,6 +45,7 @@
 "os_setting" = "Настройка ОС";
 "os_setting_help" = "Вы можете изменить настройки ОС в настройках> Дисплей и Яркость> Texque Size.";
 "os_typeface" = "ОС шрифт";
+"base_typeface" = "Базовый шрифт";
 
 // Feedback
 "feedback_title" = "Привет, Рорин!";

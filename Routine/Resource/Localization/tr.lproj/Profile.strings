@@ -30,6 +30,8 @@
 "onOff" = "AÇIK KAPALI";
 "daliy_reminder" = "Daliy hatırlatma";
 "routine_reminder" = "Rotuine hatırlatma";
+"daliy_reminder_title" = "Rutininizin başlangıcını kucaklayın.";
+"daliy_reminder_body" = "Özel rutininizin zamanının geldiğini nazik bir hatırlatma. Başının rahat bir şekilde tadını çıkarın.";
 
 // SettingTheme
 "system" = "Sistem";
@@ -43,6 +45,7 @@
 "os_setting" = "İşletim sistemi ayarı";
 "os_setting_help" = "OS ayarlarını ayarlar> Ekran ve Parlaklık> Texque Boyutu altında değiştirebilirsiniz.";
 "os_typeface" = "İşletim sistemi yazı tipi";
+"base_typeface" = "Temel yazı tipi";
 
 // Feedback
 "feedback_title" = "Merhaba Rotine!";

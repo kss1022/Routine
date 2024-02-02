@@ -9,7 +9,6 @@ import ModernRIBs
 
 
 protocol AppInfoRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol AppInfoPresentable: Presentable {
@@ -76,7 +75,6 @@ final class AppInfoInteractor: PresentableInteractor<AppInfoPresentable>, AppInf
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func closeBarButtonDidTap() {

@@ -63,4 +63,5 @@
 "fetch_timer_failed" = "Была проблема с получением таймера.";
 "add_timer_failed" = "Была проблема, добавив таймер.";
 "update_timer_failed" = "Была проблема с изменением таймера.";
+"record_timer_failed" = "Была проблема с записи таймера.";
 "minumum_chracters" = "Минимальный %d chracters";

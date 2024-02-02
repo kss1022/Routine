@@ -9,7 +9,6 @@ import Foundation
 import ModernRIBs
 
 protocol RoutineEditRepeatRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoutineEditRepeatPresentable: Presentable {

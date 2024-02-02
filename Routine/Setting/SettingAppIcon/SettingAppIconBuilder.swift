@@ -8,13 +8,9 @@
 import ModernRIBs
 
 protocol SettingAppIconDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
 }
 
 final class SettingAppIconComponent: Component<SettingAppIconDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
 // MARK: - Builder

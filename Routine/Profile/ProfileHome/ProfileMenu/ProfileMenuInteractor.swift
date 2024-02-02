@@ -8,7 +8,6 @@
 import ModernRIBs
 
 protocol ProfileMenuRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol ProfileMenuPresentable: Presentable {
@@ -35,7 +34,6 @@ final class ProfileMenuInteractor: PresentableInteractor<ProfileMenuPresentable>
     weak var router: ProfileMenuRouting?
     weak var listener: ProfileMenuListener?
     
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: ProfileMenuPresentable) {
         super.init(presenter: presenter)
@@ -44,7 +42,6 @@ final class ProfileMenuInteractor: PresentableInteractor<ProfileMenuPresentable>
     
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         
         let listModels = [
             ProfileMenuListModel(
@@ -75,11 +72,11 @@ final class ProfileMenuInteractor: PresentableInteractor<ProfileMenuPresentable>
             ProfileMenuListModel(
                 title: "team".localized(tableName: "Profile"),
                 menus:  [
-                    ProfileMenuModel(
-                        imageName: "map",
-                        title: "guide".localized(tableName: "Profile")) { [weak self] in
-                            self?.listener?.profileMenuGuideButtonDidTap()
-                        },
+//                    ProfileMenuModel(
+//                        imageName: "map",
+//                        title: "guide".localized(tableName: "Profile")) { [weak self] in
+//                            self?.listener?.profileMenuGuideButtonDidTap()
+//                        },
                     ProfileMenuModel(
                         imageName: "paperplane",
                         title: "feedback".localized(tableName: "Profile")) { [weak self] in
@@ -106,6 +103,5 @@ final class ProfileMenuInteractor: PresentableInteractor<ProfileMenuPresentable>
     
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
 }

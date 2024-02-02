@@ -63,4 +63,5 @@
 "fetch_timer_failed" = "タイマーを取得するのに問題がありました。";
 "add_timer_failed" = "タイマーの追加に問題がありました。";
 "update_timer_failed" = "タイマーの変更に問題がありました。";
+"record_timer_failed" = "タイマーの記録に問題がありました。";
 "minumum_chracters" = "最小％dのクラクター";

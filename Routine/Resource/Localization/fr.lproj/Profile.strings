@@ -30,6 +30,8 @@
 "onOff" = "ALLUMÉ ÉTEINT";
 "daliy_reminder" = "Rappel daliy";
 "routine_reminder" = "Rappel";
+"daliy_reminder_title" = "Embrassez le début de votre routine.";
+"daliy_reminder_body" = "Un doux rappel qu'il est temps pour votre routine spéciale. Profitez du début de manière détendue.";
 
 // SettingTheme
 "system" = "Système";
@@ -40,9 +42,10 @@
 "font_preview" = "Bonjour routine ~ 👋";
 "font_size" = "Taille de police";
 "font_typeface" = "Police de police";
-"os_setting" = "Réglage du système d'exploitation";
+"os_setting" = "Paramètre OS";
 "os_setting_help" = "Vous pouvez modifier les paramètres du système d'exploitation sous Paramètres> Affichage et luminosité> Taille texque.";
 "os_typeface" = "Face de caractères";
+"base_typeface" = "Police de base";
 
 // Feedback
 "feedback_title" = "Bonjour la rotine!";

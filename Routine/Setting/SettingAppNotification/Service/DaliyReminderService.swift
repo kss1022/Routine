@@ -41,14 +41,17 @@ final class DaliyReminderServiceImp: DaliyReminderService{
     private var hour: Int{ preferenceStorage.daliyReminderHour }
     private var minute : Int{ preferenceStorage.daliyReminderMinute }
     
-    //TODO: Localized
+
     func register(date: Date) async throws {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
         
         let localNotification = try LocalNotification.Builder()
-            .setContent(title: "Embrace the Start of Your Routine.", body: "A gentle reminder that it's time for your special routine. Enjoy the beginning in a relaxed manner.")
+            .setContent(
+                title: "daliy_reminder_title".localized(tableName: "Profile"),
+                body: "daliy_reminder_body".localized(tableName: "Profile")
+            )
             .setTimeTrigger(hour: hour, minute: minute, repeats: true)
             .build()
         
@@ -91,11 +94,14 @@ final class DaliyReminderServiceImp: DaliyReminderService{
         
         daliySubject.send(model)
     }
+
     
-    //TODO: Localized
     private func registerDaliyReminder() async throws{
         let localNotification = try LocalNotification.Builder()
-            .setContent(title: "Embrace the Start of Your Routine.", body: "A gentle reminder that it's time for your special routine. Enjoy the beginning in a relaxed manner.")
+            .setContent(
+                title: "daliy_reminder_title".localized(tableName: "Profile"),
+                body: "daliy_reminder_body".localized(tableName: "Profile")
+            )
             .setTimeTrigger(hour: self.hour, minute: self.minute, repeats: true)
             .build()
                             

@@ -9,9 +9,7 @@ import Foundation
 import ModernRIBs
 import Combine
 
-protocol RoutineBasicInfoRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-}
+protocol RoutineBasicInfoRouting: ViewableRouting {}
 
 protocol RoutineBasicInfoPresentable: Presentable {
     var listener: RoutineBasicInfoPresentableListener? { get set }
@@ -20,7 +18,6 @@ protocol RoutineBasicInfoPresentable: Presentable {
 }
 
 protocol RoutineBasicInfoListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol RoutineBasicInfoInteractorDependency{

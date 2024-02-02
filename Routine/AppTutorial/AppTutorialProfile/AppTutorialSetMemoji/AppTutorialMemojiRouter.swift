@@ -13,12 +13,10 @@ protocol AppTutorialMemojiInteractable: Interactable {
 }
 
 protocol AppTutorialMemojiViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class AppTutorialMemojiRouter: ViewableRouter<AppTutorialMemojiInteractable, AppTutorialMemojiViewControllable>, AppTutorialMemojiRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: AppTutorialMemojiInteractable, viewController: AppTutorialMemojiViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

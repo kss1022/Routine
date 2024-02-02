@@ -8,7 +8,6 @@
 import ModernRIBs
 
 protocol SettingAppIconRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol SettingAppIconPresentable: Presentable {
@@ -25,7 +24,6 @@ final class SettingAppIconInteractor: PresentableInteractor<SettingAppIconPresen
     weak var router: SettingAppIconRouting?
     weak var listener: SettingAppIconListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: SettingAppIconPresentable) {
         super.init(presenter: presenter)
@@ -34,7 +32,6 @@ final class SettingAppIconInteractor: PresentableInteractor<SettingAppIconPresen
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         
         presenter.setIcons(viewModels: [
             SettingAppIconViewModel(image: "kingfisher-2.jpg"),
@@ -50,7 +47,6 @@ final class SettingAppIconInteractor: PresentableInteractor<SettingAppIconPresen
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didMove() {

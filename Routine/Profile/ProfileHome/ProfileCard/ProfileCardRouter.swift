@@ -13,12 +13,10 @@ protocol ProfileCardInteractable: Interactable {
 }
 
 protocol ProfileCardViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class ProfileCardRouter: ViewableRouter<ProfileCardInteractable, ProfileCardViewControllable>, ProfileCardRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: ProfileCardInteractable, viewController: ProfileCardViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

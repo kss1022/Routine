@@ -13,7 +13,6 @@ protocol AddYourRoutineInteractable: Interactable ,RoutineEditTitleListener, Rou
 }
 
 protocol AddYourRoutineViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
     func addTitle(_ view : ViewControllable)
     func addTint(_ view: ViewControllable)
     func addEmojiIcon(_ view: ViewControllable)

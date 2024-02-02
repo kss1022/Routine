@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol AppTutorialMemojiRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol AppTutorialMemojiPresentable: Presentable {
@@ -71,7 +70,6 @@ final class AppTutorialMemojiInteractor: PresentableInteractor<AppTutorialMemoji
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     

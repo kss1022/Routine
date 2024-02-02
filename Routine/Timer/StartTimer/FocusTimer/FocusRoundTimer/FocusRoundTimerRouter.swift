@@ -13,12 +13,10 @@ protocol FocusRoundTimerInteractable: Interactable {
 }
 
 protocol FocusRoundTimerViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class FocusRoundTimerRouter: ViewableRouter<FocusRoundTimerInteractable, FocusRoundTimerViewControllable>, FocusRoundTimerRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: FocusRoundTimerInteractable, viewController: FocusRoundTimerViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

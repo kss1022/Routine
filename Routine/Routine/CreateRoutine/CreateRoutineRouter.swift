@@ -16,7 +16,6 @@ protocol CreateRoutineInteractable: Interactable , AddYourRoutineListener{
 }
 
 protocol CreateRoutineViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class CreateRoutineRouter: ViewableRouter<CreateRoutineInteractable, CreateRoutineViewControllable>, CreateRoutineRouting {

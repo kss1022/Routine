@@ -44,7 +44,6 @@ protocol ProfileHomePresentable: Presentable {
 }
 
 protocol ProfileHomeListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol ProfileHomeInteractorDependency{
@@ -103,7 +102,6 @@ final class ProfileHomeInteractor: PresentableInteractor<ProfileHomePresentable>
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     

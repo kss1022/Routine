@@ -10,7 +10,6 @@ import ModernRIBs
 
 
 protocol RoutineEditTitleRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoutineEditTitlePresentable: Presentable {
@@ -21,7 +20,6 @@ protocol RoutineEditTitlePresentable: Presentable {
 }
 
 protocol RoutineEditTitleListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
     func routineEditTitleSetName(name: String)
     func routineEditTitleSetDescription(description: String)
     func routineEditTitleDidSetEmoji(emoji: String)
@@ -61,7 +59,6 @@ final class RoutineEditTitleInteractor: PresentableInteractor<RoutineEditTitlePr
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didSetRoutineName(name: String) {        

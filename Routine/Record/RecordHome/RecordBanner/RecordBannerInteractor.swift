@@ -8,12 +8,10 @@
 import ModernRIBs
 
 protocol RecordBannerRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RecordBannerPresentable: Presentable {
     var listener: RecordBannerPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol RecordBannerListener: AnyObject {
@@ -25,7 +23,6 @@ final class RecordBannerInteractor: PresentableInteractor<RecordBannerPresentabl
     weak var router: RecordBannerRouting?
     weak var listener: RecordBannerListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: RecordBannerPresentable) {
         super.init(presenter: presenter)
@@ -34,12 +31,10 @@ final class RecordBannerInteractor: PresentableInteractor<RecordBannerPresentabl
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func bannerCellDidTap(index: Int) {

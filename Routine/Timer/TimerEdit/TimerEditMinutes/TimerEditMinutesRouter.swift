@@ -13,12 +13,10 @@ protocol TimerEditMinutesInteractable: Interactable {
 }
 
 protocol TimerEditMinutesViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class TimerEditMinutesRouter: ViewableRouter<TimerEditMinutesInteractable, TimerEditMinutesViewControllable>, TimerEditMinutesRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: TimerEditMinutesInteractable, viewController: TimerEditMinutesViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

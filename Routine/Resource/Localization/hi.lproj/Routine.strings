@@ -52,8 +52,4 @@
 "update_routine_failed" = "एक समस्या थी दिनचर्या को अपडेट करें।";
 "delete_routine_failed" = "दिनचर्या को हटाने में समस्या थी।";
 "record_routine_failed" = "दिनचर्या को रिकॉर्ड करने में एक समस्या थी।";
-"name_count_less_then" = "नाम की लंबाई कम होनी चाहिए तो %d";
-"name_count_more_then" = "नाम की लंबाई अधिक हो तो %d";
-"description_count_less_then" = "विवरण लंबाई की गणना होनी चाहिए तो %d";
-"description_count_more_then" = "विवरण लंबाई कम होनी चाहिए तो %d";
 "minumum_chracters" = "न्यूनतम %d chracters";

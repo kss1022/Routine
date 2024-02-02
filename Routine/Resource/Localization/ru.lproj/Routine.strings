@@ -52,8 +52,4 @@
 "update_routine_failed" = "Была проблема обновления рутины.";
 "delete_routine_failed" = "Была проблема с удалением рутины.";
 "record_routine_failed" = "Была проблема с записи рутины.";
-"name_count_less_then" = "Длина имени должна меньше, чем %d";
-"name_count_more_then" = "Длина имени должна больше, чем %d";
-"description_count_less_then" = "Длина описания должна учитывать, затем %D";
-"description_count_more_then" = "Длина описания должна меньше, чем %d";
 "minumum_chracters" = "Минимальный %d chracters";

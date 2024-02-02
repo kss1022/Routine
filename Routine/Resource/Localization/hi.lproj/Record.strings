@@ -9,18 +9,20 @@
 "your_achieve" = "आपकी प्राप्ति";
 "top_achieve" = "शीर्ष प्राप्त करना";
 "routine_achieve_isEmpty" = "आपके पास अभी तक कोई रूटीन \ n उपलब्धि रिकॉर्ड नहीं है।";
-"added_routine_isEmpty" = "आपने अभी तक कोई दिनचर्या नहीं जोड़ा है";
+"added_routine_isEmpty" = "आपने अभी तक किसी भी दिनचर्या को नहीं जोड़ा है";
 
 // WeeklyTracker
 "weeklyTracker" = "साप्ताहिक";
 
 // YourAchieve
 "your_achieve" = "आपकी प्राप्ति";
+"your_focus" = "आपका ध्यान";
 "date_of_week" = "सप्ताह की तारीख";
 "date_of_month" = "महीने की तारीख";
 "date_of_year" = "वर्ष की तारीख";
 "done_this_month" = "इस महीने हो गया";
-"totalDone" = "कुल मिलाकर";
+"totalDone" = "Totaldone";
+"totalTime" = "कुल समय";
 "current_streak" = "वर्तमान धारा";
 "best_streak" = "बेस्ट स्ट्रीक";
 

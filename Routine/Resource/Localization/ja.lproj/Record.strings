@@ -16,11 +16,13 @@
 
 // YourAchieve
 "your_achieve" = "あなたの達成";
+"your_focus" = "あなたの焦点";
 "date_of_week" = "週の日付";
 "date_of_month" = "月の日付";
 "date_of_year" = "日付";
 "done_this_month" = "今月行われました";
-"totalDone" = "トータルドーン";
+"totalDone" = "Totaldone";
+"totalTime" = "合計時間";
 "current_streak" = "現在のストリーク";
 "best_streak" = "最高のストリーク";
 

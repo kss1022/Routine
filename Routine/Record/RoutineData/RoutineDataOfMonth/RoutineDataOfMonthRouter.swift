@@ -13,12 +13,10 @@ protocol RoutineDataOfMonthInteractable: Interactable {
 }
 
 protocol RoutineDataOfMonthViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RoutineDataOfMonthRouter: ViewableRouter<RoutineDataOfMonthInteractable, RoutineDataOfMonthViewControllable>, RoutineDataOfMonthRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: RoutineDataOfMonthInteractable, viewController: RoutineDataOfMonthViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

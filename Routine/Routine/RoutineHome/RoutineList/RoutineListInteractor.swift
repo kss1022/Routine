@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol RoutineListRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol RoutineListPresentable: Presentable {
@@ -74,9 +73,7 @@ final class RoutineListInteractor: PresentableInteractor<RoutineListPresentable>
     }
 
     override func willResignActive() {
-        super.willResignActive()
-        // TODO: Pause any business logic.
-        
+        super.willResignActive()        
         cancelables.forEach { $0.cancel() }
         cancelables.removeAll()
     }

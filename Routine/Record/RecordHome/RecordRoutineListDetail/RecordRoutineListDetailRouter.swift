@@ -13,7 +13,6 @@ protocol RecordRoutineListDetailInteractable: Interactable, RoutineDataListener{
 }
 
 protocol RecordRoutineListDetailViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RecordRoutineListDetailRouter: ViewableRouter<RecordRoutineListDetailInteractable, RecordRoutineListDetailViewControllable>, RecordRoutineListDetailRouting {

@@ -16,11 +16,13 @@
 
 // YourAchieve
 "your_achieve" = "Your Achieve";
+"your_focus" = "Your Focus";
 "date_of_week" = "Date of week";
 "date_of_month" = "Date of Month";
 "date_of_year" = "Date Of Year";
 "done_this_month" = "Done this month";
 "totalDone" = "TotalDone";
+"totalTime" = "TotalTime";
 "current_streak" = "Current Streak";
 "best_streak" = "Best Streak";
 

@@ -15,11 +15,9 @@ protocol AppRootRouting: ViewableRouting {
 
 protocol AppRootPresentable: Presentable {
     var listener: AppRootPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol AppRootListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol AppRootInteractorDependency{
@@ -55,7 +53,6 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
     
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func handle(_ url: URL) {

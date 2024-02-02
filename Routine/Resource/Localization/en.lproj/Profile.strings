@@ -29,7 +29,9 @@
 // SettingAlarm
 "onOff" = "ONOFF";
 "daliy_reminder" = "Daliy Reminder";
-"routine_reminder" = "Rotuine Reminder";
+"routine_reminder" = "Rotuine Reminder";
+"daliy_reminder_title" = "Embrace the Start of Your Routine.";
+"daliy_reminder_body" = "A gentle reminder that it's time for your special routine. Enjoy the beginning in a relaxed manner.";
 
 // SettingTheme
 "system" = "System";
@@ -43,6 +45,7 @@
 "os_setting" = "OS Setting";
 "os_setting_help" = "You can change OS settings under Settings > Display and Brightness > Texque Size.";
 "os_typeface" = "OS Typeface";
+"base_typeface" = "Base Typeface";
 
 // Feedback
 "feedback_title" = "Hello Rotine!";

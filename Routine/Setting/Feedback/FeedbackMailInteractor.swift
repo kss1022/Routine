@@ -10,7 +10,6 @@ import ModernRIBs
 import UIKit
 
 protocol FeedbackMailRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol FeedbackMailPresentable: Presentable {
@@ -30,7 +29,6 @@ final class FeedbackMailInteractor: PresentableInteractor<FeedbackMailPresentabl
     weak var router: FeedbackMailRouting?
     weak var listener: FeedbackMailListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: FeedbackMailPresentable) {
         super.init(presenter: presenter)
@@ -39,7 +37,6 @@ final class FeedbackMailInteractor: PresentableInteractor<FeedbackMailPresentabl
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
         
         let appInfoMananger = AppInfoManager.shared
         let appName = appInfoMananger.appName()
@@ -74,7 +71,6 @@ final class FeedbackMailInteractor: PresentableInteractor<FeedbackMailPresentabl
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didFinishWithCancel() {

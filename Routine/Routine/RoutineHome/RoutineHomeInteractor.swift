@@ -27,7 +27,6 @@ protocol RoutineHomePresentable: Presentable {
 }
 
 protocol RoutineHomeListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol RoutineHomeInteractorDependency{

@@ -13,12 +13,10 @@ protocol AppTutorialRoutineInteractable: Interactable {
 }
 
 protocol AppTutorialRoutineViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class AppTutorialRoutineRouter: ViewableRouter<AppTutorialRoutineInteractable, AppTutorialRoutineViewControllable>, AppTutorialRoutineRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: AppTutorialRoutineInteractable, viewController: AppTutorialRoutineViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

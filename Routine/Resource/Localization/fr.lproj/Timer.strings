@@ -37,7 +37,7 @@
 "name" = "Nom";
 "description" = "Description";
 "ready" = "Prêt";
-"ready_description" = "Avant le compte à rebours";
+"ready_description" = "Avant de démarrer le compte à rebours";
 "take_a_rest" = "Repose toi un peu";
 "take_a_rest_description" = "Repose toi un peu";
 "exercise" = "Exercice";
@@ -63,4 +63,5 @@
 "fetch_timer_failed" = "Il y avait un problème à obtenir la minuterie.";
 "add_timer_failed" = "Il y avait un problème à ajouter la minuterie.";
 "update_timer_failed" = "Il y avait un problème à modifier la minuterie.";
+"record_timer_failed" = "Il y avait un problème à enregistrer la minuterie.";
 "minumum_chracters" = "Minimum% d chracters";

@@ -13,12 +13,10 @@ protocol RoundRoundTimerInteractable: Interactable {
 }
 
 protocol RoundRoundTimerViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RoundRoundTimerRouter: ViewableRouter<RoundRoundTimerInteractable, RoundRoundTimerViewControllable>, RoundRoundTimerRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: RoundRoundTimerInteractable, viewController: RoundRoundTimerViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

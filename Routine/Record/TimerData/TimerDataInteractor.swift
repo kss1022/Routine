@@ -17,11 +17,9 @@ protocol TimerDataRouting: ViewableRouting {
 
 protocol TimerDataPresentable: Presentable {
     var listener: TimerDataPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol TimerDataListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
     func timerDataDidMove()
 }
 
@@ -86,7 +84,6 @@ final class TimerDataInteractor: PresentableInteractor<TimerDataPresentable>, Ti
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didMove() {

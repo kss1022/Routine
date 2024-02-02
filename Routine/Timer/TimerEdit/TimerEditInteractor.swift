@@ -88,7 +88,6 @@ final class TimerEditInteractor: Interactor, TimerEditInteractable, AdaptivePres
         super.willResignActive()
 
         router?.cleanupViews()
-        // TODO: Pause any business logic.
     }
     
     

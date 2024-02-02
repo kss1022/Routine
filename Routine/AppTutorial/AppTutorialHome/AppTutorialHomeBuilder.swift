@@ -8,13 +8,9 @@
 import ModernRIBs
 
 protocol AppTutorialHomeDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
 }
 
 final class AppTutorialHomeComponent: Component<AppTutorialHomeDependency>, AppTutorialMainDependency, AppTutorialSplashDependency {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
 // MARK: - Builder

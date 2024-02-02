@@ -8,7 +8,6 @@
 import ModernRIBs
 
 protocol TimerEditTitleRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol TimerEditTitlePresentable: Presentable {
@@ -52,7 +51,6 @@ final class TimerEditTitleInteractor: PresentableInteractor<TimerEditTitlePresen
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didSetName(name: String) {

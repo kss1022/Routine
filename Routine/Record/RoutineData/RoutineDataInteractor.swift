@@ -16,7 +16,6 @@ protocol RoutineDataRouting: ViewableRouting {
 
 protocol RoutineDataPresentable: Presentable {
     var listener: RoutineDataPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol RoutineDataListener: AnyObject {
@@ -28,7 +27,6 @@ final class RoutineDataInteractor: PresentableInteractor<RoutineDataPresentable>
     weak var router: RoutineDataRouting?
     weak var listener: RoutineDataListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: RoutineDataPresentable) {
         super.init(presenter: presenter)
@@ -46,7 +44,6 @@ final class RoutineDataInteractor: PresentableInteractor<RoutineDataPresentable>
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didMove() {

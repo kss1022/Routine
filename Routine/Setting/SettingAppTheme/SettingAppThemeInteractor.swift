@@ -9,7 +9,6 @@ import ModernRIBs
 import UIKit
 
 protocol SettingAppThemeRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol SettingAppThemePresentable: Presentable {
@@ -48,7 +47,6 @@ final class SettingAppThemeInteractor: PresentableInteractor<SettingAppThemePres
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didMove() {

@@ -14,7 +14,6 @@ protocol RecordTimerListDetailInteractable: Interactable, TimerDataListener {
 }
 
 protocol RecordTimerListDetailViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RecordTimerListDetailRouter: ViewableRouter<RecordTimerListDetailInteractable, RecordTimerListDetailViewControllable>, RecordTimerListDetailRouting {

@@ -8,7 +8,6 @@
 import ModernRIBs
 
 protocol AppTutorialSplashRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol AppTutorialSplashPresentable: Presentable {
@@ -51,7 +50,6 @@ final class AppTutorialSplashInteractor: PresentableInteractor<AppTutorialSplash
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     private func showNextPage(){

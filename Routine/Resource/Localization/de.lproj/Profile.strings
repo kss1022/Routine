@@ -30,6 +30,8 @@
 "onOff" = "AN AUS";
 "daliy_reminder" = "Daliy Erinnerung";
 "routine_reminder" = "Rotuine Erinnerung";
+"daliy_reminder_title" = "Umfassen Sie den Beginn Ihrer Routine.";
+"daliy_reminder_body" = "Eine sanfte Erinnerung daran, dass es Zeit für Ihre besondere Routine ist. Genießen Sie den Anfang auf entspannte Weise.";
 
 // SettingTheme
 "system" = "System";
@@ -43,6 +45,7 @@
 "os_setting" = "Betriebssystemeinstellung";
 "os_setting_help" = "Sie können die Betriebssystemeinstellungen unter Einstellungen> Anzeige und Helligkeit> Texque -Größe ändern.";
 "os_typeface" = "Betriebssystem Schrift";
+"base_typeface" = "Basisschrift";
 
 // Feedback
 "feedback_title" = "Hallo Rotine!";

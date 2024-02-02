@@ -13,12 +13,10 @@ protocol FeedbackMailInteractable: Interactable {
 }
 
 protocol FeedbackMailViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class FeedbackMailRouter: ViewableRouter<FeedbackMailInteractable, FeedbackMailViewControllable>, FeedbackMailRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: FeedbackMailInteractable, viewController: FeedbackMailViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

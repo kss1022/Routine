@@ -52,8 +52,4 @@
 "update_routine_failed" = "There was a problem update the routine.";
 "delete_routine_failed" = "There was a problem deleting the routine.";
 "record_routine_failed" = "There was a problem recording the routine.";
-"name_count_less_then" = "Name Length must less then %d";
-"name_count_more_then" = "Name Length must more then %d";
-"description_count_less_then" = "Description Length must count then %d";
-"description_count_more_then" = "Description Length must less then %d";
 "minumum_chracters" = "Minimum %d chracters";

@@ -63,7 +63,6 @@ final class AddYourTimerInteractor: Interactor, AddYourTimerInteractable, Adapti
         super.willResignActive()
 
         router?.cleanupViews()
-        // TODO: Pause any business logic.
     }
     
     func presentationControllerDidDismiss() {

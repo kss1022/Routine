@@ -13,12 +13,10 @@ protocol RecordCalendarInteractable: Interactable {
 }
 
 protocol RecordCalendarViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RecordCalendarRouter: ViewableRouter<RecordCalendarInteractable, RecordCalendarViewControllable>, RecordCalendarRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: RecordCalendarInteractable, viewController: RecordCalendarViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

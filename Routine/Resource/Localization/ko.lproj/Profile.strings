@@ -30,6 +30,8 @@
 "onOff" = "ONOFF";
 "daliy_reminder" = "데일리 리마인더";
 "routine_reminder" = "루틴 알림";
+"daliy_reminder_title" = "당신의 루틴의 시작을 환영하세요.";
+"daliy_reminder_body" = "당신의 특별한 루틴이 시작되었음을 부드럽게 상기시키는 메시지입니다.  시작을 여유롭게 즐겨보세요.";
 
 // SettingTheme
 "system" = "시스템";
@@ -43,6 +45,7 @@
 "os_setting" = "OS 설정";
 "os_setting_help" = "설정 > 디스플레이 및 밝기 > 텍스트 크기에서 OS 설정을 변경할 수 있습니다.";
 "os_typeface" = "OS 폰트";
+"base_typeface" = "기본 글씨체";
 
 // Feedback
 "feedback_title" = "안녕 루틴!";

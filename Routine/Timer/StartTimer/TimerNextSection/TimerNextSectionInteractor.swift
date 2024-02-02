@@ -10,7 +10,6 @@ import ModernRIBs
 import Combine
 
 protocol TimerNextSectionRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol TimerNextSectionPresentable: Presentable {
@@ -20,7 +19,6 @@ protocol TimerNextSectionPresentable: Presentable {
 }
 
 protocol TimerNextSectionListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
 protocol TimerNextSectionInteractorDependency{

@@ -63,4 +63,5 @@
 "fetch_timer_failed" = "타이머를 불러오는 도중 문제가 발생했어요.";
 "add_timer_failed" = "타이머를 추가하는데 문제가 발생했어요.";
 "update_timer_failed" = "타이머를 수정하는데 문제가 발생했어요.";
+"record_timer_failed" = "타이머을 기록하는데 문제가 발생했습니다.";
 "minumum_chracters" = "최소 %d 글자입니다.";

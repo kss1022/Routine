@@ -65,7 +65,6 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
 

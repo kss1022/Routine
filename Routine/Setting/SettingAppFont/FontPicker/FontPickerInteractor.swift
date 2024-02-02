@@ -8,12 +8,10 @@
 import ModernRIBs
 
 protocol FontPickerRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol FontPickerPresentable: Presentable {
     var listener: FontPickerPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
 protocol FontPickerListener: AnyObject {
@@ -26,7 +24,6 @@ final class FontPickerInteractor: PresentableInteractor<FontPickerPresentable>, 
     weak var router: FontPickerRouting?
     weak var listener: FontPickerListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     override init(presenter: FontPickerPresentable) {
         super.init(presenter: presenter)
@@ -35,12 +32,10 @@ final class FontPickerInteractor: PresentableInteractor<FontPickerPresentable>, 
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        // TODO: Implement business logic here.
     }
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didPickFont(familyName: String) {

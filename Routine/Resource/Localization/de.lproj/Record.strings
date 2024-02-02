@@ -12,15 +12,17 @@
 "added_routine_isEmpty" = "Sie haben noch keine Routinen hinzugefügt";
 
 // WeeklyTracker
-"weeklyTracker" = "Weelytracker";
+"weeklyTracker" = "WeelyTracker";
 
 // YourAchieve
 "your_achieve" = "Sie erreichen";
+"your_focus" = "Dein Fokus";
 "date_of_week" = "Woche der Woche";
 "date_of_month" = "Monatsdatum";
 "date_of_year" = "Jahresdatum";
 "done_this_month" = "Diesen Monat getan";
 "totalDone" = "Totaldone";
+"totalTime" = "Gesamtzeit";
 "current_streak" = "Aktuelle Streifen";
 "best_streak" = "Beste Serie";
 

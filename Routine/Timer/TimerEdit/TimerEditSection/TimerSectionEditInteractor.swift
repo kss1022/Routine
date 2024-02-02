@@ -76,7 +76,6 @@ final class TimerSectionEditInteractor: PresentableInteractor<TimerSectionEditPr
 
     override func willResignActive() {
         super.willResignActive()
-        // TODO: Pause any business logic.
     }
     
     func didMoved() {

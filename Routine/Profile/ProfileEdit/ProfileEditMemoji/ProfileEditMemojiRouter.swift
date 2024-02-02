@@ -13,12 +13,10 @@ protocol ProfileEditMemojiInteractable: Interactable {
 }
 
 protocol ProfileEditMemojiViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class ProfileEditMemojiRouter: ViewableRouter<ProfileEditMemojiInteractable, ProfileEditMemojiViewControllable>, ProfileEditMemojiRouting {
 
-    // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: ProfileEditMemojiInteractable, viewController: ProfileEditMemojiViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self

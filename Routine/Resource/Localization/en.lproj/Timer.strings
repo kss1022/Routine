@@ -63,4 +63,5 @@
 "fetch_timer_failed" = "There was a problem getting the timer.";
 "add_timer_failed" = "There was a problem adding the timer.";
 "update_timer_failed" = "There was a problem modifying the timer.";
+"record_timer_failed" = "There was a problem recording the timer.";
 "minumum_chracters" = "Minimum %d chracters";

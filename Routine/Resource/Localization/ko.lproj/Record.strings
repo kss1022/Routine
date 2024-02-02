@@ -16,11 +16,13 @@
 
 // YourAchieve
 "your_achieve" = "나의 달성";
+"your_focus" = "나의 집중";
 "date_of_week" = "주간";
 "date_of_month" = "월간";
 "date_of_year" = "년간";
 "done_this_month" = "이번달 완료";
 "totalDone" = "전체 완료";
+"totalTime" = "집중 시간";
 "current_streak" = "현재 스트릭";
 "best_streak" = "최다 스트릭";
 
