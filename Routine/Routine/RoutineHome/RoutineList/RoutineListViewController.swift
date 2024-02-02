@@ -47,7 +47,7 @@ final class RoutineListViewController: UIViewController, RoutineListPresentable,
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getBoldFont(size: 24.0)
         label.textColor = .secondaryLabel
-        label.text = "no_tasks".localized(tableName: "Routine")
+        label.text = "no_task".localized(tableName: "Routine")
         label.isHidden = true
         return label
     }()

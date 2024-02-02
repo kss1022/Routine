@@ -12,6 +12,7 @@ protocol TimerHomeDependency: Dependency {
     var recordApplicationService: RecordApplicationService{ get }
     
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
     
     var startTimerViewController: ViewControllable{ get }
     var timerEditViewController: ViewControllable{ get }
@@ -22,6 +23,7 @@ final class TimerHomeComponent: Component<TimerHomeDependency>, TimerListDepende
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     
     var timerRepository: TimerRepository{ dependency.timerRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
     
     var startTimerViewController: ViewControllable{ dependency.startTimerViewController }
     var timerEditViewController: ViewControllable{ dependency.timerEditViewController }

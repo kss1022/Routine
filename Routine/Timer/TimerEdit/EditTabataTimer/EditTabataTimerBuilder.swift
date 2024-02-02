@@ -11,12 +11,16 @@ import Combine
 protocol EditTabataTimerDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
+    
     var tabataTimerSubject: CurrentValueSubject<TabataTimerModel?, Error>{ get }
 }
 
 final class EditTabataTimerComponent: Component<EditTabataTimerDependency>, TimerSectionEditDependency, TimerEditTitleDependency, TimerSectionListDependency , EditTabataTimerInteractorDependency {
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
+    
     var tabataTimerSubject: CurrentValueSubject<TabataTimerModel?, Error>{ dependency.tabataTimerSubject }
     
     var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionListsSubject }

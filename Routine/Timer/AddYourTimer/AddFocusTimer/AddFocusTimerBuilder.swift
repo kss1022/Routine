@@ -10,11 +10,13 @@ import ModernRIBs
 protocol AddFocusTimerDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
 }
 
 final class AddFocusTimerComponent: Component<AddFocusTimerDependency>, TimerEditTitleDependency , TimerEditMinutesDependency, AddFocusTimerInteractorDependency{
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService}
     var timerRepository: TimerRepository{ dependency.timerRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
 }
 
 // MARK: - Builder

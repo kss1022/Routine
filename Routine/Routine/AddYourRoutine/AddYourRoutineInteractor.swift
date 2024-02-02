@@ -31,6 +31,7 @@ protocol AddYourRoutineListener: AnyObject {
 protocol AddYourRoutineInteractorDependency{
     var routineApplicationService: RoutineApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
     
     var detail: RoutineDetailModel?{ get }
 }
@@ -117,6 +118,7 @@ final class AddYourRoutineInteractor: PresentableInteractor<AddYourRoutinePresen
             do{
                 try await self.dependency.routineApplicationService.when(createRoutine)
                 try await self.dependency.routineRepository.fetchLists()
+                try await self.dependency.routineRecordRepository.fetchList()
                 await MainActor.run{ self.listener?.addYourRoutineDoneButtonDidTap() }
             }catch{
                 if let error = error as? ArgumentException{

@@ -10,11 +10,13 @@ import ModernRIBs
 protocol AddTabataTimerDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
 }
 
 final class AddTabataTimerComponent: Component<AddTabataTimerDependency>, TimerSectionEditDependency, TimerEditTitleDependency, TimerSectionListDependency , AddTabataTimerInteractorDependency {    
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
     
     var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionListsSubject }
     var sectionListsSubject = CurrentValuePublisher<[TimerSectionListModel]>([])

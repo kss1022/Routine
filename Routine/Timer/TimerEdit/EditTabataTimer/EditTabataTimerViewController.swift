@@ -11,6 +11,7 @@ import UIKit
 protocol EditTabataTimerPresentableListener: AnyObject {
     func closeButtonDidTap()
     func doneButtonDidTap()
+    func deleteButtonDidTap()
     func errorButtonDidTap()
 }
 
@@ -30,7 +31,12 @@ final class EditTabataTimerViewController: UIViewController, EditTabataTimerPres
             target: self, action: #selector(doneBarButtonDidTap))
         return barbuttonItem
     }()
-    
+           
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
 
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -40,6 +46,26 @@ final class EditTabataTimerViewController: UIViewController, EditTabataTimerPres
         stackView.distribution = .fill
         stackView.spacing = 16.0
         return stackView
+    }()
+    
+    private lazy var deleteButton: UIButton = {
+        let button = TouchesButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.titleLabel?.font = .getBoldFont(size: 14.0)
+        button.setTitle("delete".localized(tableName: "Timer"), for: .normal)
+        button.setTitleColor(.systemBackground, for: .normal)
+        button.backgroundColor = .label
+                                
+        button.contentEdgeInsets.top = 16.0
+        button.contentEdgeInsets.bottom = 16.0
+        button.contentEdgeInsets.left = 32.0
+        button.contentEdgeInsets.right = 32.0
+        
+        button.roundCorners(24.0)
+        button.addTarget(self, action: #selector(deleteButtonTap), for: .touchUpInside)
+        
+        return button
     }()
     
     private let loadingIndicator: UIActivityIndicatorView = {
@@ -69,15 +95,26 @@ final class EditTabataTimerViewController: UIViewController, EditTabataTimerPres
         
         navigationItem.leftBarButtonItem = closeBarButtonItem
         navigationItem.rightBarButtonItem = doneBarButtonItem
-
-        view.addSubview(stackView)
+        
+        view.addSubview(scrollView)
         view.addSubview(loadingIndicator)
+
+        scrollView.addSubview(stackView)
+        scrollView.addSubview(deleteButton)
                 
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            deleteButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 32.0),
+            deleteButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            deleteButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16.0),
+            deleteButton.heightAnchor.constraint(equalToConstant: 48.0),
             
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -138,5 +175,11 @@ final class EditTabataTimerViewController: UIViewController, EditTabataTimerPres
     private func doneBarButtonDidTap(){
         view.endEditing(true)
         listener?.doneButtonDidTap()
+    }
+    
+    @objc
+    private func deleteButtonTap(){
+        view.endEditing(true)
+        listener?.deleteButtonDidTap()
     }
 }

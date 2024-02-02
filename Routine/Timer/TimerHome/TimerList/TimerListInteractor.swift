@@ -15,6 +15,8 @@ protocol TimerListRouting: ViewableRouting {
 protocol TimerListPresentable: Presentable {
     var listener: TimerListPresentableListener? { get set }
     func setTimerLists(_ viewModels: [TimerListViewModel])
+    func showEmpty()
+    func hideEmpty()
 }
 
 protocol TimerListListener: AnyObject {
@@ -57,6 +59,14 @@ final class TimerListInteractor: PresentableInteractor<TimerListPresentable>, Ti
                         self?.listener?.timerListEditTap(timerId: model.timerId)                        
                     }
                 }
+                
+                
+                if viewModels.isEmpty{
+                    self.presenter.showEmpty()
+                }else{
+                    self.presenter.hideEmpty()
+                }
+                
                 self.presenter.setTimerLists(viewModels)
             }
             .store(in: &cancellables)

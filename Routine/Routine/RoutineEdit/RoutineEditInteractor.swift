@@ -35,6 +35,7 @@ protocol RoutineEditInteractorDependency{
     
     var routineApplicationService: RoutineApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
     
     var detail: RoutineDetailModel?{ get }
 }
@@ -119,6 +120,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
                 try await dependency.routineApplicationService.when(updateRoutine)
                 try await dependency.routineRepository.fetchLists()
                 try await dependency.routineRepository.fetchDetail(dependency.routineId)
+                try await dependency.routineRecordRepository.fetchList()
                 await MainActor.run{ [weak self] in self?.listener?.routineEditDoneButtonDidTap() }
             }catch{
                 if let error = error as? ArgumentException{
@@ -140,6 +142,7 @@ final class RoutineEditInteractor: PresentableInteractor<RoutineEditPresentable>
             do{
                 try await dependency.routineApplicationService.when(deleteRoutine)
                 try await dependency.routineRepository.fetchLists()
+                try await dependency.routineRecordRepository.fetchList()
                 await MainActor.run{ [weak self] in self?.listener?.routineEditDeleteButtonDidTap() }
             }catch{
                 if let error = error as? ArgumentException{

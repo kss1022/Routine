@@ -26,14 +26,16 @@ protocol EditFocusTimerPresentable: Presentable {
 }
 
 protocol EditFocusTimerListener: AnyObject {
-    func editFocusTimerDidTapClose()
-    func editfocusTimerDidEditTimer()
+    func editFocusTimerDidClose()
+    func editfocusTimerDidEdit()
+    func editfocusTimerDidDelete()
     func editfocusTimerCancel()
 }
 
 protocol EditFocusTimerInteractorDependency{
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
     var focusTimerSubject: CurrentValueSubject<FocusTimerModel?, Error>{ get }
 }
 
@@ -100,7 +102,7 @@ final class EditFocusTimerInteractor: PresentableInteractor<EditFocusTimerPresen
     }
     
     func closeButtonDidTap() {
-        listener?.editFocusTimerDidTapClose()
+        listener?.editFocusTimerDidClose()
     }
     
     func errorButtonDidTap() {
@@ -121,11 +123,32 @@ final class EditFocusTimerInteractor: PresentableInteractor<EditFocusTimerPresen
             do{
                 try await dependency.timerApplicationService.when(createTimer)
                 try await dependency.timerRepository.fetchLists()
-                await MainActor.run { [weak self] in self?.listener?.editfocusTimerDidEditTimer() }
+                try await dependency.timerRecordRepository.fetchList()
+                await MainActor.run { [weak self] in self?.listener?.editfocusTimerDidEdit() }
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
                     await showUpdateTimerFailed()
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
+            }
+        }
+    }
+    
+    func deleteButtonDidTap() {
+        Task{ [weak self] in
+            guard let self = self else { return }
+            do{
+                let deleteTimer = DeleteFocusTimer(id: id)
+                try await dependency.timerApplicationService.when(deleteTimer)
+                try await dependency.timerRepository.fetchLists()
+                try await dependency.timerRecordRepository.fetchList()
+                await MainActor.run { [weak self] in self?.listener?.editfocusTimerDidDelete() }
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.message)
+                    await showDeleteFailed()
                 }else{
                     Log.e("UnkownError\n\(error)" )
                 }
@@ -164,5 +187,12 @@ private extension EditFocusTimerInteractor{
         let title = "error".localized(tableName: "Timer")
         let message = "fetch_timer_failed".localized(tableName: "Timer")
         presenter.showCacelError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showDeleteFailed(){
+        let title = "error".localized(tableName: "Timer")
+        let message = "delete_timer_failed".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
     }
 }

@@ -12,6 +12,7 @@ import Combine
 protocol TimerEditDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
     
     var timerEditViewController: ViewControllable { get }
 }
@@ -21,6 +22,7 @@ final class TimerEditComponent: Component<TimerEditDependency>, EditFocusTimerDe
     
     var timerApplicationService: TimerApplicationService{dependency.timerApplicationService}
     var timerRepository: TimerRepository{ dependency.timerRepository}
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
     
     fileprivate var timerEditViewController: ViewControllable { dependency.timerEditViewController }
     

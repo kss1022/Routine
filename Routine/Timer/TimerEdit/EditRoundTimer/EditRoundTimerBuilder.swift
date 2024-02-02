@@ -11,12 +11,16 @@ import Combine
 protocol EditRoundTimerDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
+    
     var roundTimerSubject: CurrentValueSubject<RoundTimerModel?, Error>{ get }
 }
 
 final class EditRoundTimerComponent: Component<EditRoundTimerDependency>, TimerSectionEditDependency, TimerEditTitleDependency, TimerSectionListDependency , EditRoundTimerInteractorDependency {
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
+    
     var roundTimerSubject: CurrentValueSubject<RoundTimerModel?, Error>{ dependency.roundTimerSubject }
     
     var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionListsSubject }

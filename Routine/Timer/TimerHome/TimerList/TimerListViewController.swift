@@ -49,7 +49,7 @@ final class TimerListViewController: UIViewController, TimerListPresentable, Tim
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getBoldFont(size: 24.0)
         label.textColor = .secondaryLabel
-        //label.text = "added_routine_isEmpty".localized(tableName: "Record")
+        label.text = "added_timer_isEmpty".localized(tableName: "Timer")
         label.numberOfLines = 2
         label.textAlignment = .center
         label.isHidden = true

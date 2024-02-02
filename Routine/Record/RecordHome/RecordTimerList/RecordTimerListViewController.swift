@@ -31,7 +31,7 @@ final class RecordTimerListViewController: UIViewController, RecordTimerListPres
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
                 
-        let collectionView = DynamicCollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(cellType: RecordTimerListCell.self)
         
@@ -50,7 +50,7 @@ final class RecordTimerListViewController: UIViewController, RecordTimerListPres
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .getBoldFont(size: 24.0)
         label.textColor = .secondaryLabel
-        label.text = "added_routine_isEmpty".localized(tableName: "Record")
+        label.text = "added_timer_isEmpty".localized(tableName: "Record")
         label.numberOfLines = 2
         label.textAlignment = .center
         label.isHidden = true

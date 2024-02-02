@@ -98,12 +98,12 @@ final class TimerEditInteractor: Interactor, TimerEditInteractable, AdaptivePres
     
     
     //MARK: Focus
-    func editFocusTimerDidTapClose() {
+    func editFocusTimerDidClose() {
         router?.detachEditFocusTimer()
         listener?.timerEditDidClose()
     }
     
-    func editfocusTimerDidEditTimer() {
+    func editfocusTimerDidEdit() {
         router?.detachEditFocusTimer()
         listener?.timerEditDidFinish()
     }
@@ -113,13 +113,23 @@ final class TimerEditInteractor: Interactor, TimerEditInteractable, AdaptivePres
         listener?.timerEditDidFinish()
     }
     
+    func editfocusTimerDidDelete() {
+        router?.detachEditFocusTimer()
+        listener?.timerEditDidFinish()
+    }
+    
     //MARK: Tabata
-    func editTabataTimerDidTapClose() {
+    func editTabataTimerDidClose() {
         router?.detachEditTabataTimer()
         listener?.timerEditDidClose()
     }
     
-    func editTabataTimerDidAddFinish() {
+    func editTabataTimerDidEdit() {
+        router?.detachEditTabataTimer()
+        listener?.timerEditDidFinish()
+    }
+    
+    func editTabataTimerDidDelete() {
         router?.detachEditTabataTimer()
         listener?.timerEditDidFinish()
     }
@@ -130,12 +140,17 @@ final class TimerEditInteractor: Interactor, TimerEditInteractable, AdaptivePres
     }
     
     //MARK: Round
-    func editRoundTimerDidTapClose() {
+    func editRoundTimerDidClose() {
         router?.detachEditRoundTimer()
         listener?.timerEditDidClose()
     }
     
-    func editRoundTimerDidAddFinish() {
+    func editRoundTimerDidEdit() {
+        router?.detachEditRoundTimer()
+        listener?.timerEditDidFinish()
+    }
+    
+    func editRoundTimerDidDelete() {
         router?.detachEditRoundTimer()
         listener?.timerEditDidFinish()
     }

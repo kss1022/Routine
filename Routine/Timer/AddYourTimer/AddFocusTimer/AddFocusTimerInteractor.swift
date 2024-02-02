@@ -26,6 +26,7 @@ protocol AddFocusTimerListener: AnyObject {
 protocol AddFocusTimerInteractorDependency{
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
 }
 
 final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresentable>, AddFocusTimerInteractable, AddFocusTimerPresentableListener {
@@ -89,6 +90,7 @@ final class AddFocusTimerInteractor: PresentableInteractor<AddFocusTimerPresenta
             do{
                 try await dependency.timerApplicationService.when(createTimer)
                 try await dependency.timerRepository.fetchLists()
+                try await dependency.timerRecordRepository.fetchList()
                 await MainActor.run { [weak self] in self?.listener?.addfocusTimerDidAddNewTimer() }
             }catch{
                 if let error = error as? ArgumentException{

@@ -44,6 +44,19 @@ final class RecordTimerListDetailViewController: UIViewController, RecordTimerLi
         return collectionView
     }()
     
+    private let emptyView: UIView = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .getBoldFont(size: 24.0)
+        label.textColor = .secondaryLabel
+        label.text = "added_timer_isEmpty".localized(tableName: "Record")
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
+    }()
+    
+    
     init(){
         super.init(nibName: nil, bundle: nil)
         
@@ -62,12 +75,16 @@ final class RecordTimerListDetailViewController: UIViewController, RecordTimerLi
         title = "your_focus".localized(tableName: "Record")
         
         view.addSubview(collectionView)
-                
+        view.addSubview(emptyView)
+        
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -82,6 +99,15 @@ final class RecordTimerListDetailViewController: UIViewController, RecordTimerLi
         snapShot.appendItems(viewModels , toSection: .timerList )
         self.dataSource.apply( snapShot , animatingDifferences: false )
     }
+    
+    func showEmpty() {
+        emptyView.isHidden = false
+    }
+    
+    func hideEmpty() {
+        emptyView.isHidden = true
+    }
+    
     
     private func setDataSource(){
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in

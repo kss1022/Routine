@@ -35,7 +35,7 @@ final class TimerSetup{
         
         
         let createRoundTimer = CreateRoundTimer(
-            name: "stduy".localized(tableName: "Tutorial"),
+            name: "study".localized(tableName: "Tutorial"),
             emoji: "🧐",
             tint: "#CAF2BDFF",
             ready: TimeSectionCommand(ready()),

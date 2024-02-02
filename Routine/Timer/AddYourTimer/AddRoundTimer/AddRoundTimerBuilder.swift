@@ -10,12 +10,14 @@ import ModernRIBs
 protocol AddRoundTimerDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
 }
 
 final class AddRoundTimerComponent: Component<AddRoundTimerDependency>,TimerSectionEditDependency, TimerEditTitleDependency, TimerSectionListDependency , AddRoundTimerInteractorDependency  {
     
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
     
     var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ sectionListsSubject }
     var sectionListsSubject = CurrentValuePublisher<[TimerSectionListModel]>([])

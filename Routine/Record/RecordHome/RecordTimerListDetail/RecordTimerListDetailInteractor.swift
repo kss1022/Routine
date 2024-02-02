@@ -17,6 +17,8 @@ protocol RecordTimerListDetailRouting: ViewableRouting {
 protocol RecordTimerListDetailPresentable: Presentable {
     var listener: RecordTimerListDetailPresentableListener? { get set }
     func setTimerLists(_ viewModels: [RecordTimerListViewModel])
+    func showEmpty()
+    func hideEmpty()
 }
 
 protocol RecordTimerListDetailListener: AnyObject {
@@ -57,6 +59,13 @@ final class RecordTimerListDetailInteractor: PresentableInteractor<RecordTimerLi
             .receive(on: DispatchQueue.main)
             .sink { lists in
                 let viewModels = lists.map(RecordTimerListViewModel.init)
+                
+                if viewModels.isEmpty{
+                    self.presenter.showEmpty()
+                }else{
+                    self.presenter.hideEmpty()
+                }
+                
                 self.presenter.setTimerLists(viewModels)
             }
             .store(in: &cancellables)

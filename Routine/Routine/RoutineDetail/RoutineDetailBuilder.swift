@@ -13,12 +13,12 @@ protocol RoutineDetailDependency: Dependency {
     var recordApplicationService: RecordApplicationService{ get }
     
     var routineRepository: RoutineRepository{ get }
-    
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class RoutineDetailComponent: Component<RoutineDetailDependency>, RoutineEditDependency,  RoutineTitleDependency, RecordCalendarDependency, RoutineBasicInfoDependency, RoutineDetailInteractorDependency {
     
-    
+        
     var routineId: UUID
     var recordDate: Date
 
@@ -26,6 +26,8 @@ final class RoutineDetailComponent: Component<RoutineDetailDependency>, RoutineE
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     
     var routineRepository: RoutineRepository{ dependency.routineRepository }
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
+
         
     var routineDetail: ReadOnlyCurrentValuePublisher<RoutineDetailModel?>{ routineRepository.detail}
     var routineDetailRecord: ReadOnlyCurrentValuePublisher<RoutineDetailRecordModel?>{ routineRepository.detailRecords }

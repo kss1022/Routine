@@ -11,11 +11,13 @@ import Combine
 protocol CreateRoutineDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class CreateRoutineComponent: Component<CreateRoutineDependency> ,AddYourRoutineDependency, CreateRoutineInteractorDependency{    
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService}
     var routineRepository: RoutineRepository{ dependency.routineRepository }
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
 }
 
 // MARK: - Builder

@@ -10,12 +10,15 @@ import ModernRIBs
 protocol CreateTimerDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
 }
 
 final class CreateTimerComponent: Component<CreateTimerDependency>, AddYourTimerDependency {
-        
-    var timerRepository: TimerRepository{ dependency.timerRepository }
+            
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
+    var timerRepository: TimerRepository{ dependency.timerRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
+
     
     var addYourTimerBaseViewController: ViewControllable{ createTimerController }
     private let createTimerController: ViewControllable

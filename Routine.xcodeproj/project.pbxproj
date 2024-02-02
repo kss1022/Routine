@@ -171,6 +171,7 @@
 		872627C62B18B55A00C0CD92 /* EmojiCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872627B02B18B55A00C0CD92 /* EmojiCategoryView.swift */; };
 		87262A512B18ED1400C0CD92 /* UIColor+EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87262A502B18ED1400C0CD92 /* UIColor+EmojiPicker.swift */; };
 		87262A532B18ED2900C0CD92 /* Bundle+EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87262A522B18ED2900C0CD92 /* Bundle+EmojiPicker.swift */; };
+		8729B7E82B6CD83E002DB9A5 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729B7E72B6CD83E002DB9A5 /* DynamicTableView.swift */; };
 		872DF3C42AF2105D00D18447 /* TimerEditCountdownPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872DF3C32AF2105D00D18447 /* TimerEditCountdownPickerView.swift */; };
 		872DF3C62AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872DF3C52AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift */; };
 		87339E9D2AE18FD50099AA33 /* TimerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87339E9C2AE18FD50099AA33 /* TimerSection.swift */; };
@@ -1090,6 +1091,7 @@
 		872627B02B18B55A00C0CD92 /* EmojiCategoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCategoryView.swift; sourceTree = "<group>"; };
 		87262A502B18ED1400C0CD92 /* UIColor+EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+EmojiPicker.swift"; sourceTree = "<group>"; };
 		87262A522B18ED2900C0CD92 /* Bundle+EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+EmojiPicker.swift"; sourceTree = "<group>"; };
+		8729B7E72B6CD83E002DB9A5 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
 		872DF3C32AF2105D00D18447 /* TimerEditCountdownPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEditCountdownPickerView.swift; sourceTree = "<group>"; };
 		872DF3C52AF2156300D18447 /* SUI_TimerEditCountdownLabelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUI_TimerEditCountdownLabelViewModel.swift; sourceTree = "<group>"; };
 		87339E9C2AE18FD50099AA33 /* TimerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSection.swift; sourceTree = "<group>"; };
@@ -4627,6 +4629,7 @@
 				87D9EB8A2AE186ED0026F9DE /* PaddingLabel.swift */,
 				87B708AC2B04BC2800C95C08 /* PlaceholerTextView.swift */,
 				8756B0492B21CDF5008A56D4 /* DynamicCollectionView.swift */,
+				8729B7E72B6CD83E002DB9A5 /* DynamicTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5160,6 +5163,7 @@
 				8748F3022B0F66560081EFA1 /* AppFileManager.swift in Sources */,
 				877C0E362B0C9693006783DC /* RoutineWeeklyTableCell.swift in Sources */,
 				87FF66D92B15F45D0013DB2A /* AppTutorialSplashViewController.swift in Sources */,
+				8729B7E82B6CD83E002DB9A5 /* DynamicTableView.swift in Sources */,
 				87B378A72AEA8F05006F8C22 /* StartTimerRouter.swift in Sources */,
 				871E6A052ADE9A700051F978 /* TimerSectionListInteractor.swift in Sources */,
 				878DA7A12ACE8D2D00220653 /* RoutineDeleted.swift in Sources */,

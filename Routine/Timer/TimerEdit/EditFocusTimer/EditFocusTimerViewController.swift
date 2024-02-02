@@ -11,6 +11,7 @@ import UIKit
 protocol EditFocusTimerPresentableListener: AnyObject {
     func closeButtonDidTap()
     func doneButtonDidTap()
+    func deleteButtonDidTap()
     func errorButtonDidTap()
 }
 
@@ -48,6 +49,26 @@ final class EditFocusTimerViewController: UIViewController, EditFocusTimerPresen
         return stackView
     }()
     
+    private lazy var deleteButton: UIButton = {
+        let button = TouchesButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.titleLabel?.font = .getBoldFont(size: 14.0)
+        button.setTitle("delete".localized(tableName: "Timer"), for: .normal)
+        button.setTitleColor(.systemBackground, for: .normal)
+        button.backgroundColor = .label
+                                
+        button.contentEdgeInsets.top = 16.0
+        button.contentEdgeInsets.bottom = 16.0
+        button.contentEdgeInsets.left = 32.0
+        button.contentEdgeInsets.right = 32.0
+        
+        button.roundCorners(24.0)
+        button.addTarget(self, action: #selector(deleteButtonTap), for: .touchUpInside)
+        
+        return button
+    }()
+    
     private let loadingIndicator: UIActivityIndicatorView = {
       let activity = UIActivityIndicatorView(style: .medium)
       activity.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +101,7 @@ final class EditFocusTimerViewController: UIViewController, EditFocusTimerPresen
         view.addSubview(loadingIndicator)
         
         scrollView.addSubview(stackView)
+        scrollView.addSubview(deleteButton)
         
         
         NSLayoutConstraint.activate([
@@ -89,8 +111,12 @@ final class EditFocusTimerViewController: UIViewController, EditFocusTimerPresen
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            deleteButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 32.0),
+            deleteButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            deleteButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16.0),
+            deleteButton.heightAnchor.constraint(equalToConstant: 48.0),
             
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -152,6 +178,12 @@ final class EditFocusTimerViewController: UIViewController, EditFocusTimerPresen
     private func doneBarButtonDidTap(){
         view.endEditing(true)
         listener?.doneButtonDidTap()
+    }
+    
+    @objc
+    private func deleteButtonTap(){
+        view.endEditing(true)
+        listener?.deleteButtonDidTap()
     }
     
 }

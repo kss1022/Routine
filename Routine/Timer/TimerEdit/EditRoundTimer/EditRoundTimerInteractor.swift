@@ -30,14 +30,16 @@ protocol EditRoundTimerPresentable: Presentable {
 }
 
 protocol EditRoundTimerListener: AnyObject {
-    func editRoundTimerDidTapClose()
-    func editRoundTimerDidAddFinish()
+    func editRoundTimerDidClose()
+    func editRoundTimerDidEdit()
+    func editRoundTimerDidDelete()
     func editRoundTimerDidCancel()
 }
 
 protocol EditRoundTimerInteractorDependency{
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
     
     var roundTimerSubject: CurrentValueSubject<RoundTimerModel?, Error>{get}
     
@@ -118,7 +120,7 @@ final class EditRoundTimerInteractor: PresentableInteractor<EditRoundTimerPresen
     }
     
     func closeButtonDidTap() {
-        listener?.editRoundTimerDidTapClose()
+        listener?.editRoundTimerDidClose()
     }
         
     func errorButtonDidTap() {
@@ -144,7 +146,8 @@ final class EditRoundTimerInteractor: PresentableInteractor<EditRoundTimerPresen
             do{
                 try await dependency.timerApplicationService.when(command)
                 try await dependency.timerRepository.fetchLists()
-                await MainActor.run { [weak self] in self?.listener?.editRoundTimerDidAddFinish() }
+                try await dependency.timerRecordRepository.fetchList()
+                await MainActor.run { [weak self] in self?.listener?.editRoundTimerDidEdit() }
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
@@ -158,6 +161,25 @@ final class EditRoundTimerInteractor: PresentableInteractor<EditRoundTimerPresen
         
     }
     
+    func deleteButtonDidTap() {
+        Task{ [weak self] in
+            guard let self = self else { return }
+            do{
+                let deleteTimer = DeleteRoundTimer(id: id)
+                try await dependency.timerApplicationService.when(deleteTimer)
+                try await dependency.timerRepository.fetchLists()
+                try await dependency.timerRecordRepository.fetchList()
+                await MainActor.run { [weak self] in self?.listener?.editRoundTimerDidDelete() }
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.message)
+                    await showDeleteFailed()
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
+            }
+        }
+    }
     
     //MARK: TimerEditTitle
     func timerEditTitleDidSetName(name: String) {
@@ -199,5 +221,12 @@ private extension EditRoundTimerInteractor{
         let title = "error".localized(tableName: "Timer")
         let message = "fetch_timer_failed".localized(tableName: "Timer")
         presenter.showCacelError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showDeleteFailed(){
+        let title = "error".localized(tableName: "Timer")
+        let message = "delete_timer_failed".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
     }
 }

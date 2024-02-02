@@ -11,15 +11,19 @@ protocol RoutineHomeDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
     var recordApplicationService: RecordApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
     
     var createRoutineBuildable: CreateRoutineBuildable{ get }
 }
 
 final class RoutineHomeComponent: Component<RoutineHomeDependency> , RoutineHomeInteractorDependency, RoutineDetailDependency, CreateRoutineDependency, RoutineWeekCalendarDependency, RoutineListDependency{
+    
             
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
     var recordApplicationService: RecordApplicationService{ dependency.recordApplicationService }
     var routineRepository: RoutineRepository{ dependency.routineRepository }
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
+
     
     var createRoutineBuildable: CreateRoutineBuildable{ dependency.createRoutineBuildable }
 }

@@ -11,6 +11,7 @@ import ModernRIBs
 protocol RoutineEditDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
     var routineRepository: RoutineRepository{ get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEditTitleDependency, RoutineEditStyleDependency, RoutineEditRepeatDependency, RoutineEditReminderDependency, RoutineEditInteractorDependency{
@@ -20,7 +21,7 @@ final class RoutineEditComponent: Component<RoutineEditDependency> , RoutineEdit
     
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
     var routineRepository: RoutineRepository{ dependency.routineRepository }
-    
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
     
     var detail: RoutineDetailModel?{ routineRepository.detail.value }
         

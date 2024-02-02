@@ -13,12 +13,14 @@ protocol AddYourTimerDependency: Dependency {
     
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
 }
 
 final class AddYourTimerComponent: Component<AddYourTimerDependency>,AddFocusTimerDependency, AddTabataTimerDependency, AddRoundTimerDependency, AddYourTimerInteractorDependency {
 
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService }
     var timerRepository: TimerRepository{ dependency.timerRepository }
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
     
     let timerType: AddTimerType
     

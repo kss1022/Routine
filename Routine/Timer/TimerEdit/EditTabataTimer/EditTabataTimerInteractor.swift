@@ -30,14 +30,16 @@ protocol EditTabataTimerPresentable: Presentable {
 }
 
 protocol EditTabataTimerListener: AnyObject {
-    func editTabataTimerDidTapClose()
-    func editTabataTimerDidAddFinish()
+    func editTabataTimerDidClose()
+    func editTabataTimerDidEdit()
+    func editTabataTimerDidDelete()
     func editTabataTimerDidCancel()
 }
 
 protocol EditTabataTimerInteractorDependency{
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
     
     var tabataTimerSubject: CurrentValueSubject<TabataTimerModel?, Error>{ get }
     
@@ -120,7 +122,7 @@ final class EditTabataTimerInteractor: PresentableInteractor<EditTabataTimerPres
     }
     
     func closeButtonDidTap() {
-        listener?.editTabataTimerDidTapClose()
+        listener?.editTabataTimerDidClose()
     }
         
     func errorButtonDidTap() {
@@ -148,7 +150,8 @@ final class EditTabataTimerInteractor: PresentableInteractor<EditTabataTimerPres
             do{
                 try await dependency.timerApplicationService.when(command)
                 try await dependency.timerRepository.fetchLists()
-                await MainActor.run { [weak self] in self?.listener?.editTabataTimerDidAddFinish() }
+                try await dependency.timerRecordRepository.fetchList()
+                await MainActor.run { [weak self] in self?.listener?.editTabataTimerDidEdit() }
             }catch{
                 if let error = error as? ArgumentException{
                     Log.e(error.message)
@@ -162,6 +165,26 @@ final class EditTabataTimerInteractor: PresentableInteractor<EditTabataTimerPres
         
     }
     
+    
+    func deleteButtonDidTap() {
+        Task{ [weak self] in
+            guard let self = self else { return }
+            do{
+                let deleteTimer = DeleteTabataTimer(id: id)
+                try await dependency.timerApplicationService.when(deleteTimer)
+                try await dependency.timerRepository.fetchLists()
+                try await dependency.timerRecordRepository.fetchList()
+                await MainActor.run { [weak self] in self?.listener?.editTabataTimerDidDelete() }
+            }catch{
+                if let error = error as? ArgumentException{
+                    Log.e(error.message)
+                    await showDeleteFailed()
+                }else{
+                    Log.e("UnkownError\n\(error)" )
+                }
+            }
+        }
+    }
     
     //MARK: TimerEditTitle
     func timerEditTitleDidSetName(name: String) {
@@ -203,5 +226,12 @@ private extension EditTabataTimerInteractor{
         let title = "error".localized(tableName: "Timer")
         let message = "fetch_timer_failed".localized(tableName: "Timer")
         presenter.showCacelError(title: title, message: message)
+    }
+    
+    @MainActor
+    func showDeleteFailed(){
+        let title = "error".localized(tableName: "Timer")
+        let message = "delete_timer_failed".localized(tableName: "Timer")
+        presenter.showError(title: title, message: message)
     }
 }

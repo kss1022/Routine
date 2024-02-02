@@ -11,6 +11,7 @@ import Combine
 protocol EditFocusTimerDependency: Dependency {
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
     
     var focusTimerSubject: CurrentValueSubject<FocusTimerModel?, Error>{ get }
 }
@@ -18,6 +19,8 @@ protocol EditFocusTimerDependency: Dependency {
 final class EditFocusTimerComponent: Component<EditFocusTimerDependency>, TimerEditTitleDependency , TimerEditMinutesDependency, EditFocusTimerInteractorDependency {
     var timerApplicationService: TimerApplicationService{ dependency.timerApplicationService}
     var timerRepository: TimerRepository{ dependency.timerRepository }    
+    var timerRecordRepository: TimerRecordRepository{ dependency.timerRecordRepository }
+    
     var focusTimerSubject: CurrentValueSubject<FocusTimerModel?, Error>{ dependency.focusTimerSubject }
 }
 

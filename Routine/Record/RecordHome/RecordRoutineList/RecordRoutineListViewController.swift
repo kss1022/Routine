@@ -31,7 +31,7 @@ final class RecordRoutineListViewController: UIViewController, RecordRoutineList
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
                 
-        let collectionView = DynamicCollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(cellType: RecordRoutineListCell.self)
         

@@ -30,6 +30,7 @@ protocol AddRoundTimerListener: AnyObject {
 protocol AddRoundTimerInteractorDependency{
     var timerApplicationService: TimerApplicationService{ get }
     var timerRepository: TimerRepository{ get }
+    var timerRecordRepository: TimerRecordRepository{ get }
     
     var sectionLists: ReadOnlyCurrentValuePublisher<[TimerSectionListModel]>{ get }
     var sectionListsSubject: CurrentValuePublisher<[TimerSectionListModel]>{ get }
@@ -109,6 +110,7 @@ final class AddRoundTimerInteractor: PresentableInteractor<AddRoundTimerPresenta
             do{
                 try await dependency.timerApplicationService.when(command)
                 try await dependency.timerRepository.fetchLists()
+                try await dependency.timerRecordRepository.fetchList()
                 await MainActor.run { [weak self] in self?.listener?.addRoundTimerDidAddNewTimer() }
             }catch{
                 if let error = error as? ArgumentException{

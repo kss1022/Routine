@@ -22,7 +22,7 @@ final class TimerSectionListViewController: UIViewController, TimerSectionListPr
     }
     
     private lazy var tableView : UITableView = {
-        let tableView = UITableView()
+        let tableView = DynamicTablewView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0

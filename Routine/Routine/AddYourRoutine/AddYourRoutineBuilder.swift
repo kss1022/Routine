@@ -11,11 +11,13 @@ import ModernRIBs
 protocol AddYourRoutineDependency: Dependency {
     var routineApplicationService: RoutineApplicationService{ get }
     var routineRepository : RoutineRepository { get }
+    var routineRecordRepository: RoutineRecordRepository{ get }
 }
 
 final class AddYourRoutineComponent: Component<AddYourRoutineDependency>, RoutineEditTitleDependency, RoutineEditStyleDependency, RoutineEditRepeatDependency, RoutineEditReminderDependency, AddYourRoutineInteractorDependency{
     var routineApplicationService: RoutineApplicationService{ dependency.routineApplicationService }
     var routineRepository : RoutineRepository { dependency.routineRepository }
+    var routineRecordRepository: RoutineRecordRepository{ dependency.routineRecordRepository }
     
     var detail: RoutineDetailModel?{ nil }
 }
